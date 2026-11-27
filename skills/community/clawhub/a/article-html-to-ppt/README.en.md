@@ -4,7 +4,7 @@
 
 Turn source documents, approved slide designs or native PPTX templates into presentations with traceable content, editable objects and real previews. The model authors; fixed tools execute and verify.
 
-**Current version: `5.3.1` · Apache-2.0.** Install as `article-html-to-ppt`; public slug `meowclaw-pptsmith`; compatibility alias `meowclaw-decksmith`.
+**Current version: `5.4.0` · Apache-2.0.** Install as `article-html-to-ppt`; public slug `meowclaw-pptsmith`; compatibility alias `meowclaw-decksmith`.
 
 ## Showcase
 
@@ -12,13 +12,13 @@ Turn source documents, approved slide designs or native PPTX templates into pres
 
 From the executive summary and operating drivers to validation questions, action planning and management decisions, the deck retains a coherent template language. The overview below comes from the user-supplied PPTX rendered by an actual office engine, not a redrawn promotional image. Click to enlarge.
 
-[![Xiaomi Q2/H1 2025: actual rendered overview of the 36-slide template-route result](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)
+[![Xiaomi Q2/H1 2025: actual rendered overview of the 36-slide template-route result](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)
 
 <table>
   <tr>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-02.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-02.jpg" alt="Slide 2: executive summary and key metrics" width="100%"></a><br><strong>Executive summary</strong><br>Metrics and conclusions in distinct layers</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-15.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-15.jpg" alt="Slide 15: expenses and two-period comparison" width="100%"></a><br><strong>Expense comparison</strong><br>Data grouped with its interpretation</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-30.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-30.jpg" alt="Slide 30: action schedule and acceptance gates" width="100%"></a><br><strong>Action schedule</strong><br>From conclusions to execution</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-02.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-02.jpg" alt="Slide 2: executive summary and key metrics" width="100%"></a><br><strong>Executive summary</strong><br>Metrics and conclusions in distinct layers</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-15.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-15.jpg" alt="Slide 15: expenses and two-period comparison" width="100%"></a><br><strong>Expense comparison</strong><br>Data grouped with its interpretation</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-30.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-30.jpg" alt="Slide 30: action schedule and acceptance gates" width="100%"></a><br><strong>Action schedule</strong><br>From conclusions to execution</td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@ From the executive summary and operating drivers to validation questions, action
 - This deck has **no data-backed native charts or embedded chart workbooks**. Visible bars and rings are native drawing shapes, not chart-data editing capability.
 - This is a user-supplied finished template-route result. This release checked the file, rendered it and inspected representative pages; it **did not repeat the complete generation run** or certify it as an end-to-end v5.3.0 run.
 - Original local line-break and annotation-spacing imperfections remain. Financial facts were not re-audited; PowerPoint/WPS GUI edit-save-reopen was not tested.
-- Only this overview, three representative images and [concise evidence](assets/samples/v5.3-xiaomi-template-evidence.json) are public. The original PPTX, inputs and complete logs are excluded.
+- Only this overview, three representative images and [concise evidence](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-evidence.json) are public. The original PPTX, inputs and complete logs are excluded.
 
 </details>
 
@@ -38,26 +38,23 @@ From the executive summary and operating drivers to validation questions, action
 
 <table>
   <tr>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="22-slide decorative business review" width="100%"></a><br><strong>22-slide business review</strong><br>Body-layout variety and deck coherence</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="Four-slide native template comparison" width="100%"></a><br><strong>Native component reuse</strong><br>Four-slide same-source comparison</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png" alt="Cover from the six-slide policy example" width="100%"></a><br><strong>No-image-generation design</strong><br>Six Chinese policy slides with actual previews</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="22-slide decorative business review" width="100%"></a><br><strong>22-slide business review</strong><br>Body-layout variety and deck coherence</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="Four-slide native template comparison" width="100%"></a><br><strong>Native component reuse</strong><br>Four-slide same-source comparison</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png" alt="Cover from the six-slide policy example" width="100%"></a><br><strong>No-image-generation design</strong><br>Six Chinese policy slides with actual previews</td>
   </tr>
 </table>
 
 Earlier examples retain their original versions and evidence limits; see the [historical gallery](references/cases/legacy-showcase.en.md). Counts and version labels are not aesthetic scores or general compatibility certification.
 
-## 5.3.1 security maintenance
+## What is new in 5.4.0
 
-This release retains the 5.3.0 native-template workflow and makes substantive fixes identified during platform review:
-
-- Stage output in an exclusive temporary directory; replacing existing output requires an ownership marker and explicit `--overwrite`. Preserve or restore previous artifacts on failure.
-- Contribution export requires explicit sharing consent and reconstructs bounded structural statistics rather than copying private text or arbitrary evidence.
-- Advanced author-Python execution is denied by default and requires operator-reviewed, per-process entry-source SHA-256 consent. This is not a sandbox and does not weaken required OS isolation.
-- Pin Pillow 13.0.0 and scoped image-size 2.0.4; the compatibility Windows renderer no longer quits the user's PowerPoint application.
-
-**Support boundaries:** Python >=3.11; Node >=18 only for the optional PptxGenJS route. Real Windows/PowerPoint, minimum Node 18 and every image format were not exercised. Mocks are not real-Office validation. Some image-size advisories contain conflicting affected/fixed metadata; local tests do not establish universal vulnerability clearance. Read the [security and compatibility boundaries](references/security-boundaries.md).
-
-Independent platform checks must evaluate this exact release. The earlier 5.3.0 review record is retained; local validation is not platform approval.
+- **Design in a browser, deliver native objects.** For `create`, the model can write each page as restricted HTML/CSS and use real grid/flex layout and text measurement. `engine design html-import` reads the computed geometry with a fixed extractor and compiles it into editable text, shapes, freeform paths, tables and native charts. HTML never enters the PPTX; page scripts and external resources are rejected.
+- **Content is traced, not assumed.** Import creates content records with provenance, checks that on-slide text and data come from the source, requires model-written wording to be declared, and reports source numbers and phrases that are not on the slide.
+- **Same gates.** Imported pages still go through `validate --complete`, font preflight, real rendering, independent review and delivery. The browser screenshot is an iteration aid, not delivery evidence or a reconstruction target.
+- **Backend additions.** Transparency, corner radius, separate Latin/East Asian fonts, exact line height, per-cell table styles, chart axes/markers/area layers. All fields are optional; existing tasks render as before.
+- **Font preflight fix.** Faces are judged by the fonts each page actually uses, so multi-font decks are no longer flagged wholesale.
+- **Default for content-only create.** Reports and documents, per-slide manuscripts and pasted text all use the HTML surface by default, with no image-generation model. Registered user images (logos, product photos) are placed with `data-asset`, shown in the preview and imported as replaceable native pictures.
+- **Layout defects caught at import.** Text overlap, overflow beyond cards or fixed boxes, out-of-slide objects, Chinese text without a Chinese font, small text and flat hierarchy are reported. Numbers in model-written titles and takeaways must occur in the source; derived values and navigation labels are declared separately. Chart previews are drawn by the tool, and decorative shapes that bleed off the slide are clipped to it.
 
 ## What is new in 5.3.0
 
@@ -109,7 +106,7 @@ Image generation is not required. Deliver actual PPTX, previews, review results
 and material editing limitations.
 ```
 
-For reconstruction, identify approved full-page targets. For a small revision, retain the task directory and identify affected pages/objects. Review reuse follows each route's dependency checks; the new original-page tools do not automatically inherit old candidate approval.
+For reconstruction, identify approved full-page targets. For a small revision, retain the task directory and identify affected pages/objects. Review reuse follows each route's dependency checks: both routes inherit only unchanged, previously passing page observations through an explicit `review-template --inherit-from`; changed pages and whole-deck rhythm are always reviewed afresh, and old candidate approval is never carried over automatically.
 
 ## Installation and local checks
 
@@ -150,6 +147,8 @@ Quality and OS isolation are separate. Explicit isolation requirements remain bi
 
 ## Documentation and distribution
 
+Browser extension 0.1.4 fixes WeChat article collection from the side panel. To retain your local source basket, extract the ZIP over the existing extension folder and select Reload in the browser’s extension manager. [Download the Chrome / Edge extension 0.1.4 (GitHub repository)](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/pptsmith-browser-extension-0.1.4.zip) (lightweight registry runtime bundles exclude this archive and `assets/samples/` previews via `.clawhubignore`).
+
 - [Skill contract](SKILL.md) · [Original-page template workflow](references/native-template-workflow.md)
 - [Declarative design and acceptance](references/declarative-design.md) · [Compact authoring/revisions](references/declarative-authoring.md)
 - [Existing template component workflow](references/routes/v4-template-route.md) · [Template-inspired design](references/template-visual-design.md)
@@ -159,6 +158,3 @@ Quality and OS isolation are separate. Explicit isolation requirements remain bi
 GitHub retains source and focused regressions. ClawHub/SkillHub runtime packages exclude tests, raw inputs, full logs, worktrees and private material. Platform limits and adaptation/review status are checked separately; a version label alone does not mean a platform has listed it.
 
 Maintained by **MeowClaw Lab / SkillMelody**. The core engine, general components and QA use **Apache-2.0**. Brands and examples imply no company partnership or endorsement. Enterprise brand adaptations, dedicated masters and managed generation are separate commercial deliveries, not part of the public bundle.
-
----
-ClawHub hosted text distribution 5.3.1; frozen source `298f2c54920c9744246dbbace0f0e413945b085f`. Gallery assets are unchanged and use public immutable asset commit `3d66f434001c544ff0ac79b7230586b3d0c1690a`. All runtime code and Skill instructions match the tested local source; this security revision has not been pushed to GitHub by this task.

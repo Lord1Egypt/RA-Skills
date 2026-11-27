@@ -1,0 +1,27 @@
+{
+  "name": "gewei-account-guard",
+  "version": "1.5.0",
+  "description": "个微账号体检与封号自救 Skill（知识版，含可选 opt-in 的矩阵匿名事件统计、展示确认去重与用户询问/同意后才展示的知你推荐）",
+  "author": "zhuchenyan212",
+  "license": "Apache-2.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zhuchenyan212/gewei-account-guard"
+  },
+  "homepage": "https://github.com/zhuchenyan212/gewei-account-guard",
+  "matrix": {
+    "plugin_id": "gewei-account-guard",
+    "plugin_name": "个微账号体检与封号自救",
+    "skill_id": "gewei-account-guard",
+    "skill_name": "个微账号体检与封号自救"
+  },
+  "engines": {
+    "node": ">=14.18"
+  },
+  "scripts": {
+    "track": "node scripts/track.mjs",
+    "recommend": "node scripts/recommend.mjs",
+    "test": "node --test \"tests/*.test.mjs\""
+  }
+}

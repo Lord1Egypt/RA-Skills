@@ -1,0 +1,9 @@
+# Pinned dependency set for browser-auto-download.
+# The Playwright version below also determines which Chromium build
+# `playwright install chromium` downloads, so keep it exact.
+playwright==1.65.0
+
+# For a fully hash-verified install, generate a lock first:
+#   pip install pip-tools
+#   pip-compile --generate-hashes requirements.txt
+#   pip install --require-hashes -r requirements.txt

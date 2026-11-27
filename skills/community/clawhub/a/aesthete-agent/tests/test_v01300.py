@@ -34,7 +34,7 @@ class TestTypescaleV2(unittest.TestCase):
             base = os.path.join(td, "type")
             type_kit.emit("夜松", base=16.0, ratio=1.25, out_base=base, fluid=True)
             css = open(base + ".css", encoding="utf-8").read()
-            self.assertIn("--text-3xl:clamp(", css)
+            self.assertIn("--text-3xl:calc(clamp(", css)  # 0.32:clamp 外包 font-scale 母变量派生
             self.assertIn("text-autospace:normal", css)
             self.assertIn("line-break:strict", css)
             self.assertIn("text-wrap:balance", css)

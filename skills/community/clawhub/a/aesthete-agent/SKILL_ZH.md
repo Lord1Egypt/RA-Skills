@@ -1,5 +1,5 @@
 ---
-version: 0.29.0
+version: 0.31.0
 name: aesthete-agent
 description: 配色生成、调色板方案、前端美学:为 UI/HTML、SVG 幻灯片、视频封面、图表、海报输出机械验证过的颜色方案。119 板实证库按语域自动匹配,OKLCH 谐和生成、明度阶梯、图像取色;60-30-10 角色化含语义色;五维评分卡、WCAG 对比度、色盲模拟、AI-slop 检测四重机械验证;card 上下文预览+六场景 visualizer+五镜自审;偏好学习档案随你的每次裁决进化。内置命名主题包、全对对比度矩阵、色盲安全数据色、五镜报告生成器与 APCA(WCAG 3 草案)感知对比度。纯标准库离线可用。Skip when:纯文字排版、翻译润色、文案写作、与配色和前端美学无关的任务。Aesthete Agent。触发词:配色、调色板、配色方案、颜色搭配、前端美学、UI配色、设计美学、color palette、color scheme、WCAG、色盲、视觉审美、visualizer、aesthete-agent。
 ---

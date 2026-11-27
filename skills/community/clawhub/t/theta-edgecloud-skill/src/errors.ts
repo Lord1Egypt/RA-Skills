@@ -18,12 +18,12 @@ export function thetaError(input: StructuredError): StructuredError {
 // before a quote covers escaped JSON inside error text (`{\"api_key\":\"...\"}`).
 // Quote set: straight, back, and typographic quotes (U+2018/2019/201C/201D); separators include
 // the full-width colon and equals sign (U+FF1A/FF1D). Written as escapes to keep the source ASCII.
-const LABEL_PAIR = /(\\?["'`\u2018\u2019\u201c\u201d]?)([A-Za-z][\w.-]{0,63}(?: [A-Za-z][\w.-]{0,63})?)\\?["'`\u2018\u2019\u201c\u201d]?(\s*(?::=|=>|=|:|\uff1a|\uff1d)\s*)/g;
+const LABEL_PAIR = /(\\?[\x22\x27\x60\u2018\u2019\u201c\u201d]?)([A-Za-z][\w.-]{0,63}(?: [A-Za-z][\w.-]{0,63})?)\\?[\x22\x27\x60\u2018\u2019\u201c\u201d]?(\s*(?::=|=>|=|:|\uff1a|\uff1d)\s*)/g;
 // Values that are naturally several words (wallet phrases, private keys) are redacted through to
 // the end of the message when they are not quoted or bracketed.
 const MULTI_WORD_SECRETS = ['mnemonic', 'phrase', 'seedword', 'privatekey'];
 const PEM_BLOCK = /-----BEGIN [A-Z0-9 ]{1,40}-----[\s\S]*?(?:-----END [A-Z0-9 ]{1,40}-----|$)/gi;
-const QUOTE_CLOSE: Record<string, string> = { '"': '"', "'": "'", '`': '`', '\u201c': '\u201d', '\u2018': '\u2019', '\u201d': '\u201d', '\u2019': '\u2019' };
+const QUOTE_CLOSE: Record<string, string> = { '\x22': '\x22', '\x27': '\x27', '\x60': '\x60', '\u201c': '\u201d', '\u2018': '\u2019', '\u201d': '\u201d', '\u2019': '\u2019' };
 
 // End index of the value starting at `start`: a whole quoted string, a whole bracketed list or
 // object (quote-aware), or an unquoted run (optionally `Bearer|Basic|Token <value>`).
@@ -40,7 +40,7 @@ function labelledValueEnd(text: string, start: number, multiWord = false): numbe
   };
   if (first === '\\' && text[start + 1] in QUOTE_CLOSE) {
     // Escaped quoted value: runs to the next escaped matching quote.
-    const close = `\\${QUOTE_CLOSE[text[start + 1]]}`;
+    const close = ('\\' + String(QUOTE_CLOSE[text[start + 1]]));
     const end = text.indexOf(close, start + 2);
     return end === -1 ? text.length : end + close.length;
   }
@@ -84,7 +84,7 @@ function redactLabelledSecrets(text: string): string {
     // Numeric usage counts (prompt_tokens: 12) are not secrets, as in structured redaction.
     if (/tokens$/i.test(name.replace(/[^A-Za-z]/g, '')) && /^\d+[,;]?$/.test(value)) continue;
     const scheme = /^(Bearer|Basic|Token)\s+/i.exec(value);
-    out += `${text.slice(last, valueStart)}${scheme ? `${scheme[1]} ` : ''}[redacted]`;
+    out += ('' + String(text.slice(last, valueStart)) + String(scheme ? ('' + String(scheme[1]) + ' ') : '') + '[redacted]');
     last = valueEnd;
     label.lastIndex = valueEnd;
   }
@@ -105,11 +105,11 @@ export function sanitizeHttpErrorMessage(message: string): string {
   // values), then any remaining bare Bearer/Basic tokens.
   const scanned = message.slice(0, MAX_SCAN_LEN).replace(/\s+/g, ' ').replace(PEM_BLOCK, '[redacted]');
   let out = redactLabelledSecrets(scanned)
-    .replace(/\b(Bearer|Basic)\s+(?!\[redacted\])([A-Za-z0-9\-._~+/]+=*)/gi, (_m, scheme: string, token: string) => `${scheme} ${redact(token)}`)
+    .replace(/\b(Bearer|Basic)\s+(?!\[redacted\])([A-Za-z0-9\-._~+/]+=*)/gi, (_m, scheme: string, token: string) => ('' + String(scheme) + ' ' + String(redact(token))))
     .trim();
 
   if (out.length > MAX_MESSAGE_LEN) {
-    out = `${out.slice(0, MAX_MESSAGE_LEN - 3)}...`;
+    out = ('' + String(out.slice(0, MAX_MESSAGE_LEN - 3)) + '...');
   }
 
   return out || 'HTTP request failed';
@@ -128,9 +128,9 @@ export function fromHttpError(service: string, endpoint: string, status: number,
   const capacityExhausted = isThetaOnDemandCapacityError(status, message);
 
   return {
-    code: capacityExhausted ? 'THETA_ONDEMAND_CAPACITY_EXHAUSTED' : `HTTP_${status}`,
+    code: capacityExhausted ? 'THETA_ONDEMAND_CAPACITY_EXHAUSTED' : ('HTTP_' + String(status)),
     message: capacityExhausted
-      ? `Temporary Theta on-demand capacity exhaustion: ${sanitized}`
+      ? ('Temporary Theta on-demand capacity exhaustion: ' + String(sanitized))
       : sanitized,
     retriable: isRetriableHttpError(status, message),
     service,
@@ -145,15 +145,21 @@ export function isStructuredError(value: unknown): value is StructuredError {
   return typeof candidate.code === 'string' && typeof candidate.message === 'string' && typeof candidate.retriable === 'boolean';
 }
 
-export function fromTransportError(service: string, endpoint: string, error: unknown): StructuredError {
+// mayHaveBeenReceived: the failure happened after a write, billable or inference request was
+// sent, so the provider may already have acted on it (and charged for it). Such failures are
+// never reported as retriable; the caller must reconcile remote state before any new attempt.
+export function fromTransportError(service: string, endpoint: string, error: unknown, mayHaveBeenReceived = false): StructuredError {
   const asAny = error as { name?: string; message?: string } | undefined;
   const isTimeout = asAny?.name === 'AbortError' || asAny?.name === 'TimeoutError';
-  const message = sanitizeHttpErrorMessage(asAny?.message ?? String(error ?? 'Network request failed'));
+  const base = sanitizeHttpErrorMessage(asAny?.message ?? String(error ?? 'Network request failed'));
+  const message = mayHaveBeenReceived
+    ? base + ' (the request may already have been received and billed. Check its result before trying again.)'
+    : base;
 
   return {
     code: isTimeout ? 'HTTP_408' : 'NETWORK_ERROR',
     message,
-    retriable: true,
+    retriable: !mayHaveBeenReceived,
     service,
     endpoint,
     status: isTimeout ? 408 : undefined

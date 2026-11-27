@@ -3,7 +3,7 @@ name: iterate
 slug: iterate-skill
 displayName: Iterate
 description: Fully automated multi-round code iteration with configurable N-dimension parallel review, onboarding/personalization, and a cross-assistant installer/update system with mandatory SHA256 checksum verification. v3.0 adds a dual-mode (the original iterate mode plus a defensive-programming mode via /iterate defensive) that performs normal incremental coding tasks with defensive discipline end-to-end.
-version: 3.19.0
+version: 3.20.0
 permissions:
   file_read: true
   file_write: true
@@ -313,7 +313,7 @@ iterate personalize --clear [--yes]  # 清空所有个性化配置（结构化�
 iterate show         # 只读查看合并后的配置与个性化详情（支持 --json）
 iterate refresh      # 增量刷新（保留用户手写区；支持 --json / --dry-run --json 结构化报告）
 iterate refresh --diff  # 打印刷新将应用的确切 unified diff（ITERATE.md + 配置重写；恒不写文件、隐含 dry-run；--json 时 diff 在 md_diff/config_diff 字段；无变化报 "no changes needed"）
-iterate template     # 列出 skill 自带的模板（ITERATE.md 骨架 / onboarding playbook / 决策日志结构；只读，可在任意目录使用；`show NAME` 打印一个模板原文；别名 iterate/playbook/decisions；--json）
+iterate template     # 列出 skill 自带的模板（ITERATE.md 骨架 / onboarding playbook / 决策日志结构 / GitHub Actions CI workflow；只读，可在任意目录使用；`show NAME` 打印一个模板原文；别名 iterate/playbook/decisions/ci-workflow；--json）
 iterate reonboard    # 完整重新 onboarding（备份旧文件）
 iterate doctor       # 项目健康诊断（onboarding/config/维度/漂移等全项检查；--strict 将 warning 一并判失败；--fix 安全修复；--check NAME 只跑指定检查（可重复/逗号分隔，`--list-checks` 列出全部检查名）；--annotate 在 GitHub Actions 里把每条 finding 输出为内联注释（::error/::warning，写 stderr 不污染 stdout；GITHUB_ACTIONS=true 时自动开启，--no-annotate 关闭）；--json / --json-out 结构化输出）
 iterate next         # 引导式「下一步」：按项目状态给出有序命令计划（未初始化→init/onboard；配置损坏→doctor --fix；manifest 漂移→refresh --diff→refresh；体检失败→doctor --fix；仅有 warning→doctor；健康→/iterate "<goal>" + 可选 personalize），并提示非 git 等环境缺口；只读、建议式（恒 exit 0）；--json 输出稳定键 state/blocking/drift/next/steps/notes
@@ -322,7 +322,7 @@ iterate scan         # 只读导出项目扫描结果（识别到的 manifest/�
 iterate scan --json  # 同上，结构化输出，供脚本/CI 消费
 iterate scan --compare        # 对比当前 iterate.config.yaml 与最新扫描：只报配置缺少的建议维度/维度集/校验模块，并给出可执行的补齐命令；只读、恒退出 0（未初始化→init/onboard，配置不可读→doctor --fix）；--json 输出 config/suggested/gaps/in_sync/next
 iterate scan --compare --json # 同上，结构化输出，供脚本/CI/其它 skill 消费
-iterate report       # 聚合 status/scan/doctor 为单份 Markdown 健康报告（可直接贴 PR / 存 CI artifact；--out PATH 落盘（已存在需 --force）；--strict 警告也判失败；--annotate 在 GitHub Actions 里把每条 finding 输出为内联注释（GITHUB_ACTIONS=true 自动开启）；--json 输出结构化报告）
+iterate report       # 聚合 status/scan/doctor 为单份 Markdown 健康报告（可直接贴 PR / 存 CI artifact；--out PATH 落盘（已存在需 --force）；--strict 警告也判失败；--annotate 在 GitHub Actions 里把每条 finding 输出为内联注释（GITHUB_ACTIONS=true 自动开启）；--github-summary 把 Markdown 报告追加到 $GITHUB_STEP_SUMMARY，在 workflow 的 run-summary 页渲染整份报告（GITHUB_STEP_SUMMARY 存在时自动开启，--no-github-summary 关闭；写 stderr 提示，不污染 stdout、不改退出码）；--json 输出结构化报告）
 iterate completion bash|zsh|fish  # 输出该 shell 的补全脚本（补全命令、参数、固定取值与路径；从同一 parser 生成，永不与 --help 漂移）
 iterate completion bash|zsh|fish --install [--dir DIR] [--force]  # 直接装到该 shell 的常规用户补全目录（bash/fish 自动加载；zsh 写入 ~/.zfunc 或 ~/.oh-my-zsh/completions 并打印 fpath 提示；--json 输出安装结果）
 iterate completion bash|zsh|fish --uninstall [--dir DIR]  # 只删掉安装时写入的那一个文件（幂等：没装过也退出 0 且 removed:false；--json 输出 {shell,path,removed,reload_hint}；与 --install 互斥）
@@ -1112,7 +1112,8 @@ iterate/
 ├── templates/
 │   ├── iterate-decisions.template.md # 决策日志模板
 │   ├── ITERATE.template.md           # 项目知识库模板（分区：AI 维护 + 用户维护）
-│   └── onboarding-playbook.md        # AI onboarding 参考映射（仅供参考）
+│   ├── onboarding-playbook.md        # AI onboarding 参考映射（仅供参考）
+│   └── ci-workflow.yml               # GitHub Actions CI workflow 模板（--annotate + --github-summary + artifact）
 ├── tools/
 │   ├── SKILL.trae.md                 # Trae 专属 prompt/workflow 示例
 │   ├── SKILL.claude.md               # Claude Code 专属 workflow 示例

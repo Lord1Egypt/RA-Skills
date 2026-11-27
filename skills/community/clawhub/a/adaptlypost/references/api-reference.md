@@ -20,7 +20,7 @@ Which permission each endpoint needs:
 
 | Endpoint | Permission | Roles |
 | --- | --- | --- |
-| `GET /social-posts`, `GET /social-posts/:id`, `GET /social-posts/:id/results`, `GET /recurring-posts`, `GET /recurring-posts/:id` | `posts.read` | all |
+| `GET /social-posts`, `GET /social-posts/:id`, `GET /social-posts/:id/results`, `GET /labels`, `GET /recurring-posts`, `GET /recurring-posts/:id` | `posts.read` | all |
 | `POST /social-posts` with `saveAsDraft: true`; `PATCH /social-posts/:id` and `DELETE /social-posts/:id` on a `DRAFT`; `POST /social-posts/:id/unschedule` on a dated `DRAFT` | `posts.draft` | admin, editor, contributor |
 | `POST /social-posts` and `POST /social-posts/:id/publish` with a future `scheduledAt` (so every `POST /social-posts` with `recurrence`); `POST /social-posts/:id/publish` without `scheduledAt` or `publishNow` on a draft whose planned date is in the future; `PATCH /social-posts/:id` and `POST /social-posts/:id/unschedule` on a post that is not a `DRAFT`; `POST /social-posts/bulk`; `POST /recurring-posts/:id/pause`, `POST /recurring-posts/:id/resume` | `posts.schedule` | admin, editor |
 | `POST /social-posts` without `scheduledAt` or with a past one; `POST /social-posts/:id/publish` with a past `scheduledAt`, with `publishNow: true`, or without either on a post that has no future planned date; `POST /social-posts/:id/retry`; `POST /social-posts/bulk` with any item due now or earlier | `posts.publish` | admin, editor |
@@ -260,6 +260,23 @@ List the categories of a WordPress site, sorted by name. `:id` is the WordPress 
 
 Returns `404` when the account is not found or is not a WordPress account in this workspace, and an error with the reason when the site refuses the request or cannot be reached.
 
+### GET /labels
+
+List the labels of the workspace, sorted by name. The API cannot create labels; the user makes them in the AdaptlyPost app. Needs `posts.read`.
+
+**Response:**
+
+```json
+{
+  "labels": [
+    { "id": "cmlab1a2b0000i0r5lbl0abcd", "name": "Acme", "color": "#3B82F6" },
+    { "id": "cmlab1a2b0001i0r5lbl0efgh", "name": "Globex", "color": "#10B981" }
+  ]
+}
+```
+
+`color` is a hex color. Pass the chosen ids as `labelIds` on [POST /social-posts](#post-social-posts) or [PATCH /social-posts/:id](#patch-social-postsid) to put those labels on a post, and as the `labelIds` filter of [GET /social-posts](#get-social-posts) to list the posts carrying them. Labels stay inside AdaptlyPost and are never sent to a platform.
+
 ### POST /social-posts
 
 Create or schedule a post to one or more social media platforms.
@@ -312,6 +329,7 @@ A draft (`saveAsDraft: true`) needs `posts.draft`, with or without a planned dat
 - `firstComments` (array): A comment posted shortly after the post goes out. See [First comments](#first-comments)
 - `threadReplies` (array): Replies that turn the post into a thread on X, Threads, Bluesky or Mastodon. See [Thread replies](#thread-replies)
 - `twitterKeepLinks` (boolean): Keep links in the X text clickable. See [Links on X](#links-on-x)
+- `labelIds` (string[]): Label IDs from [GET /labels](#get-labels) to put on the post, for example one label per brand. Max 10. An ID that is not a label of the workspace returns `400` `One or more label IDs are not labels of this workspace. Call GET /labels for the IDs you can put on a post`. Labels stay inside AdaptlyPost, so every platform and content type takes them. Bulk items do not take it
 - `scheduledAt` (string): ISO 8601 UTC datetime. A future value schedules the post; omitted or in the past publishes immediately. With `saveAsDraft: true` it is the draft's planned date: the post stays a `DRAFT`, and `POST /social-posts/:id/publish` without `scheduledAt` schedules it for that date
 - `saveAsDraft` (boolean): Save as `DRAFT` instead of scheduling/publishing; validation is deferred to `POST /social-posts/:id/publish`
 - `recurrence` (object): Repeats the post. See [Recurrence](#recurrence) below
@@ -491,10 +509,11 @@ List every post in the authenticated account group, any status, with pagination.
 - `sortOrder` (string, optional): `NEWEST` or `OLDEST`. Default: `NEWEST`
 - `statuses` (PostStatus[], optional): Filter by one or more post statuses. Repeat the key per value. Any query parameter outside this list returns `400`.
 - `platforms` (PlatformType[], optional): Filter by one or more platforms. Repeat the key per value.
+- `labelIds` (string[], optional): Only posts carrying any of these labels. Label IDs from [GET /labels](#get-labels), up to 100. Repeat the key per value.
 - `startDate` (string, optional): Lower bound on `scheduledAt`, or on `createdAt` for posts that were never scheduled (ISO 8601, e.g. `2026-07-20`).
 - `endDate` (string, optional): Upper bound on `scheduledAt`, or on `createdAt` for posts that were never scheduled (ISO 8601, e.g. `2026-07-22`).
 
-Array filters (`statuses`, `platforms`) are sent as repeated keys, e.g. `platforms=FACEBOOK&platforms=TIKTOK`.
+Array filters (`statuses`, `platforms`, `labelIds`) are sent as repeated keys, e.g. `platforms=FACEBOOK&platforms=TIKTOK`.
 
 **Example:**
 
@@ -519,6 +538,7 @@ GET /social-posts?limit=10&offset=0&statuses=SCHEDULED&statuses=PUBLISHING&platf
       "status": "DRAFT",
       "recurringPostId": null,
       "occurrenceAt": null,
+      "labels": [{ "id": "cmlab1a2b0000i0r5lbl0abcd", "name": "Acme", "color": "#3B82F6" }],
       "platforms": [
         {
           "id": "cmm0z0k3u0001i0r5dlbfa440",
@@ -545,6 +565,8 @@ GET /social-posts?limit=10&offset=0&statuses=SCHEDULED&statuses=PUBLISHING&platf
 The post carries its `mediaUrls` at the top level as well as on each platform entry. Once a platform entry is published, `platformPostId` and a clickable `postUrl` are set on every platform. Instagram and Facebook stories expire after 24 hours, so their `postUrl` links to the profile or page. `previewUrls` holds one permanent preview image per media item (WebP, up to 720px, a still frame for videos), filled in shortly after publishing starts; an empty string means that item could not be rendered. After publishing, `mediaUrls` may be replaced by the platform's own CDN links, which expire within days, and the uploaded source files are removed, so display `previewUrls`.
 
 `recurringPostId` names the recurring post this post is an occurrence of, and `occurrenceAt` is the series slot it fills, which stays the same when the post is rescheduled. Both are `null` on posts that are not part of a series.
+
+`labels` holds the post's labels as `{ id, name, color }`, sorted by name, and is `[]` on a post without any. It is set on every post response and on the `data.post` of webhook events.
 
 Platform entry fields set by the newer request fields (absent when not used):
 
@@ -627,7 +649,7 @@ Schedule up to 100 posts at once. Each post can have its own content, media, and
 - Connection ID arrays: `twitterConnectionIds`, `linkedinConnectionIds`, `instagramConnectionIds`, `tiktokConnectionIds`, `youtubeConnectionIds`, `pinterestConnectionIds`, `blueskyConnectionIds`, `mastodonConnectionIds`, `threadsConnectionIds`, `googleBusinessConnectionIds`, `telegramConnectionIds`, `tumblrConnectionIds`, `wordpressConnectionIds`, `pageIds`
 - Platform configs (applied to all posts as default): `pinterestConfigs`, `threadsConfigs`, `twitterConfigs`, `tiktokConfigs`, `instagramConfigs`, `facebookConfigs`, `youtubeConfigs`, `googleBusinessConfigs`, `tumblrConfigs`, `wordpressConfigs`
 
-`firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `platformAspectRatios` go on each post item, not the batch. Bulk does not take `twitterKeepLinks`, `linkedinConfigs` or `accountIds`.
+`firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `platformAspectRatios` go on each post item, not the batch. Bulk does not take `twitterKeepLinks`, `linkedinConfigs`, `accountIds` or `labelIds`.
 
 See [platform-configs.md](platform-configs.md) for config schemas.
 
@@ -803,7 +825,9 @@ Moving a `SCHEDULED` post's `scheduledAt` more than a minute into the past retur
 
 A post with a YouTube entry whose `youtubeScheduledVideoId` is set and not yet published returns `409`, because the video already waits on YouTube for its publish time. Delete the post and schedule it again to change it.
 
-Accepts the same body as `POST /social-posts`, minus `saveAsDraft`, `recurrence` and `accountIds`. Updates are partial: `text`, `contentType`, `scheduledAt`, `timezone`, `thumbnailUrl`, `thumbnailTimestampMs`, `firstComments`, `threadReplies`, `platformThumbnails` and `platformMedia` you omit keep their values. Sending `firstComments`, `threadReplies`, `platformThumbnails` or `platformMedia` replaces every stored entry, `[]` clears them, and a `threadReplies` entry with `"texts": []` removes that platform's thread. `platforms` is the exception: sending it rebuilds the post's targets from that request alone, so resend every `*ConnectionIds` array and platform config you want to keep. `mediaUrls` only take effect together with `platforms`, and on a `SCHEDULED` post they are verified in storage the same way as on create. Omitting `platforms` leaves accounts, configs, and media untouched. `platformMedia` takes effect with or without `platforms`.
+Accepts the same body as `POST /social-posts`, minus `saveAsDraft`, `recurrence` and `accountIds`. Updates are partial: `text`, `contentType`, `scheduledAt`, `timezone`, `thumbnailUrl`, `thumbnailTimestampMs`, `firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `labelIds` you omit keep their values. Sending `firstComments`, `threadReplies`, `platformThumbnails` or `platformMedia` replaces every stored entry, `[]` clears them, and a `threadReplies` entry with `"texts": []` removes that platform's thread. `platforms` is the exception: sending it rebuilds the post's targets from that request alone, so resend every `*ConnectionIds` array and platform config you want to keep. `mediaUrls` only take effect together with `platforms`, and on a `SCHEDULED` post they are verified in storage the same way as on create. Omitting `platforms` leaves accounts, configs, and media untouched. `platformMedia` takes effect with or without `platforms`.
+
+`labelIds` takes label IDs from [GET /labels](#get-labels), max 10. Sending the list replaces every label of the post, an empty list removes them all, and leaving it out keeps the stored ones. An ID that is not a label of the workspace returns `400`.
 
 **Response:** the updated post, in the same shape as `GET /social-posts/:id`.
 

@@ -30,7 +30,7 @@ mcptoon CLI is not; I installed it"* — and continue. Never silently pretend th
 commands worked, and never tell the user the feature is unavailable when a
 one-line install is the whole gap.
 
-mcptoon is a zero-dependency CLI (534KB, installs in seconds, nothing else pulled
+mcptoon is a zero-dependency CLI (565KB, installs in seconds, nothing else pulled
 in). It gives you a compressed view of the user's MCP tools and calls them back.
 
 ## When to use what
@@ -271,6 +271,25 @@ only safe shapes are compressed, the original is always retrievable, and one
 setting turns it off. Do not promise the user automatic detection; offer the
 retrieve handle and the off switch.
 
+**When a result comes back as `Error [TOOL_POISONING]` / `[CREDENTIAL_LEAK]`:**
+
+The safety screen is a heuristic on *text*, not a verdict on the source, and a
+block replaces the whole result — so a false positive looks exactly like "the
+tool returned nothing". Ordinary technical prose ("you are a ..."), release notes
+quoting a `curl` repro, and any document that happens to contain an indicator all
+trip it. Three exits, narrowest first:
+
+```bash
+mcptoon call <server> <tool> '{}' --raw       # this one call, nothing stored
+MCPTOON_NO_GUARD=1 mcptoon serve              # this process only
+mcptoon config set guard off                  # everywhere: CLI, serve, skill prompts
+```
+
+Be explicit about the trade when you offer the last one: with the screen off,
+injected instructions inside a tool result reach the model unfiltered. Prefer
+`--raw` or the per-process variable first; `guard off` is for someone who has
+already decided the screen costs them more than it protects.
+
 ## Making mcptoon visible in a session
 
 `mcptoon serve` returns an `instructions` field from the MCP initialize
@@ -367,7 +386,7 @@ machine.
 ## Setup
 
 - Install/upgrade: `pip install --upgrade mcptoon` (zero-dependency wheel,
-  534KB, installs in seconds). Confirm the upgrade before running it — pinning a
+  565KB, installs in seconds). Confirm the upgrade before running it — pinning a
   version here would only go stale, but a bare `--upgrade` should be your call,
   not an automatic one.
 - Source: this package is published to PyPI by GitHub Actions from

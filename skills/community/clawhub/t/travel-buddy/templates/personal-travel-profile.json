@@ -58,7 +58,8 @@
         "exclusion_strength": "never_recommend",
         "confirmed_at": null
       }
-    ]
+    ],
+    "trip_debriefs": []
   },
   "recurring_preferences": {
     "experience_direction": null,

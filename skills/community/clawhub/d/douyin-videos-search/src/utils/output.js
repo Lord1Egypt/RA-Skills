@@ -48,6 +48,7 @@ function buildEnvelope({
   startTime,
   results = null,
   total,
+  cost,
 }) {
   const metadata = {
     skill_version: constants.VERSION,
@@ -57,7 +58,7 @@ function buildEnvelope({
   if (total !== undefined) {
     metadata.total = total;
   }
-  return {
+  const envelope = {
     status,
     error_code: errorCode,
     message,
@@ -66,9 +67,21 @@ function buildEnvelope({
     metadata,
     results,
   };
+  // 顶层可选 cost（estimate）；无效或缺失则省略
+  if (typeof cost === "number" && Number.isFinite(cost)) {
+    envelope.cost = cost;
+  }
+  return envelope;
 }
 
-function buildSuccessEnvelope(message, startTime, request, results, total) {
+function buildSuccessEnvelope(
+  message,
+  startTime,
+  request,
+  results,
+  total,
+  cost,
+) {
   return buildEnvelope({
     status: "success",
     errorCode: "OK",
@@ -77,20 +90,22 @@ function buildSuccessEnvelope(message, startTime, request, results, total) {
     startTime,
     results,
     total,
+    cost,
   });
 }
 
 /**
  * 成功收尾：可选先写日志，再 flush stdout，再 stderr 提示，最后 exit(0)。
  * @param {object} payload
- * @param {{ logFilename?: string, stderrMessage?: string }} [opts]
+ * @param {{ logFilename?: string, stderrMessage?: string, save?: boolean }} [opts]
  */
 async function finishSuccess(payload, opts = {}) {
-  const { logFilename, stderrMessage } = opts;
+  const { logFilename, stderrMessage, save } = opts;
   if (logFilename) {
     await log.writeResultLog(
       logFilename,
       JSON.stringify(payload, null, 2),
+      save,
     );
   }
   await writeJson(payload);
@@ -113,7 +128,7 @@ function emitError(command, code, message, exitCode, startTime, request) {
   );
 }
 
-function emitEmpty(message, startTime, request) {
+function emitEmpty(message, startTime, request, cost) {
   writeJsonAndExit(
     buildEnvelope({
       status: "empty",
@@ -121,6 +136,7 @@ function emitEmpty(message, startTime, request) {
       message,
       request,
       startTime,
+      cost,
     }),
     0,
   );

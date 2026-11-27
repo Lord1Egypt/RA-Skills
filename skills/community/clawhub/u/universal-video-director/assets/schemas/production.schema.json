@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "production",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "confirmed",
+    "tasks"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "production"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "confirmed": {
+      "type": "boolean"
+    },
+    "confirmed_at": {
+      "type": "string"
+    },
+    "estimate": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "cost": {
+          "type": "number"
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "ref",
+          "status",
+          "backend"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "kind": {
+            "enum": [
+              "image",
+              "video",
+              "tts",
+              "music",
+              "sfx"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "backend": {
+            "type": "string",
+            "minLength": 1
+          },
+          "params": {
+            "type": "object"
+          },
+          "seed": {
+            "type": "number"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "status": {
+            "enum": [
+              "planned",
+              "submitted",
+              "done",
+              "failed",
+              "stale"
+            ]
+          },
+          "task_id": {
+            "type": "string"
+          },
+          "output": {
+            "type": "string"
+          },
+          "actual_duration_sec": {
+            "type": "number"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

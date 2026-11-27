@@ -19,9 +19,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
+
+SEMVER_RE = re.compile(r"\b(\d+\.\d+\.\d+)\b")
 
 ROOT = Path(__file__).resolve().parents[1]
 IDENTITY_FILE = ROOT / "packaging" / "identity.json"
@@ -75,12 +78,16 @@ def check(root: Path = ROOT) -> list[str]:
             continue
         for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
             lowered = line.lower()
-            if "version" not in lowered and "当前版本" not in line:
+            if "version" not in lowered and "当前版本" not in line and "**版本**" not in line:
                 continue
-            for token in ("2.0.", "1.5.", "1.2."):
-                if token in line and version not in line and _looks_like_current_claim(line):
-                    problems.append(f"{relative}:{line_number}: version claim does not use {version}: {line.strip()[:110]}")
-                    break
+            if "schema_version" in lowered or "ir_schema_version" in lowered:
+                continue
+            if not _looks_like_current_claim(line):
+                continue
+            found = SEMVER_RE.findall(line)
+            stale = [tok for tok in found if tok != version]
+            if stale and version not in found:
+                problems.append(f"{relative}:{line_number}: version claim does not use {version}: {line.strip()[:110]}")
 
     return problems
 

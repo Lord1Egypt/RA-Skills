@@ -20,6 +20,31 @@
 
 **长期项目。** 讨论到一半要关机，保存一下；下次双击一个文件，整组 agent 带着各自的上下文回到原来的分屏位置。
 
+## 和 subagent、直接调用比
+
+同样能用上 Claude、codex、agy 三家时（subagent 由 Claude 子任务在命令行里调 `codex exec` / `agy`），三种做法各有所长：
+
+| 维度 | crew + tmux | subagent | 直接调用（codex exec 等） |
+|---|---|---|---|
+| 能用的模型（Claude / codex / agy） | ✅ ★★★★★ 各自完整的交互会话 | ✅ ★★★ codex、agy 只能一问一答 | ★★★ 只能一问一答 |
+| 长期记忆（连着干几天） | ★★★★★ | ★ 每次从零开始 | ★ |
+| 用户实时看、随时插手 | ★★★★★ | ★ | ★ |
+| 完成、出错会主动通知 | ★★ 靠 `board`、`watch` 补上 | ★★★★★ 系统自带 | ★★★★ 进程退出即结束 |
+| 稳定性（断线、窗口被关、模型被换） | ★★ | ★★★★★ | ★★★★ |
+| 并行时互不干扰（各自一份代码） | ★★ 共用一个工作目录 | ★★★★★ 可以各开一份 | ★★★ |
+| 交接成本（要说清楚背景） | ★★★★★ 成员本来就知道 | ★★ 每次都得写清楚 | ★ |
+| 额度分摊（三家订阅都用上） | ★★★★★ | ★★ 编排都算在 Claude 上 | ★★★★ |
+| 成员之间互相商量 | ★★★★★ 点对点发消息 | ★ 只能各自向 main 汇报 | — |
+| main 的管理负担 | ★★ | ★★★★ | ★★★★ |
+
+| 场景 | 用哪个 |
+|---|---|
+| 多天、分模块、用户要盯着的项目（每个模块一个长期负责人） | **crew** |
+| 一次性、边界清楚的活：审一段代码、查一个问题、读一堆文件给结论 | **subagent** |
+| 大批量、无状态的重复调用：逐题判分、逐张标注 | **直接调用**（由某个 crew 成员或脚本在后台批量跑） |
+
+三者可以叠加：crew 成员负责模块，零散任务交给 subagent，批量判定在成员的后台用 `codex exec` 跑。crew 的短板（没有完成通知、怕断线）用 `board`、`watch --nudge` 和成员做完后 `send --to main` 补上。
+
 ## 安装
 
 从 ClawHub：
@@ -82,7 +107,7 @@ mkdir -p ~/.gemini/config/skills && ln -s ~/.claude/skills/crew ~/.gemini/config
 | 操作 | 结果 |
 |---|---|
 | 新开 agent | 在 main 旁边分屏，进入同一目录，新建 tmux 会话 `<目录名>-<名称>`，带模型和 effort 启动，并告诉它组里有谁、怎么发消息 |
-| 发消息 | 文本送进对方的输入框并提交，自动带 `[from 发送者]` 前缀 |
+| 发消息 | 自动带 `[from 发送者]` 前缀。Codex 用 `codex queue`、agy 用 `agentapi` 直接送进对话，不碰输入框；Claude 等对方输入框空了、键盘停了再打字发送，不会插进用户打了一半的内容 |
 | 读进展 | 读取对方窗格当前的屏幕内容 |
 | 保存 | 重新读取每个窗格当前的会话 ID，写入 `.crew.json`，生成 `<目录名>-crew.command` |
 | 恢复 | 新开一个 iTerm2 窗口，按原来的分屏顺序恢复每个 agent 的对话；tmux 会话还活着时直接接回去，不重启 |
@@ -101,6 +126,10 @@ python3 $CREW spawn --name design --agent codex --model gpt-6.2-astra --effort h
 python3 $CREW send --to design "请看一下 SPEC.md 第 3 节"
 python3 $CREW read --name design --lines 80
 python3 $CREW status
+python3 $CREW board --text      # 全组：忙/空闲/离线、现在做什么、排期、工作流程链条、剩余额度；codex 模型被换会标出
+python3 $CREW flow --add "实现@coder" --status 1 doing   # main 维护工作流程链条，显示在 board 里
+python3 $CREW task --now "…" --next "…"   # 登记自己的任务
+python3 $CREW watch --nudge     # 找出断线停住的成员并叫醒
 python3 $CREW save
 python3 $CREW restore --dir <项目目录>
 ```

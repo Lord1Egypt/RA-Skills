@@ -1,7 +1,7 @@
 ---
 name: customs-company-area-stats-zh
 description: "查询公司海关贸易区域维度统计数据 — 分析贸易量、金额、月度趋势和国家分布，覆盖全球市场。\n\nTrigger: 海关贸易区域统计，区域贸易分析，公司进出口国家分布，全球贸易情报，供应商市场覆盖"
-metadata: {"version":"1.0.1","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🌍","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🌍","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 海关公司贸易区域维度统计
@@ -88,6 +88,21 @@ python scripts/error_report.py --params '{"requestPath":"/agent/customs/company/
 
 **任何产生费用的操作都必须先告知用户并等待用户明确确认。不得在通知用户的同一条消息中执行。**
 
+### 套餐计费与余额降级
+
+搜索/海关/地图接口**默认走套餐**：脚本会自动携带 `"planMode": 2`。
+
+- **套餐不可用**（无有效套餐或额度已用完）：脚本在业务执行前停止，不会产生扣费；stdout 会输出一行以 `PLAN_UNAVAILABLE ` 开头的 JSON，退出码为 **3**。**禁止自动重试**。
+- **先询问用户**：用自然语言说明原因（无套餐 / 额度用完及恢复时间），说明改用余额将按接口定价扣费（单价用 `python scripts/auth.py --price_info` 查询），然后等待用户在独立消息中明确回复。
+- **用户同意**：用同一条命令加环境变量 `UPKUAJING_PLAN_MODE=1` 重跑（PowerShell：`$env:UPKUAJING_PLAN_MODE='1'`），成功后向用户展示 `fee` 扣费信息。
+- **用户拒绝**：本次不执行、不扣费；给出「稍后重试 / 升级套餐 / 使用余额」三个出口，同一轮不要重复弹窗。
+- **改余额后仍余额不足**（95）：提示充值并停止，不再重试。
+- **批量调用前**：先用 `python scripts/auth.py --plan_quota` 预检额度（档位上限用 `--plan_config`）；`available=0` 或目标窗口 `remaining=0` 时，直接先问是否用余额，避免必然失败的调用。
+- **调用成功**：把 stderr 中 `[套餐]` 开头的用量信息转述给用户。
+- **禁止**静默改走余额，**禁止**向用户暴露内部错误码原文。
+
+完整契约见 [references/plan-billing.md](references/plan-billing.md)
+
 ## 工作流程
 
 ### 决策指南
@@ -115,6 +130,7 @@ python scripts/customs_company_area_stats.py --params '{"companyId":100001,"comp
 
 - **API密钥无效/不存在**：检查 `~/.upkuajing/.env` 文件中的 `UPKUAJING_API_KEY`
 - **余额不足**：引导用户充值
+- **套餐不可用（退出码 3 / `PLAN_UNAVAILABLE`）**：说明原因并询问是否改用余额，不要自动重试；参见 [套餐计费与余额降级](references/plan-billing.md)
 - **参数错误**：**必须首先查看 references/ 目录下对应的API文档**，从文档中获取正确的参数名称和格式，不要猜测
 - **Skill调用异常/响应异常**：先友好告知用户，经用户确认后用 `python scripts/error_report.py` 上报给平台（参见 [上报Skill调用异常](#上报skill调用异常)）
 
@@ -122,6 +138,7 @@ python scripts/customs_company_area_stats.py --params '{"companyId":100001,"comp
 
 - 公司贸易区域维度统计：查看 [references/customs-company-area-stats-api.md](references/customs-company-area-stats-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 最佳实践
 

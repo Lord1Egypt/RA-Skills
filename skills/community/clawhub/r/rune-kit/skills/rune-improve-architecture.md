@@ -25,7 +25,7 @@ The goal is **testability and AI-navigability**: a deep module presents a small 
 
 ## Vocabulary (controlled — use exactly)
 
-These eight terms have precise meanings. Banned aliases: "boundary" (overloaded with DDD), "component" (UI-specific), "service" (microservice-specific), "layer" (too generic). See [references/language.md](references/language.md) for full definitions.
+These eight terms have precise meanings. Banned aliases: "boundary" (overloaded with DDD), "component" (UI-specific), "service" (microservice-specific), "layer" (too generic). See [rune-improve-architecture/references/language.md](rune-improve-architecture/references/language.md) for full definitions.
 
 - **Module** — anything with an interface and an implementation (function, class, package, slice).
 - **Interface** — everything a caller must know to use the module: types, invariants, ordering, error modes, config.
@@ -95,7 +95,7 @@ For each candidate module, compute three numeric scores (1–5) and one verdict 
 | **Locality** | `clamp_1_5(code_concentration_index)` — 1 = logic spread across N callers, 5 = logic concentrated in one place |
 | **Deletion test** | enum: `vanish` (was pass-through) \| `concentrate` (was earning keep) \| `redistribute` (mixed) |
 
-Rubric details and edge cases: see [references/scoring.md](references/scoring.md).
+Rubric details and edge cases: see [rune-improve-architecture/references/scoring.md](rune-improve-architecture/references/scoring.md).
 
 ### Step 3 — Classify dependencies
 
@@ -108,7 +108,7 @@ For each candidate's external dependencies, classify into one of four categories
 | `remote-owned` | Your own module deployed across a network seam | Define a port; in-memory adapter for tests, HTTP adapter for prod |
 | `true-external` | Third-party (Stripe, Twilio) | Inject as port; mock adapter in tests |
 
-Full doctrine in [references/deepening.md](references/deepening.md).
+Full doctrine in [rune-improve-architecture/references/deepening.md](rune-improve-architecture/references/deepening.md).
 
 ### Step 4 — Apply seam discipline
 
@@ -278,7 +278,7 @@ chain_metadata:
 **Scope guardrail**: improve-architecture proposes and scores. It NEVER edits code. Refactor execution belongs to `surgeon`. Interface exploration belongs to `brainstorm` Design-It-Twice mode.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

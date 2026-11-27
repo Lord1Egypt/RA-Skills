@@ -15,10 +15,18 @@ Exit-code semantics mirror ``doctor``: a report with errors is a failed gate
 as blocking. ``--format`` is deliberately absent: Markdown is the human
 document and the global ``--json`` flag is the machine document, matching the
 contract every other command already follows.
+
+Since v3.20.0 the Markdown report can also be appended to the GitHub Actions
+run-summary page (``--github-summary`` / ``--no-github-summary``, auto-enabled
+when ``GITHUB_STEP_SUMMARY`` is set): a CI run renders the whole report on the
+workflow summary instead of burying it in a job log or an artifact. The write
+is a separate sink — it never touches stdout, never changes the exit code, and
+is best-effort (an unwritable summary warns instead of failing the gate).
 """
 
 from __future__ import annotations
 
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -28,6 +36,83 @@ from iterate_cli.doctor import run_doctor
 from iterate_cli.personalize import count_personalization_rules
 from iterate_cli.scan import collect_scan_data
 from iterate_cli.show import collect_show_data
+
+#: GitHub Actions exposes the per-job run-summary file through this variable.
+#: Appending Markdown to it renders the report on the workflow's run-summary
+#: page (the "job summary" block), which is where developers already look for
+#: a CI run's outcome — instead of having to open the job log or download an
+#: artifact to read ``iterate report``'s document.
+_GITHUB_SUMMARY_ENV = "GITHUB_STEP_SUMMARY"
+
+
+def github_summary_path() -> str | None:
+    """Return the GitHub Actions step-summary file path, or None outside CI.
+
+    ``GITHUB_STEP_SUMMARY`` is set by the runner for every step of every job.
+    When it is absent (local run, other CI) there is nowhere to render a step
+    summary, so :func:`enabled_from_env` stays off.
+    """
+    value = os.environ.get(_GITHUB_SUMMARY_ENV, "").strip()
+    return value or None
+
+
+def enabled_from_env() -> bool:
+    """Auto-detect: emit the run summary when GitHub provides the file.
+
+    Mirrors :func:`iterate_cli.annotate.enabled_from_args`: the auto path must
+    not require the user to remember a flag inside a workflow. An explicit
+    ``--no-github-summary`` (see :func:`enabled_from_args`) still wins.
+    """
+    return github_summary_path() is not None
+
+
+def enabled_from_args(summary: bool | None) -> bool:
+    """Resolve the ``--github-summary``/``--no-github-summary`` tri-state.
+
+    Args:
+        summary: ``True`` (``--github-summary``), ``False``
+            (``--no-github-summary``), or ``None`` (auto-detect).
+
+    Returns:
+        ``True`` when the run summary should be written. The explicit flags
+        win; otherwise auto-detect via :data:`_GITHUB_SUMMARY_ENV`, exactly
+        like the doctor/report annotation tri-state.
+    """
+    if summary is True:
+        return True
+    if summary is False:
+        return False
+    return enabled_from_env()
+
+
+def append_github_summary(text: str, path: str | None = None) -> Path | None:
+    """Append ``text`` to the GitHub step-summary file and return its path.
+
+    The runner creates ``GITHUB_STEP_SUMMARY`` once per job and lets every step
+    append to it, so this must **append** (never truncate) — otherwise a
+    ``report`` step after another step's summary would silently erase it. The
+    file is created if it does not exist yet, which also makes the helper
+    directly unit-testable without a live runner.
+
+    Args:
+        text: Markdown to append. A trailing newline is guaranteed so the next
+            step's summary starts on its own line.
+        path: Explicit file path (test seam). Defaults to the
+            ``GITHUB_STEP_SUMMARY`` environment value.
+
+    Returns:
+        The path written, or None when no path is available.
+    """
+    target = path or github_summary_path()
+    if not target:
+        return None
+    target_path = Path(target)
+    # Open in append mode; the runner's file may already hold other steps.
+    with target_path.open("a", encoding="utf-8") as handle:
+        handle.write(text)
+        if not text.endswith("\n"):
+            handle.write("\n")
+    return target_path
 
 #: Bilingual report labels. Doctor finding messages stay English (they are the
 #: skill's canonical check names/messages); only the report's own structural

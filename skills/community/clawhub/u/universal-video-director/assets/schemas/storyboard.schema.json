@@ -1,0 +1,184 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "storyboard",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "segments"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "storyboard"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scene_id",
+          "duration_sec",
+          "cuts"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "scene_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "duration_sec": {
+            "type": "number",
+            "minimum": 0.5
+          },
+          "group": {
+            "type": "boolean"
+          },
+          "opening_blocking": {
+            "type": "string"
+          },
+          "cuts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "order",
+                "beat_ids",
+                "duration_sec",
+                "shot_size",
+                "camera",
+                "asset_ids",
+                "start_frame",
+                "end_frame",
+                "first_frame_prompt"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_\\-]+$"
+                },
+                "order": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "beat_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_\\-]+$"
+                  },
+                  "minItems": 1
+                },
+                "duration_sec": {
+                  "type": "number",
+                  "minimum": 0.3
+                },
+                "shot_size": {
+                  "enum": [
+                    "ECU",
+                    "CU",
+                    "MCU",
+                    "MS",
+                    "MLS",
+                    "LS",
+                    "ELS",
+                    "OTS",
+                    "POV",
+                    "INSERT"
+                  ]
+                },
+                "camera": {
+                  "type": "object",
+                  "required": [
+                    "station",
+                    "angle",
+                    "movement"
+                  ],
+                  "properties": {
+                    "station": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "angle": {
+                      "enum": [
+                        "eye",
+                        "high",
+                        "low",
+                        "top",
+                        "dutch"
+                      ]
+                    },
+                    "movement": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "motivation": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "asset_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_\\-]+$"
+                  }
+                },
+                "start_frame": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "end_frame": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "first_frame_prompt": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "last_frame_prompt": {
+                  "type": "string"
+                },
+                "transition": {
+                  "enum": [
+                    "cut",
+                    "match",
+                    "fade",
+                    "whip",
+                    "none"
+                  ]
+                },
+                "keyframe_t": {
+                  "type": "number"
+                }
+              }
+            },
+            "minItems": 1
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}

@@ -3,7 +3,7 @@
 Runtime artifacts make pipeline claims inspectable without forcing every normal response to dump JSON into the transcript.
 
 ## Scope
-Artifacts are required for `debug` and `audit` mode.
+Artifacts are required for `debug` and `audit` mode. Run validation on the original objects in memory, then persist schema-conformant sanitized copies; label redactions and hash the actual saved bytes. Minimize and redact private context and secrets before writing or emitting artifacts; store them owner-only outside version-controlled paths. Disclose unredacted private content only when the owner explicitly requests it in an authorized private context.
 
 `normal` mode may build the same objects internally but should expose pipeline evidence only in the reply footer/footnote unless the user asks for more detail.
 
@@ -11,7 +11,7 @@ Artifacts are required for `debug` and `audit` mode.
 Use one folder per pipeline run:
 
 ```text
-.openclaw/context-runs/<run_id>/
+~/.local/state/openclaw/context-runs/<run_id>/
 ```
 
 `run_id` should be stable enough to connect all artifacts from one turn. Prefer:
@@ -64,5 +64,5 @@ In `debug` mode, if artifact persistence fails but the pipeline can still answer
 
 ## Transcript behavior
 - `normal`: do not expose artifact paths unless asked; put task type, snippet IDs, compression/fallback status, model used, files read, and files updated in the footer/footnote.
-- `debug`: include artifact paths with full Retrieval Bundle and Context Pack output.
-- `audit`: include artifact paths, hashes, and Receipt Ledger.
+- `debug`: include artifact paths and a sanitized Retrieval Bundle and Context Pack summary; do not dump unrelated private context.
+- `audit`: include artifact paths, hashes, and a sanitized Receipt Ledger.

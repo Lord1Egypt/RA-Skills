@@ -1,7 +1,7 @@
 ---
 name: upkuajing-sms-tool-zh
 description: 对接全球通信运营商发送批量跨境短信，实时查看每条短信的发送状态，助力外贸从业者开展海外营销推广、订单物流通知以及客户精细化触达。
-metadata: {"version":"1.0.4","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📱","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.5","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📱","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 跨境魔方短信工具
@@ -151,6 +151,10 @@ python scripts/error_report.py --params '{"requestPath":"/agent/sms/send","reque
 
 **任何会产生费用的操作，都必须先告知、等待用户明确确认，不得在告知的同一条消息中直接执行。**
 
+### 计费方式
+
+本技能固定按API余额计费，其接口不支持套餐：脚本不会传 `planMode`，传入也会被忽略。
+
 ## 工作流程
 
 ### 决策指南
@@ -187,6 +191,7 @@ python scripts/error_report.py --params '{"requestPath":"/agent/sms/send","reque
 - 短信任务列表：查看 [references/sms-task-list-api.md](references/sms-task-list-api.md)
 - 短信任务明细：查看 [references/sms-task-record-list-api.md](references/sms-task-record-list-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

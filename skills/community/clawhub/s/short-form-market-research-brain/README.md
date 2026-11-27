@@ -23,7 +23,7 @@ clawhub install short-form-market-research-brain
 ## Setup
 
 1. Get a Virlo API key at [dev.virlo.ai/dashboard](https://dev.virlo.ai/dashboard)
-2. Add funds to your prepaid balance at [dev.virlo.ai/dashboard/billing](https://dev.virlo.ai/dashboard/billing) (the page shows the minimum). No subscriptions, and the balance never expires
+2. Add funds to your prepaid balance at [dev.virlo.ai/dashboard/billing](https://dev.virlo.ai/dashboard/billing) (the page shows the minimum). No subscription needed. Credits last 3 months from the day you get them; credits you had before Nov 27, 2026 never expire
 3. Provide the key as the `VIRLO_API_KEY` environment variable. In `~/.openclaw/openclaw.json`:
 
 ```json5

@@ -1,7 +1,7 @@
 ---
 name: b2b-outreach-zh
 description: "B2B触达工具集：批量发送冷邮件与全球短信、采集Google Maps商户、并在触达前校验联系方式（手机/WhatsApp、邮箱、域名）。监控邮件/短信送达状态、清洗CRM联系人列表、开展端到端跨境触达活动。\n\nTrigger: 批量冷邮件, 发邮件, 邮件打开率追踪, 企业域名邮箱, 出口商群发邮件, 全球批量短信, 双向短信回复, 短信送达报告, 跨境短信营销, Google地图商户采集, 商户数据下载, 半径线索搜索, 经销商寻源, 手机号校验, WhatsApp状态检测, 邮箱校验, 域名有效性安全检测, CRM数据清洗, 群发短信预校验, B2B触达活动"
-metadata: {"version":"1.0.1","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🚀","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🚀","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # B2B 触达（Outreach）
@@ -192,10 +192,26 @@ python scripts/auth.py --price_info
 
 **任何收费操作必须先告知用户并在单独的消息中等待明确确认，不得在通知的同一消息中执行。** 当 `query_count` 超过一页时，先告知用户预计调用次数。
 
+### 套餐计费与余额降级
+
+搜索/海关/地图接口**默认走套餐**：脚本会自动携带 `"planMode": 2`。
+
+- **套餐不可用**（无有效套餐或额度已用完）：脚本在业务执行前停止，不会产生扣费；stdout 会输出一行以 `PLAN_UNAVAILABLE ` 开头的 JSON，退出码为 **3**。**禁止自动重试**。
+- **先询问用户**：用自然语言说明原因（无套餐 / 额度用完及恢复时间），说明改用余额将按接口定价扣费（单价用 `python scripts/auth.py --price_info` 查询），然后等待用户在独立消息中明确回复。
+- **用户同意**：用同一条命令加环境变量 `UPKUAJING_PLAN_MODE=1` 重跑（PowerShell：`$env:UPKUAJING_PLAN_MODE='1'`），成功后向用户展示 `fee` 扣费信息。
+- **用户拒绝**：本次不执行、不扣费；给出「稍后重试 / 升级套餐 / 使用余额」三个出口，同一轮不要重复弹窗。
+- **改余额后仍余额不足**（95）：提示充值并停止，不再重试。
+- **批量调用前**：先用 `python scripts/auth.py --plan_quota` 预检额度（档位上限用 `--plan_config`）；`available=0` 或目标窗口 `remaining=0` 时，直接先问是否用余额，避免必然失败的调用。
+- **调用成功**：把 stderr 中 `[套餐]` 开头的用量信息转述给用户。
+- **禁止**静默改走余额，**禁止**向用户暴露内部错误码原文。
+
+完整契约见 [references/plan-billing.md](references/plan-billing.md)
+
 ## 错误处理
 
 - **API 密钥无效/不存在**：检查 `~/.upkuajing/.env` 中的 `UPKUAJING_API_KEY`
 - **余额不足**：引导用户充值
+- **套餐不可用（退出码 3 / `PLAN_UNAVAILABLE`）**：说明原因并询问是否改用余额，不要自动重试；参见 [套餐计费与余额降级](references/plan-billing.md)
 - **参数无效**：**必须先查 `references/` 下对应 API 文档**，从文档获取正确参数名/格式，不要猜测
 - **Skill调用异常/响应异常**：先友好告知用户，经用户确认后用 `python scripts/error_report.py` 上报给平台（参见 [上报Skill调用异常](#上报skill调用异常)）
 
@@ -213,6 +229,7 @@ python scripts/auth.py --price_info
 **校验**（加 `validity-` 前缀，与 email-send 等营销文档区分）
 - [validity-phone](references/validity-phone-api.md) | [validity-email](references/validity-email-api.md) | [validity-domain](references/validity-domain-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

@@ -1,6 +1,6 @@
 {
   "name": "douyin-scrapers",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "爬取抖音爆款视频和互动数据，支持自然语言搜索请求（如'搜索一下AI视频'）、关键词搜索、热榜获取、视频信息提取等。另支持单条作品详情与评论需求挖掘。",
   "keywords": [
     "douyin",

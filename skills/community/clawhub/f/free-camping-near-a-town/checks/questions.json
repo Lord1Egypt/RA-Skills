@@ -1,0 +1,14 @@
+{
+ "about": "8 live checks of the data path behind 'where can I camp for free near <town>?'. They run scripts/near_town.py in this same process. They test our records and the script, not a language model. A town's count changes when the records are rebuilt, so the checks never pin a count: they test that camps exist, that each one is free on its record, that each record link answers 200, and that the envelope keeps its five keys.",
+ "written": "2026-11-24",
+ "checks": [
+  {"id": "t1", "kind": "town", "town": "Red Lodge", "state": "MT"},
+  {"id": "t2", "kind": "town", "town": "Payson", "state": "AZ"},
+  {"id": "t3", "kind": "town", "town": "Monticello", "state": "UT"},
+  {"id": "t4", "kind": "town", "town": "Sisters", "state": "OR"},
+  {"id": "t5", "kind": "town", "town": "Wewahitchka", "state": "FL"},
+  {"id": "t6", "kind": "not_found", "town": "Zzqxville", "state": "OR"},
+  {"id": "t7", "kind": "zero_result", "town": "Sisters", "state": "OR", "radius": "0.5"},
+  {"id": "t8", "kind": "limit", "town": "Sisters", "state": "OR", "limit": 2}
+ ]
+}

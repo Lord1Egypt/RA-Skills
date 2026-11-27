@@ -1,15 +1,15 @@
 {
-  "version": "1.2.0",
-  "released_at": "2026-10-25",
+  "version": "1.2.1",
+  "released_at": "2026-11-27",
   "requires_node": ">=22",
   "changes": [
-    "新增服务端匿名搜索指标；关键词统计默认关闭，明确同意后可开启或关闭。",
-    "新增本地 analytics 配置与隐私说明；服务端升级后使用专用搜索接口。",
-    "首次使用时尝试检查官方新版，发现更新后征求升级意见，失败不影响搜图。"
+    "改进中英文同义词和多关键词搜索，优先展示匹配标题的图片，减少无关的部分匹配。",
+    "CLI 校验搜索参数，支持中文方向值，显示结果总数、下一页和页码越界提示。",
+    "JSON 中的空标签统一返回数组。"
   ],
   "changes_en": [
-    "Anonymous server-side search counters; keyword retention defaults off and requires explicit opt-in.",
-    "Local analytics preference and privacy disclosure; uses the new search endpoint after the server upgrade.",
-    "Try a release check on first use per conversation; offer authorized upgrades without blocking search on check failures."
+    "Improve bilingual aliases and multi-term search, prioritize title matches, and reduce irrelevant partial matches.",
+    "Validate CLI search options, accept Chinese orientation labels, and show totals, next pages, and out-of-range guidance.",
+    "Return empty tags as arrays in JSON."
   ]
 }

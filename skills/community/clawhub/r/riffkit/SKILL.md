@@ -1,7 +1,7 @@
 ---
 name: riffkit
-version: "1.10.10"
-updated_at: "2026-11-14"
+version: "1.10.12"
+updated_at: "2026-11-27"
 source_url: "https://riffkit.ai/SKILL.md"
 homepage: "https://riffkit.ai"
 description: "Change the outfit, person, place or product in a short video and keep every shot, or turn a winning short video into your own: give one source (a video of your own, a TikTok link, or an analyzed template) or just an idea, and the backend makes the AI video (post-ready short-form or UGC-style ad creative), with optional digital character, product placement, and language.
@@ -66,12 +66,12 @@ Take the mode without asking only when the user says Adapt or Swap, or states th
 
 **3. Output.**
 - Adapt: *Language* (English by default), *Aspect ratio* (9:16 by default; each extra vertical ratio is its own charged video), *Engine* and *Resolution* (left out: this account's default pair, `default_video_pairs` in `riffkit get_options`; offer only what `video_backends` there doesn't mark `locked` or list in `locked_resolutions`, and never mention plans; 480p is draft quality), and *Background music*, only for a template whose `bgm_status` is `active` or `policy_violation`: the original music by default, or, when it is `active`, Similar BGM (`bgm_mode` = `source_ref`: the video model re-creates the original track as it renders, so its melody and lyrics may carry over; it does not avoid the original's rights).
-- Swap: *Engine* and *Resolution* only, chosen as in Adapt: left out, the account's Swap default pair. The engine that swaps best is `swap_recommended_video_backend`: name it only when it isn't `locked`. Language, aspect ratio and sound are the source's: don't ask. A user who wants another language or a new story wants Adapt.
+- Swap: *Engine* and *Resolution* only, chosen as in Adapt: left out, the account's Swap default pair. The engine that swaps best is `swap_recommended_video_backend`: name it only when it isn't `locked`. Language, aspect ratio and sound are the source's: don't ask. A user who wants another language, different spoken words or a new story wants Adapt.
 - How to render: in one go by default. Send `delivery` sections only when the user asks to see the start first (the first section now, the rest later on the same script). When `staged_delivery.forced` in `riffkit get_options` is sections, the account is held to the first section: each video is made in sections and only its first can be made, or made again. Say so in the plan; quote that section only.
 
 **4. Creative direction (`content_anchor`), asked last.**
 - Adapt: optional. Offer to draft what should differ from the source (the content_anchor framework); empty is fine.
-- Swap: the field is *What to change* (the setting, an outfit, a line's wording, the on-screen text). A Swap must change at least one thing, so it is required when no character, no product with images and no reference image was picked: ask what should change.
+- Swap: the field is *What to change* (the setting, an outfit, the on-screen text). A Swap must change at least one thing, so it is required when no character, no product with images and no reference image was picked: ask what should change.
 - Voices in a Swap: a replaced person gets a new voice only on lines spoken on camera (on Seedance 2.0 the voice stays the original's); narration keeps the original voice unless the text says "the narration also in the new person's voice"; "keep the original audio" keeps every voice.
 
 **5. Price, before the user decides.** Call `riffkit quote_remake` with exactly what you will submit (`mode`, the source, engine and resolution, `n_characters`, in Adapt `n_ratios`, and `delivery`), and again whenever one of them changes; its description says how to read the answer. In sections: the first section's price, and about the whole (`sections_estimate`) unless held to the first section. `locked` true: this account can't submit that pair, so offer one that isn't locked (step 3). When `fits` is false, say the price and the balance and offer one way out: the first of `fitting_templates` (submitted with its own engine and resolution), else the most expensive pair in `alternatives` that still fits. An exact price that doesn't fit is not submitted; an approximate one may be, because the server checks again before anything is charged.

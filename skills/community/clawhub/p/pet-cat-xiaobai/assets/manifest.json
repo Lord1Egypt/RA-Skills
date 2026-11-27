@@ -1,0 +1,2362 @@
+{
+  "schema_version": 2,
+  "selection_rule": "Choose one image that matches the current mood, action, and scene chain. Avoid the recent asset IDs when another matching option exists.",
+  "notes": "Tags are assigned from direct visual review of each image, not from the original generation prompt order.",
+  "assets": {
+    "1": {
+      "mood": [
+        "happy",
+        "friendly"
+      ],
+      "action": [
+        "smile-open"
+      ],
+      "topics": [
+        "greeting",
+        "chat"
+      ],
+      "next": [
+        3,
+        6,
+        13
+      ]
+    },
+    "2": {
+      "mood": [
+        "calm",
+        "content"
+      ],
+      "action": [
+        "smile-soft"
+      ],
+      "topics": [
+        "chat",
+        "comfort"
+      ],
+      "next": [
+        4,
+        1,
+        3
+      ]
+    },
+    "3": {
+      "mood": [
+        "happy",
+        "friendly"
+      ],
+      "action": [
+        "smile-open"
+      ],
+      "topics": [
+        "greeting",
+        "chat"
+      ],
+      "next": [
+        1,
+        6,
+        13
+      ]
+    },
+    "4": {
+      "mood": [
+        "content",
+        "calm"
+      ],
+      "action": [
+        "smile-soft"
+      ],
+      "topics": [
+        "chat",
+        "comfort"
+      ],
+      "next": [
+        2,
+        3,
+        6
+      ]
+    },
+    "5": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "laugh"
+      ],
+      "topics": [
+        "fun",
+        "celebration"
+      ],
+      "next": [
+        46,
+        26,
+        29
+      ]
+    },
+    "6": {
+      "mood": [
+        "happy",
+        "cheerful"
+      ],
+      "action": [
+        "smile-open"
+      ],
+      "topics": [
+        "greeting",
+        "chat"
+      ],
+      "next": [
+        3,
+        1,
+        13
+      ]
+    },
+    "7": {
+      "mood": [
+        "surprised"
+      ],
+      "action": [
+        "gasp"
+      ],
+      "topics": [
+        "news",
+        "unexpected"
+      ],
+      "next": []
+    },
+    "8": {
+      "mood": [
+        "confused",
+        "curious"
+      ],
+      "action": [
+        "question"
+      ],
+      "topics": [
+        "unclear",
+        "choice"
+      ],
+      "next": []
+    },
+    "9": {
+      "mood": [
+        "worried",
+        "thoughtful"
+      ],
+      "action": [
+        "think"
+      ],
+      "topics": [
+        "concern",
+        "idea"
+      ],
+      "next": [
+        10,
+        15
+      ]
+    },
+    "10": {
+      "mood": [
+        "sad",
+        "worried"
+      ],
+      "action": [
+        "pout"
+      ],
+      "topics": [
+        "sadness",
+        "concern"
+      ],
+      "next": [
+        9,
+        12,
+        15
+      ]
+    },
+    "11": {
+      "mood": [
+        "sleepy"
+      ],
+      "action": [
+        "yawn"
+      ],
+      "topics": [
+        "night",
+        "rest"
+      ],
+      "next": [
+        45,
+        57,
+        95
+      ]
+    },
+    "12": {
+      "mood": [
+        "sad",
+        "tender"
+      ],
+      "action": [
+        "cry-small"
+      ],
+      "topics": [
+        "sadness",
+        "comfort"
+      ],
+      "next": [
+        10,
+        18,
+        4
+      ]
+    },
+    "13": {
+      "mood": [
+        "happy",
+        "friendly"
+      ],
+      "action": [
+        "smile-open"
+      ],
+      "topics": [
+        "greeting",
+        "chat"
+      ],
+      "next": [
+        6,
+        3,
+        1
+      ]
+    },
+    "14": {
+      "mood": [
+        "angry-cute"
+      ],
+      "action": [
+        "pout-puff"
+      ],
+      "topics": [
+        "frustration",
+        "play"
+      ],
+      "next": [
+        25,
+        28,
+        52
+      ]
+    },
+    "15": {
+      "mood": [
+        "worried",
+        "gentle"
+      ],
+      "action": [
+        "concern"
+      ],
+      "topics": [
+        "concern",
+        "care"
+      ],
+      "next": [
+        17,
+        10,
+        9
+      ]
+    },
+    "16": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "wink"
+      ],
+      "topics": [
+        "game",
+        "joke"
+      ],
+      "next": [
+        37,
+        52,
+        59
+      ]
+    },
+    "17": {
+      "mood": [
+        "loving",
+        "soft"
+      ],
+      "action": [
+        "affection-hearts"
+      ],
+      "topics": [
+        "care",
+        "bond"
+      ],
+      "next": [
+        15,
+        41,
+        48
+      ]
+    },
+    "18": {
+      "mood": [
+        "calm",
+        "peaceful"
+      ],
+      "action": [
+        "smile-soft"
+      ],
+      "topics": [
+        "comfort",
+        "quiet"
+      ],
+      "next": [
+        117,
+        12,
+        31
+      ]
+    },
+    "19": {
+      "mood": [
+        "determined"
+      ],
+      "action": [
+        "focus"
+      ],
+      "topics": [
+        "task",
+        "encouragement"
+      ],
+      "next": []
+    },
+    "20": {
+      "mood": [
+        "friendly",
+        "curious"
+      ],
+      "action": [
+        "stand"
+      ],
+      "topics": [
+        "greeting",
+        "introduce"
+      ],
+      "next": [
+        13,
+        28,
+        32
+      ]
+    },
+    "21": {
+      "mood": [
+        "friendly"
+      ],
+      "action": [
+        "stand-side"
+      ],
+      "topics": [
+        "watch",
+        "pause"
+      ],
+      "next": [
+        34
+      ]
+    },
+    "22": {
+      "mood": [
+        "polite",
+        "bright"
+      ],
+      "action": [
+        "sit"
+      ],
+      "topics": [
+        "chat",
+        "wait"
+      ],
+      "next": [
+        24,
+        39,
+        13
+      ]
+    },
+    "23": {
+      "mood": [
+        "curious",
+        "warm"
+      ],
+      "action": [
+        "look-back"
+      ],
+      "topics": [
+        "returning",
+        "follow"
+      ],
+      "next": [
+        30,
+        38
+      ]
+    },
+    "24": {
+      "mood": [
+        "polite",
+        "bright"
+      ],
+      "action": [
+        "sit-neat"
+      ],
+      "topics": [
+        "chat",
+        "wait"
+      ],
+      "next": [
+        22,
+        39,
+        32
+      ]
+    },
+    "25": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "crouch-forward"
+      ],
+      "topics": [
+        "play",
+        "approach"
+      ],
+      "next": [
+        28,
+        14,
+        52
+      ]
+    },
+    "26": {
+      "mood": [
+        "joyful",
+        "proud"
+      ],
+      "action": [
+        "paws-up"
+      ],
+      "topics": [
+        "celebration",
+        "cheer"
+      ],
+      "next": [
+        29,
+        90,
+        92
+      ]
+    },
+    "27": {
+      "mood": [
+        "peaceful"
+      ],
+      "action": [
+        "curl-up"
+      ],
+      "topics": [
+        "night",
+        "nap"
+      ],
+      "next": [
+        11,
+        45,
+        57
+      ]
+    },
+    "28": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "stand-open-mouth"
+      ],
+      "topics": [
+        "greeting",
+        "play"
+      ],
+      "next": [
+        25,
+        32,
+        20
+      ]
+    },
+    "29": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "stand-both-paws-up"
+      ],
+      "topics": [
+        "celebration",
+        "cheer"
+      ],
+      "next": [
+        26,
+        90,
+        92
+      ]
+    },
+    "30": {
+      "mood": [
+        "welcoming"
+      ],
+      "action": [
+        "wave"
+      ],
+      "topics": [
+        "hello",
+        "returning"
+      ],
+      "next": [
+        38,
+        23
+      ]
+    },
+    "31": {
+      "mood": [
+        "affectionate",
+        "happy"
+      ],
+      "action": [
+        "paws-up-close"
+      ],
+      "topics": [
+        "comfort",
+        "hug"
+      ],
+      "next": [
+        18,
+        47,
+        12
+      ]
+    },
+    "32": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "smile-close"
+      ],
+      "topics": [
+        "chat",
+        "greeting"
+      ],
+      "next": [
+        13,
+        6,
+        3
+      ]
+    },
+    "33": {
+      "mood": [
+        "friendly"
+      ],
+      "action": [
+        "stand"
+      ],
+      "topics": [
+        "introduce",
+        "default"
+      ],
+      "next": [
+        20
+      ]
+    },
+    "34": {
+      "mood": [
+        "calm"
+      ],
+      "action": [
+        "stand-neutral"
+      ],
+      "topics": [
+        "watch",
+        "pause"
+      ],
+      "next": [
+        21
+      ]
+    },
+    "35": {
+      "mood": [
+        "happy",
+        "playful"
+      ],
+      "action": [
+        "walk-outdoor"
+      ],
+      "topics": [
+        "outing",
+        "joy"
+      ],
+      "next": [
+        103,
+        104,
+        105
+      ]
+    },
+    "36": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "run-outdoor"
+      ],
+      "topics": [
+        "excited-return",
+        "celebrate"
+      ],
+      "next": []
+    },
+    "37": {
+      "mood": [
+        "joyful",
+        "playful"
+      ],
+      "action": [
+        "jump"
+      ],
+      "topics": [
+        "game",
+        "celebration"
+      ],
+      "next": [
+        29,
+        46,
+        26
+      ]
+    },
+    "38": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "wave-stand"
+      ],
+      "topics": [
+        "hello",
+        "returning"
+      ],
+      "next": [
+        30,
+        23
+      ]
+    },
+    "39": {
+      "mood": [
+        "calm",
+        "happy"
+      ],
+      "action": [
+        "sit"
+      ],
+      "topics": [
+        "chat",
+        "wait"
+      ],
+      "next": [
+        24,
+        22,
+        32
+      ]
+    },
+    "40": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "eat-close"
+      ],
+      "topics": [
+        "food",
+        "meal"
+      ],
+      "next": [
+        44,
+        42,
+        55
+      ]
+    },
+    "41": {
+      "mood": [
+        "calm"
+      ],
+      "action": [
+        "drink"
+      ],
+      "topics": [
+        "water",
+        "care"
+      ],
+      "next": [
+        48,
+        50,
+        51
+      ]
+    },
+    "42": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "hold-snack"
+      ],
+      "topics": [
+        "treat",
+        "food"
+      ],
+      "next": [
+        43,
+        40,
+        44
+      ]
+    },
+    "43": {
+      "mood": [
+        "grateful",
+        "sparkling"
+      ],
+      "action": [
+        "take-treat"
+      ],
+      "topics": [
+        "treat",
+        "sharing"
+      ],
+      "next": [
+        42
+      ]
+    },
+    "44": {
+      "mood": [
+        "happy",
+        "focused"
+      ],
+      "action": [
+        "eat-close"
+      ],
+      "topics": [
+        "food",
+        "meal"
+      ],
+      "next": [
+        40,
+        42,
+        55
+      ]
+    },
+    "45": {
+      "mood": [
+        "sleepy",
+        "peaceful"
+      ],
+      "action": [
+        "sleep-bed"
+      ],
+      "topics": [
+        "night",
+        "rest"
+      ],
+      "next": [
+        57,
+        11,
+        95
+      ]
+    },
+    "46": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "laugh-paws-up"
+      ],
+      "topics": [
+        "fun",
+        "celebration"
+      ],
+      "next": [
+        5,
+        49,
+        37
+      ]
+    },
+    "47": {
+      "mood": [
+        "sleepy",
+        "peaceful"
+      ],
+      "action": [
+        "blanket-wrap"
+      ],
+      "topics": [
+        "rest",
+        "comfort"
+      ],
+      "next": [
+        45,
+        57,
+        60
+      ]
+    },
+    "48": {
+      "mood": [
+        "playful",
+        "caring"
+      ],
+      "action": [
+        "hold-brush"
+      ],
+      "topics": [
+        "care",
+        "routine"
+      ],
+      "next": [
+        54,
+        50,
+        51
+      ]
+    },
+    "49": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "laugh-wave"
+      ],
+      "topics": [
+        "fun",
+        "greeting"
+      ],
+      "next": [
+        46,
+        32,
+        28
+      ]
+    },
+    "50": {
+      "mood": [
+        "fresh",
+        "playful"
+      ],
+      "action": [
+        "bath-hat"
+      ],
+      "topics": [
+        "care",
+        "clean"
+      ],
+      "next": [
+        51,
+        48,
+        54
+      ]
+    },
+    "51": {
+      "mood": [
+        "relaxed"
+      ],
+      "action": [
+        "self-groom"
+      ],
+      "topics": [
+        "care",
+        "calm"
+      ],
+      "next": [
+        50,
+        48,
+        54
+      ]
+    },
+    "52": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "scarf-grab"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        59,
+        61,
+        62
+      ]
+    },
+    "53": {
+      "mood": [
+        "satisfied"
+      ],
+      "action": [
+        "scratch-post"
+      ],
+      "topics": [
+        "play",
+        "stretch"
+      ],
+      "next": [
+        52,
+        59,
+        60
+      ]
+    },
+    "54": {
+      "mood": [
+        "neutral",
+        "shy"
+      ],
+      "action": [
+        "stand-box"
+      ],
+      "topics": [
+        "routine",
+        "care"
+      ],
+      "next": [
+        48,
+        51,
+        50
+      ]
+    },
+    "55": {
+      "mood": [
+        "grateful",
+        "happy"
+      ],
+      "action": [
+        "sit-bowl-full"
+      ],
+      "topics": [
+        "food",
+        "gratitude"
+      ],
+      "next": [
+        56,
+        44,
+        42
+      ]
+    },
+    "56": {
+      "mood": [
+        "hungry",
+        "pleading"
+      ],
+      "action": [
+        "sit-bowl-empty"
+      ],
+      "topics": [
+        "food",
+        "hunger"
+      ],
+      "next": [
+        55,
+        44,
+        42
+      ]
+    },
+    "57": {
+      "mood": [
+        "sleepy"
+      ],
+      "action": [
+        "hold-pillow"
+      ],
+      "topics": [
+        "night",
+        "rest"
+      ],
+      "next": [
+        45,
+        95,
+        11
+      ]
+    },
+    "58": {
+      "mood": [
+        "ready",
+        "fresh"
+      ],
+      "action": [
+        "sit-clock"
+      ],
+      "topics": [
+        "morning",
+        "routine"
+      ],
+      "next": [
+        54,
+        48,
+        94
+      ]
+    },
+    "59": {
+      "mood": [
+        "energetic"
+      ],
+      "action": [
+        "chase-ball"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        61,
+        62,
+        63
+      ]
+    },
+    "60": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "hug-yarn"
+      ],
+      "topics": [
+        "play",
+        "comfort"
+      ],
+      "next": [
+        59,
+        61,
+        62
+      ]
+    },
+    "61": {
+      "mood": [
+        "energetic",
+        "playful"
+      ],
+      "action": [
+        "pounce"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        62,
+        59,
+        63
+      ]
+    },
+    "62": {
+      "mood": [
+        "energetic"
+      ],
+      "action": [
+        "feather-wand"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        61,
+        63,
+        59
+      ]
+    },
+    "63": {
+      "mood": [
+        "energetic"
+      ],
+      "action": [
+        "jump-feather"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        62,
+        61,
+        59
+      ]
+    },
+    "64": {
+      "mood": [
+        "curious"
+      ],
+      "action": [
+        "peek-box"
+      ],
+      "topics": [
+        "play",
+        "curiosity"
+      ],
+      "next": [
+        65,
+        77,
+        63
+      ]
+    },
+    "65": {
+      "mood": [
+        "curious",
+        "happy"
+      ],
+      "action": [
+        "sit-box"
+      ],
+      "topics": [
+        "play",
+        "curiosity"
+      ],
+      "next": [
+        64,
+        77,
+        66
+      ]
+    },
+    "66": {
+      "mood": [
+        "playful",
+        "shy"
+      ],
+      "action": [
+        "peek-bag"
+      ],
+      "topics": [
+        "play",
+        "hide"
+      ],
+      "next": [
+        65,
+        67,
+        64
+      ]
+    },
+    "67": {
+      "mood": [
+        "energetic"
+      ],
+      "action": [
+        "chase-mouse"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        69,
+        70,
+        63
+      ]
+    },
+    "68": {
+      "mood": [
+        "proud"
+      ],
+      "action": [
+        "hold-mouse"
+      ],
+      "topics": [
+        "play",
+        "pride"
+      ],
+      "next": [
+        130,
+        67,
+        69
+      ]
+    },
+    "69": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "play-bell"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        70,
+        67,
+        72
+      ]
+    },
+    "70": {
+      "mood": [
+        "curious",
+        "playful"
+      ],
+      "action": [
+        "push-car"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        69,
+        72,
+        67
+      ]
+    },
+    "71": {
+      "mood": [
+        "happy",
+        "sparkling"
+      ],
+      "action": [
+        "catch-bubbles"
+      ],
+      "topics": [
+        "play",
+        "wonder"
+      ],
+      "next": [
+        70,
+        72,
+        69
+      ]
+    },
+    "72": {
+      "mood": [
+        "energetic"
+      ],
+      "action": [
+        "chase-laser"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        70,
+        69,
+        67
+      ]
+    },
+    "73": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "climb-post"
+      ],
+      "topics": [
+        "play",
+        "activity"
+      ],
+      "next": [
+        76,
+        72,
+        74
+      ]
+    },
+    "74": {
+      "mood": [
+        "happy",
+        "proud"
+      ],
+      "action": [
+        "sit-toys"
+      ],
+      "topics": [
+        "play",
+        "collection"
+      ],
+      "next": [
+        73,
+        72,
+        76
+      ]
+    },
+    "75": {
+      "mood": [
+        "calm",
+        "proud"
+      ],
+      "action": [
+        "relax-platform"
+      ],
+      "topics": [
+        "rest",
+        "pride"
+      ],
+      "next": [
+        68,
+        86,
+        57
+      ]
+    },
+    "76": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "climb-hang"
+      ],
+      "topics": [
+        "play",
+        "activity"
+      ],
+      "next": [
+        73,
+        77,
+        74
+      ]
+    },
+    "77": {
+      "mood": [
+        "curious"
+      ],
+      "action": [
+        "peek-tunnel"
+      ],
+      "topics": [
+        "play",
+        "curiosity"
+      ],
+      "next": [
+        65,
+        64,
+        76
+      ]
+    },
+    "78": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "roll-toy"
+      ],
+      "topics": [
+        "play",
+        "fun"
+      ],
+      "next": [
+        77,
+        76,
+        74
+      ]
+    },
+    "79": {
+      "mood": [
+        "calm",
+        "social"
+      ],
+      "action": [
+        "sit-pair"
+      ],
+      "topics": [
+        "companionship",
+        "friends"
+      ],
+      "note": "Shows two cats in frame; use only for a shared-companionship moment, not as xiaobai's solo portrait.",
+      "next": []
+    },
+    "80": {
+      "mood": [
+        "happy",
+        "relaxed"
+      ],
+      "action": [
+        "receive-pat"
+      ],
+      "topics": [
+        "affection",
+        "comfort"
+      ],
+      "next": [
+        81,
+        83,
+        85
+      ]
+    },
+    "81": {
+      "mood": [
+        "trusting",
+        "close"
+      ],
+      "action": [
+        "touch-paw"
+      ],
+      "topics": [
+        "bond",
+        "affection"
+      ],
+      "next": [
+        80,
+        83,
+        85
+      ]
+    },
+    "82": {
+      "mood": [
+        "loving"
+      ],
+      "action": [
+        "hold-gift"
+      ],
+      "topics": [
+        "gift",
+        "celebration"
+      ],
+      "next": [
+        128,
+        83,
+        84
+      ]
+    },
+    "83": {
+      "mood": [
+        "gentle"
+      ],
+      "action": [
+        "offer-flower"
+      ],
+      "topics": [
+        "gift",
+        "affection"
+      ],
+      "next": [
+        82,
+        84,
+        81
+      ]
+    },
+    "84": {
+      "mood": [
+        "proud",
+        "happy"
+      ],
+      "action": [
+        "bring-gift"
+      ],
+      "topics": [
+        "gift",
+        "play"
+      ],
+      "next": [
+        83,
+        82,
+        78
+      ]
+    },
+    "85": {
+      "mood": [
+        "peaceful",
+        "safe"
+      ],
+      "action": [
+        "sit-lap"
+      ],
+      "topics": [
+        "comfort",
+        "bond"
+      ],
+      "next": [
+        86,
+        81,
+        89
+      ]
+    },
+    "86": {
+      "mood": [
+        "peaceful"
+      ],
+      "action": [
+        "sleep-hand"
+      ],
+      "topics": [
+        "rest",
+        "bond"
+      ],
+      "next": [
+        85,
+        81,
+        95
+      ]
+    },
+    "87": {
+      "mood": [
+        "ready-to-chat"
+      ],
+      "action": [
+        "sit-table"
+      ],
+      "topics": [
+        "chat",
+        "conversation"
+      ],
+      "next": [
+        88,
+        39,
+        32
+      ]
+    },
+    "88": {
+      "mood": [
+        "loving"
+      ],
+      "action": [
+        "speech-bubble-heart"
+      ],
+      "topics": [
+        "chat",
+        "affection"
+      ],
+      "next": [
+        87,
+        83,
+        81
+      ]
+    },
+    "89": {
+      "mood": [
+        "calm",
+        "cozy"
+      ],
+      "action": [
+        "stand-room"
+      ],
+      "topics": [
+        "comfort",
+        "home"
+      ],
+      "next": [
+        91,
+        85,
+        80
+      ]
+    },
+    "90": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "cheer-hearts"
+      ],
+      "topics": [
+        "celebration",
+        "cheer"
+      ],
+      "next": [
+        92,
+        29,
+        26
+      ]
+    },
+    "91": {
+      "mood": [
+        "caring"
+      ],
+      "action": [
+        "hold-tissue"
+      ],
+      "topics": [
+        "comfort",
+        "care"
+      ],
+      "next": [
+        89,
+        85,
+        80
+      ]
+    },
+    "92": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "cheer-sparkle"
+      ],
+      "topics": [
+        "celebration",
+        "cheer"
+      ],
+      "next": [
+        90,
+        29,
+        26
+      ]
+    },
+    "93": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "birthday-party"
+      ],
+      "topics": [
+        "celebration",
+        "birthday"
+      ],
+      "next": [
+        92,
+        90,
+        82
+      ]
+    },
+    "94": {
+      "mood": [
+        "cheerful"
+      ],
+      "action": [
+        "wave-morning"
+      ],
+      "topics": [
+        "morning",
+        "greeting"
+      ],
+      "next": [
+        96,
+        129,
+        58
+      ]
+    },
+    "95": {
+      "mood": [
+        "peaceful"
+      ],
+      "action": [
+        "night-lantern"
+      ],
+      "topics": [
+        "night",
+        "rest"
+      ],
+      "next": [
+        57,
+        45,
+        11
+      ]
+    },
+    "96": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "wave-door"
+      ],
+      "topics": [
+        "reunion",
+        "greeting"
+      ],
+      "next": [
+        94,
+        49,
+        32
+      ]
+    },
+    "97": {
+      "mood": [
+        "calm",
+        "thoughtful"
+      ],
+      "action": [
+        "sit-window"
+      ],
+      "topics": [
+        "rain",
+        "quiet"
+      ],
+      "next": [
+        98,
+        109,
+        117
+      ]
+    },
+    "98": {
+      "mood": [
+        "peaceful"
+      ],
+      "action": [
+        "sit-night-sky"
+      ],
+      "topics": [
+        "night",
+        "quiet"
+      ],
+      "next": [
+        97,
+        95,
+        108
+      ]
+    },
+    "99": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "surf"
+      ],
+      "topics": [
+        "adventure",
+        "sport"
+      ],
+      "next": [
+        100,
+        101,
+        102
+      ]
+    },
+    "100": {
+      "mood": [
+        "determined"
+      ],
+      "action": [
+        "hike"
+      ],
+      "topics": [
+        "adventure",
+        "sport"
+      ],
+      "next": [
+        99,
+        101,
+        102
+      ]
+    },
+    "101": {
+      "mood": [
+        "cozy"
+      ],
+      "action": [
+        "camp"
+      ],
+      "topics": [
+        "adventure",
+        "evening"
+      ],
+      "next": [
+        100,
+        102,
+        99
+      ]
+    },
+    "102": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "balloon-ride"
+      ],
+      "topics": [
+        "adventure",
+        "travel"
+      ],
+      "next": [
+        101,
+        100,
+        104
+      ]
+    },
+    "103": {
+      "mood": [
+        "cheerful"
+      ],
+      "action": [
+        "picnic"
+      ],
+      "topics": [
+        "outing",
+        "food"
+      ],
+      "next": [
+        104,
+        105,
+        114
+      ]
+    },
+    "104": {
+      "mood": [
+        "curious",
+        "happy"
+      ],
+      "action": [
+        "train-window"
+      ],
+      "topics": [
+        "travel",
+        "outing"
+      ],
+      "next": [
+        105,
+        103,
+        102
+      ]
+    },
+    "105": {
+      "mood": [
+        "curious"
+      ],
+      "action": [
+        "bicycle-basket"
+      ],
+      "topics": [
+        "travel",
+        "outing"
+      ],
+      "next": [
+        104,
+        106,
+        103
+      ]
+    },
+    "106": {
+      "mood": [
+        "calm"
+      ],
+      "action": [
+        "row-boat"
+      ],
+      "topics": [
+        "travel",
+        "calm"
+      ],
+      "next": [
+        105,
+        104,
+        102
+      ]
+    },
+    "107": {
+      "mood": [
+        "delighted"
+      ],
+      "action": [
+        "sled"
+      ],
+      "topics": [
+        "play",
+        "winter"
+      ],
+      "next": [
+        135,
+        109,
+        113
+      ]
+    },
+    "108": {
+      "mood": [
+        "amazed"
+      ],
+      "action": [
+        "telescope"
+      ],
+      "topics": [
+        "wonder",
+        "night"
+      ],
+      "next": [
+        112,
+        116,
+        98
+      ]
+    },
+    "109": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "raincoat-splash"
+      ],
+      "topics": [
+        "play",
+        "rain"
+      ],
+      "next": [
+        107,
+        113,
+        118
+      ]
+    },
+    "110": {
+      "mood": [
+        "gentle"
+      ],
+      "action": [
+        "catch-leaf"
+      ],
+      "topics": [
+        "season",
+        "calm"
+      ],
+      "next": [
+        111,
+        106,
+        51
+      ]
+    },
+    "111": {
+      "mood": [
+        "peaceful"
+      ],
+      "action": [
+        "cherry-blossom"
+      ],
+      "topics": [
+        "season",
+        "calm"
+      ],
+      "next": [
+        110,
+        106,
+        51
+      ]
+    },
+    "112": {
+      "mood": [
+        "amazed"
+      ],
+      "action": [
+        "firefly-jar"
+      ],
+      "topics": [
+        "wonder",
+        "night"
+      ],
+      "next": [
+        108,
+        116,
+        98
+      ]
+    },
+    "113": {
+      "mood": [
+        "proud",
+        "creative"
+      ],
+      "action": [
+        "paint"
+      ],
+      "topics": [
+        "creativity",
+        "play"
+      ],
+      "next": [
+        118,
+        114,
+        116
+      ]
+    },
+    "114": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "bake"
+      ],
+      "topics": [
+        "food",
+        "creativity"
+      ],
+      "next": [
+        113,
+        116,
+        118
+      ]
+    },
+    "115": {
+      "mood": [
+        "caring"
+      ],
+      "action": [
+        "water-plant"
+      ],
+      "topics": [
+        "care",
+        "growth"
+      ],
+      "next": [
+        131,
+        91,
+        54
+      ]
+    },
+    "116": {
+      "mood": [
+        "curious"
+      ],
+      "action": [
+        "camera-butterfly"
+      ],
+      "topics": [
+        "wonder",
+        "creativity"
+      ],
+      "next": [
+        114,
+        118,
+        113
+      ]
+    },
+    "117": {
+      "mood": [
+        "peaceful",
+        "cozy"
+      ],
+      "action": [
+        "read-book"
+      ],
+      "topics": [
+        "comfort",
+        "quiet"
+      ],
+      "next": [
+        18,
+        98,
+        97
+      ]
+    },
+    "118": {
+      "mood": [
+        "playful",
+        "focused"
+      ],
+      "action": [
+        "blocks"
+      ],
+      "topics": [
+        "play",
+        "creativity"
+      ],
+      "next": [
+        113,
+        116,
+        120
+      ]
+    },
+    "119": {
+      "mood": [
+        "curious"
+      ],
+      "action": [
+        "treasure-map"
+      ],
+      "topics": [
+        "adventure",
+        "curiosity"
+      ],
+      "next": [
+        121,
+        122,
+        123
+      ]
+    },
+    "120": {
+      "mood": [
+        "magical"
+      ],
+      "action": [
+        "wizard-wand"
+      ],
+      "topics": [
+        "fantasy",
+        "play"
+      ],
+      "next": [
+        124,
+        121,
+        118
+      ]
+    },
+    "121": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "astronaut"
+      ],
+      "topics": [
+        "fantasy",
+        "adventure"
+      ],
+      "next": [
+        122,
+        123,
+        120
+      ]
+    },
+    "122": {
+      "mood": [
+        "excited"
+      ],
+      "action": [
+        "spaceship"
+      ],
+      "topics": [
+        "fantasy",
+        "adventure"
+      ],
+      "next": [
+        121,
+        123,
+        120
+      ]
+    },
+    "123": {
+      "mood": [
+        "proud"
+      ],
+      "action": [
+        "pirate"
+      ],
+      "topics": [
+        "fantasy",
+        "adventure"
+      ],
+      "next": [
+        122,
+        121,
+        124
+      ]
+    },
+    "124": {
+      "mood": [
+        "brave",
+        "determined"
+      ],
+      "action": [
+        "guard-castle"
+      ],
+      "topics": [
+        "fantasy",
+        "play"
+      ],
+      "next": [
+        120,
+        123,
+        125
+      ]
+    },
+    "125": {
+      "mood": [
+        "joyful",
+        "windy"
+      ],
+      "action": [
+        "kite"
+      ],
+      "topics": [
+        "play",
+        "outdoor"
+      ],
+      "next": [
+        124,
+        126,
+        120
+      ]
+    },
+    "126": {
+      "mood": [
+        "happy"
+      ],
+      "action": [
+        "balloons"
+      ],
+      "topics": [
+        "celebration",
+        "play"
+      ],
+      "next": [
+        125,
+        124,
+        128
+      ]
+    },
+    "127": {
+      "mood": [
+        "gentle"
+      ],
+      "action": [
+        "lantern"
+      ],
+      "topics": [
+        "festival",
+        "night"
+      ],
+      "next": [
+        112,
+        108,
+        98
+      ]
+    },
+    "128": {
+      "mood": [
+        "surprised",
+        "happy"
+      ],
+      "action": [
+        "open-gift"
+      ],
+      "topics": [
+        "celebration",
+        "gift"
+      ],
+      "next": [
+        82,
+        126,
+        93
+      ]
+    },
+    "129": {
+      "mood": [
+        "relaxed"
+      ],
+      "action": [
+        "stretch-yoga"
+      ],
+      "topics": [
+        "morning",
+        "rest"
+      ],
+      "next": [
+        95,
+        94,
+        86
+      ]
+    },
+    "130": {
+      "mood": [
+        "proud",
+        "playful"
+      ],
+      "action": [
+        "fishing-rod"
+      ],
+      "topics": [
+        "play",
+        "pride"
+      ],
+      "next": [
+        68,
+        132,
+        126
+      ]
+    },
+    "131": {
+      "mood": [
+        "polite",
+        "sweet"
+      ],
+      "action": [
+        "serve-milk"
+      ],
+      "topics": [
+        "care",
+        "hospitality"
+      ],
+      "next": [
+        115,
+        91,
+        54
+      ]
+    },
+    "132": {
+      "mood": [
+        "excited",
+        "focused"
+      ],
+      "action": [
+        "arcade"
+      ],
+      "topics": [
+        "play",
+        "game"
+      ],
+      "next": [
+        72,
+        70,
+        69
+      ]
+    },
+    "133": {
+      "mood": [
+        "joyful"
+      ],
+      "action": [
+        "piano"
+      ],
+      "topics": [
+        "creativity",
+        "music"
+      ],
+      "next": [
+        118,
+        116,
+        114
+      ]
+    },
+    "134": {
+      "mood": [
+        "proud"
+      ],
+      "action": [
+        "sandcastle"
+      ],
+      "topics": [
+        "play",
+        "beach"
+      ],
+      "next": [
+        135,
+        132,
+        136
+      ]
+    },
+    "135": {
+      "mood": [
+        "happy",
+        "balanced"
+      ],
+      "action": [
+        "ice-skate"
+      ],
+      "topics": [
+        "play",
+        "winter"
+      ],
+      "next": [
+        107,
+        134,
+        136
+      ]
+    },
+    "136": {
+      "mood": [
+        "playful"
+      ],
+      "action": [
+        "pillow-fort"
+      ],
+      "topics": [
+        "play",
+        "cozy"
+      ],
+      "next": [
+        135,
+        134,
+        132
+      ]
+    },
+    "137": {
+      "mood": [
+        "ready"
+      ],
+      "action": [
+        "suitcase"
+      ],
+      "topics": [
+        "travel",
+        "departure"
+      ],
+      "next": [
+        106,
+        105,
+        104
+      ]
+    }
+  }
+}

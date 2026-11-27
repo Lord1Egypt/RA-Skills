@@ -2,7 +2,7 @@
 
 > Less skills. Deeper connections.
 
-**67-skill mesh** for AI coding assistants — 5-layer architecture, 248 connections + 45 signals, 14 extension packs.
+**67-skill mesh** for AI coding assistants — 5-layer architecture, 248 connections + 46 signals, 14 extension packs.
 
 ## Install
 
@@ -44,4 +44,4 @@ ui · backend · devops · mobile · security · trading · saas · ecommerce ·
 
 ## License
 
-MIT — v2.32.0
+MIT — v2.34.1

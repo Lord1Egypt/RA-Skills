@@ -1,10 +1,8 @@
 # 动态设计与原生重建工作流
 
-这是本地开发版的 `engine design` 入口，依赖 `requirements.txt` 锁定的
-python-pptx 1.0.2、Pillow 13.0.0、jsonschema 4.25.1、lxml 6.1.1。
-Pillow 安全升级要求 Python 3.11 或更新版本；不要在旧解释器中静默回退到 11.3.0。
-执行器不接受 Python、JavaScript、表达式、任意路径、远程 URL、SVG、
-字体文件或 PPTX 模板。支持的能力由 `schema` 命令给出，未知属性拒绝执行。
+这是本地开发版的 `engine design` 入口，使用当前环境已锁定的
+python-pptx 1.0.2、Pillow 11.3.0、jsonschema 4.25.1、lxml 6.1.1。
+场景 JSON 的字段由 `schema` 命令给出，未知属性会被拒绝。此入口不执行作者提供的脚本或表达式，也不加载任意路径、远程 URL、字体文件和 PPTX 模板。HTML 设计面另有[受限 HTML/CSS 与 SVG 图元规范](html-design-authoring.md)，编译后沿用同一场景合同。
 
 ## 职责与任务模式
 
@@ -18,7 +16,7 @@ Pillow 安全升级要求 Python 3.11 或更新版本；不要在旧解释器中
 | --- | --- | --- |
 | `create` | 源材料 → 结构化设计 → 原生候选 → PNG 预览与修订 | 可选，不是交付前提 |
 | `recreate` | 当前原始图；经授权的修正另存目标并记录差异 | 已有合格目标即可继续 |
-| `template` | 保留原生模板 | 路由到 V4 Template，不从空白替代 |
+| `template` | 保留原生模板 | 新建原页编辑任务走[原页工作流](native-template-workflow.md)，已有 Atlas/组件计划继续走[组件工作流](routes/v4-template-route.md) |
 
 `init --mode new_design/style_transfer` 是 create 的兼容别名；风格图登记为 style 参考。
 既有保存任务中的旧 mode 保持原合同，不自动解除外部目标要求。`draft` 仅用于诊断草稿，
@@ -26,8 +24,9 @@ Pillow 安全升级要求 Python 3.11 或更新版本；不要在旧解释器中
 `route --template --template-use style` 表示已允许参考模板重新设计，返回 create；
 原生模板保留仍使用 template。详细流程见[模板风格设计](template-visual-design.md)。
 
-用户意图已经明确时直接执行。只有显著影响结果的冲突才澄清。品牌规则仅在
-本次请求要求时采用。多图分别声明用途、页映射、采用特征与优先级；不自动混合。
+仅提供大纲与逐页文稿（可含布局/样式要求）时，先读[无附件逐页稿制作](outline-to-deck.md)。用户文本是来源，沿用 `create`；不要求上传文件或登记虚构素材。先分离内容与设计指令，分析每页关系与结构，再确定布局。逐页稿默认完整上屏，除非用户明确授权摘要或移至备注。此场景逐页填写 `composition`，并在实际渲染上核验原稿到屏显的覆盖。
+
+用户意图已经明确时直接执行。只有显著影响结果的冲突才澄清。视觉风格应按所属行业、受众与文体定制；当源材料或正文中存在明显的品牌主体（如机构研报、企业财报、品牌方案）时，主动提取该品牌的视觉特征（优先从源文档封面、图表与版式取证，纯文本则依据该品牌公认的视觉气质与色系）并写入 `design.brief`，仅在用户明确要求去品牌或指定其他风格时覆盖；未提供真实素材时不伪造官方 Logo，也不沿用无关历史任务的品牌样式。多图分别声明用途、页映射、采用特征与优先级；不自动混合。
 同一 PPTX 的画布一致，不同比例只能明确留白适配或拆分交付，禁止静默拉伸。
 
 ## 快速开始
@@ -41,13 +40,23 @@ python3 -m engine design init --task-dir "$TASK" --task-id example \
   --author author-model --audience 产品团队 --target-software LibreOffice
 ```
 
-默认 create 不需要参考图片。用户提供完整设计图时改用 recreate，再登记图像：
+默认 create 不需要参考图片，也不要求文稿必须来自文件；粘贴内容使用 `provenance.kind: user` 并定位到原始页/内容块。用户提供完整设计图时改用 recreate，再登记图像：
 
 ```bash
 python3 -m engine design ingest --task-dir "$TASK" --file reference.png \
   --asset-id ref-one --role reference --pages page-1 --source 用户提供的本次参考
 python3 -m engine design schema
 ```
+
+create 页面默认用 [HTML 设计面](html-design-authoring.md) 设计（报告/文档、逐页稿与口述内容均适用），再导入为原生场景：
+
+```bash
+python3 -m engine design html-import --task-dir "$TASK" --page page-1 --file pages/p1.html \
+  --source-file user-input.md --source-heading 第01页
+```
+
+需要 Chrome/Chromium/Edge（或 `PPTSMITH_BROWSER` 指定）；导入只写场景与内容记录，后续门禁不变。
+文档来源用 `--source-file sources/report.md --source-kind document`，可重复多个来源文件。
 
 优先用 [紧凑作者输入与局部修订](declarative-authoring.md) 中的样式/来源/图标引用减少
 重复模型输出。`context --page page-1 --section content` 按页读取，`--section scene`
@@ -219,7 +228,7 @@ manifest 的真实 SHA256，覆盖全部页面与关键内容对象，记录具�
 图形品种数替代视觉判断。缺少整册审核会阻止该 profile 的最终交付。
 
 整册观察分别覆盖构图多样性、全册规整度、叙事完整性：比较正文骨架，同时核对
-标题/导航和线条的稳定性、章节起点及总结/决策/结束的实际顺序。总览中的疑似文字
+标题/导航和线条的稳定性、章节起点及总结/决策/结束的实际顺序（`composition-check` 会同步提示章扉页底色不统一、首章或目录章节缺少起始页、以及章扉页与正文眉标编号错位等结构风险）。总览中的疑似文字
 碰撞应在同一构建的实际大图或局部确认；误报撤回时保留原因，不能凭缩略图误读改版。
 具体方法见[装饰商务指南](decorative-business-design.md)。这些补充使用既有字段，
 不要求旧任务增加新的JSON合同或每份短简报补齐目录、章节和感谢页。

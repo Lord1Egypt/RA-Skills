@@ -117,7 +117,7 @@ feels like competence.
 | **Pattern-match satisfaction** | The first explanation that fits a familiar template feels like the diagnosis | Familiarity is retrieval, not verification. Hold a second hypothesis before investigating the first |
 | **Template hijack** | A question whose surface matches a stored template ("flaky test → add retry", "slow query → add index") fires the template's answer before this question's constraints are read | Re-derive from *this* problem's details. Familiarity raises the risk, not lowers it |
 | **Fluent ≠ true** | Confidence rises as well-formed prose flows; the argument feels stronger the longer it gets | Confidence tracks evidence, not token count. Audit each point where it rose and name what moved it |
-| **Prior-as-fact** | Training knowledge stated in the grammar of observed fact | Type the claim (`completion-gate` → `references/claim-discipline.md`). Priors decay — APIs, defaults, prices, versions |
+| **Prior-as-fact** | Training knowledge stated in the grammar of observed fact | Type the claim (`completion-gate` → `rune-completion-gate/references/claim-discipline.md`). Priors decay — APIs, defaults, prices, versions |
 | **Frame adoption** | The asker's framing inherited as fact ("the cache is broken again") | Trust their goal absolutely; treat their diagnosis as testimony to verify |
 | **Completion pressure** | Producing something answer-shaped now feels better than checking one more thing | An answer-shaped non-answer is worse than "here is what I verified, here is what is still open" |
 | **Surface blindness** | Any claim about the form of your own output — which symbols it contains, how many units it has — read back as true | You see tokens, not characters; a re-read always passes. Verify unit by unit or by tool (`verification` → Constraint Loop) |
@@ -435,7 +435,7 @@ Structure the output report using the selected pattern.
 ~500-1500 tokens input, ~800-1500 tokens output. Sonnet for reasoning quality. Opus recommended for high-stakes irreversible decisions.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

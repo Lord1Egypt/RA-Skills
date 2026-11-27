@@ -1,6 +1,6 @@
 {
   "name": "set_shutdown_time",
-  "description": "Set the shutdown time for a day",
+  "description": "Set the time the user's workday ends (Sunsama's daily shutdown time) for one calendar day in their Sunsama workspace. WRITE - use it only when the user asked to change when their workday ends on that day. It is a Sunsama planning setting: it does not shut down, restart or schedule anything on a computer, server, service or device.",
   "inputSchema": {
     "type": "object",
     "properties": {

@@ -350,3 +350,45 @@ MAINLAND_CHINA_MARKETS = frozenset({"mainland_china", "中国大陆", "中国内
 
 def is_mainland_market(value: object) -> bool:
     return str(value or "").strip().casefold() in MAINLAND_CHINA_MARKETS
+
+
+# ---------------------------------------------------------------- what a booking link opens
+
+import re as _re  # noqa: E402
+import urllib.parse as _urlparse  # noqa: E402
+
+# A page of results the traveller must pick from, as opposed to the one option the card describes.
+# Matched on host + path, because the same host serves both (booking.com/hotel/es/x.html is the
+# property; booking.com/searchresults.html?ss=x is a list in which x may not come first).
+_SEARCH_PAGES = (
+    ("booking.com", r"/searchresults"),
+    ("kayak.", r"/(flights|hotels|trains|cars)/"),
+    ("skyscanner.", r"/(transport/flights|hotels/search|g/)"),
+    ("google.", r"/(travel|flights|search|maps/search)"),
+    ("expedia.", r"(Hotel-Search|Flights-Search|/Hotel-Search)"),
+    ("trip.com", r"/(hotels/list|flights/(showfarefirst|list)|trains/list)"),
+    ("ctrip.com", r"/(hotels/list|list)"),
+    ("agoda.com", r"/search"),
+    ("airbnb.", r"/s/"),
+    ("kiwi.com", r"/search/"),
+    ("omio.", r"/search"),
+    ("trainline.", r"/(search|book/results)"),
+    ("12306.cn", r"/(leftTicket|otn/leftTicket)"),
+)
+_QUERY_KEYS = ("ss", "q", "query", "keyword", "keywords", "destination", "city")
+
+
+def is_search_url(url: object) -> bool:
+    """True when the link opens a list of results rather than the option itself."""
+    parsed = _urlparse.urlparse(str(url or ""))
+    host = parsed.netloc.casefold()
+    return any(h in host and _re.search(p, parsed.path, _re.IGNORECASE) for h, p in _SEARCH_PAGES)
+
+
+def search_text(url: object) -> str | None:
+    """What a search link searches for (`ss=AC Hotel Alicante` -> 'AC Hotel Alicante'), or None."""
+    query = dict(_urlparse.parse_qsl(_urlparse.urlparse(str(url or "")).query))
+    for key in _QUERY_KEYS:
+        if query.get(key):
+            return query[key]
+    return None

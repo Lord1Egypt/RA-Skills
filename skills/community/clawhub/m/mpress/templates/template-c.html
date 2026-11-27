@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 1800px; height: 766px;
+    overflow: hidden;
+    background: #EAEFEC;
+    font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  .cover {
+    width: 1800px; height: 766px;
+    box-sizing: border-box;
+    display: flex;
+    color: #111819;
+    position: relative;
+    background: #F2F5F3;
+  }
+
+  /* ── 左侧墨青书脊 ── */
+  .spine {
+    width: 156px; height: 100%;
+    background: #007275;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 56px 0; box-sizing: border-box; color: #fff;
+    flex-shrink: 0;
+    box-shadow: 6px 0 20px rgba(0, 114, 117, 0.18);
+    position: relative; z-index: 2;
+  }
+  .spine-top {
+    display: flex; flex-direction: column; align-items: center; gap: 14px;
+  }
+  .spine-mark {
+    width: 22px; height: 22px;
+    border: 2px solid rgba(255,255,255,0.7);
+    border-radius: 4px;
+    background: #4FA8AB;
+  }
+  .spine-text {
+    writing-mode: vertical-rl;
+    letter-spacing: 0.36em;
+    font-size: 26px; font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    color: #FFFFFF;
+    margin-top: 12px;
+  }
+  .spine-year {
+    font-size: 22px; font-family: ui-monospace, monospace;
+    color: rgba(255,255,255,0.85); font-weight: 600;
+  }
+
+  /* ── 右侧纸面主体 ── */
+  .main {
+    flex: 1;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 84px;
+    overflow: hidden;
+  }
+
+  .watermark-seal {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 580px;
+    height: 580px;
+    opacity: 0.045;
+    pointer-events: none;
+    color: #007275;
+  }
+
+  .grid-pattern {
+    position: absolute; inset: 0;
+    background-image: 
+      radial-gradient(rgba(0, 114, 117, 0.08) 1.5px, transparent 1.5px),
+      linear-gradient(to right, rgba(0, 114, 117, 0.02) 1px, transparent 1px);
+    background-size: 32px 32px, 128px 128px;
+    pointer-events: none;
+  }
+
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid #111819;
+    padding-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .brand {
+    font-size: 36px; font-weight: 700;
+    font-family: "Archivo", sans-serif; display: flex; align-items: center; gap: 10px;
+    color: #111819;
+  }
+  .brand-sq { width: 16px; height: 16px; background: #007275; border-radius: 3px; }
+  
+  .meta-cluster {
+    display: flex; align-items: center; gap: 24px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .meta-tag {
+    font-size: 20px; font-weight: 700; color: #007275;
+    background: rgba(0, 114, 117, 0.08); padding: 6px 16px; border-radius: 4px;
+    border: 1px solid rgba(0, 114, 117, 0.18);
+  }
+  .meta-issue {
+    font-size: 22px; font-weight: 600; color: #5d6667;
+  }
+
+  .middle {
+    margin: auto 0;
+    position: relative; z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .title-wrap {
+    max-width: 820px;
+    border-left: 6px solid #007275;
+    padding-left: 36px;
+  }
+  .eyebrow {
+    font-family: ui-monospace, monospace;
+    font-size: 20px;
+    font-weight: 700;
+    color: #007275;
+    letter-spacing: 0.16em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .heading {
+    font-size: 74px; font-weight: 700; line-height: 1.25; margin: 0;
+    color: #111819; letter-spacing: -0.02em;
+    word-break: break-word;
+  }
+
+  .side-spec {
+    width: 300px;
+    border-left: 1px solid #c7d1d1;
+    padding-left: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .spec-item dt {
+    font-size: 13px; color: #5d6667; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+  }
+  .spec-item dd {
+    margin: 0; font-size: 19px; font-weight: 700; color: #111819;
+  }
+  .spec-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background: #111819;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .footer {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 1px solid #c7d1d1;
+    padding-top: 20px;
+    position: relative; z-index: 1;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 20px; color: #5d6667;
+  }
+  .footer-left { display: flex; align-items: center; gap: 14px; }
+  .footer-rect { width: 10px; height: 10px; background: #007275; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="spine">
+      <div class="spine-top">
+        <div class="spine-mark"></div>
+        <span class="spine-text">{{SPINE_TEXT}}</span>
+      </div>
+      <span class="spine-year">{{YEAR}}</span>
+    </div>
+
+    <div class="main">
+      <div class="grid-pattern"></div>
+      
+      <svg class="watermark-seal" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8">
+        <circle cx="50" cy="50" r="46" />
+        <circle cx="50" cy="50" r="32" stroke-dasharray="3 3" />
+        <path d="M50 0v100M0 50h100" />
+      </svg>
+
+      <div class="header">
+        <div class="brand">{{BRAND}}<span class="brand-sq"></span></div>
+        <div class="meta-cluster">
+          <span class="meta-tag">{{TAG}}</span>
+          <span class="meta-issue">{{ISSUE_NO}}</span>
+        </div>
+      </div>
+
+      <div class="middle">
+        <div class="title-wrap">
+          <div class="eyebrow">{{EYEBROW}}</div>
+          <h1 class="heading" id="title">{{TITLE}}</h1>
+        </div>
+
+        <dl class="side-spec">
+          <div class="spec-item">
+            <dt>AUTHOR / 出品</dt>
+            <dd>{{AUTHOR}}<br><span class="spec-badge">PERSONAL PLAYBOOK</span></dd>
+          </div>
+          <div class="spec-item">
+            <dt>ARCHIVE / 存量</dt>
+            <dd>{{WORD_COUNT_LABEL}}</dd>
+          </div>
+          <div class="spec-item">
+            <dt>STATUS / 坐标</dt>
+            <dd style="color: #007275;">{{STATUS_LABEL}}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="footer">
+        <div class="footer-left">
+          <span class="footer-rect"></span>
+          <span>{{FOOTER_SLOGAN}}</span>
+        </div>
+        <span>{{SITE_DOMAIN}}</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const t = document.getElementById("title");
+    if (t.innerText.length > 30) t.style.fontSize = "62px";
+    if (t.innerText.length > 42) t.style.fontSize = "50px";
+  </script>
+</body>
+</html>

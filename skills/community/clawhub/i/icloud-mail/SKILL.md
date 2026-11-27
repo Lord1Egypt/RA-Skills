@@ -3,7 +3,7 @@ name: icloud-mail
 description: |
   iCloud Mail integration over IMAP and SMTP with an app-specific password. Read, search, send, reply to, forward, and organise email, drafts, threads, and folders with the `maton icloud-mail` commands. Use this skill when users want to interact with iCloud Mail. For other third party apps, use the api-gateway skill (https://clawhub.ai/byungkyu/api-gateway).
   Calls run through the `maton` CLI with OAuth login, or over raw HTTP with a Maton API key where the CLI cannot be installed. Every call is authenticated as the user's connection and reaches only that mailbox, which the mail provider enforces on every request; the commands documented here are the ones this skill uses, and raw IMAP or SMTP is a last resort the user must ask for. Default to read and list calls, and confirm every write, send, or new connection with the user.
-  This file also documents the three constructs that turn an iCloud Mail connection into automation, in the order they are used: the connection (the first step), a hosted function that runs an iCloud Mail action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Running that automation includes administering it, and the skill covers that too: listing and deleting connections; creating, deploying, searching, updating and deleting functions and their environment variables; creating, updating and deleting triggers and their destinations, including pointing a destination at a URL the user supplies and rotating its signing secret; listing, inspecting and replaying a trigger's past events, where a replay delivers that event again and re-runs whatever it starts; watching events locally, including running a handler script the user supplies on each event with `--exec`; and a local Maton bridge that iCloud Mail requires for reading and sending (install it, check its status, choose one with `--bridge`). Every one of these is a write the user approves individually, and deletions and secret rotations are confirmed by exact ID. iCloud Mail itself emits no Maton events: a schedule (`time`) or another connected app's event starts an iCloud Mail function, and the files under `references/<source>/triggers.md` describe those sources (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
+  This file also documents the three constructs that turn an iCloud Mail connection into automation, in the order they are used: the connection (the first step), a hosted function that runs an iCloud Mail action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Running that automation includes administering it, and the skill covers that too: listing, reauthorizing and deleting connections, and changing or clearing a connection's access policy, which sets the endpoints it may call; creating, deploying, searching, updating and deleting functions and their environment variables; creating, updating and deleting triggers and their destinations, including pointing a destination at a URL the user supplies and rotating its signing secret; listing, inspecting and replaying a trigger's past events, where a replay delivers that event again and re-runs whatever it starts; reading the account's request records, logs and metrics to debug a call, which is read-only; changing account settings, such as turning request and response body capture on or off; watching events locally, including running a handler script the user supplies on each event with `--exec`; and a local Maton bridge that iCloud Mail requires for reading and sending (install it, check its status, choose one with `--bridge`). Every one of these that changes something is a write the user approves individually, and deletions and secret rotations are confirmed by exact ID. iCloud Mail itself emits no Maton events: a schedule (`time`) or another connected app's event starts an iCloud Mail function, and the files under `references/<source>/triggers.md` describe those sources (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
 allowed-tools: Bash, Read, Grep, Glob
 compatibility: Requires network access and a Maton account
 metadata:
@@ -32,7 +32,7 @@ maton icloud-mail message list -L 10  # first call
 ### NPM
 
 ```bash
-npm install -g @maton/cli@0.5.0
+npm install -g @maton/cli@0.7.0
 ```
 
 ### Homebrew
@@ -131,10 +131,22 @@ maton connection get {connection_id}
 
 Open the returned URL in a browser to complete connecting iCloud Mail. Check `status_reason` before acting on it (see [Troubleshooting: Connection Status](#troubleshooting-connection-status-reason)). A disconnected bridge can turn a connection `PENDING` with status reason `bridge_disconnected`.
 
+### Reauthorize Connection
+
+> **Requires explicit user approval.** Confirm the connection and that the user intends to authorize access again. Never reauthorize a connection on your own initiative.
+
+```bash
+maton connection reauthorize {connection_id}
+```
+
+Reauthorizes a `FAILED` or `PENDING` connection in place: the user authorizes the app again in the browser and the connection keeps its ID, so anything using that ID keeps working. The user enters a new app-specific password, which is verified again. An `ACTIVE` connection doesn't need reauthorizing and returns an error. Triggers that were paused because the connection failed stay paused; re-enable them after reauthorizing.
+
+Refer to `maton connection reauthorize --help` for possible flags and values.
+
 ### Delete Connection
 
 ```bash
-maton connection delete {connection_id} --yes
+maton connection delete {connection_id}
 ```
 
 Deleting a connection is irreversible: it revokes the stored authorization, and any automation still pointing at that `connection_id` stops working. Confirm the exact connection with the user first — list connections and match the `id` — and never delete one on the agent's own initiative. `--yes` skips the interactive prompt, so it removes the last chance to catch a wrong id; omit it unless the user has already confirmed the specific connection.
@@ -161,6 +173,13 @@ Refer to `maton bridge list --help` for possible flags and values.
 
 ### Install Bridge
 
+> **What installing changes on the user's computer.** `maton bridge install` adds the bridge to the user's Maton account and sets it up to run in the background. Explain the points below and get the user's approval first, and do not pass `--yes`, which skips the CLI's own confirmation.
+>
+> - **Starts at login.** The bridge becomes a login service for the current user: a LaunchAgent on macOS, a systemd user unit on Linux, a Task Scheduler task on Windows. It runs as the user, comes back after a failure, and uses the current CLI profile.
+> - **Network.** While it runs, the app's mail connections (IMAP and SMTP) go out from this computer and network.
+> - **Key.** If `MATON_API_KEY` is set, that key is saved for the bridge, in the system keyring when one is available; the CLI asks before saving it.
+> - **Removal.** See Remove Bridge below.
+
 ```bash
 maton bridge install
 ```
@@ -177,6 +196,17 @@ maton bridge status
 
 Refer to `maton bridge status --help` for possible flags and values.
 
+### Remove Bridge
+
+Removal has two steps. `maton bridge uninstall` stops the bridge on this computer and removes its login service; the bridge stays registered to the account under the same ID, so a later install resumes it. `maton bridge delete` removes that registration from the account, after a confirmation prompt; confirm the exact bridge ID with the user first.
+
+```bash
+maton bridge uninstall
+maton bridge delete {bridge_id}
+```
+
+**Note:** `{bridge_id}` stands for a real value from `maton bridge list`; fill it in before sending the request.
+
 ### Specifying Bridge
 
 If there are multiple bridges, specify which one to use so requests route through the intended bridge. Without `--bridge`, requests use the oldest connected bridge with room, then the next.
@@ -187,37 +217,18 @@ maton icloud-mail message list -L 10 --bridge {bridge_id}
 
 ## Functions
 
-> **Why this section is in an iCloud Mail skill.** A connection is the first step; a hosted function is how an iCloud Mail action the user has approved becomes something that runs on its own, and a trigger (next section) is what runs it - together they turn a one-off iCloud Mail call into an automation. This section is the platform's Functions reference, identical in every Maton skill; the example below is the iCloud Mail case. Nothing here widens what the iCloud Mail connection can reach, and ordinary iCloud Mail work is a `maton icloud-mail` command.
->
-> **Example - a function that runs the iCloud Mail read this skill uses first, so a schedule can check it unattended.** It uses the Maton SDK, so the iCloud Mail credential never leaves the gateway. iCloud Mail has no typed SDK accessor yet, so the function sends one read-only IMAP command through the `api` passthrough; anything beyond that is raw IMAP, with the caveats in [Appendix: Raw IMAP and SMTP](#appendix-raw-imap-and-smtp):
->
-> ```python title="main.py"
-> import base64
-> from maton_ai import Maton
->
-> maton = Maton()
->
-> def handler(event):
->     stream = b"M1 STATUS INBOX (MESSAGES UNSEEN)\r\n"
->     result = maton.api.post("icloud-mail", "/commands", json={"commands": base64.b64encode(stream).decode()})
->     return {"result": base64.b64decode(result["data"]).decode()}
-> ```
->
-> ```bash
-> maton function create --name icloud-mail-check --file main.py --network-policy DENY_ALL
-> ```
->
-> **This skill's function policy.** Data reached through the iCloud Mail connection is the user's own business data: a function that reads iCloud Mail must be one the user wrote for that purpose and approved, is deployed with `--network-policy DENY_ALL` (no outbound network), and reads only the iCloud Mail connection it was written for. A function that needs to reach the internet is an api-gateway task with its own review, host by host.
-
 > **Execution identity.** A function runs as the Maton account that deployed it — the same identity
 > as the `maton` CLI session that performed the deploy, no more and no less. It receives that
 > identity as a runtime-injected `MATON_API_KEY`: the key is placed in the sandbox's environment
 > only while the function runs, is never stored in the package or the code, is never set through
 > `function env`, and only the authenticated account owner can create, deploy, or update a function. Functions are `PRIVATE` unless the user chooses otherwise. Outbound network access is a
 > platform-enforced setting, not a handler decision: with `--network-policy DENY_ALL` the sandbox
-> cannot open any outbound connection regardless of what the code does, and that is the policy every
-> example here uses. Opening the network is the exception, made per function, only when the user has
-> named the hosts the code must reach and approved it.
+> cannot open any outbound connection regardless of what the code does, **and that includes Maton's
+> own API**. A handler that uses the Maton SDK, or calls `api.maton.ai` in any other way, cannot run
+> under `DENY_ALL`. Use `DENY_ALL` for self-contained code like the plain examples in this section. A
+> handler that uses a connection runs under `ALLOW_ALL`, the default, and `ALLOW_ALL` does not
+> filter hosts. The limit there is the code the user reviews: it should reach Maton and nothing else
+> unless the user has named another host and approved it.
 >
 > Invoking a function is an authenticated call: the URL alone grants nothing, and a request without
 > a Maton `Authorization` header is rejected with `401` before the handler runs — which is why
@@ -281,6 +292,7 @@ Refer to `maton function search --help` for possible flags and values.
 ### Create Function
 
 ```python title="main.py"
+# Minimal hosted-function handler: returns JSON to whoever invokes the function
 def handler(event, context):
     return {"hello": "ada"}
 ```
@@ -294,6 +306,7 @@ Refer to `maton function create --help` for possible flags and values.
 ### Update Function
 
 ```python title="main.py"
+# New code for an existing hosted function: reads the request body and answers with the caller's name
 import json
 
 def handler(event):
@@ -316,6 +329,7 @@ Refer to `maton function update --help` for possible flags and values.
 > `--yes` in an interactive session: it skips the confirmation prompt.
 
 ```python title="my-fn/main.py"
+# The handler in my-fn/main.py that `maton function deploy` publishes
 def handler(event):
     return {"hello": "ada"}
 ```
@@ -354,9 +368,13 @@ Refer to `maton function get --help` for possible flags and values.
 
 ### Delete Function
 
+> **Requires explicit user approval.** Confirm the exact function with the user (`maton function list`) and never delete one on your own initiative. Deleting removes the deployed function and its code.
+
 ```bash
-maton function delete {function_id} --yes
+maton function delete {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function delete --help` for possible flags and values.
 
@@ -435,9 +453,13 @@ Refer to `maton function env update --help` for possible flags and values.
 
 ### Delete Environment Variable
 
+> **Requires explicit user approval.** Confirm the variable name and the function with the user first. A function that reads the variable no longer finds it on its next run.
+
 ```bash
-maton function env delete GREETING -f {function_id} --yes
+maton function env delete GREETING -f {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function env delete --help` for possible flags and values.
 
@@ -572,6 +594,7 @@ sent as the response body with a `200`. A returned string is JSON-encoded, so
 headers, return an envelope carrying `statusCode` instead:
 
 ```python
+# Hosted-function response format: the status, headers and body the caller receives
 def handler(event, context):
     return {
         "statusCode": 201,
@@ -691,9 +714,13 @@ Refer to `maton trigger update --help` for possible flags and values.
 
 ### Delete Trigger
 
+> **Requires explicit user approval.** Confirm the exact trigger with the user (`maton trigger list`) and never delete one on your own initiative. Deleting stops the schedule or event subscription, and with it every delivery it made.
+
 ```bash
-maton trigger delete {trigger_id} --yes
+maton trigger delete {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger delete --help` for possible flags and values.
 
@@ -787,13 +814,19 @@ Refer to `maton trigger destination update --help` for possible flags and values
 
 ### Delete Destination
 
+> **Requires explicit user approval.** Confirm the destination and its trigger with the user (`maton trigger destination list`). Events stop reaching that URL as soon as it is deleted.
+
 ```bash
-maton trigger destination delete {destination_id} --trigger {trigger_id} --yes
+maton trigger destination delete {destination_id} --trigger {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger destination delete --help` for possible flags and values.
 
 ### Rotate Destination Secret
+
+> **Requires explicit user approval.** Rotation replaces the destination's signing secret, so the receiver must be updated to verify deliveries with the new one. Confirm the destination and that the user can update the receiver.
 
 ```bash
 maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
@@ -805,7 +838,7 @@ maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
 }
 ```
 
-The new signing secret is returned in plaintext **only once**.
+The new signing secret is returned in plaintext **only once**. It is a credential: give it to the user for the receiver's configuration, and do not repeat it in later replies, write it to a file, or pass it to any other command.
 
 Refer to `maton trigger destination rotate-secret --help` for possible flags and values.
 
@@ -914,6 +947,185 @@ EOF
 The handler receives the event JSON on stdin and the event ID in `MATON_EVENT_ID`. After each event, the last processed event ID is checkpointed to a per-trigger state file, so restarting the watch resumes after the last handled event and an interrupted batch never re-runs events it already processed.
 
 Refer to `maton trigger event watch --help` for possible flags and values.
+
+## Observability
+
+> **Why this section is in an iCloud Mail skill.** These commands read the records Maton keeps of the user's own gateway traffic, to find out why an iCloud Mail call failed or ran slow. They are read-only and call no iCloud Mail endpoint. In an iCloud Mail task, filter to this app:
+>
+> ```bash
+> maton request list --app icloud-mail --status ">=400" --since 1h
+> ```
+>
+> Records for the account's other apps belong to the same user but are outside this skill's task: look at them only when the user asks. The examples below are the platform's reference text, identical in every Maton skill, and show a Gmail request.
+
+Maton records every request it handles for your account and the logs emitted while handling it. Use them to debug a failed call, find slow apps, or track usage over time.
+
+### List Requests
+
+```bash
+maton request list --app google-mail --status ">=400" --search "duration_ms:>200 AND request_path:/google-mail/gmail/v1/users/me/messages/*" --since 1h
+```
+
+```json
+[
+  {
+    "app": "google-mail",
+    "connection_id": "{connection_id}",
+    "duration_ms": 326,
+    "request_id": "{request_id}",
+    "request_method": "GET",
+    "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+    "response_status_code": 404,
+    "source": "gateway",
+    "start_time": "2026-11-26T20:31:55.996Z"
+  }
+]
+```
+
+Refer to `maton request list --help` for possible flags and values.
+
+### Get Request
+
+```bash
+maton request get {request_id}
+```
+
+```json
+{
+  "app": "google-mail",
+  "request_method": "GET",
+  "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+  "response_body": null,
+  "response_body_size": 163,
+  "response_body_url": "{response_body_url}",
+  "response_status_code": 404,
+  "upstream_duration_ms": 103,
+  "upstream_request_host": "gmail.googleapis.com",
+  "upstream_request_path": "/gmail/v1/users/me/messages/{message_id}",
+  "upstream_response_status_code": 404
+}
+```
+
+Request and response bodies are not captured by default. Capture is an account-wide setting that only the user turns on: open the More (⋯) menu on the [Logs](https://www.maton.ai/logs) page and turn on **Capture bodies**, or, with the user's approval, set `capture_bodies` using [Settings](#settings).
+
+Refer to `maton request get --help` for possible flags and values.
+
+### Query Requests
+
+```bash
+maton request query "SELECT app, count() AS errors FROM requests WHERE response_status_code >= {min:UInt16} AND start_time > now() - INTERVAL 1 DAY GROUP BY app ORDER BY errors DESC" --param min=400
+```
+
+```json
+[
+  {
+    "app": null,
+    "errors": 15
+  },
+  {
+    "app": "google-mail",
+    "errors": 1
+  }
+]
+```
+
+One read-only ClickHouse `SELECT` over the `requests` table, for questions `list` cannot answer.
+
+Refer to `maton request query --help` for possible flags and values.
+
+### List Logs
+
+```bash
+maton log list --level error --since 1h
+maton log list --request-id {request_id}
+maton log list --source gateway --search "timeout OR refused"
+```
+
+```json
+[
+  {
+    "level": "info",
+    "log_id": "{log_id}",
+    "message": "REPORT Duration: 326 ms  Upstream Duration: 103 ms  Overhead Duration: 223 ms",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  },
+  {
+    "level": "warning",
+    "log_id": "{log_id}",
+    "message": "Request failed with status 404",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  }
+]
+```
+
+Refer to `maton log list --help` for possible flags and values.
+
+### Tail Logs
+
+```bash
+maton log tail --source gateway --level warning
+```
+
+```json
+{"level":"warning","log_id":"{log_id}","message":"Request failed with status 404","request_id":"{request_id}","source":"gateway","timestamp":"2026-11-26T20:31:56.322Z"}
+```
+
+Refer to `maton log tail --help` for possible flags and values.
+
+### Query Metrics
+
+```bash
+maton metric query --group-by app --since 24h
+maton metric query --aggregation pc95 --metric duration_ms --interval 5m
+maton metric query --search "response_status_code:>=400" --group-by app --group-by response_status_code
+```
+
+```json
+[
+  {
+    "app": "",
+    "count": 93
+  },
+  {
+    "app": "google-mail",
+    "count": 1
+  }
+]
+```
+
+Refer to `maton metric query --help` for possible flags and values.
+
+## Settings
+
+> **These are Maton account settings, not iCloud Mail settings.** They apply to every connection on the account. Listing them is a read; changing one is a write the user approves.
+
+### List Settings
+
+```bash
+maton api user/settings
+```
+
+```json
+{
+  "settings": {
+    "capture_bodies": true,
+    "capture_context": false
+  }
+}
+```
+
+### Update Setting
+
+> **Requires explicit user approval.** Change a setting only when the user asks for that change. `capture_bodies` makes Maton store the request and response bodies of every call on the account, for every connected app, and those bodies can hold personal data and other sensitive content. Tell the user it is account-wide before turning it on, turn it on only to debug a specific problem, and turn it off again when that is done.
+
+```bash
+maton api user/settings/capture_bodies --method PUT -F value=true
+maton api user/settings/capture_bodies --method PUT -F value=false
+```
 
 ## Security & Permissions
 
@@ -1260,7 +1472,7 @@ Common command errors:
 | `message … not found` | The ID is stale: the message moved (its ID changed) or was deleted. List the folder again to get its current ID. |
 | `Login with this app password failed recently …` | The app password was refused, and Maton waits before trying it again because repeated failures can lock it. Have the user enter a corrected app-specific password, through the connection's `url` while it is still valid or in a new connection; a corrected password is checked right away. |
 | `Several logins to this mailbox with app passwords that have not worked before failed recently …` | Too many new passwords failed for this mailbox. Don't create more connections: new passwords aren't tried until the time in the message. Ask the user to check the address and password, then retry after that time. |
-| `this mailbox sends through the Maton bridge, which isn't installed` | No bridge is registered. Ask the user to run `maton bridge install` on their own computer. Don't create a new connection. |
+| `this mailbox sends through the Maton bridge, which isn't installed` | No bridge is registered. Explain what a bridge installs and changes (see [Bridges](#bridges)), and only with the user's approval have them run `maton bridge install` on their own computer. Don't create a new connection. |
 | `this mailbox sends through the Maton bridge, which isn't running` | A bridge is registered but none is connected. See [Bridges](#bridges). Don't create a new connection. |
 | `The Maton bridge … is busy` / `disconnected before anything was sent` | Temporary (503). Retry after the `Retry-After` interval. |
 | `Your computer couldn't reach … through the Maton bridge` | The bridge's network blocks outbound mail ports, or the computer just went to sleep. Retry once; if it persists, the user needs another network. |
@@ -1299,10 +1511,10 @@ maton connection get {connection_id} --json connection_id,status,status_reason
 | (none, `PENDING`) | Connect page not finished. Open the connection's `url`. |
 | `credentials_verifying` | Password is being checked (next check at `metadata.verification.retry_at`, if set). Wait. |
 | `route_verifying` | Sending route is being set up. Wait a minute and check again. |
-| `bridge_missing` | No Maton bridge installed. Ask the user to run `maton bridge install` on their own computer. |
+| `bridge_missing` | No Maton bridge installed. Explain what a bridge installs and changes (see [Bridges](#bridges)), and only with the user's approval have them run `maton bridge install` on their own computer. |
 | `bridge_disconnected` | Bridge computer is asleep, offline, or logged out. Turns `ACTIVE` again when the bridge reconnects. |
-| `credentials_rejected` | Apple refused the app-specific password. Re-enter it at the connection's `url` (valid ~30 minutes), or create a new connection. |
-| `credentials_unverified` | Apple was unreachable for about an hour. Create a new connection; the same password may work. |
+| `credentials_rejected` | Apple refused the app-specific password. Reauthorize the connection with a new app-specific password (`maton connection reauthorize {connection_id}`). |
+| `credentials_unverified` | Apple was unreachable for about an hour. Reauthorize the connection (`maton connection reauthorize {connection_id}`); the same password may work. |
 
 ### Troubleshooting: Server Error
 

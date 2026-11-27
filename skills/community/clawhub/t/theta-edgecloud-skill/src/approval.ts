@@ -9,13 +9,13 @@ function operatorDryRun(): boolean {
 }
 
 export function assertLive(cfg: ThetaConfig, action: string): void {
-  if (cfg.dryRun || operatorDryRun()) throw new Error(`${action} blocked by THETA_DRY_RUN`);
+  if (cfg.dryRun || operatorDryRun()) throw new Error(('' + String(action) + ' blocked by THETA_DRY_RUN'));
 }
 
 export function assertApproved(cfg: ThetaConfig, confirm: unknown, action: string): void {
   assertLive(cfg, action);
   if (confirm !== true) {
-    throw new Error(`${action} creates, changes, bills or deletes remote resources. Preview with THETA_DRY_RUN=1, get explicit user approval for this exact action, then pass confirm:true.`);
+    throw new Error(('' + String(action) + ' creates, changes, bills or deletes remote resources. Preview it first in dry-run mode (environment variable THETA_DRY_RUN set to 1), get explicit user approval for this exact action, then pass confirm:true.'));
   }
 }
 
@@ -36,7 +36,7 @@ export function findCallbackFields(value: unknown, path = ''): Array<{ path: str
   if (!value || typeof value !== 'object') return [];
   const found: Array<{ path: string; value: unknown }> = [];
   for (const [key, item] of Object.entries(value)) {
-    const here = path ? `${path}.${key}` : key;
+    const here = path ? ('' + String(path) + '.' + String(key)) : key;
     if (CALLBACK_KEY.test(key)) found.push({ path: here, value: item });
     found.push(...findCallbackFields(item, here));
   }

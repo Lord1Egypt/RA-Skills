@@ -1,6 +1,6 @@
 {
   "name": "douyin-videos-search",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "抖音热门视频搜索工具，支持按关键词搜索获取最多点赞热门内容数据，基于抖音的实时数据返回特定关键词的热门视频数据，助力创作者、品牌方和MCN机构发现热门趋势、获取创作灵感。",
   "keywords": [
     "douyin",

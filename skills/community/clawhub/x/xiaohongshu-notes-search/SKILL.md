@@ -2,7 +2,7 @@
 name: xiaohongshu-notes-search
 description: "小红书高赞笔记搜索工具。支持关键词获取小红书实时高赞（高收藏、高评论）笔记数据，助力创作者发现热门趋势、获取创作灵感。支持四大能力：(1) 关键词搜索笔记/视频，可按点赞数、评论数、收藏数、发布时间、内容类型筛选排序；(2) 博主作品抓取，按主页链接获取博主的互动数据（粉丝量、点赞量或收藏量等）或公开作品列表；(3) 笔记（视频）详情，获取详情数据及互动数据等，分析笔记的市场表现；(4) 笔记评论分析，按笔记链接获取评论内容与互动数据。用户提到小红书/xhs/rednote 且需要查数据、市场调研、舆情监测、做选题、竞品监控、KOL筛选、舆情分析时调用；无需登录账号"
 license: MIT
-version: 1.2.2
+version: 1.2.3
 category: 数据分析
 homepage: https://www.guaikei.com
 metadata:
@@ -144,10 +144,11 @@ metadata:
 
 ## 1. ⚠️ 执行前置（每次必过）
 
-1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/xiaohongshu/*.js`。
+1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/xiaohongshu/*.js`（或用绝对路径，见 [faq.md](references/faq.md)）。
 2. **确认 `GUAIKEI_API_TOKEN` 已配置**。未配置 → 不执行，走 `AUTH_REQUIRED`（见 §7 / [errors.md](references/errors.md)），禁止先跑「试试看」。
 3. **一次只跑一条命令，等进程自己结束**。查询最多约 20 次退避，只算等待大约 15 分钟。stderr「处理中」不是失败。**未退出前不要判定失败，不要并发/重复同一命令。**
 4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
+5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
 > 开通[小红书高赞笔记检索](https://www.guaikei.com) TOKEN。配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
@@ -185,7 +186,8 @@ metadata:
 ## 4. 🛠️ 命令一行例（详参下沉）
 
 > **详参 / 枚举**：需要确认取值时再读 [options.md](references/options.md) 。**不要每次都读。**  
-> 注意：`-t` = 内容类型，`-i` = 发布时间。`--time 2` = 一周内；`--sort 2` = 最多点赞。
+> 注意：`-t` = 内容类型，`-i` = 发布时间。`--time 2` = 一周内；`--sort 2` = 最多点赞。  
+> **Windows**：cmd **只用双引号**；PowerShell 含空格也优先双引号。仍拆坏或弱模型 → `--json-args`。双壳例 → [faq.md](references/faq.md)。
 
 ```bash
 node src/xiaohongshu/search-cli.js --keyword "露营装备" --type 2 --sort 2 --time 2 --limit 20
@@ -195,6 +197,18 @@ node src/xiaohongshu/comment-cli.js --url "https://www.xiaohongshu.com/explore/x
 node src/xiaohongshu/comment-cli.js --url "https://www.xiaohongshu.com/explore/xxx" --expired_at 30 --limit 20
 node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile/xxx" --limit 30
 node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile/xxx" --limit 0
+```
+
+**Windows 双壳（同一条搜索，先 cd 到技能目录）**：
+
+```bat
+REM cmd —— 参数必须用双引号，不要用单引号
+node src\xiaohongshu\search-cli.js --keyword "露营装备" --type 2 --sort 2 --time 2 --limit 20
+```
+
+```powershell
+# PowerShell —— 含空格/中文同样用双引号
+node src/xiaohongshu/search-cli.js --keyword "露营装备" --type 2 --sort 2 --time 2 --limit 20
 ```
 
 **数量 / 套餐**：搜索默认 **20**；评论默认 **10**；博主不传 `--limit` 默认 **0**（只有博主信息）。不要擅自抓 10000。技能硬上限 10000（按量）。**包月**超限 → `PLAN_LIMIT`：搜索 ≤40，作品 ≤30，评论 ≤20；详情无此条数限制。
@@ -215,7 +229,7 @@ node src/xiaohongshu/post-cli.js --url "https://www.xiaohongshu.com/user/profile
 
 ## 6. 📜 输出（摘要）
 
-- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。
+- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。取数成功/empty 时信封顶层可能有 `cost`（花费估算，见 [contract.md](references/contract.md)）。
 - `status=empty` + `NO_MATCH` 退出码 0，**不是失败**。
 - `results`：搜/评论 = 数组；详情 = 单对象；作品 = `{note,user}`。
 - 互动数是字符串；比较前先转数字。

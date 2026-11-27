@@ -25,6 +25,9 @@ regen: python3 scripts/make_exemplars.py(勿手改本文件)
 @supports (text-spacing-trim: space-all){
   :lang(zh){text-spacing-trim:space-all} /* 0.28:全角标点挤压渐进增强(Chrome 123+;不支持则原样,clreq 口径) */
 }
+@supports (container-type: inline-size){
+  .wrap{container-type:inline-size} /* 0.33:容器查询渐进底座——组件按所处空间响应,非按视口 */
+}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 :lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
@@ -106,14 +109,14 @@ figcaption{font:400 12px/1.6 var(--mono);letter-spacing:.05em;color:var(--ink2);
   <a class="btn cta" href="#cta">预订本季</a></div>
 <hr class="rule">
 <div class="wrap"><section class="sec3x9">
-  <div><span class="no">01</span><span class="ghost-num" style="display:block">01</span></div>
+  <div><span class="ghost-num" style="display:block">01</span></div>
   <div><h2>为什么小批量</h2><p style="color:var(--ink2);max-width:60ch">一天只烤两炉,面团当日现配;下午四点出炉,卖完收炉,不做存货。</p>
   <p style="color:var(--ink2);max-width:60ch;margin-top:12px">节令原料换季即换菜单;门店不设中央库存。</p></div>
 </section><hr class="hairline">
 <section class="sec9x3">
   <div><h2>甜度按季走</h2><p style="color:var(--ink2);max-width:60ch">春天莓果,入秋坚果;司康配当季果酱,甜度比连锁低两档。</p>
   <p style="color:var(--ink2);max-width:60ch;margin-top:12px">出炉时刻与余量,每晚 21:00 在门店小黑板更新。</p></div>
-  <div><span class="no">02</span><span class="ghost-num" style="display:block">02</span></div>
+  <div><span class="ghost-num" style="display:block">02</span></div>
 </section><hr class="hairline">
 <section class="bigquote"><p>「甜品上桌的那十分钟,是一天里最贵的一口空气。」</p>
   <footer style="margin-top:16px" class="mono">—— 主厨 · 2026</footer></section>

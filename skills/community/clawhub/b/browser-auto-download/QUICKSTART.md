@@ -2,12 +2,19 @@
 
 Get started with Browser Auto Download in 5 minutes!
 
+> ⚠️ **Safety first:** this skill writes files to disk and lets the page steer
+> browser navigation and clicks. Treat every download as untrusted, use a
+> dedicated `--output` folder, and verify a signature or SHA-256 digest before
+> opening an installer. Executables require `--sha256` or
+> `--acknowledge-executable`. Debug mode can capture credentials and personal
+> data — review and delete its artifacts.
+
 ## 📦 Installation
 
 ### Step 1: Install Dependencies
 
 ```bash
-pip install playwright
+pip install -r requirements.txt   # pinned to playwright==1.65.0
 playwright install chromium
 ```
 
@@ -71,14 +78,19 @@ result = auto_download(
 # Homepage → PC page → Auto-download
 ```
 
-### Download Direct Exe Link
+### Download a Direct Installer Link (browser-required)
 
 ```python
 result = auto_download(
-    url="https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe"
+    url="https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe",
+    expected_sha256="<published-sha256>"  # preferred: verify the installer
 )
-# Direct link, no button clicking needed
+# Use only when the URL needs a browser session or redirect chain.
+# Plain static files should go through curl/wget with a checksum instead.
 ```
+
+Installers (`.exe`, `.msi`, `.dmg`, …) are refused unless you pass
+`expected_sha256` or `acknowledge_executable=True`.
 
 ### Custom Output Directory
 
@@ -123,20 +135,53 @@ python skills/browser-auto-download/scripts/auto_download.py \
   --no-auto-navigate
 ```
 
+### Safety Controls
+
+```bash
+# Verify the saved file against a published digest (recommended)
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --sha256 "<expected-sha256>"
+
+# Installer without a published digest: accept the risk explicitly
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --acknowledge-executable
+
+# One extra host (for example a vendor CDN): allow it explicitly
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --allow-host "cdn.example.com"
+
+# Any cross-host target: allowed only when you opt in
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --allow-external-hosts
+
+# Isolate the run to a dedicated folder (default: ~/Downloads/browser-auto-download)
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --output "/path/to/dedicated/folder"
+```
+
 ## 🎓 Examples
 
 ### Example 1: Batch Downloads
 
 ```python
+# Browser-required installer links; for plain static files prefer curl
+# with a published checksum instead.
 downloads = [
     ("https://www.python.org/ftp/python/3.14.3/python-3.14.3-amd64.exe", "Python"),
     ("https://www.7-zip.org/a/7z2501-x64.exe", "7-Zip"),
 ]
 
 for url, name in downloads:
-    result = auto_download(url=url, headless=True)
+    # acknowledge_executable=True accepts unverified installers; prefer
+    # expected_sha256="<digest>" when the vendor publishes one.
+    result = auto_download(url=url, headless=True, acknowledge_executable=True)
     if result:
-        print(f"✓ {name}: {result['filename']}")
+        print(f"✓ {name}: {result['filename']} sha256={result['sha256']}")
 ```
 
 ### Example 2: With Error Handling

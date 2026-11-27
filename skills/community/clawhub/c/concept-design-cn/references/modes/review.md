@@ -4,7 +4,7 @@ MUST 全程只读。
 无代码只审设计；无规格时，结论限于有证据的代码性质。
 判差异前记录范围、版本、契约确认/覆盖和未知项；契约按[规格记法](../spec-notation.md)解读。
 
-1. 按[概念判据](../model-criteria.md#概念)核对实际用户，API 程序员也是用户。
+1. 按[概念判据](../model-criteria.md#概念)核对实际用户，API 程序员也是用户；按[成熟能力](../model-criteria.md#成熟能力)归类，指出技术机制或组件模型混入概念的膨胀。
 2. 有代码时，检查[工程架构](../architecture.md#审查与验证)，Java/Spring 项目另读 [Java/Spring 约定](../architecture-java.md)。有适用的行为契约时，再应用[漂移检查与严重度](guard/drift.md)。
 3. 经规则、实际组合/适配器追踪必需成功与拒绝。
    对照[执行约束及公共检查](../architecture-execution.md#执行约束)，核对匹配、绑定来源/基数、发生记录/对象/请求隔离与结果。

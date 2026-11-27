@@ -1,6 +1,6 @@
 {
   "name": "mark_task_as_completed",
-  "description": "Mark a task as completed",
+  "description": "Mark one existing Sunsama task as done on the given day. WRITE - this changes state the user and their teammates see. Use it only when the user explicitly said that specific Sunsama task is finished; do not complete tasks inferred from a general remark such as 'I finished everything', complete several at once without naming each, or use it for subtasks (use mark_subtask_as_completed). It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

@@ -1,6 +1,6 @@
 # Memory commit checklist — “memorize this” workflow
 
-Trigger phrases: “memorize this”, “store this”, “commit this session”, “we’ll continue later”.
+Trigger only on an explicit request to save or commit the session, such as “memorize this”, “store this”, or “commit this session”. A casual pause or “we’ll continue later” alone does not trigger a full memory commit; retain concise active-work context when the workspace continuity policy calls for it.
 
 ## 1. Append to today’s daily log
 ```bash

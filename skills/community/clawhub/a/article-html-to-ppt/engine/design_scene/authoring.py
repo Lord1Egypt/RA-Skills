@@ -7,14 +7,15 @@ from collections import Counter
 
 from jsonschema import Draft202012Validator
 
-from .contract import PROVENANCE, validate, versions, walk
+from .contract import ID, PROVENANCE, validate, versions, walk
 from .store import DesignError, canonical, digest
 
 FORMAT = "pptsmith-author/1"
 ROLES = {"text": "native_text", "shape": "native_shape", "path": "native_shape",
          "chart": "native_chart", "table": "native_table", "image": "replaceable_image", "group": "group"}
-STYLE_KEYS = {"font", "style", "align", "valign", "wrap", "line_spacing", "margin",
-              "letter_spacing", "colors", "legend", "labels", "fill", "header_fill", "header_color"}
+STYLE_KEYS = {"font", "style", "align", "valign", "wrap", "line_spacing", "line_height", "margin",
+              "letter_spacing", "colors", "legend", "labels", "fill", "header_fill", "header_color",
+              "axis", "markers", "area_series", "gap_width", "label_position", "row_heights", "cell_styles"}
 AUTHOR_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["format", "task"],
     "properties": {
@@ -39,7 +40,7 @@ def _checked_keys(value, allowed, code):
         raise DesignError(code)
 
 
-def expand(document):
+def expand(document, *, complete=True):
     error = next(Draft202012Validator(AUTHOR_SCHEMA).iter_errors(document), None)
     if error:
         raise DesignError("AUTHOR_SCHEMA_INVALID: " + error.message[:240])
@@ -133,13 +134,13 @@ def expand(document):
     for page in task["scene"]["pages"]:
         page["background"] = resolve(page["background"])
         page["nodes"] = [node(n, page["id"], i) for i, n in enumerate(page["nodes"])]
-    validate(task, complete=True)
+    validate(task, complete=complete)
     return task
 
 
 def compact(task):
-    """Lossless projection of a strict task; never asks a model to rewrite it."""
-    validate(task, complete=True)
+    """Lossless editable projection, including imported pages awaiting notes and a brief."""
+    validate(task)
     result = {"format": FORMAT, "task": copy.deepcopy(task), "sources": {}, "styles": {}}
     sources = {canonical(c["provenance"]) for c in task["content"]["items"]}
     source_ids = {s: "source-" + str(i + 1) for i, s in enumerate(sorted(sources))}
@@ -171,7 +172,7 @@ def compact(task):
 
     for page in result["task"]["scene"]["pages"]:
         shrink(page["nodes"], page["id"])
-    if canonical(expand(result)) != canonical(task):
+    if canonical(expand(result, complete=False)) != canonical(task):
         raise DesignError("COMPACT_ROUNDTRIP_FAILED")
     return result
 
@@ -208,3 +209,147 @@ def apply_updates(task, patch):
         target.update(replacement)
     validate(candidate, complete=True)
     return candidate, sorted(affected)
+
+
+def set_meta(task, *, brief=None, audience=None, language=None, target_software=None,
+             revision_budget=None, review_profile=None):
+    """Update task-level metadata incrementally without exporting/rewriting the whole deck."""
+    candidate = copy.deepcopy(task)
+    updated = []
+    if brief is not None:
+        candidate["design"]["brief"] = brief
+        updated.append("design.brief")
+    if audience is not None:
+        candidate["audience"] = audience
+        updated.append("audience")
+    if language is not None:
+        candidate["language"] = language
+        updated.append("language")
+    if target_software is not None:
+        candidate["target_software"] = target_software
+        updated.append("target_software")
+    if revision_budget is not None:
+        candidate["design"]["revision_budget"] = revision_budget
+        updated.append("design.revision_budget")
+    if review_profile is not None:
+        existing = task["design"].get("review_profile")
+        if existing and review_profile != existing:
+            raise DesignError("AUTHOR_REVIEW_PROFILE_DOWNGRADE")
+        candidate["design"]["review_profile"] = review_profile
+        updated.append("design.review_profile")
+    if not updated:
+        raise DesignError("SET_META_EMPTY: provide at least one metadata field to update")
+    validate(candidate, complete=False)
+    return candidate, updated
+
+
+def set_page(task, page_id, *, notes=None, composition=None, clear_composition=False, background=None):
+    """Incrementally update per-page notes, composition or background without requiring a complete deck."""
+    if composition is not None and clear_composition:
+        raise DesignError("SET_PAGE_CONFLICT: cannot set and clear composition together")
+    candidate = copy.deepcopy(task)
+    page = next((p for p in candidate["scene"]["pages"] if p["id"] == page_id), None)
+    if page is None:
+        raise DesignError("UNKNOWN_PAGE")
+    design = next(d for d in candidate["design"]["pages"] if d["page_id"] == page_id)
+    updated = []
+    if notes is not None:
+        existing = next((n for n in candidate["content"]["notes"] if n["page_id"] == page_id), None)
+        if existing is not None:
+            existing["text"] = notes
+        else:
+            candidate["content"]["notes"].append({"page_id": page_id, "text": notes})
+        updated.append("notes")
+    if composition is not None:
+        design["composition"] = copy.deepcopy(composition)
+        updated.append("composition")
+    elif clear_composition:
+        design.pop("composition", None)
+        updated.append("composition_cleared")
+    if background is not None:
+        page["background"] = background.lstrip("#").upper()
+        updated.append("background")
+    if not updated:
+        raise DesignError("SET_PAGE_EMPTY: provide at least one page field to update")
+    validate(candidate, complete=False)
+    return candidate, updated
+
+
+def add_page(task, page_id, *, after=None, before=None, background="FFFFFF"):
+    """Insert a blank scene/design page at the end or next to an existing page."""
+    if after and before:
+        raise DesignError("PAGE_POSITION_CONFLICT: specify either --after or --before, not both")
+    if not isinstance(page_id, str) or not re.fullmatch(ID["pattern"], page_id):
+        raise DesignError("INVALID_PAGE_ID")
+    candidate = copy.deepcopy(task)
+    pages = candidate["scene"]["pages"]
+    designs = candidate["design"]["pages"]
+    if any(p["id"] == page_id for p in pages):
+        raise DesignError("DUPLICATE_PAGE")
+    if len(pages) >= 60:
+        raise DesignError("PAGE_LIMIT_EXCEEDED")
+    if after:
+        idx = next((i + 1 for i, p in enumerate(pages) if p["id"] == after), None)
+        if idx is None:
+            raise DesignError(f"UNKNOWN_ANCHOR_PAGE: {after}")
+    elif before:
+        idx = next((i for i, p in enumerate(pages) if p["id"] == before), None)
+        if idx is None:
+            raise DesignError(f"UNKNOWN_ANCHOR_PAGE: {before}")
+    else:
+        idx = len(pages)
+    pages.insert(idx, {"id": page_id, "background": background.lstrip("#").upper(), "nodes": []})
+    designs.insert(idx, {"page_id": page_id, "quality_limits": [], "accepted_differences": [],
+                         "aspect_policy": "exact", "raster_acceptances": []})
+    validate(candidate, complete=False)
+    return candidate, idx
+
+
+def remove_page(task, page_id):
+    """Remove a page, its content/notes, and prune references/assets left with no remaining pages."""
+    candidate = copy.deepcopy(task)
+    pages = candidate["scene"]["pages"]
+    if not any(p["id"] == page_id for p in pages):
+        raise DesignError("UNKNOWN_PAGE")
+    if len(pages) <= 1:
+        raise DesignError("CANNOT_REMOVE_LAST_PAGE")
+    candidate["scene"]["pages"] = [p for p in pages if p["id"] != page_id]
+    candidate["design"]["pages"] = [d for d in candidate["design"]["pages"] if d["page_id"] != page_id]
+    before_items = len(candidate["content"]["items"])
+    candidate["content"]["items"] = [c for c in candidate["content"]["items"] if c["page_id"] != page_id]
+    removed_content = before_items - len(candidate["content"]["items"])
+    candidate["content"]["notes"] = [n for n in candidate["content"]["notes"] if n["page_id"] != page_id]
+    kept_refs, removed_refs = [], 0
+    for ref in candidate["design"]["references"]:
+        remaining = [pid for pid in ref["page_ids"] if pid != page_id]
+        if remaining:
+            ref["page_ids"] = remaining
+            kept_refs.append(ref)
+        else:
+            removed_refs += 1
+    candidate["design"]["references"] = kept_refs
+    kept_assets, pruned_assets = [], []
+    for asset in candidate["assets"]["items"]:
+        remaining = [pid for pid in asset["page_ids"] if pid != page_id]
+        if remaining:
+            asset["page_ids"] = remaining
+            kept_assets.append(asset)
+        else:
+            pruned_assets.append(asset["id"])
+    candidate["assets"]["items"] = kept_assets
+    validate(candidate, complete=False)
+    return candidate, {"removed_content_count": removed_content, "removed_references": removed_refs,
+                       "pruned_assets": pruned_assets}
+
+
+def reorder_pages(task, page_ids):
+    """Reorder scene and design pages according to an exact permutation of existing page IDs."""
+    candidate = copy.deepcopy(task)
+    by_scene = {p["id"]: p for p in candidate["scene"]["pages"]}
+    by_design = {d["page_id"]: d for d in candidate["design"]["pages"]}
+    if len(page_ids) != len(by_scene) or len(set(page_ids)) != len(page_ids) or set(page_ids) != set(by_scene):
+        raise DesignError("REORDER_PAGE_SET_MISMATCH: supply every existing page ID exactly once")
+    candidate["scene"]["pages"] = [by_scene[pid] for pid in page_ids]
+    candidate["design"]["pages"] = [by_design[pid] for pid in page_ids]
+    validate(candidate, complete=False)
+    return candidate

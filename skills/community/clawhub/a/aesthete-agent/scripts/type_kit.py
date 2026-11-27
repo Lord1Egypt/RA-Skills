@@ -104,8 +104,10 @@ def emit(name="", brand="", base=16.0, ratio=1.25, floor=12.0, out_base="typesca
         t = tokens[s]
         var = "--text-" + s
         val = t.get("fluid") or ("%gpx" % t["px"])
-        lines.append("  %s:%s/%s;" % (var, val, t["lh"]))
+        # 0.32 字号缩放母变量:全部字阶乘 --font-scale(1=默认),整页字号一个旋钮
+        lines.append("  %s:calc(%s * var(--font-scale, 1))/%s;" % (var, val, t["lh"]))
     lines += [
+        "  --font-scale:1;  /* 0.32 母变量:整体字号缩放旋钮(1=默认;0.9 紧/1.1 松) */",
         "  --lh-body:1.7;  /* 中文正文 1.65-1.8;行长约 35-42 字 */",
         "  --track-display:-0.02em;  /* Latin 巨标收紧 */",
         "  --track-caps:0.1em;       /* 全大写小标签放宽(字号越小加越多) */",

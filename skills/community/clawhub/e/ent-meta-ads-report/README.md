@@ -2,7 +2,7 @@
 
 Kéo **báo cáo chỉ số Meta Ads (Facebook/Instagram)** về đọc qua **Graph API chính thức** bằng `curl`. Không cần SDK, không cần cài gì thêm ngoài `curl`.
 
-> ⚠️ **READ-ONLY.** Chỉ đọc dữ liệu (insights, danh sách campaign/account, kiểm tra hạn token). KHÔNG tạo/sửa/tắt/xóa quảng cáo.
+> ⚠️ **READ-ONLY với báo cáo.** Các mục đọc dữ liệu (insights, danh sách campaign/account, kiểm tra hạn token) không tạo/sửa gì. Lệnh ghi duy nhất của skill là **bật/tắt** campaign/adset/ad (mục 7, có dry-run + xác nhận).
 
 ## Cài đặt
 

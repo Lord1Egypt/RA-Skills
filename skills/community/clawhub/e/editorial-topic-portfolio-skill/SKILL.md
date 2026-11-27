@@ -2,7 +2,7 @@
 name: editorial-topic-portfolio
 slug: editorial-topic-portfolio-skill
 displayName: Editorial Topic Portfolio
-version: "1.0.11"
+version: "1.0.12"
 description: >
   This skill should be used when evaluating a portfolio of technology, AI, data,
   cloud, or enterprise-software content topics. It normalizes Notion or
@@ -293,3 +293,4 @@ Each round's report must include: primary, two backups, other dispositions, hard
 - [ ] Repeated runs do not repeatedly append evaluation blocks.
 - [ ] Readback field consistency 100% after writeback.
 - [ ] Real tokens, database IDs, and private topic data not in Skill directory.
+- [ ] Every rejected topic carries the specific gate it failed and the evidence behind that decision, so the portfolio can be re-scored when new material arrives.

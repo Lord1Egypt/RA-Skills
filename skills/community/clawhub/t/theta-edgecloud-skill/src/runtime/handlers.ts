@@ -104,21 +104,21 @@ async function buildRuntimeConfig(ctx: ThetaRuntimeContext): Promise<ThetaConfig
 function requireFields(args: ThetaRuntimeCommandArgs, fields: string[]): void {
   for (const field of fields) {
     if (!(field in args) || args[field] === undefined || args[field] === null || args[field] === '') {
-      throw new Error(`Missing required field: ${field}`);
+      throw new Error(('Missing required field: ' + String(field)));
     }
   }
 }
 
 function requireObject(value: unknown, field: string): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) {
-    throw new Error(`${field} must be an object`);
+    throw new Error(('' + String(field) + ' must be an object'));
   }
   return value as Record<string, unknown>;
 }
 
 function requireText(value: unknown, field: string): string {
   if (value === undefined || value === null || String(value).trim() === '') {
-    throw new Error(`Missing required field: ${field}`);
+    throw new Error(('Missing required field: ' + String(field)));
   }
   return String(value).trim();
 }
@@ -323,11 +323,11 @@ const commandRegistry: Record<string, CommandRegistration> = {
     handler: (cfg, args) => deployments.stop(cfg, resolveProjectId(cfg, args), requireText(args.shard, 'shard'), requireText(args.suffix, 'suffix'), args.confirm === true)
   },
   'theta.deployments.delete': {
-    schema: { command: 'theta.deployments.delete', description: 'Delete deployment by shard/suffix with route fallback', required: ['shard', 'suffix'] },
+    schema: { command: 'theta.deployments.delete', description: 'Deletes a deployment by shard/suffix, with route fallback. Requires confirm:true.', required: ['shard', 'suffix'] },
     handler: (cfg, args) => deployments.delete(cfg, resolveProjectId(cfg, args), requireText(args.shard, 'shard'), requireText(args.suffix, 'suffix'), args.confirm === true)
   },
   'theta.deployments.validateDisposable': {
-    schema: { command: 'theta.deployments.validateDisposable', description: 'Create, probe, smoke, delete, and report balance delta for one disposable deployment', required: ['payload'] },
+    schema: { command: 'theta.deployments.validateDisposable', description: 'Creates, probes, smoke-tests and then deletes one disposable deployment, reporting the balance delta', required: ['payload'] },
     handler: (cfg, args) => deployments.validateDisposable(cfg, {
       payload: requireObject(args.payload, 'payload'),
       confirm: args.confirm === true,
@@ -348,7 +348,7 @@ const commandRegistry: Record<string, CommandRegistration> = {
       } catch (error) {
         return {
           source: 'controller-raw',
-          warning: `Hosted MCP balance failed (${sanitizeHttpErrorMessage(String((error as Error).message)).slice(0, 300)}); raw value is credits, 1 credit = USD 0.01 on 2026-10-03`,
+          warning: ('Hosted MCP balance failed (' + String(sanitizeHttpErrorMessage(String((error as Error).message)).slice(0, 300)) + '), raw value is credits, 1 credit = USD 0.01 on 2026-10-03'),
           response: await deployments.balance(cfg, args.orgId as string | undefined)
         };
       }
@@ -426,7 +426,7 @@ const commandRegistry: Record<string, CommandRegistration> = {
     handler: (cfg, args) => gpu.lifecycle(cfg, resolveProjectId(cfg, args), 'stop', requireText(args.deploymentId, 'deploymentId'), args.confirm as boolean | undefined)
   },
   'theta.gpu.deployments.delete': {
-    schema: { command: 'theta.gpu.deployments.delete', description: 'PERMANENT: delete a GPU Node and its configuration; requires confirm:true', required: ['deploymentId'] },
+    schema: { command: 'theta.gpu.deployments.delete', description: 'PERMANENT: deletes a GPU Node and its configuration; requires confirm:true', required: ['deploymentId'] },
     handler: (cfg, args) => gpu.lifecycle(cfg, resolveProjectId(cfg, args), 'delete', requireText(args.deploymentId, 'deploymentId'), args.confirm as boolean | undefined)
   },
   'theta.billing.balanceSnapshot': {
@@ -529,12 +529,12 @@ export function thetaCommandRequiresConfirm(command: string): boolean {
 }
 
 for (const [name, route] of Object.entries(characterRoutes)) {
-  const command = `theta.characters.${name}`;
+  const command = ('theta.characters.' + String(name));
   const needsPayload = ['POST', 'PUT'].includes(route.method) && !route.fixedBody;
   commandRegistry[command] = {
     schema: {
       command,
-      description: `AI Characters ${route.method} ${route.path}${route.billable ? ' (BILLABLE: generates tokens)' : ''}${route.paginated ? '; optional page/number' : ''}; game-scoped key required`,
+      description: ('AI Characters ' + String(route.method) + ' ' + String(route.path) + String(route.billable ? ' (BILLABLE: generates tokens)' : '') + String(route.paginated ? ', optional page/number' : '') + ', game-scoped key required'),
       required: [...route.fields, ...(needsPayload ? ['payload'] : [])]
     },
     handler: (cfg, args) => characterRequest(cfg, name, args)
@@ -544,7 +544,7 @@ for (const [name, route] of Object.entries(characterRoutes)) {
 commandRegistry['theta.characters.storyline.generateAll'] = {
   schema: {
     command: 'theta.characters.storyline.generateAll',
-    description: `BILLABLE BULK: generate every dialog path of a story line. Counts paths first (one library message per grouping) and refuses above maxPaths or ${STORYLINE_PATH_CAP}; game-scoped key required`,
+    description: ('BILLABLE BULK: generate every dialog path of a story line. Counts paths first (one library message per grouping) and refuses above maxPaths or ' + String(STORYLINE_PATH_CAP) + ', game-scoped key required'),
     required: ['storylineId', 'maxPaths']
   },
   handler: (cfg, args) => storylineGenerateAll(cfg, args)
@@ -560,7 +560,7 @@ commandRegistry['theta.characters.estimateCost'] = {
 
 export const thetaRuntimeCommandSchemas: Record<string, ThetaCommandSchema> = Object.fromEntries(
   Object.entries(commandRegistry).map(([cmd, reg]) => [cmd, confirmRequiredCommands.has(cmd)
-    ? { ...reg.schema, description: `${reg.schema.description} [requires confirm:true outside dry-run]` }
+    ? { ...reg.schema, description: ('' + String(reg.schema.description) + ' [requires confirm:true outside dry-run]') }
     : reg.schema])
 );
 
@@ -574,7 +574,7 @@ export async function executeThetaRuntimeCommand(
 ): Promise<unknown> {
   const registration = Object.hasOwn(commandRegistry, args.command) ? commandRegistry[args.command] : undefined;
   if (!registration) {
-    throw new Error(`Unsupported theta runtime command: ${args.command}`);
+    throw new Error(('Unsupported theta runtime command: ' + String(args.command)));
   }
 
   requireFields(args, registration.schema.required);
@@ -585,7 +585,7 @@ export async function executeThetaRuntimeCommand(
   }
 
   if (confirmRequiredCommands.has(args.command) && !cfg.dryRun && args.confirm !== true) {
-    throw new Error(`${args.command} creates, changes, bills or deletes remote resources. Preview with THETA_DRY_RUN=1, get explicit user approval for this exact action, then pass confirm:true.`);
+    throw new Error(('' + String(args.command) + ' creates, changes, bills or deletes remote resources. Preview it first in dry-run mode (environment variable THETA_DRY_RUN set to 1), get explicit user approval for this exact action, then pass confirm:true.'));
   }
 
   const result = await registration.handler(cfg, args);

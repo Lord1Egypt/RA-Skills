@@ -78,21 +78,68 @@ class Store:
             from .windows_io import WindowsIO
             self._windows = WindowsIO(self.root, create=create)
             return
-        fd = os.open("/", os.O_RDONLY | os.O_DIRECTORY)
         try:
-            for part in self.root.parts[1:]:
-                if create:
+            self.fd = self._open_root(create=create)
+        except OSError as exc:
+            raise DesignError(f"UNSAFE_TASK_DIRECTORY: {exc}") from exc
+
+    def _open_root(self, *, create=False):
+        try:
+            fd = os.open("/", os.O_RDONLY | os.O_DIRECTORY)
+            try:
+                for part in self.root.parts[1:]:
+                    try:
+                        new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    except FileNotFoundError:
+                        if not create:
+                            raise
+                        try:
+                            os.mkdir(part, 0o700, dir_fd=fd)
+                        except FileExistsError:
+                            pass
+                        new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    os.close(fd)
+                    fd = new
+                return fd
+            except OSError:
+                os.close(fd)
+                raise
+        except PermissionError:
+            # In outer sandboxes or 0711 home trees, ancestor directories above the authorized
+            # workspace deny directory-read while permitting metadata/traversal. Verify no
+            # ancestor is a symlink, open the nearest readable existing ancestor with O_NOFOLLOW,
+            # and walk remaining components strictly via dir_fd.
+            for ancestor in [self.root, *self.root.parents]:
+                if ancestor.is_symlink():
+                    raise DesignError(f"UNSAFE_TASK_DIRECTORY: symlink refused: {ancestor}")
+            existing = self.root
+            tail = []
+            while not existing.exists() and existing != existing.parent:
+                tail.append(existing.name)
+                existing = existing.parent
+            if not existing.is_dir():
+                raise
+            if tail and not create:
+                raise FileNotFoundError(str(self.root))
+            fd = os.open(existing, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+            try:
+                for part in reversed(tail):
                     try:
                         os.mkdir(part, 0o700, dir_fd=fd)
                     except FileExistsError:
                         pass
-                new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    os.close(fd)
+                    fd = new
+                if os.path.realpath(self.root) != str(self.root):
+                    raise DesignError(f"UNSAFE_TASK_DIRECTORY: symlink refused: {self.root}")
+                fmeta, lmeta = os.fstat(fd), os.lstat(self.root)
+                if (fmeta.st_dev, fmeta.st_ino) != (lmeta.st_dev, lmeta.st_ino):
+                    raise DesignError(f"UNSAFE_TASK_DIRECTORY: path identity changed: {self.root}")
+                return fd
+            except BaseException:
                 os.close(fd)
-                fd = new
-            self.fd = fd
-        except OSError as exc:
-            os.close(fd)
-            raise DesignError(f"UNSAFE_TASK_DIRECTORY: {exc}") from exc
+                raise
 
     def __enter__(self):
         return self
@@ -109,12 +156,16 @@ class Store:
         fd = os.dup(self.fd)
         try:
             for part in parts[:-1]:
-                if create:
+                try:
+                    new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                except FileNotFoundError:
+                    if not create:
+                        raise
                     try:
                         os.mkdir(part, 0o700, dir_fd=fd)
                     except FileExistsError:
                         pass
-                new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
+                    new = os.open(part, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW, dir_fd=fd)
                 os.close(fd)
                 fd = new
             yield fd, parts[-1]

@@ -1,7 +1,7 @@
 ---
 name: upkuajing-email-tool
 description: "Run bulk corporate cold‑email campaigns and monitor delivery status. Gain verified domain‑based emails and analyze open‑and‑click metrics, helping exporters reach decision‑makers for global sales prospecting.\n\nTrigger: bulk cold email, email open rate tracker, business domain emails, mass‑mail for exporters, overseas lead generation, cross‑border email marketing"
-metadata: {"version":"1.0.4","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"✉️","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.5","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"✉️","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # UpKuaJing Email Tool
@@ -147,6 +147,10 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 **Any operation that incurs fees must first inform and wait for explicit user confirmation. Do not execute in the same message as the notification.**
 
+### Billing Mode
+
+This skill bills the API balance only. Its endpoints do not support plans, so `planMode` is never sent and is ignored if provided.
+
 ## Workflow
 
 ### Decision Guide
@@ -183,6 +187,7 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 - Email Task List: Check [references/email-task-list-api.md](references/email-task-list-api.md)
 - Email Task Record List: Check [references/email-task-record-list-api.md](references/email-task-record-list-api.md)
 - Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- Plan Billing and Balance Fallback: [references/plan-billing.md](references/plan-billing.md)
 
 ## Notes
 

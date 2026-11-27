@@ -1,7 +1,7 @@
 ---
 name: linkdigest-video-transcript
 description: "视频链接转文字 / 抖音/小红书视频文案提取：口播逐字稿、画面上的字（带大致时间）、要点和互动数据。用户发来抖音、小红书视频笔记、TikTok、YouTube 、X 或 B站的视频链接或分享文案，要提取文案、视频转文字、扒口播、提取字幕或画面文字时使用。长视频会排队，脚本自动轮询取结果。通过 LinkDigest API 读取，不用下载视频，不需要平台账号或 Cookie。需要 LINKDIGEST_API_KEY；每条 1 积分，另加每开始的 1 分钟 1 积分（1 分钟视频共 2 积分，约 ¥0.29）。"
-version: 1.2.4
+version: 1.2.7
 homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-video-transcript
 metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-video-transcript&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-video-transcript"}}
 required_environment_variables:
@@ -70,7 +70,7 @@ python3 scripts/linkdigest.py "<视频链接>" --max-credits 5      # 超过 5 �
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://v.douyin.com/<短链>/", "format": "json"}'
+  -d '{"url": "https://v.douyin.com/VeXgdE_QwTE", "format": "json"}'
 ```
 
 - `200`：结果 JSON。
@@ -88,7 +88,7 @@ curl -sS "https://linkdigest.dev/api/v1/digest/<jobId>?wait=20" \
 ```bash
 API=https://linkdigest.dev/api/v1/digest
 AUTH="Authorization: Bearer $LINKDIGEST_API_KEY"
-LINK='https://v.douyin.com/<短链>/'
+LINK='https://v.douyin.com/VeXgdE_QwTE'
 res=$(curl -sS -w '\n%{http_code}' -X POST "$API" -H "$AUTH" \
   -H "Content-Type: application/json" -d "{\"url\": \"$LINK\", \"format\": \"json\"}")
 code=${res##*$'\n'}; body=${res%$'\n'*}

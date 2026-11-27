@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "note": "These are logical design blueprints, not importable FastGPT JSON. Build from a versioned workflow template or target-instance export.",
+  "blueprints": [
+    {
+      "id": "rag-qa",
+      "pattern": ["input", "query-normalization", "dataset-search", "evidence-filter", "answer", "reply"],
+      "knowledge_required": true,
+      "side_effect": "none",
+      "required_tests": ["direct-query", "rewritten-query", "wrong-domain", "no-hit", "citation-safety"]
+    },
+    {
+      "id": "tool-query",
+      "pattern": ["input-validation", "authorization-scope", "http-tool", "result-normalization", "reply"],
+      "knowledge_required": false,
+      "side_effect": "read",
+      "required_tests": ["success", "unauthorized", "not-found", "empty", "timeout", "malformed", "partial-success"]
+    },
+    {
+      "id": "action-approval",
+      "pattern": ["input-validation", "authorization", "change-preview", "confirmation-or-approval", "idempotent-action", "readback", "audit-result"],
+      "knowledge_required": false,
+      "side_effect": "write",
+      "required_tests": ["no-confirmation-no-action", "duplicate-submit", "readback-mismatch", "partial-failure", "audit-record"]
+    },
+    {
+      "id": "event-batch",
+      "pattern": ["trigger", "deduplication", "batching", "rate-limited-execution", "failure-isolation", "checkpoint", "summary-alert"],
+      "knowledge_required": false,
+      "side_effect": "configurable",
+      "required_tests": ["duplicate-event", "batch-boundary", "rate-limit", "resume-from-checkpoint", "partial-failure"]
+    },
+    {
+      "id": "multi-tool-agent",
+      "pattern": ["input-and-context", "deterministic-pre-route", "agent-tool-selection", "tool-result-normalization", "optional-summary", "reply"],
+      "knowledge_required": false,
+      "side_effect": "configurable",
+      "required_tests": ["correct-tool", "wrong-tool-prevention", "no-tool", "tool-conflict", "max-steps", "termination"]
+    }
+  ]
+}

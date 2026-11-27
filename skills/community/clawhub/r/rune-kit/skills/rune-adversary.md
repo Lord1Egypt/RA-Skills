@@ -74,7 +74,7 @@ Every finding MUST reference the specific plan section, file, or assumption it c
 4. Identify the plan's core assumptions — what MUST be true for this plan to work?
 
 ### Step 0.5: Steelman + Pick a Reasoning Lens
-<MUST-READ path="references/reasoning-modes.md" trigger="before challenging any plan — to steelman the thesis and select the reasoning lens per dimension"/>
+<MUST-READ path="rune-adversary/references/reasoning-modes.md" trigger="before challenging any plan — to steelman the thesis and select the reasoning lens per dimension"/>
 
 Before attacking, **steelman the plan's core thesis** — restate it in its strongest
 form (strip weak framing, supply the strongest implied evidence, name what's genuinely
@@ -92,7 +92,7 @@ The 5 dimensions below answer *what* to attack. The 5 **reasoning modes** answer
 | **Socratic** | "What is this plan taking for granted?" | vague scope, consensus-driven plans, thin specs |
 
 Default to **Red Team**. Switch or add a second lens when the plan's shape calls for it
-(signal→mode table + mode mechanics in `references/reasoning-modes.md`). State which lens
+(signal→mode table + mode mechanics in `rune-adversary/references/reasoning-modes.md`). State which lens
 you applied per dimension — don't ask the user to pick. Dialectic's synthesis usually
 produces concrete remediations (likely HARDEN), but maps to REVISE if it exposes a
 structural flaw in the chosen approach; Socratic's surfaced assumptions and Pre-mortem's
@@ -313,8 +313,8 @@ Trigger: plan involves auth, crypto, payment, or user data handling.
 **Protocol**:
 
 1. **Pre-bundle gate** — emit `context.preview` to `context-engine` first; abort if action=block
-2. **Build context bundle** — see `references/context-bundle-format.md` for exact format
-3. **Dispatch** — emit `oracle.dispatched` signal; route via `session-bridge` detach if target model is opus-class (non-blocking). **For genuine architectural independence** (security-critical logic, irreversible ops, a loop the in-mesh model cannot break), prefer a **different-architecture external CLI** (Gemini/Codex) over another Claude instance — a same-family reviewer shares blind spots with the author. Invoke it via the safe transport in `references/cross-model-escalation.md`: explicit per-call user authorization, read-only sandbox, stdin not inline args, binary pre-flight. Never auto-invoke an external CLI in non-interactive contexts — skip and announce.
+2. **Build context bundle** — see `rune-adversary/references/context-bundle-format.md` for exact format
+3. **Dispatch** — emit `oracle.dispatched` signal; route via `session-bridge` detach if target model is opus-class (non-blocking). **For genuine architectural independence** (security-critical logic, irreversible ops, a loop the in-mesh model cannot break), prefer a **different-architecture external CLI** (Gemini/Codex) over another Claude instance — a same-family reviewer shares blind spots with the author. Invoke it via the safe transport in `rune-adversary/references/cross-model-escalation.md`: explicit per-call user authorization, read-only sandbox, stdin not inline args, binary pre-flight. Never auto-invoke an external CLI in non-interactive contexts — skip and announce.
 4. **Wait for response** — synchronous if model is sonnet-class, polled via `.rune/oracle-pending/<id>.json` if opus-class
 5. **Validate response** — every claim MUST cite file:line. Strip + warn on uncited claims (`oracle.failed` if all claims uncited)
 6. **Emit response** — `oracle.response` carries the validated diagnosis, consumed by `debug`/`fix` to override or refine their current hypothesis
@@ -345,7 +345,7 @@ Trigger: plan involves auth, crypto, payment, or user data handling.
 
 Replies failing this contract are rejected — `oracle.failed` emitted, primary agent continues without second opinion.
 
-See `references/oracle-mode.md` for the full protocol and integration with `debug`/`fix`. See `references/cross-model-escalation.md` for the safe external-CLI transport when the second opinion should come from a different model architecture.
+See `rune-adversary/references/oracle-mode.md` for the full protocol and integration with `debug`/`fix`. See `rune-adversary/references/cross-model-escalation.md` for the safe external-CLI transport when the second opinion should come from a different model architecture.
 
 ## Constraints
 
@@ -382,7 +382,7 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 | (oracle-mode) Bundle exceeds token cap — caller didn't prune | HIGH | Caller MUST run `context.preview` first; adversary fails fast with `oracle.failed` instead of silently truncating signal |
 | (oracle-mode) Oracle reply has no citations — model improvised | CRITICAL | Reject reply with `oracle.failed`. Primary agent continues without second opinion (better than acting on hallucination) |
 | (oracle-mode) Loop: oracle reply triggers another `agent.stuck` | HIGH | Cap at 1 oracle dispatch per primary-agent stuck cycle. Subsequent stucks must escalate to user |
-| (cross-model) External CLI invoked without authorization or in non-interactive run | CRITICAL | Per-call user authorization required; non-interactive → skip + announce. See `references/cross-model-escalation.md` |
+| (cross-model) External CLI invoked without authorization or in non-interactive run | CRITICAL | Per-call user authorization required; non-interactive → skip + announce. See `rune-adversary/references/cross-model-escalation.md` |
 | (cross-model) Bundle interpolated into shell args — embedded `$(...)` executes | CRITICAL | Always pass via stdin from a temp file; read-only sandbox. Never inline `-p "<bundle>"` |
 | (cross-model) Rubber-stamping the external reviewer's verdict | MEDIUM | Reply is data, not ruling — reconcile against the artifact; classify each finding |
 | (council) Reporting council output as consensus when decorrelation is NO_DECORRELATION | CRITICAL | Step 0.6 consume rule: report the decorrelation stamp plainly, never imply independent validation from same-family subagents |
@@ -417,7 +417,7 @@ See `references/oracle-mode.md` for the full protocol and integration with `debu
 **Scope guardrail:** adversary reviews THE PLAN only — never audits existing codebase quality or rewrites code.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

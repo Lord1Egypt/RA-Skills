@@ -1,7 +1,7 @@
 ---
 name: linkdigest-viral-breakdown
 description: "爆款拆解：把一条抖音、小红书、TikTok 或 YouTube 内容拆成开头钩子、带时间的结构节拍、标题公式、封面文字、行动号召和可复用模板。引用的原话逐字核对原文，对不上的删掉并写明删了几条；点赞收藏和话题标签取自平台数据，不由模型编写。用户要拆解爆款、分析对标账号、学习内容结构或准备仿写时使用。通过 LinkDigest API 读取，不需要平台账号或 Cookie。需要 LINKDIGEST_API_KEY；在读取费用上加 1 积分（约 ¥0.14），6 张图以内的图文笔记加拆解共 2 积分。"
-version: 1.2.3
+version: 1.2.4
 homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-viral-breakdown
 metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-viral-breakdown&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-viral-breakdown"}}
 required_environment_variables:
@@ -84,7 +84,7 @@ python3 scripts/linkdigest.py "<英文 TikTok 链接>" --breakdown --translate-t
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://v.douyin.com/<短链>/", "format": "json", "breakdown": true}'
+  -d '{"url": "https://v.douyin.com/VeXgdE_QwTE", "format": "json", "breakdown": true}'
 ```
 
 - `200`：结果 JSON，拆解在 `breakdown` 字段里。
@@ -102,7 +102,7 @@ curl -sS "https://linkdigest.dev/api/v1/digest/<jobId>?wait=20" \
 ```bash
 API=https://linkdigest.dev/api/v1/digest
 AUTH="Authorization: Bearer $LINKDIGEST_API_KEY"
-LINK='https://v.douyin.com/<短链>/'
+LINK='https://v.douyin.com/VeXgdE_QwTE'
 res=$(curl -sS -w '\n%{http_code}' -X POST "$API" -H "$AUTH" \
   -H "Content-Type: application/json" -d "{\"url\": \"$LINK\", \"format\": \"json\", \"breakdown\": true}")
 code=${res##*$'\n'}; body=${res%$'\n'*}

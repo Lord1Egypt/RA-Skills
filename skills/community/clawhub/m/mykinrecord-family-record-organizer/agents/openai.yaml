@@ -1,0 +1,4 @@
+interface:
+  display_name: "Family Record Organizer"
+  short_description: "Make blank record indexes and medication lists"
+  default_prompt: "Use $family-record-organizer to give me a blank family medical document index and a separate fictional example."

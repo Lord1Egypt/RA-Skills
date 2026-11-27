@@ -1,0 +1,326 @@
+{
+  "$description": "基色层（DTCG）。由种子色 #2563eb（OKLCH H=262.9°, C=0.215, L=0.546）通过 OKLCH 中性阶反解 + Adobe Leonardo 强调阶求解生成。",
+  "color": {
+    "$type": "color",
+    "light": {
+      "neutral": {
+        "0": {
+          "$value": "#f5f7fb",
+          "$description": "亮色纸面",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "100": {
+          "$value": "#eaedf4",
+          "$description": "中性阶 100（对纸 1.09:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "200": {
+          "$value": "#cbced5",
+          "$description": "中性阶 200（对纸 1.47:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "300": {
+          "$value": "#868990",
+          "$description": "中性阶 300（对纸 3.27:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "400": {
+          "$value": "#63666c",
+          "$description": "中性阶 400（对纸 5.37:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "900": {
+          "$value": "#17181b",
+          "$description": "中性阶 900（对纸 16.55:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        }
+      },
+      "accent": {
+        "100": {
+          "$value": "#2562ea",
+          "$description": "强调前景（对纸 4.88:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "leonardo",
+              "target": 4.85,
+              "seed": "#2563eb",
+              "background": "#f5f7fb"
+            }
+          }
+        },
+        "200": {
+          "$value": "#1b55d7",
+          "$description": "强调 Hover（对纸 5.88:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "leonardo",
+              "target": 5.85,
+              "seed": "#2563eb",
+              "background": "#f5f7fb"
+            }
+          }
+        },
+        "emphasis": {
+          "$value": "#2563eb",
+          "$description": "强调实底（Banner / 主按钮 / 刊头）"
+        }
+      },
+      "surface": {
+        "deep": {
+          "$value": "#10141b",
+          "$description": "深图版固定底"
+        },
+        "onDeep": {
+          "$value": "#f5f7fb",
+          "$description": "深图版上的亮字"
+        }
+      },
+      "danger": {
+        "fg": {
+          "$value": "#cc3235",
+          "$description": "danger 语义文字（对纸 4.80:1）"
+        },
+        "muted": {
+          "$value": "#ffe6e4",
+          "$description": "danger 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#cf3638",
+          "$description": "danger 实底"
+        }
+      },
+      "success": {
+        "fg": {
+          "$value": "#007f30",
+          "$description": "success 语义文字（对纸 4.80:1）"
+        },
+        "muted": {
+          "$value": "#e0f3e2",
+          "$description": "success 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#0a8234",
+          "$description": "success 实底"
+        }
+      },
+      "warning": {
+        "fg": {
+          "$value": "#9c5f00",
+          "$description": "warning 语义文字（对纸 4.83:1）"
+        },
+        "muted": {
+          "$value": "#fce9d7",
+          "$description": "warning 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#a06200",
+          "$description": "warning 实底"
+        }
+      },
+      "info": {
+        "fg": {
+          "$value": "#007888",
+          "$description": "info 语义文字（对纸 4.84:1）"
+        },
+        "muted": {
+          "$value": "#d5f3f9",
+          "$description": "info 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#007c8b",
+          "$description": "info 实底"
+        }
+      }
+    },
+    "dark": {
+      "neutral": {
+        "0": {
+          "$value": "#0f1113",
+          "$description": "暗色纸面",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "100": {
+          "$value": "#1b1d22",
+          "$description": "暗色中性阶 100（对纸 1.12:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "200": {
+          "$value": "#2f3136",
+          "$description": "暗色中性阶 200（对纸 1.45:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "300": {
+          "$value": "#6d7176",
+          "$description": "暗色中性阶 300（对纸 3.85:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "400": {
+          "$value": "#9ca0a6",
+          "$description": "暗色中性阶 400（对纸 7.20:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        },
+        "900": {
+          "$value": "#e4e7eb",
+          "$description": "暗色中性阶 900（对纸 15.25:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "oklch-solver",
+              "hue": 262.88
+            }
+          }
+        }
+      },
+      "accent": {
+        "100": {
+          "$value": "#7aa1ec",
+          "$description": "暗色强调前景（对纸 7.33:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "leonardo",
+              "target": 4.85,
+              "seed": "#87b0ff",
+              "background": "#0f1113"
+            }
+          }
+        },
+        "200": {
+          "$value": "#87b0ff",
+          "$description": "暗色强调 Hover（对纸 8.73:1）",
+          "$extensions": {
+            "com.color-system.solver": {
+              "source": "leonardo",
+              "target": 5.85,
+              "seed": "#87b0ff",
+              "background": "#0f1113"
+            }
+          }
+        },
+        "emphasis": {
+          "$value": "#234488",
+          "$description": "暗色强调实底"
+        }
+      },
+      "surface": {
+        "deep": {
+          "$value": "#05070d",
+          "$description": "暗色深图版固定底"
+        },
+        "onDeep": {
+          "$value": "#e4e7eb",
+          "$description": "深图版上的亮字"
+        }
+      },
+      "danger": {
+        "fg": {
+          "$value": "#ff756e",
+          "$description": "暗色 danger 语义文字（对纸 7.23:1）"
+        },
+        "muted": {
+          "$value": "#301715",
+          "$description": "暗色 danger 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#982326",
+          "$description": "暗色 danger 实底"
+        }
+      },
+      "success": {
+        "fg": {
+          "$value": "#59b26a",
+          "$description": "暗色 success 语义文字（对纸 7.21:1）"
+        },
+        "muted": {
+          "$value": "#122415",
+          "$description": "暗色 success 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#035d22",
+          "$description": "暗色 success 实底"
+        }
+      },
+      "warning": {
+        "fg": {
+          "$value": "#dc8f27",
+          "$description": "暗色 warning 语义文字（对纸 7.21:1）"
+        },
+        "muted": {
+          "$value": "#2c1b08",
+          "$description": "暗色 warning 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#734500",
+          "$description": "暗色 warning 实底"
+        }
+      },
+      "info": {
+        "fg": {
+          "$value": "#00b0c5",
+          "$description": "暗色 info 语义文字（对纸 7.22:1）"
+        },
+        "muted": {
+          "$value": "#02242a",
+          "$description": "暗色 info 浅色提示底"
+        },
+        "emphasis": {
+          "$value": "#005864",
+          "$description": "暗色 info 实底"
+        }
+      }
+    }
+  }
+}

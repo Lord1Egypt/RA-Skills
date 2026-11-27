@@ -1,7 +1,7 @@
 ---
 name: viral-outliers
 description: "Find viral outlier posts on TikTok, Instagram and YouTube, pull creator stats, transcribe and analyse videos, build competitor watchlists, and crawl profiles on demand. Prepaid credits, MCP or REST."
-version: 1.10.5
+version: 1.11.6
 author: Viral Outliers
 required_environment_variables:
   - name: VIRAL_OUTLIERS_API_KEY
@@ -93,8 +93,8 @@ npx viral-outliers search-outliers --query "home workout" --platforms tiktok --m
 - `search_profiles` (1 credit per 25 profiles; POST /api/v1/search/profiles): Find tracked creator profiles by name/handle across platforms, with follower and performance stats.
 - `get_post` (1 credit; GET /api/v1/posts/{postId}): Full data for one post: stats, outlier scores across seven time windows, plus cached transcript and visual analysis when available.
 - `get_profile` (1 credit; GET /api/v1/profiles/{profileId}): Follower counts, average performance baselines and recent posts for one tracked profile.
-- `request_transcript` (10 credits; POST /api/v1/transcriptions): Queue AI speech transcription for any tracked video post; poll the job, then fetch via get_post.
-- `request_visual_analysis` (10 credits; POST /api/v1/visual-analysis): Queue AI scene-by-scene visual analysis (on-screen text, shot breakdown, editing style) for any tracked post; poll the job, then fetch via get_post.
+- `request_transcript` (10 to 20 credits by video length; POST /api/v1/transcriptions): Queue AI speech transcription for any video post, also one we do not have yet (fetched first); poll the job, then fetch via get_post.
+- `request_visual_analysis` (10 to 30 credits by video length; POST /api/v1/visual-analysis): Queue AI scene-by-scene visual analysis (on-screen text, shot breakdown, editing style) for any post, also one we do not have yet (fetched first); poll the job, then fetch via get_post.
 - `crawl_profile` (40 credits; POST /api/v1/crawls): Add any public TikTok, Instagram or YouTube profile to the tracked database on demand.
 - `get_job_status` (free; GET /api/v1/jobs/{jobRef}): Free polling endpoint for asynchronous jobs (crawls, transcriptions).
 - `get_credit_balance` (free; GET /api/v1/credits): Free endpoint returning your current credit balance.

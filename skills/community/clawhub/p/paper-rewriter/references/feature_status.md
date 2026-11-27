@@ -10,6 +10,8 @@
 
 | 能力 | 状态 | 版本 |
 |---|---|---|
+| **词表资产与批量门禁**（learn_guards validate 子命令〔守卫/外挂词表 schema 校验，FAIL 逐项报错——HR3 共享词表接入前必配〕+validate --template〔HR3 共享词表最小模板直出〕·calibrate --coverage〔词表覆盖统计：语料命中/未命中清单——资产盘点口径，非检测力声明〕·detect --batch --fail-under〔批量分数门禁：任一文件 ≥ 阈值 → exit 3〕） | 稳定 | v5.21 |
+| **豁免正则与守卫速览 JSON**（verify --allow-list 支持 re: 前缀正则行〔窄精确豁免——宽词滥用面的机制收敛，分级语义与 --strict 拦截保持〕·pipeline --summary-json〔一行 JSON 速览与 detect --summary-json 对称，exit_verdict 随行〕·detect --summary-json 补 critical_hit 字段） | 稳定 | v5.20 |
 | **批量清洗与批量速览**（transform --batch〔目录逐文件清洗写 <名>_clean.txt，输出已存在=跳过断点续跑；--in-place 原地+.bak 备份；--csv 批量汇总〕·detect --batch --csv〔批量评分汇总 CSV〕·pipeline --batch --summary〔逐文件一行速览〕） | 稳定 | v5.19 |
 | **守卫扩展三件**（verify --allow-list〔豁免清单外挂：violations 中 detail 含该词的项降级为 warning[allowlisted]——已核对原文的误报收口，不静默丢弃，分级语义保持〕·detect --summary-json〔单行 JSON 摘要 score/level/top_categories——agent 快消费〕·verify --summary〔一行守卫速览〕） | 稳定 | v5.18 |
 | **报告与门禁三件**（check_stats --html〔单页 HTML 一致性报告，复用打印友好骨架〕·compare --csv〔逐句对照 CSV 导出 tag/原文/改稿/行号——机器消费〕·detect --fail-under 分数门禁〔综合评分 ≥ 分数 → exit 3；独立于 --exit-verdict 也可用，组合时 verdict 分支先行〕） | 稳定 | v5.17 |
@@ -90,6 +92,8 @@
 | **Reporting & gating trio** (check_stats --html 〔single-page HTML, print-friendly skeleton〕 · compare --csv 〔per-sentence diff CSV: tag/orig/new/lines for machines〕 · detect --fail-under score gate 〔score ≥ threshold → exit 3; standalone or combined with --exit-verdict〕) | Stable | v5.17 |
 | **Guard-extension trio** (verify --allow-list 〔exemption file: matching violations degrade to warnings[allowlisted] — reviewed false-positive closure, never silently dropped, grading preserved〕 · detect --summary-json 〔one-line JSON: score/level/top_categories〕 · verify --summary 〔one-line guard digest〕) | Stable | v5.18 |
 | **Batch cleanup & batch digest** (transform --batch 〔per-file cleanup to <name>_clean.txt, existing output = skip/resume; --in-place with .bak backup; --csv digest〕 · detect --batch --csv 〔score summary CSV〕 · pipeline --batch --summary 〔per-file one-liner〕) | Stable | v5.19 |
+| **Exemption regex & guard digest JSON** (verify --allow-list accepts re:-prefixed regex lines 〔narrow precise exemptions — mechanical convergence for the wide-word concern; grading and --strict gating preserved〕 · pipeline --summary-json 〔one-line JSON digest symmetric with detect, exit_verdict included〕 · detect --summary-json adds critical_hit field) | Stable | v5.20 |
+| **Lexicon assets & batch gating** (learn_guards validate subcommand 〔schema check for guards/external lexicon, per-item FAIL report — required before HR3 shared-lexicon adoption〕 + validate --template 〔minimal shared-lexicon template〕 · calibrate --coverage 〔vocabulary coverage stats: hits/misses per corpus — asset inventory, not detection claims〕 · detect --batch --fail-under 〔any file scoring ≥ threshold → exit 3〕) | Stable | v5.21 |
 
 Scale envelope: 800K-char chunks (2K overlap) · 50MB file cap · 120s step budget.
 

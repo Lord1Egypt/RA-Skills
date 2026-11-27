@@ -1,8 +1,41 @@
 #!/usr/bin/env python3
 """
 保费计算工具
-输入：年龄、性别、保额、保障期限、产品类型
+输入：年龄、性别、保额、保障期限（coverage_year）、产品类型
 输出：各产品年缴保费，支持不同缴费期对比
+
+🆕 2026-11-27 保障期限（coverage_year）**真实接线**（SDI-4 残余 AE-3）
+   ── 官方 finding 原文（ai v2.4.48 · Excessive Agency · MEDIUM）：
+     「The documented coverage-duration input is accepted but has no effect on
+       premium calculations or product selection.」
+   ── 整改前：`calculate_premium(..., coverage_year=None)` 与
+     `calculate_all_premiums(..., coverage_year=None)` 都**声明了不用**
+     （参数被吞）→ 不同保障期限给出**完全相同**的报价，且把**不满足**客户
+     要求的保障期限的产品也一并返回。
+   ── 整改后（口径 · 与 SKILL 侧文档一致）：
+     ① **入参校验**：coverage_year 必须是 **None** 或**正整数**（单位：年）；
+        非法值（0 / 负数 / 非整数 / 布尔）→ **显式报错**（`CoverageYearError`）
+        → **不再**静默忽略（官方 remediation：reject unsupported duration
+        requests explicitly rather than silently ignoring them）。
+     ② **产品筛选**（用产品库**已验证**的 `coverage_period_*` 字段 ·
+        语义 = 保障期限 ≥ 客户要求的年限）：
+        · `coverage_period_is_lifetime is True` → 满足任意年限；
+        · `coverage_period_duration_unit == "year"` 且
+          `coverage_period_duration_value >= coverage_year` → 满足；
+        · `coverage_period_duration_unit == "to_age"`（如「至70周岁」）→
+          覆盖年数 = `duration_value - age` → 同上；
+        · 期限**无法验证**（`coverage_period_parse_quality` ∉
+          {'parsed','parsed_long'} / 字段缺失 / 单位未知）→ **不得**声称满足
+          → **排除**，排除数量在 `_meta.coverage_year_filtered_out` **披露**。
+     ③ **保费口径（诚实处理）**：产品库**没有**按保障期限分档的费率表
+        ⇒ **不**自造「期限加权系数」假装是权威费率；**期限筛选后**，
+        每款产品的保费仍用**它自己**的权威费率计算（既有公式**不改**）
+        ⇒ 不同 coverage_year → 不同产品集 → 不同报价；
+        该限制在 `_meta.disclaimers` **显式披露**。
+     ④ **显式拒绝**：给定 coverage_year 后**筛不出任何产品** → **显式报错**
+        （不得返回空列表假装成功）。
+   ⚠ **本模块不做**「按保障期限加权的定价」（产品库无分档费率）——
+     不得宣称「同一产品、不同保障期限 → 保费不同」。
 
 🆕 2026-10-27 停售产品过滤（I3）
    ── references/products.json 字段取值分布探查结论（2536 款，2026-10-27 实测）──
@@ -49,6 +82,108 @@ _RE_DELIST_DATE = re.compile(r"^\d{4}(-\d{2}(-\d{2})?)?$")
 
 # 视为"已停售/已下架"的 validity_status 取值（实测分布见文件头注释）
 _DISCONTINUED_VALIDITY = ("已停售", "DISCONTINUED")
+
+# ══════════════════════════════════════════════════════════════════════
+# 保障期限（coverage_year）· **已验证**期限信息的判定口径
+#
+# ⚠ 官方 SDI-4 残余 AE-3（2026-11-27 公开复扫 · ai v2.4.48）：
+#   「The documented coverage-duration input is accepted but has no effect on
+#    premium calculations or product selection.」
+#   remediation 原文：
+#   「Validate coverage_year against a documented schema, filter products using
+#    verified coverage-duration information, and calculate premiums using
+#    authoritative rates for the selected duration. Until duration-aware pricing
+#    is implemented, reject unsupported duration requests explicitly rather than
+#    silently ignoring them.」
+#
+# ⇒ 产品库里**没有**按保障期限分档的费率表 → **不得**自造「期限加权系数」
+#   假装是权威费率 → 正确做法：**按已验证期限筛选产品**，每款产品的保费
+#   仍用**它自己**的权威费率（既有公式**不改**）→ 不同 coverage_year
+#   → 不同产品集 → 不同报价。
+# ══════════════════════════════════════════════════════════════════════
+
+# **已验证**的期限解析质量取值（其余一律视为「期限无法验证」→ 不得声称满足）
+_COVERAGE_PERIOD_VERIFIED_QUALITIES = ("parsed", "parsed_long")
+# 可换算成「年」的期限单位
+_COVERAGE_PERIOD_UNIT_YEAR = "year"
+_COVERAGE_PERIOD_UNIT_TO_AGE = "to_age"
+
+
+class CoverageYearError(ValueError):
+    """保障期限入参非法 / 按期限筛不出任何产品（**显式拒绝** · 不得静默忽略）。
+
+    ⚠ 官方 SDI-4 残余 AE-3 remediation 原文：
+      「… reject unsupported duration requests explicitly rather than silently
+        ignoring them.」
+    ⇒ 继承 `ValueError` → 既有 `except ValueError` 的调用方仍能捕获。
+    """
+
+
+def _validate_coverage_year(coverage_year):
+    """coverage_year 入参校验 → 规范化后的值（None 或正整数）
+
+    口径：**None**（不按保障期限筛选）或**正整数**（单位：年）。
+    ⚠ 非法值（0 / 负数 / 非整数 / 布尔）→ **显式报错**（不静默忽略）。
+    """
+    if coverage_year is None:
+        return None
+    if isinstance(coverage_year, bool) or not isinstance(coverage_year, int):
+        raise CoverageYearError(
+            "coverage_year 必须是 None 或正整数（单位：年），实际收到：%r"
+            % (coverage_year,))
+    if coverage_year <= 0:
+        raise CoverageYearError(
+            "coverage_year 必须是正整数（单位：年），实际收到：%r" % (coverage_year,))
+    return coverage_year
+
+
+def _verified_coverage_duration(product, age=None):
+    """产品的**可验证**保障期限 → ("lifetime" | "years" | "unverifiable", years|None)
+
+    口径（只认**已验证**字段；无法验证 → 不得声称满足）：
+      · `coverage_period_is_lifetime is True` → 终身（满足任意年限）；
+      · `coverage_period_parse_quality ∈ {'parsed','parsed_long'}` 且
+        `coverage_period_duration_unit == 'year'`  → 年数 = duration_value；
+      · 同上且 `coverage_period_duration_unit == 'to_age'` → 年数 =
+        duration_value - age（如「至70周岁」、35 岁 → 35 年）；
+      · 其余（missing / ambiguous_term / 字段缺失 / 单位未知）→ **不可验证**。
+    """
+    if not isinstance(product, dict):
+        return ("unverifiable", None)
+    if product.get("coverage_period_is_lifetime") is True:
+        return ("lifetime", None)
+    quality = product.get("coverage_period_parse_quality")
+    if quality not in _COVERAGE_PERIOD_VERIFIED_QUALITIES:
+        return ("unverifiable", None)
+    unit = product.get("coverage_period_duration_unit")
+    value = product.get("coverage_period_duration_value")
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        return ("unverifiable", None)
+    if unit == _COVERAGE_PERIOD_UNIT_YEAR:
+        return ("years", value)
+    if unit == _COVERAGE_PERIOD_UNIT_TO_AGE:
+        if isinstance(age, bool) or not isinstance(age, int) or age <= 0:
+            return ("unverifiable", None)
+        years = value - age
+        if years <= 0:
+            return ("unverifiable", None)
+        return ("years", years)
+    return ("unverifiable", None)
+
+
+def _product_meets_coverage_year(product, coverage_year, age=None):
+    """该产品的**可验证**保障期限是否满足客户要求的年限 → bool
+
+    ⚠ 期限**无法验证** → **不得**声称满足（→ 排除）。
+    """
+    if coverage_year is None:
+        return True
+    status, years = _verified_coverage_duration(product, age)
+    if status == "lifetime":
+        return True
+    if status == "years":
+        return years >= coverage_year
+    return False
 
 
 def _extract_quality_hints(product):
@@ -243,7 +378,22 @@ def _pool_disclaimers(stats):
 
 
 def calculate_premium(product, age, gender, coverage_amount, payment_term=None, coverage_year=None):
-    """计算单一产品保费"""
+    """计算单一产品保费
+
+    Args:
+        coverage_year: 客户要求的**保障年限**（单位：年 · None = 不校验）。
+            ⚠ 官方 SDI-4 残余 AE-3：此参数**必须**真正生效 →
+            给定后**校验该产品的已验证保障期限是否满足该年限**
+            （`_product_meets_coverage_year`）→ 不满足 / 无法验证 →
+            抛 `CoverageYearError`
+            （**不再**留一个「声明了但完全不用」的参数）。
+    """
+    if coverage_year is not None:
+        coverage_year = _validate_coverage_year(coverage_year)
+        if not _product_meets_coverage_year(product, coverage_year, age):
+            raise CoverageYearError(
+                "产品「%s」的保障期限无法验证或不足 %d 年，不得用于该期限的报价"
+                % (product.get("name") or product.get("id") or "?", coverage_year))
     product_type = product.get("type")
 
     # 基础费率调整系数
@@ -317,15 +467,29 @@ def calculate_premium(product, age, gender, coverage_amount, payment_term=None, 
 
 def calculate_all_premiums(age, gender, coverage_amount, product_types=None, payment_term=None,
                            coverage_year=None, include_discontinued=False):
-    """计算所有符合条件的产品的保费（quality-aware + 停售过滤）
+    """计算所有符合条件的产品的保费（quality-aware + 停售过滤 + **保障期限筛选**）
 
     Args:
+        coverage_year: 客户要求的**保障年限**（单位：年 · None = 不按期限筛选）。
+            · 必须是 **None** 或**正整数** → 非法值**显式报错**
+              （`CoverageYearError`）→ **不得**静默忽略。
+            · 给定后**按产品库已验证的 `coverage_period_*` 字段筛选**产品
+              （终身 / 期限 ≥ 要求年限者保留；期限**无法验证**或不足者排除，
+              排除数量在 `_meta.coverage_year_filtered_out` **披露**）。
+            · 给定后**筛不出任何产品** → **显式报错**（`CoverageYearError`）
+              → 不得返回空列表假装成功。
+            · ⚠ 保费按各产品**自身**的权威费率计算（产品库**没有**按期限分档
+              的费率表 → **不**自造「期限加权系数」）→ 该限制在
+              `_meta.disclaimers` **显式披露**。
         include_discontinued: False=默认不返回已停售/已下架产品；
                               True=显式查询停售产品（含在结果中并标注）。
     """
+    coverage_year = _validate_coverage_year(coverage_year)
     products = load_products(include_discontinued=include_discontinued)
     stats = load_product_stats(include_discontinued=include_discontinued)
     pool_disclaimers = _pool_disclaimers(stats)
+    # ⚠ 官方 SDI-4 残余 AE-3：coverage_year **真实生效**（产品筛选）
+    coverage_filtered_out = 0
 
     results = {}
     for product in products:
@@ -338,6 +502,13 @@ def calculate_all_premiums(age, gender, coverage_amount, product_types=None, pay
         if age > 55 and product.get("type") in ["定期寿险", "储蓄险"]:
             continue  # 定期寿险55岁以上不推荐
         if age > 60 and product.get("type") == "意外险":
+            continue
+
+        # ⚠ 官方 SDI-4 残余 AE-3：coverage_year **真实生效**（产品筛选）
+        #   （期限**无法验证** / 不足要求年限 → **不得**声称满足 → 排除）
+        if coverage_year is not None and not _product_meets_coverage_year(
+                product, coverage_year, age):
+            coverage_filtered_out += 1
             continue
 
         # 计算保费
@@ -402,16 +573,39 @@ def calculate_all_premiums(age, gender, coverage_amount, product_types=None, pay
                 "is_discontinued": is_discontinued(product),
             }
 
+    returned_count = len([k for k in results if k != "_meta"])
+    # ⚠ 官方 SDI-4 残余 AE-3：给定 coverage_year 却**筛不出任何产品**
+    #   → **显式报错**（不得返回空列表假装成功）
+    if coverage_year is not None and returned_count == 0:
+        raise CoverageYearError(
+            "按保障期限 %d 年筛选后没有任何产品满足条件"
+            "（产品池 %d 款，其中 %d 款因保障期限无法验证或不足被排除）"
+            % (coverage_year, stats["eligible_products"], coverage_filtered_out))
+
+    # ⚠ 官方 SDI-4 残余 AE-3：**如实披露**保障期限口径与保费口径
+    coverage_disclaimers = []
+    if coverage_year is not None:
+        coverage_disclaimers.append(
+            "ℹ️ 保障期限筛选依据产品库已验证的 `coverage_period_*` 字段"
+            "（要求 ≥ %d 年）；已排除 %d 款保障期限无法验证或不足的产品"
+            % (coverage_year, coverage_filtered_out))
+        coverage_disclaimers.append(
+            "ℹ️ 保费按各产品自身费率计算，未按保障期限加权"
+            "（产品库无按保障期限分档的费率表）")
+
     # 🆕 I3：全部产品计数口径 + 停售排除说明（不影响单产品保费公式）
     results["_meta"] = {
         "total_products": stats["total_products"],
         "eligible_products": stats["eligible_products"],
-        "returned_products": len([k for k in results if k != "_meta"]),
+        "returned_products": returned_count,
         "discontinued_excluded": stats["discontinued_excluded"],
         "garbage_excluded": stats["garbage_excluded"],
         "duplicate_excluded": stats["duplicate_excluded"],
         "include_discontinued": include_discontinued,
-        "disclaimers": pool_disclaimers,
+        # ⚠ 官方 SDI-4 残余 AE-3：coverage_year 的**可观测**效果
+        "coverage_year": coverage_year,
+        "coverage_year_filtered_out": coverage_filtered_out,
+        "disclaimers": pool_disclaimers + coverage_disclaimers,
     }
 
     return results
@@ -490,8 +684,11 @@ def main():
             params.get("include_discontinued", False)
         )
     except Exception as e:
+        # ⚠ 官方 SDI-4 残余 AE-3：**显式拒绝**（非法 coverage_year /
+        #   按期限筛不出任何产品）→ 以**非零退出码**返回
+        #   （不得让「被拒绝」看起来像「成功」）。
         print(json.dumps({"error": str(e)}, ensure_ascii=False))
-        return 0
+        return 1
     print(json.dumps(results, ensure_ascii=False, indent=2))
     return 0
 

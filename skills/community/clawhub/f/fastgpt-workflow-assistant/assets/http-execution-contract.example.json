@@ -1,0 +1,27 @@
+{
+  "description": "local-r3 示例：只比较导出配置与异常接线；URL引用语法必须由目标实例回导或源码证实，本合同通过不证明平台支持。字段按候选映射。",
+  "cases": [
+    {
+      "name": "asset URL same source and catch",
+      "http_node": "assetQueryHttp",
+      "gate_node": "assetQueryGate",
+      "gate_url_input": "assetApiUrl",
+      "source": {
+        "reference": [
+          "VARIABLE_NODE_ID",
+          "assetApiUrl"
+        ]
+      },
+      "require_catch": true,
+      "error_targets": [
+        "assetErrorReply"
+      ],
+      "error_required_references": [
+        [
+          "assetQueryHttp",
+          "error"
+        ]
+      ]
+    }
+  ]
+}

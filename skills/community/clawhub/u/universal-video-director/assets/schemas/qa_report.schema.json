@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "qa_report",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "round",
+    "scores",
+    "hard_caps",
+    "issues",
+    "pass"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "qa_report"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "scores": {
+      "type": "object",
+      "required": [
+        "narrative",
+        "consistency",
+        "image_quality",
+        "camera",
+        "pacing",
+        "av_sync",
+        "captions",
+        "platform"
+      ],
+      "properties": {
+        "narrative": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "consistency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "image_quality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "camera": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "pacing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "av_sync": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "captions": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "platform": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    "hard_caps": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "identity_swap",
+          "limb_artifact",
+          "caption_unsafe",
+          "av_desync",
+          "text_garble",
+          "axis_break"
+        ]
+      }
+    },
+    "evidence_frames": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "severity",
+          "root_stage",
+          "target_ids",
+          "evidence",
+          "fix_hint"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "root_stage": {
+            "enum": [
+              "source",
+              "story",
+              "assets",
+              "staging",
+              "storyboard",
+              "video_prompts",
+              "production",
+              "edl"
+            ]
+          },
+          "target_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fix_hint": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "pass": {
+      "type": "boolean"
+    }
+  }
+}

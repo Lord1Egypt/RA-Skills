@@ -216,7 +216,7 @@ If a domain hook flags BLOCK, the overall preflight verdict is BLOCK regardless 
 | `**/billing*`, `**/payment*`, `**/invoice*` | Financial | Decimal precision correct, currency locale-aware, no hardcoded rates |
 | `*.tsx`, `*.jsx`, `*.svelte`, `*.vue`, `*.html` (with script/template content), `components/*` | UI/Frontend | Design token compliance, animation a11y, touch targets, visual hierarchy |
 | `skills/*/SKILL.md`, `extensions/*/PACK.md` | Rune Skill | Frontmatter valid, all required sections present, word count within layer budget |
-| `*.test.*`, `*.spec.*`, `__tests__/*` | Test Quality | No `.skip`/`.only` left in, assertions present (not empty tests), no hardcoded timeouts |
+| `*.test.*`, `*.spec.*`, `__tests__/*`, `tests/char/**`, `tests/holdout/**` | Test Quality | Enforced by the test-integrity hook (`rune verify --integrity`): no assertion removal, no new skips, no changed expected literals, no frozen-path edits. Also no `.only` left in, no empty tests. See [test-integrity-gate](rune-test/references/test-integrity-gate.md). |
 
 #### Domain Hook Execution
 
@@ -355,7 +355,7 @@ Invoke `rune-sentinel.md` on the changed files. Attach sentinel's output verbati
 - **KEEP** a finding you can neither verify nor disprove. "Unsure" is not grounds to drop; only counter-evidence is.
 - Dropped findings are discarded silently, never listed as considered-and-dismissed.
 
-Type each surviving finding `OBSERVED | DERIVED | ASSUMED` per `../completion-gate/references/claim-discipline.md`. An `ASSUMED` finding — one resting on a premise you could not check — names that premise and **never escalates the verdict to BLOCK on its own**. It reports as WARN with the premise stated.
+Type each surviving finding `OBSERVED | DERIVED | ASSUMED` per `rune-completion-gate/references/claim-discipline.md`. An `ASSUMED` finding — one resting on a premise you could not check — names that premise and **never escalates the verdict to BLOCK on its own**. It reports as WARN with the premise stated.
 
 **Anchor Pass second.** Every finding you collected in Steps 1-4 carries an evidence snippet, not a line number. Resolve each one now via the Anchor Ladder defined in `../review/SKILL.md` → Step 6: grep the exact snippet, retry once whitespace-normalised with the outer lines dropped, and on a second miss mark the finding `UNANCHORED`.
 
@@ -467,7 +467,7 @@ Findings under Logic Issues and Error Handling show their evidence block; the Re
 ~2000-4000 tokens input, ~500-1500 tokens output. Sonnet for logic analysis quality.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

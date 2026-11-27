@@ -12,8 +12,10 @@ Semantic + keyword search over the unified index.
 
 | param | type | required | description |
 |---|---|---|---|
-| `q` | string | yes | natural language or keywords (Dutch works best) |
+| `q` | string | no | natural language or keywords (Dutch works best); omit for catalogue browsing |
 | `type` | string | no | `auto` (default) · `neural` · `keyword` |
+| `sources` | string[] | no | combine exact sources, e.g. `sources=vavato,auctelia`; repeatable `source` also works |
+| `sort` | string | no | browse only (`q` empty): `newest` · `ending` · `price_asc` · `price_desc` |
 | `source` | string | no | exact origin: `2dehands` (2dehands.be platform incl. traders) · `troc` · `thinktwice` (Think Twice vintage) · `marktplaats` · `zoekertjes` · `kringwinkel` (thrift webshop + veilingsite, split by `listing_type`) · car-dealer domain (`autoscout24.be`, `gocar.be`, `mazdastock.be`, `vroom.be`, `autohero.com`, `irisautocenter.be`, `autocadre.com`) · auction house slug (`vavato`, `troostwijk`, `auctelia`, `belga-veilingen`, `vlavem`, `auctionport`, `openbare-verkopen`, `bopa`, `hammertime`, `veilbalie`, `komerco`, `lussis`, `bell-auction`, `industrial-auctions`, `appelboom`, `auctim`) · legacy bucket aliases: `2dehands`/`trader` → all tweedehands, `veiling` → all auctions |
 | `listing_type` | string | no | `tweedehands` (all second-hand) · `veiling` (all auction lots, every auction house) · `kringloop` (thrift stores) — repeatable for multiselect |
 | `category` | string | no | one of the 27 slugs (`computers`, `fietsen`, `boeken`, `verzamelen`, …). For ambiguous queries (`kaart`, `bank`, …) the server applies a category prior automatically; `resolvedCategory` / `resolvedCategorySource` in the response show whether it was `user` or `auto`. Pass `category` to override |
@@ -149,6 +151,15 @@ description (the watchlist feature on the site).
 - `POST /v1/alerts/update` with `{"id": 12}` plus one or more of
   `query_text`, `frequency` (`daily`/`weekly`) and `paused` (boolean).
 - `POST /v1/alerts/remove` with `{"id": 12}`.
+
+## Feedback
+
+- `POST /v1/feedback` with `{"message": "..."}` and optional `page`
+  (`"search"`, a URL, or tool context). Anonymous is allowed; max 5
+  messages per hour per IP; max 2000 characters. Use this when the user
+  asks to report a bug or share feedback. MCP clients can call
+  `send_feedback`. Both land in the same dashboard feedback table as the
+  website feedback bar.
 
 ## Own listings (login-gated, own ads only)
 

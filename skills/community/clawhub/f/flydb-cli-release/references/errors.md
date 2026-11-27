@@ -1,6 +1,6 @@
 # 错误码参考
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/errors.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/errors.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
 错误码是 Flydb 的稳定契约。CLI 会将异常映射为退出码，自动化系统可按错误码分类处理；消息中的脚本名、语句序号和行号用于定位问题。`--json` 模式下错误码进入 `error.code` 字段，schema 见 [JSON 输出参考](json-output.md)。
 
@@ -12,7 +12,7 @@
 | `FLYDB-1002` | 无法识别数据库类型 | URL 前缀或产品名不在支持矩阵，或探测有歧义 | 显式设置 `--database-type` |
 | `FLYDB-1003` | JDBC 驱动未找到 | 本地来源没有驱动、坐标/类名错误，或 Maven 私服认证/网络失败 | 按消息中的解析轨迹修正 settings/坐标，或将 JAR 放入提示的 `drivers/` |
 | `FLYDB-2001` | 非法版本号 | 版本未以数字开头、含空段/非法字符，或 `V`/`U` SQL 候选命名无法解析 | 使用 `V<版本>__<描述>.sql`；版本 token 可用点、下划线或连字符分隔 |
-| `FLYDB-2002` | 重复版本 | 多个脚本解析为同一版本 | 分配唯一版本号 |
+| `FLYDB-2002` | 重复版本 | 多个脚本解析为同一版本，或 `new` 的版本/目标文件已存在 | 分配唯一版本号 |
 | `FLYDB-2003` | 迁移校验不一致 | checksum 不一致、已应用脚本在当前迁移集合中 `MISSING`，或数据库历史版本相对本地为 `FUTURE` | 按详情分类处理；checksum 预期改动才执行 `repair`，`MISSING`/`FUTURE` 先检查 locations、CWD、路径过滤和代码版本 |
 | `FLYDB-2004` | 存在失败记录需 repair | 上次迁移留下 `success=false` | 修正脚本后先执行 `repair` |
 | `FLYDB-2005` | 旧式 R 前缀命名 | 发现 `R<version>__...sql` | 回退脚本改为 `U<version>__...sql`，可重复脚本改为 `R__...sql` |

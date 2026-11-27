@@ -81,11 +81,13 @@ LiteLLM regenerates its config on every `make run`/`make run-bg`, including only
 1. Free cloud (Groq, Cerebras, OpenRouter, HuggingFace, Mistral, Cohere) — rate-limited/capped, not unlimited.
 2. Subscription (claudebox, pibox-zai) — no per-token billing, but the allowance is metered.
 3. Pay-per-token (Anthropic, OpenAI) — real money per token.
-4. Local (Ollama, talkies, sd.cpp, vLLM, llama.cpp) — no external limits, bounded only by local hardware.
+4. Local (Ollama, talkies, Imagies, vLLM, llama.cpp) — no external limits, bounded only by local hardware.
 
-Model names encode the route, e.g. `groq-gpt-oss-120b`, `local-ollama-cpu-llama3.2-3b`, `local-sdcpp-cuda-sd-turbo`. On a rate-limit or failure, LiteLLM automatically retries the next model in that model's fallback chain; the response's `model` field reports who actually served it. Async/long-running calls can go through `/q/` (proxq) instead of the sync path — submit, get a job ID back immediately, poll `/q/__jobs/{id}`.
+Model names encode the route, e.g. `groq-gpt-oss-120b`, `local-ollama-cpu-llama3.2-3b`, `local-imagies-cuda-sd-turbo`. On a rate-limit or failure, LiteLLM automatically retries the next model in that model's fallback chain; the response's `model` field reports who actually served it. Async/long-running calls can go through `/q/` (proxq) instead of the sync path — submit, get a job ID back immediately, poll `/q/__jobs/{id}`.
 
 LiteLLM's resource manager serializes local jobs per hardware class and asks competing services to unload. Aigate's Decidealot launcher shares that Redis lock for Laya and Von, including direct REST, MCP, and batch items. Before CUDA inference it unloads Aigate's local llama.cpp encoder. CLM takes no outer lock because its nested LiteLLM embeddings call owns admission. Remote embeddings remain the remote service's responsibility. This launcher does not evict every other resident GPU service. Direct audiolla, flickies, and predictalot HTTP requests still bypass LiteLLM admission. `POST /v1/unload/{cuda,cpu}` requests manual cleanup across that hardware class. See [resource management](../../../../docs/resource-management.md).
+
+Local image generation runs in Imagies. Set `IMAGIES=1` for CPU or `IMAGIES_CUDA=1` for NVIDIA. Both profiles reuse the weights in `DATA_DIR_IMAGIES` (default `.data/imagies`). The gateway exposes model IDs such as `local-imagies-cpu-sd-turbo`. Use `IMAGIES_GENERATION_CPU_IMAGE` or `IMAGIES_GENERATION_CUDA_IMAGE` to point Aigate at a prebuilt or pinned Imagies image.
 
 ## Data / persistence
 

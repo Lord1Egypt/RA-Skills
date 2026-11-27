@@ -1,0 +1,141 @@
+{
+  "model": "qwen-plus",
+  "provider": "dashscope",
+  "temperature": 1.0,
+  "repeat": 3,
+  "_note": "由 calibrate.py 自动生成于 2026-11-26 02:35。只保留了 3/3 通过的题。_chars_* 字段是实测字数区间，可作基线参考。",
+  "tasks": [
+    {
+      "id": "arith1",
+      "prompt": "13 乘以 17 等于多少？只输出数字。",
+      "check": {
+        "type": "contains",
+        "any": [
+          "221"
+        ]
+      }
+    },
+    {
+      "id": "percent",
+      "prompt": "一件商品原价 240，先打八折，再降 15%，最终价格是多少？只输出数字。",
+      "check": {
+        "type": "contains",
+        "any": [
+          "163.2",
+          "163"
+        ]
+      }
+    },
+    {
+      "id": "fib",
+      "prompt": "用 Python 写 fib(n)，返回第 n 个斐波那契数（fib(0)=0, fib(1)=1）。只输出代码。",
+      "check": {
+        "type": "python",
+        "code": "assert fib(0)==0\nassert fib(1)==1\nassert fib(10)==55\nassert fib(20)==6765"
+      }
+    },
+    {
+      "id": "rev",
+      "prompt": "用 Python 写 rev(s)，返回字符串倒序。只输出代码。",
+      "check": {
+        "type": "python",
+        "code": "assert rev('abc')=='cba'\nassert rev('')==''\nassert rev('a')=='a'"
+      }
+    },
+    {
+      "id": "is_pal",
+      "prompt": "用 Python 写 is_pal(s)，判断字符串是否回文（忽略大小写）。只输出代码。",
+      "check": {
+        "type": "python",
+        "code": "assert is_pal('Aa')==True\nassert is_pal('ab')==False\nassert is_pal('A man')==False"
+      }
+    },
+    {
+      "id": "dedupe",
+      "prompt": "用 Python 写 dedupe(xs)，去除重复且保持原顺序。只输出代码。",
+      "check": {
+        "type": "python",
+        "code": "assert dedupe([1,2,1,3])==[1,2,3]\nassert dedupe([])==[]"
+      }
+    },
+    {
+      "id": "json1",
+      "prompt": "输出 JSON：name=\"test\", count=42, ok=true。只输出 JSON。",
+      "check": {
+        "type": "json",
+        "expect": {
+          "name": "test",
+          "count": 42,
+          "ok": true
+        }
+      }
+    },
+    {
+      "id": "json2",
+      "prompt": "输出 JSON 数组，含三个对象，每个有 id（1,2,3）和 tag（都等于 \"x\"）。只输出 JSON。",
+      "check": {
+        "type": "regex",
+        "pattern": "\"id\"\\s*:\\s*[123]",
+        "at_least": 3
+      }
+    },
+    {
+      "id": "list10",
+      "prompt": "列出 10 个提高代码可读性的具体做法，每条一行，带编号。不要解释。",
+      "check": {
+        "type": "regex",
+        "pattern": "^\\s*\\d+[.、)]",
+        "at_least": 10
+      }
+    },
+    {
+      "id": "steps5",
+      "prompt": "用 5 个带编号的步骤说明「如何开始写一个 Python 函数」。每步一行，不要解释。",
+      "check": {
+        "type": "regex",
+        "pattern": "^\\s*\\d+[.、)]",
+        "at_least": 5
+      }
+    },
+    {
+      "id": "limit",
+      "prompt": "用不超过 8 个字回答：水的化学式是什么？只输出答案本身。",
+      "check": {
+        "type": "contains",
+        "any": [
+          "H2O",
+          "H₂O"
+        ]
+      }
+    },
+    {
+      "id": "no_explain",
+      "prompt": "只输出「是」或「否」：1 是质数吗？不要解释。",
+      "check": {
+        "type": "regex",
+        "pattern": "^(是|否)$",
+        "at_least": 1
+      }
+    },
+    {
+      "id": "case",
+      "prompt": "把「hello world」全部变成大写，只输出结果，不要解释。",
+      "check": {
+        "type": "exact",
+        "value": "HELLO WORLD"
+      }
+    },
+    {
+      "id": "translate",
+      "prompt": "把「谢谢」翻译成英文，只输出一个词。",
+      "check": {
+        "type": "contains",
+        "any": [
+          "thanks",
+          "thank you",
+          "Thanks"
+        ]
+      }
+    }
+  ]
+}

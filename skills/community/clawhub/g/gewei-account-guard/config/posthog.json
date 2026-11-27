@@ -1,0 +1,6 @@
+{
+  "enabled": false,
+  "trackId": "zhini-skill-matrix",
+  "host": "https://us.i.posthog.com",
+  "projectToken": ""
+}

@@ -1,0 +1,84 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_cohort-strobe.json --gate strict -o flow_cohort-strobe.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "队列研究参与者流程（STROBE 范式）：源人群→排除→暴露/非暴露两队列平行随访→结局确定→回归分析。排除框（document 形）虚线挂出。n=… 为占位符，非数据。",
+ "layout": "layered",
+ "title": "STROBE cohort study participant flow",
+ "nodes": [
+  {
+   "id": "source",
+   "label": "Source population",
+   "sublabel": "national registers",
+   "shape": "terminal"
+  },
+  {
+   "id": "excl",
+   "label": "Excluded",
+   "sublabel": "invalid linkage (n = )",
+   "shape": "document"
+  },
+  {
+   "id": "expo",
+   "label": "Exposed cohort",
+   "sublabel": "dispensed prescription"
+  },
+  {
+   "id": "unexp",
+   "label": "Unexposed cohort",
+   "sublabel": "matched on age and sex"
+  },
+  {
+   "id": "fu",
+   "label": "Follow-up",
+   "sublabel": "through registers"
+  },
+  {
+   "id": "events",
+   "label": "Outcome events",
+   "sublabel": "ascertained blinded"
+  },
+  {
+   "id": "analysis",
+   "label": "Cox regression",
+   "sublabel": "adjusted HR (95% CI)",
+   "shape": "terminal"
+  }
+ ],
+ "edges": [
+  {
+   "from": "source",
+   "to": "excl",
+   "dashed": true
+  },
+  {
+   "from": "source",
+   "to": "expo",
+   "thick": true
+  },
+  {
+   "from": "source",
+   "to": "unexp"
+  },
+  {
+   "from": "unexp",
+   "to": "fu"
+  },
+  {
+   "from": "expo",
+   "to": "fu",
+   "thick": true
+  },
+  {
+   "from": "fu",
+   "to": "events",
+   "thick": true
+  },
+  {
+   "from": "events",
+   "to": "analysis"
+  }
+ ]
+}

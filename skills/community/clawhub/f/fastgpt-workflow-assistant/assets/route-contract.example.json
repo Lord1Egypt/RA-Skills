@@ -1,0 +1,9 @@
+{
+  "scope": "static graph only; replace example IDs and handles with the actual export",
+  "terminal_nodes": ["queryReply", "checkReply", "hintReply"],
+  "cases": [
+    {"name": "query branch must not reach check", "source": "router", "source_handle": "router-source-query", "required_nodes": ["queryHttp", "queryReply"], "forbidden_nodes": ["checkHttp"]},
+    {"name": "check branch", "source": "router", "source_handle": "router-source-check", "required_nodes": ["checkHttp", "checkReply"], "forbidden_nodes": ["queryHttp"]},
+    {"name": "fallback has no HTTP", "source": "router", "source_handle": "router-source-ELSE", "required_nodes": ["hintReply"], "forbidden_nodes": ["queryHttp", "checkHttp"]}
+  ]
+}

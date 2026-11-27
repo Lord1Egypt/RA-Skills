@@ -1,6 +1,6 @@
 {
   "name": "reorder_tasks",
-  "description": "Reorder tasks for a specific day",
+  "description": "Save a new order for the user's Sunsama tasks on one day, given the full list of task IDs in the desired order. WRITE - this changes the stored order the user sees in Sunsama. Use it only when the user asked to reorder that day's Sunsama tasks; to present tasks in a different order in your answer, just sort them yourself and do not call this tool. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

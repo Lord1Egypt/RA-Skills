@@ -2,7 +2,7 @@
 name: douyin-bluesea-collector
 description: "抖音蓝海爆品采集：结合抖音热搜榜与关键词下的视频数据，从小众高需求的细分场景切入找蓝海爆品，避开红海大词竞争。当用户要在抖音找蓝海品、避开大词竞争、从细分场景选品、看抖音热搜、按关键词看视频热度时必须触发。关键词：抖音、蓝海、爆品、细分场景、热搜榜、关键词、选品。 支持五大能力： (1) 关键词搜索视频/图文，可按点赞数、发布时间、时长、内容类型筛选排序； (2) 实时热榜查询，获取抖音热搜词条与热度数据； (3) 单条作品详情，按视频链接或 aweme_id 获取文案、互动与作者；(4) 博主作品抓取，按主页链接或 sec_uid 获取公开作品列表； (5) 视频评论分析，按视频链接或 aweme_id 获取评论内容与互动数据；评论需求/痛点挖掘（取评后见 demand-mining）。 Use when: 用户需要搜抖音视频、查抖音热榜/热搜、抓取博主作品列表、分析视频评论区、做短视频选题/竞品分析/舆情监控/热点追踪/爆款挖掘/抖音运营数据分析。 Do NOT use when: 平台非抖音（小红书/B站/微博→对应技能）、需登录态或私密数据、仅要文案创作不需数据查询、既无关键词也无可识别链接且目标不明（先追问）。 触发词：抖音搜索、抖音热榜、抖音评论、抖音博主、抖音竞品分析、短视频选题、抖音舆情、抖音数据分析、douyin search、douyin analytics、douyin comment。"
 license: MIT
-version: 1.5.0
+version: 1.5.1
 metadata:
   openclaw:
     emoji: "🎬"
@@ -128,10 +128,11 @@ metadata:
 
 ## 1. ⚠️ 执行前置（每次必过）
 
-1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/douyin/*.js`。
+1. **先 `cd` 到本 SKILL.md 所在目录**，再执行 `node src/douyin/*.js`（或用绝对路径，见 [faq.md](references/faq.md)）。
 2. **确认 `GUAIKEI_API_TOKEN` 已配置**。未配置 → 不执行，走 `AUTH_REQUIRED`（见 §7 / [errors.md](references/errors.md)），禁止先跑「试试看」。
 3. **一次只跑一条命令，等进程自己结束**。查询最多约 20 次退避；`--limit` 很大时最长约 22 分钟。**未退出前不要判定失败，不要并发/重复同一命令。**
 4. **必填参数不齐先追问**（话术见 [ask.md](references/ask.md)），禁止猜测关键词或链接。
+5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
 > 开通[抖音蓝海爆品采集助手](https://www.guaikei.com) TOKEN， 配 TOKEN / 落盘 / FAQ → [faq.md](references/faq.md)。
 
@@ -148,7 +149,7 @@ metadata:
 | 销售 / 增长 | 按关键词在评论区挖高意向线索 | `search`→`comment`，再读 [customer-acquisition.md](references/customer-acquisition.md) |
 | 所有人 | 今天抖音在火什么 | `hot-cli.js` |
 
-**典型产出**：结构化 JSON（标题、作者、互动、链接、时间），可导入 Excel/BI 或交给 AI 做选题/竞品/舆情/线索表。结果落盘到技能目录 `logs/`（热榜除外）。
+**典型产出**：结构化 JSON（标题、作者、互动、链接、时间），可导入 Excel/BI 或交给 AI 做选题/竞品/舆情/线索表。默认不落盘；需要留底时加 `--save` 或设 `GUAIKEI_ENABLE_LOG=1`（热榜除外，见 [faq.md](references/faq.md)）。
 
 **为什么用它**：无需登录抖音；零第三方依赖；按量单次最多 1 万条；stdout 纯 JSON、日志走 stderr。
 
@@ -172,6 +173,7 @@ metadata:
 ## 4. 🛠️ 命令一行例（详参下沉）
 
 > **详参 / 枚举**：可视化浏览查看 [options.md](references/options.md)；也可参见 [readme.md](readme.md)（含命令参数详表）。**仅在需要确认枚举或拼参时再读，不要每次都读。**
+> **Windows**：cmd **只用双引号**；PowerShell 含空格也优先双引号。仍拆坏或弱模型 → `--json-args`。双壳例 → [faq.md](references/faq.md)。
 
 ```bash
 node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --limit 10
@@ -181,6 +183,20 @@ node src/douyin/post-cli.js --url "https://www.douyin.com/user/MS4wLjABxxx" --li
 node src/douyin/comment-cli.js --url "https://www.douyin.com/video/xxx" --limit 40
 node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"
 node src/douyin/hot-cli.js
+```
+
+**Windows 双壳（同一条搜索，先 cd 到技能目录）**：
+
+```bat
+REM cmd —— 参数必须用双引号；也可用 --json-args（内层 \"）
+node src\douyin\search-cli.js --keyword "AI 教程" --sort 1 --limit 10
+node src\douyin\search-cli.js --json-args "{\"keyword\":\"AI 教程\",\"sort\":1,\"limit\":10}"
+```
+
+```powershell
+# PowerShell —— 含空格/中文同样用双引号；或改用 --json-args（外单内双）
+node src/douyin/search-cli.js --keyword "AI 教程" --sort 1 --limit 10
+node src/douyin/search-cli.js --json-args '{"keyword":"AI 教程","sort":1,"limit":10}'
 ```
 
 **数量 / 套餐**：未指定 `--limit` 默认 10；不要擅自抓 10000。技能硬上限 10000（按量）。**包月**超限 → `PLAN_LIMIT`：视频搜索/用户搜索/作品 ≤30，评论 ≤50；详情与热榜无此条数限制。
@@ -206,7 +222,7 @@ node src/douyin/hot-cli.js
 
 ## 6. 📜 输出（摘要）
 
-- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。
+- stdout = 统一 JSON 信封；stderr = 日志。向用户**只摘关键字段**，勿整份粘贴。取数成功/empty 时信封顶层可能有 `cost`（花费估算，见 [contract.md](references/contract.md)）。
 - `status=empty` + `NO_MATCH` 退出码 0，**不是失败**。
 - `results`：搜/用户/评论/热榜 = 数组；作品 = `{post,user}`；详情 = 单对象。
 

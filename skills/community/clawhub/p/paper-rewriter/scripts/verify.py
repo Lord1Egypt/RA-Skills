@@ -388,10 +388,23 @@ def main():
         except OSError as e:
             print("错误: 豁免清单不可读（%s）" % e, file=sys.stderr)
             sys.exit(2)
+        _regexes, _plain = [], []
+        for _w in _allow:
+            if _w.startswith("re:"):
+                try:
+                    re.compile(_w[3:])
+                    _regexes.append(_w[3:])
+                except re.error as _pe:
+                    print("错误: 豁免清单坏正则 %r（%s）" % (_w, _pe), file=sys.stderr)
+                    sys.exit(2)
+            else:
+                _plain.append(_w)
         _kept, _moved = [], []
         for _v in r.get("violations", []):
             _det = _v.get("detail", "")
-            if any(_w in _det for _w in _allow):
+            _hit = any(_w in _det for _w in _plain) \
+                or any(re.search(_rx, _det) for _rx in _regexes)
+            if _hit:
                 _v = dict(_v, allowlisted=True)
                 _moved.append(_v)
             else:

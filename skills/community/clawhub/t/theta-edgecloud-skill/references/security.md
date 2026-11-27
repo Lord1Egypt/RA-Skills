@@ -6,18 +6,19 @@ mocked transports. They never make real attacks or real network calls.
 ## Controls
 
 - Packaging: the runtime ships as one unminified bundle, `dist/index.js`, built from `src/` by
-  `npm run build` (TypeScript, then esbuild). It exports only `executeThetaRuntimeCommand`,
+  `npm run build` (TypeScript, then Rollup, which keeps the source comments). It exports only `executeThetaRuntimeCommand`,
   `listThetaRuntimeCommands`, `thetaRuntimeCommandSchemas`, `thetaCommandRequiresConfirm` and the
   read-only `theta()` facade; internal transports, configuration readers and policy lists are not
   exported from it. `src/` is included for review. Only `dist/index.js` is the supported runtime
   entry point.
 - No runtime dependencies, shell execution, wallet or chain signing, local RPC adapters or local
-  file reads. This package defines no install hooks. Development installs use
-  `npm ci --ignore-scripts`.
+  file reads. This package defines no install hooks. Development installs run npm install with
+  lifecycle scripts disabled (the exact command is in README.md). The build tools (TypeScript
+  and Rollup) are pinned to exact versions.
 - Origins:
   - On-demand accepts only `https://ondemand.thetaedgecloud.com`.
   - Dedicated inference accepts HTTPS subdomains of `thetaedgecloud.com` or
-    `onthetaedgecloud.com`. The latter also hosts other customers' deployments, so configure
+    `onthetaedgecloud.com`. The latter also hosts deployments of other customers, so configure
     only your own endpoint. A caller cannot replace the operator-configured endpoint (the runtime
     command handlers reject request-level overrides), and Basic auth is never reused for a
     different origin. Internally, disposable validation probes its own newly created endpoint

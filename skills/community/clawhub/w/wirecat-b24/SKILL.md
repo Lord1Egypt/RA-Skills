@@ -41,7 +41,7 @@ and lists the profiles in `details.profiles`. **Never pick one for the owner**; 
   b24 work deals list status:open --json=ref,title,stage,amount,currency
   b24 work deals show deal:12 --json               # the deal, its contacts, owner and stage history
   b24 work people show "Anna Ivanova" --json       # a contact live from the portal, by id or exact name
-  b24 work search all kitchen --json               # stored deals and leads beside messages and notes
+  b24 work search all "who complained of delays" --json  # by meaning too, after sync --embed
   ```
 
 - **Ids are strings.** Pass `deal:12` and `"57164"` back unchanged; never turn one into a number.
@@ -52,6 +52,7 @@ and lists the profiles in `details.profiles`. **Never pick one for the owner**; 
   and still exit `0`: read `complete`, `scope` and `issues`; answer "unknown", not "none", for what they name.
   `search all` names in `missing` a kind it did not search. Before you say something is not there, search in other
   words, and `sync` if the store is old.
+- **Ask `search all` by meaning first:** [reading](references/reading.md#by-meaning).
 - **Won or lost is `status`, never the stage's name** (leads stand in one pipeline, `Leads`). `fields list` is as old
   as the last `sync`.
 - **Never infer what Bitrix24 does not hold:** contact roles on a deal, reporting lines between contacts, a parent

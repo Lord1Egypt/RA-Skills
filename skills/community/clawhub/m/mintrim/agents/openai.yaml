@@ -1,0 +1,6 @@
+interface:
+  display_name: "Mintrim"
+  short_description: "Trim filler from the last message without polishing"
+  default_prompt: "Use $mintrim to clean up the last message in its original wording without polishing."
+policy:
+  allow_implicit_invocation: false

@@ -1,5 +1,12 @@
 # Contribute to the catalog
 
+[Submit your Product](https://www.openagentguide.com/submit-your-product.md)
+explains both contribution paths. To request research without an account, use
+the public form with a product name, homepage URL, description, and private
+notification email, or email <support@openagentguide.com>. A product research
+request is separate from a catalog submission and does not guarantee inclusion.
+For direct catalog submissions, follow the authenticated workflow below.
+
 Use this workflow only when the user's task authorizes catalog changes. Read the
 references for the fields you are changing; unrelated field guides are optional.
 Catalog reads and product decisions require no contribution.

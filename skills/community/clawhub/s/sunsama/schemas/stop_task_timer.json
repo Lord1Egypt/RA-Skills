@@ -1,6 +1,6 @@
 {
   "name": "stop_task_timer",
-  "description": "Stop the timer for a task",
+  "description": "Stop the running Sunsama timer on one existing Sunsama task, which records the tracked time. WRITE - the tracked time is saved to the task. Use it only when the user asked to stop timing that specific Sunsama task. It does not stop timers in other apps, and it does not mark the task complete (use mark_task_as_completed).",
   "inputSchema": {
     "type": "object",
     "properties": {

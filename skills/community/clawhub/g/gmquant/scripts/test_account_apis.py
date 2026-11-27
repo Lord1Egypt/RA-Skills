@@ -3,13 +3,13 @@
 使用 MODE_BACKTEST 模式，不依赖实时行情
 """
 
-import sys
+import sys, os
 import io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 from gm.api import *
 
-TOKEN = 'c2a347464c31056c84165dff766750fbf2ec67b4'
+TOKEN = os.environ.get('GM_TOKEN', '')
 
 results = []
 

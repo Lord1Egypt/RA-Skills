@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!-- Minimal html-import example (960x540 canvas, fictional demo content). Import with:
+     python3 -m engine design html-import --task-dir "$TASK" --page page-1 --file indicator-columns.html --assume-checked
+     The structure is a transferable technique, not a template to copy verbatim. -->
+<html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+#slide{position:relative;width:960px;height:540px;background:#F4F5F9;font-family:'Inter','Noto Sans CJK SC',sans-serif;color:#1E2235}
+.abs{position:absolute}
+.title{left:32px;top:28px;font:700 28px/36px 'Noto Sans CJK SC'}
+.sub{right:32px;top:40px;font:400 12px/18px 'Noto Sans CJK SC';color:#6B7084;white-space:nowrap}
+.col{top:88px;width:438px;height:416px;background:#fff;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.bar{width:40px;height:4px}
+.name{font:700 14px/20px 'Noto Sans CJK SC'}
+.kpi{font:700 34px/38px 'Inter','Noto Sans CJK SC'}
+.fx{background:#F7F8FC;border-left:3px solid #4B4FD6;border-radius:6px;padding:6px 10px;font:700 11px/16px 'Noto Sans CJK SC'}
+.def{font:400 10px/15px 'Noto Sans CJK SC';color:#6B7084}
+table{border-collapse:collapse;width:406px}
+td,th{font:400 10.5px/15px 'Inter','Noto Sans CJK SC';text-align:right;padding:2px 6px;border-bottom:1px solid #E6E8F0}
+th{color:#6B7084;font-size:9.5px}
+.l{text-align:left}
+tr.hl td{background:#EEF0FB;color:#4B4FD6;font-weight:700}
+.foot{left:32px;top:514px;font:400 9px/14px 'Noto Sans CJK SC';color:#A0A4B8}
+</style></head><body><div id="slide">
+  <div class="abs title" data-cid="demo-title">示例指标双列</div>
+  <div class="abs sub" data-authored>每列：指标 → 趋势 → 公式 → 明细</div>
+
+  <div class="abs col" style="left:32px">
+    <div class="bar" style="background:#4B4FD6"></div>
+    <div class="name">按时交付率</div>
+    <div class="kpi" style="color:#4B5BE0" data-authored>92%</div>
+    <div data-chart='{"type":"line","categories":["1月","2月","3月"],"min":80,"max":100,"major":5,
+         "series":[{"name":"按时交付率（%）","values":[88,90,92],"color":"4B4FD6","area":true}]}'
+         style="width:406px;height:120px;background:#FBFBFE"></div>
+    <div class="fx">按时交付率 = 按时交付订单数 / 到期订单数</div>
+    <div class="def">统计粒度：到期订单；按冻结承诺日判断。</div>
+  </div>
+
+  <div class="abs col" style="left:490px">
+    <div class="bar" style="background:#2BB9A9"></div>
+    <div class="name">流向示例</div>
+    <svg data-native-svg width="406" height="90" viewBox="0 0 406 90">
+      <path d="M0,10 C200,10 200,50 406,50 L406,70 C200,70 200,30 0,30 Z" fill="#2BB9A9" fill-opacity="0.5"/>
+    </svg>
+    <table>
+      <tr><th class="l">形态</th><th>周转次数</th><th>库存天数</th></tr>
+      <tr><td class="l">原料</td><td>5.2</td><td>70</td></tr>
+      <tr class="hl"><td class="l">成品</td><td>4.3</td><td>85</td></tr>
+    </table>
+  </div>
+
+  <div class="abs foot" data-authored>演示数据，非实际业绩</div>
+</div></body></html>

@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "抖音用户搜索 - results 元素",
+    "description": "用户搜索成功时 results 数组中的一条。字段与后端一致；有 sec_uid 时技能会补 author_url。空字符串和数字 0 可能不返回。整份 stdout 见 output_envelope.schema.json。",
+    "properties": {
+        "sec_uid": {
+            "type": "string",
+            "description": "用户 sec_uid，可用于 post-cli"
+        },
+        "nickname": {
+            "type": "string",
+            "description": "昵称"
+        },
+        "avatar": {
+            "type": "string",
+            "description": "头像 URL"
+        },
+        "fans": {
+            "type": "number",
+            "description": "粉丝数"
+        },
+        "like": {
+            "type": "number",
+            "description": "获赞数"
+        },
+        "publish_cnt": {
+            "type": "number",
+            "description": "作品数"
+        },
+        "author_url": {
+            "type": "string",
+            "description": "技能补全的主页链接 https://www.douyin.com/user/{sec_uid}"
+        }
+    },
+    "additionalProperties": true
+}

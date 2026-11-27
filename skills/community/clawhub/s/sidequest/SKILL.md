@@ -1,7 +1,7 @@
 ---
 name: sidequest
-description: "SideQuest: Hire Real People. Use when a task needs a real person: calling a business, checking a store, inspecting an item or vehicle, a pickup or return, waiting in line, first-person video for AI training, translation, or human review of AI output. Funds are held in escrow and released when you approve the proof."
-version: 1.0.2
+description: "SideQuest: Hire Real People. Use when a task needs a real person: calling a business, checking a store, inspecting an item or vehicle, a pickup or return, waiting in line, first-person video for AI training, translation, or human review of AI output. Sends the task brief and location to SideQuest and the quester who does it. Funds are held in escrow and released when you approve the proof, or automatically 72 hours after proof is submitted if you neither approve nor dispute."
+version: 1.0.3
 metadata:
   openclaw:
     requires:
@@ -31,10 +31,10 @@ curl -X POST https://sidequestpays.com/v1/requesters -H 'content-type: applicati
 curl -X POST https://sidequestpays.com/v1/requesters/confirm -H 'content-type: application/json' \
   -d '{"email":"you@example.com","code":"123456"}'
 ```
-2. Top up a prepaid balance so the agent can post without a checkout step:
+2. Optional, done by the account owner, never by the agent: add prepaid funds so the agent can post without a checkout step. The owner picks the amount and pays the returned checkout link themselves. Skip this to pay for each quest at checkout instead.
 ```bash
 curl -X POST https://sidequestpays.com/v1/balance/topup -H "X-API-Key: $OWNER_KEY" \
-  -H 'content-type: application/json' -d '{"amount_usd":50}'
+  -H 'content-type: application/json' -d '{"amount_usd":AMOUNT_THE_OWNER_CHOOSES}'
 ```
 3. Create a capped agent key and set it as `SIDEQUEST_API_KEY`:
 ```bash
@@ -55,10 +55,15 @@ Add `"requires_approval": true` to approve each quest by email before it is paid
 | `pickup_dropoff` | Small item pickup and drop-off | Photos at both ends, receipt |
 | `inspect_item` | Look at an item in person against a checklist | Photos, checklist answers |
 | `be_present` | Be somewhere for a set time (line, sign, table) with timed check-ins | Timestamped check-ins |
+| `video_capture` | Remote. First-person video of an everyday task for AI training | Video recorded in the app |
 
 ```bash
 curl https://sidequestpays.com/v1/templates
 ```
+
+## Privacy
+
+Everything in a quest (the brief, the address or coordinates, phone numbers, and names) is sent to SideQuest and shown to the quester who accepts it. Tell the user this before posting, and include only what the quester needs to do the task. Never include passwords, payment details, ID numbers, or health information.
 
 ## Before posting
 
@@ -110,7 +115,7 @@ curl -X POST https://sidequestpays.com/v1/quests/QUEST_ID/approve -H "X-API-Key:
 curl -X POST https://sidequestpays.com/v1/quests/QUEST_ID/dispute -H "X-API-Key: $SIDEQUEST_API_KEY" \
   -H 'content-type: application/json' -d '{"reason":"The quote does not say whether labor is included"}'
 ```
-Submitted quests are approved automatically after 72 hours, so review promptly.
+Escrow release: if you neither approve nor dispute within 72 hours of submission, the quest is approved automatically and the quester is paid. Tell the user this when you post, and review proof promptly.
 
 Cancel before anyone claims it for a full refund:
 ```bash

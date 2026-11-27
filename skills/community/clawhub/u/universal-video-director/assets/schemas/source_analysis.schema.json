@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "source_analysis",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "mode",
+    "verdict",
+    "immutable_facts"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "source_analysis"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "mode": {
+      "enum": [
+        "idea",
+        "novel",
+        "script",
+        "reference_video"
+      ]
+    },
+    "verdict": {
+      "type": "object",
+      "required": [
+        "worth_adapting",
+        "reason"
+      ],
+      "properties": {
+        "worth_adapting": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    "immutable_facts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "hidden_suspense": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "summary"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hook_strength": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "episode_plan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "episode",
+          "source_range",
+          "core_conflict"
+        ],
+        "properties": {
+          "episode": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_range": {
+            "type": "string",
+            "minLength": 1
+          },
+          "core_conflict": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cliffhanger": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "avg_shot_sec": {
+          "type": "number"
+        },
+        "dialogue_density": {
+          "type": "number"
+        },
+        "hook_sec": {
+          "type": "number"
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

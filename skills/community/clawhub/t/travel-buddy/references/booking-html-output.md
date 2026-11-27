@@ -168,11 +168,8 @@ working the moment there are two stops:
   enum as the flat answer. The records were required and covered for three releases and printed
   nowhere, so the traveller saw one country's answer on a three-country trip. `validate_trip_html.py
   --plan` now refuses a page missing any jurisdiction's row.
-- **The service market is per stop, so the map rule is per day.** It used to be one page-wide flag.
-  Measured: turn the last two days of a Shenzhen trip into a Hong Kong leg with Google Maps links --
-  the correct provider there, since Amap is not the tool for Hong Kong transit -- and the gate
-  produced eighteen findings telling those Hong Kong days to use Amap. The traveller's only ways
-  out were wrong links for half the trip or no delivered page at all. A day now takes the
+- **The service market is per stop, so the map rule is per day.** A Shenzhen trip with a Hong Kong leg needs Google
+  Maps links on the Hong Kong days, since Amap is not the tool for Hong Kong transit. A day takes the
   jurisdiction of the stay it sleeps at and falls back to the trip's own market, which is what
   keeps every single-market plan unchanged. `google_services_access` is relaxed for a non-mainland
   day only when the trip's own market is the mainland, so a plan marked unavailable for some other
@@ -192,6 +189,7 @@ For every option included in the page, show provider, option name, price/range a
 - **Flights:** include the intended origin/destination, explicit outbound and return dates, cabin/baggage assumptions, per-person round-trip fare range/currency, price status/check time, availability status, conditions, and a live provider or verified search-result link. Each candidate must expose both legs separately: operating flight/service identifier, local departure/arrival times, duration, stops/layover, and terminal or connection note. Include the airport-to-city transfer burden so a cheap-looking flight cannot hide an impractical arrival. Normally show two comparable candidates; one is allowed only with a researched `single_option_reason`. A round-trip button must carry machine-readable `origin`, `destination`, `outbound_date`, `return_date`, and `travellers` prefill fields as well as the visible dates; do not hand-build a provider deep-link pattern or label a fare available until rechecked. `kiwi_flights.py` fills these fields from Kiwi.com's public flight search. Kiwi's own booking link is never used — it resolves to an affiliate checkout page, which the rule above forbids. Its dated search page is used for the first card only, and only when the page's title confirms both cities; the card then carries `origin_place_id`/`destination_place_id` (Kiwi's city keys) so the prefilled-field check can confirm origin and destination in the URL. A second card needs a dated search on another platform, because two options may not open the same page.
 - **Rail, coach and ferry:** required whenever the trip has a ticketed intercity leg, in `booking_options.ground_transport`, and held to exactly the flight standard above. Include both stations, both dates, an outbound and a return itinerary each naming the service, its local times, duration, number of changes and where they happen, the fare conditions (refundable? changeable? is a seat reservation compulsory or extra?), a per-person round-trip fare range with its price status and check time, availability, and a `station_transfer_note` saying how the traveller gets from the arrival station into town — the ground analogue of the airport-transfer note, so a cheap fare cannot hide an impractical arrival. Render a verified round-trip search button whose prefill fields carry origin, destination, both dates and travellers. Two optional display fields, `travel_class` and `seat_reservation`, print beside the dates in the slot a flight uses for cabin and baggage; supply them when the answer is not obvious. "Exactly the flight standard" is literal, not a figure of speech: the same three comparison rules apply — two comparable candidates or a researched `single_option_reason`, distinct non-empty `id`s, and no two candidates sharing a `review_url`. This category exists because a rail trip's largest and most time-sensitive purchase previously had no card at all: the page compared three hotels and offered no way to reach, price or availability-check the train. `validate_plan` derives the requirement when `trip.arrival_transport_mode` is `rail`, or is `road` between two different places on public transit; a mid-trip city hop on a fly-in trip is invisible to that test, so pass `--require-booking-type ground` yourself in that case.
 - **Accommodation:** normally offer two to three comparable options in the same `stay_group_id`, calibrated to budget and accessibility; one option is allowed only with a researched reason (for example, a remote town or the user already selected the property). A different neighborhood label must not be used to bypass the comparison. Include the neighborhood, location reference, arrival/airport access, access to planned areas, explicit check-in/out, guests/rooms, room basis, cancellation conditions if visible, taxes/fees status, per-room-per-night and trip-total ranges, price status/check time, availability status, and a direct/property link whenever available. Add at least one verified comparison-platform search URL with destination, dates, guests, and rooms prefilled, **scoped to this property rather than to the city** — see the provider/URL table below for why that distinction cost two unbookable recommendations. Read the price and the availability off that page rather than estimating them: the card's `availability_status` and price range are claims about a specific product on a specific date, and the only place those are true is the page that sells it. A departure-day card may reference the hotel checked out that morning or show no overnight stay; it must not imply an extra night. Use Booking.com when it is suitable for the destination and user, but use another appropriate platform when coverage, price transparency, language, currency, or cancellation display is better.
+  <a id="exact-links"></a>**Give the traveller the property, not a list.** When research finds the property's own page — its official site's page for it, or the platform's page for that one property (`booking.com/hotel/<cc>/<slug>.html`, `hotels.ctrip.com/hotels/<id>.html`) — put it in `exact_booking_url` with `exact_booking_provider`; the card's first button then reads "open this exact property". A `review_url` that is a results list is labelled on the page as a search the traveller picks from, and `check_hotel_search_names_the_hotel` refuses a search that does not name the property: all five hotel buttons of a Tokyo plan searched an area ("Harbin Taiping Airport", "Ningyocho, Tokyo"), so tapping one booked whichever hotel came first. Flights get no exact link: Kiwi's per-itinerary link is a checkout page, which the rule above forbids.
 - **Attractions:** show a ticket link only if paid entry, advance reservation, or timed entry is material. Prefer the official venue ticket page; otherwise say that booking status is unverified. Do not send the user to an unknown resale site.
 - **Rental cars:** include only after the user selects self-drive and confirm location, dates/times, driver requirements, transmission preference, luggage/party capacity, insurance excess, fuel policy, mileage, tolls, parking, and cross-border limits where relevant. Show a dated provider/comparison search page with pickup/dropoff location and times prefilled, not a checkout URL; label the per-vehicle-per-day price basis, status, availability, and check time.
 
@@ -267,8 +265,8 @@ a process nobody can watch; this is its mechanical shadow, and it exists because
 shipped a hotel that was sold out on exactly those dates with its availability left unknown.
 
 **Two options that open the same page are one option shown twice** — whichever `stay_group_id`
-they are filed under. The rule used to be keyed on that label, which the same author writes, so
-relabelling two hotels into separate groups was enough to let them share one link. The same check refuses a
+they are filed under. The group label is the author's own, so relabelling two hotels into separate
+groups does not let them share one link. The same check refuses a
 `review_url` or `round_trip_search_url` shared between candidates in any category. This is not
 tidiness: it shipped on flights as well as hotels, and a comparison whose two buttons land in the
 same place compares nothing.
@@ -472,10 +470,7 @@ one can be:
 
 **The plan's text is never translated.** A non-English page is made by rendering English and then
 substituting the renderer's own strings and units; every value from the plan is fenced where it is
-escaped, set aside before any substitution runs, and put back exactly as written. Before
-2026-10-10 those substitutions also ran over the author's text, so "Provider recommends the early
-slot" printed as 「供应商 recommends the early slot」 and a quoted opening-hours line came out half
-translated. Links and data attributes are set aside too, so a provider name in `data-provider` still
+escaped, set aside before any substitution runs, and put back exactly as written. Links and data attributes are set aside too, so a provider name in `data-provider` still
 equals the button that names it. Two consequences: write prose in the trip language, because nothing
 will translate it for you; and when the gate has the plan (`save_trip_deliverables.py`,
 `validate_trip_html.py --plan`) it sets the plan's own prose aside before looking for renderer
@@ -522,8 +517,8 @@ drifts from it**: an airport transfer corrected everywhere else to 20–35 minut
 25 minutes" in this section, because the paragraph predated the correction and nothing tied them
 together. `check_plan_consistency.py` now refuses both.
 
-For the same reason the map button names the leg it opens. It used to read "transport overview"
-and open the airport transfer; a button may be a route overview, but it has to say which route.
+For the same reason the map button names the leg it opens. A button may be a route overview, but it has
+to say which route.
 
 <a id="list-typed-fields"></a>
 ### A field the contract calls a list is a list, even when it holds one thing
@@ -553,8 +548,8 @@ A field that is required, researched, and never displayed is work the traveller 
 - `budget.unverified_categories`, so the per-person total does not silently read as all-inclusive;
 - `plan.assumptions` and `regional_service_context.booking_platform_selection_note`;
 - each scheduled ticket's `sale_opens_at` — when it goes on sale, at what hour in which zone, and the
-  sentence saying where that came from — on the ticket's own card. Until 2026-10-09 it reached only the
-  calendar file embedded in the page, so a traveller who never imported the calendar was never told;
+  sentence saying where that came from — on the ticket's own card. The calendar file alone is not enough:
+  a traveller who never imports the calendar would never be told;
 - `budget.note`, the sentence that says how to read the headline figure, and each segment's
   `detour_reason`, the reason the gate accepted for a leg far longer than the straight line;
 - every dining card's **rating** — value, count and source, or an explicit "no public rating" with

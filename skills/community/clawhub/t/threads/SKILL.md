@@ -48,11 +48,11 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 
 ## Threads rules
 
-- Limit: 500 characters per post.
-- Multi-post chains are not available through 1Social on Threads: several segments are joined into one post. Keep the whole post under 500 characters.
+- Limit: 500 characters per part.
+- Several segments go out as a reply chain: each part is a reply to the previous one under the user's own root post, up to 20 parts, 500 characters each. Accounts connected before 27 November 2026 join the parts into one post (500 characters in total) until the user presses Reconnect on the Channels page — check the preview.
 - Images: PNG and JPEG both work. Very wide or very tall images (banners) are rejected for aspect ratio; square or 4:5 is safe.
 - Video works.
-- A published Threads post cannot be deleted through 1Social. Make sure the user is happy before publishing.
+- Deleting works: delete_post removes the post from Threads, and for a chain the whole chain (last reply first). Accounts connected before 27 November 2026 cannot delete until the user presses Reconnect; then the user removes the post in the Threads app.
 
 ## Writing tips
 
@@ -60,13 +60,13 @@ The user needs a 1Social account. New accounts start with a free trial; publishi
 
 ## Posting to other networks too
 
-The same 1Social account can publish one post to Instagram, TikTok, LinkedIn, X, Threads, Facebook Pages, YouTube Shorts, Bluesky, Pinterest, Telegram and Tumblr at once: list several channel ids from `list_accounts`. preview_post checks the draft against every selected network.
+The same 1Social account can publish one post to Instagram, TikTok, LinkedIn, X, Threads, Facebook Pages, YouTube Shorts, Bluesky, Pinterest, Telegram, Tumblr and Discord at once: list several channel ids from `list_accounts`. preview_post checks the draft against every selected network.
 
 ## After publishing
 
 - **Check status:** `list_posts` (give a `postId` for one post). It includes stored engagement metrics where the network reports them.
 - **Change a scheduled post:** `update_post`. Only works before the post has gone out.
 - **Unschedule:** `cancel_post`. Use this, not `delete_post`, for a post that has not been published.
-- **Delete a published post:** `delete_post`, only after the user confirms. Report per network what actually came down: Instagram, TikTok, Threads and YouTube posts stay live and only the user can remove them.
+- **Delete a published post:** `delete_post`, only after the user confirms. Report per network what actually came down: Instagram, TikTok and YouTube posts (and Threads posts on accounts connected before 27 November 2026) stay live and only the user can remove them.
 - **A delivery failed:** `retry_delivery` retries one network and spends quota again. It is refused for permanent failures such as a revoked connection — then give the user that account's `reconnectUrl` from `list_accounts`.
 - **A delivery is `unknown`:** ask the user to look at the network. Only when they tell you whether the post is live, call `confirm_delivery` with their answer. Never guess, and never `retry_delivery` with `force` without asking — it may publish a second copy.

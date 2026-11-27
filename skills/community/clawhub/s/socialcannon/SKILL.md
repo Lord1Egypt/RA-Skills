@@ -2,11 +2,11 @@
 name: socialcannon
 description: >
   Publish, schedule, and manage social media posts across Twitter/X, Facebook,
-  Instagram, LinkedIn, TikTok, and YouTube. Content calendar with gap analysis,
+  Instagram, LinkedIn, TikTok, YouTube, Threads and Bluesky. Content calendar with gap analysis,
   A/B testing, engagement inbox, AI content repurposing, optimal timing
   suggestions, auto-scheduling, UTM tracking, and platform-native AI-content
   disclosure labels.
-version: 1.16.1
+version: 1.19.0
 metadata:
   openclaw:
     requires:
@@ -23,7 +23,7 @@ metadata:
 
 # SocialCannon
 
-Social media publishing API. Publish to Twitter/X, Facebook, Instagram, LinkedIn, TikTok, and YouTube from one API with scheduling, analytics, A/B testing, and AI-powered features. X is publishing-only within paid-plan quotas: no live analytics, new reply collection, engagement replies or new A/B tests. Saved X analytics and replies remain readable under existing access rules.
+Social media publishing API. Publish to Twitter/X, Facebook, Instagram, LinkedIn, TikTok, YouTube, Threads and Bluesky from one API with scheduling, analytics, A/B testing, and AI-powered features. X is publishing-only within paid-plan quotas: no live analytics, new reply collection, engagement replies or new A/B tests. Saved X analytics and replies remain readable under existing access rules.
 
 **Base URL:** `https://socialcannon.app`
 
@@ -125,6 +125,8 @@ platform you want to connect.
 | LinkedIn | `linkedin` |
 | TikTok | `tiktok` |
 | YouTube | `youtube` |
+| Threads | `threads` |
+| Bluesky | `bluesky` |
 
 These are the networks SocialCannon offers publicly. The connect endpoint accepts a fixed set of platform ids, which
 the API reference lists in full; if you need one that is not here, read it there.
@@ -157,13 +159,13 @@ curl -sS -f -X POST https://socialcannon.app/api/v1/posts \
   -d '{"accountId": "<account_id>", "content": "Hello from SocialCannon!"}'
 ```
 
-This text-only example works for Facebook and LinkedIn accounts, and for X accounts on a paid plan — Free cannot publish to X and the request comes back `403` with `limit.type: "platform"`. Instagram, TikTok and YouTube require media, so a post to those accounts is refused unless you add `mediaUrls` with a public URL (and, for TikTok, `platformOptions.privacyLevel`). The file has to match the destination: Instagram takes images or video, TikTok takes video or images, and YouTube takes **video only**. See [Platform-Specific Notes](#platform-specific-notes) for each destination's rules. If you only have a media-requiring account connected, use the sandbox account (`accountId: "sandbox"`) to exercise the flow first — it simulates a publish without needing media.
+This text-only example works for Facebook, LinkedIn, Threads and Bluesky accounts, and for X accounts on a paid plan — Free cannot publish to X and the request comes back `403` with `limit.type: "platform"`. Instagram, TikTok and YouTube require media, so a post to those accounts is refused unless you add `mediaUrls` with a public URL (and, for TikTok, `platformOptions.privacyLevel`). The file has to match the destination: Instagram takes images or video, TikTok takes video or images, and YouTube takes **video only**. See [Platform-Specific Notes](#platform-specific-notes) for each destination's rules. If you only have a media-requiring account connected, use the sandbox account (`accountId: "sandbox"`) to exercise the flow first — it simulates a publish without needing media.
 
 ## Use via MCP (Hermes, Claude Desktop, OpenClaw)
 
 Instead of raw HTTP, you can expose SocialCannon's 23 tools to any MCP-compatible agent with the [`@socialcannon/mcp`](https://www.npmjs.com/package/@socialcannon/mcp) package. Use the same `SOCIALCANNON_CLIENT_ID` / `SOCIALCANNON_CLIENT_SECRET` from your dashboard.
 
-Run the exact version shown below (`@socialcannon/mcp@1.1.0`). The package runs with your credentials, so pinning means a later npm release is never picked up until you have reviewed it and changed the version yourself.
+Run the exact version shown below (`@socialcannon/mcp@1.2.0`). The package runs with your credentials, so pinning means a later npm release is never picked up until you have reviewed it and changed the version yourself.
 
 Keep the Client Secret out of config files. Store it in your OS keychain or secret manager and expose it as the `SOCIALCANNON_CLIENT_SECRET` environment variable of the process that starts your agent.
 
@@ -173,7 +175,7 @@ Keep the Client Secret out of config files. Store it in your OS keychain or secr
 mcp_servers:
   socialcannon:
     command: "npx"
-    args: ["-y", "@socialcannon/mcp@1.1.0"]
+    args: ["-y", "@socialcannon/mcp@1.2.0"]
     env:
       SOCIALCANNON_CLIENT_ID: "${SOCIALCANNON_CLIENT_ID}"
       SOCIALCANNON_CLIENT_SECRET: "${SOCIALCANNON_CLIENT_SECRET}"
@@ -435,6 +437,10 @@ Upload images/videos before creating posts. **Three-step direct-to-GCS flow** �
 | TikTok | Feed, Carousels | Photo images | 20 MB |
 | TikTok | Feed | Video | 100 MiB |
 | YouTube | Feed, Shorts | Video | 100 MiB |
+| Threads | Feed | Images (JPEG, PNG) | 8 MB |
+| Threads | Feed | Video (MP4, MOV) | 100 MiB |
+| Bluesky | Feed | Images (JPEG, PNG, WebP) | 20 MiB |
+| Bluesky | Feed | Video (MP4) | 100 MiB |
 
 TikTok Story, YouTube Community posts, LinkedIn video, and all Reddit media cannot be uploaded through this flow. LinkedIn video and YouTube Community media cannot be published through SocialCannon at all. A Reddit link post can point at a file you host yourself: pass its URL in mediaUrls. Over-limit or unsupported requests fail with 400 and code "MEDIA_LIMIT_EXCEEDED" or "UNSUPPORTED_MEDIA", before a signed upload URL is issued.
 
@@ -607,7 +613,7 @@ curl "https://socialcannon.app/api/v1/posts/<post_id>/analytics" \
 
 Returns: likes, comments, shares, impressions, reach, clicks, engagementRate, plus historical snapshots.
 
-> **Availability:** live per-post analytics is **not available for Facebook or LinkedIn** yet — both need a platform approval (Meta App Review / LinkedIn Community Management) we don't hold, so the endpoint returns `400` with `code: "PLATFORM_UNSUPPORTED"`. X returns saved snapshots only as described below. Instagram, TikTok, and YouTube expose adapters; check current capability metadata for any approval gates. Check `GET /api/v1/platforms` → `capabilities.supportsAnalytics` for the authoritative per-platform list.
+> **Availability:** live per-post analytics is **not available for LinkedIn or Threads** — LinkedIn needs Community Management approval and Threads Insights needs a separate Meta permission, so the endpoint returns `400` with `code: "PLATFORM_UNSUPPORTED"`. X returns saved snapshots only as described below. Facebook returns likes, comments and shares for every connected Page, and views (`impressions`), unique viewers (`reach`) and all post clicks (`clicks`) when the Page granted Insights access; a Page connected before 27 November 2026 reports those three as unavailable with `permission_required` until the owner reconnects it. Instagram, TikTok and YouTube expose adapters, and Bluesky exposes public like, reply, repost and quote counts. Check `GET /api/v1/platforms` → `capabilities.supportsAnalytics` for the authoritative per-platform list.
 
 ### X analytics history
 
@@ -653,7 +659,7 @@ curl "https://socialcannon.app/api/v1/posts/<post_id>/engagements?cursor=<next_c
 
 On supported platforms, fetches fresh comments and stores them. X instead returns only previously stored replies, with `collection: { mode: "stored_only", reason: "X_PAID_READS_DISABLED", message: "..." }`. An empty X result means no stored rows, not no replies on X. Follow the returned opaque `nextCursor`; old X tokens receive 400 `INVALID_CURSOR` and must restart without a cursor. The global inbox above still uses its existing timestamp cursor.
 
-> **Availability:** X collection and outgoing engagement replies are temporarily disabled on every plan, including trusted clients. An upgrade does not enable them. LinkedIn engagements remain unavailable; Facebook/Instagram depend on platform activation and the connected account's comment permissions. Check `capabilities.supportsEngagements` / `supportsReply` in `GET /api/v1/platforms` and honor reconnect errors.
+> **Availability:** X collection and outgoing engagement replies are temporarily disabled on every plan, including trusted clients. An upgrade does not enable them. LinkedIn, Threads and Bluesky engagements remain unavailable; Facebook/Instagram depend on platform activation and the connected account's comment permissions. Check `capabilities.supportsEngagements` / `supportsReply` in `GET /api/v1/platforms` and honor reconnect errors.
 
 ### Mark as read
 
@@ -720,7 +726,7 @@ All content is humanized automatically to remove AI writing patterns. Trusted cl
 
 > **Not available for TikTok.** A/B-test variants carry only content + media, so they can't set the per-post privacy level TikTok requires. A TikTok account is rejected with `400` and `code: "PLATFORM_UNSUPPORTED"` — publish individual posts to TikTok instead.
 
-> **Not available for X, LinkedIn or Facebook.** X is publishing-only; LinkedIn and Facebook lack live analytics (LinkedIn needs Community Management approval; Facebook needs Meta App Review for `pages_read_engagement`), so a winner could never be determined. Those accounts are rejected with `400` and `code: "PLATFORM_UNSUPPORTED"` — publish individual posts instead.
+> **Not available for X, LinkedIn or Threads.** X is publishing-only; LinkedIn and Threads lack live analytics (LinkedIn needs Community Management approval; Threads Insights needs a separate Meta permission), so a winner could never be determined. Those accounts are rejected with `400` and `code: "PLATFORM_UNSUPPORTED"` — publish individual posts instead. A Facebook Page that has not granted Insights access supports only `metric: "likes"`; other metrics are rejected with `PLATFORM_UNSUPPORTED` until the Page is reconnected with Insights allowed.
 
 ### Create a test
 
@@ -827,7 +833,7 @@ An `Idempotency-Key` header is **required** — the endpoint rejects the request
 
 Max 20 posts per request. Each post gets a unique slot. Per-post `platformOptions` are supported (e.g. `aiGenerated` to request the AI-content label, `title`/`visibility` where applicable). An Instagram item with `aiGenerated: true` fails closed unless verified native-disclosure access is enabled. Returns `{ operationId, operationStatus, scheduled: [...], unscheduled: [...], pending: [...], summary: {...} }`. Items still being worked on come back in `pending`, and `summary.totalPending` counts them, so a partial operation is not mistaken for a finished one. `operationId` identifies the batch for a same-key retry.
 
-Each item is validated against the account's platform, and an item that fails is returned in `unscheduled` rather than scheduled. The example above is written for an account that accepts text-only posts (X, Facebook or LinkedIn). On Instagram, TikTok and YouTube, every item needs `mediaUrls` with a public URL — Instagram takes images or video, TikTok takes video or images, and YouTube takes **video only** — and a TikTok item additionally needs `platformOptions.privacyLevel` (there is no default) — an item missing either is returned as unscheduled, so a batch of three can come back with nothing scheduled.
+Each item is validated against the account's platform, and an item that fails is returned in `unscheduled` rather than scheduled. The example above is written for an account that accepts text-only posts (X, Facebook, LinkedIn, Threads or Bluesky). On Instagram, TikTok and YouTube, every item needs `mediaUrls` with a public URL — Instagram takes images or video, TikTok takes video or images, and YouTube takes **video only** — and a TikTok item additionally needs `platformOptions.privacyLevel` (there is no default) — an item missing either is returned as unscheduled, so a batch of three can come back with nothing scheduled.
 
 ## Recurring Series (limited beta)
 
@@ -989,7 +995,7 @@ curl -X POST https://socialcannon.app/api/v1/feeds \
   - `"publish"` — it is posted at once with no review. Requires `"autoPublishAcknowledged": true`, and explicit human approval before you set it.
 - `pollIntervalMinutes` (15–1440, default 60) and `maxItemsPerPoll` (1–10, default 3) bound how often the feed is read and how many entries one read can post.
 - `backfillCount` (0–3, default 0) — entries already in the feed when you add it are recorded as `seen` and **not** posted, unless you ask for up to three of the newest here.
-- Entries are posted as text only, so the account must accept text-only posts (Facebook, LinkedIn, or X on a paid plan). An account whose platform needs media or another option on every post, such as Instagram, TikTok or YouTube, is refused with `400 FEED_ACCOUNT_UNSUPPORTED`.
+- Entries are posted as text only, so the account must accept text-only posts (Facebook, LinkedIn, Threads, Bluesky, or X on a paid plan). An account whose platform needs media or another option on every post, such as Instagram, TikTok or YouTube, is refused with `400 FEED_ACCOUNT_UNSUPPORTED`.
 - The address must be a public feed; a private or blocked address is refused with `FEED_URL_BLOCKED`. A host that cannot be resolved right now answers `503 FEED_UNREACHABLE`: nothing was created, and the same request can be sent again later.
 - The `Idempotency-Key` header is optional; keep the same key when you retry so a second feed is never created.
 
@@ -1106,6 +1112,7 @@ curl https://socialcannon.app/api/v1/platforms
 - 63,206 char limit. Supports native scheduling. Page-level tokens.
 - **Reels**: Set `platformOptions.mediaType` to `"reel"`. Video must be MP4/MOV, vertical (9:16). Without this, videos post as regular video posts.
 - **Stories**: Set `platformOptions.mediaType` to `"story"`. Supports one image or video. Ephemeral (24h).
+- **Analytics**: likes, comments and shares for every Page. Views (`impressions`), unique viewers (`reach`) and all post clicks (`clicks`) need the Page's Insights access; a Page connected before 27 November 2026 must be reconnected by its owner to grant it.
 
 ```bash
 curl -X POST https://socialcannon.app/api/v1/posts \
@@ -1176,6 +1183,22 @@ curl -X POST https://socialcannon.app/api/v1/posts \
 - Scheduling works via SocialCannon (LinkedIn has no native scheduling).
 - **No analytics, engagement inbox, or replies** for LinkedIn.
 
+### Threads
+- Connect through Threads sign-in; the user approves SocialCannon to read their profile and publish for them.
+- 500 characters, with each emoji counted by its UTF-8 bytes, and at most 5 links per post.
+- Text-only posts, one JPEG/PNG image (up to 8 MB), one MP4/MOV video (up to 100 MiB), or a carousel of 2-20 items.
+- Optional `platformOptions.topicTag` (one topic, up to 50 characters, without periods or ampersands) and `platformOptions.linkAttachment` (a link preview card on text-only posts).
+- Threads allows 250 published posts per profile in 24 hours. Scheduling works via SocialCannon.
+- **No deletion, analytics, engagement inbox, replies or multi-item reply chains** for Threads; each needs a further Meta permission.
+
+### Bluesky
+- Connect with the account's handle (for example `alice.bsky.social`) or DID; the user approves SocialCannon on their Bluesky sign-in page.
+- 300 characters (an emoji counts as one) and at most 3,000 bytes. Links, @mentions and #hashtags become clickable automatically.
+- Up to 4 images (resized and compressed under Bluesky's 2 MB limit, photo metadata removed) or one MP4 video. Video needs a verified email on the Bluesky account and has daily limits.
+- Optional `platformOptions.langs` (up to three language codes) and `platformOptions.altText` (up to 500 characters).
+- Scheduling works via SocialCannon. Analytics are public like, reply, repost and quote counts; views and clicks are `null`. A/B tests must use `metric: "likes"`.
+- **No threads, engagement inbox or replies** for Bluesky.
+
 ## Rate Limits
 
 - Free tier: 30 requests/minute
@@ -1194,7 +1217,7 @@ Four tiers. Twitter/X is the only platform with a per-post API cost passed throu
 - Twitter/X requires a paid plan
 - Unlimited media uploads (per-file size and format limits still apply)
 - 2-item threads, 5 tracked links
-- Facebook, Instagram, LinkedIn, TikTok, YouTube
+- Facebook, Instagram, LinkedIn, TikTok, YouTube, Threads, Bluesky
 - No analytics, no engagement replies, no A/B testing, no timing suggestions
 - 30 API requests/minute
 

@@ -1,11 +1,11 @@
 ---
 name: bookkeeping-close
-description: Runs small and midsize business bookkeeping operations - categorizes bank and card transactions to a chart of accounts, reconciles a bank or card statement against the ledger, works a month-end close checklist, and produces a close package for the accountant. Works from QuickBooks Online, Xero, bank CSV/OFX, or Mercury exports, and from the Xero, QuickBooks, or Mercury connectors when present. Use it whenever the user says "reconcile", "bank rec", "categorize transactions", "month end close", "close the books", "books don't match the bank", "reconciliation is off by", "uncategorized expenses", or shares a QuickBooks or Xero export or a bank statement CSV, even if they do not name the task. Never plugs a difference; every unreconciled dollar is explained or listed.
+description: BankGPT bookkeeping skill for small and midsize businesses. Categorizes bank and card transactions, reconciles statements against the ledger, and prepares a month-end close package for the accountant. Use for "BankGPT bookkeeping", "BankGPT bank reconciliation", "BankGPT month-end close", and equivalent requests about uncategorized expenses, balances that do not match, or closing the books. Also applies when the user shares a QuickBooks Online or Xero export or bank statement CSV. Supports bank CSV/OFX, Mercury exports, and available QuickBooks, Xero, or Mercury connectors. Reports unexplained differences without forcing balances to agree.
 ---
 
 # Bookkeeping Close
 
-[BankGPT](https://bankgpt.io/) Info: Smart Financial Data Management for SMEs.
+BankGPT helps small and midsize businesses manage financial data. This skill covers the bookkeeping work that turns bank and card activity into a close package for the accountant, including transaction categorization, reconciliation, and month-end review. [BankGPT](https://bankgpt.io/)
 
 A reconciliation proves that the books and the bank agree once timing is accounted for. Models get this wrong in predictable ways: they flip signs, treat an uncleared check as an error, count a transfer between the business's own accounts as income, miss a transaction imported twice, and force the rec to zero with an adjustment. This skill exists to prevent each of those. The deterministic matching lives in `scripts/reconcile.py`; the judgment lives here.
 

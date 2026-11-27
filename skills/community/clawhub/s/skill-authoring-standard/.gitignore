@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.skill-state/
+.DS_Store
+Thumbs.db

@@ -116,5 +116,5 @@ node src/douyin/comment-cli.js --url <aweme_id> --limit 50
 
 - 只读公开数据；不登录、不私信、不关注、不点赞。  
 - 线索仅限用户授权的内部跟进；禁止二次贩卖与骚扰。  
-- 结果可能落盘到技能目录 `logs/`；对外分享前建议脱敏（可去掉 uid，只留昵称与原文摘要）。  
+- 默认不落盘；开启 `--save` / `GUAIKEI_ENABLE_LOG=1` 后结果在系统临时目录。对外分享前建议脱敏（可去掉 uid，只留昵称与原文摘要）。  
 - 调用会把关键词/链接发往 `www.guaikei.com`；TOKEN 勿泄露。

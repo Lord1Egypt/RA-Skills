@@ -2,7 +2,7 @@
 name: docx-chinese-baseline
 slug: docx-chinese-baseline
 displayName: Chinese DOCX Typesetting Baseline
-version: "1.0.5"
+version: "1.0.6"
 description: "Locked design-token baseline for Chinese Word/DOCX documents and WeChat-native (公众号) article layouts: body 16px, section head 18px, title 23px, deep-blue #1a3a5c headings, no HTML tables/cards/backgrounds. Use when typesetting a Chinese DOCX or WeChat article, when html-to-docx output loses styles or fails on Windows, or when successive documents must stay visually consistent. Trigger keywords: 中文 docx 排版, Word 中文文档美化, html to docx 样式丢失, 16 18 23 px 基线, 深蓝标题, 公众号排版, 微信文章排版, WeChat article typesetting, 字号基线, font size baseline, Windows html-to-docx 失败, DOCX 样式. Baseline changes must update this skill first."
 description_zh: "中文 Word 文档与公众号原生排版的锁定设计基线：正文 16px / 小标题 18px / 标题 23px、深蓝 #1a3a5c 标题色、禁 HTML 表格卡片背景、Windows html-to-docx 稳定转换路径。保证跨文档风格一致；基线变更必须先改本 skill。"
 read_when: "Typesetting a Chinese DOCX or WeChat-native (公众号) article, aligning font/color tokens across documents, or when html-to-docx conversion loses styles or fails on Windows."
@@ -43,6 +43,7 @@ Purpose: one locked baseline instead of per-task improvisation. Every Chinese DO
 - Baseline changes (sizes, colors) must update this skill first, then the documents. No per-task deviation.
 - Headings stay anchored to topic content (who / scene / problem), never filename-style titles.
 - Line and paragraph spacing must be declared explicitly in the template; never inherit converter defaults, which differ between WPS and Word and silently produce inconsistent documents.
+- Font names in the template must resolve to an installed CJK face on the target machine; an unresolved fallback is reported as a failure, not silently accepted from the converter.
 
 ## Failure Handling
 

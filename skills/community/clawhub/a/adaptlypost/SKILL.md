@@ -1,8 +1,8 @@
 ---
 name: adaptlypost
-description: Schedule, publish and review social posts through the AdaptlyPost API on Instagram, X (Twitter), Bluesky, Mastodon, TikTok, Threads, LinkedIn, Facebook, Pinterest, YouTube, Google Business Profile, Telegram, Tumblr and WordPress accounts connected to AdaptlyPost, read their analytics, and read and answer the comments, mentions, direct messages and Google reviews they receive. Use only when the user has an AdaptlyPost account and asks to draft, schedule, publish, edit or delete a post on those accounts, upload media for such a post, pause, resume or delete a recurring post, list, re-check or disconnect the connected accounts, check a post's status, create a link for someone else to connect an account, create or delete a workspace, list or remove members, send, list or revoke an invitation, register a webhook at a URL they give, ask about views, likes, comments, followers or top posts on them, or read, reply to, hide, like or delete comments, mentions, messages and reviews in the AdaptlyPost inbox. Every reply, message, review reply, hide, delete, disconnect, connect link, webhook, workspace deletion, member removal and invitation needs the user's explicit yes first. Do not use for writing captions without posting, general social media advice, or accounts that are not connected to AdaptlyPost.
+description: Schedule, publish and review social posts through the AdaptlyPost API on Instagram, X (Twitter), Bluesky, Mastodon, TikTok, Threads, LinkedIn, Facebook, Pinterest, YouTube, Google Business Profile, Telegram, Tumblr and WordPress accounts connected to AdaptlyPost, read their analytics, and read and answer the comments, mentions, direct messages and Google reviews they receive. Use only when the user has an AdaptlyPost account and asks to draft, schedule, publish, edit, label or delete a post on those accounts, upload media for such a post, pause, resume or delete a recurring post, list, re-check or disconnect the connected accounts, check a post's status, create a link for someone else to connect an account, create or delete a workspace, list or remove members, send, list or revoke an invitation, register a webhook at a URL they give, ask about views, likes, comments, followers or top posts on them, or read, reply to, hide, like or delete comments, mentions, messages and reviews in the AdaptlyPost inbox. Every reply, message, review reply, hide, delete, disconnect, connect link, webhook, workspace deletion, member removal and invitation needs the user's explicit yes first. Do not use for writing captions without posting, general social media advice, or accounts that are not connected to AdaptlyPost.
 homepage: https://adaptlypost.com
-version: 1.37.1
+version: 1.38.0
 required_environment_variables:
   - name: ADAPTLYPOST_API_KEY
     prompt: AdaptlyPost API key
@@ -257,7 +257,7 @@ curl -s -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
   "https://post.adaptlypost.com/post/api/v1/social-posts?limit=20&offset=0&platforms=FACEBOOK&platforms=TIKTOK"
 ```
 
-Returns `{ "posts": [...], "total": 25, "hasMore": true }` for every post in the token's account group, any status, newest first by default. Pagination: `limit` (1-100, default 20), `offset` (default 0); page while `hasMore` is true. Optional filters: `statuses` and `platforms` (repeat the key per value, e.g. `platforms=FACEBOOK&platforms=TIKTOK`; any other query parameter returns `400`), `startDate`/`endDate` (ISO 8601, bounding `scheduledAt`, or `createdAt` for posts that were never scheduled), and `sortOrder` (`NEWEST` or `OLDEST`). Use this to find post ids and to see what is already queued; use step 7 for one post's full record and step 10 for its per-platform outcome. A post created by a recurring post carries its `recurringPostId` and `occurrenceAt` (step 12); both are `null` on other posts.
+Returns `{ "posts": [...], "total": 25, "hasMore": true }` for every post in the token's account group, any status, newest first by default. Pagination: `limit` (1-100, default 20), `offset` (default 0); page while `hasMore` is true. Optional filters: `statuses`, `platforms` and `labelIds` (repeat the key per value, e.g. `platforms=FACEBOOK&platforms=TIKTOK`; any other query parameter returns `400`; `labelIds` keeps only posts carrying any of these labels, up to 100 ids), `startDate`/`endDate` (ISO 8601, bounding `scheduledAt`, or `createdAt` for posts that were never scheduled), and `sortOrder` (`NEWEST` or `OLDEST`). Use this to find post ids and to see what is already queued; use step 7 for one post's full record and step 10 for its per-platform outcome. A post created by a recurring post carries its `recurringPostId` and `occurrenceAt` (step 12); both are `null` on other posts.
 
 ### 7. Get post details
 
@@ -266,7 +266,7 @@ curl -s -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
   https://post.adaptlypost.com/post/api/v1/social-posts/POST_ID
 ```
 
-Returns the full post object (`text`, `contentType`, `status`, `scheduledAt`, `timezone`, `recurringPostId`, `occurrenceAt`) with a `platforms` array carrying each target's `status` and `errorMessage`. Ids outside this token's account group return `404` `Post not found or access denied`. Use this before editing or publishing a draft; use step 10 when you only need per-platform outcomes and the `platformId`s for a retry.
+Returns the full post object (`text`, `contentType`, `status`, `scheduledAt`, `timezone`, `recurringPostId`, `occurrenceAt`, `labels`) with a `platforms` array carrying each target's `status` and `errorMessage`. Ids outside this token's account group return `404` `Post not found or access denied`. Use this before editing or publishing a draft; use step 10 when you only need per-platform outcomes and the `platformId`s for a retry.
 
 ### 8. Cross-post to multiple platforms
 
@@ -346,7 +346,7 @@ curl -X POST   .../social-posts/POST_ID/publish -d '{"scheduledAt": "2026-03-15T
 curl -X POST   .../social-posts/POST_ID/publish -d '{"timezone": "UTC", "publishNow": true}'
 ```
 
-`PATCH` works on `DRAFT` and `SCHEDULED` posts, and on a post that `FAILED` on every platform, which becomes a `DRAFT` again with its platforms back to pending; publish or schedule it with `/publish`. A post that published on some platforms and failed on others (`PARTIAL_FAILURE`) cannot be edited, and any other status returns `400` `Cannot edit post in current state`. `scheduledAt: null` takes the planned date off a `DRAFT` or such a failed post; on a `SCHEDULED` post use `/unschedule` instead. Updates are partial: `text`, `contentType`, `scheduledAt`, `timezone`, and thumbnail fields you omit keep their values. `firstComments`, `threadReplies`, `platformThumbnails` and `platformMedia` work the same way: sending the array replaces every stored entry, `[]` clears them, and leaving it out keeps them. A `threadReplies` entry with `"texts": []` removes that platform's thread. `platforms` is the exception. Sending it rebuilds the post's targets from that request alone, so resend every `*ConnectionIds` array and platform config you want to keep (TikTok with `privacyLevel`, Pinterest with `boardId` or `boardName`). `mediaUrls` only take effect together with `platforms`; omit both to leave accounts, configs, and media untouched. `platformMedia` takes effect with or without `platforms`.
+`PATCH` works on `DRAFT` and `SCHEDULED` posts, and on a post that `FAILED` on every platform, which becomes a `DRAFT` again with its platforms back to pending; publish or schedule it with `/publish`. A post that published on some platforms and failed on others (`PARTIAL_FAILURE`) cannot be edited, and any other status returns `400` `Cannot edit post in current state`. `scheduledAt: null` takes the planned date off a `DRAFT` or such a failed post; on a `SCHEDULED` post use `/unschedule` instead. Updates are partial: `text`, `contentType`, `scheduledAt`, `timezone`, and thumbnail fields you omit keep their values. `firstComments`, `threadReplies`, `platformThumbnails`, `platformMedia` and `labelIds` work the same way: sending the array replaces every stored entry, `[]` clears them, and leaving it out keeps them. A `threadReplies` entry with `"texts": []` removes that platform's thread. `platforms` is the exception. Sending it rebuilds the post's targets from that request alone, so resend every `*ConnectionIds` array and platform config you want to keep (TikTok with `privacyLevel`, Pinterest with `boardId` or `boardName`). `mediaUrls` only take effect together with `platforms`; omit both to leave accounts, configs, and media untouched. `platformMedia` takes effect with or without `platforms`.
 
 Moving a `SCHEDULED` post more than a minute into the past with `PATCH` returns `400` `The new scheduled time is in the past. Choose a time in the future`. Resending the time it already has is fine, even once that time has passed. To publish it now, call `/publish` without `scheduledAt`.
 
@@ -816,6 +816,23 @@ curl -s -G -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
 
 LinkedIn matches the exact vanity name only, so this is not a search: `acm` or a company name with spaces finds nothing, and the answer is `{ "organization": null }`. Ask the user for the page URL when you don't know the vanity name. Needs `accounts.read`, and posts nothing. Errors carry a `code` in the body: `400` `linkedin_organization_query_invalid` when the query is neither a page URL nor a vanity name and `400` `linkedin_organization_lookup_unavailable` when no LinkedIn account of the workspace could run the lookup. For the last one, tell the user to connect or reconnect a LinkedIn account in AdaptlyPost, ideally a company page they administer.
 
+### Labels
+
+To file a post under a label, for example one label per brand, list the labels of the workspace:
+
+```bash
+curl -s -H "Authorization: Bearer $ADAPTLYPOST_API_KEY" \
+  "https://post.adaptlypost.com/post/api/v1/labels"
+```
+
+Returns `{ "labels": [{ "id", "name", "color" }] }` with every label of the workspace, sorted by name. `color` is a hex such as `#3B82F6`. The API cannot create labels; the user makes them in the AdaptlyPost app. Needs `posts.read`. Then pass the ids as `labelIds` on `POST /social-posts`, `POST /social-posts/validate` or `PATCH /social-posts/:id`:
+
+```json
+"labelIds": ["LABEL_ID"]
+```
+
+Up to 10 ids. An id that is not a label of this workspace returns `400` `One or more label IDs are not labels of this workspace. Call GET /labels for the IDs you can put on a post`. On `PATCH`, sending the list replaces every label of the post, `[]` removes them all, and leaving it out keeps the stored ones. Bulk items do not take `labelIds`. Labels stay inside AdaptlyPost: no platform sees them, and every platform and content type takes them. Every post reads them back as `labels`, `[{ "id", "name", "color" }]` sorted by name, and `GET /social-posts?labelIds=LABEL_ID` lists the posts carrying any of the labels you pass.
+
 ### Per-platform extras
 
 All optional, and each takes at most one entry per platform. A platform the field does not support returns `400`.
@@ -917,6 +934,7 @@ Upload 1-20 files per request. Keep the file extension in `fileName`: a post rea
 - TikTok configs **require** `privacyLevel` — always set it (e.g., `PUBLIC_TO_EVERYONE`).
 - For a Pinterest post, pass the board the user named as `boardName`. Otherwise list the account's boards with `GET /social-accounts/:id/pinterest-boards`, ask the user which board to use, and pass its `id` as `boardId`. Never send both. Leave both out only when the user is happy with the default "AdaptlyPost" board.
 - To add a YouTube video to a playlist, list the channel's playlists with `GET /social-accounts/:id/youtube-playlists`, match the one the user named or ask which one, and pass its `id` as `playlistId` in `youtubeConfigs`.
+- To put a label on a post, list the labels with `GET /labels`, match the one the user named or ask which one, and pass its `id` in `labelIds`. When no label has that name, tell the user to create it in the AdaptlyPost app, since the API cannot.
 - To mention a LinkedIn company page, call `GET /linkedin-organizations/lookup` with the page URL or vanity name and paste the `mention` it returns. Ask for the page URL when you don't know the vanity name, since a partial name finds nothing.
 - For carousels, upload multiple files and include all public URLs in `mediaUrls`.
 - Use `platformTexts` to customize text per platform when cross-posting.

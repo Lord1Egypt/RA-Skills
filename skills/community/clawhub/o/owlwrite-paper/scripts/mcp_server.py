@@ -47,7 +47,7 @@ OWL_API_KEY = os.environ.get("OWL_API_KEY", "")
 # ⚠️ 发布前必须与 SKILL.md 的 version / connector-meta.version / meta.json latest_version
 #    四处对齐（preflight A30 守门），否则装的是最新版也会被自己判成旧版——每次开工都
 #    提示「有新版本」，而更新完还是同一句（假提示，严重时 426 全停）。
-OWL_SKILL_VERSION = "1.3.6"
+OWL_SKILL_VERSION = "1.4.3"
 
 mcp = MCPServer(
     "owlwrite",
@@ -82,9 +82,17 @@ def _headers() -> dict:
         raise ToolError(
             "未配置 OWL_API_KEY。请在 MCP 客户端配置里加 env: {\"OWL_API_KEY\": \"owl_sk_...\"}；"
             "还没有账号请到 paper.skillsutra.cn 注册。")
-    return {"Authorization": f"Bearer {tok}",
-            "Content-Type": "application/json",
-            "X-Owl-Skill-Version": OWL_SKILL_VERSION}
+    h = {"Authorization": f"Bearer {tok}", "Content-Type": "application/json",
+         "X-Owl-Skill-Version": OWL_SKILL_VERSION}
+    # 多技能接入底座（2026-11-26 签批）：与 owl_api.py identity_headers() 同口径。
+    # 发布平台/slug/release_uid 仅用于统计归因，不作鉴权依据。
+    try:
+        import owl_api
+        h.update({k: v for k, v in owl_api.identity_headers().items()
+                  if k != "X-Owl-Skill-Version"})
+    except Exception:  # noqa: BLE001 — 老环境缺 owl_api 时保持仅版本头，不影响调用
+        pass
+    return h
 
 
 async def _call(method: str, path: str, body: dict | None = None, params: dict | None = None,
@@ -199,7 +207,7 @@ async def owl_search(query: str, limit: int = 5, lang: str = "all", expand: bool
         sort: relevance 相关度（默认）/ newest 年份最新 / cited 被引最多。
         offset: 跳过前 N 条取后续页（0-1000），配合 limit 翻页。
 
-    计费：命中 2 积分，缓存命中 1 积分，无结果 0 积分。硬过滤与检索同一次调用，不多扣费。
+    计费：以 owl_products / owl_quote 实时报价为准（keywords/vector 分源计价，缓存按缓存价，无结果不收费）。硬过滤与检索同一次调用，不多扣费。
     """
     body = {"query": query, "limit": limit, "lang": lang}
     if expand:
@@ -460,7 +468,7 @@ async def owl_run_content(run_id: str) -> str:
 async def owl_figure(mode: str, description: str, count: int = 1,
                      data: str = "", file_id: str = "",
                      figure_type: str = "") -> str:
-    """生成论文用的科研配图，图片落盘后返回下载地址（25 积分/张，未交付不收费）。
+    """生成论文用的科研配图，图片落盘后返回下载地址（按实时报价，未交付不收费）。
 
     Args:
         mode: 三种方式，按内容选，不要乱猜——
@@ -475,8 +483,8 @@ async def owl_figure(mode: str, description: str, count: int = 1,
         figure_type: 仅 image 模式：auto/roadmap/mechanism/experiment/comparison/
             graphical-abstract/overview/cover。
 
-    计费：25 积分/张（¥0.25），按**实际交付张数**扣，生成失败或没出图不扣。
-    调用前请先告诉用户「本次生成 N 张，消耗 N×25 积分」，得到同意再调。
+    计费：以 owl_products / owl_quote 实时报价为准，按**实际交付张数**扣，生成失败或没出图不扣。
+    调用前先实拉报价并告诉用户「本次生成 N 张，费用按实时报价」，得到同意再调。
     chart 模式没有真实数据时不要编数据——如实问用户要数据或改用 tikz。
     返回 figures[].download_url 自带 24 小时签名，可直接下载，存到 04-图/<序号>-<说明>.png。
     """
@@ -559,7 +567,7 @@ async def owl_typeset(file_path: str = "", mode: str = "latex", template_path: s
     （本工具不写死任何价格数字，你也不要凭印象报价）。
     报价即最终价，不会事后补扣：如果实排页数超出申报档位，网关会**拒单并让你重新报价，
     本次不扣费**——所以页数请如实填。
-    72 小时内同一篇稿（标题相同、含同一模板）改格式重排只收 1 积分工本，改多少次都算同一篇。
+    72 小时内同一篇稿（标题相同、含同一模板）改格式重排按缓存价，改多少次都算同一篇；具体价格以实时报价为准。
     排版失败不收费。调用前请先把价格告诉用户并得到同意，不要默默扣费。
 
     返回：pdf_url / docx_url（7 天有效直链，可直接下载）、checklist（格式体检单：
@@ -678,7 +686,7 @@ async def owl_typeset(file_path: str = "", mode: str = "latex", template_path: s
     if out.get("blind"):
         out["blind_tip"] = ("本次是盲审版：封面作者/学号/导师已脱敏为 ***、致谢整节已隐藏。"
                             "交付时必须说清这两点，并提醒用户：正式提交版要关掉 blind 重排一次"
-                            "（72 小时内同一篇稿只收 1 积分工本）。")
+                            "（72 小时内同一篇稿按缓存价，以实时报价为准）。")
     out["files_tip"] = ("pdf_url / docx_url 自带 7 天签名，可直接下载；"
                         "建议存到用户论文目录 07-交付/ 下，文件名用「题目-排版-v1.pdf」")
     return _dump(out)
@@ -739,7 +747,7 @@ async def owl_fulltext(identifier: str) -> str:
     Args:
         identifier: 检索结果里的 Identifier 字段（纯中文库文献；全球库无全文下载）。
 
-    计费以实时报价为准（owl_products 可查）；72 小时内同一 identifier 重取只收 1 积分；单账号每日上限 100 篇。
+    计费以实时报价为准（owl_products 可查）；72 小时内同一 identifier 重取按缓存价；单账号每日上限 100 篇。
     拿到 url 后用 HTTP GET 直接下载（返回 PDF 字节流），建议存到项目目录 02-文献/fulltexts/，
     文件名用「一作-年份-题名前20字.pdf」。404 fulltext_unavailable 表示该文献没有授权全文，
     如实告诉用户，不要换参数重试。
@@ -755,7 +763,7 @@ async def owl_article(identifier: str, lang: str = "zh") -> str:
         identifier: 检索结果里的 Identifier 字段。
         lang: zh=中文库（默认）/ en=全球库。
 
-    计费以实时报价为准（owl_products 可查）；72 小时内查过同一篇按缓存价 1 积分。用于：用户要某篇的 DOI、
+    计费以实时报价为准（owl_products 可查）；72 小时内查过同一篇按缓存价。用于：用户要某篇的 DOI、
     要核对某篇的年卷期页码、或检索结果摘要不够需要完整元数据时。
     404 article_not_found 表示库里没有该文献详情，如实告诉用户。
     """
@@ -764,7 +772,7 @@ async def owl_article(identifier: str, lang: str = "zh") -> str:
 
 @mcp.tool()
 async def owl_oa(doi: str = "", title: str = "") -> str:
-    """取外文（开放获取）文献的免费全文 PDF 直链。**0 积分，完全免费**。
+    """取外文（开放获取）文献的免费全文 PDF 直链。**免费**。
 
     Args:
         doi: 文献 DOI（优先，命中率最高）。可用 owl_search 结果的 doi 或 owl_article 取。
@@ -796,7 +804,7 @@ async def owl_citations(doi: str, direction: str = "refs", limit: int = 20) -> s
         direction: refs=它引用了谁（找源头/经典）；cited=谁引用了它（找后续进展/最新研究）。
         limit: 返回条数，1-50，默认 20。
 
-    计费以实时报价为准（owl_products 可查）；72 小时内同篇同方向缓存 1 积分。
+    计费以实时报价为准（owl_products 可查）；72 小时内同篇同方向按缓存价。
     返回 items 里带 cited_by（被引次数，判断影响力）与 is_oa（可直接免费用 owl_oa 取全文）。
     """
     return _dump(await _call("GET", "/v1/citations",

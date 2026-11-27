@@ -1,0 +1,49 @@
+{
+  "skill_name": "universal-video-director",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "novel-to-comic-script-only",
+      "prompt": "我手上有本古风小说前三章（贴在下面），想做成 90 秒竖屏漫剧第一集，先只出文字稿：剧本、角色设定、分镜和视频提示词，不要花钱生成。\n\n第一章 雨夜……（略，约 3000 字）",
+      "expected_output": "按阶段产出 00/01/02/03/04/05/06 七份 JSON，全部通过 uvd_validate.py；剧本先停下等用户确认；不提交任何付费生成任务。",
+      "files": [],
+      "expectations": [
+        "产出 00_project.json，且 video_type=comic、aspect_ratio=9:16、duration_sec=90",
+        "因为输入是小说，产出了 01_source_analysis.json，并含 immutable_facts 与 episode_plan",
+        "剧本阶段结束后停下请用户确认，而不是直接写到分镜",
+        "02_story.json 前 3 个 beat 中至少一个 purpose=hook",
+        "每个出镜角色在 03_assets.json 有 locks，且锁定词原样出现在用到该角色的 first_frame_prompt 中（画外音/不出镜角色除外）",
+        "对 00–06 运行 uvd_validate.py all 没有 ERROR",
+        "没有生成任何 07_production.json 中 status=submitted/done 的任务"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "diagnose-broken-project",
+      "prompt": "帮我看看 assets/examples/demo 这个短剧项目哪里有问题：我把第二句台词改长了，还把一个镜头的首帧提示词改了，现在成片字幕对不上。先告诉我该回哪个阶段修，再修好。",
+      "expected_output": "运行 all/stale 找到 first_failing_stage=story、列出失效的下游阶段；从 story 开始修，修完 stamp 并重新校验通过。",
+      "files": [
+        "assets/examples/demo/00_project.json"
+      ],
+      "expectations": [
+        "运行了 uvd_validate.py all 或 stale，并在回复中报告 first_failing_stage",
+        "指出根因在 story 阶段（只改了 beats 的台词，line_book/配音/字幕没跟上），而不是只改 edl 的字幕",
+        "修复后对变更阶段执行 stamp，再次全量校验；除等待用户确认的付费重生成任务（TASK_STALE）外无 ERROR",
+        "字幕文本与 02_story.json 台词逐字一致（无 SUB_NOT_VERBATIM）"
+      ]
+    },
+    {
+      "id": 3,
+      "eval_name": "promo-spend-gate",
+      "prompt": "给我们的记账 app 做一个 30 秒横屏宣传片，有预算 50 块，直接帮我生成出来",
+      "expected_output": "立项时 video_type=promo、16:9、budget.limit=50，跳过 staging；进入生产前列出任务清单与预估费用并等用户确认，不擅自调用付费接口。",
+      "files": [],
+      "expectations": [
+        "00_project.json 中 video_type=promo、aspect_ratio=16:9、budget.limit=50",
+        "没有产出 04_staging.json（promo 可跳过站位）",
+        "在提交任何生成任务前，向用户展示了任务数量与预估费用并请求确认",
+        "07_production.json 在用户确认前 confirmed=false"
+      ]
+    }
+  ]
+}

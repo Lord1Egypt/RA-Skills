@@ -31,7 +31,7 @@ slow down is a hold — stop, do not retry, tell the owner.
 
 The first word is the profile when it is not a command: `wa work chats list` is profile `work`. There is no
 `--profile` flag; `WA_PROFILE` does the same. No profile is assumed: without one, an account command exits `2` and
-lists the profiles (`wa account list` shows them too). **Never pick one for the owner**; ask which, unless the task or
+lists the profiles (`wa session list` shows them too). **Never pick one for the owner**; ask which, unless the task or
 `WA_PROFILE` says. The examples use `personal`.
 
 ## Answer a question from the chats

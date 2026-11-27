@@ -1,7 +1,7 @@
 ---
 name: phone-validity-check-zh
 description: 核验电话号码真实有效性、号码类型以及 WhatsApp 注册状态，输出核验结果、号码分类、国家代码和 WhatsApp 启用情况，筛选无效联系方式，提升外贸客户触达效率。
-metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.3","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 电话有效性检测
@@ -85,6 +85,10 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/phone
 
 **任何会产生费用的操作，都必须先告知、等待用户明确确认，不得在告知的同一条消息中直接执行。**
 
+### 计费方式
+
+本技能固定按API余额计费，其接口不支持套餐：脚本不会传 `planMode`，传入也会被忽略。
+
 ## 工作流程
 
 ### 决策指南
@@ -104,6 +108,7 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/phone
 
 - 电话有效性检测：查看 [references/phone-api.md](references/phone-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

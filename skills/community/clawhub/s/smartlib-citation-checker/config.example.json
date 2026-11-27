@@ -2,6 +2,9 @@
   "SMARTLIB_GATEWAY_URL": "https://1318491188-jvmi3wist0.ap-shanghai.tencentscf.com",
   "SMARTLIB_GATEWAY_SECRET": "<your-gateway-secret>",
   "SMARTLIB_EMAIL": null,
+  "SMARTLIB_API_KEY": null,
+  "OWL_API_BASE": "https://owl.skillsutra.cn",
+  "OWL_API_KEY": null,
   "SMARTLIB_APPID": null,
   "SMARTLIB_APPSECRET": null
 }

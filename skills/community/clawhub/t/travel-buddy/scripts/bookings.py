@@ -23,7 +23,7 @@ RECORD_STATES = ("chosen", "booked")
 # option cards themselves, the records, the evidence cited, the replan log, and what the traveller
 # typed. Everything else -- days, arrival notes, the overview -- tells the traveller where to go.
 NOT_DIRECTIONS = frozenset({"booking_options", "bookings", "sources", "replan_context", "intake_context",
-                            "profile_context", "ui_labels", "_contract", "_enums"})
+                            "profile_context", "ui_labels", "_contract", "_enums", "place_check"})
 BOOKING_KINDS = ("flights", "ground_transport", "accommodations", "attraction_tickets", "rental_cars")
 
 

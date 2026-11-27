@@ -85,6 +85,16 @@
         "不把 confirmed 当成提交数",
         "不自动重放或 repair"
       ]
+    },
+    {
+      "id": 9,
+      "prompt": "我们想复制测试环境只改数据库，再让 Agent 用 MCP 快速检查发版。分别该用哪个 Skill？",
+      "expected_output": "共享配置由 flydb-multi-environment 指导，发布前检查交给 flydb-cli-release。",
+      "files": [],
+      "assertions": [
+        "按步骤定位两个技能",
+        "识别 config-import 和 flydb_preflight 的版本条件"
+      ]
     }
   ]
 }

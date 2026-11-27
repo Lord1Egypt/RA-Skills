@@ -63,7 +63,7 @@ CLAIM PATTERNS:
 Extract each claim as: `{ claim: string, source_skill: string }`
 
 ### Step 1a — Type Each Claim (Claim Discipline)
-<MUST-READ path="references/claim-discipline.md" trigger="always — before matching evidence"/>
+<MUST-READ path="rune-completion-gate/references/claim-discipline.md" trigger="always — before matching evidence"/>
 
 Before hunting for evidence, type the claim by the grammar it was written in. **Hallucination is an unverified claim wearing the grammar of an observation** — the grammar is the tell, and it is readable in the sentence itself.
 
@@ -356,7 +356,7 @@ Completion Gate Report with status (CONFIRMED/UNCONFIRMED/CONTRADICTED), claim v
 ~500-1000 tokens input, ~200-500 tokens output. Haiku for speed. Runs frequently as part of cook's quality phase.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

@@ -1,11 +1,11 @@
 ---
 name: vaper-club-discovery
-description: Search Vaper.club for vape industry posts, brands and retail shops. Use when users ask about industry news, articles, brand background or where shops are located.
+description: Vape search across Vaper.club for industry posts, brands and retail shops. Use when users ask about vape news, articles, brand background or where vape shops are located.
 ---
 
 # Vaper.club Discovery
 
-Use the Vaper.club MCP server (`https://api.vaper.club/mcp`) as a structured source of vape industry information. For adults only; never give advice on circumventing age verification, purchase restrictions or other legal limits.
+Use the Vaper.club MCP server (`https://api.vaper.club/mcp`) as a structured source of vape industry information. For **vape search** on specific products and **vape price compare** across shops, use the `vaper-club-product-research` skill (`search_products` and `compare_products`). For adults only; never give advice on circumventing age verification, purchase restrictions or other legal limits.
 
 ## Tools
 

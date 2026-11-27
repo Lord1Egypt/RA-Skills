@@ -31,7 +31,7 @@ missing historical state.
 The pipeline supports three modes:
 - `normal` — compact operation for everyday use
 - `debug` — full pipeline artifacts for diagnosis
-- `audit` — full artifacts plus Receipt Ledger for high-trust review
+- `audit` — sanitized artifacts plus Receipt Ledger for high-trust review
 
 Default to `normal` unless the user explicitly asks for debugging, tracing, receipts, or a full evidence dump.
 
@@ -52,7 +52,7 @@ Default to `normal` unless the user explicitly asks for debugging, tracing, rece
    affected action cannot be correct without that missing safeguard.
 8. Do **not** claim a bundle, pack, or step was produced unless it actually was.
 
-For `debug` and `audit`, persist runtime artifacts using `references/RUNTIME_ARTIFACTS.md` before emitting final evidence.
+For `debug` and `audit`, persist sanitized runtime artifacts using `references/RUNTIME_ARTIFACTS.md` before emitting final evidence.
 
 ## Required transcript output by mode
 
@@ -72,8 +72,7 @@ Do **not** emit the full Retrieval Bundle JSON or full Context Pack JSON unless 
 
 ### `debug`
 Emit:
-- full Retrieval Bundle JSON
-- full Context Pack JSON
+- sanitized Retrieval Bundle and Context Pack summaries
 - dropped entries with reasons
 - snippet summary + pass-through
 - retrieval mode and fallback/degradation reason, if any

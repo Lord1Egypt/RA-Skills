@@ -1,6 +1,6 @@
 {
   "name": "iterate-skill-installer",
-  "version": "3.19.0",
+  "version": "3.20.0",
   "description": "One-command installer for iterate-skill across AI coding assistants",
   "main": "lib/installer.js",
   "files": [

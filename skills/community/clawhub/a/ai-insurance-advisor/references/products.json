@@ -31,10 +31,10 @@
    "policy": "优先位为业务决策，保留不变；联系方式展示策略按各 skill 现状（见 SKILL.md 权限声明）。",
    "updated_at": "2026-10-26"
   },
-  "version": "2.4.44",
-  "updated_at": "2026-11-24T17:33:24.175790+00:00",
+  "version": "2.4.49",
+  "updated_at": "2026-11-26T17:33:10.348512+00:00",
   "description": "保险产品库整理版，保留在售及有效产品",
-  "total_products": 2590,
+  "total_products": 2591,
   "active_products": 516,
   "dedup_applied": true,
   "verified_count": 50,
@@ -67,7 +67,7 @@
   "new_2025_products_added": 12,
   "enriched_products": 239,
   "cleanup_round2": "removed 8 additional garbage entries",
-  "daily_updated_at": "2026-11-25",
+  "daily_updated_at": "2026-11-27",
   "total_active": 516,
   "total_inactive": 2049,
   "last_updated": "2026-04-18",
@@ -86,8 +86,8 @@
    "定期寿险": 35,
    "终身寿险": 40
   },
-  "active_count": 550,
-  "lastUpdated": "2026-11-24T17:33:24.097838+00:00",
+  "active_count": 551,
+  "lastUpdated": "2026-11-26T17:33:10.270095+00:00",
   "policy_validity_check_at": "2026-07-12T17:15:47.479462+00:00",
   "policy_validity_check_summary": {
    "targets_total": 105,
@@ -100,8 +100,8 @@
    "needs_review": 0,
    "errors": 0
   },
-  "last_refreshed_at": "2026-11-24T17:47:41.880313+00:00",
-  "refresh_count": 169,
+  "last_refreshed_at": "2026-11-26T17:45:20.152107+00:00",
+  "refresh_count": 171,
   "duplicate_count": 78,
   "action_a_applied": {
    "at": "2026-07-26T19:54",
@@ -72818,7 +72818,7 @@
    "coverage_period_duration_unit": null,
    "coverage_period_is_lifetime": false,
    "coverage_period_guaranteed_renewable": false,
-   "source_url": 50,
+   "source_url": 49,
    "id": "noid-5b14271adfe6"
   },
   {
@@ -73280,7 +73280,7 @@
    "coverage_period_guaranteed_renewable": false,
    "id": "noid-0e391f1ce90a",
    "validity_status": "信息缺失",
-   "source_url": 50
+   "source_url": 49
   },
   {
    "name": "锦绣满堂",
@@ -73379,7 +73379,7 @@
    "type": "重疾险",
    "company": "君龙人寿",
    "source": 2,
-   "source_url": 51,
+   "source_url": 50,
    "is_active": true,
    "id": "noid-6c583df36773",
    "validity_status": "信息缺失"
@@ -73389,7 +73389,7 @@
    "type": "意外险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 50,
+   "source_url": 51,
    "is_active": true,
    "id": "noid-5ec58a03bd9e",
    "validity_status": "信息缺失"
@@ -73479,7 +73479,7 @@
    "type": "意外险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true,
    "id": "noid-92b32675d5c7",
    "validity_status": "信息缺失"
@@ -73489,7 +73489,7 @@
    "type": "财产险",
    "company": "人保养老保险",
    "source": 2,
-   "source_url": 56,
+   "source_url": 57,
    "is_active": true,
    "id": "noid-e9a4d31ea714",
    "validity_status": "信息缺失"
@@ -73499,7 +73499,7 @@
    "type": "重疾险",
    "company": "招商仁和人寿",
    "source": 2,
-   "source_url": 57,
+   "source_url": 58,
    "is_active": true,
    "id": "noid-05d10fa576b3",
    "validity_status": "信息缺失"
@@ -73509,7 +73509,7 @@
    "type": "终身寿险",
    "company": "利安人寿",
    "source": 2,
-   "source_url": 58,
+   "source_url": 59,
    "is_active": true,
    "id": "noid-8db9ee0efc50",
    "validity_status": "信息缺失"
@@ -73519,7 +73519,7 @@
    "type": "意外险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 59,
+   "source_url": 60,
    "is_active": true,
    "id": "noid-fc3e1d8dc628",
    "validity_status": "信息缺失"
@@ -73529,7 +73529,7 @@
    "type": "少儿重疾险",
    "company": "中国平安",
    "source": 2,
-   "source_url": 60,
+   "source_url": 61,
    "is_active": true,
    "id": "noid-5c0054eb57e7",
    "validity_status": "信息缺失"
@@ -73539,7 +73539,7 @@
    "type": "重疾险",
    "company": "君龙人寿",
    "source": 2,
-   "source_url": 61,
+   "source_url": 62,
    "is_active": true,
    "id": "noid-072775739ab6",
    "validity_status": "信息缺失"
@@ -73549,7 +73549,7 @@
    "type": "医疗险",
    "company": "阳光人寿保险",
    "source": 2,
-   "source_url": 62,
+   "source_url": 63,
    "is_active": true,
    "id": "noid-47761068af9a",
    "validity_status": "信息缺失"
@@ -73559,7 +73559,7 @@
    "type": "医疗险",
    "company": "阳光人寿保险",
    "source": 2,
-   "source_url": 63,
+   "source_url": 64,
    "is_active": true,
    "id": "noid-56dac6b98ec4",
    "validity_status": "信息缺失"
@@ -73569,7 +73569,7 @@
    "type": "年金险",
    "company": "泰康人寿保险",
    "source": 2,
-   "source_url": 64,
+   "source_url": 65,
    "is_active": true,
    "id": "noid-7816d85291ae",
    "validity_status": "信息缺失"
@@ -73579,7 +73579,7 @@
    "type": "医疗险",
    "company": "京东安联保险",
    "source": 2,
-   "source_url": 65,
+   "source_url": 66,
    "is_active": true,
    "id": "noid-54eca3eca619",
    "validity_status": "信息缺失"
@@ -73599,7 +73599,7 @@
    "type": "健康险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 66,
+   "source_url": 67,
    "is_active": true,
    "id": "noid-9436a6aae6a5",
    "validity_status": "信息缺失"
@@ -73609,7 +73609,7 @@
    "type": "重疾险",
    "company": "中宏人寿",
    "source": 2,
-   "source_url": 67,
+   "source_url": 68,
    "is_active": true,
    "id": "noid-a88c0836a53d",
    "validity_status": "信息缺失"
@@ -73619,7 +73619,7 @@
    "type": "医疗险",
    "company": "中国人保健康保险",
    "source": 2,
-   "source_url": 63,
+   "source_url": 64,
    "is_active": true,
    "id": "noid-0eef1121adfe",
    "validity_status": "信息缺失"
@@ -73639,7 +73639,7 @@
    "type": "重疾险",
    "company": "北京人寿",
    "source": 2,
-   "source_url": 68,
+   "source_url": 69,
    "is_active": true,
    "id": "noid-7eba40ed436d",
    "validity_status": "信息缺失"
@@ -73649,7 +73649,7 @@
    "type": "重疾险",
    "company": "招商仁和人寿",
    "source": 2,
-   "source_url": 68,
+   "source_url": 69,
    "is_active": true,
    "id": "noid-a27a2dba66e4",
    "validity_status": "信息缺失"
@@ -73659,7 +73659,7 @@
    "type": "意外险",
    "company": "中国人保",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true,
    "id": "noid-d41be34ed361",
    "validity_status": "信息缺失"
@@ -73669,7 +73669,7 @@
    "type": "重疾险",
    "company": "平安人寿",
    "source": 2,
-   "source_url": 69,
+   "source_url": 70,
    "is_active": true
   },
   {
@@ -73677,7 +73677,7 @@
    "type": "健康险",
    "company": "大都会人寿",
    "source": 2,
-   "source_url": 69,
+   "source_url": 70,
    "is_active": true
   },
   {
@@ -73685,7 +73685,7 @@
    "type": "重疾险",
    "company": "人保养老保险",
    "source": 2,
-   "source_url": 70,
+   "source_url": 71,
    "is_active": true
   },
   {
@@ -73701,7 +73701,7 @@
    "type": "重疾险",
    "company": "君龙人寿",
    "source": 2,
-   "source_url": 68,
+   "source_url": 69,
    "is_active": true
   },
   {
@@ -73709,7 +73709,7 @@
    "type": "重疾险",
    "company": "复星联合健康",
    "source": 2,
-   "source_url": 68,
+   "source_url": 69,
    "is_active": true
   },
   {
@@ -73717,7 +73717,7 @@
    "type": "意外险",
    "company": "中国平安",
    "source": 2,
-   "source_url": 71,
+   "source_url": 49,
    "is_active": true
   },
   {
@@ -73741,7 +73741,7 @@
    "type": "重疾险",
    "company": "中宏人寿",
    "source": 2,
-   "source_url": 60,
+   "source_url": 61,
    "is_active": true
   },
   {
@@ -73765,7 +73765,7 @@
    "type": "医疗险",
    "company": "京东安联财产保险",
    "source": 2,
-   "source_url": 70,
+   "source_url": 71,
    "is_active": true
   },
   {
@@ -73773,7 +73773,7 @@
    "type": "健康险",
    "company": "京东安联财产保险",
    "source": 2,
-   "source_url": 70,
+   "source_url": 71,
    "is_active": true
   },
   {
@@ -73813,7 +73813,7 @@
    "type": "意外险",
    "company": "中国平安",
    "source": 2,
-   "source_url": 50,
+   "source_url": 49,
    "is_active": true
   },
   {
@@ -73861,7 +73861,7 @@
    "type": "意外险",
    "company": "中国人保健康保险",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true
   },
   {
@@ -73869,7 +73869,7 @@
    "type": "意外险",
    "company": "中国人保健康保险",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true
   },
   {
@@ -73893,7 +73893,7 @@
    "type": "意外险",
    "company": "中国人保健康保险",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true
   },
   {
@@ -74045,7 +74045,7 @@
    "type": "医疗险",
    "company": "人保养老保险",
    "source": 2,
-   "source_url": 63,
+   "source_url": 88,
    "is_active": true
   },
   {
@@ -74053,7 +74053,7 @@
    "type": "意外险",
    "company": "中国人保健康保险",
    "source": 2,
-   "source_url": 59,
+   "source_url": 60,
    "is_active": true
   },
   {
@@ -74061,7 +74061,7 @@
    "type": "医疗险",
    "company": "中国人保健康",
    "source": 2,
-   "source_url": 88,
+   "source_url": 89,
    "is_active": true
   },
   {
@@ -74069,7 +74069,7 @@
    "type": "重疾险",
    "company": "大都会人寿",
    "source": 2,
-   "source_url": 51,
+   "source_url": 50,
    "is_active": true
   },
   {
@@ -74077,7 +74077,7 @@
    "type": "医疗险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 89,
+   "source_url": 90,
    "is_active": true
   },
   {
@@ -74085,7 +74085,7 @@
    "type": "医疗险",
    "company": "阳光人寿保险",
    "source": 2,
-   "source_url": 63,
+   "source_url": 88,
    "is_active": true
   },
   {
@@ -74093,7 +74093,7 @@
    "type": "年金险",
    "company": "利安人寿",
    "source": 2,
-   "source_url": 90,
+   "source_url": 91,
    "is_active": true
   },
   {
@@ -74101,7 +74101,7 @@
    "type": "年金险",
    "company": "利安人寿",
    "source": 2,
-   "source_url": 91,
+   "source_url": 92,
    "is_active": true
   },
   {
@@ -74109,7 +74109,7 @@
    "type": "意外险",
    "company": "中国平安",
    "source": 2,
-   "source_url": 49,
+   "source_url": 56,
    "is_active": true
   },
   {
@@ -74117,7 +74117,7 @@
    "type": "年金险",
    "company": "海保人寿",
    "source": 2,
-   "source_url": 64,
+   "source_url": 65,
    "is_active": true
   },
   {
@@ -74125,7 +74125,7 @@
    "type": "意外险",
    "company": "平安人寿保险",
    "source": 2,
-   "source_url": 50,
+   "source_url": 51,
    "is_active": true
   },
   {
@@ -74133,7 +74133,7 @@
    "type": "医疗险",
    "company": "新华人寿保险",
    "source": 2,
-   "source_url": 92,
+   "source_url": 93,
    "is_active": true
   },
   {
@@ -74141,7 +74141,7 @@
    "type": "少儿重疾险",
    "company": "复星联合健康保险",
    "source": 2,
-   "source_url": 93,
+   "source_url": 94,
    "is_active": true
   },
   {
@@ -74149,7 +74149,7 @@
    "type": "年金险",
    "company": "利安人寿",
    "source": 2,
-   "source_url": 94,
+   "source_url": 95,
    "is_active": true
   },
   {
@@ -74157,7 +74157,7 @@
    "type": "养老保险",
    "company": "利安人寿",
    "source": 2,
-   "source_url": 90,
+   "source_url": 91,
    "is_active": true
   },
   {
@@ -74165,7 +74165,15 @@
    "type": "健康险",
    "company": "人保养老保险",
    "source": 2,
-   "source_url": 63,
+   "source_url": 88,
+   "is_active": true
+  },
+  {
+   "name": "小顽童5号",
+   "type": "意外险",
+   "company": "中国人保",
+   "source": 2,
+   "source_url": 51,
    "is_active": true
   }
  ],
@@ -75152,13 +75160,14 @@
    "https://www.hsbc.com.cn/content/dam/hsbc/cn/docs/transfers/sales-agency-product-info.pdf",
    "https://www.rhassurance.com/rhOffic/information/baseinfo/3",
    "https://zhuanlan.zhihu.com/p/689526156",
-   "https://www.xiaoyusan.com/bxzs_ywbx",
-   "https://post.smzdm.com/p/ae6n8p93",
+   "https://zhuanlan.zhihu.com/p/2019783713735594833",
    "https://finance.sina.com.cn/roll/2026-01-08/doc-inhfqtyt1356919.shtml",
+   "https://post.smzdm.com/p/ae6n8p93",
    "https://zhuanlan.zhihu.com/p/98468450",
    "https://zhuanlan.zhihu.com/p/2050999795788034485",
    "https://m.naibabao.com/ketang/57473.html",
    "https://zhuanlan.zhihu.com/p/408324750",
+   "https://www.xiaoyusan.com/bxzs_ywbx",
    "https://www.pulanbx.com/hydt/234519.html",
    "https://cn.investing.com/news/stock-market-news/article-3147431",
    "https://zhuanlan.zhihu.com/p/17721019663",
@@ -75166,7 +75175,7 @@
    "https://www.sohu.com/a/1094784040_122918686",
    "https://m.huize.com/study/detail-493470.html",
    "https://www.xiaoyusan.com/shk/wkpage/bxzs/300015416?type=11",
-   "https://zhuanlan.zhihu.com/p/2046189916447684040",
+   "https://zhuanlan.zhihu.com/p/1939715843362632734",
    "https://www.cqnews.net/1/detail/1418198134902595584/app/content_1418198134902595584.html",
    "https://www.xiaoyusan.com/shk/wkpage/bxzs/300012094?type=11",
    "https://app.xinhuanet.com/news/article.html?articleId=20260813f610393449ef445cbcf323135642e5ad",
@@ -75174,7 +75183,6 @@
    "https://www.naibabao.com/wenda/25080.html",
    "https://www.pulanbx.com/bxzs/234498.html",
    "https://m.sohu.com/a/1089758903_120815119?scm=10001.325_13-325_13.0.0-0-0-0-0.5_1334",
-   "https://zhuanlan.zhihu.com/p/2019783713735594833",
    "https://www.e-chinalife.com/c/2026-01-29/81be4b03-7b5c-4a8d-a293-e7cbaeb28892.shtml",
    "https://www.news.cn/money/20260813/f610393449ef445cbcf323135642e5ad/c.html",
    "https://m.huize.com/study/detail-592655.html",
@@ -75191,6 +75199,7 @@
    "https://zhuanlan.zhihu.com/p/2096550606274048864",
    "https://m.vobao.com/news/1128522780394636876.shtml",
    "https://www.xiaoyusan.com/shk/wkpage/bxzs/300014289?type=11",
+   "https://zhuanlan.zhihu.com/p/2046189916447684040",
    "https://xuexi.huize.com/special/detail-46082.html",
    "https://zhuanlan.zhihu.com/p/2012843299849929155",
    "https://ex.chinadaily.com.cn/exchange/partners/82/rss/channel/cn/columns/sz8srm/stories/WS67498793a310b59111da64cc.html",

@@ -1,0 +1,24 @@
+{
+  "_说明": "L2 声明式通用适配器规则。复制本文件为 config/local/adapter_rules.local.json 后按实际 agent 修改；也可设 WORKLOG_ADAPTER_RULES 指向任意 JSON。新增 agent 无需写 Python。",
+  "_字段说明": {
+    "name": "报告里显示的 Agent 名称",
+    "dir_patterns": "相对 home/appdata 的候选目录，支持单层 *，如 ['.myagent/sessions/*']",
+    "file_globs": "文件名 glob，如 ['*.jsonl', '*.json']",
+    "data_style": "jsonl | json | json-array | flat-text",
+    "role_keys": "可选，角色字段名（默认 role/type/speaker/...）",
+    "user_values": "可选，表示用户角色的取值（默认 user/human/1）",
+    "text_keys": "可选，正文/提示词字段名（默认 content/text/message/...）",
+    "token_spec": "可选，token 字段映射；不填或 null 表示该 agent 不暴露 token，报告如实标注",
+    "verified": "可选，是否已用真实会话验证（默认 false，报告标注未验证）"
+  },
+  "rules": [
+    {
+      "name": "示例Agent",
+      "dir_patterns": [".example/sessions/*"],
+      "file_globs": ["*.jsonl"],
+      "data_style": "jsonl",
+      "token_spec": null,
+      "verified": false
+    }
+  ]
+}

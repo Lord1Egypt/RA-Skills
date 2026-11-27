@@ -13,8 +13,8 @@ Included monthly credits: Basic Plan 250, Pro Plan 750, Agency Plan 3.000. Top-u
 - search_profiles (POST /api/v1/search/profiles, 1cr per 25 profiles): Find tracked creator profiles by name/handle across platforms, with follower and performance stats.
 - get_post (GET /api/v1/posts/{postId}, 1cr): Full data for one post: stats, outlier scores across seven time windows, plus cached transcript and visual analysis when available.
 - get_profile (GET /api/v1/profiles/{profileId}, 1cr): Follower counts, average performance baselines and recent posts for one tracked profile.
-- request_transcript (POST /api/v1/transcriptions, 10cr): Queue AI speech transcription for any tracked video post; poll the job, then fetch via get_post.
-- request_visual_analysis (POST /api/v1/visual-analysis, 10cr): Queue AI scene-by-scene visual analysis (on-screen text, shot breakdown, editing style) for any tracked post; poll the job, then fetch via get_post.
+- request_transcript (POST /api/v1/transcriptions, 10-20cr by length): Queue AI speech transcription for any video post, also one we do not have yet (fetched first); poll the job, then fetch via get_post.
+- request_visual_analysis (POST /api/v1/visual-analysis, 10-30cr by length): Queue AI scene-by-scene visual analysis (on-screen text, shot breakdown, editing style) for any post, also one we do not have yet (fetched first); poll the job, then fetch via get_post.
 - crawl_profile (POST /api/v1/crawls, 40cr): Add any public TikTok, Instagram or YouTube profile to the tracked database on demand.
 - get_job_status (GET /api/v1/jobs/{jobRef}, free): Free polling endpoint for asynchronous jobs (crawls, transcriptions).
 - get_credit_balance (GET /api/v1/credits, free): Free endpoint returning your current credit balance.

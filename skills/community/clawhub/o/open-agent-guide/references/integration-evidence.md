@@ -300,3 +300,20 @@ For a published kit missing languages, submit an `update` targeting
 `catalog.developerkit` with its ID and `programming_languages: {"add": [...]}`.
 Cite the evidence in the submission description and leave unchanged fields out.
 Do not create a duplicate kit to fill its metadata.
+
+## auth.md
+
+Submit `auth_md_url` only after inspecting the product's own published auth.md
+Markdown document at its official service root. API/auth subdomains and official
+vendor-controlled service hosts can qualify; confirm product identity through
+redirects. Generic authentication docs, HTML fallbacks and adopter badges do not
+establish the document. WorkOS's [Adopted by badges](https://workos.com/auth-md)
+are discovery leads only. Read documentation without executing registration.
+
+The field is unscored and does not imply headless signup. Omit to preserve or
+send `"auth_md_url": ""` to clear. Whole-field absence uses the normal
+attestation metadata, for example `"field_key": "auth_md_url"`, with no label.
+Cite complete official registration/authentication documentation that would
+publish or link the file, or a scoped explicit vendor negative. A guessed 404 or
+failed fetch alone is insufficient. Absence is recorded for completion only,
+without score, research-coverage or field-density credit.

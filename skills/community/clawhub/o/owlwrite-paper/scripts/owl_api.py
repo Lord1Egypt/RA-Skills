@@ -11,7 +11,8 @@ MCP 服务器（mcp_server.py）是独立实现（异步 httpx，远程常驻场
   · 所有函数返回 dict（服务端 JSON 原样，字段名与服务端一致）；
   · 出错抛 ApiError（带 code / message / http_status），调用方按 code 分支，不吞错；
   · 活动公告（owl_notice）统一补 `_notice_tip`，两条路径都会转告用户；
-  · 版本头 X-Owl-Skill-Version 必须随每个请求带上（网关据此判旧版）。
+  · 版本头 X-Owl-Skill-Version 必须随每个请求带上（网关据此判旧版）；
+    2026-11-26 多技能底座另带 platform / slug / release_uid 三头，供平台统计归因。
 
 凭据解析顺序：环境变量 OWL_API_KEY > ~/.owl_creds.json 的 owl_api_key（OWL_CREDS 可指定文件）。
 安全边界：默认只向官方网关发凭据；非官方 base 需显式 OWL_ALLOW_CUSTOM_BASE=1；
@@ -29,16 +30,50 @@ import urllib.request
 import zipfile
 
 # 版本同源：SKILL.md / README / scripts/mcp_server.py / connector-meta.json / owl_api.py
-OWL_SKILL_VERSION = "1.3.6"
+OWL_SKILL_VERSION = "1.4.3"
+
+# 多技能接入底座（2026-11-26 签批）：身份四维。
+# slug / 发布平台 / 发布标识优先从包内 release.json 读，缺失时回退以下常量（老包兼容）。
+# release_uid 是每次发布生成的 UUID，同一版本重发包也能在统计里区分。
+OWL_SKILL_SLUG = "owlwrite-paper"
+OWL_SKILL_PLATFORM = "skillhub"
+OWL_SKILL_RELEASE_UID = "b0bbb7fa-c908-49d2-9cc5-394b355a8113"
+
+
+def _load_release_identity():
+    p = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "release.json")
+    try:
+        with open(p, encoding="utf-8") as f:
+            d = json.load(f)
+        return (str(d.get("slug") or OWL_SKILL_SLUG),
+                str(d.get("platform") or OWL_SKILL_PLATFORM),
+                str(d.get("release_uid") or OWL_SKILL_RELEASE_UID))
+    except Exception:  # noqa: BLE001 — 老包没有 release.json 时按常量上报
+        return OWL_SKILL_SLUG, OWL_SKILL_PLATFORM, OWL_SKILL_RELEASE_UID
+
+
+SKILL_SLUG, SKILL_PLATFORM, RELEASE_UID = _load_release_identity()
+
+
+def identity_headers():
+    """四个身份头统一出处；网关按注册表校验，未登记落 unregistered 隔离桶。"""
+    return {"X-Owl-Skill-Platform": SKILL_PLATFORM,
+            "X-Owl-Skill-Slug": SKILL_SLUG,
+            "X-Owl-Skill-Release-Uid": RELEASE_UID,
+            "X-Owl-Skill-Version": OWL_SKILL_VERSION}
+
 
 DEFAULT_BASE = "https://owl.skillsutra.cn"
 OFFICIAL_HOSTS = {"owl.skillsutra.cn"}
 LOCAL_HOSTS = {"127.0.0.1", "localhost", "::1"}
+# 按 slug 隔离的私有凭据路径放首位，老路径保留回退——存量用户不因升级丢 key。
 CREDS_PATHS = (
+    os.path.expanduser("~/.owl_%s_creds.json" % SKILL_SLUG),
     os.path.expanduser("~/.owl_creds.json"),
     os.path.expanduser("~/.workbuddy/owl_creds.json"),
 )
 NOTICE_SEEN_PATH = os.path.expanduser("~/.owl_notice_seen.json")
+NOTICE_SEEN_PATH_BY_SKILL = os.path.expanduser("~/.owl_%s_notice_seen.json" % SKILL_SLUG)
 
 # run_id / order_no 是服务端下发的标识，只允许安全字符，杜绝路径注入
 _ID_RE = re.compile(r"^[A-Za-z0-9_\-]{1,80}$")
@@ -229,10 +264,7 @@ def request(method, path, body=None, params=None, key=None, base=None, timeout=1
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
     host = (urllib.parse.urlsplit(url).hostname or "").lower()
-    headers = {
-        "Accept": "application/json",
-        "X-Owl-Skill-Version": OWL_SKILL_VERSION,
-    }
+    headers = dict(identity_headers(), Accept="application/json")
     if host not in OFFICIAL_HOSTS and host not in LOCAL_HOSTS:
         # 非官方主机一律告警（含匿名接口——伪造的价格/公告同样能骗人），凭据类请求再拦
         print(f"# 警告：请求将发送到非官方网关 {host}", file=sys.stderr)
@@ -422,8 +454,14 @@ def run_report(run_id, part="", key=None, base=None):
     if action == "check":
         rep = result.get("report") or {}
         files = rep.get("files") or []
-        parts = {f.get("kind"): f.get("file") for f in files
-                 if f.get("kind") and not str(f.get("kind")).startswith("other")}
+        # 2026-11-27 1.4.1：按落盘 file 名建索引（唯一），不再按 kind——
+        # kind 可能重复（智评事故两个 main），旧写法后者覆盖前者且 other* 被过滤，
+        # 用户唯一入口指向说明模板。file 是服务端 report_path 的动态白名单 key。
+        parts = {}
+        for f in files:
+            stem = os.path.splitext(str(f.get("file") or ""))[0]
+            if stem:
+                parts[stem] = f.get("file") or ""
         if not parts:
             parts = {"main": "", "compare": "", "simple": "", "fulltext": ""}
         pick = (part or "main").strip().lower()
@@ -444,7 +482,7 @@ def run_report(run_id, part="", key=None, base=None):
             "report_status": rep.get("status") or "unknown",
             "report_url": url_of(pick),
             "available_parts": {k: url_of(k) for k in sorted(parts)},
-            "report_tip": "检测类共 4 份：综合(HTML)/比对(HTML)/简洁(PDF)/原文对照(PDF)",
+            "report_tip": f"检测类共 {len(parts)} 份报告，可用 part 见 available_parts（默认 main 为综合报告）",
         }
 
     items = result.get("items") or []
@@ -625,7 +663,7 @@ def typeset(file_path="", mode="latex", template_path="", entry="", pages=0, han
     if out.get("blind"):
         out["blind_tip"] = ("本次是盲审版：封面作者/学号/导师已脱敏为 ***、致谢整节已隐藏。"
                             "交付时必须说清这两点，并提醒用户：正式提交版要关掉 blind 重排一次"
-                            "（72 小时内同一篇稿只收 1 积分工本）。")
+                            "（72 小时内同一篇稿按缓存价，以实时报价为准）。")
     out["files_tip"] = ("pdf_url / docx_url 自带 7 天签名，可直接下载；"
                         "建议存到用户论文目录 07-交付/ 下，文件名用「题目-排版-v1.pdf」")
     return out
@@ -710,3 +748,97 @@ def claim_favorite(image_path, key=None, base=None):
     return request("POST", "/v1/campaign/favorite-claim",
                    {"image_base64": base64.b64encode(raw).decode()},
                    key=key, base=base, timeout=180)
+
+
+# ---------------- 专利能力（2026-11-25 三大能力同批发布，CLI/HTTP 通道） ----------------
+# 注意：专利是 CLI/HTTP 能力，不是 MCP 工具；官网工具数按 MCP 工具计，不把这里算进去。
+PATENT_ACTIONS = ("patent_search", "patent_full", "patent_detail",
+                  "patent_similar", "patent_portrait")
+PATENT_REPORT_TYPES = ("novelty", "competitive", "roadmap",
+                       "oa_answer", "disclosure", "idea_upgrade")
+PATENT_STRUCT_ONLY = frozenset({"idea_upgrade"})  # 交付结构化方向清单 JSON，其余五类交付 docx
+
+
+def patent(action, query="", pn="", company="", ds="cn", size=10, kind="claims",
+           stat="portrait", key=None, base=None):
+    """专利同步检索（5 动作）。固定标价先报价后执行，失败不收费。"""
+    if action not in PATENT_ACTIONS:
+        raise ApiError("bad_action", f"action 须为 {','.join(PATENT_ACTIONS)}")
+    need = {"patent_search": ("query", query), "patent_full": ("pn", pn),
+            "patent_detail": ("pn", pn), "patent_similar": ("pn", pn),
+            "patent_portrait": ("company", company)}[action]
+    if not str(need[1] or "").strip():
+        raise ApiError("bad_params", f"{need[0]} 必填")
+    body = {"action": action, "query": query or None, "pn": pn or None,
+            "company": company or None, "ds": ds, "size": int(size),
+            "kind": kind, "stat": stat}
+    return request("POST", "/v1/patent", body, key=key, base=base, timeout=180)
+
+
+def patent_report_submit(report_type, title, technical_solution="", extra=None,
+                         key=None, base=None):
+    """提交专利异步报告。提交前先调用方报价确认；每账号并发≤1。"""
+    if report_type not in PATENT_REPORT_TYPES:
+        raise ApiError("bad_report_type", f"report_type 须为 {','.join(PATENT_REPORT_TYPES)}")
+    if not str(title or "").strip():
+        raise ApiError("bad_params", "title 必填")
+    return request("POST", "/v1/patent/report",
+                   {"report_type": report_type, "title": title,
+                    "technical_solution": technical_solution, "extra": extra or {}},
+                   key=key, base=base, timeout=180)
+
+
+def patent_report_status(run_id, key=None, base=None):
+    """查专利报告任务终态（含产物 download_url 与 kind）。"""
+    if not str(run_id or "").strip():
+        raise ApiError("bad_params", "run_id 必填")
+    return request("GET", f"/v1/runs/{run_id}", key=key, base=base, timeout=120)
+
+
+def patent_report_cancel(run_id, key=None, base=None):
+    """取消专利报告：先调上游 cancel，全额退，不收费。"""
+    if not str(run_id or "").strip():
+        raise ApiError("bad_params", "run_id 必填")
+    return request("POST", f"/v1/patent/report/{run_id}/cancel", {},
+                   key=key, base=base, timeout=120)
+
+
+def patent_artifact_download(run_id, url="", dest="", key=None, base=None):
+    """下载专利报告产物（docx 或结构化 JSON）到本机。url 来自 status 的 download_url。"""
+    if not str(run_id or "").strip():
+        raise ApiError("bad_params", "run_id 必填")
+    if not url:
+        url = f"/v1/runs/{run_id}/patent-artifact"
+    raw = request_bytes("GET", url, key=key, base=base, timeout=180)
+    out = os.path.abspath(os.path.expanduser(dest or f"patent-report-{run_id}.docx"))
+    d = os.path.dirname(out)
+    if d and not os.path.isdir(d):
+        os.makedirs(d, exist_ok=True)
+    with open(out, "wb") as f:
+        f.write(raw)
+    return {"file": out, "bytes": len(raw)}
+
+
+def request_bytes(method, path, body=None, params=None, key=None, base=None,
+                  timeout=120):
+    """同 request()，但返回原始 bytes（专利 docx / JSON 产物下载用）。"""
+    base_url = resolve_base(base)
+    url = base_url + path
+    if params:
+        url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
+    host = (urllib.parse.urlsplit(url).hostname or "").lower()
+    headers = dict(identity_headers(), Accept="application/octet-stream")
+    if host not in OFFICIAL_HOSTS and host not in LOCAL_HOSTS:
+        print(f"# 警告：请求将发送到非官方网关 {host}", file=sys.stderr)
+        if not os.environ.get("OWL_ALLOW_CUSTOM_BASE", "").strip().lower() in ("1", "true", "yes"):
+            raise ApiError("untrusted_base", f"拒绝向非官方网关下载：{host}")
+    headers["Authorization"] = "Bearer " + load_key(key)
+    req = urllib.request.Request(url, data=None, headers=headers, method=method.upper())
+    try:
+        with _OPENER.open(req, timeout=timeout) as r:
+            return r.read()
+    except urllib.error.HTTPError as e:
+        msg = e.read().decode("utf-8", "replace")[:300]
+        raise ApiError("http_%d" % e.code, f"下载失败 HTTP {e.code}: {msg}") from None
+    except urllib.error.URLError as e:
+        raise ApiError("network_error", f"下载失败：{e}") from None

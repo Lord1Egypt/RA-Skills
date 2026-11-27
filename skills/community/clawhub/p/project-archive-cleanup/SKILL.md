@@ -5,7 +5,7 @@ description_zh: "项目归档清理：保留策划与结果，剥离执行过程
 description_en: "Project archive cleanup"
 disable: false
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # project-archive-cleanup
@@ -68,6 +68,7 @@ Do **not** use for: active projects (last activity < ~14 days), the runtime dir 
 - Backup integrity: every entry's src file count == bak file count.
 - Re-run the unit scanner and report before/after file counts and process-file counts per project.
 - Confirm no result file lost its referent: spot-check docs that named a deleted script.
+- Duplicate removals are backed by a full content hash comparison, and the report lists the hash and both paths for each removed copy; equal size alone is never used as proof of duplication.
 
 ## Reference
 

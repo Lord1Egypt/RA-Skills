@@ -569,9 +569,14 @@ iterate report --strict                 # warnings become blocking (exit 1), lik
 iterate report --annotate               # in GitHub Actions, emit each finding as an inline PR
                                         #   annotation (::error / ::warning on stderr); auto-enabled
                                         #   when GITHUB_ACTIONS=true, --no-annotate disables
+iterate report --github-summary         # append the Markdown report to $GITHUB_STEP_SUMMARY so it
+                                        #   renders on the Actions run-summary page; auto-enabled when
+                                        #   GITHUB_STEP_SUMMARY is set, --no-github-summary disables
 ```
 
 The Markdown contains the tech stack, effective review configuration (target branch, scope, dimensions, dimension sets, validation/whitelist, personalization count), every doctor check as a table, drift + advice, and concrete next commands. Values are pipe/newline/backtick/HTML escaped, so the document is safe to paste as-is. `--out` refuses to overwrite an existing file (and iterate's own state files) unless `--force` is given, so a stray report can never clobber your notes. Exit code is `0` when healthy, `1` when the report is blocking (errors, plus warnings under `--strict`) — drop it into CI with no extra parsing.
+
+Inside GitHub Actions the report can also land where developers already look: `--github-summary` appends it to the workflow's run-summary page, so a CI run surfaces the whole document on the run-summary block (and `--annotate` pins each failing check on the diff). `iterate template show ci-workflow` prints a ready-to-paste `.github/workflows/iterate.yml` wiring both together plus a JSON artifact.
 
 ### iterate completion (shell tab-completion)
 

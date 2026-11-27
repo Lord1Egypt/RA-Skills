@@ -567,6 +567,7 @@ def _dispatch_command(
             json_output=getattr(args, "json", False),
             force=getattr(args, "force", False),
             annotate=_annotate_from_args(args),
+            github_summary=_github_summary_from_args(args),
         )
     if args.command == "export":
         if show_banner:
@@ -996,6 +997,24 @@ def _build_parser() -> argparse.ArgumentParser:
         action="store_true",
         default=argparse.SUPPRESS,
         help="Disable GitHub Actions annotations even when GITHUB_ACTIONS=true.",
+    )
+    report_summary = report_parser.add_mutually_exclusive_group()
+    report_summary.add_argument(
+        "--github-summary",
+        action="store_true",
+        default=argparse.SUPPRESS,
+        help="Append the Markdown report to $GITHUB_STEP_SUMMARY so it renders "
+        "on the GitHub Actions run-summary page. Auto-enabled when "
+        "GITHUB_STEP_SUMMARY is set (i.e. inside any workflow step); "
+        "--no-github-summary disables it. Requires GITHUB_STEP_SUMMARY: an "
+        "explicit --github-summary outside GitHub Actions is a usage error.",
+    )
+    report_summary.add_argument(
+        "--no-github-summary",
+        action="store_true",
+        default=argparse.SUPPRESS,
+        help="Disable the GitHub run-summary write even when "
+        "GITHUB_STEP_SUMMARY is set.",
     )
     export_parser = subparsers.add_parser(
         "export",
@@ -2389,6 +2408,7 @@ def _cmd_report(
     json_output: bool = False,
     force: bool = False,
     annotate: bool | None = None,
+    github_summary: bool | None = None,
 ) -> int:
     """Handle ``iterate report`` — aggregated Markdown/JSON health report.
 
@@ -2400,9 +2420,25 @@ def _cmd_report(
     ``annotate`` (from ``--annotate``/``--no-annotate``/GITHUB_ACTIONS) emits
     GitHub Actions workflow commands on stderr for each finding, so a CI run
     annotates the PR diff inline without corrupting the stdout document.
+
+    ``github_summary`` (from ``--github-summary``/``--no-github-summary``/
+    GITHUB_STEP_SUMMARY) appends the Markdown report to the Actions run-summary
+    page, so the developer sees the whole document on the workflow summary
+    instead of opening the job log. The summary always carries the *Markdown*
+    form — the run-summary page is for humans, and ``--json`` keeps meaning
+    "stdout holds exactly one machine document". An explicit
+    ``--github-summary`` outside GitHub Actions is a usage error (exit 2) that
+    says what to do, rather than silently writing nowhere.
     """
     from iterate_cli.generator import atomic_write
-    from iterate_cli.report import build_report, render_markdown, report_json
+    from iterate_cli.report import (
+        append_github_summary,
+        build_report,
+        enabled_from_args,
+        github_summary_path,
+        render_markdown,
+        report_json,
+    )
 
     if out is not None and out.strip() == "":
         message = "--out must not be empty (omit it to print to stdout)."
@@ -2412,10 +2448,12 @@ def _cmd_report(
     from iterate_cli.annotate import (
         annotations_from_findings,
         emit,
-        enabled_from_args,
+    )
+    from iterate_cli.annotate import (
+        enabled_from_args as annotate_enabled,
     )
 
-    if enabled_from_args(annotate):
+    if annotate_enabled(annotate):
         emit(
             annotations_from_findings(
                 (payload.get("doctor") or {}).get("findings") or []
@@ -2423,6 +2461,31 @@ def _cmd_report(
         )
     text = report_json(payload) if json_output else render_markdown(payload)
     code = 1 if payload["summary"]["blocking"] else 0
+
+    # Run-summary output is a separate sink (the Actions run-summary page), so
+    # it never touches stdout and never changes the exit code. It is resolved
+    # *after* the report builds so a write problem cannot mask a gate result.
+    if enabled_from_args(github_summary):
+        summary_target = github_summary_path()
+        if summary_target is None:
+            # Explicit --github-summary outside GitHub Actions: say what to do
+            # instead of silently writing nowhere (self-service failure).
+            return _bundle_failure(
+                "--github-summary requires GITHUB_STEP_SUMMARY, which GitHub "
+                "Actions sets for every step. Run this inside a workflow step, "
+                "or drop the flag (use --no-github-summary for a local run).",
+                json_output,
+                code=2,
+            )
+        try:
+            append_github_summary(render_markdown(payload), summary_target)
+        except OSError as exc:
+            # The gate must not fail because the summary sink is unwritable;
+            # surface the fix and let the report's own exit code stand.
+            print(
+                f"warning: could not write GitHub step summary: {exc}",
+                file=sys.stderr,
+            )
 
     if out is None or out == "-":
         sys.stdout.write(text)
@@ -2476,6 +2539,21 @@ def _annotate_from_args(args: argparse.Namespace) -> bool | None:
     if getattr(args, "no_annotate", False):
         return False
     if getattr(args, "annotate", False):
+        return True
+    return None
+
+
+def _github_summary_from_args(args: argparse.Namespace) -> bool | None:
+    """Resolve the report ``--github-summary``/``--no-github-summary`` tri-state.
+
+    Returns ``True`` (write the run summary), ``False`` (skip it) or ``None``
+    (auto-detect via ``GITHUB_STEP_SUMMARY``). The two flags are mutually
+    exclusive at parse time, so at most one of ``github_summary`` /
+    ``no_github_summary`` is present on ``args``.
+    """
+    if getattr(args, "no_github_summary", False):
+        return False
+    if getattr(args, "github_summary", False):
         return True
     return None
 

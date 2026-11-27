@@ -1,6 +1,6 @@
 ---
 name: sequenzy-email-marketing
-description: Primary agent guide for operating Sequenzy as an email-marketing platform. Use when an AI agent needs to authenticate, inspect identity, manage subscribers, create or edit campaigns/sequences/templates, control the campaign lifecycle (cancel, pause, resume, delete, duplicate), run campaign A/B tests, mutate lists/tags/segments, enroll subscribers into sequences, invite team members, triage and reply to inbox conversations, manage outbound webhooks, generate draft email content, send transactional email, read delivery stats, or decide whether a requested Sequenzy email-marketing workflow is currently supported. Prefer this over the generic sequenzy skill when both seem relevant.
+description: Primary agent guide for operating Sequenzy as an AI-native email marketing tool. Use when an AI agent needs to authenticate, inspect identity, manage subscribers, create or edit campaigns/sequences/templates, control the campaign lifecycle (cancel, pause, resume, delete, duplicate), run campaign A/B tests, mutate lists/tags/segments, enroll subscribers into sequences, invite team members, triage and reply to inbox conversations, manage outbound webhooks, generate draft email content, send transactional email, read delivery stats, or decide whether a requested Sequenzy email-marketing workflow is currently supported. Prefer this over the generic sequenzy skill when both seem relevant.
 ---
 
 # Sequenzy Email Marketing
@@ -154,18 +154,16 @@ nothing.
 ## Receiving Domains
 
 A receiving domain is a domain or subdomain whose mail reaches the Sequenzy
-inbox: mail to any address on it arrives. A workspace has one, and like the
-tracking domain it serves every sending domain: once it is verified, replies to
-emails from all sending domains come back to reply addresses on it. Until then,
-replies use Sequenzy's shared address. Workspaces that set up several before
-keep them; replies then prefer the sender's own domain or one on the same root,
-else the oldest verified one. Adding a second one returns `409 limit_reached`.
-Manage it with
+inbox: mail to any address on it arrives. Once verified, replies to
+emails from your sending domains come back to reply addresses on it (preferring
+the sender's own domain or one on the same root, else the oldest verified one).
+Until then, replies use Sequenzy's shared address.
+Manage receiving domains with
 `sequenzy receiving-domains` (`list`, `add <domain>`, `get <domain>`,
 `verify <domain>`, `remove <domain> --yes`) or MCP `list_receiving_domains`,
 `add_receiving_domain`, `get_receiving_domain`, `verify_receiving_domain` and
 `remove_receiving_domain`. After adding one, publish its MX record (and the TXT
-record when listed), then verify; the first verification turns Inbox on.
+record when listed), then verify; the first verification turns reply tracking on.
 `verified` means mail arrives and new reply
 addresses use it; `pending` means the records are not found yet (a new name is
 reserved for 7 days); `failed` means something broke: mail that still arrives
@@ -174,10 +172,10 @@ A domain that already receives email elsewhere (its MX points at Google
 Workspace, Microsoft 365, Cloudflare Email Routing...) is refused with
 `409 domain_has_mailbox`: suggest a subdomain such as `support.acme.com` and
 confirm the name with the user. `503 dns_check_failed` means the MX lookup got
-no answer; retry in a minute. Turning Inbox on with `replyTrackingEnabled`
-(`companies update --enable-reply-tracking`, MCP `update_company`) returns
-`409 receiving_domain_required` when the workspace has no verified receiving
-domain and has never received a conversation; add a receiving domain instead.
+no answer; retry in a minute. You can also turn reply tracking on directly with
+`replyTrackingEnabled` (`companies update --enable-reply-tracking`, MCP
+`update_company`); without a verified receiving domain, replies use Sequenzy's
+shared address (`inbound.sequenzy.com`).
 Remove one only after
 the user confirms: all mail to it stops, including replies to emails already
 sent, and a branded inbox address on it is cleared. Sending domains

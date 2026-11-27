@@ -1,0 +1,87 @@
+{
+  "nodes": [
+    {
+      "nodeId": "userGuide",
+      "name": "系统配置（不参与连线）",
+      "avatar": "core/workflow/template/systemConfig",
+      "flowNodeType": "userGuide",
+      "position": {"x": 0, "y": -220},
+      "version": "481",
+      "intro": "通用工作流模板；根据业务需求配置节点和资源绑定。",
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "nodeId": "workflowStartNodeId",
+      "name": "流程开始",
+      "avatar": "core/workflow/template/workflowStart",
+      "flowNodeType": "workflowStart",
+      "position": {"x": 0, "y": 0},
+      "version": "481",
+      "intro": "工作流的起点",
+      "inputs": [
+        {
+          "key": "userChatInput",
+          "label": "workflow:user_question",
+          "valueType": "string",
+          "required": true,
+          "renderTypeList": ["reference", "textarea"],
+          "debugLabel": "",
+          "toolDescription": "用户问题"
+        }
+      ],
+      "outputs": [
+        {
+          "id": "userChatInput",
+          "key": "userChatInput",
+          "type": "static",
+          "valueType": "string",
+          "label": "common:core.module.input.label.user question",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "nodeId": "replyNodeId",
+      "name": "初始回复",
+      "avatar": "core/workflow/template/reply",
+      "flowNodeType": "answerNode",
+      "position": {"x": 420, "y": 0},
+      "version": "481",
+      "intro": "返回固定文本或变量结果",
+      "inputs": [
+        {
+          "key": "text",
+          "label": "common:core.module.input.label.Response content",
+          "valueType": "any",
+          "required": true,
+          "isRichText": false,
+          "placeholder": "common:core.module.input.description.Response content",
+          "maxLength": 100000,
+          "selectedTypeIndex": 0,
+          "renderTypeList": ["textarea", "reference"],
+          "value": "{{REPLY_TEXT}}",
+          "debugLabel": "",
+          "description": "common:core.module.input.description.Response content",
+          "toolDescription": ""
+        }
+      ],
+      "outputs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "workflowStartNodeId",
+      "target": "replyNodeId",
+      "sourceHandle": "workflowStartNodeId-source-right",
+      "targetHandle": "replyNodeId-target-left"
+    }
+  ],
+  "chatConfig": {
+    "welcomeText": "{{WELCOME_TEXT}}",
+    "variables": [],
+    "scheduledTriggerConfig": {"cronString": "", "timezone": "Asia/Shanghai", "defaultPrompt": ""},
+    "autoExecute": {"open": false, "defaultPrompt": ""},
+    "_id": "000000000000000000000000"
+  }
+}

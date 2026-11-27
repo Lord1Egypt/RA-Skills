@@ -8,7 +8,7 @@
    （掘金终端 -> 系统设置 -> 密钥管理）
 """
 
-import sys, io
+import sys, io, os
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 from gm.api import *
@@ -18,7 +18,7 @@ from datetime import datetime, timedelta
 # ============================
 # !! 运行前请修改此 Token !!
 # ============================
-TOKEN = 'c2a347464c31056c84165dff766750fbf2ec67b4'
+TOKEN = os.environ.get('GM_TOKEN', '')
 
 # 测试结果统计
 results = []

@@ -13,7 +13,7 @@
 > - 全面: 各功能出参数据全面，可见及有价值数据都会返回
 > - 灵活: 支持排序、时间和时长筛选，结果为 JSON
 > - 轻量: 无需部署服务，Node.js 一键运行
-> - 实用: 日志自动归档，适配营销报告 / 内容策划场景
+> - 实用: 可选 `--save` / `GUAIKEI_ENABLE_LOG=1` 日志留底，适配营销报告 / 内容策划场景
 
 **🎯 核心能力**
 
@@ -84,7 +84,7 @@ node scripts/kuaishou/comment-cli.js --url "https://www.kuaishou.com/short-video
 
 - 启动时会打印工具Banner，方便确认是否正确执行；
 - 过程中会输出彩色日志，用于反馈技能执行情况，过程中无需用户交互；
-- 成功结果默认不写文件。需要留底时设置 `KS_GUAIKEI_ENABLE_LOG=1`，文件保存到系统临时目录下的 `kuaishou-guaikei/logs/`（按时间加关键词或链接命名）。POSIX 上仅当前用户可读写；Windows 靠用户目录隔离。
+- 成功结果默认不写文件。需要留底时加 `--save` 或设置 `GUAIKEI_ENABLE_LOG=1`，文件保存到系统临时目录下的 `kuaishou-guaikei/logs/`（按时间加关键词或链接命名）。POSIX 上仅当前用户可读写；Windows 靠用户目录隔离。旧变量 `KS_GUAIKEI_ENABLE_LOG` 已废弃。
 - 字段说明见 `assets/*.schema.json`。
 
 > 版本更新日志，请参阅 [changelog.md](references/changelog.md)

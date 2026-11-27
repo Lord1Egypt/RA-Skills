@@ -23,6 +23,8 @@
  *   - Plaintext API keys in keys.json with chmod 0600 (POSIX)
  *   - Strict domain allowlist per provider (NOT a string contains check)
  *   - Metadata-only response cache by default; full body caching is opt-in
+ *   - Cache/rate-limit keys are SHA-256 digests: endpoint paths and request
+ *     bodies are never written to disk in plaintext (only the provider name is)
  *   - Coarse request log: provider, path, status class, timestamp, attempt (no query strings)
  *   - Env var auto-detection: PROVIDER_API_KEY overrides disk storage
  *   - No outbound Authorization header unless the URL hostname matches the allowlist
@@ -33,6 +35,7 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const os = require('os');
+const crypto = require('crypto');
 
 const WORKSPACE = (() => {
   if (process.env.API_GATEWAY_DIR) return process.env.API_GATEWAY_DIR;
@@ -218,6 +221,56 @@ function makeRequest(url, method, headers, body, timeout = 30000) {
   });
 }
 
+// ─── CACHE KEY DERIVATION ──────────────────────────────────────────────────
+// Cache and rate-limit keys are DERIVED BY HASHING, never by embedding caller
+// data. Endpoint paths and request bodies routinely carry secrets, prompts,
+// personal data, and proprietary payloads; a plaintext key would persist all of
+// it to cache.json / rate-limits.json regardless of the metadata-only response
+// policy. Only the provider name — already present in the request log — stays
+// readable, so `--rate <provider>` and per-provider grouping still work.
+
+const KEY_DIGEST_LEN = 32; // hex chars (128 bits): collision-safe for a 5k-entry cache
+// Anchored on the digest suffix only: provider names may legitimately contain ':'.
+const HASHED_KEY_RE = new RegExp(`:[0-9a-f]{${KEY_DIGEST_LEN}}$`);
+
+// Key order must not change the digest, or logically identical bodies miss.
+function stableStringify(value) {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value) ?? 'null';
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
+  return `{${Object.keys(value).sort()
+    .map(k => `${JSON.stringify(k)}:${stableStringify(value[k])}`).join(',')}}`;
+}
+
+function digest(...parts) {
+  return crypto.createHash('sha256')
+    // NUL separator frames the parts: no path/body boundary ambiguity
+    .update(parts.join('\u0000'))
+    .digest('hex')
+    .slice(0, KEY_DIGEST_LEN);
+}
+
+function cacheKeyFor(provider, pathOnly, body) {
+  return `${provider}:${digest(pathOnly, stableStringify(body ?? null))}`;
+}
+
+function rateKeyFor(provider, pathOnly) {
+  return `${provider}:${digest(pathOnly)}`;
+}
+
+// Versions <= 1.1.9 embedded the endpoint path and the full request body in the
+// key. Drop those entries on load so previously persisted plaintext leaves disk
+// instead of lingering until TTL eviction happens to run.
+function loadHashedStore(file, label) {
+  const store = loadJSON(file, {});
+  const legacy = Object.keys(store).filter(k => !HASHED_KEY_RE.test(k));
+  if (legacy.length > 0) {
+    for (const k of legacy) delete store[k];
+    saveJSON(file, store);
+    console.log(`[api-gateway] Purged ${legacy.length} legacy ${label} ${legacy.length === 1 ? 'entry' : 'entries'} written by an older version — their keys embedded endpoint paths and request bodies in plaintext.`);
+  }
+  return store;
+}
+
 // ─── CACHE (metadata-only by default) ─────────────────────────────────────
 
 function getFullCacheProviders() {
@@ -372,12 +425,12 @@ async function makeCall(provider, endpoint, body = null, dryRun = false) {
   }
   const keys = loadJSON(KEYS_FILE, {});
   const fallbacks = loadJSON(FALLBACKS_FILE, {});
-  const cache = loadJSON(CACHE_FILE, {});
-  const rateLimits = loadJSON(RATE_FILE, {});
-  
-  // Check rate limits (key is provider:pathname without query string)
+  const cache = loadHashedStore(CACHE_FILE, 'cache');
+  const rateLimits = loadHashedStore(RATE_FILE, 'rate-limit');
+
+  // Check rate limits (key is provider + digest of the pathname, no query string)
   const pathOnly = stripQueryString(endpoint);
-  const key = `${provider}:${pathOnly}`;
+  const key = rateKeyFor(provider, pathOnly);
   if (rateLimits[key]) {
     const { resetAt, remaining } = rateLimits[key];
     if (new Date(resetAt) > new Date()) {
@@ -392,8 +445,9 @@ async function makeCall(provider, endpoint, body = null, dryRun = false) {
     }
   }
   
-  // Check cache (key based on path only, not query)
-  const cacheKey = `${provider}:${pathOnly}:${JSON.stringify(body || {})}`;
+  // Check cache. The key is a digest of the path (no query) + the request body,
+  // so neither the endpoint nor the body is written to cache.json in plaintext.
+  const cacheKey = cacheKeyFor(provider, pathOnly, body);
   if (cache[cacheKey]) {
     const { timestamp, response } = cache[cacheKey];
     if (Date.now() - timestamp < DEFAULT_CACHE_TTL_MS) {
@@ -587,11 +641,12 @@ function removeKey(provider) {
 // ─── CACHE / LOG ───────────────────────────────────────────────────────────
 
 function showCache() {
-  const cache = loadJSON(CACHE_FILE, {});
+  const cache = loadHashedStore(CACHE_FILE, 'cache');
   const entries = Object.entries(cache);
   const fullCacheProviders = getFullCacheProviders();
-  
+
   console.log(`[api-gateway] Cache: ${entries.length} entries`);
+  console.log(`  Keys: provider + SHA-256 digest of endpoint path and request body (neither is stored in plaintext)`);
   if (fullCacheProviders.length > 0) {
     console.log(`  Full-body caching enabled for: ${fullCacheProviders.join(', ')}`);
   } else {
@@ -599,10 +654,10 @@ function showCache() {
   }
   for (const [key, data] of entries) {
     const age = Math.floor((Date.now() - data.timestamp) / 1000);
-    const bodyInfo = data.response.bodyLength !== undefined 
-      ? `body=${data.response.bodyLength}B` 
+    const bodyInfo = data.response.bodyLength !== undefined
+      ? `body=${data.response.bodyLength}B`
       : 'body=cached';
-    console.log(`  ${key.substring(0, 60)}... (${age}s ago, ${bodyInfo})`);
+    console.log(`  ${key} (${age}s ago, ${bodyInfo})`);
   }
 }
 
@@ -666,7 +721,7 @@ function listFallbacks() {
 function showStatus() {
   const keys = loadJSON(KEYS_FILE, {});
   const fallbacks = loadJSON(FALLBACKS_FILE, {});
-  const cache = loadJSON(CACHE_FILE, {});
+  const cache = loadHashedStore(CACHE_FILE, 'cache');
   const log = loadJSON(LOG_FILE, []);
   const fullCacheProviders = getFullCacheProviders();
   
@@ -819,11 +874,12 @@ function parseCLI() {
       if (positional.length < 1) {
         console.log('Usage: api-gateway.js --rate <provider>');
       } else {
-        const rateLimits = loadJSON(RATE_FILE, {});
+        const rateLimits = loadHashedStore(RATE_FILE, 'rate-limit');
         const matching = Object.entries(rateLimits).filter(([k]) => k.startsWith(positional[0] + ':'));
         if (matching.length === 0) {
           console.log(`[api-gateway] No rate limit data for: ${positional[0]}`);
         } else {
+          // Keys are provider + endpoint digest; the endpoint itself is not stored.
           for (const [k, data] of matching) {
             console.log(`  ${k}: ${data.remaining} remaining, resets ${data.resetAt}`);
           }

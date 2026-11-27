@@ -1,6 +1,6 @@
 ---
 name: unihiker-k10-platformio
-description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, diagnosing K10 PlatformIO setup or ASR microphone/wake-word failures, or preparing/installing offline PlatformIO support for workshops, including macOS archives and Windows self-extracting USB installers.
+description: Use when programming a UNIHIKER K10 board with PlatformIO CLI, creating or converting Arduino/C++ K10 projects to PlatformIO, building, uploading, monitoring serial output, simulating K10 firmware and screenshots without hardware via esp32sim, diagnosing K10 PlatformIO setup or ASR microphone/wake-word failures, or preparing/installing offline PlatformIO support for workshops, including macOS archives and Windows self-extracting USB installers.
 ---
 
 # UNIHIKER K10 - PlatformIO
@@ -149,8 +149,36 @@ If no port is provided, PlatformIO may auto-detect. Use `pio device list` when u
 pio device monitor -d my-k10-project --port /dev/cu.usbmodemXXXX
 ```
 
+## Simulating Without Hardware
+
+esp32sim runs the real firmware images from `.pio/build/<env>/` on an emulated ESP32-S3 and saves the display as a PNG. Use it to check layout, colours, animation timing, and button logic before touching a board.
+
+```bash
+pio run -d my-k10-project                              # build as usual
+bash scripts/k10-sim.sh my-k10-project 3.0             # 3 emulated seconds -> my-k10-project/sim/sim-3.0s.png
+bash scripts/k10-sim.sh --demo                         # build+run examples/smiley, three frames
+```
+
+First run needs a one-time emulator build (~4 minutes, ~150 MB):
+
+```bash
+bash scripts/k10-sim-setup.sh                          # -> ~/.k10-esp32sim
+```
+
+Scripted input drives the firmware: `1.2 press btnA 200` holds A for 200 ms at t=1.2 s. Pass it with `--script actions.txt`.
+
+Two facts the board model encodes, both useful on real hardware:
+
+- The panel is an ILI9341 240×320 on SPI SCLK 12 / MOSI 21 / CS 14 / DC 13, 16 MB flash, 8 MB PSRAM. `k10-sim.sh` passes those sizes; a bare `--flash-mb` default will not boot this firmware.
+- Buttons are **not on GPIO pads**. `digital_read()` in the K10 library addresses a PCA9555 I2C expander at `0x20`. With no expander present the read returns zeros, so the firmware believes A and B are held from the first instruction.
+
+Only the display, buttons, I2C/SPI/UART and timers are modelled. Camera, microphone, IMU, light sensor, ASR/TTS and the AI model partitions are not: those projects verify UI only. Read `references/k10-esp32sim-simulation.md` for setup details, the board model source, script syntax, and troubleshooting.
+
 ## Bundled Scripts
 
+- `scripts/k10-sim-setup.sh`: download and build esp32sim with the UNIHIKER K10 board model (`references/esp32sim/unihiker_k10.rs`), for hardware-free simulation.
+- `scripts/k10-sim.sh`: run a built K10 project's firmware in the simulator and save the screen to a PNG; `--demo` builds and runs `examples/smiley`.
+- `scripts/k10-sim-patch.py`: apply the three idempotent source edits that register the K10 board; called by `k10-sim-setup.sh`.
 - `scripts/init-k10-platformio-project.sh`: create a minimal K10 PlatformIO project with sample screen code.
 - `scripts/k10-pio.sh`: convenience wrapper for `doctor`, `ports`, `build`, `upload`, and `monitor`.
 - `scripts/prepare-offline-bundle.sh`: build once, collect K10 PlatformIO support files, and create a distributable `.tgz`.
@@ -307,5 +335,6 @@ Use `unihiker-init-cn` for the Chinese model and `unihiker-init-en` for the Engl
 - Read `references/platformio-workshop.md` for offline bundle preparation, installation, and troubleshooting.
 - Read `references/k10-ai-model-flash.md` for AI model partitions, OTA compatibility, and recovery workflow.
 - Read `references/k10-asr-audio-troubleshooting.md` when models load but wake words or commands are not detected, microphone probes return zeros, or ES7243E/I2S startup is suspect.
+- Read `references/k10-esp32sim-simulation.md` for hardware-free simulation: setup, what is modelled, board pins, scripted button input, and limits.
 - Read `references/k10-arduino-api.md` for K10 API signatures.
 - Read `references/k10-arduino-examples.md` for complete K10 Arduino examples. The C++ APIs are the same as Arduino mode; only the build/upload toolchain changes.

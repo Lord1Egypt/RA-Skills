@@ -18,7 +18,7 @@ const MAX_FILTERS = 10;
 
 function boundedInt(value: unknown, label: string, fallback: number, min: number, max: number): number {
   if (value === undefined) return fallback;
-  if (typeof value !== 'number' || !Number.isInteger(value) || value < min || value > max) throw new Error(`${label} must be an integer from ${min} to ${max}`);
+  if (typeof value !== 'number' || !Number.isInteger(value) || value < min || value > max) throw new Error(('' + String(label) + ' must be an integer from ' + String(min) + ' to ' + String(max)));
   return value;
 }
 
@@ -27,11 +27,11 @@ function boundedInt(value: unknown, label: string, fallback: number, min: number
 export function videoSearchQuery(filters: unknown, operator: unknown, page: unknown, number: unknown): string {
   if (!filters || typeof filters !== 'object' || Array.isArray(filters)) throw new Error('filters must be an object of metadata key -> string value');
   const entries = Object.entries(filters as Record<string, unknown>);
-  if (entries.length < 1 || entries.length > MAX_FILTERS) throw new Error(`filters must have 1 to ${MAX_FILTERS} keys`);
+  if (entries.length < 1 || entries.length > MAX_FILTERS) throw new Error(('filters must have 1 to ' + String(MAX_FILTERS) + ' keys'));
   const params = new URLSearchParams();
   for (const [key, value] of entries) {
-    if (!FILTER_KEY.test(key) || RESERVED_QUERY.has(key.toLowerCase())) throw new Error(`invalid filter key: ${key.slice(0, 64)}`);
-    if (typeof value !== 'string' || value.length > 256 || /[\x00-\x1f\x7f]/.test(value)) throw new Error(`filter ${key} must be a string of at most 256 printable characters`);
+    if (!FILTER_KEY.test(key) || RESERVED_QUERY.has(key.toLowerCase())) throw new Error(('invalid filter key: ' + String(key.slice(0, 64))));
+    if (typeof value !== 'string' || value.length > 256 || /[\x00-\x1f\x7f]/.test(value)) throw new Error(('filter ' + String(key) + ' must be a string of at most 256 printable characters'));
     params.append(key, value);
   }
   if (operator !== undefined && operator !== 'and' && operator !== 'or') throw new Error('operator must be "and" or "or"');
@@ -47,7 +47,7 @@ async function redacted(result: unknown): Promise<unknown> {
   return value && typeof value === 'object' ? redactObject(value as Record<string, unknown>) : value;
 }
 
-function h(cfg: ThetaConfig): HeadersInit {
+function videoHeaders(cfg: ThetaConfig): HeadersInit {
   if (!cfg.videoSaId || !cfg.videoSaSecret) throw new Error('THETA_VIDEO_SA_ID / THETA_VIDEO_SA_SECRET missing');
   return { 'x-tva-sa-id': cfg.videoSaId, 'x-tva-sa-secret': cfg.videoSaSecret };
 }
@@ -63,27 +63,27 @@ function net(cfg: ThetaConfig, headers: HeadersInit) {
 }
 
 export const thetaVideoClient = {
-  createUploadSession: (cfg: ThetaConfig, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.uploadCreate') ?? postJson(`${BASE}/upload`, {}, net(cfg, h(cfg)))),
-  createVideo: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.create') ?? postJson(`${BASE}/video`, payload, net(cfg, h(cfg)))),
-  getVideo: (cfg: ThetaConfig, videoId: string) => redacted(getJson(`${BASE}/video/${pathSegment(videoId,'videoId')}`, net(cfg, h(cfg)))),
+  createUploadSession: (cfg: ThetaConfig, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.uploadCreate') ?? postJson(('' + String(BASE) + '/upload'), {}, net(cfg, videoHeaders(cfg)))),
+  createVideo: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.create') ?? postJson(('' + String(BASE) + '/video'), payload, net(cfg, videoHeaders(cfg)))),
+  getVideo: (cfg: ThetaConfig, videoId: string) => redacted(getJson(('' + String(BASE) + '/video/' + String(pathSegment(videoId,'videoId'))), net(cfg, videoHeaders(cfg)))),
   listVideos: (cfg: ThetaConfig, serviceAccountId: string, page = 1, number = 10) =>
-    redacted(getJson(`${BASE}/video/${pathSegment(serviceAccountId,'serviceAccountId')}/list?${new URLSearchParams({page:String(page),number:String(number)})}`, net(cfg, h(cfg)))),
+    redacted(getJson(('' + String(BASE) + '/video/' + String(pathSegment(serviceAccountId,'serviceAccountId')) + '/list?' + String(new URLSearchParams({page:String(page),number:String(number)}))), net(cfg, videoHeaders(cfg)))),
   // Stream responses carry the livestream key; it is redacted here before returning.
-  createStream: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.streamCreate') ?? postJson(`${BASE}/stream`, payload, net(cfg, h(cfg)))),
-  getStream: (cfg: ThetaConfig, streamId: string) => redacted(getJson(`${BASE}/stream/${pathSegment(streamId,'streamId')}`, net(cfg, h(cfg)))),
+  createStream: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) => redacted(assertApproved(cfg, confirm, 'theta.video.streamCreate') ?? postJson(('' + String(BASE) + '/stream'), payload, net(cfg, videoHeaders(cfg)))),
+  getStream: (cfg: ThetaConfig, streamId: string) => redacted(getJson(('' + String(BASE) + '/stream/' + String(pathSegment(streamId,'streamId'))), net(cfg, videoHeaders(cfg)))),
   searchVideos: (cfg: ThetaConfig, serviceAccountId: string, filters: unknown, operator?: unknown, page?: unknown, number?: unknown) => {
     const query = videoSearchQuery(filters, operator, page, number);
-    return redacted(getJson(`${BASE}/video/${pathSegment(serviceAccountId,'serviceAccountId')}/search?${query}`, net(cfg, h(cfg))));
+    return redacted(getJson(('' + String(BASE) + '/video/' + String(pathSegment(serviceAccountId,'serviceAccountId')) + '/search?' + String(query)), net(cfg, videoHeaders(cfg))));
   },
   listStreams: (cfg: ThetaConfig, serviceAccountId: string, status?: unknown) => {
     if (status !== undefined && status !== 'on' && status !== 'off') throw new Error('status must be "on" or "off"');
-    const query = status ? `?${new URLSearchParams({ status: status as string })}` : '';
-    return redacted(getJson(`${BASE}/service_account/${pathSegment(serviceAccountId,'serviceAccountId')}/streams${query}`, net(cfg, h(cfg))));
+    const query = status ? ('?' + String(new URLSearchParams({ status: status as string }))) : '';
+    return redacted(getJson(('' + String(BASE) + '/service_account/' + String(pathSegment(serviceAccountId,'serviceAccountId')) + '/streams' + String(query)), net(cfg, videoHeaders(cfg))));
   },
-  listIngestors: (cfg: ThetaConfig) => redacted(getJson(`${BASE}/ingestor/filter`, net(cfg, h(cfg)))),
+  listIngestors: (cfg: ThetaConfig) => redacted(getJson(('' + String(BASE) + '/ingestor/filter'), net(cfg, videoHeaders(cfg)))),
   selectIngestor: (cfg: ThetaConfig, ingestorId: string, body: Record<string, unknown>, confirm?: boolean) =>
-    redacted(assertApproved(cfg, confirm, 'theta.video.ingestorSelect') ?? putJson(`${BASE}/ingestor/${pathSegment(ingestorId,'ingestorId')}/select`, body, net(cfg, h(cfg)))),
+    redacted(assertApproved(cfg, confirm, 'theta.video.ingestorSelect') ?? putJson(('' + String(BASE) + '/ingestor/' + String(pathSegment(ingestorId,'ingestorId')) + '/select'), body, net(cfg, videoHeaders(cfg)))),
   // Frees the ingestor and invalidates the live stream key. Body is always exactly {}.
   unselectIngestor: (cfg: ThetaConfig, ingestorId: string, confirm?: boolean) =>
-    redacted(assertApproved(cfg, confirm, 'theta.video.ingestorUnselect') ?? putJson(`${BASE}/ingestor/${pathSegment(ingestorId,'ingestorId')}/unselect`, {}, net(cfg, h(cfg))))
+    redacted(assertApproved(cfg, confirm, 'theta.video.ingestorUnselect') ?? putJson(('' + String(BASE) + '/ingestor/' + String(pathSegment(ingestorId,'ingestorId')) + '/unselect'), {}, net(cfg, videoHeaders(cfg))))
 };

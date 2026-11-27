@@ -1,8 +1,8 @@
 # JSON 输出参考
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/json-output.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/json-output.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
-`--json` 让任何程序（CI、IDE、外部宿主、Agent）稳定消费 Flydb CLI 的结果。设计与兼容承诺见[机器契约设计](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/design/10-machine-contract.md)；本文是 schema 事实来源。
+`--json` 让任何程序（CI、IDE、外部宿主、Agent）稳定消费 Flydb CLI 的结果。设计与兼容承诺见[机器契约设计](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/design/10-machine-contract.md)；本文是 schema 事实来源。
 
 ## 通道与格式
 
@@ -48,6 +48,8 @@ $ bin/flydb --json migrate
 | `migrate` | `executed`、`targetVersionReached`、`totalExecutionTimeMillis`、`warnings` |
 | `--dry-run migrate` / `--dry-run undo` | `dryRun:true`、`plan.{algorithm,direction,id,targetVersion,migrationCount,statementCount}`（Plan Artifact v1，见[Plan Artifact 设计](plan-artifact.md)）、`migrations[].{script,type,version,description,checksum,statementCount,statements[].{lineNumber,sql}}` |
 | `info` | `databaseName`、`url`（脱敏）、`historyTable`、`current`、`migrations[]` |
+| `preflight` | `dryRun: true`、`validation: "PASSED"`、脱敏 `target`、与 migrate 预演相同的 `plan` 摘要、可空的本机绝对路径 `detailsFile`。失败走公共错误信封 |
+| `new` | `createdFile`（绝对路径）、`version`（脚本版本字符串） |
 | `validate` | 无载荷 |
 | `baseline` | `baselineVersion` |
 | `repair` | `removedFailedRecords`、`alignedChecksums` |
@@ -56,6 +58,10 @@ $ bin/flydb --json migrate
 | `clean` | 无载荷 |
 
 取值约定：状态 token 为 `PENDING`、`OUT_OF_ORDER`、`SUCCESS`、`FAILED`、`MISSING`、`OUTDATED`、`FUTURE`、`BASELINE`、`UNDONE`；类型 token 为 `SQL`、`JDBC`、`BASELINE`、`UNDO_SQL`；`installedOn` 为 ISO-8601 本地时间；可重复迁移的 `version` 为 `null`；未知或不适用的数值为 `null`。
+
+`info.current` 为仍有效的成功历史记录中的最高版本，包含本地脚本缺失时的 `MISSING` / `FUTURE`，
+不计失败或已撤销的记录。`OUT_OF_ORDER` 表示本地存在、数据库尚未应用的低版本脚本，属于待执行，
+不能将它显示为“乱序已执行”。校验是否允许执行仍由 Core 决定，不由统计数量决定。
 
 ## 稳定性承诺
 
@@ -77,4 +83,4 @@ result=$(bin/flydb -c "$CONF" --json migrate)
 code=$(echo "$result" | jq -r '.error.code')   # FLYDB-3001 锁冲突可重试
 ```
 
-完整流水线示例见[CI 集成指南](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/ci-integration.md)。
+完整流水线示例见[CI 集成指南](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/ci-integration.md)。

@@ -1,6 +1,6 @@
 # JDBC 数据库快速接入
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/getting-started/jdbc-integration.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/getting-started/jdbc-integration.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
 本页面向需要接入信创数据库、行业数据库或新型 JDBC 数据库的开发者和运维人员。目标是把“拿到驱动后如何跑起来”缩短为一条可复制的路径，并说明什么时候可以复用 MySQL/Oracle 家族、什么时候必须实现自己的方言 SPI。
 
@@ -234,4 +234,4 @@ flydb.database-type=mysql
 
 出现问题时按错误码定位：`FLYDB-1001` 是连接或账号问题，`FLYDB-1002` 是方言未识别/选择有歧义，`FLYDB-1003` 是驱动 JAR 或驱动类加载失败。更多错误说明见[错误码参考](errors.md)。
 
-相关页面：[数据库上手指南索引](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/README.md)、[MySQL](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/mysql.md)、[Oracle](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/oracle.md)、[达梦 DM8](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/dm8.md)、[OceanBase-MySQL](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/oceanbase-mysql.md)、[OceanBase-Oracle](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/oceanbase-oracle.md)、[方言 SPI 设计](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/design/03-dialects.md)。
+相关页面：[数据库上手指南索引](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/README.md)、[MySQL](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/mysql.md)、[Oracle](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/oracle.md)、[达梦 DM8](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/dm8.md)、[OceanBase-MySQL](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/oceanbase-mysql.md)、[OceanBase-Oracle](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/oceanbase-oracle.md)、[方言 SPI 设计](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/design/03-dialects.md)。

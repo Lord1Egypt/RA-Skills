@@ -2,7 +2,7 @@
 name: procurement-admission-copilot
 slug: procurement-admission-copilot-skill
 displayName: Procurement Admission Copilot
-version: "1.0.8"
+version: "1.0.9"
 description: Shadow-mode copilot for B2B procurement admission. Given a
   supplier's raw qualification inputs, it checks material-package completeness
   and internal consistency; given a set of approval cases, it tracks status,
@@ -182,6 +182,7 @@ Pause. A human reviewer acts on the flagged cases. This skill never emits the ap
 - [ ] Financial inconsistencies flagged when figure divergence exceeds tolerance.
 - [ ] No contract clause or admission decision appears in any output.
 - [ ] Human confirmation documented before the task is marked complete.
+- [ ] Each readiness flag states whether its source document's submission deadline is still open; an expired document is not counted as valid evidence of readiness.
 
 ## Pitfalls
 

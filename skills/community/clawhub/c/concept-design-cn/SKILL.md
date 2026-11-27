@@ -4,7 +4,7 @@ description: "仅在显式调用时使用。用 Daniel Jackson 的概念与同�
 metadata:
   language: zh-CN
   translation_of: concept-design
-  version: "2.5.4"
+  version: "2.6.0"
 ---
 
 # 概念设计
@@ -18,6 +18,7 @@ Daniel Jackson 概念设计的方法概括：**应用 = 概念（Concepts）+ �
 
 ## 核心约束
 
+- 先复用，后建模：[成熟能力](references/model-criteria.md#成熟能力)优先复用，概念只承载本产品的业务规则与不变量，复用组件经端口与适配器隔离。
 - 概念围绕一个目的拥有状态与动作；概念之间不互调、不互读状态，外部身份不携带另一概念的内部结构。
 - 运作原理（OP）以代表性过程说明目的如何达成，不代替完整契约或进展保证。
 - 组合可限制行为，但须保持各概念契约。分别检查契约、OP、目的与应用场景。

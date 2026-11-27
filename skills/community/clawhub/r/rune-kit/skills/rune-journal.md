@@ -97,7 +97,7 @@ For each architectural decision or trade-off made during this session (applies t
 
 #### Step 3.0 — Score the decision
 
-Compute three numeric scores (1–5 each) before opening any ADR file. See [references/adr-criteria.md](references/adr-criteria.md) for full rubric.
+Compute three numeric scores (1–5 each) before opening any ADR file. See [rune-journal/references/adr-criteria.md](rune-journal/references/adr-criteria.md) for full rubric.
 
 | Axis | What it measures |
 |------|------------------|
@@ -276,7 +276,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~200-500 tokens input, ~100-300 tokens output. Haiku. Pure file management.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

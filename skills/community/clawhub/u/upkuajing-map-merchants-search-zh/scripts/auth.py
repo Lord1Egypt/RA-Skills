@@ -7,7 +7,10 @@ import argparse
 import json
 import os
 import sys
-from common import print_json_output, make_request, API_KEY_ENV, UPKUAJING_ENV_FILE, UPKUAJING_DIR, SKILL_BASE_DIR
+from common import (
+    print_json_output, make_request, API_KEY_ENV, UPKUAJING_ENV_FILE, UPKUAJING_DIR, SKILL_BASE_DIR,
+    normalize_plan_windows, format_plan_time
+)
 
 
 def new_key() -> dict:
@@ -109,7 +112,62 @@ def account_info() -> dict:
         '跨境魔方开放平台账号余额': f'{api_balance}分钱'
     }
 
+    # 套餐信息：具体字段以服务端返回为准，未返回时明确提示
+    plan = data.get('plan')
+    if isinstance(plan, dict):
+        available = plan.get('available')
+        result['套餐可用'] = '未知' if available is None else ('是' if available in (1, True, '1') else '否')
+        result['套餐详情'] = plan
+    else:
+        result['套餐'] = '接口未返回套餐信息（可用 auth.py --plan_quota 查询额度）'
+
     return result
+
+
+def plan_quota() -> dict:
+    """
+    查询当前账号的套餐额度用量（POST /agent/plan/quota）。
+    """
+    response = make_request('/agent/plan/quota', {})
+
+    if response.get('code') != 0:
+        return response
+
+    data = response.get('data')
+    if not isinstance(data, dict):
+        data = {}
+    available = data.get('available')
+    windows = []
+    for window in normalize_plan_windows(data.get('windows')):
+        windows.append({
+            'window': window.get('window'),
+            'capability': window.get('capability'),
+            'quotaType': window.get('quotaType'),
+            'limit': window.get('limit'),
+            'used': window.get('used'),
+            'remaining': window.get('remaining'),
+            'resetsAt': window.get('resetsAt'),
+            'resetsAtText': format_plan_time(window.get('resetsAt'))
+        })
+
+    return {
+        'available': available,
+        'availableText': (
+            '套餐状态未知' if available is None
+            else ('套餐可用' if available in (1, True, '1') else '无可用套餐')
+        ),
+        'windows': windows,
+        'guidance': '目标窗口 remaining=0 时套餐调用会返回额度不足；'
+                    '可改用余额（设置 UPKUAJING_PLAN_MODE=1）或查看 --plan_config 升级档位',
+        'requestId': response.get('requestId')
+    }
+
+
+def plan_config() -> dict:
+    """
+    查询各套餐档位的额度上限（POST /agent/plan/config，免鉴权）。
+    """
+    return make_request('/agent/plan/config', {}, require_auth=False)
 
 
 def new_rec_order() -> dict:
@@ -154,6 +212,17 @@ def main():
         help='获取开放平台接口定价信息'
     )
 
+    parser.add_argument(
+        '--plan_quota',
+        action='store_true',
+        help='查询当前账号的套餐额度用量'
+    )
+    parser.add_argument(
+        '--plan_config',
+        action='store_true',
+        help='查询各套餐档位的额度上限（免鉴权）'
+    )
+
     args = parser.parse_args()
 
     # 验证至少指定一个操作
@@ -161,12 +230,14 @@ def main():
         args.new_key,
         args.account_info,
         args.new_rec_order,
-        args.price_info
+        args.price_info,
+        args.plan_quota,
+        args.plan_config,
     ])
 
     if action_count == 0:
         print("错误：请指定要执行的操作", file=sys.stderr)
-        print("可用操作：--new_key, --account_info, --new_rec_order, --price_info", file=sys.stderr)
+        print("可用操作：--new_key, --account_info, --new_rec_order, --price_info, --plan_quota, --plan_config", file=sys.stderr)
         sys.exit(1)
 
     if action_count > 1:
@@ -189,6 +260,14 @@ def main():
 
     elif args.price_info:
         result = price_info()
+        print_json_output(result)
+
+    elif args.plan_quota:
+        result = plan_quota()
+        print_json_output(result)
+
+    elif args.plan_config:
+        result = plan_config()
         print_json_output(result)
 
 

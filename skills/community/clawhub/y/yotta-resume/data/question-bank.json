@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "contract_version": "1.0",
-  "bank_version": "0.2.4",
+  "bank_version": "0.2.5",
   "generated_at": "2026-11-25",
   "questions": [
     {

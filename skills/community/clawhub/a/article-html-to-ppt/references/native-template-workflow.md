@@ -50,7 +50,7 @@
 
 检查布局、原装饰、字号比例、字体回退、前后景对比、文字截断、空白失衡、图表标注、来源、事实与可编辑边界。原模板本身存在缺陷时应做可读适配，不机械复制遮挡。修正有依据的问题后重新导出、渲染当前版本；未修改文件不反复导出。
 
-修改后的旧审核一律不直接当作新版本通过；未提供可靠依赖签名的跨候选证据不能自动继承。当前工具若未实现审核复用，则重新审核当前候选，不能伪造第二次观察。渲染环境不可用、字体未核实与目标软件未测试分别记录。
+修改后的旧审核一律不直接当作新版本通过；未提供可靠依赖签名的跨候选证据不能自动继承。局部修订后，可通过 `review-template --inherit-from ./previous-review.json` 显式继承本工作区已归档审核中**完全未变且六项均通过**的单页观察（同时核对模板哈希、渲染引擎、页序、页面操作历史、备注、源图/候选预览字节哈希与保真报告，并记录 `inherited_from` 溯源）；任何改动页与全稿 `deck_rhythm` 均保持否决态，必须重新审核，严禁伪造或篡改继承观察。渲染环境不可用、字体未核实与目标软件未测试分别记录。
 
 **完成条件：**实际候选与原页参考均可查看；所有必要页面已检查，明确区分机器检查、真实渲染与视觉判断。渲染失败保持待修订，不走网站的建议性视觉降级交付。
 
@@ -75,9 +75,12 @@ python3 -m engine template inspect --workspace ./.ppt-work/template-report --off
 python3 -m engine template apply --workspace ./.ppt-work/template-report --request ./edits.json
 python3 -m engine template export --workspace ./.ppt-work/template-report
 python3 -m engine template render --workspace ./.ppt-work/template-report --render-engine libreoffice
+python3 -m engine template review-template --workspace ./.ppt-work/template-report --output ./external-review.json [--inherit-from ./previous-review.json]
 python3 -m engine template review --workspace ./.ppt-work/template-report --review ./external-review.json
 python3 -m engine template verify --workspace ./.ppt-work/template-report
 ```
+
+`render` 会按 `templateHash` 与渲染引擎安全缓存冻结源模板的渲染结果（每次复验全部源图字节哈希），后续多轮修订只重新渲染发生变化的候选稿。`review-template` 为当前已通过的渲染报告自动生成绑定真实哈希、默认否决态（`revise`/`fail`）的审核骨架 JSON；传入 `--inherit-from` 时仅继承本工作区已记录审核中未变且六项均通过的单页观察（`status` 仍为 `revise` 且 `deck_rhythm` 置空），审阅者替换身份、补写修改页观察与全稿节奏后再提交 `review`。
 
 `init` 后页列表为空、revision 为 0。`inspect` 默认输出精简样式摘要，只有定位继承问题时才加 `--details` 查看原始 OOXML 证据与逐 run 记录；`sourceSlides` 与当前输出 `pages` 分开，按 `nextOffset` 读取剩余页。`sourceSlideId` 是实际 presentation 列表里的持久 ID，不是文件名、页号或输出页 ID；`objectId` 是该源页内的真实原生对象 ID。工作内容绑定冻结副本；修改源模板需建立新工作区，不混用旧身份。
 

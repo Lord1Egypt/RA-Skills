@@ -1068,6 +1068,7 @@ harness/iterate-plugin/
 | P14 | Memory 记忆 | 项目记忆库：条目/大小/修改时间/描述，引擎相关度搜索排名，注入预览（与提示词同一条代码路径，点名截断），失效索引链接问题；新增/覆盖/删除（二次确认 + 审计）；只读面绝不创建记忆目录 | `memory` 模块（`ih memory` 同源） |
 | P15 | Hooks 生命周期钩子 | 已注册钩子清单（事件/类型/来源/匹配器/命令或提示或 URL/超时/失败拦截/静态检查），未知事件名与跑不起来的命令/URL/空提示带可复制 remedy；执行台账（事件/类型/结果筛选、最新在前分页、Markdown/CSV/JSON 导出）；每事件「复制试运行命令」直达 `ih hooks test`；页面只读、永不启动钩子命令或模型 | `hooks` 模块（`ih hooks` 同源） |
 | P16 | Permissions 权限 | 引擎实际执行的合并策略（模式、允许/拒绝工具列表、路径与命令规则、内置敏感路径、iterate `protected_paths` / `risk_areas` / `forbidden_fix_patterns`）+ 配置问题（空模式、允许/拒绝冲突、非法正则、iterate 停用，带可复制 remedy）；**策略预演**：用引擎自己的检查器回答「会执行 / 停下问 / 被拒绝，为什么」（同一套路径/命令/内容归一化），一键示例 + 复制等价 `ih permissions check` 命令；页面只读、永不写设置/执行工具/联系提供商 | `permissions` 模块（`ih permissions` 同源） |
+| P17 | Defense 防御守卫 | 引擎实际生效的 code 模式守卫（来源：`invariants` / `validation.commands` 回退 / 显式 `invariants: {}` 停用 / 未配置；检查数、ensure、逐模块命令）+ 配置问题（含 shell 元字符而被拒绝的命令、空 ensure/空模块，带可复制 remedy）+ 假设声明/成立/证伪汇总 + 回滚台账（kind/outcome/tool 筛选、最新在前分页、Markdown/CSV/JSON 导出）+ 复制 `ih defense check` 命令；与内核共用同一解析器与同一台账；页面只读、永不执行检查命令/调用模型/写配置；同一清单进入 `ih doctor`（`defense_guard`） | `defensive/journal.py` + `defensive/inventory.py`（`ih defense` 同源） |
 
 **操作边界（安全默认）**：P2/P3/P6 涉及写操作（启动/停止/恢复 checkpoint/保存配置）一律「只读默认 + 显式确认 + 写入前备份 + 失败回滚」，与 CLI 既有语义一致。
 
@@ -1095,6 +1096,9 @@ harness/iterate-plugin/
 | `hooks/inventory.py` | 已注册钩子只读清单 + 未知事件名与静态配置问题报告（命令不存在/URL 畸形/空提示；`ih hooks list` / `GET /api/v1/hooks` / capabilities 的 `hooks` 段） |
 | `hooks/testing.py` | 钩子试运行（`ih hooks test`）：与引擎同一注册表、同一执行器、同一台账；command/http 真跑，prompt/agent 无模型时明确 skipped，`--dry-run` 绝不执行；`--require-match` 供 CI 断言 |
 | `permissions/inventory.py` | 权限策略只读投影 + 决策模拟：`build_permission_policy`（合并边界 + 配置问题）/ `simulate_permission_decision`（复用引擎归一化与检查器，`ih permissions` / `GET /api/v1/permissions`）；`checker.build_permission_checker` 增 `cwd` 参数让策略可针对任意项目根构建 |
+| `web/routes/defense.py` | 防御守卫清单 + 回滚台账读取：分页 / kind·outcome·tool 筛选 / Markdown·CSV·JSON 导出（与 `ih defense show|journal` 共用 `defensive` 模块；只读、永不执行检查） |
+| `defensive/journal.py` | 防御判定台账：内核与 `ih defense check` 共用的写入侧（best-effort、失败不阻断、5MB 惰性轮转）+ 读取侧（坏行跳过、最新在前、精确筛选、summary、table/Markdown/CSV 渲染） |
+| `defensive/inventory.py` | 守卫只读投影：`build_defense_inventory`（用 `resolve_invariants` 与内核同一套规则解析来源/检查/配置问题、重建假设、汇总台账，`ih defense show --json` / `GET /api/v1/defense` / `ih doctor` 的 `defense_guard`） |
 | `iterate/control.py` | 跨进程控制通道（`ih iterate control`）：`run-control.json` 运行状态 + append-only `run-control.jsonl` 命令流 + 单调游标；运行方唯一消费，`nudge` 注入下一轮、`pause`/`stop` 在轮次边界优雅收尾并审计；`run_status` 只读且区分可控运行与仅持租约的 TUI/WebUI 运行（§11.4.3） |
 
 **关键路由契约（示例）**：
@@ -1123,6 +1127,9 @@ harness/iterate-plugin/
 | GET | `/api/v1/hooks/log/export` | 钩子执行台账导出（Markdown / CSV / JSON，沿用筛选、不分页） | 下载（`X-Hooks-Total`） |
 | GET | `/api/v1/permissions` | 引擎实际执行的合并权限策略（含 iterate 边界与配置问题）；只读、无网络 | `PermissionsView` |
 | GET | `/api/v1/permissions/check` | 一次工具调用的决策预演（`tool` 必填，`path`/`command`/`content`/`read_only`/`mode` 可选）；未知 `mode` 返回 422 | `PermissionCheckView` |
+| GET | `/api/v1/defense` | 引擎实际生效的 code 模式守卫（来源/检查/配置问题/假设/台账摘要）；只读、永不执行检查 | `DefenseView` |
+| GET | `/api/v1/defense/journal` | 防御判定台账：`kind`/`outcome`/`tool` 筛选，最新在前分页；未知取值返回 422 | `DefenseJournalView` |
+| GET | `/api/v1/defense/journal/export` | 防御判定台账导出（Markdown / CSV / JSON，沿用筛选、不分页） | 下载（`X-Defense-Total`） |
 
 **错误码约定**：`400` 参数非法 / `401` 未授权（非本机）/ `404` 资源不存在 / `409` 冲突（如恢复中再操作、把已有计划迁到另一目录未带 `replace`）/ `422` 校验失败 / `500` 内部错误（含日志 trace）。
 

@@ -1,0 +1,10 @@
+{
+  "nodes": [
+    {"nodeId": "start-1", "name": "开始", "flowNodeType": "workflowStart", "position": {"x": 0, "y": 0}, "inputs": []},
+    {"nodeId": "start-1", "name": "重复节点", "flowNodeType": "reply", "position": {"x": 0, "y": 0}, "inputs": []},
+    {"nodeId": "orphan-1", "name": "孤立节点", "flowNodeType": "reply", "position": {"x": 600, "y": 0}, "inputs": []}
+  ],
+  "edges": [
+    {"source": "start-1", "target": "missing-1", "sourceHandle": "", "targetHandle": ""}
+  ]
+}

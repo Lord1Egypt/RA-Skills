@@ -10,6 +10,7 @@
 
 | Move | Choice and tradeoff |
 | --- | --- |
+| Delegate | Replace an inflated concept or rule with a [mature capability](../model-criteria.md#mature-capabilities), preserving its observable contract; weigh lock-in, compliance, and cost. |
 | Split / merge | Split one concept or merge distinct concepts; weigh simplicity against capability and control. |
 | Unify / specialize | Combine variants or retain specialized concepts; weigh generality against actual fit. |
 | Tighten / loosen | Add or relax synchronization; weigh automation against manual control. |

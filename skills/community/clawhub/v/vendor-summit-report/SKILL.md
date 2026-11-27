@@ -3,7 +3,7 @@ name: vendor-summit-report
 description: Build an executive-oriented deep-dive industry report for a major data/AI vendor conference (e.g. Snowflake Summit, Databricks Data+AI Summit / DAIS, Microsoft Build, Google Cloud Next, AWS re:Invent). Use this when the user wants a "深度专题报告" / "专题报告" / "summit report" / "大会报告" for a vendor event, especially as a follow-up to a previous one (e.g. "等 databricks 大会过后用这个做报告"). Produces three aligned deliverables — light-theme HTML, full Markdown, and a WeCom (企微) push version — using a fixed 8-section structure optimized for an industry-insider / executive reader, held to Gartner/Forrester analyst-note standards (state-don't-instruct, vendor-data caveats, a role-based buyer-recommendations section, and confidence-tagged Strategic Planning Assumptions). The HTML follows a judgment-headline + lead + bullet-point reading contract and is optionally put through a reader-fit review. The STRUCTURE and VISUAL STYLE are the reusable asset; the CONTENT (insights, analysis frameworks, industry extension) must be freshly derived from the actual conference — never copy the previous report's specific analytical frameworks (e.g. a "七层治理生态") into a new vendor's report. Covers the proven workflow: research → core judgment → insights-first → product panorama as support → customer evidence → competitive landscape → buyer recommendations → conference-specific industry extension → summary.
 description_zh: 厂商大会深度专题报告
 description_en: Vendor summit deep-dive report
-version: "1.0.5"
+version: "1.0.6"
 agent_created: true
 ---
 
@@ -207,3 +207,4 @@ agent_created: true
 - [ ] 所有产品 GA/Preview 状态已核实
 - [ ] 年份/届数时效核对：文中所有年份（SPA 措辞、趋势判断、市场规模）与本次大会实际举办年一致；若复用了上一届报告骨架，已全文 grep 上一届年份逐处替换，无残留
 - [ ] HTML 浏览器预览正常（折叠表默认收起、reveal 动画、导航高亮工作）
+- [ ] 固定 8 段结构逐段齐全，每段都含判断、依据与影响三段式；缺段不以合并段落或占位标题代替。

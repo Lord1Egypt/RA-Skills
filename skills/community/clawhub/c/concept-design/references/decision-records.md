@@ -1,7 +1,6 @@
 # Decision record
 
-Use an existing document or discussion record; a new file is not required.
-Use stable IDs when decisions or requirements need references.
+Use an existing document or discussion record, with stable IDs where references are needed.
 
 | Record | Content |
 | --- | --- |
@@ -9,7 +8,7 @@ Use stable IDs when decisions or requirements need references.
 | Scenario | Beneficiary, current/required behavior, constraints, observable result, concepts/rules, counterexample |
 | Composition | Instances, bindings, entries, rules, diagram, scenario links |
 | Product subset | Purpose, requirement-backed dependencies, entries, remaining rules, resources |
-| Exclusions and gaps | Item, reason, impact, affected work |
+| Exclusions, delegations, and gaps | Item, exclusion reason or delegated mature capability and port, impact, affected work |
 
 Use this shape for consequential choices, not every sentence:
 

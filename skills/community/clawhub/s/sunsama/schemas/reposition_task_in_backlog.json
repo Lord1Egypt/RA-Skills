@@ -1,6 +1,6 @@
 {
   "name": "reposition_task_in_backlog",
-  "description": "Move a backlog task to a different time bucket",
+  "description": "Move one task within the user's Sunsama backlog to a different time bucket (next two weeks, next month, next quarter, next year, someday, never). WRITE - this changes when Sunsama resurfaces the task. Use it only when the user asked to defer or reprioritise that specific backlog task. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

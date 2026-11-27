@@ -35,3 +35,9 @@ in that exact Codex home.
 OpenClaw and Codex installations are separate. ClawHub publication is a third,
 independent action and requires authority for the destination and reviewed
 content. Keep generated docs local unless that authority is explicit.
+
+## Codex installation
+
+For a Codex target, put the generated skill in the selected
+`CODEX_HOME/skills/<skill-name>` or use the native Codex skill installer.
+Verify that the selected Codex context can discover it.

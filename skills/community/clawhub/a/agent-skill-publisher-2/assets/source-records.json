@@ -1,0 +1,85 @@
+{
+  "checked_date": "2026-11-06",
+  "sources": [
+    {
+      "id": "agent-skills",
+      "url": "https://agentskills.io/specification",
+      "type": "official",
+      "scope": "Skill folder, frontmatter and progressive disclosure"
+    },
+    {
+      "id": "workbuddy-skill",
+      "url": "https://open.workbuddy.cn/en/docs/skill",
+      "type": "official",
+      "scope": "Marketplace skill metadata"
+    },
+    {
+      "id": "workbuddy-expert",
+      "url": "https://open.workbuddy.cn/docs/expert",
+      "type": "official",
+      "scope": "Expert metadata, agent, image and category fields"
+    },
+    {
+      "id": "trae",
+      "url": "https://docs.trae.cn/ide_skills",
+      "type": "official",
+      "scope": "Skill import and project discovery"
+    },
+    {
+      "id": "codex",
+      "url": "https://learn.chatgpt.com/docs/build-skills",
+      "type": "official",
+      "scope": "Skill discovery and metadata"
+    },
+    {
+      "id": "claude",
+      "url": "https://code.claude.com/docs/en/skills",
+      "type": "official",
+      "scope": "Local skill directories and cloud distinction"
+    },
+    {
+      "id": "cursor",
+      "url": "https://cursor.com/docs/skills",
+      "type": "official",
+      "scope": "Skill directories and cloud sync"
+    },
+    {
+      "id": "copilot",
+      "url": "https://docs.github.com/en/copilot/concepts/customizations/agent-skills",
+      "type": "official",
+      "scope": "Project and personal skill locations"
+    },
+    {
+      "id": "hermes",
+      "url": "https://hermes-agent.nousresearch.com/docs/guides/work-with-skills",
+      "type": "official",
+      "scope": "Skill installation and discovery"
+    },
+    {
+      "id": "workbuddy-name-limit",
+      "type": "maintainer-observation",
+      "date": "2026-11-05",
+      "scope": "Chinese expert name rejected: 17 characters, maximum 15. English same cap is a project compatibility precaution."
+    },
+    {
+      "id": "workbuddy-path-depth",
+      "type": "maintainer-observation",
+      "date": "2026-10-26",
+      "scope": "Standalone skill upload limited to root files or directory/file. Not applied to embedded expert skills."
+    },
+    {
+      "id": "workbuddy-expert-avatar-bundled-only",
+      "type": "user-confirmed-platform-observation",
+      "date": "2026-11-13",
+      "scope": "WorkBuddy expert avatar cannot be uploaded manually. Bundle the selected image in the expert ZIP and reference it via plugin.json avatar; verify actual image bytes after replacement. Does not establish standalone skill upload behavior."
+    },
+    {
+      "id": "expert-skill-delivery-feedback-20261117",
+      "type": "maintainer-observation",
+      "date": "2026-11-17",
+      "scope": "Generalized FastGPT/n8n expert packaging and iterative test lessons: hidden version metadata, installed-file verification, selected avatar identity, paired mutation evidence, final-artifact checks and distinct validation stages. No business endpoints or logs included."
+    }
+  ],
+  "content_policy": "Original concise summaries and independent tools; no copied platform manuals, business logs or third-party skill implementations.",
+  "platform_endorsement": false
+}

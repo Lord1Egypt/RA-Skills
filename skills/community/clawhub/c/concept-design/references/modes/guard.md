@@ -20,6 +20,6 @@ Without a backfill target, discover candidates only.
 Audit MUST NOT execute repairs.
 
 - **Read**: scoped conventions, PRD/staged indexes, specifications, entries, state/schema/migrations, tests, manifests, and maps. Skip dependency/generated/build trees; include single-file core modules. Inspect ancestor content before claiming coverage.
-- **Classify**: mark each module/flow as covered, staged, missing, support code, or unverified, naming its authoritative file and actual coverage, or evidence/skip gap. Report calls between concepts as coupling even through public APIs.
+- **Classify**: mark each module/flow as covered, staged, missing, support code (including mature-capability adapters and technical mechanisms), or unverified, naming its authoritative file and actual coverage, or evidence/skip gap. Report calls between concepts as coupling even through public APIs.
 - **Report**: scope, measured counts, candidate locations, broken links, and migration work. Coverage percentages MUST enumerate their denominator.
 - **Propose backfill**: order by actual code dependencies; handle cycles together and flag boundary problems. Each proposed command names mode, path, evidence, artifact, and prerequisite; sort paths within a batch.

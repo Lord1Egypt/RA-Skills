@@ -1,7 +1,7 @@
 ---
 name: linkdigest-youtube-summary
 description: "YouTube 视频总结和字幕提取，带时间戳，可直接译成中文。用户发来 YouTube 链接（youtube.com、youtu.be、Shorts），要中文总结、要点、逐字稿、字幕、画面上的文字，或者想不看视频先知道讲了什么时使用。没有字幕的视频也能读：由模型直接看视频，口播和画面文字一起出。不需要梯子抓字幕、不需要 yt-dlp、不需要 Cookie。通过 LinkDigest API 读取，需要 LINKDIGEST_API_KEY，按分钟计费，注册送 10 积分。"
-version: 1.2.2
+version: 1.2.4
 homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-youtube-summary
 metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-youtube-summary&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-youtube-summary"}}
 required_environment_variables:
@@ -20,7 +20,7 @@ required_environment_variables:
 给一条 YouTube 链接，拿回带时间戳的逐字稿、画面上的文字和要点；加一个参数，同时得到中文译文。
 
 ```bash
-python3 scripts/linkdigest.py "https://www.youtube.com/watch?v=xxxxxxxxxxx" --translate-to zh-CN
+python3 scripts/linkdigest.py "https://www.youtube.com/watch?v=CEvIs9y1uog" --translate-to zh-CN
 ```
 
 ## 为什么不直接用 yt-dlp 抓字幕

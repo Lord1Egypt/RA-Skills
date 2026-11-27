@@ -48,7 +48,15 @@ export class ImagenClient {
     body.query ??= ''; body.version = release.version; body.record_keywords = await readAnalytics(this.analyticsFile);
     console.error(body.record_keywords ? 'Imagen search: anonymous operational counters; opted-in short query terms retained up to 30 days. analytics --keywords off stops future keyword retention.' : 'Imagen search: anonymous operational counters; keyword retention is OFF. Do not send secrets or article content.');
     const result = await this.request('/gallery/skill/search', { method: 'POST', body });
-    return { ...result, items: result.items.map(asset => ({ ...asset, detail_url: `https://imagen.chat/en/images/${asset.slug}--${asset.public_id}`, watermarked: true })) };
+    return {
+      ...result,
+      items: result.items.map(asset => ({
+        ...asset,
+        tags: asset.tags ?? [],
+        detail_url: `https://imagen.chat/en/images/${asset.slug}--${asset.public_id}`,
+        watermarked: true,
+      })),
+    };
   }
   credits(key) { return this.request('/gallery/me/credits', { authenticated: true, key }); }
   detail(id) { validateID(id); return this.request(`/gallery/assets/${id}`); }

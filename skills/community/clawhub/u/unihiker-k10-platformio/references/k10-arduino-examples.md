@@ -730,6 +730,8 @@ void loop() {
 
 ## **AI-Speech recognition**
 Wake up the voice recognition through the wake-up command "Hi,Telly", and then through the command word "Light on", "Light off" to control the on-board RGB ELD lights on K10 to turn on and off. <br/>
+当语言模型为中文时，唤醒词为：你好小行
+
 ````c++ title="Speech recognition"
 #include "asr.h"
 #include "unihiker_k10.h"
@@ -742,11 +744,11 @@ uint8_t      screen_dir=2;
 // Main program start
 void setup() {
 	k10.begin();
-	asr.asrInit(CONTINUOUS, CN_MODE, 6000);
+	asr.asrInit(CONTINUOUS, CN_MODE, 6000);//用户用英文交互时，CN_MODE修改为EN_MODE。用户使用中文交互时，默认为CN_MODE
 	while(asr._asrState == 0){delay(100);}
 	k10.initScreen(screen_dir);
 	k10.creatCanvas();
-	asr.addASRCommand(1, "kai deng");//中文语音识别时参数写拼音，并且每个字中间要有空格
+	asr.addASRCommand(1, "kai deng");//中文语音识别时参数写拼音，并且每个字中间要有空格。英文语音识别单词中间需要有间隔
 	asr.addASRCommand(2, "guan deng");
 }
 void loop() {
@@ -769,6 +771,8 @@ void loop() {
 }
 ````
 ![image.gif](img/example_mindplus/exampleMindplus31.gif){: width="400px"}
+
+````
 
 ## **GPIO**
 Since the camera and display take up a lot of GPIOs on the ESP32 chip, we only left two full-function GPIOs (digital input/output, analogue input, PWM output) at P0,P1.
@@ -845,7 +849,7 @@ void loop() {
 
 ## AI-语音合成（仅中文版固件）
 
-> **重要：** `setAsrSpeed()` 和 `speak()` 只存在于 K10 中文版固件。刷新 CN 模型数据不等同于切换为中文版固件；编译或运行前必须确认固件版本。
+> **重要：** `setAsrSpeed()` 和 `speak()` 只存在于 K10 中文版固件。刷新 CN 模型数据不等同于切换为中文版固件；只有当用户用中文交互时可以调用语音合成功能。并且仅能合成中文
 
 ````c++ title="按键触发语音合成"
 #include "asr.h"
@@ -879,3 +883,10 @@ void onButtonBPressed() {
 `setAsrSpeed(uint8_t speed)` 的范围为 `0~5`。`speak()` 支持 `String`、`const char *` 和 `float`。
 
 官方资料：[Arduino/PIO 示例代码](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_Example)、[Arduino/PIO API 手册](https://www.unihiker.com.cn/wiki/k10/Arduino_PIO_API_List)。
+
+
+## FAQ
+在MQTT、引脚中断、多线程等功能的回调函数/多线程下，不能使用屏幕显示相关的代码，需要在回调函数/线程中为变量赋值，然后在主程序中将文字显示出来，但也要注意不能大量使用)
+原因：由于K10屏幕尺寸较大，在更新屏幕内容时需要占用较大内存，而在回调函数/多线程等代码下不适合运行占用内存大的程序。
+
+“显示摄像头”和“切换AI模式模式”这两个积木要避免高频率调用，应在初始化时调用或通过条件判断调用。

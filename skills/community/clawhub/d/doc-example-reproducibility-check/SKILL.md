@@ -5,7 +5,7 @@ description_zh: "文档示例可复算性核验"
 description_en: "Doc Example Reproducibility Check"
 disable: false
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # 文档示例可复算性核验
@@ -87,3 +87,4 @@ version: "1.0.1"
 - 无残留：全量扫描后，剩余旧字面量逐条归类且均可解释。
 - 幂等：再跑一次替换脚本，改动数为 0。
 - 副作用归零：临时挂载／临时目录已清除并核验。
+- 每一处被改动的示例值都附有工具重跑的原始输出或命令回执，没有从上下文推算后直接写入的值。

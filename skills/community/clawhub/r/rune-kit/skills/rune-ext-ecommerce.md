@@ -653,7 +653,7 @@ app.post('/api/webhooks/sepay', async (req, res) => {
 
 ```typescript
 // VNPay: redirect-based payment with HMAC-SHA512 signature
-// Docs: https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/
+// Docs: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
 
 import crypto from 'crypto';
 import qs from 'qs';
@@ -1142,7 +1142,7 @@ async function commitTaxRecord(orderId: string, calculation: TaxResult, txnId: s
 ```
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

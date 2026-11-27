@@ -5,6 +5,7 @@ const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
 const { formatUnixSeconds } = require("../utils/time");
+const { pickCost } = require("../utils/cost");
 
 /**
  * 处理搜索结果数据
@@ -87,7 +88,7 @@ async function createSearchTask(
  * @param {number} duration - 视频时长, 0: 不限, 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上
  * @param {number} content - 内容类型, 0: 不限, 1: 视频, 2: 图文
  * @param {number} limit - 搜索数量, 1-10000
- * @returns {Promise<Array>} 搜索结果数组
+ * @returns {Promise<{ results: Array, cost?: number }>}
  * @throws {Error} API调用失败时抛出错误
  */
 async function getSearchTask(
@@ -114,12 +115,13 @@ async function getSearchTask(
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processSearchResults(response.data);
+    return { results: processSearchResults(response.data), cost };
   }
 
-  return [];
+  return { results: [], cost };
 }
 
 module.exports = {

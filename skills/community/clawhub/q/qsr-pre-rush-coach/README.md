@@ -4,13 +4,13 @@
 
 Built by McPherson AI for real-world QSR operations.
 
-## Building with AI agents? Get started with Observa
+## Observa Edge Basic Beta
 
-Observa shows supported OpenClaw and n8n runtime activity, what governance WOULD have done in SHADOW mode, and the evidence behind it.
+Observa Edge Basic Beta is a separate, optional OpenClaw plugin from McPherson AI for local guardrails on covered tool routes. Installing this restaurant skill leaves Guard inactive. Accountless Shadow previews covered requests locally. Guard enrollment is restricted and requires approval and a separate local owner activation.
 
-[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=github&utm_medium=skill-readme&utm_campaign=observa-getting-started&utm_content=qsr-pre-rush-coach)
+[**Explore Observa Edge Basic Beta →**](https://mcphersonai.com/observa/edge-basic?utm_source=github&utm_medium=skill-readme&utm_campaign=observa-edge-basic-beta&utm_content=qsr-pre-rush-coach)
 
-*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. This publisher notice does not change the QSR skill itself.*
+*Publisher notice. The QSR skill’s behavior and data handling are unchanged.*
 
 ## What it does
 
@@ -67,7 +67,7 @@ v1.0.0
 
 ## License
 
-CC BY-NC 4.0
+McPherson AI distributes this ClawHub edition under MIT-0. The GitHub source edition is available under Apache License 2.0. See [LICENSE](LICENSE). Third-party materials remain subject to their applicable terms.
 
 ## Author
 

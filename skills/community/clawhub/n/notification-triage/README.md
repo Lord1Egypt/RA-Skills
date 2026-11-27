@@ -87,8 +87,8 @@ node skills/notification-triage/notification-triage.js --send 10
 # Mark notification as seen
 node skills/notification-triage/notification-triage.js --seen <id>
 
-# Mark all as seen
-node skills/notification-triage/notification-triage.js --seen --all
+# Mark all as seen (requires --force)
+node skills/notification-triage/notification-triage.js --seen --all --force
 ```
 
 ### Rule Management
@@ -100,8 +100,8 @@ node skills/notification-triage/notification-triage.js --rules
 # Add rule (urgent|batch|ignore)
 node skills/notification-triage/notification-triage.js --rules add cron batch
 
-# Remove rule
-node skills/notification-triage/notification-triage.js --rules remove cron
+# Remove rule (requires --force)
+node skills/notification-triage/notification-triage.js --rules remove cron --force
 ```
 
 ### Digests
@@ -121,20 +121,23 @@ node skills/notification-triage/notification-triage.js --digest hourly
 1. **Source-specific rules first** — If a rule exists for the source, use it immediately
 2. **Keyword scoring** — Each urgent keyword +2, each batch keyword -1, time-sensitive +1
 3. **Thresholds** — Score ≥ 3 = urgent, Score ≥ 1 = batch, else ignore
-4. **Auto-rule creation** — First classification for a source saves its level as a persistent rule
+4. **Auto-rule creation** — First classification for a source records its level as a permanent rule. **Notification content is validated before writing to disk; untrusted or malformed input is rejected.**
 
 ---
 
 ## Data Storage
 
-All state stored in `memory/notification-triage/`:
+All state stored in `memory/notification-triage/`. Notification content persists on disk until cleared — see the SKILL.md "Disk Persistence & Hard Caps" section for full disclosure.
 
-| File | Description |
-|------|-------------|
-| `batch.json` | Pending notification queue (capped at 1000) |
-| `rules.json` | Per-source classification rules |
-| `seen.json` | Set of seen notification IDs |
-| `digest.json` | Digest entries awaiting batch ||
+| File | Description | Cap |
+|------|-------------|-----|
+| `batch.json` | Pending notification queue | 5000 entries (oldest dropped first) |
+| `rules.json` | Per-source classification rules | Unbounded (manually managed) |
+| `seen.json` | Set of seen notification IDs | Auto-pruned |
+| `dropped.json` | Silently-dropped notifications (audit log) | 1000 entries |
+| `digest.json` | Legacy digest store (no longer auto-written) | 1000 entries |
+
+All writes are atomic (temp+rename) — a crash mid-write leaves the previous intact file in place; the JSON files cannot be left half-written. To remove all persisted data, delete the files under `memory/notification-triage/`.
 
 ---
 
@@ -143,9 +146,14 @@ All state stored in `memory/notification-triage/`:
 ```javascript
 const NT = require('./skills/notification-triage/notification-triage.js');
 
-// Classify
+// Classify — "server down" contains 1 urgent keyword ("down", +2) → score 2 → batch
+// (Thresholds: ≥3 urgent, ≥1 batch, else ignore)
 const result = NT.classifyMessage('server down', 'monitor');
-// { source: 'monitor', level: 'urgent', rule: 'auto', score: 2 }
+// { source: 'monitor', level: 'batch', rule: 'auto', score: 2 }
+
+// "critical security breach" contains 3 urgent keywords (+2 each) → score 6 → urgent
+const urgent = NT.classifyMessage('critical security breach', 'monitor');
+// { source: 'monitor', level: 'urgent', rule: 'auto', score: 6 }
 
 // Add to batch
 NT.addNotification('id-1', 'message', 'source', 'batch');
@@ -200,6 +208,16 @@ Test coverage:
 | **Input validation** | ✅ Messages truncated to 500 chars |
 | **JSON-safe** | ✅ All persistence via JSON (no injection) |
 | **No external deps** | ✅ Zero npm dependencies |
+| **No network access** | ✅ Fully local, no HTTP/network calls |
+| **Destructive-op guard** | ✅ `--rules clear`, `--rules remove`, `--seen --all` require `--force` |
+
+## Persistence Disclosure
+
+- Notification content (messages, sources, timestamps) is **persisted locally** in `memory/notification-triage/` until cleared.
+- First classification of a new source **auto-creates a permanent rule** in `rules.json`. Use `--classify ... --force` to test without persisting.
+- `ignore`-classified notifications are **silently dropped** but logged to `dropped.json`.
+- Caps: batch ≤5000, dropped ≤1000. Oldest entries are dropped first on overflow.
+- Delete the files under `memory/notification-triage/` to remove all persisted data.
 
 ---
 

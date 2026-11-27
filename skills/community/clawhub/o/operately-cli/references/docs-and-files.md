@@ -1,6 +1,6 @@
 # Docs & Files
 
-Docs & Files is the knowledge base within spaces and projects. Teams organize documents, files, links, and folders in a hierarchical structure.
+Docs & Files is the knowledge base within spaces, projects, and goals. Teams organize documents, files, links, and folders in a hierarchical structure.
 
 ## Concept
 
@@ -12,10 +12,10 @@ Each space, project, and goal has a Docs & Files hub that provides:
 - Document management (markdown)
 - File attachments (binary uploads)
 - Link collection
-- Access control inherited from the parent space or project
+- Access control inherited from the parent space, project, or goal
 
 **Key characteristics:**
-- One Docs & Files hub per space, project, or goal
+- A space can have several named hubs. Projects and goals each have one.
 - Nested folder hierarchy (unlimited depth, but keep it shallow for usability)
 - Documents, files, and links can live in folders
 - Markdown support for documents
@@ -23,7 +23,7 @@ Each space, project, and goal has a Docs & Files hub that provides:
 
 ## Scope Rules
 
-Hub-scoped create and list commands require **`--space-id`**, **`--project-id`**, or **`--goal-id`** (mutually exclusive — provide one, not both).
+Use `--space-id` for a space’s default Resource Hub, `--project-id` for a project’s Resource Hub, or `--goal-id` for a goal’s Resource Hub. To select a specific Resource Hub directly, use `--resource-hub-id`.
 
 ```bash
 # Space-scoped
@@ -36,13 +36,22 @@ operately documents create_document --project-id p1 --name "Spec" --content "# S
 operately documents create_document --goal-id g1 --name "Playbook" --content "# Playbook"
 ```
 
-**Folder-scoped listing** works with **`--folder-id` alone** — no space or project ID needed:
+**Folder-scoped listing** works with **`--folder-id` alone** — no space, project, or goal ID needed:
 
 ```bash
 operately documents list_contents --folder-id f1
 ```
 
-**Do not** resolve a hub ID via `spaces list_tools`. Pass the space or project ID directly on `documents/*` commands.
+### Resource Hubs in a space
+
+```bash
+operately documents list_hubs --space-id s1
+operately documents create_hub --space-id s1 --name "Research"
+operately documents rename_hub --resource-hub-id h1 --new-name "Customer research"
+operately documents create_file --resource-hub-id h1 --file ./report.pdf
+```
+
+Use `documents delete_hub --resource-hub-id <id>` to delete an empty, non-default Resource Hub.
 
 ## Folder Operations
 
@@ -370,6 +379,26 @@ operately documents list_contents \
 
 If `comments_count` or `children_count` is missing from the response, treat that as "metadata not requested" unless the matching include flag was passed.
 
+### Find Your Drafts
+
+`list_drafts` returns your drafts across all live folders in one hub, including drafts outside the folder you are browsing.
+
+```bash
+# Choose the space’s Resource Hub by name
+operately documents list_hubs --space-id s1
+
+# Project hub: read resource_hub.id from the returned project
+operately projects get --id p1 --include-resource-hub
+
+# Goal hub: read resource_hub.id from the returned goal
+operately goals get --id g1 --include-resource-hub
+
+# Use the hub ID from the relevant response
+operately documents list_drafts --resource-hub-id h1
+```
+
+The response contains `draft_nodes`. This lists your drafts, not every editor's drafts.
+
 ## Project-Scoped Docs & Files
 
 Projects have their own Docs & Files hub. Use `--project-id` instead of `--space-id`:
@@ -388,6 +417,21 @@ operately documents create_document \
 operately documents create_file \
   --project-id p1 \
   --file ./spec.pdf
+```
+
+## Goal-Scoped Docs & Files
+
+Use `--goal-id` to create documents, files, links, and folders in a goal's hub, or to list its contents:
+
+```bash
+operately documents list_contents --goal-id g1
+
+operately documents create_document \
+  --goal-id g1 \
+  --name "Goal plan" \
+  --content-file ./goal-plan.md
+
+operately documents create_file --goal-id g1 --file ./report.pdf
 ```
 
 ## Common Patterns
@@ -508,10 +552,6 @@ operately documents create_document \
 
 ## Gotchas
 
-### One Hub per Space or Project
-
-Each space and each project has one Docs & Files hub. Scope commands with `--space-id` or `--project-id` — do not look up hub IDs.
-
 ### Folder Hierarchy Depth
 
 There is no technical limit on folder depth, but keep it shallow (3–4 levels max) for usability:
@@ -580,14 +620,15 @@ The `--type` parameter for links is required. Valid values:
 
 ### Markdown in Documents
 
-Documents support full markdown including:
-- Headings (`# H1`, `## H2`, etc.)
-- Lists (`-` or `1.`)
-- Links (`[text](url)`)
-- Code blocks (` ``` `)
-- Bold (`**text**`) and italic (`*text*`)
+Markdown fields support headings, inline formatting, links, lists, blockquotes, code, task lists, and pipe tables. These rules apply across documents, descriptions, discussions, check-ins, and comments. Content is converted to Operately rich text; arbitrary HTML and Markdown extensions may not be preserved.
 
-Use markdown for rich, readable documentation. For larger documents, use `--content-file <path>` to load markdown from disk:
+- Markdown checkboxes stay in the rich text; they do not create project tasks or goal checklist items.
+- Table cells support inline formatting, links, escaped pipes (`\|`), and `<br>` line breaks. Short rows are padded; extra cells beyond the header's column count cause an input error.
+- Table widths and alignment are not preserved. Images inside cells become labeled links.
+
+Table and task-list input require support in both the CLI and server. CLI 1.9.0 lacks this input support.
+
+For larger documents, use a file:
 
 ```bash
 operately documents create_document \
@@ -619,10 +660,10 @@ operately companies search --query "onboarding" --sort best_match
 operately companies search --query "roadmap" --space-ids s1 --types resource_hub_document --sort most_recent
 ```
 
-**Scoped Docs & Files search** (exactly one of `--space-id`, `--project-id`, or `--goal-id`):
+**Search a specific Resource Hub or a parent’s default Resource Hub**
 
 ```bash
-operately documents search --space-id s1 --query "onboarding"
+operately documents search --resource-hub-id h1 --query "onboarding"
 operately documents search --goal-id g1 --query "metrics"
 ```
 

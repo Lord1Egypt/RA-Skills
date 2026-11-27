@@ -100,6 +100,10 @@
                 }
             }
         },
+        "cost": {
+            "type": "number",
+            "description": "可选。取数成功或 empty 时，后端返回的本次花费估算（estimate）：包月固定为 1，按次为计费条数×单价。处理中、错误、热榜、或上游未返回时省略该字段；创建任务阶段不会有 cost"
+        },
         "results": {
             "description": "error 与 empty 时为 null。视频搜索、用户搜索、评论、热榜成功时为数组，条目字段分别见 search_cli_resp、user_search_cli_resp、comment_cli_resp、hot_cli_resp。博主作品成功时为对象，字段见 post_cli_resp。作品详情成功时为对象，字段见 detail_cli_resp",
             "oneOf": [

@@ -1,7 +1,7 @@
 ---
 name: "Agent Skills Framework Explorer"
 description: "AI-powered assistant for exploring, understanding, and building with AI agent skills frameworks — covers Anthropic agent-skills, OpenAI agent SDKs, LangChain tools, CrewAI protocols, and open-source agent skill marketplaces. Built for AI developers and agent builders. Keywords: agent-skills, AI agent framework, LangChain tools, CrewAI, OpenAI Agents SDK, Claude Agent SDK, agent tool ecosystem, skills marketplace, MCP tools, n8n agent nodes, agent protocol."
-version: "1.0.5"
+version: "1.0.6"
 ---
 
 # Agent Skills Framework Explorer
@@ -419,7 +419,7 @@ requires, look for a narrower alternative rather than granting them.
 | CrewAI | crewAIInc/crewAI | - | Python | MIT |
 | MCP | modelcontextprotocol/spec | - | Multi | Apache 2.0 |
 
-## Ecosystem Status (as of 2026-11-18)
+## Ecosystem Status (as of 2026-11-26)
 
 The agent framework landscape moves fast. Treat every item below as a starting
 point to verify, not as settled fact — check each project's official releases
@@ -433,7 +433,7 @@ and changelogs before making a decision.
 | Model-provider pricing & terms | Current pricing, rate limits, data-processing terms | Drives unit economics and compliance |
 | Security scanning of third-party skills | Whether the marketplace scans published skills | Supply-chain risk for agent tooling |
 
-**Recent dynamics (as of 2026-11-18, verify against official sources)**
+**Recent dynamics (as of 2026-11-26, verify against official sources)**
 1. MCP has continued to mature as the de-facto tool-integration layer, with
    governance moving toward a neutral foundation structure — confirm current
    status from the official MCP specification repository before citing it.
@@ -482,7 +482,7 @@ and changelogs before making a decision.
 
 - **1.0.0** (2026-05-19): Initial version.
 
-**Last Updated**: 2026-11-18
+**Last Updated**: 2026-11-26
 
 ## 本轮增量（2026-11-13）：复核维度与举例补充
 
@@ -570,4 +570,46 @@ and changelogs before making a decision.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-18**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-26）：复核维度与举例补充
+
+> 本节为 2026-11-26 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**Step 1: Identify the User's Goal**：
+
+- 目标采集清单补一条「目标边界是否经人工确认」的占位核对项，由使用者圈选并留白说明，草稿不预置选型结论。
+- 为约束条件登记新增一张纸面对照：左列列约束标签，右列留白记录需人工核实的优先级，不预置权重。
+
+**Step 5: Skill Discovery**：
+
+- 技能清点清单补一条「相邻技能是否语义重叠」的占位标注位，由使用者圈选并留白依据，草稿不代为去重判定。
+- 为准入核对新增一行「行为差分观测项」占位：标注待人工设计的对照任务标签，具体结果留白。
+
+### 新增复核维度表（2026-11-26）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 目标边界留白 | 使用者 + 复核人 | 目标采集清单草稿 | 是否标注待人工确认、未预置选型结论 | 低 | 方法论参考，结论由本人确认 |
+| 技能重叠标注 | 使用者 | 技能清点占位表 | 是否逐项标注语义重叠占位、未代为去重 | 低 | 文档记录，不构成安装建议 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于Agent 框架选型与技能物料清单的方法论参考的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式选型结论、生产部署与对外发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-26）
+
+> 参考同类公开框架把「静态质量门禁 / 语义重叠去重 / 合成评测数据集 / 实时行为差分（有/无加载技能的对照）」整理为方向性核对清单；强调评测集先行、评分只作观测、准入与保留由具备资质的人员判定，草稿只保留占位维度与待确认项，不写入具体工具名、版本号或自动化动作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-26**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

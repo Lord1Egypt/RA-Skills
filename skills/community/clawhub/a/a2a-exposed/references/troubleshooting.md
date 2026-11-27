@@ -143,3 +143,5 @@ The optional committed-message event feed is a separate operator-configured inte
 It does not replace inbox reads or owner wakes and does not enable MCP Events subscriptions.
 Read the repository docs/message-events.md contract before proposing configuration;
 never infer authorization from an event or rotate a source/peer credential automatically.
+
+Per-pairing wake rules: list with `wake peers --json`, then set using `wake peers --peer-id ID --policy-file FILE --json`. Use the listed pairing ID and a complete JSON policy; never guess IDs or choices. `get_peer_wake_policies` / `set_peer_wake_policy` expose the hosted MCP equivalents with a supporting service release. Empty working/submitted updates and acknowledgment-only events skip by default, independent of global routing mode. Completed, failed, input-required, new inbound and content updates wake by default. Sender `wake:never` remains authoritative. Batch waits for a later real wake; inspect inbox/history manually if no wake follows.

@@ -16,23 +16,23 @@ function baseUrl(cfg: ThetaConfig): string {
   return thetaUrl(raw, 'ondemand');
 }
 
-function h(cfg: ThetaConfig): HeadersInit {
+function ondemandHeaders(cfg: ThetaConfig): HeadersInit {
   if (!cfg.onDemandApiToken) throw new Error('THETA_ONDEMAND_API_TOKEN missing');
   return {
-    Authorization: `Bearer ${cfg.onDemandApiToken}`,
+    Authorization: ('Bearer ' + String(cfg.onDemandApiToken)),
     'content-type': 'application/json'
   };
 }
 
 function optionalHeaders(cfg: ThetaConfig): HeadersInit {
   return cfg.onDemandApiToken
-    ? { Authorization: `Bearer ${cfg.onDemandApiToken}`, 'content-type': 'application/json' }
+    ? { Authorization: ('Bearer ' + String(cfg.onDemandApiToken)), 'content-type': 'application/json' }
     : { 'content-type': 'application/json' };
 }
 
 function net(cfg: ThetaConfig) {
   return {
-    headers: h(cfg),
+    headers: ondemandHeaders(cfg),
     service: 'theta-ondemand-api',
     timeoutMs: cfg.httpTimeoutMs,
     maxRetries: cfg.httpMaxRetries,
@@ -82,7 +82,7 @@ function inferPath(service: string, opts: OnDemandInferOptions = {}): string {
   }
   if (opts.prediction) params.set('prediction', opts.prediction);
   const query = params.toString();
-  return `/infer_request/${encodePathSegment(service, 'service')}${query ? `?${query}` : ''}`;
+  return ('/infer_request/' + String(encodePathSegment(service, 'service')) + String(query ? ('?' + String(query)) : ''));
 }
 
 function chatCompletionsPath(): string {
@@ -99,6 +99,9 @@ function readPositiveInt(value: unknown): number | undefined {
   return parsed;
 }
 
+// Timeout wording used by fetch and AbortSignal errors.
+const TIMEOUT_MESSAGE_RE = /operation was aborted|timeout/;
+
 function isTimeoutAbort(error: unknown): boolean {
   if (!error || typeof error !== 'object') return false;
   const err = error as { name?: unknown; message?: unknown };
@@ -106,8 +109,7 @@ function isTimeoutAbort(error: unknown): boolean {
   const message = typeof err.message === 'string' ? err.message.toLowerCase() : '';
   return name === 'TimeoutError'
     || name === 'AbortError'
-    || message.includes('operation was aborted')
-    || message.includes('timeout');
+    || TIMEOUT_MESSAGE_RE.test(message);
 }
 
 function normalizeInferPayload(payload: Record<string, unknown>): Record<string, unknown> {
@@ -286,7 +288,7 @@ async function postJsonOrSse(cfg: ThetaConfig, url: string, body: Record<string,
       const res = await fetch(url, {
         redirect: 'error',
         method: 'POST',
-        headers: h(cfg),
+        headers: ondemandHeaders(cfg),
         body: JSON.stringify(body),
         signal: AbortSignal.timeout(timeoutMs)
       });
@@ -325,17 +327,17 @@ async function postJsonOrSse(cfg: ThetaConfig, url: string, body: Record<string,
     } catch (error) {
       if (isStructuredError(error)) throw error;
       if (isTimeoutAbort(error)) {
-        throw fromTransportError('theta-ondemand-api', url, error);
+        throw fromTransportError('theta-ondemand-api', url, error, true);
       }
       if (canRetry) {
         await sleep(backoffDelayMs(attempt + 1, cfg.httpRetryBackoffMs));
         continue;
       }
-      throw fromTransportError('theta-ondemand-api', url, error);
+      throw fromTransportError('theta-ondemand-api', url, error, true);
     }
   }
 
-  throw fromTransportError('theta-ondemand-api', url, new Error('HTTP request failed after retries'));
+  throw fromTransportError('theta-ondemand-api', url, new Error('HTTP request failed after retries'), true);
 }
 
 function backoffDelayMs(attempt: number, baseMs: number): number {
@@ -348,8 +350,8 @@ function enforceWebhookGate(cfg: ThetaConfig, body: unknown, confirm: unknown): 
   const hooks = findCallbackFields(body);
   for (const hook of hooks) {
     let url: URL;
-    try { url = new URL(String(hook.value)); } catch { throw new Error(`${hook.path} must be an https URL`); }
-    if (url.protocol !== 'https:') throw new Error(`${hook.path} must be an https URL`);
+    try { url = new URL(String(hook.value)); } catch { throw new Error(('' + String(hook.path) + ' must be an https URL')); }
+    if (url.protocol !== 'https:') throw new Error(('' + String(hook.path) + ' must be an https URL'));
   }
   if (hooks.length) assertApproved(cfg, confirm, 'Sending inference results to a webhook');
 }
@@ -362,12 +364,12 @@ function enforceToolSupport(model: string, body: Record<string, unknown>, allowU
   const input = body.input && typeof body.input === 'object' ? body.input as Record<string, unknown> : {};
   const hasTools = ['tools', 'tool_choice', 'functions'].some((k) => body[k] !== undefined || input[k] !== undefined);
   if (hasTools && !TOOL_CALLING_CHAT_SERVICES.includes(model) && allowUnverifiedTools !== true) {
-    throw new Error(`Service ${model} does not return structured tool calls. Use glm_5_3 or glm_5_3_flash, or set allowUnverifiedTools:true (exactly) to send anyway.`);
+    throw new Error(('Service ' + String(model) + ' does not return structured tool calls. Use glm_5_3 or glm_5_3_flash, or set allowUnverifiedTools:true (exactly) to send anyway.'));
   }
 }
 
 export const onDemandApiClient = {
-  listServices: (cfg: ThetaConfig) => getJson(`${baseUrl(cfg)}/service/list?expand=template_id`, optionalNet(cfg)),
+  listServices: (cfg: ThetaConfig) => getJson(('' + String(baseUrl(cfg)) + '/service/list?expand=template_id'), optionalNet(cfg)),
 
   createInferRequest: (cfg: ThetaConfig, service: string, payload: Record<string, unknown>, opts?: OnDemandInferOptions) => {
     assertLive(cfg, 'On-demand inference');
@@ -387,11 +389,11 @@ export const onDemandApiClient = {
     if (finalBody.prediction !== undefined && (typeof finalBody.prediction !== 'string' || !PREDICTION_NAME.test(finalBody.prediction))) {
       throw new Error('prediction must be a prediction name string');
     }
-    if (inferenceRequiresConfirm(service)) assertApproved(cfg, opts?.confirm, `Inference on ${service} (video, unknown, retired or high-cost service)`);
+    if (inferenceRequiresConfirm(service)) assertApproved(cfg, opts?.confirm, ('Inference on ' + String(service) + ' (video, unknown, retired or high-cost service)'));
     enforceWebhookGate(cfg, finalBody, opts?.confirm);
     enforceToolSupport(service, finalBody, opts?.allowUnverifiedTools);
     const timeoutMs = resolveCreateInferTimeoutMs(cfg, service, finalBody);
-    return postJsonOrSse(cfg, `${baseUrl(cfg)}${inferPath(service, { wait: opts?.wait, prediction: opts?.prediction })}`, finalBody, timeoutMs);
+    return postJsonOrSse(cfg, ('' + String(baseUrl(cfg)) + String(inferPath(service, { wait: opts?.wait, prediction: opts?.prediction }))), finalBody, timeoutMs);
   },
 
   createChatCompletionRequest: async (cfg: ThetaConfig, rawBody: OnDemandChatCompletionBody, opts?: { confirm?: boolean; allowUnverifiedTools?: boolean }) => {
@@ -404,23 +406,23 @@ export const onDemandApiClient = {
     if (!Array.isArray(body.messages) || !body.messages.length) throw new Error('messages must be a non-empty array');
     const model = String(body.model);
     if (!OPENAI_CHAT_COMPLETION_SERVICES.includes(model) || inferenceRequiresConfirm(model)) {
-      assertApproved(cfg, opts?.confirm, `Chat completion on retired or unlisted model ${model}`);
+      assertApproved(cfg, opts?.confirm, ('Chat completion on retired or unlisted model ' + String(model)));
     }
     enforceWebhookGate(cfg, body, opts?.confirm);
     enforceToolSupport(model, body, opts?.allowUnverifiedTools);
     const timeoutMs = Array.isArray(body.messages) && body.stream === false
       ? Math.max(cfg.httpTimeoutMs, 120000)
       : cfg.httpTimeoutMs;
-    const result = await postJsonOrSse(cfg, `${baseUrl(cfg)}${chatCompletionsPath()}`, body, timeoutMs);
+    const result = await postJsonOrSse(cfg, ('' + String(baseUrl(cfg)) + String(chatCompletionsPath())), body, timeoutMs);
     if (result && typeof result === 'object' && (result as Record<string, unknown>).body) return result;
     return normalizeChatCompletionsJson(result);
   },
 
-  getInferRequest: (cfg: ThetaConfig, requestId: string) => getJson(`${baseUrl(cfg)}/infer_request/${encodePathSegment(requestId, 'requestId')}`, net(cfg)),
+  getInferRequest: (cfg: ThetaConfig, requestId: string) => getJson(('' + String(baseUrl(cfg)) + '/infer_request/' + String(encodePathSegment(requestId, 'requestId'))), net(cfg)),
 
   createInputPresignedUrls: async (cfg: ThetaConfig, service: string, inputFields?: string[]) => {
     assertLive(cfg, 'Presigned upload URL creation');
-    return normalizePresignedUrls(await postJson(`${baseUrl(cfg)}/infer_request/${encodePathSegment(service, 'service')}/input_presigned_urls`, inputFields?.length ? { input_fields: inputFields } : {}, net(cfg)));
+    return normalizePresignedUrls(await postJson(('' + String(baseUrl(cfg)) + '/infer_request/' + String(encodePathSegment(service, 'service')) + '/input_presigned_urls'), inputFields?.length ? { input_fields: inputFields } : {}, net(cfg)));
   }
 };
 
@@ -445,6 +447,6 @@ function normalizePresignedUrls(response: unknown): unknown {
   return {
     ...(response as Record<string, unknown>),
     uploads,
-    uploadInstructions: `PUT the file bytes to upload_url with header Content-Type: ${PRESIGNED_UPLOAD_CONTENT_TYPE} (any other type fails signature check with 403), then pass filename as the input field value.`
+    uploadInstructions: ('PUT the file bytes to upload_url with header Content-Type: ' + String(PRESIGNED_UPLOAD_CONTENT_TYPE) + ' (any other type fails signature check with 403), then pass filename as the input field value.')
   };
 }

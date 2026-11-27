@@ -18,11 +18,11 @@ metadata:
 
 | 技能 | 职责 | 典型触发 |
 |---|---|---|
-| [`flydb-cli-release`](../flydb-cli-release/SKILL.md) | 发行包与 CLI、Web 工作台、JSON/Plan、MCP、长迁移与 JDBC 接入 | 安装、预演/执行迁移、GUI、机器输出、执行失败 |
-| [`flydb-migration-scripts`](../flydb-migration-scripts/SKILL.md) | 迁移脚本目录（db/migration）的新增/修改/组织：V/R/U 命名、版本策略、checksum 纪律 | 写迁移脚本、命名/版本问题、FLYDB-2001/2002/2003/2005/2008 |
-| [`flydb-multi-environment`](../flydb-multi-environment/SKILL.md) | 多数据库×多环境自动化：deploy/ 配置矩阵、密码分层、CI 流水线、baseline 存量库、离线执行机 | 多环境、CI/流水线、环境晋升、存量库接入 |
+| `flydb-cli-release` | 发行包与 CLI、Web 工作台、JSON/Plan、MCP、长迁移与 JDBC 接入 | 安装、预演/执行迁移、GUI、机器输出、执行失败 |
+| `flydb-migration-scripts` | 迁移脚本目录（db/migration）的新增/修改/组织：V/R/U 命名、版本策略、checksum 纪律 | 写迁移脚本、命名/版本问题、FLYDB-2001/2002/2003/2005/2008 |
+| `flydb-multi-environment` | 多数据库×多环境自动化：deploy/ 配置矩阵、密码分层、CI 流水线、baseline 存量库、离线执行机 | 多环境、CI/流水线、环境晋升、存量库接入 |
 
-子技能通常安装在本技能的同级目录（`../flydb-*/`）；找不到文件时按技能名在已安装技能中查找，仍缺失则见下节"获取技能族"。
+按上表技能名在已安装技能中查找并读取对应 SKILL.md；整族插件将四个技能一起安装。仍缺失则见下节"获取技能族"。
 
 ## 获取技能族
 
@@ -57,11 +57,11 @@ npx skills add https://github.com/zzxCoding/skills --skill flydb-multi-environme
 | 用户诉求 | 去处 |
 |---|---|
 | 安装/验证 CLI、执行或预演迁移、baseline/repair/undo/clean、连接与驱动问题、FLYDB-1xxx/3xxx/4xxx | `flydb-cli-release` |
-| flydb web、本机配置管理、GUI 进度、CLI 与 Web 共用执行记录 | `flydb-cli-release` 的 Web 分支 |
-| JSON 信封、Plan 摘要、MCP tools、写工具缺失或 Adapter 错误 | `flydb-cli-release` 的机器输出/MCP 分支；CI 接入再组合 `flydb-multi-environment` |
+| flydb web、配置值怎么填、查看生效来源、GUI 进度 | `flydb-cli-release` 的 Web 分支 |
+| 发布前检查（preflight / flydb_preflight）、JSON 信封、Plan 摘要、MCP 工具缺失或 Adapter 错误 | `flydb-cli-release` 的机器输出/MCP 分支；CI 接入再组合 `flydb-multi-environment` |
 | 长时间 migrate、工具超时、失败快照、FLYDB-2010/2011、结果未知 | `flydb-cli-release` 的长迁移/失败处置或 Web 确认分支 |
-| 新增/修改/命名/重组迁移脚本、目录版本、占位符、FLYDB-2001/2002/2005/2008 | `flydb-migration-scripts` |
-| 多环境配置矩阵、密码注入方案、CI 流水线、存量库接入、离线执行机 | `flydb-multi-environment` |
+| flydb new、新增/修改/命名/重组迁移脚本、目录版本、占位符、FLYDB-2001/2002/2005/2008 | `flydb-migration-scripts` |
+| flydb.config-import、复制环境只改差异、多环境配置矩阵、密码注入方案、CI 流水线、存量库接入、离线执行机 | `flydb-multi-environment` |
 | 报错但不确定类别 | 先 `flydb-cli-release` 的错误码参考定位，涉及脚本内容修正再进 `flydb-migration-scripts` |
 
 ## 组合工作流

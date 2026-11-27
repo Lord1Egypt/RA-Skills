@@ -7,7 +7,7 @@
 
 > **能力补充**：在新闻简报聚合之外，新增**单条作品详情**（文案/互动/作者）与评论区**需求挖掘**指引；关键词搜索、博主作品、评论、实时热榜照旧，结构化 JSON 输出。
 
-**维护状态**：持续更新中，当前版本 `1.5.0`，[更新日志](references/changelog.md)。Agent 执行卡见 [SKILL.md](SKILL.md)。
+**维护状态**：持续更新中，当前版本 `1.5.1`，[更新日志](references/changelog.md)。Agent 执行卡见 [SKILL.md](SKILL.md)。
 
 > **🔥核心优势**
 >
@@ -16,7 +16,7 @@
 > - 全面：出参覆盖作者、互动（点赞/评论/收藏/分享/推荐）、标签、链接、音乐、话题等可用字段
 > - 灵活：支持排序（综合/最多点赞/最新）、时间（1天/7天/半年）、时长、内容类型（视频/图文）多维度筛选
 > - 轻量：零第三方依赖，Node.js 内置模块直接跑，无需部署服务
-> - 友好：stdout 纯 JSON、日志走 stderr，AI 可直接解析；结果自动落盘便于二次分析
+> - 友好：stdout 纯 JSON、日志走 stderr，AI 可直接解析；可选 `--save` / `GUAIKEI_ENABLE_LOG=1` 落盘便于二次分析
 
 ## ✅ 我能帮你解决什么（10 秒判断）
 
@@ -29,7 +29,7 @@
 | 内容分析   | 看一条视频的文案、播放和互动     | 作品详情                    |
 | 舆情/客服  | 看一条视频评论区在骂还是在夸     | 评论抓取                    |
 | 内容策划   | 快速追热点、找当天的流量入口     | 实时热榜                    |
-| 数据分析   | 把抖音数据导入 Excel/BI 做周报   | 结构化 JSON + 日志落盘      |
+| 数据分析   | 把抖音数据导入 Excel/BI 做周报   | 结构化 JSON + 可选日志落盘  |
 
 **典型产出**：结构化 JSON（含标题、作者、点赞/评论/收藏/分享、标签、视频链接、发布时间），可直接导入 Excel / BI，或交给 AI 生成**选题库、竞品对比表、舆情周报、发文节奏分析、公域线索表**。剧本见 [需求挖掘](references/demand-mining.md)、[公域获客](references/customer-acquisition.md)。
 
@@ -83,7 +83,7 @@ node src/douyin/detail-cli.js --url "https://www.douyin.com/video/xxx"
 node src/douyin/hot-cli.js
 ```
 
-> 💡 Windows cmd.exe 下请使用双引号；PowerShell / bash 可直接执行。
+> 💡 **Windows**：cmd **只用双引号**包参数（勿用单引号）；PowerShell 含空格/中文也优先双引号。双壳示例与拆参排障见 [references/faq.md](references/faq.md)。
 > 💡 支持直接粘贴 App 分享文案（含"复制到剪贴板…"字样和短链），链接会自动抽取、参数自动清理。
 
 ---
@@ -103,7 +103,7 @@ node src/douyin/hot-cli.js
     "limit": 20
   },
   "metadata": {
-    "skill_version": "1.5.0",
+    "skill_version": "1.5.1",
     "runtime_version": "22.x",
     "execution_time": 34210
   },
@@ -123,10 +123,12 @@ node src/douyin/hot-cli.js
       "create_time_str": "2026/4/5 10:08:21",
       "tags": ["#AI", "#教程"]
     }
-  ]
+  ],
+  "cost": 0.08
 }
 ```
 
+- 可选顶层 `cost`：取数成功/empty 时的花费**估算**（包月为 `1`；按次按条数×单价）；热榜与错误通常无此字段。详见 [references/contract.md](references/contract.md)。
 - 视频搜索、用户搜索、评论、热榜成功时 `results` 是**数组**；博主作品成功时 `results` 是**对象**，包含 `post`（作品数组）和 `user`（博主信息）。
 - 空结果是 `"status": "empty"` + `error_code: "NO_MATCH"`，**退出码仍然是 0，属正常情况，不是失败**。
 - 字段较多（含封面图、播放地址等长 URL），向用户汇报时建议只摘取 `desc` / `author_nickname` / `digg_count` / `url` / `create_time_str` 等关键字段。
@@ -141,7 +143,7 @@ node src/douyin/hot-cli.js
 - 需要看账号体量 → 作品命令加 `--limit 0`，直接拿粉丝数 / 获赞数
 - 需要分析内容舆情 → 获取视频/图文评论，可做观点聚类
 - 需要快速追热点 → 实时热榜（约 50 条，含排名与热度值）
-- 需要做营销报告 → 输出结构化 JSON 并自动落盘，便于复盘与二次分析
+- 需要做营销报告 → 输出结构化 JSON；需要留底时加 `--save` 或设 `GUAIKEI_ENABLE_LOG=1`
 
 ## 🔍 和其他方式比，凭什么用它？
 
@@ -254,14 +256,16 @@ node src/douyin/hot-cli.js
 
 > **Q：输出文件在哪里？**
 >
-> A：搜索 / 用户搜索 / 作品 / 评论 / 作品详情任务的结果会自动保存在技能目录的 `logs/` 下：
+> A：默认**不**写文件。需要留底时加 `--save`，或设置环境变量 `GUAIKEI_ENABLE_LOG=1`。成功后 stderr 会打印路径，目录为系统临时目录下的 `douyin-guaikei/logs/当天日期/`（Windows 多为 `%TEMP%`）。文件名带 `${pid}_` 前缀，例如：
 >
-> - 搜索任务：`时间戳_关键词_排序_时间_时长_类型_search.json`
-> - 用户搜索：`时间戳_关键词_数量_user_search.json`
-> - 博主作品：`时间戳_博主sec_uid或短链码_post.json`
-> - 评论获取：`时间戳_视频aweme_id或短链码_comment.json`
-> - 作品详情：`时间戳_视频aweme_id或短链码_detail.json`
-> - （热榜为实时直读，不落盘）
+> - 搜索：`${pid}_时间戳_关键词_排序_时间_时长_类型_search.json`
+> - 用户搜索：`${pid}_时间戳_关键词_数量_user_search.json`
+> - 博主作品：`${pid}_时间戳_博主sec_uid或短链码_post.json`
+> - 评论：`${pid}_时间戳_视频aweme_id或短链码_comment.json`
+> - 详情：`${pid}_时间戳_视频aweme_id或短链码_detail.json`
+> - 热榜不落盘
+>
+> 旧版曾写入技能目录 `logs/`，现已不再写入，可自行删除。
 
 > **Q：支持哪些链接形式？**
 >

@@ -51,7 +51,7 @@ void setScreenBackground(uint32_t color);
  * @fn canvasText
  * @brief Display text on the canvas
  * @param text Text content
- * @param row Row to display
+ * @param row Row to display//start with 1
  * @param color Text color
  */
 void canvasText(float text, uint8_t row, uint32_t color);

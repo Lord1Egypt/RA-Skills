@@ -43,6 +43,8 @@ metadata:
 
 ### 3. 新增脚本
 
+创建版本化脚本时，CLI 0.3.9+ 在已初始化项目的工作目录运行 `bin/flydb new add_order_index`，或在工作台的迁移页选择「新建 SQL 脚本」。核对目标目录与返回路径后编写 SQL。已有 V1、V2 的整数版本项目会生成 V3。日期或复合版本用 `--script-version`，多个候选目录用 `--directory` 选择。此步骤可离线完成。
+
 1. 读 [`references/naming-and-versions.md`](references/naming-and-versions.md) 确定类型与版本：
    - 一次性结构/数据变更 → `V<新版本>__<描述>.sql`，版本取项目风格的下一个；
    - 视图/函数等可重建对象 → `R__<描述>.sql`（无版本号，`R1__` 会报 `FLYDB-2005`）；

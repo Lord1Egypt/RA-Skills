@@ -1,6 +1,6 @@
 ---
 name: alibabacloud-livedebug
-description: "Live-Debug runtime diagnostics: dynamic logging, method snapshots, dynamic metrics, dynamic spans, and JVM inspection. Use for live-debug ServiceTask on Alibaba Cloud CMS (aliyun cms2 apm service-task): dynamic log/snapshot/metric/span probes, Java JVM commands (OGNL evaluate, decompile, thread info, memory info, inspect object, search type/method, runtime info), disable/clear probes, and query capture results via SLS. Java supports commands + LOG/SNAPSHOT probes; Python supports LOG/SNAPSHOT/METRIC/SPAN/SPAN_TAG probes only. Synonyms: live debug, service task, probe, dynamic logging, method snapshot, take a snapshot, inspect running JVM, runtime diagnostics. Do NOT use for APM/agent onboarding, CMS alerts, RUM, Prometheus rules, or billing."
+description: "Live-Debug runtime diagnostics: dynamic logging, method snapshots, dynamic metrics, dynamic spans, and JVM inspection. Use for live-debug ServiceTask on Alibaba Cloud CMS (aliyun cms2 apm service-task): dynamic log/snapshot/metric/span probes, Java JVM commands (OGNL evaluate, decompile, thread info, memory info, inspect object, search type/method, runtime info), disable/clear probes, and query capture results via SLS. Java supports commands + LOG/SNAPSHOT probes; Python supports LOG/SNAPSHOT/METRIC/SPAN/SPAN_TAG probes and six read-only commands: SEARCH_TYPE, SEARCH_METHOD, DECOMPILE, GET_THREAD_INFO, GET_MEMORY_INFO, GET_RUNTIME_INFO. Synonyms: live debug, service task, probe, dynamic logging, method snapshot, take a snapshot, inspect running JVM, runtime diagnostics. Do NOT use for APM/agent onboarding, CMS alerts, RUM, Prometheus rules, or billing."
 license: Apache-2.0
 compatibility: "aliyun-cli>=3.3.15"
 metadata:
@@ -13,6 +13,10 @@ metadata:
 
 > **Product scope**: This skill builds and manages **Live-Debug ServiceTask** diagnostics on Alibaba Cloud CMS (`aliyun cms2 apm service-task`) and queries capture results via SLS. It does **not** onboard APM/agents and is **not** a general CloudMonitor (CMS) management skill.
 
+## Identify the application before running commands
+
+For a request such as “our online application is slow”, first check the request and any project-local `.arms-info` for the target. Ask one question covering the missing details: Java or Python, region, workspace, service name or ID, and which symptom or method to investigate. End the turn there and wait for the answer before listing cloud resources or creating a ServiceTask. A service returned by a list operation does not establish which application the user meant.
+
 ## Prerequisite Check
 
 1. **Check `aliyun` exists** - `which aliyun` (macOS/Linux) or `where aliyun` (Windows).
@@ -23,11 +27,7 @@ metadata:
  > Compare version segments as **integers** (semver): 3.3.4 < 3.3.15 because 4 < 15. Version **3.3.15 itself meets** the minimum requirement.
 
  - Version OK -> go to step 3.
- - Version too old or unrecognized ->
- 1. For Homebrew installations, run `brew update` and then `brew upgrade aliyun-cli`, then re-check `aliyun version`. For other installations, run `aliyun upgrade --help` to test whether the `upgrade` subcommand exists.
- - Available -> run `aliyun upgrade -y`, then re-check `aliyun version`.
- - Not available (or the upgrade fails) -> guide the user to reinstall from [Aliyun CLI Installation](#aliyun-cli-installation) or follow the [official installation/update guide](https://www.alibabacloud.com/help/zh/cli/install-update-alibaba-cloud-cli). **Do NOT pipe remote install scripts directly into a shell interpreter** - download the installer, inspect it, then run it deliberately, or use the OS package manager. Stop and wait if installation remains unresolved.
- 2. If the upgrade succeeded -> go to step 3.
+ - For an older or unrecognized version, follow the installation procedure below and recheck the installed version.
 
 3. **Check `cms2` plugin** - run `aliyun cms2 apm service-task --help`.
  - Help output OK -> continue.
@@ -37,7 +37,7 @@ metadata:
    chmod +x ~/.aliyun/aliyuncms2
    aliyun cms2 apm service-task --help
    ```
-   If it still fails, run `aliyun upgrade -y` and retry. If unresolved, **stop** and report the error (append CLI version, OS, and error message).
+   If the plugin check fails, report the CLI version, OS and error. Ask the operator to repair the approved CLI installation before dispatching tasks.
 
 4. **Check SLS** - run `aliyun sls --help` (required to query capture results).
 
@@ -45,25 +45,7 @@ Bundled scripts require **Bash 3.2+**, **Python 3.8+** (standard library only), 
 
 ## Aliyun CLI Installation
 
-Use the [official installation/update guide](https://www.alibabacloud.com/help/zh/cli/install-update-alibaba-cloud-cli) and select the package for the target operating system and architecture:
-
-| Platform | Installation |
-| --- | --- |
-| macOS (Homebrew installed) | Run `brew install aliyun-cli`. |
-| macOS (without Homebrew) | Download the [official PKG installer](https://aliyuncli.alicdn.com/aliyun-cli-latest.pkg), open it, and follow the installer. |
-| Linux AMD64 | Download the [AMD64 TGZ](https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz) and follow the extraction steps below. |
-| Linux ARM64 | Download the [ARM64 TGZ](https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-arm64.tgz) and follow the extraction steps below. |
-| Windows AMD64 | Download the [Windows ZIP](https://aliyuncli.alicdn.com/aliyun-cli-windows-latest-amd64.zip), extract `aliyun.exe` into `C:\AliyunCLI`, add that directory to the user `Path`, and reopen the terminal. |
-
-For Linux, run `uname -m` to choose the architecture (`x86_64` = AMD64; `aarch64` / `arm64` = ARM64). For example, on AMD64:
-
-```bash
-curl -fSL --connect-timeout 10 --max-time 120 https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz -o aliyun-cli-linux-latest.tgz
-tar xzvf aliyun-cli-linux-latest.tgz
-sudo mv ./aliyun /usr/local/bin/
-```
-
-For ARM64, replace `amd64` with `arm64` in the download URL. Windows ARM64 and 32-bit systems are unsupported.
+For a new installation, select an exact approved Aliyun CLI release (minimum 3.3.15) for the target OS and architecture. Follow the [official installation guide](https://www.alibabacloud.com/help/zh/cli/install-update-alibaba-cloud-cli) using the versioned package supplied by the operator’s package repository or official release channel. Verify its version and published checksum or signature before installation. If the pinned artifact cannot be verified, ask the operator to provision it. The diagnostic scripts do not download or install software.
 
 After installation, run `aliyun version` and require **3.3.15 or later**, then continue with the `cms2` plugin and SLS prerequisite checks above. Installing the base CLI does not replace those checks; configure credentials as described below.
 
@@ -72,7 +54,7 @@ After installation, run `aliyun version` and require **3.3.15 or later**, then c
 `aliyun cms2` and `aliyun sls` reuse the aliyun CLI credential system (`aliyun configure`).
 Use `--profile <name>` to switch profiles. A **RAM sub-account** with read/write on CMS ServiceTask and query permissions on the target SLS project is recommended.
 
-Required RAM permissions - see [references/ram-policies.md](references/ram-policies.md).
+For production diagnostics, omit the evaluation-only service creation and deletion policy. Required RAM permissions - see [references/ram-policies.md](references/ram-policies.md).
 
 ## Observability
 
@@ -80,7 +62,7 @@ Before the first cloud API request, read [references/manifest.json](references/m
 
 On entry to this skill, generate one fresh random **32-character lowercase hexadecimal** session ID, for example with `openssl rand -hex 16`. Export it as `LIVE_DEBUG_SESSION_ID` for bundled scripts. Reuse it for every cloud request, retry, and script invocation in this workflow. Do not regenerate it between steps. When switching to another skill, use that skill's own name and a newly generated session ID; never inherit another skill's session or User-Agent. A new workflow, including re-entry after a skill switch, starts a new session even if an old environment variable is present.
 
-Every `aliyun` cloud API call in this skill, including CMS ServiceTask, service/workspace discovery, log-correlation discovery and SLS queries, must carry:
+Every `aliyun` cloud API call in this skill, including CMS ServiceTask, service/workspace discovery and SLS queries, must carry:
 
 ```text
 --user-agent "AlibabaCloud-Agent-Skills/alibabacloud-livedebug/skill-version/{version}/{session-id}"
@@ -92,11 +74,10 @@ Substitute the manifest version and current session ID literally when generating
 
 > **Always run `aliyun cms2 apm service-task <subcommand> --help` first** to get the full flag list and examples.
 
-- **Read `.arms-info` first**: read workspace / serviceId / regionId / targetIp from the project-root file (`key=value`); ask only for missing target values. Export `LIVE_DEBUG_REGION_ID`, `LIVE_DEBUG_WORKSPACE`, and `LIVE_DEBUG_SERVICE_ID` for scripts. Discover the current SLS destination from the application's log correlation binding; a saved `slsProject` is only a hint. Do not rely on the CLI default region.
-- **Discover application logs**: before querying captures, use `aliyun cms2 apm log-correlation get --workspace <workspace> --service-id <serviceId> --region <cms-region> -o json` with the workflow User-Agent. Parse `data.record.recordContent` (a JSON string) for `project`, `storeName`, and `regionId`; use these as the SLS project, logstore, and region. There is no fixed default logstore. If the binding is missing, malformed, or inaccessible, report that result and ask for a confirmed target; never guess one or create/change the binding as part of diagnosis. Read the query workflow in [references/live-debug.md](references/live-debug.md) for script usage.
-- **Workspace discovery**: when no workspace is given by `.arms-info` or the user, run `aliyun cms2 workspace list` and pick an existing workspace that matches the naming the user requires (e.g. `agentloop-{32 hex chars}`). **Never invent a workspace ID**, and never pass a workspace format the user has explicitly forbidden to `--workspace`.
+- **Read `.arms-info` first**: read workspace / serviceId / regionId / targetIp from the project-root file (`key=value`); ask only for missing target values. Export `LIVE_DEBUG_REGION_ID`, `LIVE_DEBUG_WORKSPACE`, and `LIVE_DEBUG_SERVICE_ID` for scripts. Do not rely on the CLI default region.
+- **Query Live Debug logs** in `logstore-apm-logs` in the current CloudMonitor workspace’s trace project. Use the caller-supplied trace project and its SLS region. If the project is missing, confirm it from the workspace configuration or ask the caller. See [the query workflow](references/live-debug.md).
+- **Workspace discovery**: when the user explicitly asks you to discover or select a workspace, run `aliyun cms2 workspace list` and pick an existing workspace that matches the naming the user requires (e.g. `agentloop-{32 hex chars}`). **Never invent a workspace ID**, and never pass a workspace format the user has explicitly forbidden to `--workspace`.
 - **Resolve serviceId by name when needed**: if the user only knows a service name / tag, run `aliyun cms2 apm service list` and filter by `serviceName` to resolve the `serviceId` first. If multiple candidates match, list them and ask the user to confirm - do not pick one silently.
-- **Clarify vague requests before acting**: if the request lacks the application language (Java vs Python - the supported capabilities differ), region, workspace, target service, or the diagnostic goal (e.g. dynamic logging vs snapshot vs thread/memory info), ask for the missing pieces first. Never guess or fabricate a workspace / serviceId / taskId, and never create or delete tasks based on guessed targets.
 - **Prefer `-o json`** for ServiceTask calls (the scripts already do); CLI output is wrapped as `{"success":true,"data":{...}}`.
 - **taskConfig is flat JSON**: pass a single command/probe object; do not wrap it in a `commands`/`probes` array.
 - **To disable a probe, use Delete** (`delete_task.sh` / `delete_all_probes.sh`); creating an `enabled:false` task does not stop a dispatched probe.
@@ -110,7 +91,7 @@ Destructive mutations (deleting tasks/probes) follow a Two-Phase Execution Proto
 
 Exception: when the user's **initial prompt** already explicitly requests deleting a probe/task created in the **same** workflow (common in eval cleanup), show a one-line delete plan inline and execute in the same turn. Never interpret silence as approval.
 
-Read-only operations (create/list/get, SLS result queries) execute directly.
+List, get and SLS queries are read-only. Creating a ServiceTask writes configuration to the target application. Before dispatch, establish the service, operation and instance scope. For a production probe, all-instance dispatch (including an omitted IP that defaults to `*`), or JVM expression evaluation, obtain explicit approval covering the target and scope, the probe and its lifetime or the exact expression. An initial request that explicitly authorizes those details is sufficient. Otherwise show the proposed operation and wait for confirmation.
 
 ## Error Handling & Retry
 
@@ -120,7 +101,7 @@ Recovery protocol (applies to every failed command):
 
 1. **Run each mutation as its own command invocation.** Do not chain multiple `aliyun` mutations with `&&`/`;` in one shell command, and do not wrap them in retry loops (`for`/`until`) that swallow errors - a failure must surface individually so it can be diagnosed.
 2. **Classify out loud, then act.** When a command fails, first state the returned error `code` and its class from the table below (e.g. "`InternalError` -> transient server fault, retrying"), then execute the recovery as a **separate** follow-up command.
-3. **Retry the same command unchanged.** For transient classes (throttling / server error), re-run the exact same command with identical flags after a short `sleep`; do not reorder, reword, or "fix" flags that were not at fault.
+3. **Reconcile uncertain writes before retrying.** For ServiceTask creation, record the submission time, target and configuration. If a timeout, disconnect or server error leaves the outcome uncertain, list tasks of the same type in the same region, workspace and service. Compare instance scope, creation time and parsed taskConfig. If a task can be uniquely attributed to this submission, retrieve it and continue with its taskId. If attribution is uncertain, the list is incomplete, or no task is visible yet, report the unknown outcome and stop. An empty list alone does not establish that the write failed. Retry creation only after a definitive rejection that did not apply the write. This rule takes precedence over the retry table below.
 
 | Error class | Typical codes / signals | Action |
 |---|---|---|

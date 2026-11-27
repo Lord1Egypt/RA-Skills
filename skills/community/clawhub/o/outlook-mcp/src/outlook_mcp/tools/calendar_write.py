@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from datetime import timezone as dt_timezone
 from typing import Any
 
+from outlook_mcp._windows_zones import WINDOWS_TO_IANA
 from outlook_mcp.calendar_resolver import (
     event_calendar_belongs_to_someone_else,
     resolve_calendar_for_write,
@@ -16,6 +17,7 @@ from outlook_mcp.errors import (
     INVITATIONS_MAY_HAVE_BEEN_SENT,
     RESPONSE_MAY_HAVE_BEEN_SENT,
     UPDATE_MAY_HAVE_BEEN_SENT,
+    OutlookMCPError,
 )
 from outlook_mcp.permissions import (
     CATEGORY_CALENDAR_WRITE,
@@ -25,12 +27,16 @@ from outlook_mcp.permissions import (
 )
 from outlook_mcp.throttle import call_without_replay
 from outlook_mcp.tools._recurrence import (
+    _OVERLONG_FRACTION,
     build_event_recurrence,
     check_recurrence_shape,
+    describe_recurrence,
     event_recurrence_payload,
     event_start_date,
+    lands_on,
     maybe_zone,
     move_pattern,
+    move_series,
     same_pattern,
     serialize_recurrence,
 )
@@ -74,25 +80,373 @@ def _in_zone(instant: str, zone: str, given: str) -> str:
     tz = maybe_zone(zone)
     if tz is None:
         raise ValueError(
-            f"This event is anchored in {zone!r}, which this server cannot convert a "
-            "moment into, so a relative time cannot be placed in it. Nothing was "
+            f"This event is anchored in {zone!r}, which is not an IANA zone name, so a "
+            "relative time is not placed in it. Nothing was "
             "modified. Pass `start` and `end` as local time without a zone or offset "
             "(2026-11-10T09:00:00); they are read in the event's own zone."
         )
-    # `astimezone`, never timedelta arithmetic: it keeps `fold`, and cannot land
-    # in a spring-forward gap, so the one case left to catch is the repeat.
-    local = datetime.fromisoformat(instant.replace("Z", "+00:00")).astimezone(tz)
-    if local.replace(fold=0).astimezone(dt_timezone.utc) != local.replace(fold=1).astimezone(
-        dt_timezone.utc
-    ):
+    moment = datetime.fromisoformat(instant.replace("Z", "+00:00"))
+    local = _wall_clock(moment, tz)
+    if local is None:
         # No offset is offered as the remedy: a typed one anchors a single event
         # in UTC (#236), so only a time outside the repeat is safe to suggest.
         raise ValueError(
             f"{given!r} falls in the interval {zone} repeats when daylight saving ends: "
-            f"{local:%Y-%m-%dT%H:%M:%S} happens twice there, so it names two different "
-            "times. Nothing was modified. Pass a time outside that interval."
+            f"{moment.astimezone(tz):%Y-%m-%dT%H:%M:%S} happens twice there, so it names "
+            "two different times. Nothing was modified. Pass a time outside that interval."
         )
-    return local.strftime("%Y-%m-%dT%H:%M:%S")
+    return local
+
+
+def _wall_clock(moment: datetime, tz: Any) -> str | None:
+    """``moment`` as naive wall-clock time in ``tz``, or ``None`` if that names two moments.
+
+    The one conversion behind both ``_in_zone`` (relative times, #74) and
+    ``_typed_in_zone`` (a typed ``Z`` or offset, #236). ``None`` inside the
+    interval a zone repeats when daylight saving ends, where the wall-clock
+    text alone cannot say which of the two moments is meant.
+    """
+    # `astimezone`, never timedelta arithmetic: it keeps `fold`, and cannot land
+    # in a spring-forward gap, so the one case left to catch is the repeat.
+    local = moment.astimezone(tz)
+    if local.replace(fold=0).astimezone(dt_timezone.utc) != local.replace(fold=1).astimezone(
+        dt_timezone.utc
+    ):
+        return None
+    # `isoformat` writes no fraction for a whole second and six digits otherwise.
+    return local.replace(tzinfo=None, fold=0).isoformat()
+
+
+def _typed_in_zone(value: str, zone: str | None) -> str | None:
+    """A typed ``Z``/offset ``value`` as wall-clock time in ``zone`` (#236).
+
+    Graph keeps the instant of a ``Z`` or offset but anchors a single event in
+    UTC whatever ``timeZone`` says; the same moment written as local time keeps
+    the zone. Measured live on a consumer mailbox, 2026-11-10. A zone-less value
+    is already local and comes back as is. A Windows name Graph gave
+    ("Pacific Standard Time") converts through CLDR's default IANA zone for it
+    (``_windows_zones``); the name sent stays Graph's own. ``None`` when there is
+    no safe way to convert: a zone neither knows, a value this Python cannot
+    parse, a moment past the years it can hold (``9999-12-31`` east of UTC), or
+    one in the repeated hour (``_wall_clock``).
+    """
+    moment = _parse_iso(value)
+    if moment is None:
+        return None
+    if moment.tzinfo is None:
+        return value
+    tz = maybe_zone(zone) or maybe_zone(WINDOWS_TO_IANA.get(zone or ""))
+    try:
+        return None if tz is None else _wall_clock(moment, tz)
+    except OverflowError:
+        return None
+
+
+def _parse_iso(value: str) -> datetime | None:
+    """``value`` parsed, a ``Z`` read as UTC and Graph's seven fractional digits cut to six."""
+    text = _OVERLONG_FRACTION.sub(r"\1", value.strip())
+    try:
+        return datetime.fromisoformat(text[:-1] + "+00:00" if text.endswith("Z") else text)
+    except ValueError:
+        return None
+
+
+def _typed_in_zones(ends: dict[str, tuple[str, str | None]]) -> dict[str, str]:
+    """Each typed end, ``{name: (value, zone)}``, through ``_typed_in_zone``: all or none.
+
+    If any end cannot be converted, every end is sent as written, which is the
+    behaviour before #236: both ends filed in UTC. Converting only the other
+    would file the two ends in different zones, a state nothing made before.
+    """
+    converted = {name: _typed_in_zone(value, zone) for name, (value, zone) in ends.items()}
+    if any(v is None for v in converted.values()):
+        return {name: value for name, (value, _) in ends.items()}
+    return {name: v for name, v in converted.items() if v is not None}
+
+
+# The check reads an event's times back with a GET of only ``start`` and ``end``,
+# asking for them in UTC. Graph honours the header on a GET:
+# ``_start_in_its_own_zone`` relies on it for a named zone, verified live, and
+# UTC is what a GET returns anyway, which the read tools and their live tests
+# rely on. It is asked for regardless, so the check rests on a request rather
+# than on a default. Not on a write's reply: measured live 2026-11-25, a POST
+# sent this header answered ``2026-12-27T18:00:00`` in ``America/Los_Angeles``,
+# the event's own zone, so a check that read the reply never ran.
+_IN_UTC = 'outlook.timezone="UTC"'
+_TIMES_SELECT = ["start", "end"]
+
+# The furthest a converted time is put back. Two sets of rules for one zone
+# disagree by a whole step of its offset: an hour for daylight saving, half an
+# hour at Lord Howe, two at Troll, or a change to the standard offset (Magadan
+# moved two hours in 2014). Three hours covers any of these with room to spare.
+# A larger difference is something else (a series' first occurrence days from its
+# typed start, a date-line jump like Samoa's in 2011): it is reported, not changed.
+_MOST_A_ZONE_RULE_MOVES = timedelta(hours=3)
+
+
+def _converted(ends: dict[str, tuple[str, str | None]], sent: dict[str, str]) -> dict:
+    """``{name: (typed value, zone)}`` for each end ``_typed_in_zones`` actually changed."""
+    return {name: ends[name] for name, value in sent.items() if value != ends[name][0]}
+
+
+def _is_single_instance(event: Any) -> bool:
+    """Whether Graph says this event stands alone: no series' master, occurrence or exception.
+
+    ``False`` when the stored event's ``type`` cannot be read: not knowing is not single.
+    """
+    event_type = getattr(event, "type", None)
+    if event_type is None:
+        return False
+    return (getattr(event_type, "value", None) or str(event_type)) == "singleInstance"
+
+
+async def _times_in_utc(target: Any) -> Any:
+    """The event's ``start`` and ``end`` as Graph reads them back in UTC, or ``None``.
+
+    One GET of only those two fields, through ``target``, the request builder
+    the write went to, so an event in another calendar is read there. Sent once,
+    with kiota's retry off: the write has succeeded, and a throttled read
+    retried after ``Retry-After`` would hold back its answer for minutes, long
+    enough for a client to give up and create the event again. ``None`` when
+    Graph or the connection fails: the check then fails open, as when the times
+    cannot be read, rather than turning a write that succeeded into an error.
+    Anything else is a bug, and is not caught.
+    """
+    import httpx
+    from kiota_abstractions.api_error import APIError
+    from kiota_abstractions.base_request_configuration import RequestConfiguration
+    from kiota_http.middleware.options.retry_handler_option import RetryHandlerOption
+    from msgraph.generated.users.item.events.item.event_item_request_builder import (
+        EventItemRequestBuilder,
+    )
+
+    query = EventItemRequestBuilder.EventItemRequestBuilderGetQueryParameters(select=_TIMES_SELECT)
+    request_config = RequestConfiguration(
+        query_parameters=query, options=[RetryHandlerOption(should_retry=False)]
+    )
+    request_config.headers.add("Prefer", _IN_UTC)
+    try:
+        return await target().get(request_configuration=request_config)
+    except (APIError, httpx.HTTPError):
+        return None
+
+
+def _utc_instant(side: Any) -> datetime | None:
+    """The moment a ``start``/``end`` names, or ``None`` unless it is text in ``UTC``."""
+    text = getattr(side, "date_time", None)
+    if not isinstance(text, str) or getattr(side, "time_zone", None) != "UTC":
+        return None
+    moment = _parse_iso(text)
+    if moment is None:
+        return None
+    return moment.replace(tzinfo=dt_timezone.utc) if moment.tzinfo is None else moment
+
+
+def _read_back_instant(event: Any, which: str) -> datetime | None:
+    """The UTC moment ``_times_in_utc`` read for ``start`` or ``end``, or ``None``.
+
+    ``None`` unless the event carries that end as text in ``UTC``, the zone
+    ``_IN_UTC`` asked for: anything else would be a guess.
+    """
+    side = getattr(event, "start", None) if which == "start" else getattr(event, "end", None)
+    return _utc_instant(side)
+
+
+def _read_back_instants(event: Any, converted: dict) -> dict[str, datetime] | None:
+    """Each converted end's moment in the read-back ``event``, or ``None`` if any cannot be read.
+
+    Not knowing one end is not knowing where the event is.
+    """
+    got = {}
+    for which in converted:
+        moment = _read_back_instant(event, which)
+        if moment is None:
+            return None
+        got[which] = moment
+    return got
+
+
+def _stored_instants(event: Any, ends: dict) -> dict[str, datetime]:
+    """Where each of ``ends`` stood in ``event`` as a plain GET returned it, before a write.
+
+    A plain GET gives ``start`` and ``end`` in UTC; an end it did not give that
+    way is left out, and then nothing is compared with it.
+    """
+    sides = {"start": getattr(event, "start", None), "end": getattr(event, "end", None)}
+    found = {which: _utc_instant(sides[which]) for which in ends}
+    return {which: moment for which, moment in found.items() if moment is not None}
+
+
+def _as_it_was(got: dict[str, datetime], earlier: dict[str, datetime], converted: dict) -> bool:
+    """Whether a read found an end exactly where it stood before the latest write, not as typed.
+
+    That is most likely the event as it was, served by a read that came too
+    soon after the write (not seen for events; Graph has lagged straight after a
+    write for contacts, #259), not where Graph put the time sent. Taken at its
+    word, the gap is the move just asked for, which passes for a zone rule's and
+    would be "corrected", filing the event in UTC and mailing any attendees
+    again. So such a read says nothing. A real disagreement over a zone's rules
+    lands on the old time only when the move happens to equal the rules' gap,
+    and that event is left as Graph put it.
+    """
+    for which, (typed, _) in converted.items():
+        was, wanted = earlier.get(which), _parse_iso(typed)
+        if was is None or wanted is None:
+            continue
+        at_old = abs(got[which] - was) < timedelta(seconds=1)
+        if at_old and abs(got[which] - wanted) >= timedelta(seconds=1):
+            return True
+    return False
+
+
+def _a_zone_rule_could_move(got: datetime, wanted: datetime) -> bool:
+    """Whether two sets of rules for one zone could put the time ``wanted`` at ``got``.
+
+    Offsets are whole minutes, so the gap is an exact number of minutes, at most
+    ``_MOST_A_ZONE_RULE_MOVES``: measured from the time typed, or from it without
+    its fraction of a second, which Graph may drop.
+    """
+    for meant in (wanted, wanted.replace(microsecond=0)):
+        gap = abs(got - meant)
+        if gap <= _MOST_A_ZONE_RULE_MOVES and gap % timedelta(minutes=1) == timedelta(0):
+            return True
+    return False
+
+
+def _moved_ends(read: dict[str, datetime], converted: dict) -> tuple[list[str], bool]:
+    """Each converted end ``read`` puts at another moment than typed, described, and
+    whether a zone rule could explain every one of those gaps.
+    """
+    moved, explained = [], True
+    for which, (typed, _) in converted.items():
+        got, wanted = read[which], _parse_iso(typed)
+        if wanted is None:
+            return [], True
+        if abs(got - wanted) < timedelta(seconds=1):
+            continue
+        explained = explained and _a_zone_rule_could_move(got, wanted)
+        moved.append(
+            f"the {which} at {got.astimezone(dt_timezone.utc):%Y-%m-%dT%H:%M:%S} UTC "
+            f"instead of {wanted.astimezone(dt_timezone.utc):%Y-%m-%dT%H:%M:%S} UTC"
+        )
+    return moved, explained
+
+
+def _zone_not_kept(moved: list[str], converted: dict, still: list[str] | None) -> str:
+    """The ``note`` for a corrected write: what moved, how far, and what is known now.
+
+    ``still`` is what the read after the correction found away from the moment
+    typed: empty when it found every end there, ``None`` when it could not say.
+    Only the first says the time is right.
+    """
+    ends = " and ".join(converted)
+    both = len(converted) > 1
+    placed = (
+        f"Graph placed {' and '.join(moved)}: its rules for the event's time zone differ "
+        f"from this server's. The {ends} {'were' if both else 'was'} saved again as typed"
+    )
+    filed = (
+        f"{'they are' if both else 'it is'} filed in UTC rather than in the event's own time zone"
+    )
+    if still is None:
+        return (
+            f"{placed}, so {filed}. Reading the event back afterwards did not confirm the "
+            "time; outlook_get_event shows where it is."
+        )
+    if still:
+        return (
+            f"{placed}, but reading the event back puts {' and '.join(still)}. Read the "
+            "event with outlook_get_event and check the time with the user."
+        )
+    return f"{placed}, so the time is right, but {filed}."
+
+
+async def _keep_typed_instants(
+    target: Any, converted: dict, done: str, before: dict[str, datetime] | None = None
+) -> dict:
+    """Check a write that converted a typed time by reading the event back (#262 review).
+
+    The conversion uses this host's zone rules (IANA, through ``_windows_zones``
+    for a Windows name) and Graph reads the local time back with its own. Where
+    they disagree for that zone and date, or this host's tz data is out of date,
+    the event lands at another moment. Then each converted end is sent again as
+    typed: the old behaviour, the right moment, the zone lost. ``{"note": ...}``
+    says so; ``{}`` when nothing moved or the read cannot say. A gap no zone
+    rule makes (``_a_zone_rule_could_move``) is not the conversion's doing, so
+    nothing is written and the ``note`` reports it for the caller to check.
+
+    Where the event is comes from a GET (``_times_in_utc``), not the write's
+    reply, which Graph gives in the event's own zone whatever ``Prefer`` asks.
+    One GET when ``converted`` is not empty, none otherwise. A read that fails,
+    cannot be parsed, or finds an end exactly where ``before`` says it stood
+    before the write (``_as_it_was``; an update passes it, a create has nothing
+    before) means no correction and no ``note``, as before the check.
+
+    After a correction the event is read once more, so the ``note`` says the
+    time is right only when that read finds it so: a GET, on a path taken only
+    when Graph and this host already disagreed. If it finds the event elsewhere,
+    nothing more is sent and the ``note`` says where. If it cannot say, or finds
+    the event where the first read did, the ``note`` says the time was not
+    confirmed.
+
+    Callers pass ``converted`` only for a single event. A series' start can
+    read back as its first occurrence rather than the start typed, days away,
+    and a patch without its recurrence would file the series in UTC or be refused.
+
+    ``target`` makes the request builder the write went to. The correction goes
+    through ``call_without_replay``: an idempotent patch, but on an event with
+    attendees each one is mailed as an update. Not pinned with ``If-Match``: it
+    follows the write it corrects at once, and sends only the two times.
+    """
+    if not converted:
+        return {}
+    read = _read_back_instants(await _times_in_utc(target), converted)
+    if read is None or _as_it_was(read, before or {}, converted):
+        return {}
+    moved, explained = _moved_ends(read, converted)
+    if not moved:
+        return {}
+    if not explained:
+        return {
+            "note": f"Graph placed {' and '.join(moved)}. No time zone rule explains a "
+            "difference like that, so it was not changed. Read the event with "
+            "outlook_get_event and check the time with the user."
+        }
+
+    from msgraph.generated.models.date_time_time_zone import DateTimeTimeZone
+    from msgraph.generated.models.event import Event
+
+    fix = Event()
+    if "start" in converted:
+        fix.start = DateTimeTimeZone()
+        fix.start.date_time, fix.start.time_zone = converted["start"]
+    if "end" in converted:
+        fix.end = DateTimeTimeZone()
+        fix.end.date_time, fix.end.time_zone = converted["end"]
+    builder = target()
+    try:
+        await call_without_replay(
+            lambda once: builder.patch(fix, request_configuration=once),
+            outcome_unknown=UPDATE_MAY_HAVE_BEEN_SENT,
+        )
+    except Exception as exc:
+        # Graph's own text without its hint: the action below is the one that
+        # fits, and on a 5xx it already covers "it may have been saved".
+        detail = exc.message if isinstance(exc, OutlookMCPError) else type(exc).__name__
+        raise OutlookMCPError(
+            "event_time_not_restored",
+            f"The event was {done}, but Graph placed {' and '.join(moved)}. Sending "
+            f"the time again as typed ended in an error: {detail}",
+            "Read the event with outlook_get_event to see where it is now. If it is "
+            "still at the wrong time, move it with outlook_update_event, not by "
+            "creating it again: pass `start` and `end` as local time without a zone or "
+            "offset, which needs no conversion.",
+        ) from exc
+    after = _read_back_instants(await _times_in_utc(target), converted)
+    if after is None or _as_it_was(after, read, converted):
+        return {"note": _zone_not_kept(moved, converted, None)}
+    still, _ = _moved_ends(after, converted)
+    return {"note": _zone_not_kept(moved, converted, still)}
 
 
 def _usable_zone(value: Any) -> str | None:
@@ -249,8 +603,8 @@ async def refuse_someone_elses_calendar(
 def _is_series_master(event: Any) -> bool:
     """Whether Graph considers this event the master of a recurring series.
 
-    Only a master's zone change needs its recurrence re-sent; a single instance
-    and an occurrence both patch cleanly without one.
+    Only a master's zone or date change needs its recurrence re-sent; a single
+    instance and an occurrence both patch cleanly without one.
     """
     event_type = getattr(event, "type", None)
     if event_type is None:
@@ -381,7 +735,9 @@ async def _refuse_to_discard_occurrences(graph_client: Any, event_id: str) -> No
     )
 
 
-def _follow_new_start(payload: dict, existing: Any, *, start: str, zone: str | None) -> dict:
+def _follow_new_start(
+    payload: dict, existing: Any, *, start: str, zone: str | None, given: bool = True
+) -> dict:
     """A recurrence payload made to agree with a new ``start``.
 
     ``range.startDate`` is dropped so the builder re-derives it from ``start``:
@@ -390,10 +746,20 @@ def _follow_new_start(payload: dict, existing: Any, *, start: str, zone: str | N
 
     The pattern moves too when it is the series' own — the one Graph holds,
     whether read back here for a zone change or handed back by the caller from
-    ``outlook_get_event``. Its days belong to the stored start, so they move by
-    as many days as the start did; see ``move_pattern``. A pattern that differs
-    from the stored one is the caller's new instruction, written for the new
-    start, and is sent as given.
+    ``outlook_get_event``. A zone change reads the same instants in a new zone,
+    so its days shift as far as the stored start's local day does, all of them
+    (``move_pattern``). A start the caller also moved to another day then
+    follows the rules of a same-zone move (#98 review): the series' own,
+    re-sent, goes through ``move_series``; one the caller handed back keeps a
+    single day following the new start, as agents moving a weekly meeting
+    rely on, and several days exactly as written. A pattern that differs from
+    the stored one is the caller's new instruction and is sent as given.
+
+    Except where the stored pattern skips its own ``startDate`` (a "weekdays"
+    series begun on a Saturday): Graph may have put its first occurrence later,
+    so no move can be measured from that date (#98). The caller's pattern
+    (``given``) is then sent as written; the series' own, read back for a zone
+    change, is refused with the remedy of passing one.
     """
     rng = {k: v for k, v in (payload.get("range") or {}).items() if k != "startDate"}
     payload = {**payload, "range": rng}
@@ -411,11 +777,41 @@ def _follow_new_start(payload: dict, existing: Any, *, start: str, zone: str | N
             "telling whether its days have to move with the new start. Pass "
             "`recurrence` with the pattern you want alongside `start`."
         )
-    return move_pattern(
-        payload,
-        old=date.fromisoformat(str(stored_start)),
-        new=event_start_date(start, zone),
-    )
+    old = date.fromisoformat(str(stored_start))
+    if lands_on(stored.get("pattern"), old) is False:
+        if given:
+            return payload
+        raise ValueError(
+            f"This series' pattern does not land on {old.isoformat()}, the day its range "
+            "starts, so there is no telling how far its days should move with the new "
+            "start. Nothing was modified. Pass `recurrence` with the days you want "
+            "alongside `start`; it is sent as given."
+        )
+    new = event_start_date(start, zone)
+    by_zone = _day_in_new_zone(existing, zone) or old
+    shifted = move_pattern(payload, old=old, new=by_zone)
+    if new == by_zone:
+        return shifted
+    if not given:
+        return move_series(shifted, old=by_zone, new=new)
+    if len({str(d).lower() for d in (payload.get("pattern") or {}).get("daysOfWeek") or ()}) > 1:
+        return payload
+    return move_pattern(payload, old=old, new=new)
+
+
+def _day_in_new_zone(existing: Any, zone: str | None) -> date | None:
+    """The day the stored start falls on in ``zone``, if that is a zone change.
+
+    Where a zone change alone puts the series: Thursday 02:00Z is Wednesday in
+    Los Angeles. ``None`` with the zone unchanged, or when it cannot be worked
+    out here, and the stored ``startDate`` then stands for it.
+    """
+    stored_zone, _ = _anchor_zones(existing)
+    stored = getattr(existing, "start", None)
+    at = getattr(stored, "date_time", None)
+    if stored_zone == zone or not at or maybe_zone(zone) is None:
+        return None
+    return event_start_date(_as_instant(str(at), getattr(stored, "time_zone", None)), zone)
 
 
 def _resend_recurrence(event: Any, *, anchor: str | None, zone: str | None) -> Any:
@@ -460,8 +856,105 @@ def _resend_recurrence(event: Any, *, anchor: str | None, zone: str | None) -> A
 
     # `recurrenceTimeZone` is dropped by the builder itself, which is the one
     # place that knows why (see `drop_range_timezone`).
-    payload = _follow_new_start(payload, event, start=start, zone=zone)
+    payload = _follow_new_start(payload, event, start=start, zone=zone, given=False)
     return build_event_recurrence(payload, start=start, zone=zone, drop_range_timezone=True)
+
+
+def _unconverted(start: str, zone: str) -> ValueError:
+    """Why a ``Z``/offset ``start`` left as typed cannot move a series (#98)."""
+    return ValueError(
+        f"{start!r} could not be converted into local time in this series' zone, "
+        f"{zone!r}. A series' start can move to another day only as local time, which "
+        "takes its repeat rule along. Nothing was modified. Pass `start` and `end` as "
+        "local time without a zone or offset (2026-11-10T09:00:00); they are read in "
+        "the event's own zone."
+    )
+
+
+async def _day_move(
+    graph_client: Any, event_id: str, master: Any, start: str | None, zone: str
+) -> tuple[date, date] | None:
+    """The days series ``master`` moves between when ``start`` is sent, or ``None`` (#98).
+
+    Graph answers a master's start moved to another day ``updated`` and snaps it
+    back onto its pattern unless the recurrence travels with it: every
+    occurrence stays where it was. Measured live, a timed and an all-day weekly
+    series. ``None`` for a change within the day, or no ``start`` at all.
+
+    The day it is on now is its ``range.startDate`` when the pattern lands
+    there. Otherwise (a "weekdays" series begun on a Saturday) it is read off
+    the master's own start, since Graph may have put that later, and a move is
+    refused: no shift can be measured from ``startDate``. Refused too where the
+    move cannot be sent as local time: no ``startDate``, or a ``Z``/offset
+    ``start`` that ``_typed_in_zones`` left as typed (an unknown zone, the hour
+    that repeats when clocks go back).
+    """
+    if start is None:
+        return None
+    stored = serialize_recurrence(getattr(master, "recurrence", None)) or {}
+    first = (stored.get("range") or {}).get("startDate")
+    if not first:
+        raise ValueError(
+            "Could not read the date this series currently starts on, so there is no "
+            "telling whether the new start moves it to another day. Nothing was "
+            "modified. Pass `recurrence` with the pattern you want alongside `start`."
+        )
+    typed = _parse_iso(start)
+    left_typed = typed is not None and typed.tzinfo is not None
+    if left_typed and maybe_zone(zone) is None:
+        raise _unconverted(start, zone)
+    first = date.fromisoformat(str(first))
+    current = first
+    if lands_on(stored.get("pattern"), first) is not True:
+        now = getattr(getattr(master, "start", None), "date_time", None)
+        if not now:
+            raise ValueError(
+                "Could not read the day this series currently starts on. Nothing was "
+                "modified. Pass `recurrence` with the pattern you want alongside `start`."
+            )
+        if maybe_zone(zone) is None:
+            now = await _start_in_its_own_zone(graph_client, event_id, zone)
+        else:
+            now = _as_instant(str(now), getattr(master.start, "time_zone", None))
+        current = event_start_date(now, zone)
+    new = event_start_date(start, zone)
+    if new == current:
+        return None
+    if left_typed:
+        raise _unconverted(start, zone)
+    if current != first:
+        raise ValueError(
+            f"This series' pattern does not land on {first.isoformat()}, the day its "
+            f"range starts, and its first occurrence is {current.isoformat()}, so there "
+            f"is no telling how far its days should move to start on {new.isoformat()}. "
+            "Nothing was modified. Pass `recurrence` with the days you want alongside "
+            "`start`; it is sent as given."
+        )
+    return first, new
+
+
+def _moved_recurrence(master: Any, *, start: str, zone: str, old: date, new: date) -> Any:
+    """``master``'s own recurrence for its start moved from ``old`` to ``new`` (#98).
+
+    ``move_series`` decides the days; rebuilt as ``_resend_recurrence`` does,
+    for the same reasons, ``recurrenceTimeZone`` dropped because Graph derives
+    the same one from the event's zone.
+    """
+    payload = move_series(serialize_recurrence(master.recurrence) or {}, old=old, new=new)
+    return build_event_recurrence(payload, start=start, zone=zone, drop_range_timezone=True)
+
+
+def _series_note(master: Any, sent: Any) -> str | None:
+    """What a re-sent recurrence now says, when it schedules other days than before.
+
+    The caller passed no ``recurrence``, so the result is the only place the
+    agent learns its series' rule was rewritten.
+    """
+    before = describe_recurrence(serialize_recurrence(getattr(master, "recurrence", None)) or {})
+    after = describe_recurrence(serialize_recurrence(sent) or {})
+    if before == after:
+        return None
+    return f"The series' repeat rule moved with its start and now reads: {after}."
 
 
 def _as_instant(date_time: str, projected_zone: str | None) -> str:
@@ -569,10 +1062,12 @@ async def create_event(
     it makes the created event a series master rather than a single occurrence.
 
     ``timezone`` is the IANA zone the event is *anchored* in, defaulting to
-    ``config.timezone``. It is the zone that governs the series, not a
-    conversion applied to ``start``: an offset or ``Z`` in the datetime still
-    pins the instant (Graph honours it), while the zone decides what the second
-    occurrence of a weekly series does when daylight saving ends. Anchored in
+    ``config.timezone``. An offset or ``Z`` in the datetime pins the instant;
+    the zone decides what the second occurrence of a weekly series does when
+    daylight saving ends. Graph anchors a single event sent a ``Z`` or offset in
+    UTC whatever ``timeZone`` says, so such a value is sent as the same moment
+    in wall-clock time in the zone (``_typed_in_zones``, #236), then, for a
+    single event, read back and checked (``_keep_typed_instants``). Anchored in
     ``UTC`` — which is what this tool sent unconditionally before 1.23.0 — a
     09:00 series silently becomes 08:00 the week the clocks go back.
 
@@ -580,12 +1075,12 @@ async def create_event(
     wall-clock time *in that zone*, which is what ``config.timezone`` has
     always meant for input interpretation everywhere else in this server.
 
-    The datetime string is passed through as the caller wrote it rather than
-    normalized to UTC first. That is load-bearing twice over: normalizing a
-    naive value needs a zone to resolve it against, and resolving it against
-    the host's clock is the bug 1.15.0 removed; and Graph requires an all-day
-    event to start on a midnight boundary, which a UTC conversion of local
-    midnight is not.
+    Otherwise the datetime string is passed through as the caller wrote it
+    rather than normalized to UTC first. That is load-bearing twice over:
+    normalizing a naive value needs a zone to resolve it against, and resolving
+    it against the host's clock is the bug 1.15.0 removed; and Graph requires an
+    all-day event to start on a midnight boundary, which a UTC conversion of
+    local midnight is not.
 
     A relative ``start``/``end`` (``+2h``, ``now``) is the exception (#74). It
     names a moment, so it is resolved before anything is sent, and then written
@@ -675,6 +1170,15 @@ async def create_event(
     if end_resolved is not end:
         end = _in_zone(end_resolved, zone, end)
         placed["end"] = _placed(end, zone)
+    # A typed `Z` or offset goes out as local time in the zone (#236). An all-day
+    # event is stored in UTC whatever it is sent, so it has no zone to keep.
+    converted: dict = {}
+    if not is_all_day:
+        typed = {"start": (start, start_resolved), "end": (end, end_resolved)}
+        ends = {k: (v, zone) for k, (v, r) in typed.items() if r is v}
+        sent = _typed_in_zones(ends)
+        converted = _converted(ends, sent)
+        start, end = sent.get("start", start), sent.get("end", end)
 
     # Validate attendee emails if provided
     validated_attendees = []
@@ -747,11 +1251,20 @@ async def create_event(
         if calendar_id is None
         else graph_client.me.calendars.by_calendar_id(calendar_id).events
     )
+
     response = await call_without_replay(
         lambda once: events.post(event, request_configuration=once),
         outcome_unknown=(
             INVITATIONS_MAY_HAVE_BEEN_SENT if validated_attendees else EVENT_MAY_HAVE_BEEN_CREATED
         ),
+    )
+    # Only a single event is read back and checked; see `_keep_typed_instants`.
+    # A reply without an id leaves nothing to read: the SDK will not build a
+    # request for one, and the event exists either way.
+    note = await _keep_typed_instants(
+        lambda: events.by_event_id(response.id),
+        converted if event.recurrence is None and isinstance(response.id, str) else {},
+        f"created (id {response.id})",
     )
 
     return {
@@ -760,6 +1273,7 @@ async def create_event(
         "subject": response.subject,
         **placed,
         **(_online_reply(response) if is_online else {}),
+        **note,
     }
 
 
@@ -814,6 +1328,13 @@ async def update_event(
     Patching a colleague's New York meeting to ``"2026-11-03T09:00:00"`` means
     09:00 in New York, not 09:00 where this server is configured.
 
+    A ``Z`` or offset ``start``/``end`` is sent as wall-clock time in the zone
+    that end is anchored in, as in ``create_event`` (#236), when ``zoneinfo``
+    or the Windows-name table can convert into it. If either end cannot be
+    converted, both are sent as written, as before. On an event that stands
+    alone, with no ``recurrence`` in the call, it is read back and checked as on
+    create.
+
     A relative ``start``/``end`` (``+2h``) is written as wall-clock time in the
     zone that end is anchored in, as in ``create_event``, so it is placed only
     once that zone has been read. It is refused on an event Graph names in
@@ -837,8 +1358,24 @@ async def update_event(
     as controls. When the caller has not supplied a new recurrence the event's
     existing one is read and sent back, so a series created before events
     carried a zone can be repaired in place rather than deleted and rebuilt.
-    Its days move with the start's local date (``_follow_new_start``): a
-    Thursday 02:00Z series re-anchored to Los Angeles becomes a Wednesday one.
+    Its days move as far as the zone moves the stored start's local date
+    (``_follow_new_start``): a Thursday 02:00Z series re-anchored to Los Angeles
+    becomes a Wednesday one. A start also moved to another day by the caller
+    then follows the same-zone rules below, as a separate step.
+
+    Moving a series master's start to another **day** in the same zone needs
+    the same (#98). Without it Graph answers ``updated`` and snaps the master
+    back onto its pattern, every occurrence where it was — measured live, timed
+    and all-day. So the existing recurrence is re-sent (``move_series``): a
+    pattern that already lands on the new day is kept and only the range moves;
+    a one-day pattern moves to the new day; several weekdays moved to a day
+    they skip are refused, as is a pattern with no exact move. An ``endDate``
+    moves as far as the start. Whenever a re-sent rule schedules other days, the
+    reply's ``note`` names it (``_series_note``). The day is the start's own in
+    the event's zone, so a ``Z``/offset start left as typed cannot move a
+    series, nor can a series whose pattern skips its range's first day
+    (``_day_move``). A time moved within the day sends no recurrence, and a
+    patch carrying one gets no read-back correction (``_keep_typed_instants``).
 
     Any ``start``, ``end`` or ``recurrence`` patch to a series master that has
     edited or deleted occurrences is refused, naming them. Graph restores every
@@ -861,11 +1398,14 @@ async def update_event(
     pattern of an existing one. It takes the same shapes as ``create_event``.
     Graph anchors the range on the series master's start, so when ``start``
     isn't part of the same patch the event's current start is read first. When
-    it is, a supplied ``range.startDate`` is dropped and re-derived from it, and
-    a pattern equal to the stored one moves with it — so ``outlook_get_event``'s
-    recurrence can be handed back beside a new start and zone.
+    it is, a supplied ``range.startDate`` is dropped and re-derived from it. A
+    pattern equal to the stored one moves with a zone change, and a one-day one
+    follows a start moved to another day, while several days are sent exactly
+    as written — so ``outlook_get_event``'s recurrence can be handed back beside
+    a new start and zone.
     Passing ``None`` leaves any existing recurrence untouched — this is a
-    partial patch.
+    partial patch — except that it is carried along when a series' start moves
+    to another day, as above.
 
     ``remove_recurrence=True`` turns a series master back into a single event,
     keeping the first occurrence's time. It is a separate flag rather than a
@@ -874,13 +1414,14 @@ async def update_event(
 
     It has to go through ``additional_data``: Graph clears a series with an
     explicit ``"recurrence": null``, and ``event.recurrence = None`` does not
-    produce one. The adapter serializes through the backing store, which writes
-    a top-level null *beside* the object body rather than inside it, and then
-    refuses the mixed document with ``ValueError("Invalid Json output")`` — so
-    the plain assignment is not a silent no-op, it is an unsendable request.
-    ``test_setting_event_recurrence_none_is_unsendable`` pins that; if kiota
-    ever starts emitting a usable top-level null, it fails and this can be
-    simplified.
+    produce one on every kiota this package accepts. The adapter serializes
+    through the backing store. Before kiota-serialization-json 1.15 that writes
+    a top-level null *beside* the object body and then refuses the mixed
+    document with ``ValueError("Invalid Json output")``, an unsendable request;
+    from 1.15 it writes the null inside the body under the Python attribute
+    name, which for ``recurrence`` happens to be Graph's (#233).
+    ``test_setting_event_recurrence_none_is_not_sendable_on_every_supported_kiota``
+    pins both. This can be simplified only once the kiota floor is 1.15.
 
     ``show_as`` patches Graph's ``showAs`` and needs nothing else resent — it is
     not ``is_all_day``. Graph honours all six values on PATCH for a consumer
@@ -1008,6 +1549,7 @@ async def update_event(
     # Set only when the patch reshapes a series master; see the occurrence check
     # below for why that patch gets pinned.
     if_match: str | None = None
+    all_day = False
     if start is not None or end is not None:
         existing_event = await current_event()
         if requested_zone is not None:
@@ -1052,6 +1594,15 @@ async def update_event(
     if end_resolved is not end and end_zone is not None:
         end = _in_zone(end_resolved, end_zone, end)
         placed["end"] = _placed(end, end_zone)
+    # A typed `Z` or offset goes out as local time in its zone, as on create
+    # (#236). An all-day event is anchored in UTC, so it has nothing to keep.
+    converted: dict = {}
+    if not all_day:
+        typed = {"start": (start, start_resolved, start_zone), "end": (end, end_resolved, end_zone)}
+        ends = {k: (v, z) for k, (v, r, z) in typed.items() if v is not None and r is v}
+        sent = _typed_in_zones(ends)
+        converted = _converted(ends, sent)
+        start, end = sent.get("start", start), sent.get("end", end)
 
     # Last of the checks, because it is the only one that costs a second read,
     # and only a master can have occurrences to lose. `remove_recurrence` is left
@@ -1118,10 +1669,13 @@ async def update_event(
         event.is_all_day = is_all_day
 
     if remove_recurrence:
-        # `event.recurrence = None` does not serialize (see the docstring);
-        # additional_data survives as the explicit JSON null Graph needs.
+        # `event.recurrence = None` does not serialize before kiota 1.15 (see
+        # the docstring); additional_data is the explicit JSON null Graph needs
+        # on every version.
         event.additional_data = {**(event.additional_data or {}), "recurrence": None}
 
+    # Set when a recurrence the caller did not pass goes out with new days.
+    series_note: str | None = None
     if recurrence is not None:
         anchor = start
         anchor_zone = start_zone
@@ -1183,10 +1737,22 @@ async def update_event(
         # zone *change*, and skipping the re-send for it hands the caller the
         # opaque 400 this branch exists to prevent, so None compares as different
         # rather than being filtered out by a truthiness check.
-        if stored_zone != start_zone and _is_series_master(existing):
-            # Echoes state read above, so the patch is pinned; see the
-            # occurrence check, which set `if_match` for every master reshape.
-            event.recurrence = _resend_recurrence(existing, anchor=start, zone=start_zone)
+        #
+        # A start moved to another day in the same zone needs it too (#98):
+        # without it Graph answers `updated` and leaves every occurrence where
+        # it was. Its days follow `move_series`, not a zone change's shift.
+        #
+        # Either way the patch echoes state read above, so it is pinned; see the
+        # occurrence check, which set `if_match` for every master reshape.
+        if _is_series_master(existing):
+            if stored_zone != start_zone:
+                event.recurrence = _resend_recurrence(existing, anchor=start, zone=start_zone)
+            elif moved := await _day_move(graph_client, event_id, existing, start, start_zone):
+                event.recurrence = _moved_recurrence(
+                    existing, start=start, zone=start_zone, old=moved[0], new=moved[1]
+                )
+            if event.recurrence is not None:
+                series_note = _series_note(existing, event.recurrence)
 
     if resolved_show_as is not None:
         event.show_as = resolved_show_as
@@ -1196,6 +1762,18 @@ async def update_event(
 
     if is_online is not None:
         event.is_online_meeting = is_online
+
+    # Only a single event is read back and checked; see `_keep_typed_instants`.
+    # A converted time means the event was already read for its zone, so telling
+    # a single event from a series costs no request.
+    checked = (
+        converted
+        if converted
+        and event.recurrence is None
+        and "recurrence" not in (event.additional_data or {})
+        and _is_single_instance(await current_event())
+        else {}
+    )
 
     request_builder = graph_client.me.events.by_event_id(event_id)
 
@@ -1207,13 +1785,19 @@ async def update_event(
     # Not replayed after a 5xx either: on an event with attendees the patch is
     # mailed to them as an update, and a pinned replay would only be refused
     # with a 412 for the change key this very patch moved (#131).
+    # Where the converted ends stood before this patch, off the read already
+    # made, so a read-back that still shows them there is not taken for a move.
+    before = _stored_instants(await current_event(), checked) if checked else {}
     response = await call_without_replay(_patch, outcome_unknown=UPDATE_MAY_HAVE_BEEN_SENT)
+    note = await _keep_typed_instants(lambda: request_builder, checked, "updated", before)
+    notes = [n for n in (series_note, note.get("note")) if n]
 
     return {
         "status": "updated",
         "event_id": response.id,
         **placed,
         **(_online_reply(response) if is_online is not None else {}),
+        **({"note": " ".join(notes)} if notes else {}),
     }
 
 

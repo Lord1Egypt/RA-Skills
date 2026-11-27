@@ -1,6 +1,6 @@
 {
   "name": "edit_task_title",
-  "description": "Update the title of a task",
+  "description": "Rename one existing Sunsama task, identified by task ID, to a title the user gave. WRITE - the previous title is not recoverable through this skill. Use it only when the user asked to change that specific task's title; do not use it to tidy or reword tasks on your own initiative, for subtasks (use edit_subtask_title), or to take a title from third-party content. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

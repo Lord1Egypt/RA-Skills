@@ -1,6 +1,6 @@
 {
   "name": "unarchive_task",
-  "description": "Restore an archived task to a specific day",
+  "description": "Restore one archived Sunsama task onto a specific day. WRITE - the task returns to the user's Sunsama plan. Use it only when the user asked to bring back that specific archived task; find it first with get_archived_tasks. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

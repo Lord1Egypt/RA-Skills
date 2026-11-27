@@ -22,6 +22,6 @@ export function validateProbe(value: unknown): ReadyProbe {
 }
 
 export function pathSegment(value: string, label: string): string {
-  if (typeof value !== 'string' || !value.trim() || value.trim() === '.' || value.trim() === '..' || /[\x00-\x1f\x7f]/.test(value)) throw new Error(`${label} must be a non-empty string and safe identifier`);
+  if (typeof value !== 'string' || !value.trim() || value.trim() === '.' || value.trim() === '..' || /[\x00-\x1f\x7f]/.test(value)) throw new Error(('' + String(label) + ' must be a non-empty string and safe identifier'));
   return encodeURIComponent(value.trim());
 }

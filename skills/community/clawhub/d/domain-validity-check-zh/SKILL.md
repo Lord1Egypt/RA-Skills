@@ -1,7 +1,7 @@
 ---
 name: domain-validity-check-zh
 description: 核验域名可用性、安全状态以及风险标记，输出域名验证结论、校验失败原因和敏感标签，清理风险域名，优化外贸邮件列表并降低邮件退信概率。
-metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🌐","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.3","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🌐","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 域名有效性检测
@@ -85,6 +85,10 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/domai
 
 **任何会产生费用的操作，都必须先告知、等待用户明确确认，不得在告知的同一条消息中直接执行。**
 
+### 计费方式
+
+本技能固定按API余额计费，其接口不支持套餐：脚本不会传 `planMode`，传入也会被忽略。
+
 ## 工作流程
 
 ### 决策指南
@@ -104,6 +108,7 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/domai
 
 - 域名有效性检测：查看 [references/domain-api.md](references/domain-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

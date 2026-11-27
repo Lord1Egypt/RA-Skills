@@ -5,7 +5,7 @@ description_zh: "手机阅读版导出"
 description_en: "Mobile reading export"
 disable: false
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 allowed-tools:
   - Write
   - Bash
@@ -154,3 +154,4 @@ The bundled card template is tuned for a 命理档案-style structured input; it
 3. `topdf.py` reports the expected MediaBox in mm.
 4. `pdfinfo.py` shows no page dramatically below the average character count.
 5. Render and visually inspect at least: the first screen, one card-dense table, one blockquote containing a nested table, and the last page. Crop regions at 2–3× with `zoom.py` rather than squinting at a downscaled screenshot — low-resolution views produce phantom defects.
+6. Confirm the PDF has no blank trailing page and no orphaned heading at a page break; a single overflowing element is fixed at its source rather than by shrinking the whole document.

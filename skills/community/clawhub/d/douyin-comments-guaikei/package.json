@@ -1,6 +1,6 @@
 {
   "name": "douyin-comments-guaikei",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "抖音公开数据智能分析工具。关键词搜索、博主作品、视频评论、实时热榜，输出结构化 JSON。用于选题、对标账号、评论舆情和热搜追踪。另支持单条作品详情与评论需求挖掘。",
   "keywords": [
     "douyin",

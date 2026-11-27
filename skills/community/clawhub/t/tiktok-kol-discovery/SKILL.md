@@ -2,7 +2,7 @@
 name: tiktok-kol-discovery
 description: "基于TikTok的实时数据，通过自然语言检索TikTok上的达人。支持按关键词、点赞数等方向筛选，并查看达人的作品及作品表现数据、互动数据、评论内容等，分析达人画像、内容特点、活跃表现和近期作品等，帮助用户快速发现和判断适合合作的达人。提供3个能力①关键词搜索（可按点赞/相关度排序、发布时间筛选）②博主作品获取，按主页链接或用户名批量获取公开作品列表，支持最新/最热排序 ③视频评论抓取，按视频链接或作品 ID 获取评论内容、评论者与互动数据，输出结构化 JSON（含作者、互动数据、标签、链接）。"
 license: MIT
-version: 1.1.2
+version: 1.1.3
 description_zh: 基于TikTok的实时数据，通过自然语言检索TikTok上的达人。支持按关键词、点赞数等方向筛选，并查看达人的作品及作品表现数据、互动数据、评论内容等，分析达人画像、内容特点、活跃表现和近期作品等，帮助用户快速发现和判断适合合作的达人。
 description_en: Retrieve creators on TikTok via natural language search based on real-time TikTok data. Filter by keywords, likes and other metrics, and view creators’ posts along with post performance data, engagement metrics, and comment content. Analyze creator personas, content characteristics, activity status and recent works to help users quickly discover and evaluate creators suitable for collaboration.
 metadata:
@@ -137,9 +137,10 @@ metadata:
 ## 0. 🧭 每次按这个顺序执行
 
 1. 确认环境变量 `GUAIKEI_API_TOKEN` 已配置。没有配置时直接告诉用户去 [TikTok达人发现与洞察官网](https://www.guaikei.com) 开通，不要先跑一遍试探。
-2. 在本技能根目录执行 `node scripts/tiktok/<命令>.js`。
+2. 在本技能根目录执行 `node scripts/tiktok/<命令>.js`（或用绝对路径，见 [references/faq.md](references/faq.md)）。
 3. stderr 出现「处理中」表示任务还在跑。等进程自己退出，再读 stdout 的最后一份 JSON。不要把 stderr 或整份 JSON 念给用户。
 4. 按「4. 📦 读结果」的退出码表决定：改参数再试、告诉用户，或停止。
+5. **Windows 拼参：cmd 只用双引号**包含空格/中文/URL 的参数；不要用 bash 单引号。引号仍拆坏 → 改用 `--json-args`（[faq.md](references/faq.md)）。Windows / 弱模型优先 `--json-args`。
 
 查询最多 20 次。间隔从 2 秒起按 2、4、8、16、32 秒增加，之后每次 60 秒，只算等待大约 15 分钟。每次请求本身还有最多 20 秒超时。宿主如果更早结束进程，按超时处理，不要立刻用同一组参数连打。
 
@@ -192,7 +193,19 @@ metadata:
 
 ## 3. 🎛️ 参数
 
-枚举和数量不在允许范围内时，命令直接失败（退出码 2，`INVALID_ARGS`），不会改成默认值再请求。三个命令都支持 `--help` / `-h`：帮助打在 stderr，退出码 0，stdout 为空。短参数大小写都可以。含空格的关键词用双引号包成一个参数。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node scripts/tiktok/search-cli.js -- -AI`。完整字段见 `assets/*_cli_req.schema.json` 与 [references/options.md](references/options.md)。
+枚举和数量不在允许范围内时，命令直接失败（退出码 2，`INVALID_ARGS`），不会改成默认值再请求。三个命令都支持 `--help` / `-h`：帮助打在 stderr，退出码 0，stdout 为空。短参数大小写都可以。含空格的关键词用双引号包成一个参数。关键词以 `-` 开头时写成 `--keyword=-AI`，或 `node scripts/tiktok/search-cli.js -- -AI`。完整字段见 `assets/*_cli_req.schema.json` 与 [references/options.md](references/options.md)。**Windows**：cmd **只用双引号**；仍拆坏或弱模型 → `--json-args`。双壳例与绝对路径 → [references/faq.md](references/faq.md)。
+
+**Windows 双壳（同一条搜索，先 cd 到技能目录）**：
+
+```bat
+REM cmd —— 不要用单引号
+node scripts\tiktok\search-cli.js --keyword "AI tutorial" --sort 1 --limit 20
+```
+
+```powershell
+# PowerShell
+node scripts/tiktok/search-cli.js --keyword "AI tutorial" --sort 1 --limit 20
+```
 
 **套餐双上限（重要）**：技能侧硬上限为 10000（按量 Token）。**包月 Token** 超限会返回 `PLAN_LIMIT`（后端 errcode 14），不要当网络错误重试：搜索/作品最多 **30**，评论最多 **40**。具体以官网与本次 `message` 为准。
 
@@ -222,7 +235,7 @@ metadata:
 
 ## 4. 📦 读结果
 
-成功、空结果、失败都是同一份信封。只读 stdout 的最后一份 JSON。`--help` 时 stdout 为空，帮助在 stderr。字段以 `assets/output_envelope.schema.json` 和 `assets/*_cli_resp.schema.json` 为准。
+成功、空结果、失败都是同一份信封。只读 stdout 的最后一份 JSON。`--help` 时 stdout 为空，帮助在 stderr。字段以 `assets/output_envelope.schema.json` 和 `assets/*_cli_resp.schema.json` 为准。取数成功/empty 时信封顶层可能有 `cost`（花费估算：包月为 `1`，按次为条数×单价）；错误响应无此字段。
 
 ```json
 {
@@ -231,8 +244,9 @@ metadata:
   "message": "搜索任务完成",
   "timestamp": "2026/10/26 16:20:00",
   "request": { "command": "search", "keyword": "AI", "sort": 1, "time": 0, "limit": 20 },
-  "metadata": { "skill_version": "1.1.2", "runtime_version": "22.22.2", "execution_time": 8421 },
-  "results": [{ "aweme_id": "123", "desc": "...", "digg_count": 100 }]
+  "metadata": { "skill_version": "1.1.3", "runtime_version": "22.22.2", "execution_time": 8421 },
+  "results": [{ "aweme_id": "123", "desc": "...", "digg_count": 100 }],
+  "cost": 0.08
 }
 ```
 
@@ -266,6 +280,6 @@ metadata:
 
 只处理 TikTok 公开数据。调用时会把关键词或链接发到 `www.guaikei.com`。不上传本地文件，不登录，不发布，不下载视频文件。
 
-成功结果默认不写文件。需要留底时设置 `TT_GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `tiktok-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。
+成功结果默认不写文件。需要留底时加 `--save`，或设置 `GUAIKEI_ENABLE_LOG=1`，文件写到系统临时目录的 `tiktok-guaikei/logs/`。POSIX 上权限是仅当前用户可读写；Windows 不使用这组权限位，靠临时目录本身的用户隔离。旧变量 `TT_GUAIKEI_ENABLE_LOG` 已废弃。
 
 开通 token 或更多帮助：[TikTok达人发现与洞察官网](https://www.guaikei.com)。

@@ -1,36 +1,32 @@
-# Tech Content Review Panel
+# Multi-perspective Reading
 
-An eight-role expert review panel for tech/AI/industry deep-analysis articles. It critiques a finished draft from multiple angles and pushes it toward publish-ready quality — built for content that aims to establish a professional personal brand with an industry audience.
+Reads a finished tech/AI/industry long-form article from a small set of reader perspectives chosen for that piece, and returns observations for the author to adjudicate. Built for long-form writing that aims to establish a professional personal voice with an industry readership.
+
+This is a reading tool, not a review court. No role carries authority, no finding is automatically a defect, and no feedback becomes a standing rule by itself.
 
 ## What it does
 
-Runs a fixed panel over a finished draft in an **evaluate → revise → re-check** loop:
+1. Records the positioning lock: article type and platform, primary reader and reading task, thesis, deliberate scope, depth and technicality target. These are the author's decisions, not questions for readers to reopen.
+2. Verifies facts and originality against traceable sources. This is the only mandatory check. Before any external search derived from an unpublished draft, authorization is confirmed.
+3. Picks 2–4 perspectives that fit the piece. Available angles include domain specialist, runtime/infrastructure specialist, enterprise decision-maker, cross-domain reader, strategy/investment reader, distribution editor, language-native reader and blunt general reader. Using all of them is not the default.
+4. Reports what each perspective took away, where it stopped or slid, which sentence caused that, and an optional trial revision. Observations are separated into misunderstanding, missing bridge, disagreement and different preference.
+5. The author adjudicates: substantiated errors are fixed; comprehension blockers may be repaired; preferences are adopted or parked with a brief reason. One targeted reread of affected paragraphs, then stop.
 
-- **4 target-reader representatives** — a tech decision-maker, a cross-domain senior expert, an investor/strategist, and a blunt veteran. They judge whether the piece is valuable, expert, and free of empty prose.
-- **3 quality gatekeepers** — a fact-and-originality checker (web-verifies foundational facts, searches for idea collisions/plagiarism risk), a style red-line scanner, and a structure-and-depth reviewer.
-- **1 distribution gatekeeper** — a tech media editor who checks title hooks, opening retention, memorable points, and multi-platform fit.
+Simulated perspectives are labelled **simulated reading** and are not presented as evidence of real audience response.
 
 ## When to use
 
-**Applies to**: tech / AI / data industry deep-dives, sector judgment articles, research pieces for an industry readership.
+**Applies to**: finished tech / AI / data industry deep-dives, sector judgment articles and research pieces for an industry readership, when the author wants a second pass on how the argument lands.
 
-**Does not apply to**: news, marketing copy, product docs, tutorials, or short opinion posts.
+**Does not apply to**: news, marketing copy, product docs, tutorials, short opinion posts, or as a publication approval gate.
 
 ## How to use
 
-Trigger it after finishing a deep-analysis draft:
+After a complete draft exists:
 
-> "Review this article with the panel."
+> "Read this draft from two or three relevant reader angles and report what you noticed."
 
-After the panel revision, run a separate **reader-fit test**. It is not a ninth panelist or a second review round: it tests whether selected target readers correctly understand the core message, scope and technical level. Lock the article positioning first, select 3–4 roles that fit the piece, and triage feedback as must-fix / suggested / optional / reject-or-park. Do not adopt every role's opinion.
-
-## Design
-
-- **Pattern**: Evaluator-Optimizer.
-- **Hard gate**: style red-lines must be grep-clean before finalizing.
-- **Tension handling**: the professional-vs-distribution tension (hook vs restraint) is surfaced explicitly and left for the author to decide, never forced into agreement.
-
-See `references/depth-playbook.md` for the six depth moves used by the structure reviewer.
+There are no grades, pass/fail results, must-fix tiers, required finding counts or second review rounds. Expression diagnostics and depth moves in `tech-writing-pipeline` §4 / `references/depth-playbook.md` are optional tools consulted only when a concrete symptom appears.
 
 ## License
 

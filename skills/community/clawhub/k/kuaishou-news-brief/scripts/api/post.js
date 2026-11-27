@@ -1,5 +1,6 @@
 const constants = require("../config/constants");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost } = require("../utils/cost");
 const { SkillError } = require("../utils/errors");
 
 async function createPostTask(token, url, sort, limit) {
@@ -21,6 +22,7 @@ async function getPostTask(token, url, sort, limit) {
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
   if (
     typeof response.data !== "object" ||
     response.data === null ||
@@ -28,7 +30,7 @@ async function getPostTask(token, url, sort, limit) {
   ) {
     throw new SkillError("API_ERROR", "作品结果格式错误: data 不是对象", true);
   }
-  return response.data;
+  return { results: response.data, cost };
 }
 
 module.exports = {

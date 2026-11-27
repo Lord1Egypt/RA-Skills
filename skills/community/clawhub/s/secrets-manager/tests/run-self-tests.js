@@ -2,7 +2,7 @@
 /**
  * Secrets Manager — Robust Self-Test Suite
  *
- * Tests: store, get, list, delete, audit, status, bulk operations,
+ * Tests: store, get, list, delete, inject, audit, status, bulk operations,
  *        TTL/expiry, edge cases, error handling.
  *
  * Run: node tests/run-self-tests.js
@@ -130,6 +130,44 @@ group('Update / Overwrite — 2 cases', () => {
 
   SM.storeSecret('update-key', 'updated');
   assert(SM.getSecret('update-key', false) === 'updated', 'Overwrite with new value succeeds');
+});
+
+// ─── 7. Inject Tests ───────────────────────────────────────────
+
+group('Inject — 4 cases', () => {
+  // Default: writes to temp file (returns path, not resolved string)
+  const storedFormat = {
+    'cmd-password': SM.encrypt('p@ssw0rd!')
+  };
+  const tmpPath = SM.injectSecrets('echo {{cmd-password}}', storedFormat);
+  assert(typeof tmpPath === 'string' && tmpPath.includes('secrets-inject-'), 'Default inject returns temp file path');
+  assert(fs.existsSync(tmpPath), 'Temp file was created');
+  const tmpContent = fs.readFileSync(tmpPath, 'utf8');
+  assert(tmpContent.includes('p@ssw0rd!'), 'Temp file contains resolved secret');
+  fs.unlinkSync(tmpPath);
+
+  // No placeholders
+  const noChange = SM.injectSecrets('echo hello', {});
+  assert(typeof noChange === 'string' && noChange.includes('secrets-inject-'), 'No-placeholder still writes temp file');
+  fs.unlinkSync(noChange);
+
+  // Multiple placeholders
+  const multi = SM.injectSecrets('{{a}} and {{b}}', {
+    'a': SM.encrypt('X'),
+    'b': SM.encrypt('Y')
+  });
+  assert(multi.includes('secrets-inject-'), 'Multi-placeholder writes temp file');
+  const multiContent = fs.readFileSync(multi, 'utf8');
+  assert(multiContent.includes('X') && multiContent.includes('Y'), 'Multiple placeholders replaced in temp file');
+  fs.unlinkSync(multi);
+
+  // stdout mode requires --confirm-expose
+  const partial = SM.injectSecrets('{{exists}}', { 'exists': SM.encrypt('here') }, { stdoutMode: true, confirmExpose: false });
+  assert(partial === null, 'Refuses stdout without --confirm-expose');
+
+  // stdout mode with --confirm-expose
+  const stdoutResult = SM.injectSecrets('{{exists}}', { 'exists': SM.encrypt('here') }, { stdoutMode: true, confirmExpose: true });
+  assert(stdoutResult === 'here', 'Allows stdout with --confirm-expose');
 });
 
 // ─── 8. Audit Tests ────────────────────────────────────────────

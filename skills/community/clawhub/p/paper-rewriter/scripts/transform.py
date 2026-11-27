@@ -231,6 +231,11 @@ def main():
 
     # ── 批量清洗（v5.19.0）：目录逐文件，输出已存在=跳过（断点续跑）──
     if getattr(args, "batch", None):
+        # v5.20 审计 P1：--batch 与单文件旗标互斥——同给响亮拒绝（防 --dry-run 静默写盘）
+        if getattr(args, "dry_run", False) or args.file or args.output:
+            print("错误: --batch 与 --dry-run/-o/单文件输入互斥——预览请去掉 --batch 单跑 --dry-run",
+                  file=sys.stderr)
+            sys.exit(2)
         import glob as _glob
         import csv as _csvmod
         _files = sorted(x for x in _glob.glob(os.path.join(args.batch, "*.txt"))
@@ -243,8 +248,8 @@ def main():
         _rows = []
         _done = _skip = 0
         for fp in _files:
-            base = os.path.splitext(fp)[0]
-            outp = fp if args.in_place else base + "_clean.txt"
+            _stem, _ext = os.path.splitext(fp)
+            outp = fp if args.in_place else _stem + "_clean" + (_ext or ".txt")
             # 断点判定：副本形态看输出存在；in-place 形态看 .bak 备份存在（原文件恒存在不可作判据）
             _is_done = (os.path.exists(fp + ".bak") if args.in_place
                         else os.path.exists(outp))

@@ -4,7 +4,7 @@ import { createRequire } from "node:module";
 import { isAbsolute, join, relative, resolve } from "node:path";
 
 const ENGINE = "@qrcode-ai-com/qrcode-barcode-scanner";
-const VERSION = "0.12.0";
+const VERSION = "0.12.1";
 const MAX_BYTES = 10 * 1024 * 1024;
 
 class InputError extends Error {
@@ -48,10 +48,10 @@ function nativeTarget() {
   if (process.platform === "linux" && ["arm64", "x64"].includes(process.arch)) {
     if (process.report) process.report.excludeNetwork = true;
     const libc = process.report?.getReport()?.header?.glibcVersionRuntime ? "gnu" : "musl";
-    if (process.arch === "arm64" && libc === "musl") throw new InputError("dependency_platform", "Linux ARM64 musl is not a published engine 0.12.0 target");
+    if (process.arch === "arm64" && libc === "musl") throw new InputError("dependency_platform", "Linux ARM64 musl is not a published engine 0.12.1 target");
     return `linux-${process.arch}-${libc}`;
   }
-  throw new InputError("dependency_platform", "This Node runtime is not one of the six published engine 0.12.0 native targets");
+  throw new InputError("dependency_platform", "This Node runtime is not one of the six published engine 0.12.1 native targets");
 }
 
 function manifest(path, name) {
@@ -136,7 +136,7 @@ try {
   const report = await engine.scan(readImage(args.image), {
     profile: args.profile, budgetMs: args.budgetMs, maxDimension: 4096, maxPixels: 16_000_000,
   });
-  if (report.versions?.scanner !== VERSION || report.versions.pipeline !== 5 || report.versions.score_contract !== 5) {
+  if (report.versions?.scanner !== VERSION || report.versions.pipeline !== 5 || report.versions.score_contract !== 6) {
     throw new InputError("report_version", "Unexpected scanner report contract; no result emitted");
   }
   process.stdout.write(`${JSON.stringify(report)}\n`);

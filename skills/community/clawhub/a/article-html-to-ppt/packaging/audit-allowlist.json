@@ -1,13 +1,6 @@
 {
   "allowlist": [
     {
-      "path": "SKILL.md",
-      "codes": [
-        "BUNDLE_HIGH_ENTROPY_STRING"
-      ],
-      "reason": "The finding is a slash-separated list of semantic page layers, not encoded data."
-    },
-    {
       "path": "engine/metrics/songti-sc.json",
       "codes": [
         "BUNDLE_HIGH_ENTROPY_STRING"

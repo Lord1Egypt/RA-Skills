@@ -20,6 +20,31 @@ A skill for Claude Code, Codex and Antigravity (`agy`): split the current iTerm2
 
 **Long projects.** Need to shut down mid-discussion? Save. Next time, double-click one file and the whole group comes back to the same panes with its context.
 
+## Compared with sub-agents and direct calls
+
+Assuming all three can reach Claude, Codex and agy (a sub-agent calls `codex exec` / `agy` from the shell):
+
+| Aspect | crew + tmux | sub-agent | direct call (codex exec ...) |
+|---|---|---|---|
+| Models (Claude / codex / agy) | ✅ ★★★★★ full interactive sessions | ✅ ★★★ codex and agy one-shot only | ★★★ one-shot only |
+| Memory across days | ★★★★★ | ★ starts from zero each time | ★ |
+| User watches and steers live | ★★★★★ | ★ | ★ |
+| Tells you when done or failed | ★★ covered by `board`, `watch` | ★★★★★ built in | ★★★★ ends when the process exits |
+| Robustness (network drops, closed panes, swapped model) | ★★ | ★★★★★ | ★★★★ |
+| Parallel work without clashes (own copy of the code) | ★★ one shared working tree | ★★★★★ can get its own | ★★★ |
+| Hand-over cost (explaining the background) | ★★★★★ members already know | ★★ every brief must be complete | ★ |
+| Spreads quota across vendors | ★★★★★ | ★★ orchestration all on Claude | ★★★★ |
+| Members talk to each other | ★★★★★ point-to-point | ★ each reports to main only | — |
+| Main's management load | ★★ | ★★★★ | ★★★★ |
+
+| Situation | Use |
+|---|---|
+| A multi-day project split into modules, watched by the user (one long-lived owner per module) | **crew** |
+| A one-off, well-bounded job: review some code, chase one bug, read files and conclude | **sub-agent** |
+| Bulk stateless calls: grading items one by one, labelling images | **direct calls** (run in the background by a crew member or a script) |
+
+They combine: crew members own modules, one-off jobs go to sub-agents, bulk judging runs as `codex exec` in a member's background. Cover crew's weak spots (no completion signal, network drops) with `board`, `watch --nudge` and members sending `send --to main` when they finish.
+
 ## Install
 
 From ClawHub:
@@ -94,7 +119,7 @@ A 50-point Elo gap is roughly a 57% win rate, which is why options inside that m
 | Action | Result |
 |---|---|
 | Start an agent | Splits a pane next to main, enters the same folder, creates tmux session `<folder>-<name>`, starts the CLI with the model and effort, and tells it who is in the group and how to send messages |
-| Send a message | Types the text into the other agent's input and submits it, prefixed with `[from <sender>]` |
+| Send a message | Prefixed with `[from <sender>]`. Codex gets it through `codex queue` and agy through `agentapi`, neither of which touches the input box. For Claude the text is typed, and crew waits until the box is empty and nobody is typing, so it never lands in the middle of what you are typing |
 | Read progress | Captures the other pane's current screen |
 | Save | Re-reads every pane's current session id, writes `.crew.json` and `<folder>-crew.command` |
 | Restore | Opens a new iTerm2 window and resumes every agent's conversation in the original layout; live tmux sessions are re-attached, not restarted |
@@ -114,6 +139,10 @@ python3 $CREW spawn --name design --agent codex --model gpt-6.2-astra --effort h
 python3 $CREW send --to design "Please review section 3 of SPEC.md"
 python3 $CREW read --name design --lines 80
 python3 $CREW status
+python3 $CREW board --text      # whole group: busy/idle/offline, current and scheduled tasks, workflow chain, remaining quota; flags a swapped Codex model
+python3 $CREW flow --add "build@coder" --status 1 doing  # main keeps the workflow chain shown on board
+python3 $CREW task --now "…" --next "…"   # record your own tasks
+python3 $CREW watch --nudge     # find members stopped after a connection error and wake them
 python3 $CREW save
 python3 $CREW restore --dir <project folder>
 ```

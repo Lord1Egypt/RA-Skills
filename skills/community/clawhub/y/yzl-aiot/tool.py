@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""YZL-AIoT 云智联 AIoT 设备管理交互技能 v1.2.1
+"""YZL-AIoT 平台入口 v2.0.0（aiot.yzlkj.com）
 
-基于云智联开放接口（Open API v2，官方文档更新 2026-07-25）:
+2.0.0 起本技能是平台入口：
+  - 北向应用接入 → 技能 yzl-aiot-north（REST / 北向 MQTT / Bridge）
+  - 南向设备端 SDK → 技能 yzl-aiot-south（TCP 41032 / UDP 40501 / MQTT 1883 / OTA）
+  - 开放平台 → 技能 yzl-open-api
+
+以下 API 配置与命令属于【兼容层】，仅对接 open.yzlkj.com（Open API v2，官方文档更新 2026-07-25）:
   Base: https://open.yzlkj.com
   路径以 /open/ 开头
 
-⚠️ 重要：请求方必须确保请求频率低于平台限速，并保证并发不超过 2。
+⚠️ 重要（以下限速仅用于 open.yzlkj.com 兼容层）：请求方必须确保请求频率低于平台限速，并保证并发不超过 2。
    同一 IP 在短时间内频繁返回非 0 状态码（400/401/403/429 等）会被平台
    判定为异常请求并【永久封禁该 IP】。本工具内置：
      - 按接口排队限速（请求前自动等待）
@@ -48,7 +53,7 @@ MAX_CONSECUTIVE_ERRORS = 5
 # ============================================================
 # 版本 & 技能信息
 # ============================================================
-LOCAL_VERSION = "1.2.1"
+LOCAL_VERSION = "2.0.0"
 SKILL_SLUG = "yzl-aiot"
 CLAWHUB_REGISTRY = "https://clawhub.ai"
 VERSION_CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".version_cache.json")
@@ -73,7 +78,7 @@ COMMAND_STATUS_LABELS = {
 }
 
 SAFETY_TIP = (
-    "⚠️ 频率限制提醒：请确保请求频率低于平台限速（并发 ≤2）。\n"
+    "⚠️ 兼容层频率限制提醒（仅 open.yzlkj.com）：请确保请求频率低于本平台（open.yzlkj.com）限速（并发 ≤2）。\n"
     "   同一 IP 短时间内频繁返回非 0 状态码会被永久封禁，\n"
     "   失败请使用指数退避（1s/2s/4s…）重试，切勿高频重试。"
 )
@@ -786,14 +791,70 @@ def cmd_smart(action=""):
   • "所有设备" - 查看所有设备"""
 
 
+def _installed_skill(name):
+    """返回已安装技能目录，未安装返回空串。"""
+    home = os.path.expanduser("~")
+    for base in (os.path.join(home, ".dsh", "skills"), os.path.join(home, ".agents", "skills")):
+        p = os.path.join(base, name)
+        if os.path.isdir(p):
+            return p
+    return ""
+
+
+def cmd_status():
+    lines = [
+        "🧭 YZL-AIoT 平台入口 v%s" % LOCAL_VERSION,
+        "=" * 44,
+        "技能 slug : %s" % SKILL_SLUG,
+        "工具目录  : %s" % _get_skill_dir(),
+        "开放平台密钥: %s" % ("已设置 YZLIOT_API_KEY（仅兼容层使用）" if API_KEY else "未设置（仅兼容层需要）"),
+        "",
+        "同族技能安装情况：",
+    ]
+    for name in ("yzl-aiot-north", "yzl-aiot-south", "yzl-open-api"):
+        p = _installed_skill(name)
+        lines.append("  %-16s %s" % (name, p if p else "未安装"))
+    lines += [
+        "",
+        "线路说明：",
+        "  北向 aiot.yzlkj.com  REST / MQTT / Bridge  → 技能 yzl-aiot-north",
+        "  南向 TCP 41032 / UDP 40501 / MQTT 1883 / OTA → 技能 yzl-aiot-south",
+        "  开放平台 open.yzlkj.com  Open API v2          → 技能 yzl-open-api",
+    ]
+    return "\n".join(lines)
+
+
+def cmd_migrate():
+    lines = ["🚚 开放平台（open.yzlkj.com）迁移引导", "=" * 44]
+    if API_KEY:
+        lines.append("检测到 YZLIOT_API_KEY 已设置，你很可能还在使用开放平台。")
+    else:
+        lines.append("未检测到 YZLIOT_API_KEY；如仍在使用开放平台，请先在「云智联YZL」小程序获取。")
+    lines += [
+        "",
+        "迁移步骤：",
+        "  1) clawhub install yzl-open-api",
+        "  2) 在 yzl-open-api 下验证取数：python tool.py all",
+        "  3) 把定时脚本 / 自动化里的 yzl-aiot 改为 yzl-open-api",
+        "  4) 3.0.0 起本技能移除兼容层，兼容命令将不可用",
+        "",
+        "如果要去 AIoT 平台（aiot.yzlkj.com）：",
+        "  北向：技能 yzl-aiot-north（REST / 北向 MQTT / Bridge / Webhook）",
+        "  南向：技能 yzl-aiot-south（TCP 41032 / UDP 40501 / MQTT 1883 / OTA）",
+    ]
+    return "\n".join(lines)
+
+
 def print_help():
-    print(f"""YZL-AIoT 云智联设备管理 v{LOCAL_VERSION}
+    print(f"""YZL-AIoT 平台入口 v{LOCAL_VERSION}（aiot.yzlkj.com）
 
 用法:
   python tool.py <命令> [参数]
   （若环境只有 python3，把 python 换成 python3，如 python3 tool.py help）
 
-命令:
+命令（入口 + 兼容层）:
+  status                            本机环境与技能安装情况（无需 API Key）
+  migrate                           开放平台迁移引导（无需 API Key）
   ping                              测试连接
   all [--tag 轮询标记]               获取所有设备（简易信息，不含设施集）
   list [跳过] [单页数量] [筛选词]     分页获取设备列表（含设施集，单页上限 200）
@@ -813,11 +874,14 @@ def print_help():
   python tool.py history <设施ID> 3
   python tool.py send WANCD1-0000000001 SetFac '["WANCD1-0000000001","kk1","1"]'
 
-⚠️ 频率限制（并发 ≤2，务必低于限速，否则有封 IP 风险）:
+⚠️ 兼容层限速（仅 open.yzlkj.com；并发 ≤2，务必低于限速，否则有封 IP 风险）:
   /open/device/all      10次/10秒      /open/device/list      5次/10秒
   /open/device/{{id}}     10次/10秒      /open/history          6次/30秒
   /open/command/send     2次/5秒        /open/command/{{id}}     2次/5秒
   /open/command/list     2次/10秒
+
+ℹ️ 上面带 /open/ 的命令属于兼容层，只对接 open.yzlkj.com。
+   AIoT 平台（aiot.yzlkj.com）请用 yzl-aiot-north / yzl-aiot-south，或迁移到 yzl-open-api。
 """)
 
 
@@ -825,6 +889,7 @@ def _need_api_key():
     if API_KEY:
         return False
     print("❌ 请先设置环境变量 YZLIOT_API_KEY")
+    print("   （这是 2.0.0 的兼容层命令，只对接 open.yzlkj.com；开放平台建议改用技能 yzl-open-api）")
     print("")
     print("获取 API Key：")
     print("1. 打开微信小程序「云智联YZL」")
@@ -839,7 +904,13 @@ def _need_api_key():
 def main():
     args = sys.argv[1:]
 
-    # check-update / help 不需要 API Key
+    # status / migrate / check-update / help 不需要 API Key
+    if args and args[0].lower() in ("status",):
+        print(cmd_status())
+        return
+    if args and args[0].lower() in ("migrate",):
+        print(cmd_migrate())
+        return
     if args and args[0].lower() in ("check-update",):
         cmd_check_update()
         return
@@ -863,6 +934,12 @@ def main():
         return
 
     cmd = args[0].lower()
+
+    legacy_cmds = {"ping", "all", "list", "device", "history", "device-history",
+                   "send", "cmd-list", "cmd-detail"}
+    if cmd in legacy_cmds and not args[0].startswith("-"):
+        print("ℹ️ 兼容层：本命令对接 open.yzlkj.com；AIoT 平台请用 yzl-aiot-north / yzl-aiot-south，"
+              "或迁移到 yzl-open-api", file=sys.stderr)
 
     # 自然语言命令
     if len(args) == 1 and (any('\u4e00' <= c <= '\u9fff' for c in args[0])

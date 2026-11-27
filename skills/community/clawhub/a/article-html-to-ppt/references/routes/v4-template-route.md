@@ -1,7 +1,5 @@
 # PPT Smith V4 Template / Path C 路线
 
-Before running task-authored Python, obtain explicit user approval and set the single-process host-code authorization and reviewed script hash described in [security boundaries](../security-boundaries.md). Quality gates do not sandbox Python or authorize execution. Fixed native-template operations do not need this compatibility opt-in.
-
 ## 定位
 
 本页用于已有 Atlas、组件组合计划和 `strict-template` 任务。新任务若主要是克隆原页、替换文字与原生数据、调整页序，优先使用[原页编辑式模板工具](../native-template-workflow.md)。二者均属于 `template`；旧计划不自动迁移，不能把新工作区状态文件交给旧命令执行。

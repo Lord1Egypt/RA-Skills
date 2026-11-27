@@ -32,7 +32,7 @@ except Exception:
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2.4"
+VERSION = "0.2.5"
 SCHEMA_VERSION = "1.1"
 JD_LEXICON_VERSION = "2026-11-21.2"
 

@@ -2,6 +2,8 @@
 
 Smart proxy for external API calls with retry logic, caching, circuit breaker, and rate limiting.
 
+> ⚠️ **DATA LEAVES TO A THIRD PARTY:** every `--call` sends your request (URL, headers, body, prompts) to the provider endpoint *you* specify — a separate external service. Responses come back from that provider and may be retained by them per their own policy. This skill is NOT a transparent pass-through; it centralizes collection, storage, and forwarding of potentially sensitive data. Only call endpoints you trust. By default only request **metadata** (provider, status class, timestamp) and cache **metadata** are written to disk; the full response body is written only if you enable `--cache-full <provider>`. Cache and rate-limit entries are keyed by a SHA-256 digest of the endpoint path and request body, so neither your endpoints nor your payloads are stored on disk in readable form.
+
 ## Features
 
 - **HTTP Proxy** — Make API calls with automatic retry and timeout handling
@@ -87,6 +89,7 @@ AG.showStatus();                  // Full gateway status
 - Backoff strategy: 1s → 2s → 4s → 8s → 16s (exponential)
 - Max 5 retries per request
 - Cache expires after configurable TTL
+- Cache keys are provider name + SHA-256 digest of (endpoint path, request body) — nothing you send is stored in plaintext
 
 ## Testing
 

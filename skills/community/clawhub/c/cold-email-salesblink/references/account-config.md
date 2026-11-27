@@ -5,6 +5,7 @@
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/account/verify` | GET | Verify API key and return account info |
+| `/login-link` | GET | Get a short-lived magic login link to the SalesBlink web UI |
 | `/domains` | GET | List custom tracking domains (both verified and unverified with DNS setup instructions) |
 | `/signatures` | GET | List email signatures |
 
@@ -16,6 +17,35 @@ Headers:
 - `Authorization`: `SALESBLINK_API_KEY`
 
 Returns account info and confirms the API key is valid.
+
+## Magic Login Link
+
+**GET** `/login-link`
+
+Headers:
+- `Authorization`: `SALESBLINK_API_KEY`
+
+| Query param | Type | Description |
+|-------------|------|-------------|
+| `redirect_url` | string | Relative path or full URL on the app domain to open after login. Without it, the user lands on the app's default page after sign-in. A URL on another domain (or starting with `//`) is replaced with `/magic` |
+| `expiry_minutes` | integer | How long the link stays valid in minutes (default: 5). Values outside 1–30 are clamped; `0` or a non-number gives 5 |
+
+Response:
+```json
+{
+  "success": true,
+  "message": "Login link generated successfully",
+  "data": {
+    "login_link": "https://run.salesblink.io/magic?code=sc_...&redirect=%2Foutreach%2Fsequences",
+    "destination": "/outreach/sequences",
+    "expiry_minutes": 5
+  }
+}
+```
+
+`destination` is only present when `redirect_url` is set.
+
+> The link signs the user in to a full web session and can be used once. Give it only to the account holder, and never log or store it. Needs the `login_link` scope on a narrowed API key.
 
 ## Domains
 
@@ -34,7 +64,7 @@ List custom tracking domains for the account. Both verified and unverified domai
 - **Unverified domains**: have `verified: false`, `status: "not verified"`, `tag: "not verified"`, and include DNS setup `instructions` (`record_type`, `host`, `value`, `message`) to guide DNS configuration.
 
 ### DNS Instructions Details
-- **Root/Apex domains** (e.g. `example.com`): require an `A` record with Host `@` pointing to `143.244.213.24`.
+- **Root/Apex domains** (e.g. `example.com`): require an `A` record with Host `@` pointing to `178.105.15.117`.
 - **Subdomains** (e.g. `track.example.com`): require a `CNAME` record with Host (e.g. `track`) pointing to `cname.salesblink.io` (for click-tracker), `meet.salesblink.io` (for meet-link), or `run.salesblink.io` (for white-label).
 
 ### Response Example

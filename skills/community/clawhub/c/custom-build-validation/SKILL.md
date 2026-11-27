@@ -1,9 +1,12 @@
 ---
-name: openclaw-custom-build-validation
+name: custom-build-validation
 description: "Use when validating an OpenClaw PR, composing a custom build, or refreshing its upstream base. Manage local environments with OCM and use Crabbox for remote reproduction. Official release campaigns belong to openclaw-release-validation."
 ---
 
 # OpenClaw Custom Build Validation
+
+Install with `openclaw skills install @theangrypit/custom-build-validation`.
+In chat, ask “Use custom-build-validation to validate this OpenClaw PR.”
 
 Produce an identifiable custom candidate, prove the requested behavior, and
 leave the official installation intact unless adoption was explicitly requested.

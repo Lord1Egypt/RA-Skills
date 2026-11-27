@@ -1,0 +1,27 @@
+{
+  "apiVersion": "aspl/v0.1",
+  "kind": "SpendPolicy",
+  "metadata": {"name": "starter", "org": "my-org"},
+  "subjects": [
+    {"agent": "agent:my-org:main", "note": "edit: your agent identity"}
+  ],
+  "budgets": [
+    {"scope": "agent:my-org:main", "currency": "USD", "monthly": 5.0, "alertAt": 0.8}
+  ],
+  "allowlists": [
+    {
+      "scope": "agent:my-org:main",
+      "rails": ["x402", "mpp"],
+      "merchants": {
+        "pinned": [
+          {"domain": "api.onesource.io"},
+          {"domain": "onesource.io"}
+        ],
+        "trustRank": {"min": 0.5}
+      }
+    }
+  ],
+  "thresholds": {"autoApproveBelow": 0.01, "requireApprovalAbove": 1.0},
+  "keys": {"paymentSign": {"source": "external", "note": "signing happens in your wallet; this check is read-only. production: kms/hsm/webauthn"}},
+  "audit": {"chain": "hashlinked", "retention": "7y"}
+}

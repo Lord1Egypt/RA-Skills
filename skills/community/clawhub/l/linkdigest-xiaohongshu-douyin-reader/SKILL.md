@@ -1,23 +1,40 @@
 ---
 name: linkdigest-xiaohongshu-douyin-reader
 description: "Read a Xiaohongshu (RedNote) or Douyin link in English. Use when the user shares a xiaohongshu.com, xhslink.com, rednote.com, douyin.com or v.douyin.com link and wants to know what the post says: the caption, the text inside the images (OCR), the spoken transcript of the video, on-screen captions, likes and saves, hashtags, or an English translation. No Chinese phone number, app, login or cookie needed. Reads through the LinkDigest API; needs LINKDIGEST_API_KEY. Pay as you go: an image note is 1 credit (about $0.02), 10 free credits on sign-up."
-version: 1.0.0
+version: 1.2.1
 homepage: https://linkdigest.dev/docs
-metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API key (starts with ld_live_). Create one at https://linkdigest.dev/app/keys"}],"homepage":"https://linkdigest.dev/docs"}}
+metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API key (starts with ld_live_). Create one at https://linkdigest.dev/signin?ref=skill-linkdigest-xiaohongshu-douyin-reader&next=/app/keys"}],"homepage":"https://linkdigest.dev/docs"}}
+required_environment_variables:
+  - name: LINKDIGEST_API_KEY
+    prompt: "LinkDigest API key (starts with ld_live_); optional"
+    help: "https://linkdigest.dev/signin?ref=skill-linkdigest-xiaohongshu-douyin-reader&next=/app/keys"
+    required_for: "the full output; without it the script gives one free summary a day"
 ---
 
 # Xiaohongshu (RedNote) & Douyin Reader
+
+> `scripts/linkdigest.py` is relative to this skill's folder.
 
 Chinese social posts are hard to read from outside China. Xiaohongshu shows a login wall or an "open in app" page to a plain fetch, and most of an image note's content is written inside the pictures. Douyin videos carry their content in speech and burned-in captions. This skill hands the link to LinkDigest and gets back text an agent can work with, and translates it to English when asked.
 
 ## Quick start
 
 ```bash
-export LINKDIGEST_API_KEY=ld_live_...   # create at https://linkdigest.dev/app/keys (10 free credits, no card)
-python3 {baseDir}/scripts/linkdigest.py "<link or the whole share text>" --translate-to en
+export LINKDIGEST_API_KEY=ld_live_...   # create at https://linkdigest.dev/signin?ref=skill-linkdigest-xiaohongshu-douyin-reader&next=/app/keys (10 free credits, no card)
+python3 scripts/linkdigest.py "https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share"
 ```
 
 The script uses only the Python standard library. It prints Markdown by default; add `--format json` for structured fields. The whole share text copied from the app works as input: the link is picked out on the server.
+
+### Check the key first (0 credits, never invent a link)
+
+Do not make up a link or a note id to test with: a link with `<...>` left in it answers `400 placeholder_link`, and an invented id (all zeros, for example) answers `422 not_a_post` — neither is charged, and neither reads anything. Until the user gives you a real post, read this sample note: it has been read before, costs 0 credits and returns in about a second.
+
+```bash
+python3 scripts/linkdigest.py "https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share"
+```
+
+Once that works, ask the user for the post they actually want (App: Share → 复制链接 / Copy link) and read that.
 
 ## What comes back
 
@@ -73,7 +90,7 @@ Ten free credits on sign-up, once. Current prices: https://linkdigest.dev/pricin
 
 ## Tips for links
 
-- Use the link from the app's Share → Copy link. Keep its parameters; Xiaohongshu refuses links without the `xsec_token` part.
+- Keep the parameters when you have them (the app's Share → Copy link carries them), but a bare `/explore/<id>` is not a bad link: in LinkDigest's logs about 90% of note links without a share token read, and app share links are refused at about the same rate. A refusal is the platform's answer about the note, not about the link shape.
 - `rednote.com` links are the same notes as `xiaohongshu.com` and work the same way.
 - A Douyin short link (`v.douyin.com/...`) and the full address of the same video cost one read, not two.
 

@@ -21,6 +21,21 @@ credentials.json
 .last-token
 .netrc
 
+# Local workspace private files, outputs and browser extension archives.
+AGENTS.md
+IDENTITY.md
+SOUL.md
+USER.md
+memory/
+.work/
+output/
+runs/
+releases/
+data/
+author.json
+build_xiaomi.py
+pptsmith-browser-extension-*.zip
+
 # Runtime distributions must not carry development-only material.
 tests/
 .github/

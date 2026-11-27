@@ -325,6 +325,13 @@ def main():
             worst_score = max((x[1] for x in rows_out), default=0)
             worst_crit = any(x[3] for x in rows_out)
             sys.exit(hxt_core.verdict_exit_code(worst_score, worst_crit))
+        # --fail-under 批量门禁（v5.21.0）：任一文件评分 ≥ 阈值 → exit 3
+        _fu = getattr(args, "fail_under", 0) or 0
+        if _fu:
+            _worst = max((x[1] for x in rows_out
+                          if isinstance(x[1], int) and x[1] >= 0), default=0)
+            if _worst >= _fu:
+                sys.exit(3)
         sys.exit(0)
 
     pdf_meta = None
@@ -547,12 +554,15 @@ def main():
             print("错误: 无法写入审稿报告（%s）" % e, file=sys.stderr)
             sys.exit(2)
 
+    if (getattr(args, "csv", None) or getattr(args, "summary_json", False)) and not args.batch:
+        print("[提示] --csv/--summary-json 需配 --batch 生效（单文件用 -j/--score）", file=sys.stderr)
     if getattr(args, "summary_json", False):
         import json as _json
         _top = sorted(r.get("categories", {}).items(),
                       key=lambda kv: -(kv[1]["weight"] * kv[1]["count"]))[:3]
         print(_json.dumps({"score": r.get("score"), "level": r.get("level"),
                            "lang": r.get("lang"), "units": r.get("units"),
+                           "critical_hit": r.get("critical_hit", False),
                            "top_categories": [{"id": k, "label": v["label"], "count": v["count"]}
                                               for k, v in _top]},
                           ensure_ascii=False))

@@ -2,7 +2,7 @@
 slug: tcms-compliance-reviewer
 displayName: Tcms Compliance Reviewer
 name: tcms-compliance-reviewer
-version: "1.1.9"
+version: "1.1.10"
 not_for:
   - Modifying the draft (review and fix suggestions only)
   - Legal review or contract compliance (content compliance focus)
@@ -189,6 +189,7 @@ content/drafts/{original-name}-compliance-review.md
 - [ ] Every real customer name flagged.
 - [ ] Report saved without modifying the original draft.
 - [ ] Execution summary includes next action.
+- [ ] When the citation table is missing, the report records the fail verdict and the missing reference explicitly; no approval level is recommended from an unverified draft.
 
 ---
 

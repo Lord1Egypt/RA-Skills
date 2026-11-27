@@ -1,0 +1,33 @@
+{
+  "schema": "uvd/project",
+  "version": "2",
+  "stage": "project",
+  "project_id": "demo",
+  "video_type": "drama",
+  "duration_sec": 30,
+  "aspect_ratio": "9:16",
+  "fps": 24,
+  "language": "zh",
+  "backends": {
+    "image": "gpt-image",
+    "video": "seedance",
+    "tts": "minimax-speech",
+    "compose": "ffmpeg",
+    "max_clip_sec": 10
+  },
+  "gates": {
+    "story_approval": true,
+    "asset_approval": true,
+    "spend_approval": true,
+    "max_repair_rounds": 3,
+    "cut_min_sec": 1,
+    "cut_max_sec": 8,
+    "segment_max_sec": 10,
+    "chars_per_sec": 4.5
+  },
+  "budget": {
+    "currency": "CNY",
+    "limit": 80
+  },
+  "upstream": {}
+}

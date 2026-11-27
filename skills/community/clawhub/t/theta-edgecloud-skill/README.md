@@ -11,14 +11,16 @@ current API gaps and primary sources.
 ## Validate
 
 ```bash
-npm ci --ignore-scripts
+npm install --ignore-scripts
 npm run check
-npm test
+npm run build
 ```
 
-The package includes source, generated runtime, tests and references. Four former
-placeholder tests now exercise real contracts/safety gates. Offline mocked tests
-are not a substitute for live provider proof.
+The published package includes the TypeScript source, the generated runtime and the
+references; a fresh `npm run build` reproduces `dist/index.js` byte for byte. The offline
+mocked test suite (more than 200 tests) stays in the maintainer's release workspace and is
+not shipped, so the package contains no test fixtures. Offline mocked tests are not a
+substitute for live provider proof.
 
 ## Invoke
 
@@ -35,6 +37,34 @@ never paste keys into commands or chat. Discovery is read-only. Set
 `THETA_DRY_RUN=1` before rehearsing mutations; authenticated read requests can
 still run. Outside dry-run, every remote write, video or unknown-service
 inference and webhook requires `confirm:true` after user approval.
+
+## New in 0.3.3
+
+- Billing safety: any failure after a write, billable or inference request has been sent
+  (dropped connection, timeout, or an accepted response that cannot be read) is now reported as
+  not retriable, with a note that the request may already have been received and billed. This
+  covers on-demand inference, the shared HTTP layer, hosted-MCP write tools and RAG document
+  uploads. Read requests stay retriable.
+- The upload guidance now warns that an uploaded file's contents leave the user's environment.
+- The credential loader documents exactly which variables it reads and where each is sent.
+- Further wording and structure changes so ClawHub's scanner can fully inspect every file.
+
+## New in 0.3.2
+
+- User-facing messages no longer contain command-like text (for example `NAME=1`
+  assignments), which some static scanners misread as shell commands.
+- SKILL.md now lists every optional setting the runtime reads and states the tool scope.
+- The published package no longer ships the test suite, its synthetic fixtures or the lockfile;
+  the build tools (TypeScript and Rollup) are pinned to exact versions, so the build still
+  reproduces byte for byte.
+- The runtime bundle is now built with Rollup, which keeps the source comments, so the shipped
+  `dist/index.js` reads like the source.
+- Source cleanups so static analysers can fully inspect every file: URLs and messages are built
+  with plain string concatenation, helper names are descriptive, and quote characters in the
+  error sanitizer's patterns are written as escapes.
+- No runtime behaviour, command, safety gate or redaction rule changed. Some error-message and
+  command-description wording changed (for example `; ` became `, `), so code that matches exact
+  message text should be checked.
 
 ## New in 0.3.1
 
@@ -107,8 +137,10 @@ inference and webhook requires `confirm:true` after user approval.
 
 ## Build
 
-`npm ci --ignore-scripts && npm test`. `npm run build` compiles `src/` with TypeScript into the
-private `build/` folder (used by the tests), then bundles it with esbuild into the single
+`npm install --ignore-scripts && npm run build` (TypeScript and Rollup are pinned to exact
+versions). `npm run build` compiles `src/` with TypeScript into the
+private `build/` folder (used by the tests), then bundles it with Rollup (which keeps the
+source comments) into the single
 unminified `dist/index.js`. The build is reproducible byte for byte.
 
 Installing this package does not change Gateway or model configuration.

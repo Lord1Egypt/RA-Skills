@@ -1,0 +1,74 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_dx-stard.json --gate strict -o flow_dx-stard.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "诊断准确性研究流程（STARD 范式）：连续入组→排除→指标试验与参考标准（双盲）→2×2 交叉表→灵敏度/特异度估计。排除框（document 形）虚线挂出。n=… 为占位符，非数据。",
+ "layout": "layered",
+ "title": "STARD diagnostic accuracy study flow",
+ "nodes": [
+  {
+   "id": "patients",
+   "label": "Consecutive patients",
+   "sublabel": "suspected of condition",
+   "shape": "terminal"
+  },
+  {
+   "id": "excl",
+   "label": "Excluded",
+   "sublabel": "previously treated (n = )",
+   "shape": "document"
+  },
+  {
+   "id": "index",
+   "label": "Index test",
+   "sublabel": "index assay, prospective"
+  },
+  {
+   "id": "ref",
+   "label": "Reference standard",
+   "sublabel": "same sample, blinded"
+  },
+  {
+   "id": "cross",
+   "label": "Cross-tabulation",
+   "sublabel": "2 x 2, each blinded"
+  },
+  {
+   "id": "est",
+   "label": "Sensitivity and specificity",
+   "sublabel": "with 95% CI",
+   "shape": "terminal"
+  }
+ ],
+ "edges": [
+  {
+   "from": "patients",
+   "to": "excl",
+   "dashed": true
+  },
+  {
+   "from": "patients",
+   "to": "index",
+   "thick": true
+  },
+  {
+   "from": "patients",
+   "to": "ref"
+  },
+  {
+   "from": "ref",
+   "to": "cross"
+  },
+  {
+   "from": "index",
+   "to": "cross",
+   "thick": true
+  },
+  {
+   "from": "cross",
+   "to": "est"
+  }
+ ]
+}

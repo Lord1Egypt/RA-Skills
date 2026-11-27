@@ -2,7 +2,7 @@
 slug: tcms-performance-analyst
 displayName: Tcms Performance Analyst
 name: tcms-performance-analyst
-version: "1.1.9"
+version: "1.1.10"
 not_for:
   - Real-time or per-article analytics (monthly aggregation focus)
   - Modifying the content calendar or triggering writing (advisory output only)
@@ -172,6 +172,7 @@ reports/YYYY-MM-monthly-report.md
 - [ ] Every performance figure has an observable source or is marked DATA_MISSING.
 - [ ] Recommendations reference concrete gaps.
 - [ ] Report does not trigger downstream tasks.
+- [ ] Missing product-line data is listed as a data gap naming the affected report section, and no section silently substitutes an inferred label.
 
 ---
 

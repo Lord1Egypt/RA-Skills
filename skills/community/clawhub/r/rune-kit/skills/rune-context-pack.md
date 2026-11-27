@@ -70,7 +70,7 @@ When a parent agent delegates work to a subagent, critical context gets lost —
    - Prioritize by relevance to the delegated task
    - Target: <500 tokens for simple tasks, <1500 tokens for complex
 
-3. **STRUCTURE** — Format as a context packet (v2 — see Output Format and [references/brief-template.md](references/brief-template.md))
+3. **STRUCTURE** — Format as a context packet (v2 — see Output Format and [rune-context-pack/references/brief-template.md](rune-context-pack/references/brief-template.md))
 
 4. **VALIDATE** — Check packet completeness:
    - Does it include the task goal?
@@ -80,7 +80,7 @@ When a parent agent delegates work to a subagent, critical context gets lost —
    - Does it include `### Type Surface` (mandatory if task >= 300 tokens)?
    - Is it small enough for the target agent's context budget?
 
-5. **PHASE 4.5 — SMELL TESTS** — Run mechanical regex gates before emit. See [references/durability-rules.md](references/durability-rules.md).
+5. **PHASE 4.5 — SMELL TESTS** — Run mechanical regex gates before emit. See [rune-context-pack/references/durability-rules.md](rune-context-pack/references/durability-rules.md).
 
    | Regex | Tier | Reason |
    |-------|------|--------|
@@ -136,10 +136,10 @@ When a parent agent delegates work to a subagent, critical context gets lost —
 - [partial state if mid-handoff — omit if fresh start]
 ```
 
-Full template + worked examples: [references/brief-template.md](references/brief-template.md).
+Full template + worked examples: [rune-context-pack/references/brief-template.md](rune-context-pack/references/brief-template.md).
 
 ## Variant: Agent Brief (Async / Durable Handoff)
-<MUST-READ path="references/agent-brief.md" trigger="when handing off to an AFK agent, an issue tracker queue, autopilot, or any receiver that may execute hours/days later"/>
+<MUST-READ path="rune-context-pack/references/agent-brief.md" trigger="when handing off to an AFK agent, an issue tracker queue, autopilot, or any receiver that may execute hours/days later"/>
 
 The standard packet (above) is for **immediate** sub-agent dispatch in the same session. When the handoff target is async — issue tracker, scheduled cron agent, `rune-autopilot.md` (Pro) for multi-session work, or any receiver that may execute hours or days later — switch to the **agent brief** variant.
 
@@ -154,7 +154,7 @@ Additional BLOCK-tier checks for agent briefs (on top of the standard smell test
 - Acceptance criteria are independently testable (each pass/fail alone)
 - `**Key interfaces:**` names types/functions, not file paths
 
-Full template + worked examples: [references/agent-brief.md](references/agent-brief.md).
+Full template + worked examples: [rune-context-pack/references/agent-brief.md](rune-context-pack/references/agent-brief.md).
 
 ## Returns
 
@@ -191,7 +191,7 @@ Full template + worked examples: [references/agent-brief.md](references/agent-br
 | Missing Type Surface section for non-trivial task | HIGH | Mandatory for tasks >= 300 tokens; the durable spine is what survives file moves |
 | Missing Out of scope section | HIGH | Always required (even "(none)"); completion-gate rejects briefs without it |
 | Acceptance Criteria using shape verbs ("is defined", "has property") | MEDIUM | Rewrite to behavior verbs from the whitelist |
-| Async handoff (issue tracker / autopilot / scheduled run) emitted as standard packet | HIGH | Switch to agent-brief variant (`references/agent-brief.md`) — standard packet rots when receiver runs hours/days later. Brief adds durability rules: behavioral not procedural, no line numbers in narrative |
+| Async handoff (issue tracker / autopilot / scheduled run) emitted as standard packet | HIGH | Switch to agent-brief variant (`rune-context-pack/references/agent-brief.md`) — standard packet rots when receiver runs hours/days later. Brief adds durability rules: behavioral not procedural, no line numbers in narrative |
 | Agent brief with file:line references in narrative ("change `auth.ts:42`") | CRITICAL | Brief BLOCK gate — line numbers go stale on first edit. Reference type names, function signatures, contracts instead. File paths only in `### Files Touched` |
 | Agent brief without `**Current behavior:**` AND `**Desired behavior:**` split | HIGH | Brief BLOCK gate — without the delta explicit, async agent cannot verify when work is done |
 
@@ -228,7 +228,7 @@ IF ANY check fails → fix before reporting done. Do NOT defer to completion-gat
 **Scope guardrail**: Do not implement code changes, run tests, or modify files. Only produce context packets for handoff. If asked to do more, defer to the delegated skill.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

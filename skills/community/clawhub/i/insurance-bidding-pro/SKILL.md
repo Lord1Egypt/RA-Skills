@@ -1,7 +1,7 @@
 ---
 name: Insurance Industry Bidding Expert
 description: AI-powered insurance bidding expert for China market — covers the complete insurance bid lifecycle including solvency disclosure (C-ROSS Rules II), reinsurance arrangements, regulator compliance, policy clause comparison, risk reserve explanations, and current procurement rules. Built for insurance companies, brokers, and insurtech companies. Scope: bid-document drafting support and compliance self-check for insurance institutions participating in China procurement. Out of scope: acting as a system of record, submitting bids on anyone’s behalf, setting premium rates, and providing financial, legal or insurance advice. Keywords: insurance bid document, group insurance bid, solvency disclosure C-ROSS II, reinsurance arrangement, NFRA compliance check, clause comparison, co-insurance pool bid, 保险投标文书, 团险投标, 偿付能力披露, 再保险安排, 条款比对, 共保体投标, 废标自查.
-version: "5.0.7"
+version: "5.0.8"
 
 capabilities:
   - educational-reference
@@ -91,7 +91,7 @@ capabilities:
 
 ## Core Capabilities / 核心能力
 
-### 0. 保险投标监管动态（截至 2026-11-19）
+### 0. 保险投标监管动态（截至 2026-11-27）
 
 | 时间 | 动态 | 对保险投标的影响 | 投标侧应对 |
 |------|------|---------------|-----------|
@@ -107,7 +107,7 @@ capabilities:
 | **新增·2026年** | 带病体与健康体参保结构受关注 | 定价假设需说明参保结构影响 | 说明定价假设与再保支持安排 |
 | **新增·2026年** | 共保体结算规则要求前置明确 | 首席与成员的份额、结算与争议处理需写入投标文件 | 在文件中明确结算规则与争议处理 |
 
-> **数据截止**: 2026-11-19 | 来源：监管公开信息与行业实践整理
+> **数据截止**: 2026-11-27 | 来源：监管公开信息与行业实践整理
 > **声明**: 以上动态供参考，具体以官方最新发布为准。
 
 ---
@@ -415,4 +415,42 @@ business, actuarial, legal, and compliance functions before submission.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### 1. Insurance Bid Document Generation / 保险投标文书生成**：
+
+- 文书要素清单补一条「格式与签章要求是否经人工确认」的占位核对项，由使用者圈选并留白依据，草稿不代写标书正文。
+- 为章节对照新增一张纸面对照：左列列章节标签，右列留白记录需人工核实的招标口径，不代为填报。
+
+**### 3. Regulatory Compliance Check / 监管合规核对**：
+
+- 合规核对清单补一条「规则版本是否留白待人工确认」的占位标注位，草稿不编造文号或生效日期。
+- 为资格项新增一行「需人工复核的适用范围」占位：标注范围标签，具体条文留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 格式要求留白 | 投标人员 + 复核人 | 文书要素清单草稿 | 是否标注待人工确认、未代写标书正文 | 高 | 纸面对照，文书须人工审核后使用 |
+| 规则版本占位 | 合规人员 | 合规核对表 | 是否留白待人工确认、未编造文号或日期 | 高 | 文档记录，不构成投标结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于保险投标文书与合规核对的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式投标文件、对外报送与投标结论的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

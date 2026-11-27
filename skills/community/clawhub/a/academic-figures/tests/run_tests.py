@@ -1145,7 +1145,7 @@ class TestV20200Features(unittest.TestCase):
     def test_templates_present_and_valid(self):
         tdir = os.path.join(SCRIPT_DIR, "..", "templates")
         jsons = sorted(glob.glob(os.path.join(tdir, "*.json")))
-        self.assertEqual(len(jsons), 52, f"expected 52 templates (+7 flow family v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0), got {len(jsons)}")
+        self.assertEqual(len(jsons), 56, f"expected 56 templates (+7 flow family v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0 +4 academic-standard flows v8.1.4), got {len(jsons)}")
         for p in jsons:
             with open(p, encoding="utf-8") as f:
                 d = json.load(f)
@@ -2581,8 +2581,8 @@ class TestV20900DocsAndAdvisories(unittest.TestCase):
         self.assertIn("references/quickstart.md", self.en)
         self.assertIn("分组比较", self.zh)          # 精简映射保留（trigger 面）
         self.assertIn("Group comparison", self.en)
-        self.assertIn("version: 8.1.2", self.zh)
-        self.assertIn("version: 8.1.2", self.en)
+        self.assertIn("version: 8.1.6", self.zh)
+        self.assertIn("version: 8.1.6", self.en)
 
     def test_cluster_advisory_preflight(self):
         data = {"matrix": [[float(i), float(i) + 1] for i in range(1600)]}
@@ -2679,8 +2679,8 @@ class TestV30000Docs(unittest.TestCase):
         self.assertIn("prescription-level pages are gated", self.en)
 
     def test_version_2100(self):
-        self.assertIn("version: 8.1.2", self.zh)
-        self.assertIn("version: 8.1.2", self.en)
+        self.assertIn("version: 8.1.6", self.zh)
+        self.assertIn("version: 8.1.6", self.en)
         self.assertNotIn("version: 2.9.0", self.zh)
         self.assertNotIn("version: 2.9.0", self.en)
 
@@ -2713,8 +2713,8 @@ class TestV30000Docs(unittest.TestCase):
 
 
     def test_version_current(self):
-        self.assertIn("version: 8.1.2", self.zh)
-        self.assertIn("version: 8.1.2", self.en)
+        self.assertIn("version: 8.1.6", self.zh)
+        self.assertIn("version: 8.1.6", self.en)
 
 
 
@@ -2781,7 +2781,7 @@ class TestV30100(unittest.TestCase):
         zh = io.open(os.path.join(root, "SKILL_ZH.md"), encoding="utf-8").read()
         lim = io.open(os.path.join(root, "references", "limits.md"), encoding="utf-8").read()
         df = io.open(os.path.join(root, "references", "data-formats.md"), encoding="utf-8").read()
-        self.assertIn("version: 8.1.2", zh)
+        self.assertIn("version: 8.1.6", zh)
         self.assertIn("--quick", zh)
         self.assertIn("行自动降采样", zh)
         self.assertIn("性能参考表", lim)
@@ -2954,7 +2954,7 @@ class TestV30300(unittest.TestCase):
         root = os.path.dirname(SCRIPT_DIR)
         for name in ("SKILL.md", "SKILL_ZH.md"):
             t = io.open(os.path.join(root, name), encoding="utf-8").read()
-            self.assertIn("version: 8.1.2", t, name)
+            self.assertIn("version: 8.1.6", t, name)
 
 
 
@@ -3045,7 +3045,7 @@ class TestV30400(unittest.TestCase):
         root = os.path.dirname(SCRIPT_DIR)
         for name in ("SKILL.md", "SKILL_ZH.md"):
             t = io.open(os.path.join(root, name), encoding="utf-8").read()
-            self.assertIn("version: 8.1.2", t, name)
+            self.assertIn("version: 8.1.6", t, name)
             self.assertIn("--direct-label", t, name)
 
 
@@ -3166,7 +3166,7 @@ class TestV30600(unittest.TestCase):
         root = os.path.dirname(SCRIPT_DIR)
         for name in ("SKILL.md", "SKILL_ZH.md"):
             t = io.open(os.path.join(root, name), encoding="utf-8").read()
-            self.assertIn("version: 8.1.2", t, name)
+            self.assertIn("version: 8.1.6", t, name)
 
 
 
@@ -3235,7 +3235,7 @@ class TestV30800(unittest.TestCase):
         root = os.path.dirname(SCRIPT_DIR)
         for name in ("SKILL.md", "SKILL_ZH.md"):
             t = io.open(os.path.join(root, name), encoding="utf-8").read()
-            self.assertIn("version: 8.1.2", t, name)
+            self.assertIn("version: 8.1.6", t, name)
             self.assertIn("--pub-ready", t, name)
 
 
@@ -4941,7 +4941,7 @@ class TestV50200(unittest.TestCase):
         """机制锁（docQuality）：32 模板 _command/_note 全覆盖非空。"""
         tdir = os.path.join(SCRIPT_DIR, "..", "templates")
         jsons = sorted(glob.glob(os.path.join(tdir, "*.json")))
-        self.assertEqual(len(jsons), 52)   # v8.0.9 +2 swimlane, v8.1.0 +1 LR
+        self.assertEqual(len(jsons), 56)   # v8.0.9 +2 swimlane, v8.1.0 +1 LR, v8.1.4 +4 standard flows
         for p in jsons:
             d = json.load(io.open(p, encoding="utf-8"))
             for key in ("_command", "_note"):
@@ -5472,7 +5472,7 @@ class TestV50600(unittest.TestCase):
         """计数锁收口：模板 37 / realworld 12 / 新字段白名单（v5.7 起 cif+mgus2 入列）。"""
         root = os.path.abspath(os.path.join(SCRIPT_DIR, ".."))
         tpls = [x for x in os.listdir(os.path.join(root, "templates")) if x.endswith(".json")]
-        self.assertEqual(len(tpls), 52, f"模板应 52 个 (+7 flow v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0): {len(tpls)}")
+        self.assertEqual(len(tpls), 56, f"模板应 56 个 (+7 flow v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0 +4 标准学术流程 v8.1.4): {len(tpls)}")
         rws = os.listdir(os.path.join(root, "examples", "realworld"))
         self.assertEqual(len([x for x in rws if x.endswith(".json")]), 18,
                          f"realworld 应 14 个: {rws}")
@@ -5701,7 +5701,7 @@ class TestV50700(unittest.TestCase):
         """计数锁（v5.7.0 建锁 38；…v7.8 +hero=41；v8.0 +flow=42）：42 模板/注册表≥41/README 41 chart types/realworld 18。"""
         root = os.path.join(SCRIPT_DIR, "..")
         jsons = glob.glob(os.path.join(root, "templates", "*.json"))
-        self.assertEqual(len(jsons), 52, f"templates 应 52 (+7 flow v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0): {len(jsons)}")
+        self.assertEqual(len(jsons), 56, f"templates 应 56 (+7 flow v8.0.5 +2 swimlane v8.0.9 +1 LR v8.1.0 +4 standard flows v8.1.4): {len(jsons)}")
         sys.path.insert(0, SCRIPT_DIR)
         import gen_figure
         self.assertGreaterEqual(len(gen_figure.GENERATORS) - 3, 40)
@@ -10285,6 +10285,202 @@ class TestV80101PortMargin(unittest.TestCase):
             if side == "h" and not (x0 + 0.12 - 1e-6 <= pt[0] <= x1 - 0.12 + 1e-6):
                 bad.append(f"{name} {edge} 在 {nid} 顶/底边 x={pt[0]:.2f}（框 x[{x0:.2f},{x1:.2f}]）")
         self.assertEqual(bad, [], "出入点离框角不足 0.12in：\n" + "\n".join(bad))
+
+
+class TestV80105(unittest.TestCase):
+    """v8.1.5 --flow-hops 交叉跳线（默认 off）：
+
+    ① off（默认）与不带旗标逐字节相同（基线零变化）；
+    ② on 时决策模板（含旁路线交叉）stderr 报告 ≥1 处跳线，且 PNG 与 off 不同；
+    变异验证：把渲染循环里的跳点查找禁用后 ② 失败（跳线数变 0）。
+    """
+
+    _TPL = "flow_decision-antiinfective"
+
+    @classmethod
+    def setUpClass(cls):
+        cls.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cls.td = tempfile.mkdtemp(prefix="af815_")
+        outs = {}
+        for tag, extra in (("off_none", []), ("off_flag", ["--flow-hops", "off"]),
+                           ("on", ["--flow-hops", "on"])):
+            op = os.path.join(cls.td, tag + ".png")
+            r = subprocess.run(
+                [sys.executable, GEN, "-t", "flow", "-d",
+                 os.path.join(cls.root, "templates", cls._TPL + ".json"),
+                 "--gate", "strict", *extra, "-o", op],
+                capture_output=True, text=True, timeout=300)
+            if r.returncode != 0:
+                raise AssertionError(f"{tag} 渲染失败: {r.stderr[-300:]}")
+            outs[tag] = (op, r.stderr)
+        cls.outs = outs
+
+    def test_off_default_byte_identical(self):
+        """不带旗标与 --flow-hops off 逐字节相同（默认即 off）。"""
+        a = io.open(self.outs["off_none"][0], "rb").read()
+        b = io.open(self.outs["off_flag"][0], "rb").read()
+        self.assertEqual(a, b, "off 两种形式应逐字节一致")
+
+    def test_on_reports_and_differs(self):
+        """on 时 stderr 报跳线数 ≥1，且 PNG 与 off 不同。"""
+        err = self.outs["on"][1]
+        m = re.search(r"\[flow-hops\] (\d+) crossing", err)
+        self.assertIsNotNone(m, f"stderr 缺 [flow-hops] 报告：{err[-200:]}")
+        self.assertGreaterEqual(int(m.group(1)), 1, "决策模板应至少 1 处交叉被跳线")
+        a = io.open(self.outs["off_none"][0], "rb").read()
+        b = io.open(self.outs["on"][0], "rb").read()
+        self.assertNotEqual(a, b, "on 与 off 的 PNG 应不同（跳弧改变像素）")
+
+
+class TestV80104(unittest.TestCase):
+    """v8.1.4 学术标准流程模板包：PRISMA 2020 系统综述 / CONSORT 随机对照试验 /
+    STROBE 队列研究 / STARD 诊断准确性——四套新模板 strict 出图、全部节点有边
+    连接（无孤点）、汇流边不共线重叠（成对竖列进入）。"""
+
+    _TPL = ("flow_review-prisma", "flow_rct-consort",
+            "flow_cohort-strobe", "flow_dx-stard")
+
+    @classmethod
+    def setUpClass(cls):
+        cls.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cls.geom = {}
+        with tempfile.TemporaryDirectory() as td:
+            for name in cls._TPL:
+                gp = os.path.join(td, name + ".json")
+                op = os.path.join(td, name + ".png")
+                r = subprocess.run(
+                    [sys.executable, GEN, "-t", "flow", "-d",
+                     os.path.join(cls.root, "templates", name + ".json"),
+                     "--gate", "strict", "--dump-flow-routes", gp, "-o", op],
+                    capture_output=True, text=True, timeout=300)
+                if r.returncode != 0:
+                    raise AssertionError(f"{name} 渲染失败: {r.stderr[-300:]}")
+                cls.geom[name] = json.load(open(gp, encoding="utf-8"))
+
+    def test_all_nodes_connected(self):
+        """每个节点至少是一条边的端点（模板无孤点）。"""
+        bad = []
+        for name, g in self.geom.items():
+            ids = {b["id"] for b in g["blocks"]}
+            touched = set()
+            for r in g["routes"]:
+                touched.add(r["from"])
+                touched.add(r["to"])
+            miss = ids - touched
+            if miss:
+                bad.append(f"{name}: 孤点 {sorted(miss)}")
+        self.assertEqual(bad, [])
+
+    def test_merge_edges_not_collinear(self):
+        """汇流边（同目标、同形状水平段）不得共线重叠 ≥0.05in。"""
+        bad = []
+        for name, g in self.geom.items():
+            segs = {}
+            for r in g["routes"]:
+                for a, b in zip(r["pts"][:-1], r["pts"][1:]):
+                    if abs(a[1] - b[1]) < 1e-9:      # 水平段
+                        key = round(a[1], 4)
+                        segs.setdefault(key, []).append(
+                            (min(a[0], b[0]), max(a[0], b[0]),
+                             f"{r['from']}->{r['to']}"))
+            for y, lst in segs.items():
+                for i in range(len(lst)):
+                    for j in range(i + 1, len(lst)):
+                        (a0, a1, ea), (b0, b1, eb) = lst[i], lst[j]
+                        ov = min(a1, b1) - max(a0, b0)
+                        if ov >= 0.05 and not (abs(a0 - b0) < 1e-9 and abs(a1 - b1) < 1e-9):
+                            bad.append(f"{name} y={y:.2f} {ea} 与 {eb} 重叠 {ov:.3f}in")
+        self.assertEqual(bad, [])
+
+
+class TestV80103(unittest.TestCase):
+    """v8.1.3 三项图件修正的回归锁：
+
+    ① 箭头三角画在节点之下（zorder 2.5 < 节点 3）——浅斜边上水平进入时翼片
+       探入节点的部分由节点填充盖住（源级锁）。
+    ② 竖直入列离源尖顶点（菱形左右顶点）≥0.09in——入槽错层后不得贴着尖角走
+       （决策模板「Low」边实测 0.045in）。
+    ③ 侧顶点出边后首段 ≥0.09in——拐点不咬住顶点（scRNA-seq pass 边实测
+       0.053in）。
+    变异验证：把入列钳制或箭头 zorder 改回旧值，本类必须失败。
+    """
+
+    _TPL = ("flow_decision-antiinfective", "flow_method-scrnaseq")
+    _POINTED = ("diamond", "hexagon")
+
+    @classmethod
+    def setUpClass(cls):
+        cls.root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        cls.geom = {}
+        with tempfile.TemporaryDirectory() as td:
+            for name in cls._TPL:
+                gp = os.path.join(td, name + ".json")
+                op = os.path.join(td, name + ".png")
+                r = subprocess.run(
+                    [sys.executable, GEN, "-t", "flow", "-d",
+                     os.path.join(cls.root, "templates", name + ".json"),
+                     "--gate", "strict", "--dump-flow-routes", gp, "-o", op],
+                    capture_output=True, text=True, timeout=300)
+                if r.returncode != 0:
+                    raise AssertionError(f"{name} 渲染失败: {r.stderr[-300:]}")
+                cls.geom[name] = json.load(open(gp, encoding="utf-8"))
+
+    def test_head_rendered_under_nodes(self):
+        """箭头三角 zorder=2.5 恰两处（实体头+双回头），不得再高于节点（3）。"""
+        txt = io.open(os.path.join(self.root, "scripts", "af_flow.py"),
+                      encoding="utf-8").read()
+        self.assertEqual(txt.count("lw=0.4, zorder=2.5)"), 2,
+                         "箭头三角应恰两处 zorder=2.5（实体头+双回头）")
+        self.assertNotIn("lw=0.4, zorder=5)", txt,
+                         "箭头三角不得画在节点（zorder 3）之上")
+
+    def test_entry_column_clear_of_source_vertices(self):
+        """末段竖直入列时，列距源尖顶点（bbox 竖边）≥0.09in。"""
+        bad = []
+        for name, g in self.geom.items():
+            bb = {b["id"]: (b["x"], b["y"], b["x"] + b["w"], b["y"] + b["h"])
+                  for b in g["blocks"]}
+            sh = {b["id"]: b.get("shape", "round") for b in g["blocks"]}
+            for r in g["routes"]:
+                if sh.get(r["from"]) not in self._POINTED or r["from"] not in bb:
+                    continue
+                P = r["pts"]
+                (ax_, ay_), (bx_, by_) = P[-2], P[-1]
+                if abs(ax_ - bx_) > 1e-6:
+                    continue                      # 末段不是竖直
+                x0, y0, x1, y1 = bb[r["from"]]
+                cy = (y0 + y1) / 2
+                if not (min(ay_, by_) - 0.02 <= cy <= max(ay_, by_) + 0.02):
+                    continue                      # 末段不经过源顶点高度
+                d_ = min(abs(ax_ - x0), abs(ax_ - x1))
+                if d_ < 0.09:
+                    bad.append(f"{name} {r['from']}->{r['to']} 入列 x={ax_:.3f} "
+                               f"距源顶点 {d_:.3f}in")
+        self.assertEqual(bad, [])
+
+    def test_first_run_clear_of_side_vertex(self):
+        """侧顶点（源中线高度）出边、先横后折时，首段 ≥0.09in。"""
+        bad = []
+        for name, g in self.geom.items():
+            bb = {b["id"]: (b["x"], b["y"], b["x"] + b["w"], b["y"] + b["h"])
+                  for b in g["blocks"]}
+            sh = {b["id"]: b.get("shape", "round") for b in g["blocks"]}
+            for r in g["routes"]:
+                if sh.get(r["from"]) not in self._POINTED or r["from"] not in bb:
+                    continue
+                P = r["pts"]
+                if len(P) < 3:
+                    continue
+                (ax_, ay_), (bx_, by_) = P[0], P[1]
+                x0, y0, x1, y1 = bb[r["from"]]
+                if abs(ay_ - (y0 + y1) / 2) > 0.02:
+                    continue                      # 不是侧顶点高度的出边
+                if abs(ax_ - bx_) < 1e-6:
+                    continue                      # 首段竖直（顶点直下）
+                run = abs(bx_ - ax_) + abs(by_ - ay_)
+                if run < 0.09:
+                    bad.append(f"{name} {r['from']}->{r['to']} 首段 {run:.3f}in")
+        self.assertEqual(bad, [])
 
 
 class TestV80100EdgeLegend(unittest.TestCase):

@@ -1,0 +1,83 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_review-prisma.json --gate strict -o flow_review-prisma.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "系统综述检索与筛选证据流（PRISMA 2020 范式）：识别→去重→筛选→资格评估→纳入，两处排除框（document 形）挂在主链右侧，n 占位由作者填写。n=… 为占位符，非数据。",
+ "layout": "layered",
+ "title": "PRISMA 2020 study identification and selection flow",
+ "nodes": [
+  {
+   "id": "records",
+   "label": "Records identified",
+   "sublabel": "databases and registers",
+   "shape": "terminal"
+  },
+  {
+   "id": "dedup",
+   "label": "Records after duplicates removed",
+   "sublabel": "n = "
+  },
+  {
+   "id": "screen",
+   "label": "Records screened",
+   "sublabel": "title and abstract"
+  },
+  {
+   "id": "excl1",
+   "label": "Records excluded",
+   "sublabel": "at screening (n = )",
+   "shape": "document"
+  },
+  {
+   "id": "reports",
+   "label": "Reports assessed for eligibility",
+   "sublabel": "full text (n = )"
+  },
+  {
+   "id": "excl2",
+   "label": "Reports excluded",
+   "sublabel": "with reasons (n = )",
+   "shape": "document"
+  },
+  {
+   "id": "included",
+   "label": "Studies included",
+   "sublabel": "in review (n = )",
+   "shape": "terminal"
+  }
+ ],
+ "edges": [
+  {
+   "from": "records",
+   "to": "dedup",
+   "thick": true
+  },
+  {
+   "from": "dedup",
+   "to": "screen",
+   "thick": true
+  },
+  {
+   "from": "screen",
+   "to": "excl1",
+   "dashed": true
+  },
+  {
+   "from": "screen",
+   "to": "reports",
+   "thick": true
+  },
+  {
+   "from": "reports",
+   "to": "excl2",
+   "dashed": true
+  },
+  {
+   "from": "reports",
+   "to": "included",
+   "thick": true
+  }
+ ]
+}

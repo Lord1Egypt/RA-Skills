@@ -2,7 +2,7 @@
 slug: data-ai-daily-brief
 displayName: Data AI Daily Brief
 name: data-ai-daily-brief
-version: "5.0.8"
+version: "5.0.9"
 description: >
   Turn any industry into a daily intelligence briefing. An AI agent searches,
   filters, writes, and delivers structured daily briefs to 9 channels — with
@@ -289,6 +289,7 @@ Per `config.json`, push to any of **9 channels** (✅ verified / 📦 community-
 8. **Less is more.** No section lowers its bar for item count; an empty section beats a padded one.
 9. **Push authority tiers.** In automation mode, business-layer review issues may be self-corrected then pushed; a generation-stage crash (Step 4.5 ❌) must be regenerated, never self-patched; in manual mode, issues await user confirmation.
 10. **Source links are Markdown.** Source lines must use `[text](url)`; bare `（http...）` is forbidden (it breaks HTML clickable links).
+11. **Regeneration re-runs the pre-flight.** A section regenerated after a Step 4.5 failure must pass the full pre-flight again before review; assertion output from the discarded draft does not carry over.
 
 ## Failure Handling
 

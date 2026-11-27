@@ -1,7 +1,7 @@
 ---
 name: mentat
 description: Use when an agent needs to quote a token swap, read the MENTAT open order book, check or prepare an OTC escrow deal, or verify a token by its address. MENTAT is the agent-native OTC venue. Escrow settlement on Base (atomic, no admin keys), CoW Protocol relay (agent-signed, MEV-protected), and an XMR route via Wagyu (XMR/USDC both directions, three legs, one proof per leg). Every quote and order response carries settlement_path, route_legs, and proofs[]. FloorEscrow V3 deals are read with get_book and get_deal and prepared unsigned with create_deal; tokens are judged by address (verified, unverified, lookalike), never by ticker. Quotes are free. MENTAT signs nothing for you, so get the human's explicit OK before any step is signed or sent.
-version: 1.8.1
+version: 1.10.1
 metadata:
   openclaw:
     requires:
@@ -280,7 +280,7 @@ What differs from V3:
 - **Taker (fill steps from `get_book` / `get_deal`):** the steps come from a fresh `previewFill(dealId, 0)`. Approve exactly `pay` of the token you pay, then `fill(FillParams)` with `maxPay = pay`, `minReceive = receive`, a 10-minute deadline and no integrator. When you pay WETH, `fill.pay_with_eth` is the one-step alternative: `value = pay`, no approve. `fill.valid_until` is that deadline (or the expiry, if sooner).
 - **Gas:** when a fill pays native ETH to a contract, the fill step carries `gas_hint.add_gas` (200000). Set the gas limit to your wallet's estimate plus that.
 - **USDT on Ethereum** refuses to change one non-zero allowance to another. When yours is neither 0 nor the amount needed, the steps start with `approve(escrow, 0)` (`approve_reset`), or say so in `fill.reset_first`. If Tether turns on USDT's transfer fee, USDT deals show no steps and `create_deal` refuses USDT (`token_fee_on`).
-- **Launch limits** (on MENTAT's surfaces, not in the contracts; they will be raised): $10,000 per deal on Ethereum and on Base, valued in USD. `create_deal` refuses a bigger deal (`over_launch_cap`), and refuses one it can't value (`cannot_value`, retryable). A bigger deal made on the contract directly is still listed, with `over_cap: true` and no fill steps. Ethereum deals last 24 hours at most (`create_deal` with `chain_id: 1`).
+- **Launch limits** (on MENTAT's surfaces, not in the contracts; they will be raised): $10,000 per deal on Ethereum and $50,000 per deal on Base, valued in USD. `create_deal` refuses a bigger deal (`over_launch_cap`), and refuses one it can't value (`cannot_value`, retryable). A bigger deal made on the contract directly is still listed, with `over_cap: true` and no fill steps. Ethereum deals last 24 hours at most (`create_deal` with `chain_id: 1`).
 - **Private relay:** every Ethereum step set carries `submit_via` (Flashbots Protect, `https://rpc.flashbots.net/fast`). Send creates, fills and cancels through it: it keeps them out of the public mempool, so bots can't front-run them.
 - **Statuses** add `refunded`: after expiry anyone may call `refundExpired(dealId)`, which returns exactly the locked amount to the maker. `cancel` also returns exactly the locked amount.
 
@@ -310,14 +310,15 @@ The key cannot withdraw or sweep anything from the escrow (no such function exis
 
 FloorEscrow V3 (`0x8381…6a6d`, web deals) gives the key no special role. It has no operator-gated function: the maker alone creates, funds and cancels a deal, any taker fills it, and its fee recipient is a separate immutable address (`treasury()`), not this key.
 
-No other server code uses the key. `get_quote`, `check_trade`, `get_prices`, `get_route_status`, `get_book` and `get_deal` only read; `create_deal` returns unsigned calldata for the maker's own wallet and signs nothing. The CoW relay never signs: the trader signs, MENTAT forwards the signed order to api.cow.fi. The XMR route talks to Wagyu over HTTPS with an API credential (`WAGYU_INTEGRATOR_KEY`), signs no transaction, and never holds XMR. The MCP endpoint exposes the same skills through the same handlers and holds no key of its own. Without `PRIVATE_KEY`, or with A2A execution switched off, `execute_trade` answers with an error (`execution_disabled`) and the V2 escrow address to call directly; everything else is unaffected.
+No other server code uses the key. `get_quote`, `check_trade`, `get_prices`, `get_route_status`, `get_book`, `get_deal` and `get_market_read` only read; `create_deal` returns unsigned calldata for the maker's own wallet and signs nothing. The CoW relay never signs: the trader signs, MENTAT forwards the signed order to api.cow.fi. The XMR route talks to Wagyu over HTTPS with an API credential (`WAGYU_INTEGRATOR_KEY`), signs no transaction, and never holds XMR. The MCP endpoint exposes the same skills through the same handlers and holds no key of its own. Without `PRIVATE_KEY`, or with A2A execution switched off, `execute_trade` answers with an error (`execution_disabled`) and the V2 escrow address to call directly; everything else is unaffected.
 
 ## Skills
 
 | Skill | Path | What it does |
 |---|---|---|
-| `get_quote` | any | Live quote. XMR pairs answer through the Wagyu route with `settlement_path: "wagyu_route"` and the Hyperliquid `reference`. |
+| `get_quote` | any | Live quote. Listed Base pairs carry `dex_cost` (the DEX price impact at this size) and `protocol_fee_usd`. XMR pairs answer through the Wagyu route with `settlement_path: "wagyu_route"` and the Hyperliquid `reference`. |
 | `get_prices` | — | CoinGecko prices for the escrow and CoW pairs, each with `source` and `observed_at`; guesses flagged `fallback: true`. XMR is priced live at quote time. |
+| `get_market_read` | — | One Hyperliquid perp market (`asset`: `BTC`, `ETH`, `xyz:NVDA`) as numbers plus a short paragraph that only restates them: mark, oracle, 24h change and volume, open interest, funding and which side pays it. Not a forecast and not advice. |
 | `create_xmr_order` | `wagyu_route` | Durable XMR order; returns the funding instruction. |
 | `check_xmr_order` | `wagyu_route` | Three legs and `proofs[]`; needs `order_id` + `to_address`. |
 | `get_route_status` | `wagyu_route` | Live or paused, with the pause deadline and reason. |
@@ -339,15 +340,40 @@ No other server code uses the key. `get_quote`, `check_trade`, `get_prices`, `ge
 | USDbC | `0xd9aAEc86B65D86f6A7B5B1b0c42FFA531710b6CA` |
 | DAI | `0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb` |
 | WETH | `0x4200000000000000000000000000000000000006` |
+| AIXBT | `0x4F9Fd6Be4a90f2620860d680c0d4d5Fb53d1A825` |
+| AVNT | `0x696F9436B67233384889472Cd7cD58A6fB5DF4f1` |
+| AWE | `0x1B4617734C43F6159F3a70b7E06d883647512778` |
+| B3 | `0xB3B32F9f8827D4634fE7d973Fa1034Ec9fdDB3B3` |
+| BNKR | `0x22aF33FE49fD1Fa80c7149773dDe5890D3c76F3b` |
+| BRETT | `0x532f27101965dd16442E59d40670FaF5eBB142E4` |
+| CLANKER | `0x1bc0c42215582d5A085795f4baDbaC3ff36d1Bcb` |
+| DEGEN | `0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed` |
+| EDGE | `0xED6E000dEF95780fb89734c07EE2ce9F6dcAf110` |
+| ELSA | `0x29cC30f9D113B356Ce408667aa6433589CeCBDcA` |
+| FAI | `0xb33Ff54b9F7242EF1593d2C9Bcd8f9df46c77935` |
+| FLOCK | `0x5aB3D4c385B400F3aBB49e80DE2fAF6a88A7B691` |
+| ICNT | `0xE0Cd4cAcDdcBF4f36e845407CE53E87717b6601d` |
+| KTA | `0xc0634090F2Fe6c6d75e61Be2b949464aBB498973` |
+| NOCK | `0x9B5E262cF9bb04869ab40b19AF91D2dc85761722` |
+| O | `0x182FA643E5f29d5EcA75e7b9CF9336A3fe4620b2` |
+| SAPIEN | `0xC729777d0470F30612B1564Fd96E8Dd26f5814E3` |
+| TOSHI | `0xAC1Bd2486aAf3B5C0fc3Fd868558b082a531B2B4` |
+| VIRTUAL | `0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b` |
+| XDP | `0x07b3D902783c3C12b077508c3B5c00113d1291D0` |
+| ZORA | `0x1111111111166b7FE7bd91427724B487980aFc69` |
 | XMR | native XMR, routed via Wagyu (XMR1 `0xbB2057659bD378D17E2E151BB04bdcaA00000000` on Hyperliquid spot) |
 
 Quotes only: ETH, BTC, WBTC, UNI, LINK, AAVE.
 
-The Base rows above are MENTAT's verified list: the only tokens `trust: "verified"` is ever given to, by address.
+The Base rows above are MENTAT's verified list: the only tokens `trust: "verified"` is ever given to, by address. The rows after WETH (added in 1.10.0) are Base tokens where a DEX swap of about $50,000 cost between 1% and 15% when they were measured (Nov 2026). Verified means the address is the real token, not that the token is safe to hold: several of them have admin roles (mint, upgrade, blacklist) in their own contracts.
 
 ## Pricing
 
 Quotes are at real market rates. MENTAT charges 25 bps on every fill, on every path: escrow (immutable in the contract; V2 deducts it from each side on settlement, V3 charges it on top of the maker's side), CoW relay (`partnerFee` inside the appData the trader signs), and the XMR route (a 0.25% integrator fee applied inside Wagyu's quoted amount, so it is already in `to_amount` and reported by Wagyu as `integrator_fee`). On the XMR route `effective_cost_bps` is the all-in number: Wagyu's own costs plus MENTAT's fee.
+
+## DEX cost at size
+
+A DEX pool moves its price as you trade into it, so a large swap gets a worse rate than a small one. Every `get_quote` for a pair of listed Base tokens carries `dex_cost`: what the same swap would cost on Base DEXs right now, at that size, against a swap worth about $100 (two quotes from KyberSwap's aggregator). `cost_pct` and `cost_usd` are that price impact; `protocol_fee_usd` is MENTAT's 25 bps on the same size. A FloorEscrow V3 deal settles at its fixed amounts. `dex_cost` is `{ available: false, reason }` when the aggregator cannot be read in time; it is a number to show, never a verdict. The same figure is free at `GET /api/dex-cost?sell=0x…&buy=0x…&amount=…` (listed tokens only, 30 requests a minute).
 
 ## Endpoints
 
@@ -358,6 +384,8 @@ Quotes are at real market rates. MENTAT charges 25 bps on every fill, on every p
 - REST XMR orders (free): `POST /api/xmr/orders`, `GET /api/xmr/orders/{id}?to_address=0x...`
 - Route status (free): `GET https://api.mentat.market/api/routes`
 - Prices (free): `GET https://api.mentat.market/api/prices`
+- DEX cost at size (free): `GET https://api.mentat.market/api/dex-cost?sell=0x…&buy=0x…&amount=1000` (what the swap would cost on Base DEXs at this size, beside MENTAT's fee)
+- Market read: `GET https://api.mentat.market/api/read?asset=BTC` (`get_market_read`; one Hyperliquid perp market as numbers)
 - MCP (streamable HTTP): `https://api.mentat.market/mcp` (legacy SSE at `/sse` + `/messages`)
 - Public tape (free, read-only): `GET https://api.mentat.market/api/tape?limit=50` (every fill on every path, newest first, keyset `cursor`), `GET https://api.mentat.market/api/tape/{id}` (one receipt), `GET https://api.mentat.market/api/stats` (24h and all-time per path; a stable leg adds volume only by its token address)
 - Open book (free, read-only): `GET https://api.mentat.market/api/book`, `GET https://api.mentat.market/api/book/reference`, `GET https://api.mentat.market/api/makers/{address}`

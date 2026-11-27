@@ -1,6 +1,6 @@
 ---
 name: ugc-testimonial
-version: 1.0.33
+version: 1.0.34
 description: UGC 口播种草视频。商品 + 人设 → 口播脚本与成片，达人自拍质感。当用户说「口播视频」「种草视频」「达人风格」「UGC」「真人推荐」时使用。
 ---
 

@@ -1,0 +1,6 @@
+allowBuilds:
+  '@bundled-es-modules/glob': true
+  style-dictionary: true
+ignoredBuiltDependencies:
+  - "@bundled-es-modules/glob"
+  - "style-dictionary"

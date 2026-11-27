@@ -20,10 +20,7 @@ class PowerPointWindowsRenderer:
         if platform.system().lower() != "windows":
             return False
         try:
-            # Registration probe only: availability must not start an application.
-            import pythoncom  # type: ignore[import-not-found]
-
-            pythoncom.CLSIDFromProgID("PowerPoint.Application")
+            self._powerpoint()
             return True
         except Exception:
             return False
@@ -32,12 +29,10 @@ class PowerPointWindowsRenderer:
         if platform.system().lower() != "windows":
             return None
         try:
-            import win32com.client  # type: ignore[import-not-found]
-
-            # Do not start an idle instance just to read its version, nor Quit
-            # an application that may belong to the user or an active render.
-            app = win32com.client.GetActiveObject("PowerPoint.Application")
-            return str(getattr(app, "Version", "") or "") or None
+            app = self._powerpoint()
+            version = str(getattr(app, "Version", "") or "")
+            app.Quit()
+            return version or None
         except Exception:
             return None
 
@@ -63,20 +58,9 @@ class PowerPointWindowsRenderer:
         images: list[Path] = []
         app = None
         presentation = None
-        version = None
-        status = "failed"
         try:
             app = self._powerpoint()
-            try:
-                version = str(getattr(app, "Version", "") or "") or None
-            except Exception:
-                pass  # Optional metadata must not prevent a document export.
-            # Untitled creates a new copy, even if the source is already open.
-            # Only that returned document belongs to us; the application does
-            # not. Dispatch (and even DispatchEx with singleton COM servers)
-            # is not proof of process ownership, so never Quit it.
-            presentation = app.Presentations.Open(
-                str(pptx_path), ReadOnly=True, Untitled=True, WithWindow=False)
+            presentation = app.Presentations.Open(str(pptx_path), WithWindow=False)
             for index, slide in enumerate(presentation.Slides, start=1):
                 image = slides_dir / f"slide-{index:03d}.png"
                 slide.Export(str(image), "PNG")
@@ -85,14 +69,11 @@ class PowerPointWindowsRenderer:
                 else:
                     errors.append(f"RENDER_IMAGE_MISSING: slide {index}")
             status = "passed" if images and not errors else "failed"
+            return RenderResult(status, self.name, self.version(), None, images, [], errors, elapsed_since(started), len(images))
         except Exception as exc:
-            errors.append(f"RENDER_EXPORT_FAILED: {exc}")
+            return RenderResult("failed", self.name, self.version(), None, images, [], [f"RENDER_EXPORT_FAILED: {exc}"], elapsed_since(started), len(images))
         finally:
             if presentation is not None:
-                try:
-                    presentation.Close()
-                except Exception as exc:
-                    errors.append(f"RENDER_CLOSE_FAILED: {exc}")
-                    status = "failed"
-        return RenderResult(status, self.name, version, None, images, [], errors,
-                            elapsed_since(started), len(images))
+                presentation.Close()
+            if app is not None:
+                app.Quit()

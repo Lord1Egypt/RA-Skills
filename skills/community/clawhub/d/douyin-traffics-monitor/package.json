@@ -1,6 +1,6 @@
 {
   "name": "douyin-traffics-monitor",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "抖音公开数据智能分析工具。支持关键词搜索排序、博主作品抓取、实时热榜获取，适用于短视频营销、竞品分析和热点监控，助力爆款内容策划与流量追踪。",
   "keywords": [
     "douyin",

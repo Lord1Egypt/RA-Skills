@@ -24,20 +24,20 @@ type CharacterRoute = {
 
 function oneOf(path: string, value: unknown, allowed: readonly string[]): void {
   if (value !== undefined && !(typeof value === 'string' && allowed.includes(value))) {
-    throw new Error(`${path} must be one of: ${allowed.join(', ')}`);
+    throw new Error(('' + String(path) + ' must be one of: ' + String(allowed.join(', '))));
   }
 }
 
 function idString(value: unknown, label: string): void {
   if (typeof value !== 'string' || !value.trim() || value.length > 200 || /[\x00-\x1f\x7f]/.test(value)) {
-    throw new Error(`${label} must be a non-empty identifier string`);
+    throw new Error(('' + String(label) + ' must be a non-empty identifier string'));
   }
 }
 
 function idList(value: unknown, label: string, max: number, required: boolean): void {
   if (value === undefined && !required) return;
-  if (!Array.isArray(value) || value.length < 1 || value.length > max) throw new Error(`${label} must be an array of 1 to ${max} IDs`);
-  value.forEach((entry, i) => idString(entry, `${label}[${i}]`));
+  if (!Array.isArray(value) || value.length < 1 || value.length > max) throw new Error(('' + String(label) + ' must be an array of 1 to ' + String(max) + ' IDs'));
+  value.forEach((entry, i) => idString(entry, ('' + String(label) + '[' + String(i) + ']')));
 }
 
 // Speaking-style values accepted by Theta's dashboard (in-app API reference, 2026-11).
@@ -53,7 +53,7 @@ const validateCharacter: Validator = (p) => {
 
 const MESSAGE_TYPES = ['chat', 'action', 'event', 'add_participant', 'remove_participant'] as const;
 const validateSessionMessage: Validator = (p) => {
-  if (!MESSAGE_TYPES.includes(p.type as typeof MESSAGE_TYPES[number])) throw new Error(`type must be one of: ${MESSAGE_TYPES.join(', ')}`);
+  if (!MESSAGE_TYPES.includes(p.type as typeof MESSAGE_TYPES[number])) throw new Error(('type must be one of: ' + String(MESSAGE_TYPES.join(', '))));
   if (p.type === 'chat' || p.type === 'action') {
     idString(p.from_id, 'from_id');
     if (typeof p.content !== 'string' || !p.content.trim()) throw new Error('content must be a non-empty string');
@@ -86,11 +86,11 @@ const validateStoryline = (required: boolean): Validator => (p) => {
 const validateDialog: Validator = (p) => {
   idString(p.npc_id, 'npc_id');
   const refs = p.message_refs;
-  if (!Array.isArray(refs) || refs.length < 1 || refs.length > MAX_GROUPINGS) throw new Error(`message_refs must be an array of 1 to ${MAX_GROUPINGS} references`);
+  if (!Array.isArray(refs) || refs.length < 1 || refs.length > MAX_GROUPINGS) throw new Error(('message_refs must be an array of 1 to ' + String(MAX_GROUPINGS) + ' references'));
   refs.forEach((ref, i) => {
-    if (!ref || typeof ref !== 'object' || Array.isArray(ref)) throw new Error(`message_refs[${i}] must be an object`);
-    idString((ref as Record<string, unknown>).grouping_id, `message_refs[${i}].grouping_id`);
-    idString((ref as Record<string, unknown>).message_id, `message_refs[${i}].message_id`);
+    if (!ref || typeof ref !== 'object' || Array.isArray(ref)) throw new Error(('message_refs[' + String(i) + '] must be an object'));
+    idString((ref as Record<string, unknown>).grouping_id, ('message_refs[' + String(i) + '].grouping_id'));
+    idString((ref as Record<string, unknown>).message_id, ('message_refs[' + String(i) + '].message_id'));
   });
 };
 
@@ -139,15 +139,15 @@ export const characterRoutes: Record<string, CharacterRoute> = {
 function buildPath(route: CharacterRoute, args: Record<string, unknown>): string {
   let path = route.path;
   for (const field of route.fields) {
-    if (typeof args[field] !== 'string' || !(args[field] as string).trim()) throw new Error(`${field} must be a non-empty string`);
-    path = path.replace(`{${field}}`, pathSegment(args[field] as string, field));
+    if (typeof args[field] !== 'string' || !(args[field] as string).trim()) throw new Error(('' + String(field) + ' must be a non-empty string'));
+    path = path.replace(('{' + String(field) + '}'), pathSegment(args[field] as string, field));
   }
   if (route.paginated && (args.page !== undefined || args.number !== undefined)) {
     const page = args.page ?? 1;
     const number = args.number ?? 100;
     if (!Number.isInteger(page) || (page as number) < 1 || (page as number) > 10000) throw new Error('page must be an integer from 1 to 10000');
     if (!Number.isInteger(number) || (number as number) < 1 || (number as number) > 100) throw new Error('number must be an integer from 1 to 100');
-    path += `?${new URLSearchParams({ page: String(page), number: String(number) })}`;
+    path += ('?' + String(new URLSearchParams({ page: String(page), number: String(number) })));
   }
   return path;
 }
@@ -155,7 +155,7 @@ function buildPath(route: CharacterRoute, args: Record<string, unknown>): string
 function netOpts(cfg: ThetaConfig, method: string) {
   if (!cfg.charactersApiKey) throw new Error('THETA_CHARACTERS_API_KEY missing; use a game-scoped key, not an on-demand key');
   return {
-    headers: { Authorization: `Bearer ${cfg.charactersApiKey}` },
+    headers: { Authorization: ('Bearer ' + String(cfg.charactersApiKey)) },
     service: 'theta-characters',
     timeoutMs: cfg.httpTimeoutMs,
     maxRetries: method === 'GET' ? cfg.httpMaxRetries : 0,
@@ -180,8 +180,8 @@ export function characterRequest(cfg: ThetaConfig, name: string, args: Record<st
   if (cfg.dryRun && route.method !== 'GET') {
     return { dryRun: true, method: route.method, path, billable: route.billable === true, payload: redactObject(body ?? {}) };
   }
-  if (route.method !== 'GET') assertApproved(cfg, args.confirm, `theta.characters.${name}`);
-  const url = `${HOST}${path}`;
+  if (route.method !== 'GET') assertApproved(cfg, args.confirm, ('theta.characters.' + String(name)));
+  const url = ('' + String(HOST) + String(path));
   const opts = netOpts(cfg, route.method);
   if (route.method === 'GET') return getJson(url, opts);
   if (route.method === 'POST') return postJson(url, body, opts);
@@ -254,7 +254,7 @@ function assertOnlyKnownFields(container: Record<string, unknown>, allowed: Set<
     if (allowed.has(key) || PAGINATION_FIELDS.has(key)) continue;
     const value = container[key];
     if (INFO_FIELDS.has(key) && (value === null || typeof value !== 'object')) continue;
-    refuseCount(`response has an unrecognised field (${key.slice(0, 40)})`);
+    refuseCount(('response has an unrecognised field (' + String(key.slice(0, 40)) + ')'));
   }
 }
 
@@ -282,7 +282,7 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 }
 
 function refuseCount(reason: string): never {
-  throw new Error(`Library message ${reason}; refusing to generate without a reliable path count`);
+  throw new Error(('Library message ' + String(reason) + ', refusing to generate without a reliable path count'));
 }
 
 function own(obj: Record<string, unknown>, key: string): unknown {
@@ -306,7 +306,7 @@ function libraryMessageCount(response: unknown): number {
     containers.push(b);
     const present = LIST_ALIASES.filter((key) => own(b, key) !== undefined);
     if (present.length === 0) refuseCount('list is missing');
-    if (present.length > 1) refuseCount(`response has conflicting list fields (${present.join(', ')})`);
+    if (present.length > 1) refuseCount(('response has conflicting list fields (' + String(present.join(', ')) + ')'));
     const value = b[present[0]];
     if (!Array.isArray(value)) refuseCount('list is malformed');
     assertOnlyKnownFields(b, new Set([present[0], 'pagination']));
@@ -320,7 +320,7 @@ function libraryMessageCount(response: unknown): number {
     if (pagination === undefined) continue;
     if (!isPlainObject(pagination)) refuseCount('pagination metadata is malformed');
     for (const key of Object.keys(pagination)) {
-      if (!PAGINATION_FIELDS.has(key)) refuseCount(`pagination metadata has an unsupported field (${key.slice(0, 40)})`);
+      if (!PAGINATION_FIELDS.has(key)) refuseCount(('pagination metadata has an unsupported field (' + String(key.slice(0, 40)) + ')'));
     }
     containers.push(pagination);
   }
@@ -382,39 +382,39 @@ export async function storylineGenerateAll(cfg: ThetaConfig, args: Record<string
   const storylineId = pathSegment(String(args.storylineId ?? ''), 'storylineId');
   const maxPaths = args.maxPaths;
   if (!Number.isInteger(maxPaths) || (maxPaths as number) < 1 || (maxPaths as number) > STORYLINE_PATH_CAP) {
-    throw new Error(`maxPaths must be an integer from 1 to ${STORYLINE_PATH_CAP}: the most dialog paths you approve generating`);
+    throw new Error(('maxPaths must be an integer from 1 to ' + String(STORYLINE_PATH_CAP) + ': the most dialog paths you approve generating'));
   }
   // Refuse unapproved live generation before any request, including the counting reads.
   if (!cfg.dryRun) assertApproved(cfg, args.confirm, 'theta.characters.storyline.generateAll');
   if (cfg.dryRun && !cfg.charactersApiKey) {
-    return { dryRun: true, requiresKeyForPathCount: true, method: 'POST', path: `/storyline/${storylineId}/generate_all`, maxPaths };
+    return { dryRun: true, requiresKeyForPathCount: true, method: 'POST', path: ('/storyline/' + String(storylineId) + '/generate_all'), maxPaths };
   }
   const read = netOpts(cfg, 'GET');
-  const storyline = await getJson(`${HOST}/storyline/${storylineId}`, read);
+  const storyline = await getJson(('' + String(HOST) + '/storyline/' + String(storylineId)), read);
   const groupingIds = storylineGroupingIds(storyline);
   const perGrouping: Array<{ grouping_id: string; library_messages: number }> = [];
   let pathCount = 1;
   const effectiveLimit = Math.min(maxPaths as number, STORYLINE_PATH_CAP);
   for (const groupingId of groupingIds) {
-    const count = libraryMessageCount(await getJson(`${HOST}/grouping/${pathSegment(groupingId, 'grouping_id')}/message/list`, read));
-    if (count < 1) throw new Error(`A grouping has no library messages, so there is nothing to generate: ${JSON.stringify(perGrouping)}`);
+    const count = libraryMessageCount(await getJson(('' + String(HOST) + '/grouping/' + String(pathSegment(groupingId, 'grouping_id')) + '/message/list'), read));
+    if (count < 1) throw new Error(('A grouping has no library messages, so there is nothing to generate: ' + String(JSON.stringify(perGrouping))));
     perGrouping.push({ grouping_id: groupingId, library_messages: count });
     // Overflow-safe incremental cap: compare via division so the running product never exceeds
     // the effective limit, and stop reading as soon as refusal is proven.
     if (pathCount > Math.floor(effectiveLimit / count)) {
-      throw new Error(`This story line exceeds ${effectiveLimit === STORYLINE_PATH_CAP ? `Theta's ${STORYLINE_PATH_CAP}-path cap` : `the approved maxPaths ${maxPaths}`} paths; nothing was generated. Counted so far: ${JSON.stringify(perGrouping)}`);
+      throw new Error(('This story line exceeds ' + String(effectiveLimit === STORYLINE_PATH_CAP ? ('Theta\'s ' + String(STORYLINE_PATH_CAP) + '-path cap') : ('the approved maxPaths ' + String(maxPaths))) + ' paths, nothing was generated. Counted so far: ' + String(JSON.stringify(perGrouping))));
     }
     pathCount *= count;
   }
   const summary = { storylineId: args.storylineId, groupings: perGrouping, pathCount, maxPaths, serviceCap: STORYLINE_PATH_CAP };
   // Final invariant: the product stayed a finite safe integer at or below the approved limit.
   if (!Number.isSafeInteger(pathCount) || pathCount < 1 || pathCount > effectiveLimit) {
-    throw new Error(`Path count failed the final safety check (${pathCount}); refusing to generate`);
+    throw new Error(('Path count failed the final safety check (' + String(pathCount) + '), refusing to generate'));
   }
-  if (cfg.dryRun) return { dryRun: true, method: 'POST', path: `/storyline/${storylineId}/generate_all`, billable: true, ...summary };
+  if (cfg.dryRun) return { dryRun: true, method: 'POST', path: ('/storyline/' + String(storylineId) + '/generate_all'), billable: true, ...summary };
   // Theta skips already-generated paths (idempotent). The preflight count is a snapshot: messages
   // added between the reads and this single POST are not covered. Never retried.
-  const result = await postJson(`${HOST}/storyline/${storylineId}/generate_all`, {}, netOpts(cfg, 'POST'));
+  const result = await postJson(('' + String(HOST) + '/storyline/' + String(storylineId) + '/generate_all'), {}, netOpts(cfg, 'POST'));
   return { ...summary, result };
 }
 
@@ -427,7 +427,7 @@ export function estimateCharactersCost(args: Record<string, unknown>) {
   const tokens = (label: string): number => {
     const v = args[label];
     if (v === undefined) return 0;
-    if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > 1e12) throw new Error(`${label} must be a number from 0 to 1e12`);
+    if (typeof v !== 'number' || !Number.isFinite(v) || v < 0 || v > 1e12) throw new Error(('' + String(label) + ' must be a number from 0 to 1e12'));
     return v;
   };
   const input = tokens('inputTokens');

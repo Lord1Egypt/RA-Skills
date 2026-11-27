@@ -434,7 +434,7 @@ Milestones are ordered by the sequence in `update_milestone_ordering`. If you do
 
 ### Task Status IDs
 
-Task status IDs are project-specific. Use `operately projects get --id p1` to see available statuses for a project.
+Read the project's board with `operately tasks get_board --project-id p1` to find its status IDs.
 
 ### Check-in Frequency
 

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Tech Stack Recommendation"
+  short_description: "Choose a tech stack or one tool for your project, grounded in Tekyous's curated stacks and developer tools catalogue."
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"

@@ -26,7 +26,7 @@
 - Fireworks 作为案例证据，文章主线是推理基础设施层重估。
 - 原创性复核识别已有融资、人物和 Token 工厂报道。
 - 正面处理纯托管无结构性护城河的反方。
-- Gate A 覆盖标题、compute-to-data 比重、中美对比深���、反方引用和 Cursor 位置。
+- Gate A 覆盖标题、compute-to-data 比重、中美对比深度、反方引用和 Cursor 位置。
 - 终稿保留 Cursor 作为证伪变量。
 
 ### Failure signals

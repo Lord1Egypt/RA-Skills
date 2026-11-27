@@ -1,0 +1,11 @@
+{
+  "name": "publicos-agent-scripts",
+  "version": "1.0.0",
+  "description": "The vetted calls of the PublicOS agents guide as runnable files. Keys come from the environment.",
+  "private": true,
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "ethers": "6.17.0"
+  }
+}

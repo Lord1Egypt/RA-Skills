@@ -1,0 +1,26 @@
+{
+  "schema": "uvd/qa_report",
+  "version": "2",
+  "stage": "qa_report",
+  "project_id": "demo",
+  "round": 1,
+  "scores": {
+    "narrative": 8,
+    "consistency": 8,
+    "image_quality": 8,
+    "camera": 8,
+    "pacing": 8,
+    "av_sync": 8,
+    "captions": 8,
+    "platform": 8
+  },
+  "hard_caps": [],
+  "evidence_frames": [
+    "qa/r1/contact.png"
+  ],
+  "issues": [],
+  "pass": true,
+  "upstream": {
+    "08_edl.json": "fc816ca2b012"
+  }
+}

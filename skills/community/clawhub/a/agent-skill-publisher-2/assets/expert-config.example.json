@@ -1,0 +1,24 @@
+{
+  "name": "skill-publisher-expert",
+  "version": "1.0.0",
+  "description": "Creates and packages agent skills and WorkBuddy experts with explicit validation evidence.",
+  "author": {"name": "Example Author", "email": "author@example.com"},
+  "displayName": {"zh": "Agent技能专家", "en": "Skill Expert"},
+  "profession": {"zh": "技能与专家开发", "en": "Skill Builder"},
+  "displayDescription": {
+    "zh": "专注智能体技能与专家制作，支持多平台适配、元数据检查、资源打包和版本发布，提供清晰可验证的交付文件。",
+    "en": "Create agent skills and experts, adapt packages across clients, check metadata and resources, and prepare versioned releases."
+  },
+  "categoryId": "02-Engineering",
+  "license": "MIT",
+  "tags": [
+    {"zh": "技能制作", "en": "Skill Authoring"},
+    {"zh": "专家打包", "en": "Expert Packaging"},
+    {"zh": "多端适配", "en": "Client Adaptation"}
+  ],
+  "quickPrompts": [
+    {"zh": "把我的工作经验整理为可复用技能。", "en": "Turn my workflow experience into a reusable skill."},
+    {"zh": "检查这份 WorkBuddy 专家包的导入错误。", "en": "Check this WorkBuddy expert package for import errors."},
+    {"zh": "为我的技能生成不同客户端的分发包。", "en": "Create client-specific packages for my skill."}
+  ]
+}

@@ -2,7 +2,7 @@
 name: tencent-docs-stable
 slug: tencent-docs-stable
 displayName: Tencent Docs Stable Channel
-version: "1.0.5"
+version: "1.0.6"
 description: "Stable write path for Tencent Docs (腾讯文档) when the MCP connector fails. Use when any Tencent Docs write, upload, push, or paragraph insert fails or times out, when connector init reports no_token, or when long content truncates silently. Trigger keywords: tencent docs upload failed, tdoc_init no_token, 无token, 文档推送失败, 腾讯文档写入失败, 上传失败, connector timeout, insert paragraph failed, smart document push, 腾讯文档初始化失败, 内容被截断, 文档分块. Covers failure classification, token self-check, one retry then direct JSON-RPC fallback via runtime-resolved gateway config, 16KB chunking at paragraph boundaries, and read-back verification."
 description_zh: "腾讯文档写入通道稳定层：MCP 连接器失败（no_token / 超时 / 初始化失败）时的故障分类、token 自检、一次重试后 JSON-RPC 直连兜底（endpoint 运行时从配置解析，不硬编码），长内容 16KB 段落边界分块追加，写入后回读验证。"
 read_when: "Any Tencent Docs (腾讯文档) write, upload, or push fails; connector reports no_token / timeout / init failure; or before pushing content longer than ~8KB through the connector."
@@ -37,6 +37,7 @@ Purpose: make Tencent Docs writes survive connector failures. The MCP connector 
 - Chunk size ≤16KB, split at paragraph boundaries, never mid-paragraph.
 - After fallback, always verify by reading back, not by trusting the write response alone.
 - Never recover from a failure by deleting and recreating a cloud doc: cloud documents may carry the user's manual edits, and the recycle bin has no restore API. Edit in place; if recreation is truly required, export a backup first and get explicit user confirmation.
+- After each write, read the document structure back and confirm the intended block count and headings; a successful write response alone is not treated as proof that the content landed.
 
 ## Failure Handling
 

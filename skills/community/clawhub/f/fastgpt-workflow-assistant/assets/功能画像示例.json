@@ -1,0 +1,23 @@
+{
+  "agent_name": "示例工作流应用功能画像",
+  "version_hint": "替换为实际应用版本，如 V1.2.0",
+  "default_max_latency_ms": 8000,
+  "default_max_answer_chars": 2000,
+  "entity_fallback": "相关对象",
+  "fallback_markers": ["未找到", "无法", "请补充", "稍后"],
+  "forbidden_substrings": ["{{", "}}", "undefined", "NaN", "Bearer "],
+  "invalid_input_pool": ["0.0.0.0", "999.999.999.999", "无效对象", "", "null"],
+  "topics": [
+    {"id": "process", "name": "权限申请流程", "keywords": ["申请", "审批", "权限"], "entities": ["示例用户"]},
+    {"id": "query", "name": "系统状态查询", "keywords": ["接口", "状态", "实时查询"], "entities": ["EXAMPLE-001"]},
+    {"id": "action", "name": "审批后写回", "keywords": ["确认", "幂等", "回读"], "entities": ["示例记录"]},
+    {"id": "batch", "name": "批量事件处理", "keywords": ["去重", "限流", "失败恢复"], "entities": ["EVENT-001"]}
+  ],
+  "question_templates": [
+    "请介绍{topic}",
+    "如何处理{topic}？",
+    "{topic}涉及{keyword}时应该注意什么？",
+    "{entity}在{topic}中是什么角色？",
+    {"template": "请处理{invalid}", "category": "invalid-input", "expected_behavior": "fallback"}
+  ]
+}

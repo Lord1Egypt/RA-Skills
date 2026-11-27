@@ -1,5 +1,15 @@
 # TikTok用户需求洞察与产品机会分析 更新日志
 
+## 1.1.3
+
+- 新增 `references/faq.md`；SKILL 写入 Windows cmd/PowerShell 双壳例与「cmd 只用双引号」。
+- CLI 支持 `--json-args`（与传统 flag 互斥；键名用 `keyword`/`url`/`sort` 等）；`parseCliArgs` 统一入口；SKILL/faq 补例。
+- 落盘开关统一为 `GUAIKEI_ENABLE_LOG=1` 或 CLI `--save`；废弃 `TT_GUAIKEI_ENABLE_LOG`。
+- `backendCodes`：在余额判断之后将裸 `errcode === 14` 稳定映射为 `PLAN_LIMIT`；搜索余额官方码 `16` 稳定映射为 `INSUFFICIENT_BALANCE`。
+- 按 path 区分接口：搜索侧裸 `errcode === 15` 不再标为余额不足（现行后端搜索余额为 16；查价失败为 1）；修正 `request.js` 过时注释。
+- 搜索侧裸 `errcode === 2`（插入失败）不再映射为 `RATE_LIMITED`；统一创建重试口径（注释 / readme：频控等稳定业务码不重试）。
+- stdout 信封顶层可选 `cost`（透传取数接口花费估算；错误省略）。
+
 ## 1.1.2
 
 - 链接 tidy 首尾 scrub 补齐中文引号/书名号等，避免 `「」` 粘在 `@user/video/id` 后误判。

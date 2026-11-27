@@ -1,6 +1,6 @@
 # Safe-Skill Advisor
 
-**Version:** 1.6.0  
+**Version:** 1.8.0  
 **Author:** Crystaria (with Paw and Kyle)
 
 ---
@@ -9,11 +9,19 @@
 
 A security advisor skill that protects you from malicious skills.
 
+Since v1.8.0 the skill has **two independent modules** behind one conversational entry point:
+
+| Module | Answers |
+|---|---|
+| **Security Advisor** | "Is this skill safe? How do I check? What if it is malicious?" |
+| **Utility Assessment** | "Is this skill actually worth installing? What does it add over a plain model?" |
+
 **Core Value:**
 - ⚠️ Latest security risk warnings
 - 🔧 Professional security tool recommendations
 - ✅ 30-second quick self-check checklist
 - 📚 Security best practices guidance
+- 🧪 Utility assessment of a ClawHub skill from its public material
 
 **Applicable Scenarios:**
 - Before installing new skills
@@ -50,6 +58,42 @@ How to check if a skill is safe?
 ```
 I found a suspicious skill, what should I do?
 ```
+
+**Ask whether a skill is worth installing (share the link):**
+```
+https://clawhub.ai/<owner>/<skill> — 这个值得装吗？
+```
+→ AI runs Utility Assessment: what it does, what it adds over a plain model, the conditions of
+use, the security picture, and a recommendation with reasons.
+
+---
+
+## 🧪 Skill Utility Assessment (v1.8.0)
+
+Share a ClawHub link and ask whether it is worth installing. The request is routed to a second,
+independent module that reads **public material only** — it never installs or runs the target skill.
+
+**What the report contains:**
+
+| Section | Content |
+|---|---|
+| Skill basics | name, author, version, ClawHub link, assessment date |
+| What it does | plain-language summary of the claimed capabilities |
+| Extra value | what it adds over a plain chat model: tools, workflow, data, automation, determinism |
+| Before you install | API keys, third-party accounts, paid services, runtime, configuration, limits |
+| Security | risks found in the public material, with evidence and the unverified parts |
+| Recommendation | worth installing / consider with caution / probably not worth it / cannot judge yet — always with reasons |
+
+**Evidence grading:** every claim is marked *Confirmed* (visible in a public file), *Inferred*
+(conclusion from code or config, not run), or *Unverified* (claimed but unsupported). Static reading
+is never described as a runtime test.
+
+**Boundaries:** ClawHub links only in this version; no installation, no code execution, no access to
+login-protected or private content. If the page cannot be read or the material is incomplete, the
+report says so instead of guessing.
+
+**Security answers are unchanged.** Asking only "is it safe?" still goes to the Security Advisor; the
+two modules never overwrite each other, and a good utility rating never cancels a security warning.
 
 ---
 
@@ -277,5 +321,5 @@ MIT License
 
 ---
 
-**Last updated:** 2026-04-01  
+**Last updated:** 2026-11-26  
 **Based on:** February 2026 ClawHub Security Research

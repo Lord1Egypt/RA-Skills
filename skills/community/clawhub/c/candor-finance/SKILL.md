@@ -110,9 +110,10 @@ team who build Candor read every one, and nothing is saved in the workspace.
 A one-line title is a whole report; `about_action_id` points at the request,
 so say what the logs cannot: what you tried, expected, and did instead.
 
-Send the person to the web portal only for bank connections, subscription
-changes, and account deletion. Anything else Candor cannot do, tell them
-plainly it does not do yet, and do not send them looking for it.
+Send the person to the web portal only for bank connections, sharing in
+Settings > People, subscriptions, and account deletion. Anything else Candor
+cannot do, tell them plainly it does not do yet, and do not send them
+looking for it.
 
 With the opening's `product_reports` at `send`, the default, send it once
 the person's task is done and name it in your reply in one line. While
@@ -233,9 +234,8 @@ can be a report in Candor, asked for or not; read Reports below first.
 - [Reports](references/reports.md): an answer worth keeping as a page they
   come back to (a dashboard of what they watch, a projection they can change,
   a review of a period), or an artifact brought into Candor.
-- [Access and recovery](references/access-and-recovery.md): Candor tools
-  missing, an opening that needs an account step, a sync still running, or a
-  broken connection.
+- [Access and recovery](references/access-and-recovery.md): missing tools,
+  account steps, workspace sharing, syncs, or broken connections.
 
 ## Suggested conversations
 

@@ -4,13 +4,12 @@ The model owns the component's visual encoding and geometry. The runtime only
 enforces the contract that makes this freedom deliverable: native objects in
 the declared slot, IR-bound business content, no raster/page-screenshot
 shortcuts, and the visual tokens observed in the user's template.
-An operation's author_script is executable code, not inert template data:
-loading requires operator host opt-in and a reviewed digest outside the plan.
 """
 
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -19,17 +18,19 @@ from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
 from .template_evidence import analyze_template
-from .bespoke_runtime import _load_trusted_module
 
 
 _EMU_PER_INCH = 914400
 
 
 def _load_author_module(script_path: Path) -> ModuleType:
-    module = _load_trusted_module(
-        script_path,
-        f"pptsmith_template_component_{abs(hash(script_path.resolve()))}",
+    spec = importlib.util.spec_from_file_location(
+        f"pptsmith_template_component_{abs(hash(script_path.resolve()))}", script_path,
     )
+    if spec is None or spec.loader is None:
+        raise ValueError("MODEL_TEMPLATE_COMPONENT_SCRIPT_LOAD_FAILED")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
     if not callable(getattr(module, "build", None)):
         raise ValueError("MODEL_TEMPLATE_COMPONENT_BUILD_REQUIRED")
     return module

@@ -12,15 +12,6 @@ Script contract:
   - ``context`` carries {"source_path", "ir_path", "output_dir", "slide_ids"}
   - the script may import python-pptx and the skill's builders/ helpers
 
-Trust boundary:
-  - this is full host Python execution, not an isolated worker or sandbox
-  - the operator must set PPTSMITH_ALLOW_HOST_CODE=1 and
-    PPTSMITH_TRUSTED_SCRIPT_SHA256 to the SHA-256 of reviewed source bytes
-    for this process (an optional sha256: prefix is accepted)
-  - never populate these settings automatically from model output or input data
-  - imports and other code dependencies must also be trusted; only the entry
-    script's bytes are hash-bound, not its complete dependency graph
-
 CLI:
   python3 -m engine refine-code --script refine_cover.py \
       --source doc:markdown:source.md --ir ir.json --output-dir out/
@@ -29,6 +20,7 @@ CLI:
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import sys
 from pathlib import Path
@@ -40,12 +32,15 @@ if str(ROOT) not in sys.path:
 from ppt_qa.render_report import write_render_report  # noqa: E402
 from ppt_qa.verifier import run_render_report, run_structural_inspection  # noqa: E402
 from engine.high_fidelity_guard import content_lock  # noqa: E402
-from engine.bespoke_runtime import _load_trusted_module  # noqa: E402
 
 
 def _load_script(path: Path):
-    module = _load_trusted_module(path, "refine_script")
-    if not callable(getattr(module, "build", None)):
+    spec = importlib.util.spec_from_file_location("refine_script", path)
+    if spec is None or spec.loader is None:
+        raise SystemExit(f"cannot load refine script: {path}")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    if not hasattr(module, "build"):
         raise SystemExit(
             f"refine script must define build(prs, context) -> None; got {path}")
     return module
@@ -70,11 +65,7 @@ def main(argv: list[str] | None = None) -> int:
 
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
-    try:
-        script = _load_script(Path(args.script))
-    except (OSError, ValueError) as exc:
-        print(json.dumps({"ok": False, "stage": "script_authorization", "error": str(exc)}))
-        return 2
+    script = _load_script(Path(args.script))
 
     ir = json.loads(Path(args.ir).read_text(encoding="utf-8"))
     slide_ids = [s["id"] for s in ir.get("slides", [])]

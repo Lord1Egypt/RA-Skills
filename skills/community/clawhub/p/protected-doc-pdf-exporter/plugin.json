@@ -1,0 +1,8 @@
+{
+  "name": "protected-doc-pdf-exporter",
+  "version": "1.0.0",
+  "description": "Universal exporter for protected or restricted online documents and presentations (WeCom Drive, Tencent Docs, Weboffice, Feishu, Baidu Wenku) into clean vector PDFs.",
+  "author": "Nelson-zhou",
+  "license": "MIT",
+  "repository": "https://github.com/Nelson-zhou/protected-doc-pdf-exporter"
+}

@@ -12,7 +12,7 @@ description: >
 
 Zeli (https://zeli.app) mirrors the Hacker News front page, adds an AI summary
 and key quote to every story, and translates everything into 7 languages.
-All endpoints below are free, unauthenticated, edge-cached, and require no
+All endpoints below are free, unauthenticated, cacheable, and require no
 JavaScript — never use a headless browser for Zeli.
 
 ## The one call that matters
@@ -23,12 +23,12 @@ A daily tech briefing for your human is a single request:
 curl -s https://zeli.app/digest/latest.md
 ```
 
-Returns the current UTC day's entire front page (60-90 stories once the day
-is full) as plain markdown: title, points, comment count, link to the original
-article, link to the HN discussion, and a 3-6 sentence summary per story.
-English lives at the root; for the other six languages prefix the path, e.g.
-`https://zeli.app/ja/digest/latest.md`. Typical size: a few KB early in the
-UTC day, ~65 KB for a full day.
+Returns the hottest Hacker News stories of the past 24 hours, ranked by
+points and refreshed about every 15 minutes, as plain markdown: title,
+points, comment count, link to the original article, link to the HN
+discussion, and a 3-6 sentence summary per story. Typically 50-70 stories,
+40-50 KB. English lives at the root; for the other six languages prefix the
+path, e.g. `https://zeli.app/ja/digest/latest.md`.
 
 Suggested cron: fetch once per morning in your human's timezone, pick the
 3-8 stories matching their interests, deliver titles + one-line summaries +
@@ -39,16 +39,57 @@ reading the full article.
 
 | What | URL | Notes |
 |------|-----|-------|
-| Today's digest (markdown) | `https://zeli.app/digest/latest.md` · `https://zeli.app/{lang}/digest/latest.md` | updates hourly; only the `.md` form exists |
-| Dated digest (markdown) | `https://zeli.app/digest/{YYYY-MM-DD}.md` · `https://zeli.app/{lang}/digest/{YYYY-MM-DD}.md` | immutable after the UTC day ends — cache forever |
+| Past 24 hours (markdown) | `https://zeli.app/digest/latest.md` · `https://zeli.app/{lang}/digest/latest.md` | the hottest stories of the rolling past 24 hours, ranked by points (the `hot24h` list); refreshed about every 15 minutes; only the `.md` form exists |
+| Yesterday's front page (markdown) | `https://zeli.app/digest/yesterday.md` · `https://zeli.app/{lang}/digest/yesterday.md` | archive: the front page of the last complete UTC day (60-90 stories); same body as that day's dated file, which it names in `Link: rel="canonical"`; moves at 00:00 UTC |
+| Dated digest (markdown) | `https://zeli.app/digest/{YYYY-MM-DD}.md` · `https://zeli.app/{lang}/digest/{YYYY-MM-DD}.md` | archive: the front page of one UTC day; the story list is final once the day ends; points and comment counts settle over the next day, then it never changes |
 | One story (markdown) | `https://zeli.app/story/{id}.md` · `https://zeli.app/{lang}/story/{id}.md` | the story page as markdown: titles, points, comments count, summary, key quote, translated comment highlights, citation block, other-language links; available once Zeli has stored the story (usually within an hour of it reaching the list) — before that the HTML page works but the `.md` is a 404, cached only 60 s, so retry later; send `If-None-Match` (ETag) |
-| Front page (JSON) | `https://zeli.app/api/hn-content?type=top&locale={lang}` | fields: `id, title, url, time, by, score, descendants, type, abstract, quote, story_text, image`; also `type=hot24h` / `ask` / `show` |
+| Front page (JSON) | `https://zeli.app/api/hn-content?type=top&locale={lang}` | fields: `id, title, url, time, by, score, descendants, type, abstract, quote, story_text, image`; also `type=hot24h` / `ask` / `show`; refreshed every 15 minutes (`ask` / `show` in ja, ko, de, es, ru: about every 15 hours); `Cache-Control: max-age=300` |
 | Daily AI papers (JSON) | `https://zeli.app/api/daily-papers-content?locale={lang}` | HuggingFace daily papers, translated |
 | Daily RSS | `https://zeli.app/rss.xml` · `https://zeli.app/{lang}/rss.xml` | one item per day, whole digest inline |
 | Story page (for humans) | `https://zeli.app/story/{id}` · `https://zeli.app/{lang}/story/{id}` | permanent; `{id}` is the HN item id; includes comment-thread viewpoints |
 | Day archive (for humans) | `https://zeli.app/digest/{YYYY-MM-DD}` · `https://zeli.app/{lang}/digest/{YYYY-MM-DD}` | permanent |
 
 Field stability promise: existing JSON fields will not be renamed or removed.
+
+## What the responses look like
+
+Front page JSON is an array, highest-ranked first. `time` is Unix seconds;
+`title`, `abstract` and `quote` are in the requested language; `url`, `image`
+and `story_text` appear only where they apply:
+
+```json
+[
+  {
+    "id": 50660180,
+    "title": "AI made self-hosting fun again",
+    "url": "https://janlukas.blog/posts/ai-self-hosting",
+    "time": 1795729665,
+    "by": "jlelse",
+    "score": 287,
+    "descendants": 155,
+    "type": "story",
+    "abstract": "After years of self-hosting without much enthusiasm, …",
+    "quote": "I find it somewhat ironic that AI … is helping me become a little less dependent on those very companies …"
+  }
+]
+```
+
+Every `.md` list is one `##` section per story, highest points first; only
+the `>` header lines differ. A dated day's looks like this:
+
+```markdown
+# Hacker News Daily Digest · 2026-11-27
+
+> 60 front-page stories · language: en
+> Web version: https://zeli.app/digest/2026-11-27
+> About this feed: https://zeli.app/llms.txt · Agent guide: https://zeli.app/skill.md
+
+## 1. A company's culture can be measured by dividing its Slack emoji by the square root of its headcount
+
+▲ 64 · 💬 11 · [original](https://lia.mg/posts/measuring-company-culture-with-slack-emoji/) · [HN](https://news.ycombinator.com/item?id=50659640) · [summary](https://zeli.app/story/50659640)
+
+Engagement surveys and eNPS are corporate séances; a better gauge of culture is …
+```
 
 ## Language codes
 
@@ -62,9 +103,18 @@ build URLs for it.
 
 ## Etiquette
 
-- The digest re-merges hourly and the front page refreshes every 15 minutes.
-  Polling more often than hourly just reads the same cache.
-- Dated digests never change — cache them locally, forever. A story gains
+- `latest.md` and the front-page JSON refresh about every 15 minutes;
+  `yesterday.md` changes once a day. Polling more often than that just reads
+  the same data.
+- Fair use: poll each URL at most once per its refresh interval. Heavier
+  automated use may be rate-limited or blocked without notice.
+- Send a User-Agent that names your tool (e.g. `my-hn-briefing/1.0`), not a
+  copied browser string. Zeli's HTML pages answer 403 to a client whose
+  User-Agent claims Chrome 80+, Firefox 90+ or Safari 16.4+ but which sends
+  neither `Sec-Fetch-Mode` nor `Sec-Fetch-Dest`; the `.md`, `.xml` and JSON
+  endpoints above never apply that check.
+- Dated digests are final about a day after they close — cache them
+  locally, forever, from then on. A story gains
   its translated comment highlights within about a day of submission and is
   stable after that; for a young story, revalidate with `If-None-Match`.
 - Need one story, not the whole day? Fetch its `.md`

@@ -56,16 +56,57 @@ actually provides:
 - **Codex** — no subagent tool, but `codex exec` is a normal command: launch one non-interactive
   child per domain from the shell, each writing to its own `--output-last-message` file, then
   collect the files. Cap the number in flight so the five do not contend.
-- **Anything else, or when a fan-out is unavailable** — run the five **sequentially but
-  separately**, one domain per pass, and do not carry one domain's findings into the next.
+- **Anything else, or when a fan-out is unavailable** — run the five **one after another, each
+  in its own fresh process** (`claude -p` or `codex exec`, one per domain), and do not carry one
+  domain's findings into the next.
 
-That last option is not a consolation prize, and understanding why matters more than the
-mechanism. The reason to split verification was never wall-clock: it is that a single pass asked
-to check entry rules, fares, opening hours, lodging inventory, and seasonality at once gives each
-of them a fifth of its attention, and the thing that gets dropped is whatever is least
-interesting at that moment — which is how a dinner ends up booked at a restaurant that closes at
-17:00. Five sequential focused passes preserve that benefit entirely and cost only time. Five
-domains crammed into one prompt do not, however fast they return.
+Two things make a verifier worth having: attention on one domain, and **eyes that did not write
+the plan**. A single pass asked to check entry rules, fares, opening hours, lodging inventory and
+seasonality at once gives each a fifth of its attention, which is how a dinner ends up booked at a
+restaurant that closes at 17:00. And the conversation that wrote the plan checks its own beliefs:
+the Alicante plan was verified that way, one domain after another inside its own session, and
+passed with a restaurant that no source could find in the city, a "hotel" pin on City Hall, and a
+museum called Tuesday-only against the opening hours in its own source. Fresh checkers given the
+same plan found all three within twenty minutes. So the authoring conversation never verifies its
+own plan, sequentially or otherwise.
+
+<a id="verification-mode"></a>
+The report says which of these it was, in `verification_mode`:
+
+- `independent_agents` — subagents or a Workflow, each starting from a fresh context;
+- `separate_processes` — one `claude -p` / `codex exec` child per domain;
+- `same_session` — the conversation that wrote the plan.
+
+`check_verification` refuses a `verified` save for `same_session` or a missing mode. Without a
+fresh checker, save with `--unverified`: the page then says it was not fact-checked, which is true.
+
+<a id="place-check"></a>
+### Places checked against map data
+
+Before the fan-out, run `python scripts/check_places.py <plan.json> --into`. It needs no model:
+against OpenStreetMap it checks that each map pin is where its label says, that each hotel and
+dining venue can be found near the destination, and how long each walking leg really takes from
+the real hotel. The walking checks in `check_plan_consistency.py` read the plan's own pins and
+minutes, so they pass on a wrong pin; this one does not. It writes a `place_check` block into the
+plan, and a verified save is refused until that block covers the plan's current places.
+
+- `wrong` or `misleading` (a pin on the wrong building, the middle of an airport, a walk over the
+  traveller's limit): fix the plan and run it again. When the map data is what is wrong, set
+  `resolved: true` and a `resolution` saying how you know.
+- `unverifiable` (a venue or hotel OSM cannot find): hand it to `sights_and_hours` or
+  `booking_and_lodging` to confirm from a real listing, then write the resolution. OSM misses many
+  small restaurants, so this is a question, not an accusation. Until it is answered the page lists
+  it as an unconfirmed place.
+- Mainland China: Amap pins are converted from GCJ-02 and checked like the rest. OSM lists few
+  hotels and restaurants there, so set `AMAP_KEY` (a free Amap Web Service key) to look names up on
+  Amap; without it the run says so and most venues come back `unverifiable`.
+- Each hotel it finds is recorded under `place_check.addresses` in the map's own language, and the
+  page prints those as a card to show a taxi driver.
+- Editing a pin, venue or walk leaves it uncovered, so the save asks for a rerun, which keeps the
+  resolutions already written.
+
+It sends place names and coordinates, nothing about the traveller, about one request a second; a
+five-day plan takes under a minute. Amap pins (mainland China, GCJ-02 offset) are skipped.
 
 <a id="prompt-shape"></a>
 ### Prompt shape
@@ -217,8 +258,7 @@ two auditors go in a sibling `audits` array — `{"audit": "consistency"|"comple
 "claims_checked": [...], "findings": [...]}` — with exactly those two names, both required, and
 findings in the same shape as a domain's. They are a separate array rather than two more domains
 because the five check the plan against the outside world and these two check it against itself;
-they are *required* because the schema used to accept five while this reference told you to run
-seven, so the cheapest way past the gate was to delete the two highest-yield agents in the pass.
+they are required because they are the two highest-yield blocks in the pass.
 `verdict` is `confirmed`, `wrong`, `misleading`, or `unverifiable`. `severity` is `critical`,
 `major`, or `minor`. `resolved` is required on `wrong` and `misleading`, and it closes a finding
 only as the JSON literal `true` beside a `resolution` that says what changed in the plan, or that
@@ -298,11 +338,10 @@ after scaffolding changes the digest, and the scaffold has to be run again.
 
 A save that replaces a delivered copy with `--overwrite` compares against that copy's receipt when
 the plan it is given carries none. The receipt is written into the workspace copy, never into the
-file you keep editing, so re-saving your working file over the verified copy used to arrive with no
-receipt and re-stamp the edit as verified.
+file you keep editing, which is why the save compares against the copy it replaces.
 
-Why by section and not by file: until 2026-09-24 the report bound a plan by file name and date only,
-so a day moved from 13:30 to 14:00 after verification re-saved as verified with no banner. A
+Why by section and not by file: a report bound to a plan by file name and date only lets a
+day moved from 13:30 to 14:00 after verification re-save as verified with no banner. A
 whole-file fingerprint would have closed that by making every edit cost the full seven-block pass
 again — the price of swapping one dinner. Per section, only the part that moved is rechecked and
 every other part keeps its verification. A receipt stamped against a different report date binds

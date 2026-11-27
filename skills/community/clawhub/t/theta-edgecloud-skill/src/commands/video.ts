@@ -13,6 +13,6 @@ export const video = {
   videoSearch: (cfg: ThetaConfig, serviceAccountId: string, filters: unknown, operator?: unknown, page?: unknown, number?: unknown) => thetaVideoClient.searchVideos(cfg, serviceAccountId, filters, operator, page, number),
   streamList: (cfg: ThetaConfig, serviceAccountId: string, status?: unknown) => thetaVideoClient.listStreams(cfg, serviceAccountId, status),
   ingestorList: (cfg: ThetaConfig) => thetaVideoClient.listIngestors(cfg),
-  ingestorUnselect: (cfg: ThetaConfig, ingestorId: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, method: 'PUT', path: `/ingestor/${pathSegment(ingestorId, 'ingestorId')}/unselect`, body: {} } : thetaVideoClient.unselectIngestor(cfg, ingestorId, confirm),
+  ingestorUnselect: (cfg: ThetaConfig, ingestorId: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, method: 'PUT', path: ('/ingestor/' + String(pathSegment(ingestorId, 'ingestorId')) + '/unselect'), body: {} } : thetaVideoClient.unselectIngestor(cfg, ingestorId, confirm),
   ingestorSelect: (cfg: ThetaConfig, ingestorId: string, body: Record<string, unknown>, confirm?: boolean) => cfg.dryRun ? redactObject({ dryRun: true, ingestorId, body }) : thetaVideoClient.selectIngestor(cfg, ingestorId, body, confirm)
 };

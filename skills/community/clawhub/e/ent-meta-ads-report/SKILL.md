@@ -1,19 +1,24 @@
 ---
 name: "meta-ads-report"
-description: "Kéo báo cáo chỉ số Meta Ads (Facebook/Instagram) qua Graph API. READ-ONLY: insights, campaign, account, kiểm tra hạn token."
+description: "Kéo báo cáo chỉ số Meta Ads (Facebook/Instagram) qua Graph API. Đọc: insights, campaign, account, kiểm tra hạn token. Ghi: bật/tắt campaign-adset-ad (có xác nhận + dry-run)."
 ---
 
-# Meta Ads Report (READ-ONLY)
+# Meta Ads Report + Control
 
-Kéo chỉ số báo cáo quảng cáo Meta qua **Graph API chính thức** bằng HTTP (curl) — không cần SDK.
+Kéo chỉ số báo cáo quảng cáo Meta qua **Graph API chính thức** bằng HTTP (curl) — không cần SDK. Kèm 1 nhóm lệnh **ghi duy nhất: bật/tắt (ACTIVE/PAUSED)** campaign / adset / ad.
 
-> ⚠️ **Tuyệt đối READ-ONLY.** Skill này CHỈ đọc dữ liệu (insights + danh sách campaign/account). KHÔNG có bất kỳ lệnh tạo/sửa/tắt/xóa ads nào. Không bao giờ gọi POST/DELETE tới Graph API.
+> 🔒 **Giới hạn ghi của skill này (đọc kỹ trước khi làm):**
+> - **CHỈ được đổi `status`** giữa `ACTIVE` và `PAUSED`. Không làm gì khác.
+> - **KHÔNG BAO GIỜ gọi DELETE/archive.** Không đổi ngân sách, bid, target, audience, creative, lịch chạy.
+> - **KHÔNG tạo** campaign/adset/ad mới.
+> - Mọi lệnh ghi PHẢI qua 2 bước: **dry-run in danh sách → người dùng xác nhận → mới gọi thật**. Không tự động tắt/bật theo cảm tính.
+> - Mục 1–6 (đọc báo cáo, chỉ số, xử lý lỗi) vẫn là READ-ONLY tuyệt đối.
 
 ## 1. Cấu hình (environment variables)
 
 | Biến | Bắt buộc | Mô tả |
 |------|----------|-------|
-| `META_ACCESS_TOKEN` | ✅ | Meta access token (User token hoặc System User token), quyền `ads_read` |
+| `META_ACCESS_TOKEN` | ✅ | Meta access token (User token hoặc System User token). Đọc báo cáo: `ads_read`. Bật/tắt quảng cáo: **cần thêm `ads_management`** |
 | `META_AD_ACCOUNT_ID` | ✅ | Ad account ID dạng số (không có prefix `act_`), ví dụ `123456789` |
 
 **Lưu ý bảo mật:**
@@ -143,3 +148,100 @@ curl -s -G "https://graph.facebook.com/v21.0/me/adaccounts" \
 - Nêu rõ **số nào lấy từ đâu** (account/campaign level), **đơn vị VNĐ** nếu tiền tệ VND.
 - Số tự tính (CP/lượt mua, ROAS, CP/tin nhắn) phải ghi rõ là **tự tính**, không phải số Meta trả về.
 - Thiếu dữ liệu → nói thẳng "chưa có / = 0", KHÔNG bịa.
+
+## 7. Bật / tắt quảng cáo (nhóm lệnh GHI duy nhất)
+
+### 7.1 Kiểm tra quyền trước khi làm
+
+```bash
+curl -s -G "https://graph.facebook.com/v21.0/debug_token" \
+  --data-urlencode "input_token=$META_ACCESS_TOKEN" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN" \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['data'].get('scopes'))"
+```
+
+- Không thấy `ads_management` → **báo thẳng với người dùng là chưa bật/tắt được**, không thử rồi báo lỗi mơ hồ.
+- Cách lấy quyền: token mới ở Explorer có tick `ads_read` + `ads_management` (mục 2).
+
+### 7.2 Xem trạng thái hiện tại (GET — luôn làm bước này trước)
+
+```bash
+# campaign
+curl -s -G "https://graph.facebook.com/v21.0/act_$META_AD_ACCOUNT_ID/campaigns" \
+  --data-urlencode "fields=id,name,status,effective_status,objective,daily_budget" \
+  --data-urlencode "limit=200" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN"
+
+# adset trong 1 campaign
+curl -s -G "https://graph.facebook.com/v21.0/{CAMPAIGN_ID}/adsets" \
+  --data-urlencode "fields=id,name,status,effective_status,daily_budget" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN"
+
+# ad trong 1 adset
+curl -s -G "https://graph.facebook.com/v21.0/{ADSET_ID}/ads" \
+  --data-urlencode "fields=id,name,status,effective_status" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN"
+```
+
+**`status` vs `effective_status` — phân biệt rất quan trọng:**
+
+| Field | Nghĩa |
+|---|---|
+| `status` | Trạng thái **do người dùng đặt**: `ACTIVE` / `PAUSED` / `ARCHIVED` / `DELETED` |
+| `effective_status` | Trạng thái **thực tế đang chạy**, tính cả cấp cha + lỗi hệ thống |
+
+Bảng đọc `effective_status` hay gặp:
+
+| Giá trị | Nghĩa | Muốn chạy lại thì phải |
+|---|---|---|
+| `ACTIVE` | Đang chạy | — |
+| `PAUSED` | Bị tạm dừng ở chính nó | bật chính nó |
+| `CAMPAIGN_PAUSED` | Camp cha đang PAUSED | bật campaign |
+| `ADSET_PAUSED` | Adset cha đang PAUSED | bật adset |
+| `PENDING_REVIEW` | Đang chờ Meta duyệt | chờ |
+| `DISAPPROVED` | Bị từ chối | sửa creative (ngoài skill này) |
+| `WITH_ISSUES` | Có lỗi thanh toán/chính sách | xử lý ở TKQC (ngoài skill này) |
+| `ACCOUNT_DISABLED` / `ACCOUNT_PENDING_RISK_REVIEW` | TKQC bị khoá/đang xét | không bật được bằng API |
+| `CAMPAIGN_ENDED` / `ADSET_ENDED` | Hết lịch chạy | đổi lịch (ngoài skill này) |
+
+→ Khi người dùng nói "camp không chạy, bật lại", **luôn đọc `effective_status` trước** để biết bật ở cấp nào. Bật camp mà adset vẫn PAUSED → vẫn không chạy.
+
+### 7.3 Lệnh bật / tắt (POST — bắt buộc qua xác nhận)
+
+```bash
+# tắt
+curl -s -X POST "https://graph.facebook.com/v21.0/{OBJECT_ID}" \
+  --data-urlencode "status=PAUSED" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN"
+
+# bật
+curl -s -X POST "https://graph.facebook.com/v21.0/{OBJECT_ID}" \
+  --data-urlencode "status=ACTIVE" \
+  --data-urlencode "access_token=$META_ACCESS_TOKEN"
+```
+
+`{OBJECT_ID}` là id campaign, adset hoặc ad. Trả về `{"success": true}` là đã nhận.
+
+**Bắt buộc với MỌI lệnh ghi — quy trình 5 bước:**
+
+1. **Xác định đối tượng chính xác:** id + tên + cấp (campaign/adset/ad) + TKQC. Không dùng tên mơ hồ — nếu tên trùng thì liệt kê id cho người dùng chọn.
+2. **Dry-run:** in ra bảng "sẽ đổi: [id] [tên] [cấp] [TKQC] trạng thái hiện tại → trạng thái mới". **Chưa gọi POST.**
+3. **Chờ xác nhận rõ ràng** của người dùng ("ok tắt", "đồng ý"...). Không suy ra từ câu nói chung chung.
+4. **Gọi POST** đúng số object đã duyệt.
+5. **Đọc lại trạng thái** (`status` + `effective_status`) làm bằng chứng, báo lại kèm id.
+
+**Không được làm:**
+- Tắt/bật hàng loạt > 5 object trong 1 lần mà không liệt kê đủ danh sách cho người dùng duyệt.
+- Tự bật lại camp người dùng đã tắt hôm trước (vd camp LIVE nghỉ theo ngày — xem mục 6 ghi chú báo cáo).
+- Gọi POST khi chưa có `ads_management` → sẽ lỗi 200/OAuthException; kiểm ở 7.1 trước.
+- Dùng `DELETE` hay `status=ARCHIVED` để "tắt cho gọn" — mất dữ liệu lịch sử, không khôi phục được như PAUSED.
+
+### 7.4 Lỗi hay gặp khi bật/tắt
+
+| Lỗi | Nguyên nhân | Xử lý |
+|---|---|---|
+| `(#200) Permissions error` | Token thiếu `ads_management` | lấy token mới (7.1) |
+| `(#100) Invalid parameter` | id sai / đổi `status` ở object đã ARCHIVED | kiểm id, không tự ý bỏ archive |
+| `(#2635) You are calling a deprecated version` | sai version Graph API | dùng `v21.0` |
+| Bật ACTIVE mà `effective_status` vẫn `ADSET_PAUSED` | cấp cha đang tắt | bật ở cấp cha trước |
+| Bật ACTIVE mà vẫn `WITH_ISSUES` | lỗi thanh toán/chính sách | báo người dùng — API không sửa được |

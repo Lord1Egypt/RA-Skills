@@ -1,5 +1,27 @@
 # Changelog
 
+## [5.3.7] - 2026-11-26
+
+### Changed
+- One-page prices are stated as exact prices (extra pages, color and signatures add on top), not floors
+- New paragraph under the mail classes: FedEx Express Saver, 2Day and Overnight prices are base estimates with the adjustments listed above already included; the final price, by destination zone (distance) and page count, is shown before it's mailed (`dry_run` returns it first)
+
+## [5.3.6] - 2026-11-26
+
+### Changed
+- USPS Priority Mail is $14.00 for one page (was $13.00); with Signature Confirmation $19.00, with Adult Signature $25.00
+
+## [5.3.5] - 2026-11-26
+
+### Added
+- `certified_priority`: USPS Certified Mail on Priority Mail, $20.00 for one page, usually 1-3 business days, with a USPS tracking number plus proof of mailing and delivery. Restricted Delivery adds $10.00
+
+### Changed
+- `certified` is USPS Certified Mail on First-Class Mail: $12.00 for one page (was $20.00), usually 1-5 business days
+- Certified + Electronic Return Receipt is $20.00 (was $24.00); it adds who signed, the delivery date and the address
+- A 1-page USPS First-Class letter is $2.00 (was $3.00) and Priority Mail $13.00 (was $15.00)
+- FedEx Express Saver, 2Day and Overnight are $7.00 below their carrier baselines (2Day `service_adjustment_cents: -1500`, Overnight `1100`); FedEx Ground is a flat $18.00 for one page
+
 ## [5.3.4] - 2026-11-20
 
 ### Changed

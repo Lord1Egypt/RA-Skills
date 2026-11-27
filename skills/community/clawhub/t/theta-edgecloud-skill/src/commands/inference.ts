@@ -24,7 +24,7 @@ function annotateEndpointReadinessError(error: unknown): never {
       code: 'THETA_DEDICATED_ENDPOINT_UPSTREAM_UNREADY',
       retriable: true,
       message:
-        `Dedicated inference endpoint is not ready upstream (HTTP ${error.status}). ` +
+        ('Dedicated inference endpoint is not ready upstream (HTTP ' + String(error.status) + '). ') +
         'Auth layer may be active while upstream service remains unavailable. ' +
         'Likely platform ingress/backend readiness mismatch; retry or verify endpoint health from Theta dashboard logs.'
     });

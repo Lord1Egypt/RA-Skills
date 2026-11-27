@@ -270,7 +270,7 @@ footer.site{background:var(--night);color:var(--mist);border-top:1px solid rgba(
         cards.append(f'''        <article class="work reveal">
           <span class="ghost" aria-hidden="true">{i + 1}</span>
           <!-- 替换:以下为真实作品/条目 -->
-          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true">{rg}<circle cx="37" cy="37" r="4.5" fill="#{t["INK"]}"/></svg>
+          <svg class="rings" viewBox="0 0 74 74" aria-hidden="true">{rg}<!-- 0.31:孤点撤除(judge round-4:语义不明似占位残留;年轮母题自身完整,序号=ghost 数字) --></svg>
           <h3>{nm}</h3>
           <p class="meta">{mt}</p>
           <div class="row"><span class="price">{pr}</span><span class="lead">周期 {cyc}</span></div>

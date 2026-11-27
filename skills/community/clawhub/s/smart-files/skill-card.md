@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agents use Smart Files to inspect local workspaces, search file contents, find duplicates, summarize file metadata, preview cleanup candidates, and monitor file changes.
+Developers and agents use this skill to inspect workspace files, search file contents, find duplicates, categorize files, preview renames, and monitor file changes.
 
 ### Deployment Geography for Use:
 
@@ -22,39 +22,37 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Recursive scans can read files that contain secrets or sensitive local data.
+Risk: The skill has broad local file-read and monitoring access, and the security evidence says workspace boundaries and security claims should be reviewed before trusted use.
 
-Mitigation: Run the skill only in trusted workspaces and avoid directories that may contain credentials, private documents, or unrelated project data.
+Mitigation: Install only in workspaces where local file reading and monitoring are acceptable, avoid sensitive directories, and review path validation, symlink handling, and scoping before trusted automation.
 
-Risk: Using --snippets prints raw matched content to stdout and may expose it to terminal logs or agent context.
+Risk: Using snippet output can expose raw file contents, including secrets, to terminal logs or agent context.
 
-Mitigation: Leave snippets disabled unless raw content is needed, and review the target directory before enabling --snippets.
+Mitigation: Keep snippets disabled by default and avoid `--snippets` on directories that may contain credentials, private data, or confidential files.
 
-Risk: --force can override the workspace boundary and allow scanning of process-readable external paths.
+Risk: `--force` can permit external-path access and watch-mode operations that persist file metadata to a journal.
 
-Mitigation: Use --force only for intentional external scans and provide the narrowest practical path.
-
-Risk: Watch mode persists file paths, hashes, sizes, timestamps, and change events to memory/smart-files-journal.json.
-
-Mitigation: Treat the journal as persistent workspace metadata and clear it manually when the file activity history should not be retained.
+Mitigation: Avoid `--force` unless external access is intentional, run dry-run previews first, and clear or protect `memory/smart-files-journal.json` when path and hash metadata is sensitive.
 
 ## Reference(s):
 
-- [Smart Files ClawHub page](https://clawhub.ai/jlacroix82/skills/smart-files)
+- [ClawHub skill page](https://clawhub.ai/jlacroix82/skills/smart-files)
+- [README](README.md)
+- [Vetting report](VET-REPORT.md)
 
 ## Skill Output:
 
 **Output Type(s):** [text, shell commands, guidance]
 
-**Output Format:** [Plain text CLI output and Markdown guidance]
+**Output Format:** [Plain text CLI output with optional JavaScript object results when used as a module]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Search snippets are hidden by default; watch mode persists file path, hash, size, timestamp, and change-event metadata.]
+**Other Properties Related to Output:** [Search snippets are hidden by default; results and watch journals may include file paths, hashes, sizes, timestamps, and other local file metadata.]
 
 ## Skill Version(s):
 
-2.2.0 (source: server release evidence, SKILL.md frontmatter, clawhub.yaml, CHANGELOG.txt)
+2.2.3 (source: server release metadata, SKILL.md frontmatter, clawhub.yaml)
 
 ## Ethical Considerations:
 

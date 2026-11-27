@@ -1,0 +1,208 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "assets",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "style_bible",
+    "assets"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "assets"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "style_bible": {
+      "type": "object",
+      "required": [
+        "style",
+        "palette",
+        "lighting",
+        "lens",
+        "negative"
+      ],
+      "properties": {
+        "style": {
+          "type": "string",
+          "minLength": 1
+        },
+        "palette": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lighting": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lens": {
+          "type": "string",
+          "minLength": 1
+        },
+        "negative": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lookdev_frames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "name",
+          "desc",
+          "ref_prompt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "type": {
+            "enum": [
+              "character",
+              "scene",
+              "prop"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "desc": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ref_prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "phrase"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^LOCK-[A-Z0-9\\-]+$"
+                },
+                "phrase": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "applies_to_shots": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_\\-]+$"
+                  }
+                }
+              }
+            }
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "when",
+                "delta"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_\\-]+$"
+                },
+                "when": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "delta": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "ref_images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "view",
+                "path"
+              ],
+              "properties": {
+                "view": {
+                  "enum": [
+                    "anchor_full",
+                    "headshot",
+                    "profile90",
+                    "back",
+                    "detail",
+                    "plate",
+                    "state"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "stale": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "voice": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "tts_voice": {
+                "type": "string"
+              },
+              "tts_prompt": {
+                "type": "string"
+              }
+            }
+          },
+          "approved": {
+            "type": "boolean"
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}

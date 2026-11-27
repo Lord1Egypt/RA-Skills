@@ -1,0 +1,141 @@
+{
+  "_comment": "Copy this file to config.json and fill in your family. config.json is gitignored. The reasoning model is configured in OpenClaw, not here — Homebase is model-agnostic and works with whichever model OpenClaw is set to.",
+
+  "app": {
+    "name": "My Family Homebase",
+    "owner_phone": "+15550001111"
+  },
+
+  "location": {
+    "_comment": "Used for weather lookups (Open-Meteo, no key required) and timezone-aware scheduling.",
+    "city": "City, ST",
+    "latitude": 0.0,
+    "longitude": 0.0,
+    "timezone": "America/Los_Angeles"
+  },
+
+  "whatsapp": {
+    "_comment": "The primary family group is groups[0] — used by the morning briefing, school email monitor, and meal check-in. agent_number is the phone the bridge sends from. Legacy shape (group_id scalar) is still accepted by config_loader for backward compat, but new configs should use groups[].",
+    "groups": [
+      { "id": "YOUR_GROUP_ID@g.us", "name": "Family Group" }
+    ],
+    "agent_number": "+15550000000"
+  },
+
+  "alerts": {
+    "_comment": "Out-of-band failure channel for the claude-runners, surfaced by get_message_targets as alert_webhook and used by notify_out_of_band in claude-runners/_lib/runner.sh when a WhatsApp alert cannot be delivered. It must NOT route through the OpenClaw gateway: every other runner send already does, which makes the gateway a single point of failure for both a message and the warning that the message did not go. A plain HTTPS push (ntfy.sh, or any URL that accepts a POST body) still reaches you when the gateway is what broke. Carries the failure reason only, never message content, so a public relay is acceptable. Leave empty to disable.",
+    "ntfy_url": "https://ntfy.sh/your-private-topic-here"
+  },
+
+  "calendar": {
+    "_comment": "id is the Google Calendar ID (looks like ...@group.calendar.google.com or 'primary'). primary_email_id is your personal Gmail used to filter out personal calendar events from the family briefing.",
+    "id": "primary",
+    "name": "Family Calendar",
+    "primary_email_id": "you@gmail.com"
+  },
+
+  "supported_calendars": [
+    {
+      "_comment": "Optional list of additional Google Calendars to merge in (e.g. a work calendar shared as free/busy-only with your personal Google account). All entries are read using the same OAuth token as calendar.id above — no separate credentials needed as long as the calendar is shared with that account. Each entry needs: name, type ('google'), id (the calendar ID — often the owner's email for a shared primary calendar), enabled.",
+      "name": "Family Calendar",
+      "type": "google",
+      "id": "primary",
+      "enabled": true
+    },
+    {
+      "name": "Work Calendar",
+      "type": "google",
+      "id": "workuser@example.com",
+      "enabled": true
+    }
+  ],
+
+  "family": {
+    "_comment": "members is a list of {name, phone}; both formats (list and phone-keyed dict) are accepted. kids has per-child structured meals and an emoji ('boy'/'girl' map to 👦/👧, anything else to 🧒). Each kid may have 'email_sender' — the teacher/admin email that sends school updates for THIS child specifically. The school email monitor uses this to attribute incoming emails to the right kid; the value must exactly match the From: address (case-insensitive). The 'meals' object has three slots (breakfast, lunch, sides), each with an 'options' array of concrete menu items the planner is allowed to pick from. A slot may instead use 'fixed_dish' + 'rotate_grains' (e.g. always khichdi, rotate the grain). Optional 'constraints' is a list of named rules — currently only 'no_eggs_at_lunch_if_eggs_at_breakfast' is recognized. Items are added incrementally over time via the catalog learning flow; you don't need to enumerate everything up front.",
+    "members": [
+      { "name": "Parent A", "phone": "+15550001111" },
+      { "name": "Parent B", "phone": "+15550002222" }
+    ],
+    "kids": [
+      {
+        "name": "Kid 1",
+        "emoji": "girl",
+        "age_years": 4,
+        "age_desc": "4 yrs",
+        "email_sender": "teacher-a@school.com",
+        "meals": {
+          "breakfast": {
+            "options": ["Scrambled eggs", "Oats", "Jam toast"]
+          },
+          "lunch": {
+            "options": ["Cheese sandwich", "Bread jam"],
+            "constraints": ["no_eggs_at_lunch_if_eggs_at_breakfast"]
+          },
+          "sides": {
+            "options": ["Fruit", "Roasted chana"]
+          }
+        }
+      },
+      {
+        "name": "Kid 2",
+        "emoji": "boy",
+        "age_months": 18,
+        "age_desc": "18 mos",
+        "email_sender": "teacher-b@school.com",
+        "meals": {
+          "breakfast": {
+            "options": ["Soft oats", "Mashed banana", "Soft toast"]
+          },
+          "lunch": {
+            "fixed_dish": "Khichdi",
+            "rotate_grains": ["rice", "quinoa", "brown rice + veggies"]
+          },
+          "sides": {
+            "options": ["Soft fruit"]
+          }
+        }
+      }
+    ]
+  },
+
+  "stores": {
+    "_comment": "Used by the shopping list to group items by store. Add as many keys as you want; the morning briefing knows about indian/bulk/general but the shopping list will route to any key here.",
+    "indian": ["Spencer's", "Patel Brothers"],
+    "bulk":   ["Costco"],
+    "general":["Target", "Walmart"]
+  },
+
+  "school": {
+    "_comment": "email_domains and email_addresses build the Gmail search query for the school email monitor. List EVERY domain the school can mail from, including its software vendor's — these are often several, and they are not guessable from each other. Procare, for example, sends day-to-day messages from one domain and calendar/event invitations from a different one. A sender that is not listed is never fetched, which is silent in a way a dropped email is not: there is no log line anywhere, because nothing was ever read.",
+    "name": "School Name",
+    "email_domains": ["school.com", "notifications.school-vendor.com"],
+    "email_addresses": ["info@school.com"]
+  },
+
+  "bills": {
+    "_comment": "Watches Gmail for bill mail from the given billers within lookback_days. Where a PDF statement is attached its text is extracted via pypdf; where it is not, the email body is used instead, because plenty of billers only ever send a 'your bill is ready, log in to view' notice with nothing attached. Prints structured JSON on stdout for the caller to summarize (consumption + genuine tips pulled from the bill's own content) and post to the primary family WhatsApp group (whatsapp.groups[0]) — one of the jobs permitted to target the family group under CLAUDE.md principle 6. Errors/empty polls stay silent on the group and DM the owner instead, same silence-or-substance contract as the school email monitor. 'sender' is a full mailbox address, not just a domain — some billers send through a shared third-party billing platform, so matching on domain alone could pull in unrelated senders. It must also be the address the INVOICE arrives from: billers commonly send invoices and payment receipts from two different mailboxes, and configuring the receipt one means no bill is ever matched. Find it by searching your own inbox for a past bill and copying the exact From: address. lookback_days must comfortably exceed the longest gap between scheduled runs, or mail arriving just after one run ages out before the next. Non-bill mail from these addresses (outage alerts, marketing, receipts) is matched too and is expected to be recognized and dropped downstream. Set enabled to true once billers[] has at least one real sender.",
+    "enabled": false,
+    "lookback_days": 5,
+    "billers": [
+      { "name": "Electric Co", "sender": "billing@electricco.example.com" }
+    ]
+  },
+
+  "meals": {
+    "include_dinner": true,
+    "dinner_options": [
+      "Dal rice",
+      "Chapati with dal",
+      "Pasta",
+      "Rice and curry",
+      "Soup with bread"
+    ]
+  },
+
+  "briefing": {
+    "_comment": "Time the morning briefing fires (24h). weather and positive_message are feature flags.",
+    "time": "07:00",
+    "weather": true,
+    "positive_message": true
+  }
+}

@@ -9,6 +9,27 @@ First identify the target runtime. Codex and OpenClaw have separate model
 catalogs, configuration, subscription routes, and preset policies. Never apply
 one runtime's defaults or model identifiers to the other.
 
+## OpenClaw
+
+Use the OpenClaw edition of the installed `model-capability-router`, especially
+its `references/openclaw-subscriptions.md`. Install that edition with
+`openclaw skills install @theangrypit/model-capability-router`.
+
+
+Use OpenClaw's live native catalog and controls to check availability:
+
+```text
+/model list
+/models <provider>
+/model status
+```
+
+Resolve the exact provider-qualified model from the active Gateway and agent.
+An available API model is not proof that an existing subscription covers it.
+Preserve the current model and auth profile unless the operator requests a
+change. Use `/model <provider/model> -s` for a session-only selection; `-a` or
+`-g` changes configuration and needs an explicit request.
+
 ## Codex
 
 Use the installed `model-capability-router` as the policy baseline. For
@@ -24,28 +45,6 @@ snapshot. Do not use another locally cached copy when it disagrees with the
 canonical source. Read the selected preset, preserve explicit role bindings,
 and keep role-aware presets separate from pstack global budget options. Never
 silently substitute for an unavailable model or effort.
-
-## OpenClaw
-
-Use the OpenClaw edition of the installed `model-capability-router`, especially
-its `references/openclaw-subscriptions.md`. If it is not installed, read the
-canonical [OpenClaw edition](https://github.com/TheAngryPit/TheAngrySkills/blob/main/skills/core/model-capability-router/references/openclaw-subscriptions.md)
-and [router instructions](https://github.com/TheAngryPit/TheAngrySkills/blob/main/skills/core/model-capability-router/SKILL.md)
-from the repository. Do not use the Codex preset JSON for OpenClaw.
-
-Use OpenClaw's live native catalog and controls to check availability:
-
-```text
-/model list
-/models <provider>
-/model status
-```
-
-Resolve the exact provider-qualified model from the active Gateway and agent.
-An available API model is not proof that an existing subscription covers it.
-Preserve the current model and auth profile unless the operator requests a
-change. Use `/model <provider/model> -s` for a session-only selection; `-a` or
-`-g` changes configuration and needs an explicit request.
 
 ## Shared boundaries
 

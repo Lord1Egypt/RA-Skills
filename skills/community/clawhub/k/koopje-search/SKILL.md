@@ -1,7 +1,7 @@
 ---
 name: koopje-search
 description: Search koopje.ai for Belgian second-hand deals and auctions.
-version: 1.0.23
+version: 1.0.26
 author: Lukas, koopje.ai
 license: MIT
 metadata:
@@ -15,7 +15,7 @@ metadata:
 
 # koopje.ai search API
 
-Search ~155k Belgian second-hand listings and live auctions via the
+Search ~550k Belgian second-hand listings and live auctions via the
 koopje.ai REST API. The index aggregates 2dehands.be, auction houses,
 Troc.com, Think Twice, De Striep Promo, Marktplaats, Zoekertjes.be and Belgian car dealers, plus user ads:
 
@@ -31,7 +31,7 @@ Troc.com, Think Twice, De Striep Promo, Marktplaats, Zoekertjes.be and Belgian c
 | `kringwinkel` | Kringwinkel.be thrift webshop (fixed price) + veilingsite (auction lots); one source, `listing_type` splits them |
 | `user` | user-submitted own ads (live at `https://koopje.ai/<category>/<slug>-<id>`, 30-day expiry) |
 | car-dealer domains | Belgian cars carry their dealer/platform as source: `autoscout24.be`, `gocar.be`, `mazdastock.be`, `vroom.be`, `autohero.com`, `irisautocenter.be`, `autocadre.com` (resolved from listings, never the aggregator) |
-| auction-house slugs | auction lots carry their house as source: `alleveilingen`, `vavato`, `troostwijk`, `auctelia`, `belga-veilingen`, `vlavem`, `auctionport`, `openbare-verkopen`, `bopa`, `hammertime`, `veilbalie`, `komerco`, `lussis`, `bell-auction`, `industrial-auctions`, `appelboom`, `auctim` (house name also in `seller_name`) |
+| auction-house slugs | auction lots carry their house as source: `alleveilingen`, `vavato`, `troostwijk`, `auctelia`, `belga-veilingen`, `vlavem`, `auctionport`, `openbare-verkopen`, `bopa`, `hammertime`, `veilbalie`, `komerco`, `lussis`, `bell-auction`, `industrial-auctions`, `appelboom`, `auctim`, `surplex` (house name also in `seller_name`) |
 
 Every result also carries `listing_type`: `veiling` (any auction house),
 `kringloop` (Troc.com + Kringwinkel shop) or `tweedehands` (everything
@@ -67,14 +67,16 @@ Key parameters (full list in `references/api.md`):
 
 | param | notes |
 |---|---|
-| `q` | required, natural language or keywords (Dutch works best) |
-| `source` | exact origin: `2dehands`, `troc`, `thinktwice`, `strieppromo`, `marktplaats`, `zoekertjes`, `kringwinkel`, a car-dealer domain (`autoscout24.be`, `gocar.be`, …), or an auction-house slug (`vavato`, `troostwijk`, …). Legacy aliases still work: `2dehands` → all tweedehands, `veiling` → all auctions. Default: all sources |
+| `q` | optional, natural language or keywords (Dutch works best). Omit for a browsable catalogue |
+| `source` / `sources` | exact origin: `2dehands`, `troc`, `thinktwice`, `strieppromo`, `marktplaats`, `zoekertjes`, `kringwinkel`, a car-dealer domain (`autoscout24.be`, `gocar.be`, …), or an auction-house slug (`vavato`, `troostwijk`, …). Use repeatable `source` or comma-separated `sources` to combine several. Legacy aliases still work: `2dehands` → all tweedehands, `veiling` → all auctions. Default: all sources |
 | `listing_type` | `tweedehands` (all second-hand), `veiling` (all auction lots) or `kringloop` (thrift stores) — repeat for multiselect, independent of source |
 | `category` | one of the 27 slugs (`computers`, `fietsen`, `boeken`, `verzamelen`, …). Ambiguous queries get an automatic prior (`kaart` → maps/postcards/GPUs by phrase); `resolvedCategory` in the response shows the choice. Pass `category` to override |
 | `type` | `auto` (default), `neural` (semantic), `keyword` |
 | `price_min` / `price_max` | euros |
 | `no_price` | `0` hides listings without a price |
 | `limit` | default 24; max 100 (`keyword`) or 50 (`neural`/`auto`) |
+| `offset` | skip N results; page while `hasMore` is true |
+| `sort` | browse only (`q` empty): `newest`, `ending`, `price_asc`, `price_desc` |
 
 ### Other endpoints
 
@@ -92,9 +94,14 @@ Key parameters (full list in `references/api.md`):
   (Streamable HTTP, JSON-RPC 2.0) with your Bearer key — tools
   `search_listings`, `find_similar`, `get_listing`, `corpus_stats`,
   `list_reminders`, `create_reminder`, `update_reminder`,
-  `delete_reminder`, same params and limits as above. The reminder tools
-  require a key (they appear in the MCP tool list only when the key is
-  sent) and manage the user's herinneringen (watchlist alerts).
+  `delete_reminder`, `get_profile`, `list_saved`, `save_listing`,
+  `remove_saved`, `send_feedback` (noauth, max 5/hour; the matching
+  `POST /v1/feedback` API route is also anonymous) — same index and auth
+  semantics as above.
+  Search works anonymously. The reminder/profile tools require login:
+  an API key, or an OAuth account link in the ChatGPT app; without
+  login they return an account-link challenge. They manage the user's
+  herinneringen (watchlist alerts) and stable MCP profile id.
   `search_listings` also returns a `price_context` block (n, median,
   p25, p75 over comparable asking prices — quote it as asking prices of
   similar ads, never as an appraised market value). Full setup:
@@ -141,7 +148,8 @@ renew or remove a listing on your own initiative.
 `gocar.be`, …), or an auction-house slug — `alleveilingen`,
 `vavato`, `troostwijk`, `auctelia`, `belga-veilingen`, `vlavem`, `auctionport`,
 `openbare-verkopen`, `bopa`, `hammertime`, `veilbalie`, `komerco`,
-`lussis`, `bell-auction`, `industrial-auctions`, `appelboom`, `auctim`), `listing_type`
+`lussis`, `bell-auction`, `industrial-auctions`, `appelboom`, `auctim`,
+`surplex`), `listing_type`
 (`tweedehands` or `veiling`), `thumbnail_url`, `_score` (similarity).
 
 Always follow the user's language and locale; use Dutch when the user

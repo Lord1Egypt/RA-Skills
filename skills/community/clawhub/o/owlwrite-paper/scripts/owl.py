@@ -196,6 +196,29 @@ def build_parser():
     s = sub.add_parser("claim-favorite", help="提交收藏截图领积分")
     s.add_argument("image")
 
+    s = sub.add_parser("patent", help="专利同步检索（search/full/detail/similar/portrait）")
+    s.add_argument("--action", required=True, choices=list(owl_api.PATENT_ACTIONS))
+    s.add_argument("--query", default="", help="search 用：检索词")
+    s.add_argument("--pn", default="", help="full/detail/similar 用：公开号")
+    s.add_argument("--company", default="", help="portrait 用：公司名")
+    s.add_argument("--ds", default="cn", choices=["cn", "all"])
+    s.add_argument("--size", type=int, default=10)
+    s.add_argument("--kind", default="claims",
+                   choices=["claims", "description", "legal", "citation", "full"])
+    s.add_argument("--stat", default="portrait", choices=["portrait", "ration"])
+
+    s = sub.add_parser("patent-report", help="专利异步报告（submit/status/cancel/artifact）")
+    s.add_argument("--op", required=True,
+                   choices=["submit", "status", "cancel", "artifact"])
+    s.add_argument("--run-id", default="", help="status/cancel/artifact 用")
+    s.add_argument("--type", default="novelty", choices=list(owl_api.PATENT_REPORT_TYPES),
+                   help="submit 用：novelty=查新/disclosure=技术交底书等六类")
+    s.add_argument("--title", default="", help="submit 用：报告标题")
+    s.add_argument("--solution", default="", help="submit 用：技术方案文本")
+    s.add_argument("--extra-json", default="{}", help="submit 用：各类型特有入参 JSON")
+    s.add_argument("--url", default="", help="artifact 用：status 返回的下载直链")
+    s.add_argument("--dest", default="", help="artifact 用：本机保存路径")
+
     s = sub.add_parser("init", help="保存 API key（从 stdin 读取；先校验后保存，换账号需 --force）")
     s.add_argument("--path", help="凭据文件路径（默认 ~/.owl_creds.json）")
     s.add_argument("--force", action="store_true",
@@ -382,6 +405,26 @@ def dispatch(args):
         return emit(owl_api.campaign(args.code, key=k, base=b), args)
     if c == "claim-favorite":
         return emit(owl_api.claim_favorite(args.image, key=k, base=b), args)
+    if c == "patent":
+        return emit(owl_api.patent(args.action, args.query, args.pn, args.company,
+                                   args.ds, args.size, args.kind, args.stat,
+                                   key=k, base=b), args)
+    if c == "patent-report":
+        if args.op == "submit":
+            import json as _json
+            try:
+                extra = _json.loads(args.extra_json or "{}")
+            except Exception as _e:
+                raise owl_api.ApiError("bad_extra_json", f"--extra-json 不是合法 JSON：{_e}") from None
+            return emit(owl_api.patent_report_submit(
+                args.type, args.title, args.solution, extra, key=k, base=b), args)
+        if args.op == "status":
+            return emit(owl_api.patent_report_status(args.run_id, key=k, base=b), args)
+        if args.op == "cancel":
+            return emit(owl_api.patent_report_cancel(args.run_id, key=k, base=b), args)
+        if args.op == "artifact":
+            return emit(owl_api.patent_artifact_download(
+                args.run_id, args.url, args.dest, key=k, base=b), args)
     return emit({"error": "unknown_command", "message": c}, args, 2)
 
 

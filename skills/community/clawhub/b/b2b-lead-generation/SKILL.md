@@ -3,7 +3,7 @@ name: b2b-lead-generation
 description: "Aggregate B2B lead-gen skill: customs trade intelligence + global company due-diligence + LinkedIn data. Analyze HS code market distribution/trends/shares, profile a company's trade scale/partners/products/ports, get macro trade overviews and top buyers/suppliers, run company background checks (employees, shareholders/UBO, decision-makers), map LinkedIn networks (colleagues, alumni, career & education).
 
 Trigger: B2B lead generation, customs trade analysis, HS code search, trade area distribution, import export trends, trade percentage by company, company trade statistics, trade partner analysis, macro trade overview, top buyers suppliers, US import data, global company search, company employee list, shareholder UBO, person search, colleague alumni, work experience education history, school detail, due diligence background check, LinkedIn company search, LinkedIn people search, professional network mapping, executive headhunting, overseas lead generation, cross-border supplier sourcing"
-metadata: {"version":"1.0.1","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🎯","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🎯","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # B2B Lead Generation
@@ -123,10 +123,26 @@ python scripts/auth.py --price_info
 
 **Any operation that incurs fees must first inform the user and wait for explicit confirmation in a separate message. Do not execute in the same message as the notification.** When `query_count` exceeds one page, inform the user of the expected number of calls first.
 
+### Plan Billing and Balance Fallback
+
+Search, customs and map calls are **plan-first**: scripts automatically send `"planMode": 2`.
+
+- **Plan unavailable** (no valid plan, or quota exhausted): the script stops before executing the request, prints a line starting with `PLAN_UNAVAILABLE ` (single-line JSON) on stdout, and exits with **code 3**. Never retry automatically.
+- **Ask the user first**: explain the reason in plain language (no plan / quota exhausted, plus the reset time when known), state that continuing will be charged to the API balance (unit price: `python scripts/auth.py --price_info`), then wait for an explicit answer in a separate message.
+- **User agrees**: re-run the same command with `UPKUAJING_PLAN_MODE=1` (PowerShell: `$env:UPKUAJING_PLAN_MODE='1'`) and report `fee` from the response.
+- **User declines**: stop; nothing is executed or charged. Offer three options — retry later / upgrade plan / use balance — and do not ask again in the same turn.
+- **Insufficient balance after switching** (code 95): guide the user to top up and stop; do not retry.
+- **Before a large or batch run**: check quota once with `python scripts/auth.py --plan_quota` (tier limits: `--plan_config`). If `available` is 0 or the target window has `remaining` 0, ask about balance up front instead of making a call that must fail.
+- **On success**: relay the `[套餐] ...` usage line printed on stderr to the user.
+- **Never** switch to balance silently, and never expose internal error codes verbatim.
+
+Full contract: [references/plan-billing.md](references/plan-billing.md)
+
 ## Error Handling
 
 - **API key invalid/non-existent**: check `UPKUAJING_API_KEY` in `~/.upkuajing/.env`
 - **Insufficient balance**: guide user to top up
+- **Plan unavailable (exit code 3 / `PLAN_UNAVAILABLE`)**: explain the reason and ask whether to continue with the API balance; do not retry automatically. See [Plan Billing](references/plan-billing.md)
 - **Invalid parameters**: **must first check the corresponding API doc in `references/`** - get correct parameter names/formats from documentation, do not guess
 - **Skill call errors / abnormal responses**: Explain to the user and, with user confirmation, report to the platform via `python scripts/error_report.py` (see [Report Skill Call Errors](#report-skill-call-errors))
 
@@ -147,6 +163,7 @@ python scripts/auth.py --price_info
 **linkedin** (route: [indexes/linkedin.md](indexes/linkedin.md))
 - [linkedin-company-list](references/linkedin-company-list-api.md) | [linkedin-company-employee-list](references/linkedin-company-employee-list-api.md) | [linkedin-person-list](references/linkedin-person-list-api.md) | [linkedin-person-colleague-list](references/linkedin-person-colleague-list-api.md) | [linkedin-person-alumni-list](references/linkedin-person-alumni-list-api.md) | [linkedin-person-experience-list](references/linkedin-person-experience-list-api.md) | [linkedin-person-education-list](references/linkedin-person-education-list-api.md) | [linkedin-school-detail](references/linkedin-school-detail-api.md)
 - Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- Plan Billing and Balance Fallback: [references/plan-billing.md](references/plan-billing.md)
 
 ## Notes
 

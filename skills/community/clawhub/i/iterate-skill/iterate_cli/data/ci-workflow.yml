@@ -1,0 +1,53 @@
+# Iterate CI workflow template — the run-summary + inline-annotation surface.
+#
+# What this gives you that `iterate doctor` alone did not:
+#   * `iterate report --annotate` pins every failing check as an inline
+#     annotation on the PR's "Files changed" / "Checks" view;
+#   * `iterate report --github-summary` renders the whole report on the
+#     workflow's run-summary page, so nobody has to open the job log.
+#
+# Drop this at `.github/workflows/iterate.yml` (edit the triggers / the
+# install command to taste) and it gates every PR on the project's iterate
+# state. The report step is marked `continue-on-error: true` so the very first
+# PR on a not-yet-onboarded repo shows the report (with a clear "not
+# initialized" finding and the exact `iterate init --yes` fix) instead of just
+# failing the build; flip it to `false` once onboarding is green to turn the
+# report into a hard gate.
+name: iterate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: iterate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  iterate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install iterate-skill
+        run: pip install iterate-skill
+
+      - name: Iterate report (annotations + run summary)
+        continue-on-error: true
+        run: iterate report --annotate --github-summary
+
+      - name: Upload report as an artifact
+        continue-on-error: true
+        run: |
+          mkdir -p iterate-report
+          iterate report --json --out iterate-report/report.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iterate-report
+          path: iterate-report/

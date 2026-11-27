@@ -137,6 +137,17 @@
         "先评估部分提交",
         "不自动 repair"
       ]
+    },
+    {
+      "id": 13,
+      "prompt": "Agent 用 MCP 核对一次 QA 发版，只想知道校验结果和有几个脚本。若宿主还是老 CLI 怎么办？",
+      "expected_output": "按 tools/list 优先单次 flydb_preflight 读取摘要。旧版使用 flydb_validate 与 flydb_plan_migrate。",
+      "files": [],
+      "assertions": [
+        "只读检查不启用写工具",
+        "能取摘要时不重复启动预演",
+        "需要明细且 detailsFile 不可读时使用 flydb_plan_migrate"
+      ]
     }
   ]
 }

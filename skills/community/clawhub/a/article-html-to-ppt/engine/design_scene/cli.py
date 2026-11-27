@@ -7,11 +7,12 @@ import sys
 import uuid
 from collections import Counter
 
-from .authoring import AUTHOR_SCHEMA, apply_updates, compact, expand
+from .authoring import (AUTHOR_SCHEMA, add_page, apply_updates, compact, expand,
+                        remove_page, reorder_pages, set_meta, set_page)
 from .contract import CONTENT, NODE, SCHEMA, validate, versions, walk
 from .pipeline import (REVIEW_SCHEMA, assess, build, build_prefix, deliver, image_request,
                        ingest, new_task, read_assets, review_skeleton, verify_build)
-from .runtime import execution_capabilities, find_tool, renderer_identity
+from .runtime import execution_capabilities, find_tool, installed_fonts, renderer_identity
 from .store import DesignError, Store, canonical, digest, external_bytes, parse_json
 
 ALIASES = {"new_design": "create", "style_transfer": "create"}
@@ -35,8 +36,8 @@ def route(intent="auto", *, template=False, design_target=False, template_use="p
         raise DesignError("ROUTE_CONFLICT: native preservation requires template; explicitly choose --template-use style for redesign")
     if chosen not in {"create", "recreate", "template"}:
         raise DesignError("UNKNOWN_USER_INTENT")
-    return {"intent": chosen, "entrypoint": "engine design" if chosen != "template" else "engine strict-template",
-            "guide": "references/routes/v4-template-route.md" if chosen == "template" else "references/declarative-design.md",
+    return {"intent": chosen, "entrypoint": "engine design" if chosen != "template" else "engine template",
+            "guide": "references/native-template-workflow.md" if chosen == "template" else "references/declarative-design.md",
             "image_generation_required": False,
             "external_target_required": chosen == "recreate",
             "native_template_preservation": chosen == "template",
@@ -118,6 +119,14 @@ def context(task, page_id=None, section="content"):
     return out
 
 
+def _html_surface():
+    from .html_import import browser_capabilities
+    result = {**browser_capabilities(), "command": "html-import", "guide": "references/html-design-authoring.md"}
+    if not result["available"]:
+        result["fallback"] = {"command": "author", "guide": "references/declarative-authoring.md"}
+    return result
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="engine design", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -148,13 +157,38 @@ def main(argv=None):
                       help="require page composition plans and an independent whole-deck review")
     commands = ("ingest", "crop", "validate", "image-request", "build", "status", "review-template",
                 "review", "deliver", "author", "compact", "patch", "context", "inspect", "preflight", "freeze-target",
-                "composition-check")
+                "composition-check", "html-import", "set-meta", "set-page", "add-page", "remove-page", "reorder-pages")
     for command in commands:
         p = sub.add_parser(command)
         p.add_argument("--task-dir", required=True)
         p.add_argument("--full", action="store_true", help="explicit detailed output; default feedback is compact")
         if command == "image-request":
             p.add_argument("--pages", help="comma-separated page IDs; default is all pages")
+        if command == "set-meta":
+            p.add_argument("--brief", help="deck design brief text")
+            p.add_argument("--brief-file", help="task-relative UTF-8 file containing the design brief")
+            p.add_argument("--audience", help="target audience description")
+            p.add_argument("--language", help="deck language tag, e.g. zh-CN")
+            p.add_argument("--target-software", help="target office software name")
+            p.add_argument("--revision-budget", type=int, help="maximum revision rounds (1-10)")
+            p.add_argument("--review-profile", choices=["decorative_business"],
+                           help="enable decorative_business review profile (cannot be downgraded once set)")
+        if command == "set-page":
+            p.add_argument("--page", required=True, help="target page ID")
+            p.add_argument("--notes", help="speaker notes text for this page")
+            p.add_argument("--notes-file", help="task-relative UTF-8 file containing speaker notes")
+            p.add_argument("--composition-file", help="task-relative JSON file containing page composition")
+            p.add_argument("--clear-composition", action="store_true", help="remove declared page composition")
+            p.add_argument("--background", help="6-digit hex slide background color")
+        if command == "add-page":
+            p.add_argument("--page", required=True, help="new page ID")
+            p.add_argument("--after", help="insert immediately after this existing page ID")
+            p.add_argument("--before", help="insert immediately before this existing page ID")
+            p.add_argument("--background", default="FFFFFF", help="6-digit hex slide background color")
+        if command == "remove-page":
+            p.add_argument("--page", required=True, help="existing page ID to remove")
+        if command == "reorder-pages":
+            p.add_argument("--pages", required=True, help="comma-separated permutation of all existing page IDs")
         if command == "freeze-target":
             p.add_argument("--page", required=True)
             p.add_argument("--asset-id", required=True)
@@ -173,6 +207,17 @@ def main(argv=None):
                 p.add_argument("--from-asset", required=True)
         if command in {"author", "patch"}:
             p.add_argument("--file", required=True, help="task-relative JSON input")
+        if command == "html-import":
+            p.add_argument("--page", required=True, help="scene page ID to replace")
+            p.add_argument("--file", required=True, help="task-relative constrained HTML page")
+            p.add_argument("--source-file", action="append",
+                           help="task-relative source text (manuscript, extracted report); repeat for several files")
+            p.add_argument("--source-heading", help="line prefix that starts this page in a single manuscript, e.g. 第06页")
+            p.add_argument("--source-kind", choices=("user", "document"), default="user",
+                           help="provenance kind: user (pasted/manuscript) or document (extracted file)")
+            p.add_argument("--default-source", help="provenance source for records without data-src")
+            p.add_argument("--assume-checked", action="store_true",
+                           help="author asserts every record was checked; only without --source-file")
         if command in {"compact", "review-template"}:
             p.add_argument("--output", help="new task-relative output file (not overwritten)")
         if command == "validate":
@@ -219,11 +264,13 @@ def main(argv=None):
                       "reference_analysis": "host_vision_or_human_required",
                       "model_capabilities": "host_declared_not_detectable_by_local_cli",
                       "render": {x: bool(find_tool(x)) for x in ("soffice", "pdftoppm", "fc-match", "pdffonts", "pdftotext")},
+                      "fonts": installed_fonts(),
+                      "html_design_surface": _html_surface(),
                       "execution": execution_capabilities(), "automatic_visual_approval": False}
         elif args.command == "init":
             mode = ALIASES.get(args.mode, args.mode)
             if mode == "template":
-                raise DesignError("TEMPLATE_ROUTE_REQUIRED: see references/routes/v4-template-route.md")
+                raise DesignError("TEMPLATE_ROUTE_REQUIRED: use engine template; see references/native-template-workflow.md")
             task = new_task(args.task_id, mode=mode, width=args.width, height=args.height, pages=args.pages,
                             author=args.author, audience=args.audience, language=args.language, target_software=args.target_software)
             if args.mode == "style_transfer":
@@ -249,7 +296,8 @@ def main(argv=None):
             result = report if args.full else {k: report[k] for k in ("status", "cache_hit", "report", "missing_tools", "scope") if k in report}
             if not args.full:
                 result.update(faces=len(report.get("samples", [])),
-                              flagged_faces=sum(s["status"] != "passed" for s in report.get("samples", [])))
+                              flagged_faces=sum(s["status"] != "passed" for s in report.get("samples", [])),
+                              untested_glyphs=sum(s.get("untested_glyphs", 0) for s in report.get("samples", [])))
         else:
             with Store(args.task_dir) as store:
                 task = store.json("task.json")
@@ -299,8 +347,110 @@ def main(argv=None):
                     result = {"status": "patched", "task_sha256": versions(candidate)["task"],
                               "affected_page_count": len(affected), "affected_pages": affected[:8],
                               "next": "Build with --parent-build; existing reviews remain stale."}
+                elif args.command == "html-import":
+                    from .html_import import import_html, source_segment
+                    if args.assume_checked and args.source_file:
+                        raise DesignError("ASSUME_CHECKED_CONFLICTS_WITH_SOURCE_FILE")
+                    text = store.read(args.file).decode("utf-8")
+                    source_text = None
+                    files = args.source_file or []
+                    if args.source_heading and len(files) != 1:
+                        raise DesignError("SOURCE_HEADING_NEEDS_ONE_SOURCE_FILE")
+                    if files:
+                        source_text = "\n".join(source_segment(store.read(f).decode("utf-8"), args.source_heading) for f in files)
+                    default_source = args.default_source or (
+                        f"{files[0]} / {args.source_heading or args.page}" if len(files) == 1 else
+                        f"{', '.join(files)} / {args.page}" if files else f"{args.file} / {args.page}")
+                    asset_bytes = read_assets(store, task) if "data-asset" in text else {}
+                    candidate, report, layout, png = import_html(task, args.page, text, default_source=default_source,
+                                                                 source_text=source_text, assume_checked=args.assume_checked,
+                                                                 source_kind=args.source_kind, asset_bytes=asset_bytes,
+                                                                 page_scoped=bool(args.source_heading), source_heading=args.source_heading)
+                    base = f"html-import/{args.page}/{report['html_sha256'][:12]}/"
+                    store.write(base + "page.html", text.encode("utf-8"))
+                    store.put_json(base + "layout.json", layout)
+                    if png:
+                        store.write(base + "preview.png", png)
+                    report.update(evidence=base, preview=base + "preview.png" if png else None)
+                    store.put_json(base + "report.json", report)
+                    if candidate is not None:
+                        store.put_json("history/" + versions(task)["task"] + ".json", task)
+                        store.put_json("task.json", candidate)
+                        save_state(store, candidate, phase="revision_requires_build")
+                        report["task_sha256"] = versions(candidate)["task"]
+                        report["next"] = ("Open the preview, fix the HTML and re-import until it reads well; "
+                                          "then author composition/notes, validate --complete and build.")
+                    result = report if args.full else {
+                        k: report[k] for k in ("status", "page_id", "content_items", "nodes", "objects", "unchecked_count",
+                                               "authored", "composition_reset", "assets_attached_to_page", "preview",
+                                               "evidence", "task_sha256", "browser_exit_warning", "next") if k in report}
+                    if not args.full:
+                        lint_ = report["design_lint"]
+                        result["design_lint"] = {"errors": lint_["errors"], "warnings": lint_["warnings"],
+                                                 "findings": lint_["findings"][:10]}
+                    if not args.full:
+                        result["browser_warning_count"] = len(report["browser_warnings"])
+                        result["browser_warnings"] = report["browser_warnings"][:5]
+                        if "untraced" in report:
+                            result["untraced"] = report["untraced"][:8]
+                        if "coverage" in report:
+                            result["coverage"] = {"scope": report["coverage"]["scope"],
+                                                  "missing_numbers": report["coverage"]["missing_numbers"][:30],
+                                                  "missing_phrase_count": report["coverage"]["missing_phrase_count"],
+                                                  "missing_phrases": report["coverage"]["missing_phrases"][:12]}
                 elif args.command == "context":
                     result = context(task, args.page, args.section)
+                elif args.command == "set-meta":
+                    if args.brief is not None and args.brief_file is not None:
+                        raise DesignError("SET_META_CONFLICT: use either --brief or --brief-file")
+                    brief = store.read(args.brief_file).decode("utf-8") if args.brief_file else args.brief
+                    candidate, updated = set_meta(
+                        task, brief=brief, audience=args.audience, language=args.language,
+                        target_software=args.target_software, revision_budget=args.revision_budget,
+                        review_profile=args.review_profile)
+                    store.put_json("history/" + versions(task)["task"] + ".json", task)
+                    store.put_json("task.json", candidate)
+                    save_state(store, candidate, phase="revision_requires_build")
+                    result = {"status": "updated", "task_sha256": versions(candidate)["task"], "updated": updated}
+                elif args.command == "set-page":
+                    if args.notes is not None and args.notes_file is not None:
+                        raise DesignError("SET_PAGE_CONFLICT: use either --notes or --notes-file")
+                    notes = store.read(args.notes_file).decode("utf-8") if args.notes_file else args.notes
+                    composition = store.json(args.composition_file) if args.composition_file else None
+                    candidate, updated = set_page(
+                        task, args.page, notes=notes, composition=composition,
+                        clear_composition=args.clear_composition, background=args.background)
+                    store.put_json("history/" + versions(task)["task"] + ".json", task)
+                    store.put_json("task.json", candidate)
+                    save_state(store, candidate, phase="revision_requires_build")
+                    result = {"status": "updated", "page_id": args.page,
+                              "task_sha256": versions(candidate)["task"], "updated": updated}
+                elif args.command == "add-page":
+                    candidate, idx = add_page(task, args.page, after=args.after, before=args.before,
+                                              background=args.background)
+                    store.put_json("history/" + versions(task)["task"] + ".json", task)
+                    store.put_json("task.json", candidate)
+                    save_state(store, candidate, phase="revision_requires_build")
+                    result = {"status": "page_added", "page_id": args.page, "index": idx,
+                              "pages": [p["id"] for p in candidate["scene"]["pages"]],
+                              "task_sha256": versions(candidate)["task"]}
+                elif args.command == "remove-page":
+                    candidate, removed = remove_page(task, args.page)
+                    read_assets(store, candidate)
+                    store.put_json("history/" + versions(task)["task"] + ".json", task)
+                    store.put_json("task.json", candidate)
+                    save_state(store, candidate, phase="revision_requires_build")
+                    result = {"status": "page_removed", "page_id": args.page, **removed,
+                              "pages": [p["id"] for p in candidate["scene"]["pages"]],
+                              "task_sha256": versions(candidate)["task"]}
+                elif args.command == "reorder-pages":
+                    ordered = [pid.strip() for pid in args.pages.split(",") if pid.strip()]
+                    candidate = reorder_pages(task, ordered)
+                    store.put_json("history/" + versions(task)["task"] + ".json", task)
+                    store.put_json("task.json", candidate)
+                    save_state(store, candidate, phase="revision_requires_build")
+                    result = {"status": "pages_reordered", "pages": ordered,
+                              "task_sha256": versions(candidate)["task"]}
                 elif args.command == "composition-check":
                     from .composition import composition_diagnostics
                     validate(task)
@@ -361,7 +511,8 @@ def main(argv=None):
                                review_file=args.review_file, report=path, delivery=result.get("delivery"))
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 1 if result.get("status") in {"build_failed", "render_incomplete", "revision_required",
-                                             "font_review_required", "preflight_unavailable"} else 0
+                                             "font_review_required", "preflight_unavailable", "untraced_content",
+                                             "imported_with_lint_errors"} else 0
     except (DesignError, OSError, ValueError, KeyError, TypeError) as exc:
         print(json.dumps({"status": "blocked", "error": str(exc)[:1400]}, ensure_ascii=False))
         return 1

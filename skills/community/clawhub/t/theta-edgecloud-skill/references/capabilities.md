@@ -24,6 +24,10 @@ reasoning into `content`: give it at least 1024 `max_tokens` (default 2048).
 Its catalog price shows 0/0; treat the cost as unknown. `qwen3` keeps its
 streaming job route.
 
+Uploads (privacy): uploading sends the selected file's full contents out of the user's
+environment to Theta's cloud storage. Upload only a file the user has explicitly chosen and
+approved for this request, and tell the user before doing so.
+
 Uploads: `get_upload_url` returns `uploads[field] = {upload_url, filename}`
 (live raw shape `body[field].presigned_url`; legacy npm MCP 0.1.7 expected
 `body.urls`). PUT the bytes with `Content-Type: application/octet-stream`;
@@ -35,7 +39,7 @@ Live public list (verified 2026-10-03 and unchanged on 2026-11-24, 13 services):
 This is a dated snapshot, NOT an allowlist. FLUX, step_video, GLM-5.2,
 GPT-OSS, MiniMax and Llama are retired (`liveStatus` marks them).
 `seedance_2_5` (BytePlus) is high-cost video and needs `confirm:true`; it
-returned 503 "temporarily unavailable" on 2026-10-03. Its duration is 4–30 (the
+returned 503 "temporarily unavailable" on 2026-10-03. Its duration is 4-30 (the
 MCP example value 1 is invalid).
 ESRGAN can report "No instances available" and still record a cost on the
 failed job.
@@ -50,7 +54,8 @@ with the matching `tool_call_id`. Never execute unvalidated model tool arguments
 - `theta.deployments.listVm`: raw VM resource/specification/price catalog.
 - `theta.templates.listStandard`: category `prototyping`, `serving`, or `training`.
 - `theta.templates.listCustom`: `projectId` or configured project.
-- `theta.deployments.list|create|start|stop|delete|routeProbe|validateDisposable`.
+- Deployment commands (each prefixed `theta.deployments.`): list, create, start, stop, delete,
+  routeProbe and validateDisposable.
 - `theta.deployments.startByBaseId`: `baseId`, optional configured `projectId`;
   documented PUT `/deployments/base/{baseId}/start?project_id=...`.
   This is restart of a STOPPED node, not a proven atomic restart of a running one.

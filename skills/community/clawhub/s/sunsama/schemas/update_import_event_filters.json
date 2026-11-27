@@ -1,6 +1,6 @@
 {
   "name": "update_import_event_filters",
-  "description": "Update event import filters",
+  "description": "Replace the filters that decide which calendar events Sunsama does not import into the user's plan. WRITE - this changes what appears in Sunsama from the user's connected calendars from now on. Use it only when the user asked to change those import filters, and show the full new filter list first. It does not change or delete any calendar event.",
   "inputSchema": {
     "type": "object",
     "properties": {

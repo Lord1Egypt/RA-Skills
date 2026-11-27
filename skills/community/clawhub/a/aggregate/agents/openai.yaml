@@ -1,0 +1,4 @@
+interface:
+  display_name: Aggregate
+  icon_small: ./assets/icon.png
+  icon_large: ./assets/icon.png

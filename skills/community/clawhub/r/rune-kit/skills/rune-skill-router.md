@@ -101,7 +101,7 @@ Before intent classification, categorize the request into one of 5 types. This d
 If user says `/rune list`, "what skills do I have", "show all skills", "available skills", or "what can rune do":
 
 1. **Scan installed skills**: glob for `skills/*/skill.md` (core L0-L3) and `extensions/*/PACK.md` (L4 packs)
-2. **Scan paid extensions**: glob for `extensions/pro-*/PACK.md` (Pro/Business packs — only present if purchased)
+2. **Scan paid extensions**: glob for `extensions/pro-*/PACK.md` and `skills/ext-pro-*/SKILL.md` (Pro/Business packs — only present if purchased; `rune setup --tier` installs them as `ext-pro-*` skills)
 3. **Output the catalog** grouped by tier:
 
 ```
@@ -197,11 +197,15 @@ These are rarely invoked directly — they're called by Tier 1/2 skills:
 | `rune-fix.md` | debug, cook | Apply code changes |
 | `rune-preflight.md` | cook | Quality gate |
 | `rune-verification.md` | cook, fix | Run lint/test/build |
-| `rune-hallucination-guard.md` | cook, fix | Verify imports |
-| `rune-completion-gate.md` | cook | Validate claims |
+| `rune-hallucination-guard.md` | cook, fix | Verify imports/APIs in the code exist |
+| `rune-completion-gate.md` | cook, team | Validate agent claims against evidence |
+| `rune-constraint-check.md` | cook, team, audit | Audit HARD-GATE compliance (process rules) |
 | `rune-converge.md` | cook | Spec↔code gap scan (Phase 6.5) |
 | `rune-sentinel-env.md` | cook, scaffold, onboard | Environment pre-flight |
-| `rune-research.md` / `rune-docs-seeker.md` | any | Look up docs |
+| `rune-docs-seeker.md` | any | Version-correct API docs, error messages, migration guides |
+| `rune-research.md` | any | Multi-source web research, comparisons, best practices |
+| `rune-trend-scout.md` | brainstorm, marketing | Market, competitor and trend scans |
+| `rune-problem-solver.md` / `rune-sequential-thinking.md` | debug, plan, brainstorm | Pick a reasoning framework for an ambiguous problem / order known dependent decisions |
 | `rune-session-bridge.md` | cook, team | Save context (in-session state handoff) |
 | `rune-journal.md` | cook, team | Persistent work log within a session |
 | `rune-neural-memory.md` | cook, team, any L1/L2 | Cross-session cognitive persistence via Neural Memory MCP — semantic complement to session-bridge and journal |
@@ -481,7 +485,7 @@ If the request type is `QUESTION` or `EXPLORE` (LITE enforcement):
 ~0 tokens (routing logic is internalized from this document). Cost comes from the skills it routes to, not from skill-router itself. The routing table is loaded once and cached in context.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

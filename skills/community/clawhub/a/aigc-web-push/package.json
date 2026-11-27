@@ -1,7 +1,7 @@
 {
   "name": "aigc-web-push",
   "private": true,
-  "version": "3.6.11",
+  "version": "3.6.12",
   "type": "commonjs",
   "description": "Local module type pin so push.js stays CommonJS under design/ (not an npm publish)."
 }

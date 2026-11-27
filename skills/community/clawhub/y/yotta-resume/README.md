@@ -115,8 +115,8 @@ Choose one of the methods below. Skill files are distributed through **npm**; Gi
 ### Method 1: npm one-liner (recommended)
 
 ```text
-npx -y @yottameta/yotta-resume@0.2.4 --agent <agent-name>
-npx -y @yottameta/yotta-resume@0.2.4 --dir <agent-skills-dir>
+npx -y @yottameta/yotta-resume@0.2.5 --agent <agent-name>
+npx -y @yottameta/yotta-resume@0.2.5 --dir <agent-skills-dir>
 ```
 
 - `--agent <name>` installs to that agent's default user-level skills directory.

@@ -942,6 +942,8 @@ def main() -> int:
                  "property_name": f"{TODO}property {n}", "provider": f"{TODO}provider (must own review_url)",
                  "comparison_platform": f"{TODO}comparison platform", "comparison_checked_at": DATE,
                  "direct_provider": None, "direct_review_url": None, "source_type": "comparison_platform",
+                 # The property's own page when research finds it (booking-html-output.md#exact-links).
+                 "exact_booking_url": None, "exact_booking_provider": None,
                  "checked_at": DATE, "review_url": f"{URL}-property-{n}",
                  "check_in": start.isoformat(), "check_out": end.isoformat(),
                  "guest_count": travellers, "room_count": 1,

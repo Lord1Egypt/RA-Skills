@@ -4,7 +4,7 @@ description: "Use only when explicitly invoked. Design, specify, implement, revi
 metadata:
   language: en
   translation_of: concept-design-cn
-  version: "2.5.4"
+  version: "2.6.0"
 ---
 
 # Concept design
@@ -18,6 +18,7 @@ Start from user needs. Concepts define independent behavior; external synchroniz
 
 ## Core constraints
 
+- Reuse before modeling: reuse [mature capabilities](references/model-criteria.md#mature-capabilities) first; concepts carry only this product's business rules and invariants, and reused components stay behind ports and adapters.
 - Each concept owns state and actions for one purpose; concepts do not invoke one another or read one another's state. External identities carry no internal structure from another concept.
 - The operational principle (OP) illustrates how the purpose is fulfilled through a representative history; it does not replace the full contract or guarantee progress.
 - Composition may restrict behavior but must preserve each concept's contract. Check contracts, OPs, purposes, and application scenarios separately.

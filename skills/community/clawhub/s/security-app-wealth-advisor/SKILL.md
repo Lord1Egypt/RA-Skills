@@ -2,7 +2,7 @@
 name: Bank APP Wealth Advisor Assistant
 slug: bank-app-wealth-advisor
 description: AI-powered bank APP wealth advisory assistant — covers product-suitability matching logic, consultation script drafting, and compliance-checked customer interaction for bank mobile applications. Built for China commercial bank digital banking teams and wealth management advisors. Scope: design-time and review-time artefacts — matching-rule design, script drafting, prohibited-language screening, and suitability workflow design. Out of scope: issuing personalised recommendations to customers, executing orders, accessing or persisting real customer data, and giving tax or legal advice. Keywords: wealth-advisory script drafting, product suitability matching, prohibited-language screening, suitability workflow design, APP recommendation traceability, 银行APP财富顾问, 适当性匹配规则, 理财话术合规审查, 禁止用语筛查, 智能投顾留痕, 资产配置说明.
-version: "3.0.6"
+version: "3.0.7"
 
 capabilities:
   - educational-reference
@@ -23,7 +23,7 @@ capabilities:
 
 
 
-### 银行监管最新动态 [2026-11-19更新]
+### 银行监管最新动态 [2026-11-27更新]
 
 | 动态类型 | 内容摘要 | 影响范围 | 对应话术/系统动作 | 落地验证方式 |
 |---------|---------|---------|-----------------|------------|
@@ -36,7 +36,7 @@ capabilities:
 | 新增·业绩展示 | 展示历史业绩时要求同时呈现比较基准、完整区间与风险指标 | 业绩展示模块 | 禁止只展示表现最好的一段 | 区间与基准同屏展示率 |
 | 新增·测评有效性 | 风险测评过期、代客测评、重复购买不重测等问题被重点关注 | 测评与推荐链路 | 测评有效期到期即阻断，引导重测 | 过期测评阻断率 |
 
-**新动态（截至 2026-11-19）：**
+**新动态（截至 2026-11-27）：**
 - **适当性匹配从"一次测评"走向"持续匹配"**：监管与行业实践均强调风险测评并非一次性动作，产品风险等级与客户风险承受能力的匹配需在每次推荐时校验，超风险购买须有明确提示与客户确认。对推荐引擎的含义是：匹配逻辑必须输出"为什么匹配"的可解释依据，而不是只给一个排序结果。
 - **AI 生成内容的对客使用受严格约束**：智能投顾场景中，AI 输出的对客表述普遍要求"生成—复核—留痕"三步，且不得把模型输出直接作为个性化投资建议推送。本 Skill 的话术模板应始终定位为供顾问参考的草稿。
 - **业绩展示口径趋严**：展示历史业绩时普遍要求同时呈现比较基准、完整区间与风险指标，避免只展示表现最好的一段。
@@ -45,7 +45,7 @@ capabilities:
 
 - 以上为公开信息综述，**具体条文与执行口径以国家金融监督管理总局、中国证监会、中国银行业协会及所在机构合规部门官方最新发布为准**。
 
-> **数据截止**: 2026-11-19 | 来源：国家金融监督管理总局、中国证监会、中国银行业协会、行业公开信息综述
+> **数据截止**: 2026-11-27 | 来源：国家金融监督管理总局、中国证监会、中国银行业协会、行业公开信息综述
 > **声明**: 以上动态供参考，具体以官方最新发布为准
 
 > **English:** AI-powered wealth advisory assistant for bank mobile applications — provides product recommendations, investment consultation, and compliance-compliant customer interaction. Built for digital banking teams.
@@ -519,4 +519,42 @@ This skill provides wealth-advisory **design and review** material for education
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### 2. Investment Consultation Scripts / 投资咨询话术**：
+
+- 话术清单补一条「适当性提示是否经人工确认」的占位核对项，由使用者圈选并留白依据，草稿不代写答复。
+- 为产品要素对照新增一张纸面对照：左列列要素标签，右列留白记录需人工核实的合规表述，不代为匹配。
+
+**### 禁止用语**：
+
+- 禁语清单补一条「条目是否留白待人工核对」的占位标注位，草稿不列举具体违禁表述。
+- 为用语复核新增一行「需人工确认的适用渠道」占位：标注渠道标签，具体文本留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 适当性提示留白 | 投顾人员 + 合规复核人 | 咨询话术清单草稿 | 是否标注待人工确认、未代写答复 | 高 | 纸面对照，话术须人工审核后使用 |
+| 禁语条目占位 | 合规人员 | 用语核对表 | 是否留白待人工核对、未列举具体表述 | 高 | 文档记录，不构成客户答复 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于APP 投顾话术与合规检查的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式对外答复、产品推介与客户触达的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

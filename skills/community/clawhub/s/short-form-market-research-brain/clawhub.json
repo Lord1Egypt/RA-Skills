@@ -1,7 +1,7 @@
 {
   "name": "Virlo Short Form Market Research Brain",
   "slug": "short-form-market-research-brain",
-  "version": "1.36.0",
+  "version": "1.36.1",
   "description": "Your AI agent's brain for short-form video market research. Tap into real-time social intelligence across TikTok, YouTube Shorts, and Instagram Reels: track viral content, discover rising creators, monitor hashtag performance, follow Topic Trends (topics by region) and Content Trends (video formats creators copy), mine 1.4M viral hooks, and get AI-generated niche reports. Powered by the Virlo API.",
   "tagline": "Real-time social intelligence across TikTok, YouTube Shorts, and Instagram Reels",
   "category": "data",

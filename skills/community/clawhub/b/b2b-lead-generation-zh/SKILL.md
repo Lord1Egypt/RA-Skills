@@ -1,7 +1,7 @@
 ---
 name: b2b-lead-generation-zh
 description: "B2B线索生成工具集，聚合海关贸易情报、全球企业深度背调与LinkedIn职业人脉数据。分析HS编码市场分布/趋势/占比、剖析任一公司的贸易规模/伙伴/产品/港口、获取宏观国家级贸易概览与Top买家/供应商、开展公司深度背调（员工、股东/UBO、决策人）并绘制LinkedIn职业人脉图谱（同事、校友、履历与学历）。\n\nTrigger: B2B线索生成, 海关贸易分析, HS编码搜索, 贸易地区分布, 进出口趋势, 公司贸易占比, 企业贸易统计, 贸易伙伴分析, 宏观贸易概览, Top买家供应商, 美国进口数据, 全球企业搜索, 公司员工名单, 股东UBO, 人物搜索, 同事校友, 工作经历学历, 学校详情, 尽职调查背调, LinkedIn找公司, LinkedIn找人, 职业人脉图谱, 高管猎头, 海外线索生成, 跨境供应商寻源"
-metadata: {"version":"1.0.1","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🎯","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🎯","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # B2B 线索生成（Lead Generation）
@@ -121,10 +121,26 @@ python scripts/auth.py --price_info
 
 **任何收费操作必须先告知用户并在单独的消息中等待明确确认，不得在通知的同一消息中执行。** 当 `query_count` 超过一页时，先告知用户预计调用次数。
 
+### 套餐计费与余额降级
+
+搜索/海关/地图接口**默认走套餐**：脚本会自动携带 `"planMode": 2`。
+
+- **套餐不可用**（无有效套餐或额度已用完）：脚本在业务执行前停止，不会产生扣费；stdout 会输出一行以 `PLAN_UNAVAILABLE ` 开头的 JSON，退出码为 **3**。**禁止自动重试**。
+- **先询问用户**：用自然语言说明原因（无套餐 / 额度用完及恢复时间），说明改用余额将按接口定价扣费（单价用 `python scripts/auth.py --price_info` 查询），然后等待用户在独立消息中明确回复。
+- **用户同意**：用同一条命令加环境变量 `UPKUAJING_PLAN_MODE=1` 重跑（PowerShell：`$env:UPKUAJING_PLAN_MODE='1'`），成功后向用户展示 `fee` 扣费信息。
+- **用户拒绝**：本次不执行、不扣费；给出「稍后重试 / 升级套餐 / 使用余额」三个出口，同一轮不要重复弹窗。
+- **改余额后仍余额不足**（95）：提示充值并停止，不再重试。
+- **批量调用前**：先用 `python scripts/auth.py --plan_quota` 预检额度（档位上限用 `--plan_config`）；`available=0` 或目标窗口 `remaining=0` 时，直接先问是否用余额，避免必然失败的调用。
+- **调用成功**：把 stderr 中 `[套餐]` 开头的用量信息转述给用户。
+- **禁止**静默改走余额，**禁止**向用户暴露内部错误码原文。
+
+完整契约见 [references/plan-billing.md](references/plan-billing.md)
+
 ## 错误处理
 
 - **API 密钥无效/不存在**：检查 `~/.upkuajing/.env` 中的 `UPKUAJING_API_KEY`
 - **余额不足**：引导用户充值
+- **套餐不可用（退出码 3 / `PLAN_UNAVAILABLE`）**：说明原因并询问是否改用余额，不要自动重试；参见 [套餐计费与余额降级](references/plan-billing.md)
 - **参数无效**：**必须先查 `references/` 下对应 API 文档**，从文档获取正确参数名/格式，不要猜测
 - **Skill调用异常/响应异常**：先友好告知用户，经用户确认后用 `python scripts/error_report.py` 上报给平台（参见 [上报Skill调用异常](#上报skill调用异常)）
 
@@ -145,6 +161,7 @@ python scripts/auth.py --price_info
 **linkedin**（路由：[indexes/linkedin.md](indexes/linkedin.md)）
 - [linkedin-company-list](references/linkedin-company-list-api.md) | [linkedin-company-employee-list](references/linkedin-company-employee-list-api.md) | [linkedin-person-list](references/linkedin-person-list-api.md) | [linkedin-person-colleague-list](references/linkedin-person-colleague-list-api.md) | [linkedin-person-alumni-list](references/linkedin-person-alumni-list-api.md) | [linkedin-person-experience-list](references/linkedin-person-experience-list-api.md) | [linkedin-person-education-list](references/linkedin-person-education-list-api.md) | [linkedin-school-detail](references/linkedin-school-detail-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

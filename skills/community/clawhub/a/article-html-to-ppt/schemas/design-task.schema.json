@@ -1010,6 +1010,11 @@
                 },
                 "italic": {
                   "type": "boolean"
+                },
+                "ea_family": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
                 }
               },
               "required": [
@@ -1041,6 +1046,11 @@
               "minimum": 0.8,
               "maximum": 3
             },
+            "line_height": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 400
+            },
             "margin": {
               "type": "number",
               "minimum": 0,
@@ -1048,7 +1058,7 @@
             },
             "letter_spacing": {
               "type": "number",
-              "minimum": 0,
+              "minimum": -10,
               "maximum": 20
             },
             "spans": {
@@ -1086,6 +1096,11 @@
                       },
                       "italic": {
                         "type": "boolean"
+                      },
+                      "ea_family": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 500
                       }
                     },
                     "required": [
@@ -1216,6 +1231,21 @@
                   "type": "number",
                   "minimum": 0,
                   "maximum": 20
+                },
+                "fill_alpha": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "stroke_alpha": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 500
                 }
               },
               "required": [],
@@ -1466,6 +1496,21 @@
                   "type": "number",
                   "minimum": 0,
                   "maximum": 20
+                },
+                "fill_alpha": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "stroke_alpha": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "radius": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 500
                 }
               },
               "required": [],
@@ -1546,6 +1591,8 @@
               "enum": [
                 "bar",
                 "column",
+                "stacked_bar",
+                "stacked_column",
                 "line",
                 "pie",
                 "doughnut"
@@ -1573,6 +1620,11 @@
                 },
                 "italic": {
                   "type": "boolean"
+                },
+                "ea_family": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
                 }
               },
               "required": [
@@ -1621,6 +1673,80 @@
               "type": "number",
               "minimum": 10,
               "maximum": 90
+            },
+            "axis": {
+              "type": "object",
+              "properties": {
+                "min": {
+                  "type": "number",
+                  "minimum": -1000000000000.0,
+                  "maximum": 1000000000000.0
+                },
+                "max": {
+                  "type": "number",
+                  "minimum": -1000000000000.0,
+                  "maximum": 1000000000000.0
+                },
+                "major": {
+                  "type": "number",
+                  "minimum": 1e-09,
+                  "maximum": 1000000000000.0
+                },
+                "gridline_color": {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{6}$"
+                },
+                "line_color": {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{6}$"
+                },
+                "label_color": {
+                  "type": "string",
+                  "pattern": "^[0-9A-Fa-f]{6}$"
+                },
+                "label_size": {
+                  "type": "number",
+                  "minimum": 5,
+                  "maximum": 40
+                },
+                "category_padding": {
+                  "type": "boolean"
+                },
+                "number_format": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              },
+              "required": [],
+              "additionalProperties": false
+            },
+            "markers": {
+              "type": "boolean"
+            },
+            "area_series": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "maxItems": 20,
+              "minItems": 0
+            },
+            "gap_width": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 500
+            },
+            "label_position": {
+              "enum": [
+                "above",
+                "below",
+                "center",
+                "outside_end",
+                "inside_end",
+                "best_fit"
+              ]
             }
           },
           "required": [
@@ -1719,6 +1845,11 @@
                 },
                 "italic": {
                   "type": "boolean"
+                },
+                "ea_family": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
                 }
               },
               "required": [
@@ -1748,6 +1879,308 @@
                 "maximum": 10000
               },
               "maxItems": 50,
+              "minItems": 1
+            },
+            "row_heights": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "minimum": 0.1,
+                "maximum": 10000
+              },
+              "maxItems": 200,
+              "minItems": 1
+            },
+            "cell_styles": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "fill": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[0-9A-Fa-f]{6}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "fill_alpha": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    },
+                    "font": {
+                      "type": "object",
+                      "properties": {
+                        "family": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 500
+                        },
+                        "size": {
+                          "type": "number",
+                          "minimum": 6,
+                          "maximum": 200
+                        },
+                        "color": {
+                          "type": "string",
+                          "pattern": "^[0-9A-Fa-f]{6}$"
+                        },
+                        "bold": {
+                          "type": "boolean"
+                        },
+                        "italic": {
+                          "type": "boolean"
+                        },
+                        "ea_family": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 500
+                        }
+                      },
+                      "required": [
+                        "family",
+                        "size",
+                        "color"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "align": {
+                      "enum": [
+                        "left",
+                        "center",
+                        "right"
+                      ]
+                    },
+                    "valign": {
+                      "enum": [
+                        "top",
+                        "middle",
+                        "bottom"
+                      ]
+                    },
+                    "margin": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 50
+                      },
+                      "maxItems": 4,
+                      "minItems": 4
+                    },
+                    "line_height": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 400
+                    },
+                    "row_span": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 200
+                    },
+                    "col_span": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 50
+                    },
+                    "spans": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "start": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "end": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "font": {
+                            "type": "object",
+                            "properties": {
+                              "family": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 500
+                              },
+                              "size": {
+                                "type": "number",
+                                "minimum": 6,
+                                "maximum": 200
+                              },
+                              "color": {
+                                "type": "string",
+                                "pattern": "^[0-9A-Fa-f]{6}$"
+                              },
+                              "bold": {
+                                "type": "boolean"
+                              },
+                              "italic": {
+                                "type": "boolean"
+                              },
+                              "ea_family": {
+                                "type": "string",
+                                "minLength": 1,
+                                "maxLength": 500
+                              }
+                            },
+                            "required": [
+                              "family",
+                              "size",
+                              "color"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "start",
+                          "end",
+                          "font"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "maxItems": 100,
+                      "minItems": 0
+                    },
+                    "border_left": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "type": "string",
+                              "pattern": "^[0-9A-Fa-f]{6}$"
+                            },
+                            "width": {
+                              "type": "number",
+                              "minimum": 0.1,
+                              "maximum": 20
+                            },
+                            "alpha": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          },
+                          "required": [
+                            "color",
+                            "width"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "border_right": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "type": "string",
+                              "pattern": "^[0-9A-Fa-f]{6}$"
+                            },
+                            "width": {
+                              "type": "number",
+                              "minimum": 0.1,
+                              "maximum": 20
+                            },
+                            "alpha": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          },
+                          "required": [
+                            "color",
+                            "width"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "border_top": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "type": "string",
+                              "pattern": "^[0-9A-Fa-f]{6}$"
+                            },
+                            "width": {
+                              "type": "number",
+                              "minimum": 0.1,
+                              "maximum": 20
+                            },
+                            "alpha": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          },
+                          "required": [
+                            "color",
+                            "width"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "border_bottom": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "color": {
+                              "type": "string",
+                              "pattern": "^[0-9A-Fa-f]{6}$"
+                            },
+                            "width": {
+                              "type": "number",
+                              "minimum": 0.1,
+                              "maximum": 20
+                            },
+                            "alpha": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          },
+                          "required": [
+                            "color",
+                            "width"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [],
+                  "additionalProperties": false
+                },
+                "maxItems": 50,
+                "minItems": 1
+              },
+              "maxItems": 200,
               "minItems": 1
             }
           },
@@ -1829,6 +2262,11 @@
                 "contain",
                 "cover"
               ]
+            },
+            "radius": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 500
             },
             "content_id": {
               "type": "string",

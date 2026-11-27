@@ -59,7 +59,7 @@ If user provides a detailed spec or existing API docs → extract answers, confi
 
 ### Step 2 — Architecture Design
 
-<MUST-READ path="references/auto-discovery-pattern.md" trigger="when the server has 5+ tools OR multiple API providers — use auto-discovery registry for graceful degradation"/>
+<MUST-READ path="rune-mcp-builder/references/auto-discovery-pattern.md" trigger="when the server has 5+ tools OR multiple API providers — use auto-discovery registry for graceful degradation"/>
 
 Determine server structure based on spec:
 
@@ -375,8 +375,8 @@ When building MCP servers that call AI providers, support **dual-model configura
 ```typescript
 // config.ts
 const config = {
-  primaryModel: process.env.PRIMARY_MODEL || 'claude-sonnet-5',
-  backgroundModel: process.env.BACKGROUND_MODEL || 'claude-haiku-4-5',
+  primaryModel: process.env.PRIMARY_MODEL || 'claude-sonnet-5-5',
+  backgroundModel: process.env.BACKGROUND_MODEL || 'claude-haiku-5-5',
 };
 ```
 
@@ -430,7 +430,7 @@ const config = {
 **Scope guardrail:** mcp-builder generates the server and tests — it does not deploy, register with MCP registries, or configure the host IDE beyond providing the installation snippet.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

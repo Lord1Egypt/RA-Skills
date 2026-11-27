@@ -23,7 +23,7 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function requireText(value: unknown, field: string): string {
   if (value === undefined || value === null || String(value).trim() === '') {
-    throw new Error(`${field} must be a non-empty string`);
+    throw new Error(('' + String(field) + ' must be a non-empty string'));
   }
   return String(value).trim();
 }
@@ -157,6 +157,7 @@ export const deployments = {
   start: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, action: 'start', projectId, shard, suffix } : edgecloudControllerClient.startDeployment(cfg, projectId, shard, suffix, confirm),
   stop: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, action: 'stop', projectId, shard, suffix } : edgecloudControllerClient.stopDeployment(cfg, projectId, shard, suffix, confirm),
   delete: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) => cfg.dryRun ? { dryRun: true, action: 'delete', projectId, shard, suffix } : edgecloudControllerClient.deleteDeployment(cfg, projectId, shard, suffix, confirm),
+  // In dry-run this returns the preview above. The client's own gate still requires confirm:true.
   validateDisposable: async (cfg: ThetaConfig, opts: DisposableValidationOptions) => {
     // Validate the mode before anything else: a malformed probe must never reach create/readiness.
     const probe = validateProbe(opts.probe);
@@ -165,7 +166,7 @@ export const deployments = {
     if (!projectId) throw new Error('projectId or payload.project_id is required');
     payload.project_id = projectId;
 
-    const authUser = String(payload.auth_username ?? `openclaw_${randomBytes(4).toString('hex')}`);
+    const authUser = String(payload.auth_username ?? ('openclaw_' + String(randomBytes(4).toString('hex'))));
     const authPass = String(payload.auth_password ?? generatedPassword());
     payload.auth_username = authUser;
     payload.auth_password = authPass;
@@ -179,7 +180,7 @@ export const deployments = {
         would: [
           'read org balance before if orgId is configured',
           'create deployment with generated Basic Auth',
-          `poll ${probe} readiness`,
+          ('poll ' + String(probe) + ' readiness'),
           'run one minimal smoke call for OpenAI-compatible probes',
           'delete deployment in cleanup',
           'verify cleanup from deployment list',

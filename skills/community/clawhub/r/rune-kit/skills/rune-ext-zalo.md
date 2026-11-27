@@ -125,12 +125,12 @@ Called By ← mcp-builder (L2): when building Zalo-specific MCP server
 
 | Reference | Trigger |
 |-----------|---------|
-| [VietQR & Banking](references/vietqr-banking.md) | Payment, bank transfer, QR code patterns detected |
-| [Conversation Management](references/conversation-management.md) | Polls, auto-reply, mute/archive, advanced messaging |
-| [MCP Production](references/mcp-production.md) | MCP server deployment, cursor pagination, pm2 setup |
-| [Multi-Account & Proxy](references/multi-account-proxy.md) | Multi-account setup, proxy configuration, VPS deployment |
-| [Listen Mode](references/listen-mode.md) | WebSocket listener, real-time events, webhook forwarding |
-| [Eval Scenarios](references/eval-scenarios.md) | Quality gate — 24 test scenarios (functional + security) |
+| [VietQR & Banking](rune-ext-zalo/references/vietqr-banking.md) | Payment, bank transfer, QR code patterns detected |
+| [Conversation Management](rune-ext-zalo/references/conversation-management.md) | Polls, auto-reply, mute/archive, advanced messaging |
+| [MCP Production](rune-ext-zalo/references/mcp-production.md) | MCP server deployment, cursor pagination, pm2 setup |
+| [Multi-Account & Proxy](rune-ext-zalo/references/multi-account-proxy.md) | Multi-account setup, proxy configuration, VPS deployment |
+| [Listen Mode](rune-ext-zalo/references/listen-mode.md) | WebSocket listener, real-time events, webhook forwarding |
+| [Eval Scenarios](rune-ext-zalo/references/eval-scenarios.md) | Quality gate — 24 test scenarios (functional + security) |
 
 ## Credits
 
@@ -1850,7 +1850,7 @@ export async function addFriend(userId: string) {
 - Human jitter for personal track is a survival strategy, not a nice-to-have
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

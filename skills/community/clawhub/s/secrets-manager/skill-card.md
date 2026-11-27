@@ -1,6 +1,6 @@
 ## Description:
 
-Encrypted local secret store for OpenClaw agents that stores, retrieves, lists, rotates, audits, and deletes secrets using AES-256-GCM authenticated encryption with a local master key.
+Encrypted local secret store for OpenClaw agents. AES-256-GCM authenticated encryption with per-secret random IVs, master key in restricted-permission .master-key file. Store, retrieve, rotate, and audit secrets. Safe command injection writes to a restricted temp file by default and requires explicit confirmation before printing resolved commands. Losing the master key makes stored secrets unrecoverable.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to keep local agent secrets encrypted at rest, retrieve masked values by default, rotate stored secrets, and audit rotation or exposure issues.
+Developers and agent operators use this skill to store, retrieve, rotate, audit, and inject local secrets for OpenClaw workflows while keeping default display output masked.
 
 ### Deployment Geography for Use:
 
@@ -22,37 +22,38 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Plaintext secrets can be exposed through command arguments, raw stdout, temp files, CI logs, or agent transcripts.
+Risk: Credential values may be exposed through argv, persistent temp scripts, or audit output.
 
-Mitigation: Use masked retrieval by default, avoid real secrets in command arguments or logged environments, and reserve raw output for private local piping only.
+Mitigation: Review and fix credential handling before storing high-value production credentials; prefer masked output and default temp-file injection until the release has been remediated.
 
-Risk: Audit output may contain sensitive material until the plaintext-prefix issue is fixed.
+Risk: The release requests shell and elevated permissions that may be broader than necessary.
 
-Mitigation: Treat audit output as sensitive and avoid sharing it in logs, transcripts, or public issue reports.
+Mitigation: Limit deployment to reviewed environments, constrain the storage directory, and confirm that elevated permissions are only used for restrictive file-permission enforcement.
 
-Risk: Local permissions metadata is not a complete access-control boundary.
+Risk: The local master key is required to recover stored secrets.
 
-Mitigation: Use the skill only in a local, single-user environment and do not rely on permissions.json for security isolation.
+Mitigation: Back up the master key to a secure location and test recovery before relying on the store for important credentials.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/jlacroix82/skills/secrets-manager)
-- [README.md](artifact/README.md)
-- [CHANGELOG.txt](artifact/CHANGELOG.txt)
+- [Publisher profile](https://clawhub.ai/user/jlacroix82)
+- [README](artifact/README.md)
+- [Vetting report](artifact/VET-REPORT.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, shell commands, configuration]
+**Output Type(s):** [Text, Shell commands, Files, Configuration]
 
-**Output Format:** [CLI text output with masked secret values by default and optional raw stdout for explicit retrieval]
+**Output Format:** [CLI text output, masked secret values by default, and restricted-permission temp shell scripts for command injection]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [Writes encrypted local secret data and a local master-key file under the configured secrets directory.]
+**Other Properties Related to Output:** [May emit plaintext secrets only when explicitly requested through raw retrieval or confirmed stdout injection.]
 
 ## Skill Version(s):
 
-1.1.15 (source: server release evidence and artifact/clawhub.yaml)
+1.1.19 (source: frontmatter and server release evidence)
 
 ## Ethical Considerations:
 

@@ -1,66 +1,63 @@
-# YZL-AIoT 技能
+# YZL-AIoT（平台入口）
 
-> 云智联科技（yzlkj）旗下 AIoT 开源组织核心项目。
-> 专为通用智能体（AI Agent）设计的物联网设备管理技能：设备数据采集、历史数据查询、远程控制。
+> 云智联 AIoT 平台 `aiot.yzlkj.com` 的**总入口**技能：判断方向、装对技能、说清平台边界。
+> 它本身不提供接入代码；北向见 `yzl-aiot-north`，南向见 `yzl-aiot-south`，开放平台见 `yzl-open-api`。
 
-**当前版本：v1.2.1**（对齐云智联开放接口 2026-07-25 文档；v1.2.1 为命令写法修正）
+**当前版本：v2.0.0**（由 1.x 拆分而来）
 
-## ⚠️ 重要：频率限制与封 IP 风险
+## 平台边界
 
-请求方**必须确保请求频率低于平台限速，并保证并发不超过 2**。
+| 你的需求 | 用哪个技能 | 入口 / 协议 |
+|---|---|---|
+| 后端 / 看板 / Webhook / 历史与告警 | `yzl-aiot-north` | `aiot.yzlkj.com` REST、北向 MQTT、Bridge |
+| MCU / 4G 模组固件接入 | `yzl-aiot-south` | TCP 41032 / UDP 40501 / MQTT 1883 |
+| 开放平台 API Key 取数 / 开关水阀 | `yzl-open-api` | `open.yzlkj.com` Open API v2 |
+| 不确定 | **本技能** | 负责分流 |
 
-| 接口 | 限速 |
-|------|------|
-| `GET /open/device/all` | 10 次 / 10 秒 |
-| `GET /open/device/list` | 5 次 / 10 秒 |
-| `GET /open/device/{id}` | 10 次 / 10 秒 |
-| `GET /open/history` | 6 次 / 30 秒 |
-| `POST /open/command/send` | 2 次 / 5 秒 |
-| `GET /open/command/{id}` | 2 次 / 5 秒 |
-| `GET /open/command/list` | 2 次 / 10 秒 |
+## 安装
 
-- 并发限制：**2**
-- 同一 IP 在短时间内频繁返回非 `0` 状态码（400/401/403/429 等）时，会被平台判定为异常请求并 **永久封禁该 IP**。
-- 失败重试请使用**指数退避**（1s、2s、4s…），**切勿**在短时间内反复重试。
-- 请确保 `YZLIOT_API_KEY` 有效，避免因认证失败产生大量 `401`。
+```bash
+clawhub install yzl-aiot          # 本入口
+clawhub install yzl-aiot-north    # 北向
+clawhub install yzl-aiot-south    # 南向
+clawhub install yzl-open-api      # 开放平台（按需）
+```
 
-本技能的 `tool.py` 已内置按接口排队限速、不做自动重试、连续 5 次非 0 响应自动中止等保护措施，但**调用方仍需自行控制整体调用节奏**。
+## 加载规则
 
-## 仓库地址
+| 用户说 | 实际加载 |
+|---|---|
+| 「加载 yzl-aiot」 | 本技能 + `yzl-aiot-north` + `yzl-aiot-south` |
+| 「加载 yzl-aiot 北向」 | 只加载 `yzl-aiot-north` |
+| 「加载 yzl-aiot 南向」 | 只加载 `yzl-aiot-south` |
+| 提到液位 / 温湿度 / 水阀 / open.yzlkj.com | 用 `yzl-open-api` |
+
+## 快速使用
+
+```bash
+python tool.py status        # 环境与同族技能安装情况（不需要 API Key）
+python tool.py migrate       # 开放平台迁移引导（不需要 API Key）
+python tool.py check-update  # 检查 yzl-aiot 版本
+```
+
+## 限频（只针对北向 REST）
+
+**用户配额 = 基础配额 + 设备数 × 每台追加**（例：基础 60 + 100 台 × 10 = 1060 次/秒）；
+**写接口（POST / PUT / DELETE）按 3 倍配额计**；超限 429。配额数据由接口返回，查询配额本身也受限速约束。
+南向设备链路不走这条配额；开放平台的按接口限速与「封 IP」只属于 `yzl-open-api`。
+
+## 从 1.x 升级
+
+- 1.x 的 `tool.py` 命令（`all` / `send` / `history` …）作为**兼容层**保留到 **3.0.0**，只对接 `open.yzlkj.com`；
+- `python tool.py migrate` 给出迁移步骤；3.0.0 起移除兼容层。
+
+## 仓库
 
 | 平台 | 地址 |
 |------|------|
-| 🐙 GitHub（主站） | https://github.com/yzlkj/yzl-aiot |
-| 🏠 Gitee（镜像） | https://gitee.com/yzl-aiot/yzl-aiot |
-| 📦 ClawHub | clawhub → `yzl-aiot` |
-
-## 安装 / 使用
-
-1. 设置环境变量：
-
-   ```bash
-   export YZLIOT_API_KEY="你的APIKEY"
-   ```
-
-2. 常用命令（统一用 `python`；仅有 `python3` 的环境请把 `python` 换成 `python3`）：
-
-   ```bash
-   python tool.py all                  # 所有设备（简易信息）
-   python tool.py device <设备ID>       # 设备详情
-   python tool.py history <设施ID> 3    # 历史数据
-   python tool.py send WANCD1-0000000001 SetFac '["WANCD1-0000000001","kk1","1"]'
-   python tool.py help                 # 完整帮助
-   ```
-
-## 访问秘钥
-
-- **环境变量** `YZLIOT_API_KEY` — 必需，请从「云智联YZL」微信小程序 →「我的」→「开放接口」获取
-
-## 文档
-
-- 在线接口文档：https://cn6l1w4yn0.apifox.cn
-- 接口 Base URL：`https://open.yzlkj.com`
-- 认证方式：请求头 `YZLIOT-APIKEY`
+| 🐙 GitHub | https://github.com/yzlkj/yzl-aiot |
+| 🏠 Gitee | https://gitee.com/yzl-aiot/yzl-aiot |
+| 📦 ClawHub | `yzl-aiot` |
 
 ## 联系
 

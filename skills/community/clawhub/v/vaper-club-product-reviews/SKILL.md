@@ -1,6 +1,6 @@
 ---
 name: vaper-club-product-reviews
-description: Summarize user reviews of a vape product from Vaper.club. Use when users ask what people think of a product, its rating, or common praise and complaints.
+description: Search and summarize user reviews of a vape product from Vaper.club. Use when users ask what people think of a vape product, its rating, or common praise and complaints.
 ---
 
 # Vaper.club Product Reviews
@@ -24,3 +24,4 @@ Use the Vaper.club MCP server (`https://api.vaper.club/mcp`). For adults only; r
 - Review sources can differ (`source`: VaperClub, Shop, third-party); mention when relevant.
 - If `reviewCount` is 0 or small, say the evidence is limited.
 - Do not quote reviewers' personal details; reviewer names are display names only.
+- For **vape search** or **vape price compare** on the reviewed product across shops, follow up with `search_products` or `compare_products` (see `vaper-club-product-research`).

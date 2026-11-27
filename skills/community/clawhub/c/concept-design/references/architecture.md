@@ -7,7 +7,7 @@ Concept and synchronization semantics follow Meng and Jackson; the engineering n
 - **Modules implement independent concepts.** Each business module owns its state and invariants. Forbid dependencies, calls, and state reads between business modules; use type parameters or opaque IDs for external identities.
 - **Use cases implement compositions and synchronizations.** Keep business branches, authorization rechecks, transactions, and failure policy in rules; module-local constraints remain in their module.
 - **Dependencies point toward business internals.** Source dependencies follow `inbound → usecases → modules/api`; outbound interaction follows `usecases → consumer-owned ports ← outbound/readviews`.
-- **Technical mechanisms do not decide business policy.** Keep protocol, framework, and persistence types out of business layers. Only wiring constructs and injects components; business code avoids container lookups.
+- **Technical mechanisms do not decide business policy.** Keep protocol, framework, and persistence types out of business layers. Mature capabilities with business meaning connect through consumer-owned ports to `adapters/outbound`; pure technical mechanisms belong in `infrastructure`; neither becomes a business module. Only wiring constructs and injects components; business code avoids container lookups.
 - **Each definition has one authority.** Declare specifications, instances and type bindings, and rule identities once; engineering renames preserve the model and behavior.
 
 ## Design and engineering terms
@@ -18,7 +18,7 @@ Concept and synchronization semantics follow Meng and Jackson; the engineering n
 | Concept composition | Use case group at `usecases/<business group>` | Organize application-specific coordination across modules |
 | Synchronization rule | Named use case, internal method, or event handler | Implement a `when/where/then` causal rule |
 
-Specifications retain concepts, compositions, synchronization rules, and `CONCEPT.md/SYNCS.md`. `modules` denotes business modules, not every technical module discovered by a framework; separate build or deployment units are not required.
+Specifications retain concepts, compositions, synchronization rules, and `CONCEPT.md/SYNCS.md`. `modules` denotes only modules that carry business concepts, not technical modules discovered by a framework.
 
 ## Directories and naming
 
@@ -49,7 +49,7 @@ Use the following six top-level responsibilities as the default layout, creating
 
 - Use these engineering names in new projects. In existing projects, record design-to-implementation mappings before authorized responsibility-based moves.
 - Use lowercase singular business directories and fixed collection or role names. Reuse business word stems between modules and their concepts, and between use case groups and their compositions; module and use case groups need not share names. Use singular type subjects and plural list operations and collections, as in `ReadBookingsUseCase` and `bookings`.
-- Keep use case groups free of nested domain layers; limit `support` to internal collaborators of its group. Name other module-local technical implementations by their actual responsibilities and create them as needed. Rules may share a source module or build unit; functional implementations preserve roles and visibility.
+- Keep use case groups free of nested domain layers; limit `support` to internal collaborators of its group, and name other module-local technical implementations by responsibility. Rules may share a source module or build unit; functional implementations preserve roles and visibility.
 - Directory groups are not build, deployment, or framework modules; explicitly register and check nested boundaries.
 - Wire components in the language's native form: module wiring stays at the module root, a use case group binds only its own components and ports, and wiring across roles or adapter branches belongs in `bootstrap`. See [Java/Spring conventions](architecture-java.md) for naming and optional checks.
 

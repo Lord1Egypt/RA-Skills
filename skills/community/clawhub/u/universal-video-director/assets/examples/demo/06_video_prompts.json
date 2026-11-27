@@ -1,0 +1,67 @@
+{
+  "schema": "uvd/video_prompts",
+  "version": "2",
+  "stage": "video_prompts",
+  "project_id": "demo",
+  "model": "seedance",
+  "mode": "i2v",
+  "motions": [
+    {
+      "id": "m1",
+      "cut_ids": [
+        "c1",
+        "c2"
+      ],
+      "duration_sec": 10,
+      "prompt": "phone lights up, he crouches...",
+      "ref_bindings": [
+        {
+          "slot": 1,
+          "asset_id": "FRAME:c1",
+          "purpose": "首帧"
+        },
+        {
+          "slot": 2,
+          "asset_id": "jie",
+          "purpose": "人脸服装"
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "cut_ids": [
+        "c3",
+        "c4"
+      ],
+      "duration_sec": 10,
+      "prompt": "slow push-in...",
+      "ref_bindings": [
+        {
+          "slot": 1,
+          "asset_id": "FRAME:c3",
+          "purpose": "首帧"
+        }
+      ]
+    },
+    {
+      "id": "m3",
+      "cut_ids": [
+        "c5",
+        "c6"
+      ],
+      "duration_sec": 10,
+      "prompt": "pull back...",
+      "ref_bindings": [
+        {
+          "slot": 1,
+          "asset_id": "FRAME:c5",
+          "purpose": "首帧"
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "05_storyboard.json": "5919e38da712",
+    "03_assets.json": "333faf2a53e0"
+  }
+}

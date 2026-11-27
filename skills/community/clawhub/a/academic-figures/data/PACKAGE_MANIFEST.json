@@ -6,11 +6,11 @@
   },
   "README.md": {
    "bytes": 4755,
-   "sha256": "ccf6fe5a13fde00b18051f06b70d3203befa6fb280d270c2b3f2e1d081428a48"
+   "sha256": "b101a681350fa142fdc152127ef7ad8835112425ca5e950921a3856c00b20212"
   },
   "SKILL.md": {
-   "bytes": 32992,
-   "sha256": "9f850aca555b4882b57a60be25ae315ea5621fd1e1cd4e12b6db233d0a49a9b0"
+   "bytes": 32821,
+   "sha256": "8fba95b9aeb15e84a5983adecd88e298d6b5e15644f2eb896a4b521e243a74ab"
   },
   "docs/ADR-0001-af-draw-split.md": {
    "bytes": 2088,
@@ -18,7 +18,7 @@
   },
   "evals/evals.json": {
    "bytes": 10675,
-   "sha256": "353866c00ceee004fefb39134ced28a51e789de8326cb21ffb32431237a701b5"
+   "sha256": "02da4ec978dacd35fbb2a0f2ae2b5815117ab20bd11eb844a6f0bf4026769a15"
   },
   "examples/README.md": {
    "bytes": 5783,
@@ -233,12 +233,12 @@
    "sha256": "dd24dcfc68baa50af877212e42eff1c4b42845a20eb82a0e57220a556041a101"
   },
   "references/changelog-full.md": {
-   "bytes": 157238,
-   "sha256": "fce13f9a70c8cb00c1c5ed47320926116c48e61a74cf398a7f239a15e012cfb9"
+   "bytes": 164141,
+   "sha256": "d16cc78a18f547b733a5fae4290e4b24dc6710c40d8d5451b7588dd0ee47944c"
   },
   "references/changelog.md": {
-   "bytes": 23641,
-   "sha256": "31ecc59fe96c01b503cb5ad399c2ee7f36272a5c3b0d590a987170a0c6915b3a"
+   "bytes": 22633,
+   "sha256": "962b9e45ea02c774b013851e590b29759911696d7afc0e068c987914945e3ef2"
   },
   "references/cheatsheet.md": {
    "bytes": 6961,
@@ -269,8 +269,8 @@
    "sha256": "3ef1f11e8befa3d901a309cd4e17c29aec7f5a20d035c15852766c134973a893"
   },
   "references/limits.md": {
-   "bytes": 16692,
-   "sha256": "8f69f8736846890aab9ceb984dc8241f7aba3fcc8650b28a50ef33581a797cfe"
+   "bytes": 16892,
+   "sha256": "5556a3167909ddf57b94546ca698cc6cd6ff214fb6b39b94ead79030726ff53b"
   },
   "references/pitfalls.md": {
    "bytes": 22868,
@@ -313,12 +313,12 @@
    "sha256": "d3d04a9ce4bf1f3ec226bf75a32786f722ad375adf5e5d64c5707ba0f40d1167"
   },
   "scripts/af_draw.py": {
-   "bytes": 260981,
-   "sha256": "4aa149073feda2fc32bd72252dae0515af575dbdb0c8fbfa081faaf70540def7"
+   "bytes": 261061,
+   "sha256": "48662a47b9059096397835283be9c22b852817623873df2a2e41ffc026a9780b"
   },
   "scripts/af_flow.py": {
-   "bytes": 154581,
-   "sha256": "1d17bdaaeff26d67462e1fa2d52e31ce2de51ea95a65e71bfe8840d95c96c812"
+   "bytes": 160927,
+   "sha256": "e22b96f041f3ffab41dbc090508c9322b89f258e0253c864bef8a3216d3c115c"
   },
   "scripts/af_mermaid.py": {
    "bytes": 12172,
@@ -361,8 +361,8 @@
    "sha256": "9d362f3482d8b37cefc8bd65cadab959339f5767fc7342203e917574b920a600"
   },
   "scripts/gen_figure.py": {
-   "bytes": 193501,
-   "sha256": "823080003ff93dc7031157af151c69ff7b22a88d63447c26436eeac353d8cefd"
+   "bytes": 193774,
+   "sha256": "0ae2ea3abfb72128bac51a9d87b54e90abb27cd680f7db79283d6d25957ea027"
   },
   "scripts/gen_legend.py": {
    "bytes": 9183,
@@ -520,6 +520,10 @@
    "bytes": 1857,
    "sha256": "d9f76d6b5dfb9db4490e5b3b93109bf77d29671da9180a693fc5a720917bb8fa"
   },
+  "templates/flow_cohort-strobe.json": {
+   "bytes": 1673,
+   "sha256": "b7d96866f96a4c31361465ded00fdcc32807d9d9b3dd3dbaca35ecab05c4936b"
+  },
   "templates/flow_contrast-twomethods.json": {
    "bytes": 1757,
    "sha256": "e23ac9739a5defe7a1a43f3e2cc9bdf9e9b1fa52ead8a3c8e9ed218ca6d6891e"
@@ -532,6 +536,10 @@
    "bytes": 2161,
    "sha256": "3d0c7ffe8eb21f662026f5d80b8ea5b62783a997ede0beb32f72dcc16589330e"
   },
+  "templates/flow_dx-stard.json": {
+   "bytes": 1549,
+   "sha256": "f08fd98ad3797ab944db1d071cff9ab9f017e1bcd5ebdbaea1b6f4cf7b2766c8"
+  },
   "templates/flow_method-scrnaseq.json": {
    "bytes": 1991,
    "sha256": "dc230e28fd971407c219eae06e85f0a7cac55ebf9549bd571add073e99e81612"
@@ -539,6 +547,14 @@
   "templates/flow_pipeline-crispr.json": {
    "bytes": 1666,
    "sha256": "e64b3543c1efb7fdd9da60e72928f8e41b0145c1d1a2ae752b43fea87bd9ee6b"
+  },
+  "templates/flow_rct-consort.json": {
+   "bytes": 2003,
+   "sha256": "d09fc197e7d2740f54d1670438990716c95b3eb98c5fbc652c007d25c8076327"
+  },
+  "templates/flow_review-prisma.json": {
+   "bytes": 1770,
+   "sha256": "99220041883a9fcd915b8cd1a7356facae6d8d7bca108eb18aa5126fd9219a73"
   },
   "templates/flow_state-cellcycle.json": {
    "bytes": 1649,
@@ -637,8 +653,8 @@
    "sha256": "3fba5cb9b15a10ab94d54e28b54d2c39d95c27b0fcff1c57aee0eb7edfd93950"
   },
   "tests/run_tests.py": {
-   "bytes": 545547,
-   "sha256": "64f7742a517d9dc1b2d20ece2ed32d80b07854fc2ecbd82a28e6945299695dd0"
+   "bytes": 555284,
+   "sha256": "632dd12374bfdc4578d7648b1b9c3a13852ccbfa87c3f8a181bb042ab79abcf2"
   },
   "tests/stress_200.py": {
    "bytes": 3377,

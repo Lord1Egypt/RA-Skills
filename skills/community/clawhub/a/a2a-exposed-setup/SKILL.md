@@ -4,7 +4,7 @@ description: Use when deploying, redeploying, or configuring the a2a-exposed Clo
 license: MIT
 compatibility: Node 22.18+ for the CLI (npx -y a2a-exposed@latest, no global install). Without Node, connect https://a2a.exposed/mcp. Cloudflare account for self-hosted deploy.
 metadata:
-  version: "0.8.76"
+  version: "0.8.80"
   author: Telegraphic Developer
   homepage: https://github.com/telegraphic-dev/a2a-exposed
   hermes:

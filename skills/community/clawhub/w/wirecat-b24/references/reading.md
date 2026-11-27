@@ -12,6 +12,16 @@ the detail behind them.
   `organizations` and `users` page with `--limit` (1 to 250, 50 when left out) and `--page`; they take no `--all`.
   `users list name:` matches part of the whole name.
 
+## By meaning
+
+- **Ask by meaning before reading every comment.** «Кто жаловался, что монтаж перенесли» or "who got a cheaper offer"
+  is one `search all "<the question in plain words>" --json`: with the `activities` setting on, it finds deals and
+  leads by what their timeline comments, e-mails, calls and tasks mean, in Russian or any language, once
+  `sync --embed` has built their vectors (it says so when they are missing; run it again while it offers to).
+- It also corrects a misspelt name or a Russian name typed in Latin letters (and the reverse) and lists
+  near-duplicate names after the exact ones (`match: corrected`): check those before you answer from the first hit.
+- List and read every activity only when that search finds nothing.
+
 ## Client files
 
 - `files list --deal 12` (or `--lead`, `--person`, `--organization`) lists one record's files live from the portal:

@@ -5,8 +5,8 @@ The core rules in [SKILL.md](../SKILL.md) apply.
 ## Sign in
 
 - To log in, run `zm personal session start` in the background, read the URL after
-  `Open this URL to approve Zoom login:` and give it to the person as a link; their browser must be on this computer.
-  `--no-input` cannot approve it. The owner can also sign in from WireCat Desktop (Tools → Zoom → Manage).
+  `Open Zoom sign-in:` and give it to the person as a link; their browser must be on this computer.
+  With `--no-input` or in CI no browser opens, and the command still waits for the approval. The owner can also sign in from WireCat Desktop (Tools → Zoom → Manage).
 - Tokens stay in the keyring.
 - Missing scopes require changes to the Zoom app and a new login. `meetings show` from Zoom needs the optional
   `meeting:read:past_meeting` scope.

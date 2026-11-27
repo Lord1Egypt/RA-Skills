@@ -1,6 +1,6 @@
 {
   "name": "douyin-comment-consumer-insights",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "从抖音评论和相关内容中归纳用户问题、消费者问题、购买顾虑、使用反馈、需求词和情绪证据，用于评论区洞察、用户反馈总结、产品改进和客服话术准备。",
   "keywords": [
     "douyin",

@@ -1,6 +1,6 @@
 ---
 name: flickies
-description: Self-hosted video REST + MCP API. POST JSON, get a video back. Lipsync (LatentSync 1.5 + Wav2Lip/Wav2Lip-GAN) at /v1/video/lipsync, GFPGAN face restore at /v1/video/restore, pure-ffmpeg ops (trim, concat, transcode incl. gif + fps + codec, scale, mux_audio, extract_audio, thumbnail_grid) under /v1/video/*, and ffprobe metadata at /v1/video/info. file_path (staged) xor file_url in; output_path xor output_url out. Fire-and-forget async jobs (async_job=true → 202 → poll /v1/jobs/{id}) with HMAC-signed webhooks. 11 MCP tools at /v1/mcp. Bearer-token auth. CPU + CUDA images. Use when the user wants to lipsync a face to audio, restore faces in footage, trim/concat/transcode/scale/mux/extract/thumbnail video, probe a video's metadata, or drive any of that from an LLM over MCP.
+description: Self-hosted video REST + MCP API. POST JSON, get a video back. Lipsync (LatentSync 1.5 + Wav2Lip/Wav2Lip-GAN) at /v1/video/lipsync, GFPGAN face restore at /v1/video/restore, pure-ffmpeg ops (trim, concat, transcode incl. gif + fps + codec, scale, mux_audio, extract_audio, thumbnail_grid) under /v1/video/*, and ffprobe metadata at /v1/video/info. file_path (staged) xor file_url in; output_path xor output_url out. Fire-and-forget async jobs (async_job=true → 202 → poll /v1/jobs/{id}) with HMAC-signed webhooks. 18 MCP tools at /v1/mcp. Bearer-token auth. CPU + CUDA images. Use when the user wants to lipsync a face to audio, restore faces in footage, trim/concat/transcode/scale/mux/extract/thumbnail video, probe a video's metadata, or drive any of that from an LLM over MCP.
 homepage: https://github.com/psyb0t/docker-flickies
 user-invocable: true
 permissions:
@@ -21,7 +21,7 @@ Face restore (`POST /v1/video/restore`): GFPGAN v1.4 (`gfpgan`, Apache-2.0) — 
 
 ffmpeg ops (pure CPU, no engine): `POST /v1/video/trim`, `/concat`, `/transcode` (mp4/webm/mov/mkv + gif + fps + codec change), `/scale`, `/mux_audio`, `/extract_audio`, `/thumbnail_grid`. Metadata: `POST /v1/video/info` (ffprobe).
 
-Extras: async jobs (`async_job=true` → 202 + `job_id` → poll `GET /v1/jobs/{job_id}`), HMAC-signed webhooks on async completion, server-side file staging, engine load/evict control, an MCP endpoint at `/v1/mcp` with 11 tools, optional bearer-token auth.
+Extras: async jobs (`async_job=true` → 202 + `job_id` → poll `GET /v1/jobs/{job_id}`), HMAC-signed webhooks on async completion, server-side file staging, engine load/evict control, an MCP endpoint at `/v1/mcp` with 18 tools, optional bearer-token auth.
 
 For installation, configuration, and container setup, see [references/setup.md](references/setup.md).
 
@@ -248,6 +248,10 @@ Pure ffmpeg, CPU. Each takes the standard input/output contract plus op-specific
 | `cell_width` | no | `320` | Per-cell width. |
 | `cell_height` | no | `180` | Per-cell height. |
 | `output_path` / `output_url` | one (sync) | | Standard output contract, async included. The grid covers the first rows x cols x 100 frames. |
+
+### Additional edits and analysis
+
+Use `POST /v1/video/subtitles` for SRT, ASS or word-timed karaoke, `overlay` for timed graphics, `crop` for reframing and `compose` for two-clip layouts. `scenes` produces scene ranges and optional clips or previews, `analyze` reports black frames, freezes and silence, and `frames` packages timestamped JPEGs. `concat` accepts per-join transitions and `transcode` accepts an MP4 size ceiling. See the [REST API](https://psyb0t.github.io/docker-flickies/api/#editing-and-analysis) for the fields and ranges.
 
 ### Error Contract (ffmpeg ops)
 

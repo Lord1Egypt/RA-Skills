@@ -1,7 +1,7 @@
 ---
 name: tiktok-transcript
 description: "TikTok video to transcript: the spoken words with timestamps, on-screen captions, title, hashtags, key points and like/comment counts. Use when the user shares a tiktok.com or vm.tiktok.com link and wants the transcript, the captions, a summary or a translation. Works without a key for one free summary a day; with a free API key (10 credits on sign-up, no card) you get the full transcript, 2 credits per minute of video. No download, no TikTok account or cookie needed."
-version: 1.0.5
+version: 1.0.6
 homepage: https://linkdigest.dev/zh/docs?ref=skill-tiktok-transcript
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-tiktok-transcript&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 1 条摘要"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-tiktok-transcript"}}
 required_environment_variables:
@@ -70,7 +70,7 @@ python3 {baseDir}/scripts/linkdigest.py "<视频链接>" --max-credits 5      # 
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://v.douyin.com/<短链>/", "format": "json"}'
+  -d '{"url": "https://v.douyin.com/VeXgdE_QwTE", "format": "json"}'
 ```
 
 - `200`：结果 JSON。
@@ -88,7 +88,7 @@ curl -sS "https://linkdigest.dev/api/v1/digest/<jobId>?wait=20" \
 ```bash
 API=https://linkdigest.dev/api/v1/digest
 AUTH="Authorization: Bearer $LINKDIGEST_API_KEY"
-LINK='https://v.douyin.com/<短链>/'
+LINK='https://v.douyin.com/VeXgdE_QwTE'
 res=$(curl -sS -w '\n%{http_code}' -X POST "$API" -H "$AUTH" \
   -H "Content-Type: application/json" -d "{\"url\": \"$LINK\", \"format\": \"json\"}")
 code=${res##*$'\n'}; body=${res%$'\n'*}

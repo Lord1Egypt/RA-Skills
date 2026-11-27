@@ -1,4 +1,4 @@
-# SmartLib Citation Checker v3.6.8
+# 参考文献验真 v4.0.2
 
 > **中文** · [English below](#english)
 
@@ -14,12 +14,12 @@
 
 ## 变现模式
 
-本技能与 [smartlib-literature-search](../smartlib-literature-search) **共享凭证与配额**。首次使用自动注册，免费 100 次/月。
+本技能与 [global-biblio-base](../global-biblio-base) **共享凭证与配额**。首次使用自动注册，免费 100 次/月。
 
 | 状态 | 展示规则 |
 |------|---------|
 | 配额充足 | 完整核查报告（含差异标记、验证链接、统计分析） |
-| 配额耗尽 | Gateway 返回 429，**拒绝服务**，直接提示充值 |
+| 配额耗尽 | 配额账户：返回 429，自动弹出套餐卡片；余额账户：不看次数，按余额判定 |
 
 ---
 
@@ -41,6 +41,7 @@
 - **差异标记**：`[删除]` / `[新增]` 直观标记错误与修正
 - **统计分析**：引用 ≥3 时自动输出年份分布、期刊集中度、作者分析图表
 - **验证链接**：每条匹配文献附带可点击的 SmartLib 验证链接
+- **深度核验（可选）**：需要撤稿把关时，一次邮箱绑定即可接入夜猫子，逐条给出「已撤稿 / 编辑关切 / 未撤稿」标记（¥0.05/条，新用户赠 ¥20）
 
 ---
 
@@ -67,8 +68,10 @@
 
 ## 依赖
 
-- **smartlib-literature-search**（提供 SmartLib API 接入 + 配额管理）
+- **global-biblio-base**（提供 SmartLib API 接入 + 配额管理）
 - SmartLib API 凭证（首次使用自动注册，无需手动申请）
+- 长期包 / 充值客户：额外一个专属 API Key（技能内一次性激活，无需手工配置）
+- **深度核验（可选）**：夜猫子账号，技能内用邮箱验证码一次性绑定；未绑定不影响基础核查
 
 ---
 
@@ -86,7 +89,7 @@ MIT License — 代码开源，商用 API 需授权。
 
 <a name="english"></a>
 
-# SmartLib Citation Checker v3.6.8 — English
+# SmartLib Citation Checker v3.7.0 — English
 
 > Smart citation verification skill. Detects AI hallucinations in references.
 
@@ -100,12 +103,12 @@ Verifies whether academic references in paper drafts or AI-generated citation li
 
 ## Monetization
 
-Shares credentials and quota with [smartlib-literature-search](../smartlib-literature-search). Auto-registration with 100 free checks/month.
+Shares credentials and quota with [global-biblio-base](../global-biblio-base). Auto-registration with 100 free checks/month.
 
 | Status | Display Rule |
 |--------|-------------|
 | Quota available | Full report (diff markers, verification links, analytics) |
-| Quota exhausted | Gateway returns 429, **service denied**, recharge prompt |
+| Quota exhausted | Quota accounts: 429 + plan card. Balance accounts: judged by balance, not call count |
 
 ---
 
@@ -130,7 +133,7 @@ Check if these AI-generated citations are real: ...
 
 ## Dependencies
 
-- **smartlib-literature-search** (provides SmartLib API + quota management)
+- **global-biblio-base** (provides SmartLib API + quota management)
 
 ---
 

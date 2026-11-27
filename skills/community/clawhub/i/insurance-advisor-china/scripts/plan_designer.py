@@ -438,6 +438,122 @@ _NEG_MARKERS = tuple(sorted(
     set(_NEG_MARKERS_FORWARD + _NEG_MARKERS_BACKWARD + _NEG_MARKERS_BOTH),
     key=len, reverse=True))
 
+# ══════════════════════════════════════════════════════════════════════
+# ⚠ 官方 SDI-4 残余 AC（2026-11-26 公开复扫 · china v2.4.41 · Excessive
+#   Agency · MEDIUM · confidence 0.99）remediation 原文：
+#     「Structured exclusion validation omits expressions recognized
+#       elsewhere, including 「不在承保范围」 and 「不属于承保范围」 …
+#       an entry such as {"CAR-T":{"covered":true,"payment_status":
+#       "不在承保范围"}} is therefore treated as affirmative rather than
+#       contradictory.」
+#
+# ⚠ **根因是结构性的，不是「又漏抄了两个词」**：
+#   本文件历史上维护**多份互相独立**的否定/除外词表 ——
+#     ① 自由文本侧：_NEG_MARKERS_FORWARD / _NEG_MARKERS_BACKWARD / _NEG_MARKERS_BOTH
+#     ② 结构化侧：  _STRUCTURED_NEGATION_TOKENS
+#     ③ 主体级侧：  _CRX_EXCLUSION_MARKERS
+#     ④ 类别级侧：  _CRX_CI_EXCLUSION_MARKERS
+#   官方每轮复扫只点出**其中一份**漏掉的短语 → 上一轮补进自由文本侧，
+#   结构化侧照样漏 → 「同类问题反复出现」的**结构性根因**：
+#   **词表之间没有任何一致性约束** = 结构性漂移 = 必然复发。
+#
+# ⚠ **一次性修法（结构性 · 终结逐条打补丁）**：
+#   A. **单一事实源**：下面 `_EXCL_*` 语义族是**唯一**词表来源；
+#      全部路径（自由文本 / 结构化 / 主体级 / 类别级）都从它派生
+#      → 一处增词，四处同步生效。
+#   B. **超集不变量**：结构化侧词表 **⊇** 自由文本侧词表
+#      （守卫断言见 `scripts/test_exclusion_vocab.py`）→ 结构化侧**不可能**
+#      再漏掉自由文本侧已认得的除外表达（官方本轮 finding 正是此类）。
+#   C. **通用模式**（终结「下一轮换个词再来」）：语义族除逐条枚举外，另给
+#      **正则模式**（如「不在/不属于 …… 范围」）→ 同族**任意**新表述无需
+#      改代码即命中（自由文本侧 + 结构化侧**共用同一份模式**）。
+#   D. 既有成员**一律保留**（只增不改）→ 既有口径零漂移。
+# ══════════════════════════════════════════════════════════════════════
+
+# ── 范围级补充（「不在/不属于 …… 范围」的其余表述）──
+#    ⚠ 共享族 `_SHARED_EXCLUSION_SCOPE` 已定义 → 本处**不得**重复抄写
+#      （重复 = 二次漂移的温床）。
+_EXCL_SCOPE_EXTRA_LITERALS = (
+    "不在保障范围", "不在保险范围",
+    "不属于保障范围", "不属于保险范围",
+    "不在责任范围", "不在赔付范围", "不在报销范围",
+)
+# ── 语义族 ② · 不予给付级（「不予/不可/不能 …… 给付|赔付|支付|报销」）──
+#   ⚠ **直接引用**共享「不予给付」词表（残余 W 的单一事实源）——
+#     不得在此**另抄一份**（那正是本轮根因：同一语义两份定义 → 必然漂移）。
+_EXCL_NONPAYMENT_LITERALS = _SHARED_NONPAYMENT_NEGATIONS
+# ── 类别级补充 ──
+_EXCL_CATEGORY_EXTRA_LITERALS = ("不纳入", "不涵盖", "不覆盖")
+# ── 主体级补充 ──
+_EXCL_SUBJECT_EXTRA_LITERALS = ("不承保",)
+# ── 语义族 ⑤ · 通用除外（责任免除 / 不支持 / 不赔）──
+_EXCL_GENERAL_LITERALS = (
+    "除外", "不支持", "不赔",
+)
+
+# ⚠ **全部语义族的并集** —— 结构化侧词表由它派生。
+#   不变量：`_STRUCTURED_NEGATION_TOKENS` ⊇ `_NEG_MARKERS`（自由文本侧全部）
+#   （守卫断言在 `scripts/test_exclusion_vocab.py`）。
+_EXCL_ALL_LITERALS = (
+    *_SHARED_EXCLUSION_VOCAB,
+    *_SHARED_NONPAYMENT_NEGATIONS,
+    *_EXCL_SCOPE_EXTRA_LITERALS,
+    *_EXCL_CATEGORY_EXTRA_LITERALS,
+    *_EXCL_SUBJECT_EXTRA_LITERALS,
+    *_EXCL_GENERAL_LITERALS,
+)
+
+# ── 语义族**别名**（任务书口径 · 共享族 + 补充族的完整并集）──
+#   另一侧（ai 库）同时给出**任务书口径**的族名（= 共享族 ∪ 补充族）→
+#   两侧都能按各自的名字引用**同一份**词表 → **不产生第二份抄写**
+#   （抄写 = 二次漂移的温床 · 官方残余 AD 的结构性根因）。
+#   ⚠ 别名只改**引用**，不新增任何词 → 既有口径零漂移。
+_EXCL_SCOPE_LITERALS = (
+    *_SHARED_EXCLUSION_SCOPE,
+    *_EXCL_SCOPE_EXTRA_LITERALS,
+)
+_EXCL_CATEGORY_LITERALS = (
+    *_SHARED_EXCLUSION_CATEGORY,
+    *_EXCL_CATEGORY_EXTRA_LITERALS,
+)
+_EXCL_SUBJECT_LITERALS = (
+    *_SHARED_EXCLUSION_SUBJECT,
+    *_EXCL_SUBJECT_EXTRA_LITERALS,
+)
+
+# ── 通用模式（**同一份** · 自由文本侧 + 结构化侧共用）──
+#   逐条枚举只能覆盖「已经想到的表述」；官方复扫每轮换一个词 → 逐条打补丁
+#   必然复发。模式把「同族语义」**按构式**覆盖 → 新表述无需改代码即命中。
+# ⚠ 模式**不跨语义子句边界**（。；，、！？ 与空白）→ 不跨字段、不跨句子误伤。
+_EXCL_PATTERNS = (
+    # ① 范围级：「不在/不属于 …… 范围」（中间 ≤ 8 个非边界字符）
+    r"不(?:在|属于)[^。；，、！？!?;:,\s]{0,8}范围",
+    # ② 不予给付级：「不予/不可/不能/不得/无法 …… 给付|赔付|支付|报销|承保|承担」
+    #    （中间 ≤ 1 个非边界字符 → 不会误伤「不能确定是否给付」这类存疑表述）
+    r"(?:不(?:予|可|能|得)|无法)[^。；，、！？!?;:,\s]{0,1}(?:给付|赔付|支付|报销|承保|承担)",
+    # ③ 类别级：「不 + 含|包含|包括|纳入|涵盖|覆盖」
+    r"不(?:含|包含|包括|纳入|涵盖|覆盖)",
+)
+
+# ── 存疑对冲词（**不得**被当成除外）──
+#   ⚠ 官方 SDI-4 残余 AC **已知坑**：
+#     「可能无法给付，需以条款为准」这类**存疑**表述**不得**被当除外 ——
+#     通用模式 ② 会命中「无法给付」→ 若照单全收 → 把「待核实」说成
+#     「确定不保」（把**不确定性**说成了**确定性**）→ 与官方口径
+#     「contradictory or **uninterpretable** entries must … emit an explicit
+#      unverified limitation」相悖。
+#   ⇒ 处置：**定长否定前瞻**（窗口 `_EXCL_HEDGE_LOOKBACK` 字符）——
+#     否定表达**紧邻前置**对冲词 → 该命中判为**存疑**（ambiguous），
+#     **不是** negative（官方口径：存疑一律不授权 + 产出「待核实」限制说明）。
+#   ⚠ 对冲词**全部取自 `_UNCERTAINTY_MARKERS`** → 对冲 ⟹ 必然命中
+#     `_has_uncertainty` → 判 **ambiguous** → **仍然压制**
+#     （「存疑」与「除外」**两者都压制** → 安全方向一致）。
+_EXCL_HEDGE_PREFIXES = (
+    "可能", "或许", "也许", "大概", "或将", "原则上", "尚未",
+)
+# 定长前瞻窗口（字符）：对冲词与否定表达之间最多隔这几个字符
+_EXCL_HEDGE_LOOKBACK = 6
+
 # ⚠ 官方 SDI-4 残余 J（2026-11-18 线上复扫 · insurance-advisor-china v2.4.19
 #   · MEDIUM · Excessive Agency · issueCount=1 · score=12）remediation 原文：
 #     「Handle post-treatment exclusions such as 「CAR-T治疗不支持报销」 and
@@ -585,6 +701,21 @@ def _negation_marker_spans(blob):
         while i != -1:
             spans.append((i, i + len(m), m))
             i = blob.find(m, i + 1)
+    # ⚠ 通用模式命中（**单一事实源** · 官方残余 AC 一次性修法 C）——
+    #   同族**任意**新表述（「不在保险范围」「无法给付」…）无需再改词表即命中。
+    #   与结构化侧**共用同一份** `_EXCL_PATTERNS` → 两路口径永远一致。
+    #   ⚠ 与既有字面词表**同口径**：已被字面词覆盖的跨度不重复登记；
+    #     模式标记文本若命中既有词表 → `_marker_directions` 沿用既有方向
+    #     （如「不在保障范围」仍为回溯型）；全新表述 → 双向绑定。
+    if _EXCL_PATTERNS:
+        _seen = {(s, e) for s, e, _m in spans}
+        for _pat in _EXCL_PATTERNS:
+            for _mm in re.finditer(_pat, blob):
+                _s, _e = _mm.start(), _mm.end()
+                if (_s, _e) in _seen:
+                    continue              # 已被字面词表覆盖 → 不重复登记
+                _seen.add((_s, _e))
+                spans.append((_s, _e, _mm.group(0)))
     for ms, me, marker in list(spans):
         comp = _compound_exclusion_span(blob, ms, me, marker)
         if comp:
@@ -908,15 +1039,49 @@ _STRUCTURED_NEGATION_TOKENS = (
     "excluded", "exclude", "exclusion", "notcovered", "notcover", "notinclude",
     "noteligible", "notpayable", "notreimbursed", "nocoverage", "uncovered",
     "false",
-    # ── 中文「不予给付」否定词：**与自由文本检查同源**（官方残余 W）──
-    #   「不予给付」「不予赔付」「不予承保」此前**只**在自由文本侧被认
-    #   → 结构化条目 `{"covered": True, "payment_status": "不予给付"}`
-    #     不被判自相矛盾 → 反而**授权**该治疗手段（官方 finding 原文）。
-    #   → 共享词表 `_SHARED_NONPAYMENT_NEGATIONS` 直接并入（同一份来源）。
+    # ── 中文否定词：**全部语义族**（**单一事实源**派生 · 官方残余 AC）──
+    #   官方残余 AC（2026-11-26 公开复扫）finding 原文：
+    #     「Structured exclusion validation omits expressions recognized
+    #       elsewhere, including 「不在承保范围」 and 「不属于承保范围」 …
+    #       an entry such as {"CAR-T":{"covered":true,"payment_status":
+    #       "不在承保范围"}} is therefore treated as affirmative rather than
+    #       contradictory.」
+    #   → 结构化侧词表 **⊇ 自由文本侧词表**（`_NEG_MARKERS`）：
+    #     本轮把「不在承保范围」「不属于承保范围」等**全部**范围级表达并入
+    #     → 结构化条目 `{"covered": True, "payment_status": "不在承保范围"}`
+    #       同条目既有肯定决定又有除外证据 → **contradictory** → **主动压制**
+    #       （不再授权 CAR-T 治疗）。
+    #   ⚠ **超集不变量**由 `scripts/test_exclusion_vocab.py` 守卫断言
+    #     （`_STRUCTURED_NEGATION_TOKENS` ⊇ `_NEG_MARKERS`）
+    #     → 「结构化侧漏掉自由文本侧已认得的除外表达」这一类**不可能**再复发。
+    # ⚠ 各语义族**直接引用**（不在此处另抄一份 → 杜绝词表二次漂移）：
+    *_SHARED_EXCLUSION_VOCAB,
     *_SHARED_NONPAYMENT_NEGATIONS,
-    # ── 中文否定词：其余既有口径（**保持不变**）──
-    "除外", "不承保", "不保", "不含", "不覆盖", "未覆盖", "不在保障范围",
-    "不赔", "拒绝承保", "非承保", "不纳入", "不支持",
+    *_EXCL_SCOPE_EXTRA_LITERALS,
+    *_EXCL_CATEGORY_EXTRA_LITERALS,
+    *_EXCL_SUBJECT_EXTRA_LITERALS,
+    *_EXCL_GENERAL_LITERALS,
+    # ── 中文否定词：结构化侧既有额外口径（**保持不变**）──
+    "不保", "未覆盖", "拒绝承保", "非承保",
+)
+
+# ⚠⚠ **超集不变量**（模块级自检 · 官方残余 AC 一次性修法 B）——
+#   结构化侧词表必须 **⊇** 自由文本侧词表。
+#
+#   为什么必须在**发布产物内部**自检，而不是只靠本地测试：
+#     官方每轮复扫点出的都是「这一侧漏了那一侧已认得的表达」。
+#     若只在本地测试里断言，某次改动可能绕过测试直接把漂移**发出去**；
+#     放在模块级 → 漂移**根本无法上线**（导入即失败），而不是等下一轮
+#     官方复扫再暴露一次。
+#
+#   ⚠ 这条不变量正是本轮官方 finding 的**反面**：
+#     官方 finding = 结构化侧 ⊉ 自由文本侧（「不在承保范围」被自由文本侧
+#     认得、结构化侧不认）→ 本断言**从结构上封死**该方向。
+assert set(_NEG_MARKERS) <= set(_STRUCTURED_NEGATION_TOKENS), (
+    "除外词表漂移：结构化侧词表必须 ⊇ 自由文本侧词表（官方残余 AC 一次性修法 B）"
+)
+assert set(_NEG_MARKERS) <= set(_EXCL_ALL_LITERALS), (
+    "除外词表漂移：单一事实源必须 ⊇ 自由文本侧词表"
 )
 
 
@@ -946,21 +1111,65 @@ def _structured_text_is_negative(text):
     s = "".join(ch for ch in s if not ch.isspace())
     if not s:
         return False
-    return any(tok in s for tok in _STRUCTURED_NEGATION_TOKENS)
+    if any(tok in s for tok in _STRUCTURED_NEGATION_TOKENS):
+        return True
+    # ⚠ 通用模式（**与自由文本侧同一份** `_EXCL_PATTERNS` · 官方残余 AC
+    #   一次性修法 C）→ 结构化侧与自由文本侧**永远**同口径：
+    #   同族任意新表述（「不在保险范围」「无法给付」…）无需再改词表即命中。
+    for _pat in _EXCL_PATTERNS:
+        if re.search(_pat, s):
+            return True
+    return False
+
+
+def _structured_subtree_has_text(value, predicate):
+    """结构化子树里是否存在满足 predicate 的**字符串叶子**（**递归**下钻）
+
+    ⚠ 官方 SDI-4 残余 AE-1（2026-11-27 公开复扫 · ai v2.4.48 / china v2.4.45 ·
+      Excessive Agency · MEDIUM · confidence 0.99）finding 原文：
+        「Structured validation checks immediate string values and string elements of
+          lists, but does not recursively inspect nested dictionaries.」
+      explanation 原文：
+        「… A CAR-T entry containing covered=true and payment={"status":"不予给付"},
+          alongside affirmative benefit text, can therefore authorize a treatment
+          claim; the record-wide text scan also loses the association between the
+          nested exclusion and its treatment identifier.」
+      remediation 原文：
+        「… recursively evaluate their evidence while retaining the parent treatment
+          identifier, and use the same resulting state for authorization, suppression,
+          and limitations.」
+
+    ⇒ 结构化条目里的除外 / 存疑证据**必须递归**下钻 dict / list / tuple
+      （任意深度）→ 嵌套里的「不予给付」「不在承保范围」同样**可见**。
+    ⇒ **只对字符串叶子**做语义判定 → 非字符串（bool / int / None）**不得**当否定
+      （`covered=True` 是**肯定**授权证据，绝不可被当成否定）。
+    """
+    if isinstance(value, str):
+        return bool(predicate(value))
+    if isinstance(value, dict):
+        for val in value.values():
+            if _structured_subtree_has_text(val, predicate):
+                return True
+        return False
+    if isinstance(value, (list, tuple)):
+        for item in value:
+            if _structured_subtree_has_text(item, predicate):
+                return True
+        return False
+    return False
 
 
 def _structured_contains_negation(mapping):
-    """结构化条目（dict）里是否**另有**否定语义（自相矛盾 → 不得授权）。"""
+    """结构化条目（dict）里是否**另有**否定语义（自相矛盾 → 不得授权）。
+
+    ⚠ 官方 SDI-4 残余 AE-1：**递归**下钻嵌套结构（`_structured_subtree_has_text`）
+      → 嵌套 dict 里的除外证据（`payment={"status":"不予给付"}`）不再被漏检
+      → 该条目判 **contradictory** → 授权 / 压制 / 限制**同一状态**。
+    ⚠ **既有扁平口径零漂移**：顶层字符串 / 顶层 list 的字符串元素判定**完全不变**。
+    """
     if not isinstance(mapping, dict):
         return False
-    for val in mapping.values():
-        if isinstance(val, str) and _structured_text_is_negative(val):
-            return True
-        if isinstance(val, (list, tuple)):
-            for item in val:
-                if isinstance(item, str) and _structured_text_is_negative(item):
-                    return True
-    return False
+    return _structured_subtree_has_text(mapping, _structured_text_is_negative)
 
 
 def _structured_decision_state(value):
@@ -988,6 +1197,48 @@ def _structured_decision_state(value):
     if isinstance(value, str):
         return "negative" if _structured_text_is_negative(value) else "ambiguous"
     return "ambiguous"
+
+
+def _structured_text_is_uncertain(text):
+    """结构化字段的**字符串值**是否带**疑问 / 不确定 / 待核实**语义。
+
+    ⚠ 官方 SDI-4 残余 W（2026-11-24 公开复扫）remediation 原文：
+      「…contradictory or **uninterpretable** entries must suppress affirmative
+        claims.」
+      「Treat questions, uncertainty, conditional eligibility, pending
+        verification, and conflicting evidence as unverified, suppressing
+        affirmative claims rather than relying on keyword presence.」
+
+    ⚠ 本函数与自由文本侧**共用同一份** `_UNCERTAINTY_MARKERS` / `_RE_SUBJECT_TO`
+       → 两路口径一致。
+    """
+    if not isinstance(text, str):
+        return False
+    s = unicodedata.normalize("NFKC", text).casefold()
+    s = "".join(ch for ch in s if not ch.isspace())
+    if not s:
+        return False
+    if any(m in s for m in _UNCERTAINTY_MARKERS):
+        return True
+    return bool(_RE_SUBJECT_TO.search(s))
+
+
+def _structured_contains_uncertainty(mapping):
+    """结构化条目（dict）里是否**另有**不可解释 / 待核实语义。
+
+    ⚠ 为什么必须有这一闸（与 `_structured_contains_negation` 对称）：
+       `payment_status` **不是**承保决定键（`_STRUCTURED_DECISION_KEYS` 只有
+       `covered` / `is_covered`）→ 条目的决定状态只看 `covered=True`
+       → 若 `payment_status` 写的是**不可解释**的值
+       （「不能确定是否给付」「待核实」「以核保结果为准」…），
+       该条目会被当成**干净肯定授权** → 产出**不实承保宣称**。
+       → 不可解释 → 判 **ambiguous**（压制，且**不可**被裁决信号翻案）。
+    """
+    if not isinstance(mapping, dict):
+        return False
+    # ⚠ 官方 SDI-4 残余 AE-1：**递归**下钻嵌套结构 → 嵌套 dict / list 里的
+    #   「待核实」「以核保结果为准」同样**可见**（不可解释 → 压制）。
+    return _structured_subtree_has_text(mapping, _structured_text_is_uncertain)
 
 
 def _structured_value_state(value):
@@ -1050,6 +1301,12 @@ def _structured_value_state(value):
                 # → affirmative 决定 + 同条目排除证据 → **contradictory**
                 #   （**压制**，不得只是「不授权」）
                 return "contradictory"
+            # ⚠ 不可解释 / 待核实（官方残余 W「uninterpretable entries must
+            #   suppress affirmative claims」）→ **ambiguous**（压制）。
+            #   ⚠ 用 ambiguous 而非 contradictory：ambiguous **不可**被
+            #     「显式声明已裁决」信号翻案 → 保守方向。
+            if _structured_contains_uncertainty(value):
+                return "ambiguous"
             return "affirmative"
         if state == "negative":
             return "negative"
@@ -1535,6 +1792,72 @@ def _product_text_leaves(product):
     return out
 
 
+def _structured_entry_has_exclusion(value):
+    """结构化条目是否**携带除外证据**（显式否定 / 自相矛盾 / 裸否定串）。
+
+    ⚠ 与授权判定**共用同一份 schema**（`_structured_text_is_negative` /
+      `_STRUCTURED_DECISION_KEYS`）→ 授权与记录级视图**永远**同口径。
+    """
+    if isinstance(value, dict):
+        if _structured_contains_negation(value):
+            return True
+        # 显式否定决定（covered=False / is_covered=False）→ 除外证据
+        for key in _STRUCTURED_DECISION_KEYS:
+            if key in value and value[key] is False:
+                return True
+        return False
+    if isinstance(value, str):
+        return _structured_text_is_negative(value)
+    return False
+
+
+def _structured_excluded_identifiers(product):
+    """产品记录里**结构化**除外证据所指向的治疗手段集合。
+
+    ⚠ 官方 SDI-4 残余 AC（2026-11-26 公开复扫）finding 原文：
+      「…the separate payment-status text contains no treatment identifier,
+        so record-wide checks do not associate its exclusion with CAR-T…」
+
+    根因：结构化条目的**键**（或 list 元素的标识字段）**就是**治疗手段标识，
+    而除外证据写在**条目的其它字段**里（如 `payment_status`）→ 该文本叶子
+    本身**不含**治疗手段标识 → 纯文本口径的记录级除外集合**看不到**它。
+
+    → 本函数按**标识**关联：键 / 标识字段匹配某个治疗手段关键词，且该条目
+      携带除外证据 → 该治疗手段在**记录级**视图中同样属「存在除外证据」。
+      （结构化路径本身已能压制 → 本函数是**同一事实**在记录级视图里的
+      补齐，属纵深防御：任一路径失效，另一条仍能拦住。）
+    """
+    out = set()
+    if not isinstance(product, dict):
+        return out
+
+    def _match(identifier):
+        if not isinstance(identifier, str):
+            return None
+        norm = _normalize_treatment_identifier(identifier)
+        if not norm:
+            return None
+        for kw in _TREATMENT_CLAIMS:
+            if _normalize_treatment_identifier(kw) == norm:
+                return kw
+        return None
+
+    for _value in product.values():
+        if isinstance(_value, dict):
+            for _key, _val in _value.items():
+                _kw = _match(_key)
+                if _kw and _structured_entry_has_exclusion(_val):
+                    out.add(_kw)
+        elif isinstance(_value, (list, tuple)):
+            for _item in _value:
+                if not isinstance(_item, dict):
+                    continue
+                _kw = _match(_structured_item_identifier(_item))
+                if _kw and _structured_entry_has_exclusion(_item):
+                    out.add(_kw)
+    return out
+
+
 def _record_exclusion_keywords(product):
     """**整条产品记录**内存在除外证据的治疗手段集合（官方 2.4.15 SDI-4 #2）。
 
@@ -1546,6 +1869,11 @@ def _record_exclusion_keywords(product):
     口径：逐个**文本叶子**（key_benefits 元素 / highlights / notes / tags …）
     独立判定 —— 同一治疗手段只要在**任意一个**文本叶子里落在否定 / 除外作用域内，
     即视为「该产品记录内存在除外证据」。
+
+    ⚠ 官方残余 AC：结构化条目的除外证据（`payment_status="不在承保范围"`）
+      所在文本叶子**不含**治疗手段标识 → 纯文本口径看不到它
+      → 由 `_structured_excluded_identifiers` 按**标识**补齐
+      （两路合并 → 记录级视图**完整**）。
     """
     out = set()
     if not product:
@@ -1559,6 +1887,7 @@ def _record_exclusion_keywords(product):
         for kw, s, e in occurrences:
             if (s, e) in bound:
                 out.add(kw)
+    out |= _structured_excluded_identifiers(product)
     return out
 
 
@@ -2216,17 +2545,32 @@ def _crx_coverage_period(product):
 
 # 统一除外标记集合（head / tail **双向共用**）
 _CRX_EXCLUSION_MARKERS = (
-    # 前向否定（标记 → subject，中间允许填充词）
-    "不含", "不包含", "不包括", "不纳入", "不涵盖", "不覆盖",
-    "不保", "不赔", "不承保", "不支持", "不负责", "不承担",
-    # 范围 / 责任排除（后向否定：subject → 标记）
-    "不在保障范围", "无保障", "责任免除", "除外", "不予给付", "不予赔付", "不予支付",
-    # ⚠ 共享归一化除外词表 · 主体侧（官方残余 AA · 2026-11-25 公开复扫）
-    #   「不予承保」**before and after the subject** 双向命中：
-    #   「轻症不予承保」（后向 · subject → 标记）与「不予承保轻症」（前向 ·
-    #   标记 → subject）**都**判除外 ✓（官方原文：
-    #   「explicitly recognizing 「不予承保」 before and after the subject」）。
+    # ⚠⚠ 官方 SDI-4 残余 AD（2026-11-26 公开复扫 · ai v2.4.46 /
+    #   china v2.4.43 · Excessive Agency · MEDIUM）：
+    #   本路径**从未**消费共享归一化词表的**范围族**
+    #   （`_SHARED_EXCLUSION_SCOPE` =「不在承保范围」「不属于承保范围」）
+    #   → 记录级轻症除外漏判 → 官方场景（highlights「120种重疾，含轻症保障」
+    #   + **另一字段**「轻症不在承保范围」）→ 产出「120种重疾+轻症保障」
+    #   —— 把**明确除外**反转成**承保宣称**。
+    # ⇒ 本路径改为**从共享语义族派生**（**单一事实源** · 官方 remediation 原文
+    #   「Derive … exclusion recognition from one normalized vocabulary and
+    #    shared semantic patterns」）—— **只引用、不另抄一份**：
+    #   ① 类别级语义族（不含 / 不包含 / 不包括 + 不纳入 / 不涵盖 / 不覆盖）
+    *_EXCL_CATEGORY_LITERALS,
+    #   ② 范围级语义族（不在承保范围 / 不属于承保范围 + 不在保障范围 / …）
+    #      ⚠ 官方残余 AD 的**核心**修复点：scope 家族**首次**进入本路径。
+    *_EXCL_SCOPE_LITERALS,
+    #   ③ 主体级语义族（官方残余 AA：「不予承保」**before and after the
+    #      subject** 双向命中 —— 「轻症不予承保」与「不予承保轻症」**都**判除外 ✓
+    #      官方原文：「explicitly recognizing 「不予承保」 before and after the
+    #      subject」）
     *_SHARED_EXCLUSION_SUBJECT,
+    *_EXCL_SUBJECT_EXTRA_LITERALS,
+    #   ④ 不予给付级语义族（不予给付 / 不予赔付 / 不予支付 / 不予报销 …）
+    *_EXCL_NONPAYMENT_LITERALS,
+    # ── 路径**特有**成员（既有口径 · 只增不改）──
+    "不保", "不赔", "不支持", "不负责", "不承担",
+    "无保障", "责任免除", "除外",
 )
 # 弱标记：必须**紧邻** subject 才算除外
 # （全语料 62 款产品的非 highlights 字段含「无」字样，如「无明显缺点」
@@ -2661,6 +3005,9 @@ def _crx_gap_targets_other_object(gap):
 #     subsequent clause introduces another benefit.）
 _CRX_POSTPOSED_EXCLUSION_MARKERS = (
     "责任免除", "除外", "不在保障范围", "无保障",
+    # ⚠ 官方 SDI-4 残余 AD：共享归一化词表的**范围族**与「不在保障范围」**同口径**
+    #   （后置型 → 绑定**前面的** subject；后续子句不得撤销已绑定的除外）。
+    *_SHARED_EXCLUSION_SCOPE,
 )
 # ══════════════════════════════════════════════════════════════════════
 # 官方 SDI-4 残余 U（2026-11-24 公开复扫 · v2.4.36 · Excessive Agency · MEDIUM）
@@ -2681,6 +3028,10 @@ _CRX_POSTPOSED_EXCLUSION_MARKERS = (
 _CRX_BACKWARD_BINDING_MARKERS = (
     "不在保障责任范围", "不在保障范围", "无保障", "责任免除", "除外",
     "不予给付", "不予赔付", "不予支付",
+    # ⚠ 官方 SDI-4 残余 AD：共享归一化词表的**范围族**进入两条 CRX 路径
+    #   → 范围级除外标记与「不在保障范围」**同口径**（后向绑定：绑定**前面**的
+    #     主体；其后的「但含身故保障」属**后续子句** → **不得**撤销已绑定的除外）。
+    *_SHARED_EXCLUSION_SCOPE,
 )
 # 局部语法作用域的边界 ①：子句分隔符
 _CRX_SCOPE_BREAK_CHARS = "，。；！？、,;!?"
@@ -2759,6 +3110,98 @@ def _crx_preceding_binds_other_object(text, pos, subject):
     return _crx_subject_gap_targets_other_object(frag, subject)
 
 
+# ══════════════════════════════════════════════════════════════════════
+# ⚠ 官方 SDI-4 残余 AD（2026-11-26 公开复扫 · ai v2.4.46 / china v2.4.43）
+#   官方 china explanation 原文：「they also do not use the shared exclusion
+#   regexes」→ 两条 CRX 路径必须消费**同一份** `_EXCL_PATTERNS`。
+#
+#   通用模式命中 → **等价字面标记**（保证与字面标记**同口径**）：
+#     ① 范围级     ≡「不在保障范围」（**后向绑定**）
+#     ② 不予给付级 ≡「不予给付」（**后向绑定**）
+#     ③ 类别级     ≡「不含」（**前向绑定**）
+#   ⇒ 命中后仍走各路径原有的**收紧口径**（紧贴主体 / 填充词上限 /
+#     其它保障对象线索 / 条件性语境 …）—— 共享的是**词**与**模式**，
+#     不是判定逻辑。
+_CRX_PATTERN_EQUIV_MARKER = (
+    "不在保障范围",
+    "不予给付",
+    "不含",
+)
+
+# 类别级路径消费的**通用模式**下标（官方残余 AD）
+#   ⚠ 模式 ③（类别级「不 + 含|包含|包括|纳入|涵盖|覆盖」）**不**进入类别级路径：
+#     类别级路径的类别族**已由共享词表派生**（`_SHARED_EXCLUSION_CATEGORY`
+#     = 不含 / 不包含 / 不包括 · 官方残余 AB 原文），而模式 ③ 还会带进
+#     「不纳入 / 不涵盖 / 不覆盖」三个**主体路径**专属口径的词 ——
+#     真实语料实证：「平安少儿鑫福星2025重疾险**不覆盖**核爆炸」属
+#     **其它对象**（核爆炸 / 核辐射）的限定，引入类别级路径会**过度收紧**
+#     （误压制该产品的真实重疾宣称）→ 按官方口径
+#     「preserving subject-specific scope handling」保持**主体路径专属**。
+#   ⇒ 类别级路径消费模式 ①（范围级）+ ②（不予给付级）；主体级路径消费全部。
+_CRX_CI_PATTERN_INDICES = (0, 1)
+
+
+def _crx_pattern_marker_hits(segment, exclude_spans=(), pattern_indices=None):
+    """segment 内由**通用模式**（`_EXCL_PATTERNS` · 同一份）命中的除外跨度
+
+    → [(start, end, 等价字面标记), ...]
+
+    ⚠ **只补充**不被**字面标记**覆盖的跨度 → 既有口径**零漂移**
+      （既有判定完全由字面标记决定 → 补进去只会**新增**命中，
+        不会改变任何既有结论）。
+    """
+    hits = []
+    if not segment:
+        return hits
+    for _i, _pat in enumerate(_EXCL_PATTERNS):
+        if _i >= len(_CRX_PATTERN_EQUIV_MARKER):
+            break
+        if pattern_indices is not None and _i not in pattern_indices:
+            continue
+        for _m in re.finditer(_pat, segment):
+            _s, _e = _m.start(), _m.end()
+            if any(not (_e <= _xs or _s >= _xe) for _xs, _xe in exclude_spans):
+                continue
+            hits.append((_s, _e, _CRX_PATTERN_EQUIV_MARKER[_i]))
+    # 同一跨度只保留一次；重叠时保留**最长**（与既有「同位置取最长匹配」口径一致）
+    hits.sort(key=lambda h: (h[0], -h[1]))
+    _uniq = []
+    _last_end = -1
+    for _h in hits:
+        if _h[0] < _last_end:
+            continue
+        _uniq.append(_h)
+        _last_end = _h[1]
+    return _uniq
+
+
+def _crx_excl_hit_is_ambiguous(clause, start):
+    """该除外命中是否被**对冲词**前置（→ **存疑**，**不是**确定的除外）
+
+    ⚠ 官方 SDI-4 残余 AD · 已知坑（任务书 §⑤·2）：
+      「可能无法给付，需以条款为准」这类**存疑**表述**不得**被当成除外 ——
+      通用模式 ② 会命中「无法给付」→ 若照单全收 → 把「待核实」说成
+      「确定不保」；但**存疑仍然压制**（官方口径：存疑一律不授权 +
+      产出「待核实」限制说明）。
+
+    ⇒ 处置：**定长否定前瞻**（窗口 `_EXCL_HEDGE_LOOKBACK` 字符）——
+      否定表达**紧邻前置**对冲词 → 该命中判为**存疑**（ambiguous）。
+    ⚠ 对冲词**全部取自 `_UNCERTAINTY_MARKERS`** → 对冲 ⟹ 必然命中
+      `_has_uncertainty` → 记录级状态判 **unverified** → **仍然压制**。
+    ⚠ 窗口在**子句**内取（`_split_clauses` 已按语义边界切分）→ 不跨子句误判。
+    """
+    if not clause or start <= 0:
+        return False
+    lo = max(0, start - _EXCL_HEDGE_LOOKBACK)
+    prefix = clause[lo:start]
+    if not prefix:
+        return False
+    for _b in _CLAUSE_BREAKS:
+        if _b in prefix:
+            return False              # 跨子句 → 不算存疑（保守：仍按除外）
+    return any(prefix.endswith(_h) for _h in _EXCL_HEDGE_PREFIXES)
+
+
 def _crx_clause_excludes_subject(clause, subject):
     """clause 内是否存在**指向 subject** 的明确除外表述（双向 + 允许填充词）
 
@@ -2786,30 +3229,46 @@ def _crx_clause_excludes_subject(clause, subject):
         tail = clause[_crx_subject_span_end(clause, occ, subject):]
 
         # ── head 侧：否定**前向**绑定（标记 → subject）──
+        #   ⚠ 官方 SDI-4 残余 AD：head 侧同时消费**同一份** `_EXCL_PATTERNS`
+        #     （模式命中按**等价字面标记**参与判定 → 与字面标记同口径）。
+        #   ⚠ 模式命中**只补充**不被字面标记覆盖的跨度 → 既有口径零漂移。
+        _head_hits = []
         for mk in _CRX_EXCLUSION_MARKERS:
             pos = head.rfind(mk)
             while pos != -1:
-                gap = head[pos + len(mk):]
-                # ⚠ 官方 SDI-4 残余 T-2：标记若**紧邻**跟在别的保障对象之后
-                #   → 它绑定的是**那个对象**（与 subject 无关）→ 跳过
-                if _is_mild and _crx_preceding_binds_other_object(head, pos, subject):
-                    pos = head.rfind(mk, 0, pos)
-                    continue
-                if (mk in _CRX_BACKWARD_BINDING_MARKERS
-                        and _crx_subject_gap_targets_other_object(head[:pos], subject)):
-                    # ⚠ 官方 SDI-4 残余 U（根因④ · 同源第三处）：
-                    #   后向绑定标记绑定的是标记**之前**的主体 → 看「标记之前」
-                    #   的片段；命中**别的保障对象** → 与本主体无关（跳过）。
-                    pos = head.rfind(mk, 0, pos)
-                    continue
-                if not _crx_subject_gap_targets_other_object(gap, subject):
-                    return True
+                _head_hits.append((pos, pos + len(mk), mk))
                 pos = head.rfind(mk, 0, pos)
+        _head_hits.sort(key=lambda h: (-h[0], h[1]))
+        _lit_head = [(_s, _e) for (_s, _e, _m) in _head_hits]
+        for (_s, _e, _mk) in _crx_pattern_marker_hits(head, _lit_head):
+            _head_hits.append((_s, _e, _mk))
+        _head_hits.sort(key=lambda h: (-h[0], h[1]))
+        for (pos, _mk_end, mk) in _head_hits:
+            gap = head[pos + len(mk):]
+            # ⚠ 官方 SDI-4 残余 T-2：标记若**紧邻**跟在别的保障对象之后
+            #   → 它绑定的是**那个对象**（与 subject 无关）→ 跳过
+            if _is_mild and _crx_preceding_binds_other_object(head, pos, subject):
+                continue
+            if (mk in _CRX_BACKWARD_BINDING_MARKERS
+                    and _crx_subject_gap_targets_other_object(head[:pos], subject)):
+                # ⚠ 官方 SDI-4 残余 U（根因④ · 同源第三处）：
+                #   后向绑定标记绑定的是标记**之前**的主体 → 看「标记之前」
+                #   的片段；命中**别的保障对象** → 与本主体无关（跳过）。
+                continue
+            if not _crx_subject_gap_targets_other_object(gap, subject):
+                # ⚠ 官方 SDI-4 残余 AD · 已知坑：被对冲词前置的命中
+                #   （「可能无法给付」/「可能不在承保范围」）→ **存疑**
+                #   （ambiguous，**不是**确定的除外）→ 不算「确定除外」，
+                #   但记录级的**存疑**判定仍会压制肯定宣称。
+                if _crx_excl_hit_is_ambiguous(clause, occ + pos):
+                    continue
+                return True
         # 弱标记「无」必须**紧邻** subject
         if head.rstrip().endswith(_CRX_EXCLUSION_WEAK_MARKERS):
             return True
 
         # ── tail 侧：否定**后向**绑定（subject → 标记）──
+        #   ⚠ 官方 SDI-4 残余 AD：tail 侧同时消费**同一份** `_EXCL_PATTERNS`。
         hits = []
         for mk in _CRX_EXCLUSION_MARKERS:
             start = 0
@@ -2829,10 +3288,28 @@ def _crx_clause_excludes_subject(clause, subject):
             _uniq.append(_h)
             _last_end = _h[1]
         hits = _uniq
+        # ⚠ 官方 SDI-4 残余 AD：通用模式命中**只补充**不被字面标记覆盖的跨度
+        _lit_tail = [(_s, _e) for (_s, _e, _m) in hits]
+        for (_s, _e, _mk) in _crx_pattern_marker_hits(tail, _lit_tail):
+            hits.append((_s, _e, _mk))
+        hits.sort(key=lambda h: (h[0], -h[1]))
+        _uniq = []
+        _last_end = -1
+        for _h in hits:
+            if _h[0] < _last_end:
+                continue
+            _uniq.append(_h)
+            _last_end = _h[1]
+        hits = _uniq
         for i, (s, e, mk) in enumerate(hits):
             before = tail[hits[i - 1][1] if i else 0:s]
             after = tail[e:]
             if _crx_subject_gap_targets_other_object(before, subject):
+                continue
+            # ⚠ 官方 SDI-4 残余 AD · 已知坑：被对冲词前置的命中 → **存疑**
+            #   （ambiguous）→ 不算「确定除外」，但记录级的**存疑**判定仍压制。
+            _abs_start = _crx_subject_span_end(clause, occ, subject) + s
+            if _crx_excl_hit_is_ambiguous(clause, _abs_start):
                 continue
             if _is_mild:
                 # ⚠ 官方 SDI-4 残余 T-2：**局部语法作用域**绑定
@@ -3135,19 +3612,70 @@ def _crx_clause_excludes_disease_count(clause, subject):
 # 类别级重疾除外：coverage category 名词
 _CRX_CI_CATEGORY_TOKENS = ("重大疾病", "重疾")
 # 类别级除外标记（**紧贴**类别名词才生效）
+# ⚠⚠ 官方 SDI-4 残余 AE-4（2026-11-27 公开复扫 · china v2.4.45 · Excessive
+#   Agency · MEDIUM · confidence 0.99）finding 原文：
+#     「The shared critical-illness state labels coverage as validated despite
+#       explicit category exclusions that its checks deliberately omit.」
+#   explanation 原文：
+#     「The category-level exclusion checks deliberately omit expressions such as
+#       「不覆盖」 and 「不涵盖」, yet the shared state treats the absence of
+#       recognized exclusions as validated coverage.」
+#   remediation 原文：
+#     「… using subject-specific scope to distinguish exclusions of critical-illness
+#       coverage from exclusions of particular causes or benefits.」
+#
+# ⚠ 这三个标记**不得**直接当类别级除外（真实语料反例）：
+#     「平安少儿鑫福星2025重疾险**不覆盖核爆炸**、核辐射或遗传性疾病」
+#     → 是**特定病因**的除外 → 直接进类别级路径会**误压制**该产品的真实宣称。
+#   ⇒ 走**主体作用域**判别：被排除的对象**就是重疾保障本身**才算类别级除外
+#     （`_crx_ci_subject_scope_ok`）。
+# ⚠ **引用**共享词表（`_EXCL_CATEGORY_EXTRA_LITERALS` = 不纳入 / 不涵盖 / 不覆盖）
+#   —— **不另抄一份**（单一事实源 · 杜绝二次漂移）。
+_CRX_CI_SUBJECT_SCOPE_MARKERS = (
+    *_EXCL_CATEGORY_EXTRA_LITERALS,
+)
+
+
 _CRX_CI_EXCLUSION_MARKERS = (
-    "不在保障责任范围", "不在保障范围",
-    "不予赔付", "不予给付", "不予支付", "不予承保",
-    "不承保", "不承担", "不负责", "不保", "不赔",
-    "责任免除", "除外", "无保障",
-    # ⚠ 共享归一化除外词表 · 类别级（官方残余 AB · 2026-11-25 公开复扫）
-    #   「不含」「不包含」「不包括」→ 「不含重大疾病保障」/「重大疾病保障不含」
-    #   /「重疾不含保障」**都**判类别级除外 ✓（官方原文：
-    #   「recognize 「不含」「不包含」「不包括」 … with appropriate local scope」）。
+    # ⚠⚠ 官方 SDI-4 残余 AD（2026-11-26 公开复扫 · ai v2.4.46 /
+    #   china v2.4.43 · Excessive Agency · MEDIUM）：
+    #   本路径**从未**消费共享归一化词表的**范围族**
+    #   （`_SHARED_EXCLUSION_SCOPE` =「不在承保范围」「不属于承保范围」）
+    #   → 官方场景（highlights「120种重疾，含轻症保障」+ **另一字段**
+    #   「重大疾病不在承保范围」）→ `_crx_ci_claim_state` 算出 allowed=True
+    #   → 产出肯定宣称（把**明确除外**反转成**承保宣称**）。
+    #   官方 china explanation 原文另点名：「they also do not use the shared
+    #   exclusion regexes」→ 本路径还须消费**同一份** `_EXCL_PATTERNS`
+    #   （见 `_crx_ci_marker_positions`）。
+    # ⇒ 改为**从共享语义族派生**（**单一事实源**）—— **只引用、不另抄一份**：
+    #   ① 范围级语义族（**含**共享 scope 家族 · 官方残余 AD 的核心修复点）
+    *_EXCL_SCOPE_LITERALS,
+    #   ② 主体级语义族（不予承保 + 不承保）
+    *_SHARED_EXCLUSION_SUBJECT,
+    *_EXCL_SUBJECT_EXTRA_LITERALS,
+    #   ③ 不予给付级语义族（不予给付 / 不予赔付 / 不予支付 / 不予报销 …）
+    *_EXCL_NONPAYMENT_LITERALS,
+    #   ④ 类别级语义族（官方残余 AB：「不含」「不包含」「不包括」→
+    #      「不含重大疾病保障」/「重大疾病保障不含」/「重疾不含保障」
+    #      **都**判类别级除外 ✓（官方原文：
+    #      「recognize 「不含」「不包含」「不包括」 … with appropriate local scope」）。
+    #      ⚠ **只取共享族**（不含 / 不包含 / 不包括）——「不纳入 / 不涵盖 / 不覆盖」
+    #        属**主体路径**口径（残余 AB 之前就有），**不**引入本路径：
+    #        真实语料「XX重疾险不覆盖核爆炸」「保险不涵盖因酗酒导致的疾病」
+    #        属**其它对象**的限定，引入本路径会**过度收紧**（误压制真实宣称）。
     #   ⚠ 既有「不保证 ≠ 不保」特判（`_crx_ci_marker_positions` 里 `不保` + `证`
     #     的 continue）**保留不变**；既有成员**一律保留**（只增不改）。
     *_SHARED_EXCLUSION_CATEGORY,
+    #   ⑤ 主体作用域标记（官方残余 AE-4：不纳入 / 不涵盖 / 不覆盖）→
+    #      **必须**通过**主体作用域判别**（`_crx_ci_subject_scope_ok`）才生效：
+    #      被排除的对象**就是重疾保障本身**才算类别级除外；
+    #      「不覆盖核爆炸」（特定病因）**不是**类别级除外。
+    *_CRX_CI_SUBJECT_SCOPE_MARKERS,
+    # ── 路径**特有**成员（既有口径 · 只增不改）──
+    "不在保障责任范围", "不承担", "不负责", "不保", "不赔",
+    "责任免除", "除外", "无保障",
 )
+
 # 类别级除外判定必须排除的「其它保障对象 / 条件性」线索
 _CRX_CI_OTHER_OBJECT_CUES = (
     "身故", "死亡", "全残", "伤残", "豁免", "津贴", "等待期", "犹豫期",
@@ -3167,7 +3695,15 @@ _CRX_CI_OBJECT_WINDOW = 12
 
 
 def _crx_ci_marker_positions(segment):
-    """segment 内「类别级除外标记」的位置 → [(start, end, marker)]（已剔除「不保证」）"""
+    """segment 内「类别级除外标记」的位置 → [(start, end, marker)]（已剔除「不保证」）
+
+    ⚠ 官方 SDI-4 残余 AD：类别级路径**必须消费同一份** `_EXCL_PATTERNS`
+      （官方 china explanation 原文：「they also do not use the shared
+      exclusion regexes」）→ 模式命中按**等价字面标记**参与判定
+      （① ≡「不在保障范围」后向绑定 / ② ≡「不予给付」后向绑定 / ③ ≡「不含」前向绑定）。
+    ⚠ 模式命中**只补充**不被字面标记覆盖的跨度 → 既有口径**零漂移**。
+    ⚠ 既有「不保证 ≠ 不保」特判**保留不变**。
+    """
     hits = []
     for mk in _CRX_CI_EXCLUSION_MARKERS:
         pos = 0
@@ -3181,6 +3717,11 @@ def _crx_ci_marker_positions(segment):
                 continue
             hits.append((i, i + len(mk), mk))
     hits.sort()
+    _lit_spans = [(_s, _e) for (_s, _e, _m) in hits]
+    for (_s, _e, _mk) in _crx_pattern_marker_hits(segment, _lit_spans,
+                                                 _CRX_CI_PATTERN_INDICES):
+        hits.append((_s, _e, _mk))
+    hits.sort()
     return hits
 
 
@@ -3192,6 +3733,39 @@ def _crx_ci_segment_has_other_object(segment):
         if cue in segment:
             return True
     return False
+
+
+def _crx_ci_object_is_ci_subject(obj):
+    """被排除的宾语是否**就是重疾保障主体**（含「重疾 / 重大疾病」类别词）
+
+    ⚠ 官方 SDI-4 残余 AE-4 remediation 原文（主体作用域）：
+      「… using subject-specific scope to distinguish exclusions of critical-illness
+        coverage from exclusions of particular causes or benefits.」
+
+    ⇒ **正向**要求宾语含重疾类别词 → 「不涵盖重大疾病保障」✓ 类别级除外；
+      「不覆盖核爆炸」✗（宾语是**别的病因** → 不是类别级除外）。
+    """
+    if not obj or not isinstance(obj, str):
+        return False
+    return any(cat in obj for cat in _CRX_CI_CATEGORY_TOKENS)
+
+
+def _crx_ci_subject_scope_ok(marker, obj, tail_subject):
+    """该类别级除外命中的**主体作用域**是否成立（官方残余 AE-4）
+
+    · 仅对**主体作用域标记**（不纳入 / 不涵盖 / 不覆盖）生效；
+      其余标记（不含 / 不包含 / 不包括 / 范围族 / 主体级 …）**既有口径零漂移**。
+    · `tail_subject=True`  → 类别名词在标记**之前** → 被排除的主体**就是**该
+      类别名词本身；但若标记之后紧跟**别的**（非重疾类）对象 → 除外只针对那个
+      对象（如「重疾不覆盖核爆炸」）→ **不是**类别级除外。
+    · `tail_subject=False` → 标记在类别名词**之前** → 被排除的对象 = 标记之后的
+      宾语 → 必须**就是**重疾保障主体（如「不涵盖重大疾病保障」）才算类别级除外。
+    """
+    if marker not in _CRX_CI_SUBJECT_SCOPE_MARKERS:
+        return True
+    if tail_subject:
+        return (not obj) or _crx_ci_object_is_ci_subject(obj)
+    return _crx_ci_object_is_ci_subject(obj)
 
 
 def _crx_ci_local_object(text):
@@ -3229,35 +3803,28 @@ def _crx_ci_local_object(text):
     return "".join(out)
 
 
-def _crx_clause_excludes_ci_category(clause):
-    """clause 内是否存在**类别级**（不含数字）重疾除外 → True
+def _crx_clause_ci_category_hits(clause):
+    """clause 内的**类别级**（不含数字）重疾除外命中 → [(abs_start, abs_end, marker)]
 
-    官方 remediation（残余 Q · 原文）：
-      「binding exclusions to the underlying coverage category even when no
-        number is present」
-
-    口径（防过度收紧）：
-      · 除外标记必须**紧贴**类别名词（填充词 ≤ 4 字）；
-      · 类别名词与标记之间 / 标记之后若出现**其它保障对象**线索
-        （身故 / 续保 / 保费 / 等待期 / 津贴 / 轻症 …）→ 与重疾类别无关；
-      · ⚠ 官方 SDI-4 残余 X：判定「别的保障对象」**之前**先在**连接词**处
-        切掉后续子句（`_crx_ci_local_object`）→ 「重疾不保但含身故保障」
-        的除外**绑定**到「重疾」（后续保障不得撤销已绑定的除外）；
-      · 子句带**条件性语境**（等待期 / 犹豫期 / 未满 / 若 …）→ 不是无条件类别除外；
-      · 「轻重疾病」= 轻症 + 重疾的**并称** → 其中的「重疾」不是类别名词。
+    ⚠ 判定逻辑与既有 `_crx_clause_excludes_ci_category` **逐条一致**
+      （只把 `return True` 改成「记录命中」）→ 判定口径**零漂移**。
+    ⚠ 官方 SDI-4 残余 AD：命中集合里同时包含
+      · **字面标记**命中（`_CRX_CI_EXCLUSION_MARKERS`）
+      · **通用模式**命中（`_EXCL_PATTERNS` · 同一份）
     """
+    hits = []
     if not clause:
-        return False
+        return hits
     # ⚠ 带**量化数字**的子句由「病种数专属」判定处理（`_crx_clause_excludes_disease_count`）
     #   → 类别级判定只负责**不含量化数字**的重疾除外（官方 remediation 原文：
     #     「binding exclusions to the underlying coverage category even when no
     #       number is present」）
     #   → 否则「120种重疾除外」会被误当成**类别**除外 → 兜底文案被过度收紧。
     if _CRX_DISEASE_COUNT_RE.search(clause):
-        return False
+        return hits
     for cue in _CRX_CI_CONDITIONAL_CUES:
         if cue in clause:
-            return False
+            return hits
     for cat in _CRX_CI_CATEGORY_TOKENS:
         start = 0
         while True:
@@ -3280,11 +3847,16 @@ def _crx_clause_excludes_ci_category(clause):
                     # ⚠ 官方 SDI-4 残余 U：后向绑定标记（除外 / 责任免除 …）
                     #   → 绑定**前面**的类别名词；其后的「但含身故保障」属
                     #     **后续子句** → **不得**撤销 → 不查标记之后的宾语窗口
-                    return True
+                    hits.append((i + len(cat) + s, i + len(cat) + e, mk))
+                    continue
                 obj = _crx_ci_local_object(tail[e:])
                 if _crx_ci_segment_has_other_object(obj):
                     continue
-                return True
+                # ⚠ 官方 SDI-4 残余 AE-4：**主体作用域**判别（仅对
+                #   「不纳入 / 不涵盖 / 不覆盖」生效 · 既有口径零漂移）
+                if not _crx_ci_subject_scope_ok(mk, obj, tail_subject=True):
+                    continue
+                hits.append((i + len(cat) + s, i + len(cat) + e, mk))
             # ── head 侧：除外标记 → 类别名词 ──
             head = clause[:i]
             for (s, e, mk) in _crx_ci_marker_positions(head):
@@ -3298,24 +3870,80 @@ def _crx_clause_excludes_ci_category(clause):
                     #   的对象；前置片段命中别的保障对象 → 与类别无关（跳过）
                     if _crx_ci_segment_has_other_object(head[:s]):
                         continue
-                    return True
+                    hits.append((s, e, mk))
+                    continue
                 obj = _crx_ci_local_object(clause[e:])
                 if _crx_ci_segment_has_other_object(obj):
                     continue
-                return True
+                # ⚠ 官方 SDI-4 残余 AE-4：**主体作用域**判别（见上）
+                if not _crx_ci_subject_scope_ok(mk, obj, tail_subject=False):
+                    continue
+                hits.append((s, e, mk))
+    return hits
+
+
+def _crx_clause_ci_category_unresolved(clause):
+    """类别级重疾除外命中**存疑**（ambiguous）→ True
+
+    ⚠ 官方 SDI-4 残余 AD · 已知坑（任务书 §⑤·2）：存疑表述**不得**被当成
+      「确定不保」→ 但**仍然压制**肯定宣称（官方口径：存疑一律不授权 +
+      产出「待核实」限制说明）。
+    """
+    for (s, _e, _mk) in _crx_clause_ci_category_hits(clause):
+        if _crx_excl_hit_is_ambiguous(clause, s):
+            return True
     return False
 
 
-def _crx_record_ci_category_excluded(product):
-    """产品记录内是否存在**类别级**（不含数字）重疾除外 → True
+def _crx_clause_excludes_ci_category(clause):
+    """clause 内是否存在**类别级**（不含数字）重疾**确定**除外 → True
+
+    官方 remediation（残余 Q · 原文）：
+      「binding exclusions to the underlying coverage category even when no
+        number is present」
+
+    口径（防过度收紧）：
+      · 除外标记必须**紧贴**类别名词（填充词 ≤ 4 字）；
+      · 类别名词与标记之间 / 标记之后若出现**其它保障对象**线索
+        （身故 / 续保 / 保费 / 等待期 / 津贴 / 轻症 …）→ 与重疾类别无关；
+      · ⚠ 官方 SDI-4 残余 X：判定「别的保障对象」**之前**先在**连接词**处
+        切掉后续子句（`_crx_ci_local_object`）→ 「重疾不保但含身故保障」
+        的除外**绑定**到「重疾」（后续保障不得撤销已绑定的除外）；
+      · 子句带**条件性语境**（等待期 / 犹豫期 / 未满 / 若 …）→ 不是无条件类别除外；
+      · 「轻重疾病」= 轻症 + 重疾的**并称** → 其中的「重疾」不是类别名词。
+    """
+    for (s, _e, _mk) in _crx_clause_ci_category_hits(clause):
+        # ⚠ 存疑（对冲词前置）→ **不算**「确定除外」（官方口径：存疑一律不授权
+        #   + 产出「待核实」限制说明 → 由 `_crx_record_ci_category_state` 承接）
+        if not _crx_excl_hit_is_ambiguous(clause, s):
+            return True
+    return False
+
+
+def _crx_record_ci_category_state(product):
+    """产品记录内**类别级**（不含数字）重疾除外的**记录级状态**
+
+    → {"excluded": bool, "unresolved": bool}
+
+      ① excluded   —— 存在**确定**的类别级重疾除外（如「重大疾病不在承保范围」）
+      ② unresolved —— 存在**存疑**的类别级除外（对冲词前置，如
+                      「重大疾病可能不在承保范围」）→ 官方口径：未经确认
+                      （unverified）→ **不得**授权肯定宣称。
+
+    官方 remediation（残余 AD · 原文）：
+      「Treat unresolved exclusions or conflicting evidence as unverified,
+        suppress affirmative claims on every output surface, and propagate an
+        explicit limitation into the final plan.」
 
     官方 remediation（残余 Q · 原文）：
       「Validate critical-illness coverage and disease count separately across the
         entire product record, binding exclusions to the underlying coverage category
         even when no number is present.」
     """
+    excluded = False
+    unresolved = False
     if not product:
-        return False
+        return {"excluded": False, "unresolved": False}
     for text in _product_text_leaves(product):
         if not isinstance(text, str):
             continue
@@ -3323,8 +3951,21 @@ def _crx_record_ci_category_excluded(product):
             continue
         for clause in _split_clauses(text):
             if _crx_clause_excludes_ci_category(clause):
-                return True
-    return False
+                excluded = True
+            elif _crx_clause_ci_category_unresolved(clause):
+                unresolved = True
+    return {"excluded": excluded, "unresolved": unresolved}
+
+
+def _crx_record_ci_category_excluded(product):
+    """产品记录内是否存在**类别级**（不含数字）重疾**确定**除外 → True
+
+    官方 remediation（残余 Q · 原文）：
+      「Validate critical-illness coverage and disease count separately across the
+        entire product record, binding exclusions to the underlying coverage category
+        even when no number is present.」
+    """
+    return bool(_crx_record_ci_category_state(product)["excluded"])
 
 
 def _crx_record_disease_count_issue(product, subject):
@@ -3507,6 +4148,38 @@ def _crx_key_benefits(product, coverage, style="standard"):
     if disease:
         return f"{disease}，确诊即赔付{amount}万"
     return f"重疾保障，确诊即赔付{amount}万"
+
+
+def _crx_ci_category_unverified_limitation(product, no_evidence=False):
+    """类别级重疾除外**存疑**（未决）时的**如实限制说明** → dict | None
+
+    ⚠ 官方 SDI-4 残余 AD（2026-11-26 公开复扫）remediation 原文：
+      「Treat unresolved exclusions or conflicting evidence as unverified,
+        suppress affirmative claims on every output surface, and propagate an
+        explicit limitation into the final plan.」
+    ⚠ 文案**不得**断言「确定不保」（那是把**不确定性**说成**确定性**）；
+      也不得断言保障成立 → 只如实报告「记录中存在待核实的表述」。
+
+    ⚠ 官方 SDI-4 残余 AE-2（2026-11-27 公开复扫）新增 `no_evidence=True`：
+      记录里**缺少**肯定的重疾承保证据时，同样必须**如实报告限制**
+      （**不得**静默留空）→ **复用同一套**限制文案体系（**不新造体系**）。
+    """
+    if not product:
+        return None
+    if no_evidence:
+        basis = "产品记录中缺少对重疾保障范围的肯定证据"
+    else:
+        if not _crx_record_ci_category_state(product)["unresolved"]:
+            return None
+        basis = "产品记录中存在重疾保障范围待核实的表述"
+    return {
+        "type": "coverage_limit",
+        "product_type": "重疾险",
+        "product": product.get("name"),
+        "requirement": "重疾保障责任",
+        "reason": (basis + "，重疾保障范围待核实，"
+                   "已不作对外宣称；保费在预算内仅说明预算可行，不代表保障范围已核实"),
+    }
 
 
 def _crx_ci_category_limitation(product):
@@ -3705,6 +4378,117 @@ def _crx_record_mild_excluded(product):
     return False
 
 
+# ══════════════════════════════════════════════════════════════════════
+# 官方 SDI-4 残余 AE-2（2026-11-27 公开复扫）· **肯定证据闸**（单一事实源）
+#
+#   官方 finding / explanation / remediation 原文见 `_crx_ci_claim_state` 注释。
+#
+#   ⇒ 「肯定证据」= 记录级存在下列**任一**：
+#     ① 结构化条目：`covered=True`（或 `is_covered=True`）且**条目标识含重疾类词**
+#        （重疾 / 重大疾病）；
+#     ② 文本子句：某子句含「重疾 / 重大疾病」，且该子句**不是**否定、
+#        **不是**存疑、**不是**条件性（复用既有 `_structured_text_is_negative` /
+#        `_structured_text_is_uncertain` / `_has_uncertainty` / `_has_condition`
+#        + 类别级除外判定 → **不新造词表**）。
+#
+#   ⚠ **宽口径**（主侧已量化：真实语料 168/168 款重疾险**全部**保留 →
+#     0 款因缺肯定证据被压掉）→ **不得**再收紧（收紧会压掉真实宣称）。
+#   ⚠ 判定**子句级**（一句话里既有肯定又有否定时，否定子句不提供肯定证据）。
+# ══════════════════════════════════════════════════════════════════════
+
+
+def _crx_ci_clause_is_affirmative(clause):
+    """子句是否构成**肯定的重疾承保证据**（宽口径 · 子句级）
+
+    口径：含重疾类词 + 非否定 + 非存疑 + 非条件 + 非类别级除外。
+    """
+    if not clause or not isinstance(clause, str):
+        return False
+    if not any(tok in clause for tok in _CRX_CI_CATEGORY_TOKENS):
+        return False
+    # ⚠ 否定（与结构化侧**同一份**词表 / 通用模式）
+    if _structured_text_is_negative(clause):
+        return False
+    # ⚠ 存疑（待核实 / 是否 / 以…为准 / 可能 …）
+    if _structured_text_is_uncertain(clause):
+        return False
+    if _has_uncertainty(clause, 0, len(clause)):
+        return False
+    # ⚠ 条件性（条件无法渲染 → 不得无条件宣称）
+    if _has_condition(clause, 0, len(clause)):
+        return False
+    # ⚠ 类别级除外（本子句本身就是除外 → 不提供肯定证据）
+    if _crx_clause_excludes_ci_category(clause):
+        return False
+    return True
+
+
+def _crx_ci_structured_affirmative_evidence(product):
+    """结构化权威字段里是否存在**重疾类**的肯定承保证据 → bool
+
+    ⚠ 与授权路径**同一状态**（`_structured_value_state`）→ contradictory /
+      ambiguous 的条目**不**算肯定证据。
+    """
+    if not isinstance(product, dict):
+        return False
+    for field in _STRUCTURED_AUTHORITY_FIELDS:
+        value = product.get(field)
+        entries = []
+        if isinstance(value, dict):
+            entries = list(value.items())
+        elif isinstance(value, (list, tuple)):
+            entries = [(None, item) for item in value]
+        for key, entry in entries:
+            ident = key if isinstance(key, str) else None
+            if isinstance(entry, dict):
+                if not ident:
+                    ident = _structured_item_identifier(entry)
+                if not isinstance(ident, str) or not ident.strip():
+                    continue
+                if not any(tok in ident for tok in _CRX_CI_CATEGORY_TOKENS):
+                    continue
+                if _structured_value_state(entry) != "affirmative":
+                    continue
+                return True
+            # 布尔形态：{"重疾": true}
+            if not ident:
+                continue
+            if not any(tok in ident for tok in _CRX_CI_CATEGORY_TOKENS):
+                continue
+            if _structured_decision_state(entry) != "affirmative":
+                continue
+            return True
+    return False
+
+
+def _crx_ci_text_affirmative_evidence(product):
+    """**文本子句**里是否存在肯定的重疾承保证据 → bool（宽口径）"""
+    if not isinstance(product, dict):
+        return False
+    for text in _product_text_leaves(product):
+        if not isinstance(text, str) or not text.strip():
+            continue
+        if not any(tok in text for tok in _CRX_CI_CATEGORY_TOKENS):
+            continue
+        for clause in _split_clauses(text):
+            if _crx_ci_clause_is_affirmative(clause):
+                return True
+    return False
+
+
+def _crx_ci_affirmative_evidence(product):
+    """记录级是否存在**肯定的重疾承保证据** → bool（AE-2 的单一事实源）
+
+    ⚠ 官方 SDI-4 残余 AE-2 remediation 原文：
+      「requiring validated affirmative evidence before marking a benefit allowed」
+    ⇒ 结构化（`covered=True` + 重疾类标识）**或** 文本（子句含重疾类词 +
+      非否定 / 非存疑 / 非条件）任一成立即视为**有肯定证据**。
+    """
+    if _crx_ci_structured_affirmative_evidence(product):
+        return True
+    return _crx_ci_text_affirmative_evidence(product)
+
+
 def _crx_ci_claim_state(product):
     """**共享**的「重疾保障已验证状态」→ dict（残余 R 的单一事实源）
 
@@ -3723,23 +4507,66 @@ def _crx_ci_claim_state(product):
         "limitation": dict|None,  # 如实限制文案（unverified · **不得**删除）
       }
     """
-    excluded = bool(_crx_record_ci_category_excluded(product))
+    # ⚠ 官方 SDI-4 残余 AD（2026-11-26 公开复扫）：类别级状态**同时**给出
+    #   「确定除外」与「存疑未决」两类信号。
+    ci_state = _crx_record_ci_category_state(product)
+    excluded = bool(ci_state["excluded"])
+    ci_unresolved = bool(ci_state["unresolved"])
     # ⚠ 官方 SDI-4 残余 S-2：记录级轻症覆盖状态（除外 / 待核实 / 条件 / 矛盾）
     #   必须在**任何轻症/重疾宣称生成之前**算出 → 单一事实源。
     mild = _crx_record_mild_state(product)
     unverified = False
     if not excluded:
-        unverified = bool(mild["unverified"])
+        unverified = bool(mild["unverified"]) or ci_unresolved
+    # ⚠⚠ 官方 SDI-4 残余 AE-2（2026-11-27 公开复扫 · ai v2.4.48 / china v2.4.45 ·
+    #   Excessive Agency · MEDIUM · confidence 0.99）finding 原文：
+    #     「The supposedly validated critical-illness state treats absence of
+    #       detected problems as positive coverage verification.」
+    #   explanation 原文：
+    #     「… a record stating 「重疾保障待核实」 without mild-illness wording or a
+    #       numeric disease count can pass this state and receive the unconditional
+    #       fallback 「重疾保障，确诊即赔付…」.」
+    #   remediation 原文：
+    #     「Represent coverage as explicit verified, excluded, and unverified states,
+    #       requiring validated affirmative evidence before marking a benefit
+    #       allowed. … missing evidence must remain unverified.」
+    #
+    #   ⇒ 根因（**方向反了**）：旧口径 `validated = not excluded and not unverified`
+    #     → 「**没查到问题**」被当成「**已验证承保**」。
+    #   ⇒ 修法：**肯定证据闸**（`_crx_ci_affirmative_evidence`）——
+    #     记录级必须存在**肯定的重疾承保证据**才允许产出肯定宣称。
+    has_evidence = _crx_ci_affirmative_evidence(product)
+    if not has_evidence:
+        unverified = True
     limitation = _crx_ci_category_limitation(product)
     if limitation is None and unverified:
         # ⚠ 官方 SDI-4 残余 S-1：共享状态 `unverified` 时**必须**返回非空 limitation
         #   （轻症**单独**除外时不得返回 None → 方案层不得静默），且须与
         #   「重疾类别级除外」的限制文案**可区分**。
         limitation = _crx_mild_unverified_limitation(product, mild)
+        if limitation is None:
+            # ⚠ 官方 SDI-4 残余 AD：类别级**存疑**未决 → 如实报告限制
+            #   （**不得**静默留空）。
+            limitation = _crx_ci_category_unverified_limitation(product)
+        if limitation is None and not has_evidence:
+            # ⚠ 官方 SDI-4 残余 AE-2：**缺少肯定承保证据** → 如实报告限制
+            #   （**不得**静默留空 · 复用既有「类别级未核实」文案体系）。
+            limitation = _crx_ci_category_unverified_limitation(
+                product, no_evidence=True)
+    # ⚠ 官方 SDI-4 残余 AD + AE-2：肯定宣称**必须**依赖**已验证的覆盖证据**
+    #   （官方 remediation 原文：「Require validated coverage evidence before
+    #    emitting affirmative claims」）→ `allowed` ≡ `validated`。
+    validated = bool(not excluded and not unverified and has_evidence)
+    if not validated:
+        # ⚠ 官方口径三态（verified / excluded / unverified）：
+        #   **未验证**（validated=False）→ 一律按 unverified 如实报告
+        #   （**不得**让「没验证过」看起来像「已验证」）。
+        unverified = True
     return {
         "excluded": excluded,
         "unverified": unverified,
-        "allowed": not (excluded or unverified),
+        "validated": validated,
+        "allowed": validated,
         "limitation": limitation,
     }
 

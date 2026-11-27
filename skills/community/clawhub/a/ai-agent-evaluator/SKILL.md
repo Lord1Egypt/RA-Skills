@@ -12,7 +12,7 @@ description: >
   or autonomous red-team execution against live systems.
   Keywords: AI agent evaluation, agent benchmarking, LLM testing, CrewAI, AutoGen,
   LangChain, SWE-bench, AgentBench, AI quality assurance, agent reliability.
-version: "3.0.6"
+version: "3.0.7"
 ---
 
 # AI Agent Evaluator
@@ -121,7 +121,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 
 ---
 
-## AI Governance & Market Watch (as of 2026-11-23)
+## AI Governance & Market Watch (as of 2026-11-27)
 
 | Area | What is moving | What it means for evaluation work | Concrete action |
 |------|----------------|-----------------------------------|---|
@@ -138,7 +138,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 | Market | 评测从「上线前一次性」转向「上线后持续回归」 | 冻结的历史失败用例成为回归基线 | 建立失败用例库并纳入每次发版必跑集 |
 | Technical | 小模型与路由策略普及，同一任务可能由不同模型完成 | 评测需按实际路由分别统计，避免均值掩盖差异 | 记录每次调用的模型版本与路由决策 |
 
-> **Data as of**: 2026-11-23 · Sources: public governance guidance, vendor and community
+> **Data as of**: 2026-11-27 · Sources: public governance guidance, vendor and community
 > benchmarks, practitioner reports. Verify against the latest official publications before
 > relying on any specific figure.
 
@@ -578,7 +578,7 @@ by guiding you through rigorous, structured agent evaluation workflows.
 ---
 
 *Built for AI teams who ship agents to production — not just demos.*
-*Author: @gechengling | version: "3.0.6"*
+*Author: @gechengling | version: "3.0.7"*
 *Repository: https://github.com/gechengling/ai-agent-evaluator*
 
 ## 本轮增量（2026-11-15）：复核维度与举例补充
@@ -663,4 +663,46 @@ by guiding you through rigorous, structured agent evaluation workflows.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-23**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### Workflow 4: Failure Mode Deep Dive**：
+
+- 失败分类清单补一条「分类是否附可观测证据占位」的占位核对项，由使用者圈选并留白依据，草稿不代为定级。
+- 为失败簇对照新增一张纸面对照：左列列失败类型标签，右列留白记录需人工核实的复现条件，不代为跑评测。
+
+**## Red Teaming Checklist**：
+
+- 对抗清单补一条「用例是否留白待人工设计」的占位标注位，草稿不代为执行或判定。
+- 为边界情形新增一行「需人工确认的观测项」占位：标注观测标签，具体结果留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 失败证据占位 | 评测人员 + 复核人 | 失败分类清单草稿 | 是否标注可观测证据占位、未代为定级 | 中 | 纸面对照，结论需人工确认 |
+| 对应用例留白 | 评测人员 | 对抗核对表 | 是否留白待人工设计、未代为执行或判定 | 中 | 文档记录，不构成放行结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于智能体评测与失败模式分析的方法论草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式放行决定、生产部署与对外发布的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-27）
+
+> 参考 2026 年公开评测资料把「先从真实失败样本建立失败分类（标识 / 描述 / 严重度 / 证据 / 预期行为占位）」「能力评测与回归评测分轨、回归以基线快照作对照」「评分判据二元化为可观测的是/否项、确定性校验优先于主观打分」「正负向用例平衡、单机制改动后跑同一套对照」整理为方向性核对清单；强调评测集先行、评分只作观测、放行与否由具备资质的人员判定，草稿只保留占位维度与待确认项，不写入具体阈值、通过率或自动化动作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

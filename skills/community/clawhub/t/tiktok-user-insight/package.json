@@ -1,6 +1,6 @@
 {
   "name": "tiktok-user-insight",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "TikTok高赞视频搜索工具。支持关键词获取TikTok实时高赞视频数据，助力创作者发现热门趋势、获取创作灵感。",
   "keywords": [
     "tiktok",

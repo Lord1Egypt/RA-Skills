@@ -2,7 +2,7 @@
 name: Financial Industry Knowledge Base Manager
 slug: finance-knowledge-base
 description: AI-powered financial industry knowledge base manager — covers document organization, knowledge graph construction, semantic search, version governance and intelligent Q&A. Built for financial institutions’ internal knowledge management. Scope: knowledge-management design work — taxonomy and layering design, metric-definition registry design, retrieval evaluation, version and lifecycle governance. Out of scope: acting as a system of record, migrating or deleting production data, granting access permissions, and providing financial, legal or compliance advice. Keywords: knowledge taxonomy design, knowledge graph schema, retrieval evaluation, version governance, metric definition registry, RAG evaluation, 知识库分层设计, 知识图谱建模, 检索效果评估, 版本治理, 指标口径登记, 智能问答质量抽检.
-version: "5.0.7"
+version: "5.0.8"
 
 capabilities:
   - educational-reference
@@ -390,7 +390,7 @@ class KnowledgeBaseSearch:
 ```
 
 
-## 监管与行业动态 / Regulatory Watch（截至 2026-11-19）
+## 监管与行业动态 / Regulatory Watch（截至 2026-11-27）
 
 | 动态类型 | 内容摘要 | 对知识库的影响 | 建议动作 | 优先级 |
 |---------|---------|--------------|---------|-------|
@@ -409,7 +409,7 @@ class KnowledgeBaseSearch:
 > - **「超期未复核」从提醒转向自动处置**：仅靠提醒往往无人响应，越来越多做法是把到期未复核的知识自动降权或标注「待复核」，而不是照常返回给用户。
 
 
-> **数据截止**: 2026-11-19 | 来源：监管公开信息与行业实践整理
+> **数据截止**: 2026-11-27 | 来源：监管公开信息与行业实践整理
 > **声明**: 以上动态供参考，具体以官方最新发布为准。
 
 ---
@@ -504,4 +504,46 @@ before being used in production.
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### 1. Document Organization / 文档组织**：
+
+- 归类清单补一条「文档版本与有效期是否标注占位」的占位核对项，由使用者圈选并留白依据，草稿不代为入库或设定权限。
+- 为目录对照新增一张纸面对照：左列列文档标签，右列留白记录需人工核实的版本口径，不代为检索。
+
+**## 知识库治理检查清单 / Governance Checklist**：
+
+- 检查清单补一条「引用是否可回指到具体段落」的占位标注位，草稿不代为校验。
+- 为失效条目新增一行「需人工确认的退役标记」占位：标注待确认项，具体日期留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 版本有效期占位 | 知识库管理员 + 复核人 | 文档归类清单草稿 | 是否标注版本与有效期占位、未代为入库 | 中 | 纸面对照，口径需人工确认 |
+| 引用可回指标注 | 知识库管理员 | 治理核对表 | 是否标注可回指占位、未代为校验 | 中 | 文档记录，不构成正式治理结论 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于知识库组织与检索治理的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式对外答复、事实认定与上线决定的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 参考同类公开框架的补强（2026-11-27）
+
+> 参考 2026 年公开检索治理资料把「入库文档带版本 / 权限 / 有效期标记、检索只引用当前有效版本」「引用对象化到段落、结论与出处一一对应」「检索证据与生成结论分离」「零命中或证据不足时短路为说明不确定并建议人工确认」「引用校验放在生成之后」整理为方向性核对清单；强调答案可追溯只作观测、口径与放行由具备资质的人员判定，草稿只保留占位维度，不写入具体工具名、阈值或自动化动作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

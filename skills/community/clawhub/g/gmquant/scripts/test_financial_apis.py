@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from gm.api import *
 
-TOKEN = 'c2a347464c31056c84165dff766750fbf2ec67b4'
+TOKEN = os.environ.get('GM_TOKEN', '')
 
 def separator(title):
     print(f'\n{"="*70}')

@@ -526,5 +526,22 @@
       "source_url": null,
       "checked_at": null
     }
+  },
+  "place_check": {
+    "tool": "check_places.py",
+    "checked_at": "2026-08-03",
+    "inputs": [
+      "hotel|booking_options.accommodations[0].property_name|Fixture Hotel A",
+      "hotel|booking_options.accommodations[1].property_name|Fixture Hotel B",
+      "pin|days[0].route.segments[0].from|30.57476,104.06400|Fixture Hotel A",
+      "pin|days[0].route.segments[0].to|30.60244,104.06749|Fixture activity A",
+      "pin|days[0].route.segments[1].from|30.60244,104.06749|Fixture activity A",
+      "pin|days[0].route.segments[1].to|30.65941,104.07917|Fixture activity B",
+      "pin|days[0].route.segments[2].from|30.65941,104.07917|Fixture activity B",
+      "pin|days[0].route.segments[2].to|30.57476,104.06400|Fixture Hotel A",
+      "venue|days[0].dining[0].venue_name|Fixture Lunch",
+      "venue|days[0].dining[1].venue_name|Fixture Dinner"
+    ],
+    "findings": []
   }
 }

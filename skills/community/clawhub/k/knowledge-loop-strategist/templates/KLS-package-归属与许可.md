@@ -116,4 +116,4 @@
 
 **王教成　Wang Jiaocheng（波动几何）**
 
-版本 1.0.0　｜　2026-11-25　｜　wangjiaocheng@foxmail.com
+版本 1.0.0　｜　开包日期：______（开包时写入实际日期）　｜　wangjiaocheng@foxmail.com

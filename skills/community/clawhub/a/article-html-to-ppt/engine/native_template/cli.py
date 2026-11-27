@@ -18,7 +18,7 @@ def capabilities():
             'scope': 'native_template_toolchain_only',
             'templateFidelityThresholds': {'retentionMinimum': RETENTION_MIN, 'headingSizeMinimumRatio': HEADING_SIZE_MIN, 'smallestSizeMinimumRatio': SMALLEST_SIZE_MIN, 'geometryTolerancePt': BOX_TOLERANCE_PT},
             'finalRequirements': ['current real renders and external observations', 'source preservation floor passed', 'recomputed source-retention/type-scale fidelity floor passed', 'explicit nonblank output-page notes (presence only; truth not verified)'],
-            'commands': ['capabilities', 'init', 'inspect', 'status', 'apply', 'export', 'render', 'review', 'verify'],
+            'commands': ['capabilities', 'init', 'inspect', 'status', 'apply', 'export', 'render', 'review-template', 'review', 'verify'],
             'operations': {k: sorted(v) for k, v in runtime.OPERATIONS.items()},
             'objectIds': 'string cNvPr@id on the permanently bound source slide; new IDs positive numeric strings',
             'sourceSlideIds': 'string presentation sldId@id, in real presentation order',
@@ -36,7 +36,7 @@ def capabilities():
                             'No cross-source slide jump links; notes back-links to the bound source remain supported',
                             'No group creation or geometry edit of group children', 'Text replacement retains paragraph/first-run native style, not mixed-run semantic mapping',
                             'Chart edits: single-plot category charts only; table edits: unchanged unmerged rectangular structure',
-                            'No automatic review reuse; reviewer identity declared, not authenticated',
+                            'Explicit hash-bound page review inheritance via review-template --inherit-from only (deck_rhythm always re-reviewed); reviewer identity declared, not authenticated',
                             'No automatic factual review or tested Office/WPS compatibility',
                             'Not the complete Web visual floor or whole-Skill business acceptance',
                             'Strict source decoration/image and font-size retention; unresolved evidence blocks verify',
@@ -51,12 +51,15 @@ def main(argv=None):
     init = sub.add_parser('init', help='freeze template bytes/hash; empty deck revision 0')
     init.add_argument('--template', required=True); init.add_argument('--workspace', required=True)
     init.add_argument('--page-constraints', help='inline JSON: {"mode":"exact","count":5}; also auto/target/maximum')
-    for name in ('inspect', 'status', 'apply', 'export', 'render', 'review', 'verify'):
+    for name in ('inspect', 'status', 'apply', 'export', 'render', 'review-template', 'review', 'verify'):
         p = sub.add_parser(name); p.add_argument('--workspace', required=True)
         if name == 'inspect':
             p.add_argument('--offset', type=int, default=0); p.add_argument('--limit', type=int, default=20)
             p.add_argument('--details', action='store_true', help='include raw OOXML inheritance evidence and per-run records')
         if name == 'apply': p.add_argument('--request', required=True)
+        if name == 'review-template':
+            p.add_argument('--output', help='new output JSON path for the review skeleton')
+            p.add_argument('--inherit-from', help='previous raw external review JSON recorded in this workspace')
         if name == 'review': p.add_argument('--review', required=True)
         if name == 'render': p.add_argument('--render-engine', choices=['auto', 'libreoffice'], default='auto')
     args = parser.parse_args(argv)
@@ -66,6 +69,7 @@ def main(argv=None):
         elif name == 'init': result = runtime.init(args.template, args.workspace, strict_json(args.page_constraints.encode()) if args.page_constraints else None)
         elif name == 'inspect': result = runtime.inspect(args.workspace, args.offset, args.limit, details=args.details)
         elif name == 'apply': result = runtime.apply(args.workspace, strict_json(read_file(args.request)))
+        elif name == 'review-template': result = review_module.review_template(args.workspace, args.output, inherit_from=args.inherit_from)
         elif name == 'review': result = review_module.review(args.workspace, strict_json(read_file(args.review)))
         elif name == 'render': result = review_module.render(args.workspace, args.render_engine)
         elif name == 'verify': result = review_module.verify(args.workspace)

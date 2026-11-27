@@ -24,7 +24,7 @@ description: >
   守护、Agent 护栏、假成功拦截、防重复发送、重试预算、断点恢复、生产护栏、漂移检测.
 description_zh: 工作流守护护栏：为多步骤 Agent 工作流加装七项护栏（执行前检查、检查点、副作用队列、预算重试、结果验证、审计记录、规则沉淀），拦截假成功、重复发送与渐进漂移。适用于定时运行、无人值守、含发送/发布/写库等外部副作用、需要失败后安全重跑的工作流。触发词：工作流守护、Agent 护栏、假成功、防重复发送、幂等、断点恢复、生产护栏
 description_en: A horizontal safety layer for multi-step agent workflows — pre-execution checks, checkpointing, side-effect queues, retry budgets, result validation, audit logs, and rule accumulation.
-version: "1.0.10"
+version: "1.0.11"
 agent_created: true
 not_for:
   - Single-shot prompts with no external side effects
@@ -258,6 +258,7 @@ After each guarded run, emit:
 6. Audit log must be written for every run, including failures.
 7. Confirmed failures are captured into `~/.workbuddy/ERROR-PLAYBOOK.staging.md` by the agent in the same turn. The authoritative `~/.workbuddy/ERROR-PLAYBOOK.md` only gains an entry via the promotion gate: recurrence (count >= 2) or explicit human confirmation. Never let a single unreviewed append durably shape future runs — and never depend on a human being present to trigger the capture.
 8. Drift is tracked across runs, not judged on a single run.
+9. **Compare against the last successful run, not the last calendar slot.** A failed or skipped run leaves no valid baseline; the next run must establish its baseline from the most recent execution that actually completed.
 
 ---
 

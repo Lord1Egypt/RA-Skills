@@ -1,6 +1,6 @@
 {
   "name": "get_backlog_tasks",
-  "description": "List all tasks in the backlog",
+  "description": "List the tasks in the user's Sunsama backlog (tasks not yet scheduled on a day). Read-only. Use it when the user asks about their Sunsama backlog or to find a task before moving it. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {},

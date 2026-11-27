@@ -5,6 +5,33 @@
 
 ---
 
+## [3.20.0] — 2026-11-26
+
+minor：让 `iterate report` 落到 GitHub Actions 的 run-summary 页——新增
+`--github-summary` / `--no-github-summary`（`GITHUB_STEP_SUMMARY` 存在时自动开启，
+与 `--annotate` 同一三态约定），把整份 Markdown 报告追加到 workflow 的
+run-summary 页；并新增一份捆绑的 GitHub Actions CI workflow 模板
+（`iterate template show ci-workflow`），把 `--annotate` + `--github-summary`
++ JSON artifact 接成可直接粘贴的 `.github/workflows/iterate.yml`。
+此前在 CI 里这份报告只能靠翻 job 日志或下载 artifact 才看得到，现在它直接
+出现在开发者本来就会看的 run-summary 块。测试套件 2104 → 2121。
+
+### 新增功能
+- **`iterate report --github-summary`**（+18 回归）：把 Markdown 报告追加到
+  `$GITHUB_STEP_SUMMARY`，在 GitHub Actions 的 run-summary 页渲染整份报告。
+  `--no-github-summary` 关闭；未传时按 `GITHUB_STEP_SUMMARY` 是否存在自动判定
+  （与 `--annotate` 一致，进任意 workflow step 即自动生效）。summary 是**独立
+  输出槽**：不触碰 stdout（`--json` 仍恰好一个机器文档）、不改退出码、恒带
+  Markdown 形式、**追加**（绝不截断，其它 step 的 summary 得以保留）。
+  显式 `--github-summary` 但环境里没有 `GITHUB_STEP_SUMMARY` 是用法错误
+  （exit 2），报错直接说明该怎么做（在 workflow step 里跑或去掉该 flag）；
+  summary 不可写时只警告、不拖垮报告门禁。
+- **`iterate template show ci-workflow`**（+7 回归，别名 `ci`/`github-actions`）：
+  新增捆绑模板 `ci-workflow.yml`，把 run-summary + 内联注释 + artifact 三个
+  CI 集成点接成一份可直接粘贴的 workflow，覆盖「新的自动化入口（CI 模板）」
+  缺口——此前团队要自己手拼 workflow 才能让诊断落到开发者看的地方。
+  与 `templates/` 与 `iterate_cli/data/` 逐字节一致（既有测试强制）。
+
 ## [3.19.0] — 2026-11-23
 
 minor：新增 `iterate doctor --annotate` / `iterate report --annotate`——在

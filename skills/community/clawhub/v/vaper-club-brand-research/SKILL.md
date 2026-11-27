@@ -1,6 +1,6 @@
 ---
 name: vaper-club-brand-research
-description: Build a brand profile from Vaper.club data. Use when users ask about a vape brand's background, official website, company, aliases, product categories or models.
+description: Build a vape brand profile from Vaper.club data. Use when users ask about a vape brand's background, official website, company, aliases, product categories or models.
 ---
 
 # Vaper.club Brand Research
@@ -21,3 +21,4 @@ Use the Vaper.club MCP server (`https://api.vaper.club/mcp`). For adults only.
 - Sub-brands and series are not automatically separate brands; only state relationships that appear in the data.
 - Model lists only include models with currently published shop offers.
 - For brand news, follow up with `search_posts` using the brand name.
+- For **vape search** or **vape price compare** on a brand's models across shops, follow up with `search_products` or `compare_products` (see `vaper-club-product-research`).

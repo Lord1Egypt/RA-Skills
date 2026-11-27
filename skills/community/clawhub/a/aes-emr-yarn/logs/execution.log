@@ -1,0 +1,28 @@
+[2026-04-29 13:32:55] INFO: ======================================================================
+[2026-04-29 13:32:55] INFO: AES-EMR-YARN 资源消耗分析启动
+[2026-04-29 13:32:55] INFO: ======================================================================
+[2026-04-29 13:32:55] INFO: ✓ 配置加载成功: /Users/qinyafei/.openclaw/workspace/skills/aes-emr-yarn/config/config.yaml
+[2026-04-29 13:32:55] INFO: ✓ Cookies 已加载: 0 个
+[2026-04-29 13:32:55] INFO: 开始 SSH 数据采集...
+[2026-04-29 13:32:55] INFO: 开始 API 数据采集...
+[2026-04-29 13:32:55] INFO: 调用 API: ListClusters
+[2026-04-29 13:32:55] WARNING: ✗ API 调用失败: 400 - <?xml version='1.0' encoding='UTF-8'?><Error><RequestId>CD016D1F-134A-53B3-AB9E-5959EE263990</RequestId><HostId>emr.cn-hangzhou.aliyuncs.com</HostId><Code>InvalidVersion</Code><Message>Specified param
+[2026-04-29 13:32:58] INFO: ✓ 数据采集完成
+[2026-04-29 13:32:58] INFO: 生成分析报告...
+[2026-04-29 13:32:58] INFO: ✓ Cookies 已保存: /Users/qinyafei/.openclaw/workspace/skills/aes-emr-yarn/data/cookies.json
+[2026-04-29 13:32:58] INFO: ✓ 分析完成
+[2026-04-29 13:32:58] INFO: ======================================================================
+[2026-04-29 13:54:29] INFO: ======================================================================
+[2026-04-29 13:54:29] INFO: AES-EMR-YARN 资源消耗分析启动
+[2026-04-29 13:54:29] INFO: ======================================================================
+[2026-04-29 13:54:29] INFO: ✓ 配置加载成功: /Users/qinyafei/.openclaw/workspace/skills/aes-emr-yarn/config/config.yaml
+[2026-04-29 13:54:29] INFO: ✓ Cookies 已加载: 0 个
+[2026-04-29 13:54:29] INFO: 开始 SSH 数据采集...
+[2026-04-29 13:54:29] INFO: 开始 API 数据采集...
+[2026-04-29 13:54:29] INFO: 调用 API: ListClusters
+[2026-04-29 13:54:29] WARNING: ✗ API 调用失败: 400 - <?xml version='1.0' encoding='UTF-8'?><Error><RequestId>AEFA8BBF-E57C-5E85-87DF-75AE7DBD9561</RequestId><HostId>emr.cn-hangzhou.aliyuncs.com</HostId><Code>InvalidVersion</Code><Message>Specified param
+[2026-04-29 13:54:32] INFO: ✓ 数据采集完成
+[2026-04-29 13:54:32] INFO: 生成分析报告...
+[2026-04-29 13:54:32] INFO: ✓ Cookies 已保存: /Users/qinyafei/.openclaw/workspace/skills/aes-emr-yarn/data/cookies.json
+[2026-04-29 13:54:32] INFO: ✓ 分析完成
+[2026-04-29 13:54:32] INFO: ======================================================================

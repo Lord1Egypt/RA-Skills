@@ -1,7 +1,5 @@
 # PPT Smith V4 Bespoke 高定路线
 
-Before running task-authored Python, obtain explicit user approval and set the single-process host-code authorization and reviewed script hash described in [security boundaries](../security-boundaries.md). Quality gates do not sandbox Python or authorize execution. Fixed native-template operations do not need this compatibility opt-in.
-
 ## 定位
 
 Bespoke 继承 V3 高定路线，是 V4 默认的质量上限。强模型不是“可选 IR 生成器”，而是

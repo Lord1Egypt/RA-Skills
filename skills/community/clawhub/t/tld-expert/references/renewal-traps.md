@@ -1,7 +1,7 @@
 # Renewal traps (snapshot)
 
 Domain endings whose renewal is at least 2x the first-year price at the cheapest registrar we found (year one plus renewal).
-408 endings qualify. This file is a dated snapshot; for live numbers call
+405 endings qualify. This file is a dated snapshot; for live numbers call
 `GET https://tld.expert/api/prices?tld=<ending>` (true cost block, every row with `sourceUrl` and `checkedAt`) or see https://tld.expert/trap.
 
 When a user asks why a renewal jumped, or what a domain costs to keep: quote year one, the renewal next to it,
@@ -19,10 +19,10 @@ and the five-year total, never year one alone.
 | [.shop](https://tld.expert/shop) | $2.06 at Porkbun | $31.41/yr | 15.2x | $127.70 (Porkbun) |
 | [.online](https://tld.expert/online) | $1.96 at Porkbun | $28.84/yr | 14.7x | $117.32 (Porkbun) |
 | [.world](https://tld.expert/world) | $2.57 at Porkbun | $37.59/yr | 14.6x | $152.93 (Porkbun) |
+| [.co](https://tld.expert/co) | $2.37 at Porkbun | $31.20/yr | 13.2x | $127.17 (Porkbun) |
 | [.fit](https://tld.expert/fit) | $2.06 at Porkbun | $26.26/yr | 12.7x | $107.10 (Porkbun) |
 | [.wtf](https://tld.expert/wtf) | $2.57 at Porkbun | $32.44/yr | 12.6x | $132.33 (Porkbun) |
 | [.fun](https://tld.expert/fun) | $2.57 at Porkbun | $31.41/yr | 12.2x | $128.21 (Porkbun) |
-| [.capital](https://tld.expert/capital) | $5.66 at Porkbun | $63.34/yr | 11.2x | $259.02 (Porkbun) |
 
 ## Worst ratios
 
@@ -41,14 +41,14 @@ and the five-year total, never year one alone.
 
 ## Renewal at or below year one, per registrar
 
-- Porkbun: 220 of 637
-- Dynadot: 375 of 780
-- Name.com: 209 of 602
-- gandi: 4 of 133
+- Porkbun: 218 of 636
+- Dynadot: 413 of 823
+- Name.com: 204 of 601
+- gandi: 4 of 123
 
 ## Sources
 
-- Dynadot: https://www.dynadot.com/domain/price-list (read 2026-11-24)
-- gandi: https://www.gandi.net/en-US/domain/tld (read 2026-11-24)
-- Name.com: https://www.name.com/pricing (read 2026-11-24)
-- Porkbun: https://api.porkbun.com/api/json/v3/pricing/get (read 2026-11-24)
+- Dynadot: https://www.dynadot.com/domain/price-list (read 2026-11-27)
+- gandi: https://www.gandi.net/en-US/domain/tld (read 2026-11-27)
+- Name.com: https://www.name.com/pricing (read 2026-11-27)
+- Porkbun: https://api.porkbun.com/api/json/v3/pricing/get (read 2026-11-27)

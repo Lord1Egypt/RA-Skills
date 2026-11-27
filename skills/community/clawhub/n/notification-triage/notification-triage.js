@@ -17,7 +17,8 @@
  *
  * Behavior flags:
  *   --dir <path>                     → Override data directory (env: NOTIFY_TRIAGE_DIR)
- *   --force                          → Skip auto-rule creation; required for destructive ops
+ *   --force                          → Skip auto-rule creation; REQUIRED for destructive ops:
+ *                                       --rules clear, --rules remove, --seen --all
  *
  * Limits (hard caps, oldest dropped first on overflow):
  *   BATCH_MAX_ENTRIES    = 5000
@@ -25,7 +26,7 @@
  *   DIGEST_MAX_ENTRIES   = 1000
  *
  * Atomic writes: every saveJSON uses a temp+rename pattern so a crash mid-write
- * cannot corrupt the JSON state files. Backups are NOT created — atomic rename
+ * cannot leave the JSON files half-written. Backups are NOT created — atomic rename
  * is sufficient because the rename is the only failure window.
  */
 
@@ -42,12 +43,18 @@ const WORKSPACE = (() => {
   return path.resolve(__dirname, '..', '..');
 })();
 
-const DATA_DIR = path.join(WORKSPACE, 'memory', 'notification-triage');
-const RULES_FILE = path.join(DATA_DIR, 'rules.json');
-const SEEN_FILE = path.join(DATA_DIR, 'seen.json');
-const BATCH_FILE = path.join(DATA_DIR, 'batch.json');
-const DIGEST_FILE = path.join(DATA_DIR, 'digest.json');
-const DROPPED_FILE = path.join(DATA_DIR, 'dropped.json');
+const DEFAULT_DATA_DIR = path.join(WORKSPACE, 'memory', 'notification-triage');
+
+// Data directory is mutable so the CLI --dir flag can override it at runtime.
+let dataDir = DEFAULT_DATA_DIR;
+function getDataDir() { return dataDir; }
+function setDataDir(dir) { if (dir) dataDir = path.resolve(dir); }
+
+const RULES_FILE = () => path.join(getDataDir(), 'rules.json');
+const SEEN_FILE = () => path.join(getDataDir(), 'seen.json');
+const BATCH_FILE = () => path.join(getDataDir(), 'batch.json');
+const DIGEST_FILE = () => path.join(getDataDir(), 'digest.json');
+const DROPPED_FILE = () => path.join(getDataDir(), 'dropped.json');
 
 // Hard caps to prevent unbounded growth from runaway classification
 const BATCH_MAX_ENTRIES = 5000;
@@ -136,7 +143,7 @@ function classifyMessage(message, source, options = {}) {
 // ─── BATCH ─────────────────────────────────────────────────────────────────
 
 function addNotification(id, message, source, level) {
-  ensureDir(DATA_DIR);
+  ensureDir(getDataDir());
   
   if (level === 'ignore') {
     console.log(`[notify-triage] Ignored: ${source}`);
@@ -206,7 +213,7 @@ function markSeen(id) {
     found.seen = true;
     saveBatch(batch);
     const seenEntries = batch.filter(n => n.seen).map(n => ({ id: n.id, source: n.source, timestamp: n.timestamp }));
-    atomicWriteJSON(SEEN_FILE, seenEntries);
+    atomicWriteJSON(SEEN_FILE(), seenEntries);
     console.log(`[notify-triage] Marked as seen: ${found.source}`);
   } else {
     console.log(`[notify-triage] Not found: ${id}`);
@@ -224,28 +231,28 @@ function markAllSeen() {
   }
   saveBatch(batch);
   const seenEntries = batch.filter(n => n.seen).map(n => ({ id: n.id, source: n.source, timestamp: n.timestamp }));
-  atomicWriteJSON(SEEN_FILE, seenEntries);
+  atomicWriteJSON(SEEN_FILE(), seenEntries);
   console.log(`[notify-triage] Marked ${count} notifications as seen`);
 }
 
 // ─── DROPPED LOG ───────────────────────────────────────────────────────────
 
 function logDropped(source, message) {
-  const dropped = loadJSON(DROPPED_FILE, []);
+  const dropped = loadJSON(DROPPED_FILE(), []);
   dropped.push({ source, message: message.substring(0, 200), timestamp: new Date().toISOString() });
   if (dropped.length > DROPPED_MAX_ENTRIES) dropped.splice(0, dropped.length - DROPPED_MAX_ENTRIES);
-  atomicWriteJSON(DROPPED_FILE, dropped);
+  atomicWriteJSON(DROPPED_FILE(), dropped);
 }
 
 // ─── RULES ─────────────────────────────────────────────────────────────────
 
 function loadRules() {
-  return loadJSON(RULES_FILE, {});
+  return loadJSON(RULES_FILE(), {});
 }
 
 function saveRules(rules) {
-  ensureDir(path.dirname(RULES_FILE));
-  atomicWriteJSON(RULES_FILE, rules);
+  ensureDir(path.dirname(RULES_FILE()));
+  atomicWriteJSON(RULES_FILE(), rules);
 }
 
 function listRules() {
@@ -289,16 +296,16 @@ function clearAllRules() {
 // ─── STATUS ────────────────────────────────────────────────────────────────
 
 function loadBatch() {
-  return loadJSON(BATCH_FILE, []);
+  return loadJSON(BATCH_FILE(), []);
 }
 
 function saveBatch(batch) {
-  atomicWriteJSON(BATCH_FILE, batch);
+  atomicWriteJSON(BATCH_FILE(), batch);
 }
 
 function showStatus() {
   const batch = loadBatch();
-  const seen = loadJSON(SEEN_FILE, {});
+  const seen = loadJSON(SEEN_FILE(), {});
   const rules = loadRules();
   
   const pending = batch.filter(n => !n.seen);
@@ -317,25 +324,29 @@ function showStatus() {
 // ─── DIGEST MODE ───────────────────────────────────────────────────────────
 
 function loadDigest() {
-  return loadJSON(DIGEST_FILE, { entries: [], lastDigest: null });
+  return loadJSON(DIGEST_FILE(), { entries: [], lastDigest: null });
 }
 
 function saveDigest(digest) {
   // Cap at DIGEST_MAX_ENTRIES
   if (digest.entries.length > DIGEST_MAX_ENTRIES) digest.entries = digest.entries.slice(-DIGEST_MAX_ENTRIES);
-  atomicWriteJSON(DIGEST_FILE, digest);
+  atomicWriteJSON(DIGEST_FILE(), digest);
 }
 
 function generateDigest(period = 'daily') {
-  const digest = loadDigest();
-  if (digest.entries.length === 0) {
+  // Digest summarizes the pending batch queue (batch-classified, not yet seen).
+  // It is a read-only summary — the batch queue is NOT cleared here.
+  // Flush with --send when ready to mark items as seen.
+  const batch = loadBatch();
+  const pending = batch.filter(n => !n.seen && n.level === 'batch');
+  if (pending.length === 0) {
     console.log('[notify-triage] No notifications to digest.');
     return;
   }
   
   // Group by source
   const bySource = {};
-  for (const entry of digest.entries) {
+  for (const entry of pending) {
     if (!bySource[entry.source]) bySource[entry.source] = [];
     bySource[entry.source].push(entry);
   }
@@ -359,11 +370,16 @@ function generateDigest(period = 'daily') {
   console.log(`\n${'━'.repeat(40)}`);
   console.log(`📊 ${total} notifications batched`);
   
-  // Clear digest store (not the batch queue — see SKILL.md "Digest Mode" section)
+  // Legacy digest.json store is deprecated (was never auto-populated).
+  // Keep clearing it for back-compat; the batch queue is intentionally NOT cleared.
   saveDigest({ entries: [], lastDigest: new Date().toISOString() });
 }
 
 // ─── CLI ───────────────────────────────────────────────────────────────────
+
+// Only run the CLI when executed directly; when required as a module,
+// expose the Programmatic API instead (see EXPORTS below).
+if (require.main === module) {
 
 const args = process.argv.slice(2);
 let mode = 'status';
@@ -373,7 +389,7 @@ let modeArgIndex = -1;
 
 // First pass: identify mode (and the index of the mode arg) + collect flags
 for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--dir' && i + 1 < args.length) { rootDir = args[i + 1]; continue; }
+  if (args[i] === '--dir' && i + 1 < args.length) { rootDir = args[i + 1]; setDataDir(rootDir); continue; }
   if (args[i] === '--force') { force = true; continue; }
   if (['--classify', '--batch', '--seen', '--rules', '--status', '--send', '--digest'].includes(args[i])) {
     mode = args[i].slice(2);
@@ -430,6 +446,10 @@ switch (mode) {
   }
   case 'seen': {
     if (positional[0] === '--all' || args.includes('--all')) {
+      if (!force) {
+        console.log('[notify-triage] --seen --all is destructive; add --force to confirm.');
+        process.exit(1);
+      }
       markAllSeen();
     } else {
       markSeen(positional[0]);
@@ -440,8 +460,16 @@ switch (mode) {
     if (positional[0] === 'add' && positional[1] && positional[2]) {
       addRule(positional[1], positional[2]);
     } else if (positional[0] === 'remove' && positional[1]) {
+      if (!force) {
+        console.log('[notify-triage] --rules remove is destructive; add --force to confirm.');
+        process.exit(1);
+      }
       removeRule(positional[1]);
     } else if (positional[0] === 'clear') {
+      if (!force) {
+        console.log('[notify-triage] --rules clear is destructive; add --force to confirm.');
+        process.exit(1);
+      }
       clearAllRules();
     } else {
       listRules();
@@ -457,3 +485,40 @@ switch (mode) {
     break;
 }
 })();
+}
+
+// ─── EXPORTS (Programmatic API) ────────────────────────────────────────────
+
+module.exports = {
+  // classification
+  classifyMessage,
+  addNotification,
+  getBatched,
+  flushBatch,
+  // seen tracking
+  markSeen,
+  markAllSeen,
+  // dropped log
+  logDropped,
+  // rules
+  loadRules,
+  saveRules,
+  listRules,
+  addRule,
+  removeRule,
+  clearAllRules,
+  // batch/status
+  loadBatch,
+  saveBatch,
+  showStatus,
+  // digest
+  loadDigest,
+  saveDigest,
+  generateDigest,
+  // helpers (used by tests)
+  ensureDir,
+  atomicWriteJSON,
+  loadJSON,
+  saveJSON,
+  getToday
+};

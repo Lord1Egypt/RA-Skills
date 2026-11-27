@@ -1,6 +1,6 @@
 # CLI 命令参考
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/commands.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/commands.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
 CLI 形式为：
 
@@ -57,6 +57,8 @@ flydb [全局选项] <命令> [命令选项]
 | `repair` | 清除失败记录、对齐 checksum | 是 |
 | `clean` | 删除目标 schema 的表、视图、序列 | 是 |
 | `undo` | 撤销最近一次版本化迁移 | 是 |
+| `new <描述>` | 离线创建版本化 SQL，可传 `--script-version` 和 `--directory` | 否 |
+| `preflight` | 一次连接完成内置历史校验和迁移预演，返回摘要 | 否 |
 | `init` | 生成 `flydb.conf`、迁移目录和驱动说明 | 否 |
 | `version` | 输出 Flydb 版本 | 否 |
 | `web` | 启动可选本机图形工作台，管理配置与迁移 | 启动时不连接数据库；具体操作沿用对应命令 |
@@ -160,6 +162,9 @@ MySQL/Oracle 家族虽然不支持 DDL 事务，但一份脚本若解析后的�
 
 `clean` 默认禁用。非交互环境必须同时设置 `--clean-disabled=false` 和 `--force`：
 
+本机 Web 工作台在“高级操作 → 清空数据库”提供独立警示和确认流程，单次授权不会改写此默认配置，
+见 [GUI 指南](web.md)。
+
 ```bash
 bin/flydb clean --clean-disabled=false --force
 ```
@@ -169,3 +174,11 @@ bin/flydb clean --clean-disabled=false --force
 `init` 只会创建不存在的 `flydb.conf`、`db/migration/V1__init.sql` 和缺失的驱动说明；生成配置中的 `flydb.locations` 使用绝对路径，跨目录执行不会随 CWD 漂移。它不会覆盖已有配置或迁移文件，冲突时返回 `FLYDB-4004`。所有子命令均支持 `--help`，例如 `bin/flydb init --help`。
 
 退出码和错误码见[错误码参考](errors.md)，配置键见[配置项参考](configuration.md)。
+
+## 离线创建脚本
+
+在已初始化的项目根目录执行 `bin/flydb new add_order_index`。已有 V1、V2 时生成空文件 `V3__add_order_index.sql`，编辑后提交。命令复用运行时发现规则，保留数字补零并排除撤销脚本；复合或日期版本用 `--script-version` 指定。多个文件系统位置或多个脚本父目录时可用 `--directory db/migration/orders` 选择已有目录。目录版本需要同时给出匹配的版本与路径。共享迁移根目录中的 `.flydb-new.lock` 协调并发的 `new`。等价版本冲突返回 `FLYDB-2002`，候选文件须通过项目的路径过滤。
+
+## 发布前检查
+
+`bin/flydb -c deploy/qa.conf --json preflight` 在同一次连接中校验历史与脚本，并解析待执行 SQL。此处始终执行内置校验，包括项目设置 `flydb.validate-on-migrate=false` 的情况。校验回调仍由独立的 `validate` 命令触发。成功时在 `detailsFile` 指向的本机执行记录中查看 `result.migrations`，核对脚本与语句；记录目录不可写时该字段为 null，可用 `--dry-run migrate` 获取完整计划。写入仍需确认目标与清单。

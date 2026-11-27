@@ -1,6 +1,6 @@
 {
   "name": "edit_task_recurrence_rule",
-  "description": "Set or update the recurrence rule for a task",
+  "description": "Set or replace the recurrence rule (RRULE) of one existing Sunsama task. WRITE - every future occurrence follows the new rule. Use it only when the user asked to make that specific task repeat, or to change how it repeats, and confirm the rule in plain words first. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

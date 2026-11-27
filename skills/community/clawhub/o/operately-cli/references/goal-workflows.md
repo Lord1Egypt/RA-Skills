@@ -208,6 +208,29 @@ operately goals update_target_index \
 operately goals delete_target --goal-id g1 --target-id t1
 ```
 
+## Checklist Items
+
+Goal checklist items track completion independently of numeric targets and Markdown task lists.
+
+```bash
+# Read the current items and their IDs
+operately goals get --id g1 --include-checklist
+
+# Add an item; the response includes check_id
+operately goals create_check --goal-id g1 --name "Publish onboarding guide"
+
+# Rename an item
+operately goals update_check --goal-id g1 --check-id c1 --name "Publish revised onboarding guide"
+
+# Switch between complete and incomplete
+operately goals toggle_check --goal-id g1 --check-id c1
+
+# Remove an item
+operately goals delete_check --goal-id g1 --check-id c1
+```
+
+Read the current state before toggling: `toggle_check` reverses it, so retrying blindly can undo the intended change. Use item and target IDs from the goal you are updating.
+
 ## Check-in Patterns
 
 ### Weekly Check-ins
@@ -252,8 +275,10 @@ operately goals create_check_in \
 
 ### Acknowledging Check-ins
 
+The CLI endpoints for goal check-ins and retrospectives require edit access and reject acknowledgment by the author. They are not restricted to the reviewer role. Check-ins must be published, and an entry can only be acknowledged once.
+
 ```bash
-# Reviewer acknowledges check-in
+# Acknowledge check-in
 operately goals acknowledge_check_in --id ci1
 
 # List check-ins
@@ -262,11 +287,9 @@ operately goals list_check_ins --goal-id g1
 # Get specific check-in
 operately goals get_check_in --id ci1
 
-# Update check-in
+# Edit the content and keep the current due date and status
 operately goals update_check_in \
   --id ci1 \
-  --due-date 2026-04-01 \
-  --status on_track \
   --content "# Updated Status\n\nRevised after team discussion."
 ```
 
@@ -476,7 +499,7 @@ operately goals close \
   --success-status missed \
   --retrospective "# Lessons Learned\n\nMarket conditions changed significantly."
 
-# Reviewer acknowledges — authors cannot acknowledge their own. From list_assignments, use origin.id.
+# Acknowledge retrospective — authors cannot acknowledge their own. From list_assignments, use origin.id.
 operately goals acknowledge_retrospective --goal-id g1
 ```
 

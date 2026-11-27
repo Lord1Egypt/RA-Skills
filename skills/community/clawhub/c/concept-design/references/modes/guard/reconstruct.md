@@ -4,7 +4,7 @@ Reconstruct an evidenced candidate baseline from actual code, then establish whi
 
 ## Concept
 
-Inspect exports, callers, persistence, result cases, invariants, and tests. Record types, cardinalities, initial state, action results, and queries using the [specification notation](../../spec-notation.md). Omit private helpers and caches without observable effects. List required synchronizations separately; record coupling as a defect, not a permitted concept dependency.
+Inspect exports, callers, persistence, result cases, invariants, and tests. Record types, cardinalities, initial state, action results, and queries using the [specification notation](../../spec-notation.md). Omit private helpers and caches without observable effects; classify technical mechanisms and mature-component wrappers by [mature capability](../../model-criteria.md#mature-capabilities) rather than promoting them to full concepts. List required synchronizations separately; record coupling as a defect, not a permitted concept dependency.
 
 ## Synchronization
 

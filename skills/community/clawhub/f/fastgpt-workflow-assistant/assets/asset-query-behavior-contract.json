@@ -1,0 +1,407 @@
+{
+  "description": "local-r2：需求驱动样例，先按候选映射节点ID、全局变量及输出状态；bound模式按JSON绑定取入参，不手工注入代码参数。原因文案可按业务等价映射，不可移除原目标与原因断言。",
+  "cases": [
+    {
+      "name": "ordinary IP does not ping",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "asset",
+        "pingIp": ""
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "Chinese adjacent IP",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "asset",
+        "targets": [
+          {
+            "type": "IP",
+            "value": "192.0.2.1"
+          }
+        ]
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "帮我查一下192.0.2.1的资产"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "ping missing IP",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "ping_missing",
+        "pingIp": ""
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "ping"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "ping MAC rejected",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "ping_missing",
+        "pingIp": ""
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "ping AA:BB:CC:00:11:22"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "ping multiple rejected",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "invalid",
+        "pingIp": ""
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "ping 192.0.2.1 192.0.2.2"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "Chinese inserted ping",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "ping",
+        "pingIp": "192.0.2.1"
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "帮我 ping 一下 192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "five component IP not truncated",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "invalid",
+        "targets": [],
+        "invalidTargets": [
+          {
+            "value": "192.0.2.1.7",
+            "reason": "IP不是四段"
+          }
+        ]
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1.7"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "incomplete reported",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "asset",
+        "invalidTargets": [
+          {
+            "value": "10.1.2",
+            "reason": "IP不是四段"
+          }
+        ]
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1 10.1.2"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "bad MAC reported",
+      "node_id": "parseInput",
+      "expected": {
+        "route": "asset",
+        "invalidTargets": [
+          {
+            "value": "GG:BB:CC:DD:EE:FF",
+            "reason": "MAC不是12位十六进制"
+          }
+        ]
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1 GG:BB:CC:DD:EE:FF"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "dedup",
+      "node_id": "parseInput",
+      "expected": {
+        "targetCount": 1
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1 192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "no inherited cap",
+      "node_id": "parseInput",
+      "expected": {
+        "targetCount": 11
+      },
+      "mode": "bound",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1 192.0.2.2 192.0.2.3 192.0.2.4 192.0.2.5 192.0.2.6 192.0.2.7 192.0.2.8 192.0.2.9 192.0.2.10 192.0.2.11"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      }
+    },
+    {
+      "name": "mapping is not ping",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "mapping 192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "route": "asset",
+        "pingIp": ""
+      }
+    },
+    {
+      "name": "shopping is not ping",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "shopping 192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "route": "asset",
+        "pingIp": ""
+      }
+    },
+    {
+      "name": "pinging is not ping",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "pinging 192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "route": "asset",
+        "pingIp": ""
+      }
+    },
+    {
+      "name": "invalid seven-group MAC must not become another device",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "GG:AA:BB:CC:DD:EE:FF"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "targets": [],
+        "invalidTargets": [
+          {
+            "value": "GG:AA:BB:CC:DD:EE:FF"
+          }
+        ]
+      }
+    },
+    {
+      "name": "overlong first octet original preserved",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "1192.0.2.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "targets": [],
+        "invalidTargets": [
+          {
+            "value": "1192.0.2.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "overlong final octet original preserved",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1234"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "targets": [],
+        "invalidTargets": [
+          {
+            "value": "192.0.2.1234"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ping invalid extra target rejected",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "ping 192.0.2.1 999.1.1.1"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "route": "invalid",
+        "pingIp": "",
+        "invalidTargets": [
+          {
+            "value": "999.1.1.1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ping incomplete extra target rejected",
+      "mode": "bound",
+      "node_id": "parseInput",
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "ping 192.0.2.1 10.1.2"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "expected": {
+        "route": "invalid",
+        "pingIp": "",
+        "invalidTargets": [
+          {
+            "value": "10.1.2"
+          }
+        ]
+      }
+    }
+  ]
+}

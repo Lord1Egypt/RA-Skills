@@ -1,7 +1,7 @@
 ---
 name: "smyx-adult-facial-fatigue-stress-index-analysis"
 description: "Using a smart mirror or fixed camera, the system analyzes high-resolution adult facial images or short videos to detect physiological features such as under-eye bag area (puffiness/shadow under the lower eyelid), dark-circle grayscale (darkness around the eyes), mouth-corner drop angle (angle between corner of mouth and horizontal), and glabellar frown lines (vertical lines between the brows), and computes a comprehensive. | 通过智能镜子或固定摄像头，分析成人面部的高清图像或视频，检测眼袋面积（下眼睑区域的浮肿或阴影面积）、黑眼圈灰度（眼眶区域的暗沉程度）、嘴角下垂角度（口角与水平线的夹角）以及皱眉纹（眉间川字纹）等生理特征，综合计算疲劳/压力指数（0-100分）。该技能可用于职场健康管理、个人状态监测，辅助了解自身精力水平。"
-version: "1.0.22"
+version: "1.0.23"
 license: "MIT-0"
 ---
 

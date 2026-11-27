@@ -37,6 +37,12 @@
         "version",
         "license"
       ]
+    },
+    {
+      "path": "engine/__init__.py",
+      "asserts": [
+        "version"
+      ]
     }
   ]
 }

@@ -103,8 +103,8 @@ The reason is trust, not bureaucracy: a review that wanders produces findings th
 **Rule Loading** — pick the checklists this diff actually needs, then stop.
 
 1. Collect the distinct file extensions across the scope list you just wrote.
-2. read_file `references/rules/index.md` and follow its mapping to the matching rule files — at most one per language present in the diff.
-3. Always read `references/rules/default.md`. It carries the five dimensions every file is judged on.
+2. read_file `rune-review/references/rules/index.md` and follow its mapping to the matching rule files — at most one per language present in the diff.
+3. Always read `rune-review/references/rules/default.md`. It carries the five dimensions every file is judged on.
 4. Read nothing further. **Never read all rule files** — a Go rule cannot produce a true finding about a diff with no Go in it, only a plausible-looking one, and that is the noise this split exists to remove.
 
 Every rule in those files ends with a `Do not report when…` clause. That clause is as binding as the rule above it: a rule that only says when to fire will fire on everything. Rules do not restate the Review Policy, the Evidence Contract, or the claim types — they inherit all three from this file, and a rule never invents a severity or a gate of its own.
@@ -131,28 +131,7 @@ Modifying a symbol with 50+ callers + HIGH severity change (logic, types, behavi
 
 ### Step 1.6: Decorrelated Bug-Finding (council, high-blast-radius only)
 
-review's own pass is one model reading the diff once. For the same 50+ caller / HIGH-severity
-symbols that trigger the Step 1.5 HARD-GATE, call `rune-council.md` (mode=review) on the diff
-itself BEFORE writing up Step 2's findings — a second architecture reading the same code
-independently catches bugs a single pass rationalizes past.
-
-This is complementary to (not a replacement for) the existing adversary escalation: council
-here examines the ALREADY-WRITTEN diff for bugs; adversary examines plan-level risk before
-code exists. Both can fire on the same high-blast-radius change.
-
-**Request**: `{ question: <the diff, symbol name, and blast radius context — self-contained>,
-mode: "review", n: 3, diversity: { prefer_model_families: true },
-evidence_required: [repro, reasoning] }`.
-
-**Consume**: fold `agreement.consensus_claims` into Step 2's CRITICAL/HIGH findings, tagged
-`[council-verified]`. Fold `agreement.dissent` into MEDIUM findings or the report's NEEDS
-DISCUSSION section, tagged `[council-dissent]`. If `decorrelation: NO_DECORRELATION`, do not
-claim independent confirmation in the report — say plainly that no second model family was
-reachable.
-
-**Skip if**: blast radius is under 50 callers, or the change is not HIGH-severity — council is
-opt-in overhead reserved for the same tier that already requires adversarial escalation, not a
-default tax on every review.
+> Full detail moved to [`rune-review/references/decorrelated-council.md`](rune-review/references/decorrelated-council.md) (progressive disclosure). **Read that file before executing this section.** Mesh links used there: `rune-council.md`.
 
 ### Step 2: Logic Check (Production-Critical Focus)
 
@@ -189,7 +168,7 @@ A line number recalled from a long context drifts, and a correct finding pointin
 - Cap at **5 lines**. A finding that needs more than 5 lines to show is a design comment, not a defect — report it without evidence at MEDIUM or below
 - Multiple disjoint locations → pick the single most relevant one and file the rest as separate findings
 
-Evidence blocks are **substance, not shape**. Under `context-engine`'s `caveman` output mode the prose around a finding compresses; the evidence block does not (`../context-engine/references/output-modes.md` — "shape is negotiable, substance is not").
+Evidence blocks are **substance, not shape**. Under `context-engine`'s `caveman` output mode the prose around a finding compresses; the evidence block does not (`rune-context-engine/references/output-modes.md` — "shape is negotiable, substance is not").
 
 **Strict Focus applies here** (restated from Step 1, because this is the step that breaks it): reading a caller or a helper outside the diff to decide whether a changed line is correct is *expected*. Reporting a bug you noticed in that caller is not — that finding is dropped, or goes to the report footer as a one-line follow-up. The question this step answers is only ever "is the **changed** code correct?"
 
@@ -219,47 +198,15 @@ Check for security-relevant issues.
 - If any security-sensitive code found (auth logic, input handling, crypto, payment): call `rune-sentinel.md` for deep scan
 - Sentinel escalation is mandatory — do not skip it for auth or crypto code
 
-**Optional cross-model second opinion** (security-critical / opus-escalated reviews only): a same-family reviewer shares blind spots with the author. For genuinely irreversible or attacker-facing changes (auth, crypto, payment, data migration), you MAY *offer* the user a different-architecture second pass via an external CLI (Gemini/Codex). This is opt-in and interactive-only — **offer, never auto-invoke**; skip in non-interactive runs (CI, `/loop`, scheduled) and announce the skip. If the user accepts, follow the safe transport in `../adversary/references/cross-model-escalation.md` (per-call authorization, read-only sandbox, stdin not inline args), pass the diff + the security contract (not your verdict), and reconcile the reply as data — not a ruling.
+**Optional cross-model second opinion** (security-critical / opus-escalated reviews only): a same-family reviewer shares blind spots with the author. For genuinely irreversible or attacker-facing changes (auth, crypto, payment, data migration), you MAY *offer* the user a different-architecture second pass via an external CLI (Gemini/Codex). This is opt-in and interactive-only — **offer, never auto-invoke**; skip in non-interactive runs (CI, `/loop`, scheduled) and announce the skip. If the user accepts, follow the safe transport in `rune-adversary/references/cross-model-escalation.md` (per-call authorization, read-only sandbox, stdin not inline args), pass the diff + the security contract (not your verdict), and reconcile the reply as data — not a ruling.
 
 ### Step 4.5: API Pit-of-Success Check
 
-For code that exposes APIs, shared utilities, or reusable interfaces, evaluate through 3 adversary personas:
-
-| Adversary | Mindset | What They Reveal |
-|-----------|---------|-----------------|
-| **The Scoundrel** | Malicious — controls config, crafts inputs, exploits edge cases | Security holes, privilege escalation, injection surfaces |
-| **The Lazy Developer** | Copy-pastes from docs, skips error handling, uses defaults | Unsafe defaults, missing validation, footgun APIs |
-| **The Confused Developer** | Misunderstands API semantics, passes wrong types, ignores return values | Ambiguous interfaces, poor naming, missing type safety |
-
-**Pit-of-Success principle**: Secure, correct usage should be the path of least resistance. If the API makes it EASIER to use it wrong than right → WARN.
-
-Check: Does the API have sensible defaults? Does misuse fail loudly (not silently)? Is the happy path obvious from the signature?
-
-**Skip if**: Code is internal-only (no external consumers), single-use utility, or test-only.
+> Full detail moved to [`rune-review/references/api-checks.md`](rune-review/references/api-checks.md) (progressive disclosure). **Read that file before executing this section.**
 
 ### Step 4.7: API Contract / Breaking Change Check
 
-For any change that modifies exported functions, REST endpoints, event schemas, or shared types, check for backward-compatibility violations before proceeding.
-
-**Breaking change signals** — flag any of these as HIGH:
-
-| Signal | Example | Why it Breaks |
-|--------|---------|---------------|
-| Removed export | `export function getUser` deleted | Callers crash at import |
-| Renamed parameter | `id: string` → `userId: string` | Named-argument callers break |
-| Narrowed return type | `User \| null` → `User` (null removed) | Callers that handle null crash |
-| Required arg added | `fn(a)` → `fn(a, b: string)` | All existing callers missing `b` |
-| Status code changed | 200 → 204 on success | Clients checking for body break |
-| Event schema changed | `{ userId }` → `{ user_id }` | Consumers miss the field |
-| Endpoint path renamed | `/users/:id` → `/users/:userId` | All client URLs broken |
-
-**Versioning check:**
-1. Run `git diff main...HEAD` — list every changed exported symbol
-2. For each changed export: check if old signature still exists as an alias or overload
-3. If breaking and no version bump → WARN: "Breaking change detected in [symbol] — needs CHANGELOG entry and version bump"
-4. If `CHANGELOG.md` found: check that breaking changes are documented in the current version entry
-
-**Skip if**: Change is internal-only (no exports changed, no public API surface affected), or in test files only.
+> Full detail moved to [`rune-review/references/api-checks.md`](rune-review/references/api-checks.md) (progressive disclosure). **Read that file before executing this section.**
 
 ### Step 5: Test Coverage
 
@@ -273,33 +220,7 @@ Identify gaps in test coverage.
 
 #### Per-Function Test Gap Analysis
 
-Go beyond "test file exists" — check coverage at function granularity:
-
-1. **Extract changed functions** — from the diff, list every function/method that was added or modified (name + file:line)
-2. **Map to test assertions** — for each changed function, Grep the test file for its name. Count distinct test cases (look for `it(`, `test(`, `describe(` blocks that reference the function)
-3. **Classify gap severity**:
-
-| Function Type | 0 tests | 1 test | 2+ tests |
-|--------------|---------|--------|----------|
-| Business logic (money, auth, state) | BLOCK | WARN: "only happy path" | PASS |
-| Data transform (parse, format, map) | HIGH | PASS | PASS |
-| Event handler (onClick, onSubmit) | MEDIUM | PASS | PASS |
-| Pure utility (string, math, date) | MEDIUM | PASS | PASS |
-
-4. **Output per-function table** in review report:
-
-```
-### Test Gap Analysis
-| Function | File | Tests Found | Verdict |
-|----------|------|-------------|---------|
-| calculateTotal | src/billing.ts:42 | 3 (happy, zero, overflow) | PASS |
-| processRefund | src/billing.ts:89 | 0 | BLOCK — business logic untested |
-| formatCurrency | src/utils.ts:12 | 1 | PASS |
-```
-
-5. **Flag untested edge cases** — for functions with only 1 test, check if the test covers: empty/null input, boundary values, error path. If only happy path → WARN: "only happy path tested for {function}"
-
-**Skip if**: Diff only touches config, docs, styles, or test files themselves.
+> Full detail moved to [`rune-review/references/test-gap-analysis.md`](rune-review/references/test-gap-analysis.md) (progressive disclosure). **Read that file before executing this section.**
 
 ### Step 5.5: Two-Stage Review Gate
 
@@ -358,53 +279,11 @@ Produce a structured severity-ranked report.
 
 #### Falsification Pass (run before writing the report)
 
-**Falsify, not verify.** Do not ask "am I confident enough to report this?" — a model cannot calibrate its own confidence to a number, so that question filters nothing and quietly drops true findings. Ask the answerable question instead: **"did I read something that disproves this?"**
-
-| | Condition | Action |
-|---|---|---|
-| **DROP** | The code you read contains **direct counter-evidence** against the finding's key claim — the null check exists three lines up, the `await` is there, the input is validated by the caller you opened | Discard it |
-| **KEEP** | The finding depends on context **outside the diff** that you did read via tools — that context is evidence, not a disqualification | Report it |
-| **KEEP** | You can neither verify nor disprove it | Report it, typed honestly (below) |
-
-**"Unsure" is not grounds to drop.** Only counter-evidence is. A finding you could not confirm is still a finding — it is reported at the severity its claim type allows, not deleted to keep the report tidy.
-
-Dropped findings are **discarded silently** — never listed as "considered and dismissed". A disproven finding is noise whether or not you label it as such.
-
-**Type every surviving finding** with a claim type from `../completion-gate/references/claim-discipline.md`:
-
-| Type | Means | Ceiling |
-|------|-------|---------|
-| `OBSERVED` | You read the code path this session and saw the defect | Any severity |
-| `DERIVED` | Follows from what you read through a mechanism you can state in the finding | Any severity |
-| `ASSUMED` | Requires an unverified premise (a caller you did not open, a runtime condition you cannot see) | **Never CRITICAL** — state the premise in the finding |
-
-An `ASSUMED` finding capped below CRITICAL is the honest form of "this looks wrong but I could not confirm the call path". Promotion happens by reading the code, never by rephrasing the finding more confidently.
+> Full detail moved to [`rune-review/references/report-passes.md`](rune-review/references/report-passes.md) (progressive disclosure). **Read that file before executing this section.**
 
 #### Anchor Pass (run per surviving finding)
 
-Resolve every line number now, with a tool. Climb the ladder and stop at the first rung that hits:
-
-1. grep the exact `evidence` string in `path`. A hit → the finding is **anchored**; use the line number grep returned.
-2. No hit → retry once with whitespace normalised (collapse runs of spaces) and the first and last lines of the snippet dropped. A hit → anchored on the remaining core.
-3. Still no hit → the finding is **`UNANCHORED`**.
-
-**`UNANCHORED` handling** — advisory, never blocking:
-
-- Downgrade severity by one level: CRITICAL → HIGH → MEDIUM → LOW. LOW stays LOW.
-- Report as `path (unanchored)` in place of `path:line`, with the evidence snippet shown inline
-- **Never silently drop it.** A failed anchor means the snippet does not match the file as you recorded it — usually a transcription slip, occasionally a file that moved while you read. Both deserve the reader's attention; neither is counter-evidence, so neither disproves the finding.
-
-Anchoring resolves a finding; it does not filter one. Only the Falsification Pass drops findings — a survivor of that pass always reaches the report, anchored or not.
-
-**Then, before reporting:**
-- Consolidate similar issues: "8 functions missing error handling in src/services/" — not 8 separate findings
-- Skip stylistic preferences unless they violate conventions found in `.eslintrc`, `CLAUDE.md`, or `CONTRIBUTING.md`
-- Adapt to project type: a `console.log` in a CLI tool is fine; in a production API handler it is not
-
-- Group findings by severity: CRITICAL → HIGH → MEDIUM → LOW
-- Give every finding its `path:line` from the Anchor Pass — or `path (unanchored)` — plus the evidence block underneath
-- Include a Positive Notes section (good patterns observed)
-- Include a Verdict: APPROVE | REQUEST CHANGES | NEEDS DISCUSSION
+> Full detail moved to [`rune-review/references/report-passes.md`](rune-review/references/report-passes.md) (progressive disclosure). **Read that file before executing this section.**
 
 ### Step 6.5: Fix-First Triage
 
@@ -423,7 +302,7 @@ Classify each finding as **AUTO-FIX** or **ASK** before reporting:
 
 **After classification:**
 - Apply AUTO-FIX findings directly via `rune-fix.md` — include all in a single batch
-- Collect ASK findings into ONE `AskUserQuestion` — not 5 separate questions
+- Collect ASK findings into ONE user question — not 5 separate questions
 - Report both: "Auto-fixed 4 issues. 2 findings need your input: [...]"
 
 **Rationalization prevention**: "This looks fine" is NOT acceptable without evidence. If you cannot cite a specific file:line or convention that justifies the code, do not wave it through — report it as an `ASSUMED` finding naming the premise you could not check.
@@ -432,228 +311,19 @@ This is the same asymmetry as the Falsification Pass, applied in the other direc
 
 ### Step 6.6: Scope Drift Detection
 
-Comparing stated intent against the actual diff catches scope creep that plan-based guards miss — the plan was right, the diff simply grew past it.
-
-After reviewing code, compare **stated intent** vs **actual diff**:
-
-1. Read the originating source: TODO list, PR description, commit messages, or plan file
-2. Extract stated intent: "what was this change supposed to do?"
-3. Run `git diff --stat` to see actual file changes
-4. Compare:
-
-| Result | Meaning | Action |
-|--------|---------|--------|
-| **CLEAN** | All changed files serve the stated intent | Note in report |
-| **DRIFT** | 1-2 files changed that don't relate to stated intent | WARN — "These files were modified but aren't mentioned in the task: [list]" |
-| **REQUIREMENTS_MISSING** | Stated intent mentions files/features not in the diff | WARN — "Task mentions X but it's not in the diff" |
-
-**This is informational, not blocking.** Scope drift is common and sometimes intentional — but making it visible prevents silent creep.
-
-After reporting:
-- If any CRITICAL findings: call `rune-fix.md` immediately with the finding details
-- If any HIGH findings: call `rune-fix.md` with the finding details
-- If untested code: call `rune-test.md` with specific coverage gaps identified
-- Call `neural-memory` (Capture Mode) to save any novel code quality patterns or recurring issues found.
+> Full detail moved to [`rune-review/references/scope-drift.md`](rune-review/references/scope-drift.md) (progressive disclosure). **Read that file before executing this section.** Mesh links used there: `rune-fix.md`, `rune-test.md`.
 
 ## UI/UX Anti-Pattern Checks
 
-Apply **only** when `.tsx`, `.jsx`, `.svelte`, `.vue`, or `.html` files are in the diff. Skip for backend-only changes.
-
-These are the **"AI UI signature"** — patterns that make AI-generated frontends visually identifiable as non-human-designed. Flag each as MEDIUM severity.
-
-**Preamble — load design contract first:**
-If `.rune/design-system.md` exists, read it first. Pull the project's **Scale Minimums** block (if authored by `rune-design.md` v0.5.0+) and apply those thresholds instead of the defaults below. Missing design-system.md → use defaults and add a LOW finding: "Project has no design-system.md — run `rune design` to lock visual decisions." Never enforce stale defaults against a project that has already declared stricter/looser minimums.
-
-**AI_ANTIPATTERN — Purple/indigo default accent with no domain justification:**
-```tsx
-// BAD: LLM default color bias — signals "AI-generated" to experienced designers
-className="bg-indigo-600 text-white"  // every button/CTA is indigo
-// GOOD: domain-appropriate — trading → neutral dark, healthcare → trust blue,
-//        e-commerce → conversion-optimized warm. Purple is only appropriate for
-//        AI-native tools and creative platforms.
-```
-
-**AI_ANTIPATTERN — Card-grid monotony (every section is 3-col cards, zero layout variation):**
-```tsx
-// BAD: every section uses the same grid pattern
-<div className="grid grid-cols-3 gap-6">  // features
-<div className="grid grid-cols-3 gap-6">  // testimonials
-<div className="grid grid-cols-3 gap-6">  // pricing
-// GOOD: mix layouts — split sections, bento grids, full-bleed hero, list+detail
-```
-
-**AI_ANTIPATTERN — Centeritis (everything centered, no directional flow):**
-```tsx
-// BAD: no visual tension, no reading direction
-<div className="text-center flex flex-col items-center">  // hero
-<div className="text-center">  // every feature section
-// GOOD: left-align body copy, use centering intentionally for hero/CTAs only
-```
-
-**AI_ANTIPATTERN — Numeric/financial values in non-monospace font:**
-```tsx
-// BAD: prices, stats, metrics in Inter/Roboto
-<span className="text-2xl font-bold">${price}</span>
-// GOOD: monospace for all numbers that need alignment
-<span className="font-mono text-2xl font-bold">${price}</span>
-```
-
-**AI_ANTIPATTERN — Scale Minimum violations (AI boilerplate tell):**
-```tsx
-// BAD: body text at 14px (AI default) — primary content must be ≥16px
-<p className="text-sm">Welcome to the dashboard.</p>
-
-// BAD: hero/display text below 40px — reads as "section heading", not "hero"
-<h1 className="text-3xl font-bold">Ship Faster</h1>  // 30px
-
-// BAD: touch target below 44×44px on mobile
-<button className="w-8 h-8"><XIcon /></button>  // 32px — WCAG 2.5.8 failure
-
-// GOOD: hero ≥48px, body ≥16px, touch ≥44×44px
-<h1 className="text-5xl md:text-6xl font-bold">Ship Faster</h1>   // 48-60px
-<p className="text-base">Welcome to the dashboard.</p>             // 16px
-<button className="w-11 h-11"><XIcon /></button>                   // 44px
-```
-Pull project-specific overrides from `.rune/design-system.md` § Scale Minimums.
-
-**AI_ANTIPATTERN — Hand-rolled SVG for standard iconography:**
-```tsx
-// BAD: custom <svg> for dashboard/menu/close/chevron — AI geometry almost always malformed
-<svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z M3 9h18 M9 3v18"/></svg>
-
-// GOOD: Phosphor Icons (preferred) or Huge Icons
-import { House, List, X } from '@phosphor-icons/react';
-<House weight="bold" size={24} />
-
-// GOOD: labeled placeholder when no icon library available yet
-<span className="icon-placeholder" aria-label="Dashboard icon — design pass needed">
-  [ ICON: dashboard ]
-</span>
-```
-Exceptions: inline SVG for project-unique logos, data visualizations (charts/graphs), or decorative illustrations generated by a human designer — these are not "standard iconography."
-
-**AI_ANTIPATTERN — Manual hex shading for accent states (oklch() violation):**
-```css
-/* BAD: hand-darkened hex — breaks perceived lightness consistency */
---accent: #3b82f6;
---accent-hover: #2563eb;    /* guessed darker */
---accent-pressed: #1d4ed8;  /* guessed even darker */
-
-/* GOOD: relative oklch() derivation */
---accent: oklch(62% 0.19 258);
---accent-hover:   oklch(from var(--accent) calc(l - 0.08) c h);
---accent-pressed: oklch(from var(--accent) calc(l - 0.15) c h);
---accent-subtle:  oklch(from var(--accent) calc(l + 0.3) calc(c * 0.4) h);
-```
-Flag any CSS file defining 2+ hover/pressed/active variants with sibling hex literals. Not a finding if accent uses a design-token library (Radix Colors, Tailwind palette) that already ships perceptually-tuned scales.
-
-**AI_ANTIPATTERN — Missing UI states (only happy path rendered):**
-```tsx
-// BAD: data rendering without empty/error/loading states
-{data.map(item => <Card key={item.id} {...item} />)}
-// GOOD: all 4 states covered
-{isLoading && <CardSkeleton />}
-{error && <ErrorState message={error.message} />}
-{!data.length && <EmptyState />}
-{data.map(item => <Card key={item.id} {...item} />)}
-```
-
-**Accessibility — flag as HIGH (these are WCAG 2.2 failures):**
-```tsx
-// BAD: icon button with no accessible name
-<button onClick={close}><XIcon /></button>
-// GOOD
-<button onClick={close} aria-label="Close dialog"><XIcon aria-hidden="true" /></button>
-
-// BAD: placeholder as label
-<input placeholder="Email address" type="email" />
-// GOOD
-<label htmlFor="email">Email address</label>
-<input id="email" type="email" />
-
-// BAD: removes focus ring without replacement
-className="focus:outline-none"
-// GOOD: must have focus-visible replacement
-className="focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-
-// BAD: color as sole information conveyor
-<span className="text-red-500">{errorMessage}</span>
-// GOOD: icon + color + text
-<span className="text-red-500 flex gap-1"><ErrorIcon aria-hidden />Error: {errorMessage}</span>
-```
-
-**WCAG 2.2 New Rules — flag as MEDIUM:**
-- `position: sticky` or `position: fixed` header/footer without `scroll-padding-top` → Focus Not Obscured (2.4.11)
-- Interactive elements with `width < 24px` or `height < 24px` without 8px spacing → Target Size (2.5.8)
-- Multi-step form re-asking for previously entered data → Redundant Entry (3.3.7)
-
-**Platform-Specific — flag as MEDIUM when platform is detectable:**
-- iOS target: solid-background cards (iOS 26 Liquid Glass deprecates this visual language) — should use translucent/blur surfaces
-- Android target: hardcoded hex colors instead of `MaterialTheme.colorScheme` tokens → not adaptive to dynamic color
+> Full detail moved to [`rune-review/references/ui-ux-checks.md`](rune-review/references/ui-ux-checks.md) (progressive disclosure). **Read that file before executing this section.** Mesh links used there: `rune-design.md`.
 
 ## Motion Craft Checks
 
-Apply **only** when the diff touches motion. Strong signals: `@keyframes`, `motion.`, `animate={`, `useSpring`, `cubic-bezier`, `@starting-style`, `transition:` / `transition-`. Weak signals: bare `transform` or `ease-` — these also match static layout transforms (`translate(-50%,-50%)`) and non-motion identifiers, so treat them as a trigger only when they co-occur with a strong signal. Skip entirely for diffs with no motion code.
-
-These are **advisory** — default severity MEDIUM. Escalate to HIGH only for *feel-breaking* regressions (the first five triggers below). Motion is a taste call: when feel can't be judged from source, say so and recommend a slow-motion / frame-by-frame check rather than asserting a defect. **For every finding, cite the exact remediation value from `skills/design/MOTION-CRAFT.md`** — do not restate its tables here.
-
-**Escalation triggers — flag on sight (first five = HIGH, feel-breaking):**
-- `ease-in` on an entrance or arrival (delays the moment the user watches most) — **not** a finding on something departing the frame or falling, where `ease-in` is correct (MOTION-CRAFT §3). Also catches `ease-in` hiding inside a composed curve (`smootherstep` starts at zero velocity)
-- `scale(0)` or pure-fade entrances with no initial transform (nothing appears from nothing → initial scale + opacity per MOTION-CRAFT §5)
-- Animation on a keyboard shortcut / command-palette toggle / 100+/day action (should have none)
-- Animating layout properties (`width`/`height`/`margin`/`padding`/`top`/`left`) instead of `transform`/`opacity` (off-GPU, drops frames)
-- UI animation duration over the budget with no stated reason (duration budget + modals/drawers exemption per MOTION-CRAFT §4)
-- `transition: all` — unbounded property animation (MEDIUM)
-- `transform-origin: center` on a trigger-anchored popover/dropdown/tooltip (should scale from trigger; modals exempt) (MEDIUM)
-- Keyframes on toasts/toggles/anything triggered rapidly (can't retarget → use CSS transitions or springs) (MEDIUM)
-- Framer Motion `x`/`y`/`scale` shorthands on motion that runs while the page is busy (not hardware-accelerated → full `transform` string) (MEDIUM)
-- Driving a child transform via a CSS variable on the parent (style-recalc storm) (MEDIUM)
-- Missing `prefers-reduced-motion` handling on movement, or ungated `:hover` motion (missing `@media (hover: hover) and (pointer: fine)`) (MEDIUM)
-- **A reduced-motion branch that is present but cannot work** — the guard existing is not the finding; these are (MOTION-CRAFT §10). Do not close this check on a grep hit: **touches ≠ reachable ≠ correct** (HIGH):
-  - **Dead branch** — an outer `if (reduced) return` / `if (!shouldAnimate) return` that runs *before* the helper applying the end state. Reduced users get the raw default DOM. Greps clean
-  - **One-shot `matchMedia(...).matches`** read at mount with no `change` listener — preference toggled mid-session leaves the page on the old path
-  - **`duration: 0` on sequence-as-content** — every key pose applied in one frame, stacking mid-poses instead of landing on the destination
-  - **`0s` while something awaits `transitionend` / `animationend` / `onComplete`** — engines may drop completion events for true zero-length transitions and the state machine hangs; `~0.01ms` is the fix
-  - **JS motion ungated** — CSS has the media query, GSAP/Motion/Lenis/canvas keep running. A media query cannot stop a JS timeline
-  - **Blanket `* { animation-duration: 0 !important }` as the only handling** — over-removes focus-ring and loading cues that should survive reduce
-- Curve chosen by name for a large rotation or long translate, with no peak-speed check — `peak = maxSlope × travel / duration` against a ~30°/frame ceiling (a third of the pitch for a rotationally symmetric part). `--ease-out-strong` on a spinner is the common instance (MOTION-CRAFT §3) (MEDIUM)
-- Both segments of a two-segment keyframe move eased — the element dead-stops at the join (MOTION-CRAFT §3, velocity continuity) (MEDIUM)
-- Animated SVG passing through SVGO without `cleanupIds` / `mergePaths` / `removeHiddenElems` / `removeViewBox` / `inlineStyles` disabled — source correct, build output broken (MOTION-CRAFT §14) (HIGH)
-- Transform on a root `<svg>` or HTML wrapper with a literal px value not derived from the rendered size — breaks at every size but the authored one (MOTION-CRAFT §14) (MEDIUM)
-- Animated SVG with an element resting state declared only in the `0%` keyframe — snaps to a broken pose the moment `animation: none` applies under reduce (MOTION-CRAFT §14) (MEDIUM)
-- Reusable animated SVG with hardcoded `url(#id)` mask/clipPath references and no per-instance id rewrite — every copy on the page renders the first one's mask (MOTION-CRAFT §14) (MEDIUM)
-- Symmetric enter/exit timing on a press-and-release or hold interaction (deliberate phase should be slower, response snappier) (LOW–MEDIUM)
-- Everything-at-once entrance where a stagger belongs (stagger interval per MOTION-CRAFT §11) (LOW)
-
-**Remedial preference (propose the earliest that applies):** delete the animation (high-frequency / no purpose) → reduce it → fix the easing → fix origin/physicality → make it interruptible → move it to the GPU → asymmetric timing → polish (blur/stagger/`@starting-style`/spring). Pull the exact curve, duration, or spring config from MOTION-CRAFT.md. Findings feed the existing Report + Fix-First triage — do not create a parallel output path.
+> Full detail moved to [`rune-review/references/ui-ux-checks.md`](rune-review/references/ui-ux-checks.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Weighted Composite Scoring
 
-When a review is part of a recurring quality-gate cycle (e.g., sprint review, pre-release gate), produce a **composite quality score** alongside the findings list. This makes review output numeric and comparable across runs.
-
-### Formula
-
-```
-Quality Score = (Correctness × 0.35) + (Security × 0.30) + (Test Coverage × 0.20) + (Conventions × 0.15)
-```
-
-Each dimension is scored 0–100 based on findings count and severity:
-- 0 CRITICAL/HIGH findings → 100 for that dimension
-- 1 CRITICAL → dimension capped at 40
-- 1 HIGH → dimension capped at 70
-- Each additional MEDIUM → subtract 5 (floor: 50)
-
-### Grade Thresholds
-
-| Score | Grade | Verdict |
-|-------|-------|---------|
-| 90–100 | Excellent | APPROVE |
-| 75–89 | Good | APPROVE with notes |
-| 60–74 | Fair | REQUEST CHANGES (MEDIUM issues) |
-| 40–59 | Poor | REQUEST CHANGES (HIGH issues present) |
-| 0–39 | Critical | REQUEST CHANGES (CRITICAL present) |
-
-**When to include**: Only when `mode: "scored"` is passed by the caller, or when invoked by `audit`. Default review output uses the standard severity-ranked report without the score.
+> Full detail moved to [`rune-review/references/composite-scoring.md`](rune-review/references/composite-scoring.md) (progressive disclosure). **Read that file before executing this section.**
 
 
 ## Severity Levels
@@ -810,7 +480,7 @@ chain_metadata:
 ~3000-6000 tokens input, ~1000-2000 tokens output. Sonnet default, opus for security-critical reviews. Runs once per implementation cycle. When Step 1.6 fires (high-blast-radius only): add council's cost profile (~1500-4000 tokens per voice × 2-5 voices) — reserved for the same tier that already requires adversarial escalation.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

@@ -4,7 +4,7 @@ description: Apply concept modeling principles to design, implementation, and ma
 metadata:
   language: en
   translation_of: concept-model-cn
-  version: 1.1.1
+  version: 1.2.0
 ---
 
 # Working with concept modeling
@@ -33,7 +33,12 @@ Concepts are fully independent services; synchronizations are event-based rules 
 
 ## Engineering additions
 
-The following implementation and maintenance conventions belong to this skill; they are not presented as the authors’ original wording or distinctive principles.
+The following conventions belong to this skill; they are not presented as the authors’ original wording or distinctive principles.
+
+### Scope and separation
+
+- Reuse before modeling: reuse capabilities that have mature, replaceable implementations and carry no rules that differentiate this product; keep only a thin concept or entry contract for those with a user purpose, and leave pure technical mechanisms out of the model.
+- Concepts carry only this product's business rules and invariants; reused components stay behind ports and adapters, and their models stay out of concept state.
 
 ### Implementation
 
@@ -43,6 +48,5 @@ The following implementation and maintenance conventions belong to this skill; t
 
 ### Maintenance
 
-- Determine responsibility before adding structure.
+- Assign responsibility before adding structure; limit changes to what is needed.
 - Preserve behavior when refactoring; make intentional changes explicit.
-- Limit changes to what is needed; retain clear code.

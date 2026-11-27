@@ -32,6 +32,7 @@ start_intake_workflow.py
                                               ↓
                                 save_trip_deliverables.py   （全部跑一遍，然后落盘）
                                               ↓
+                                check_places.py             （需联网，核查前先跑）
                                 check_link_targets.py       （需联网，由你手动跑）
 ```
 
@@ -59,6 +60,10 @@ start_intake_workflow.py
 | `plan_slice.py` | 给每个核验方一份方案的**投影**，而不是整份文件 |
 | `fetch_plan_imagery.py` | 给真实地点配经核验的自由许可照片 —— 达不到标准就一张都不配 |
 | `plan_visuals.py` | 用方案里已有的数字画四张内嵌 SVG 图 |
+| `check_places.py` | 用 OpenStreetMap 核对每个地图点、餐厅和步行时长（高德坐标先从 GCJ-02 换算；设了 `AMAP_KEY` 时用高德地点搜索），记下每家酒店的当地地址供「给司机看」卡片使用，并把 `place_check` 写进方案；标为已核查的保存必须有它（需要网络） |
+| `refresh_plan.py` | 按已保存方案下单前：每个部分上次核对距今多久，航班是否仍在售、现价多少（航班部分需联网） |
+| `render_draft.py` | 可行性之后的第一页：真实票价、一两个区域的每晚价格、脚本自己加总的人均总价区间、粗略安排和需要旅行者回答的问题；没有来源或核对日期的价格不让上页 |
+| `trip_debrief.py` | 旅行结束后：列出最近一次还没回访的旅行，把旅行者的回答写进行程表单会预填的档案字段，并把这次旅行的文件移到 `past/` |
 | `check_link_targets.py` | 跟着每个外链按钮走一遍，报出它**实际**落在哪（需要网络） |
 | `check_shortlist_consistency.py` | Discovery 的闸门：这些候选真的可比吗，结论诚实吗 |
 | `save_discovery_deliverables.py` | 那道闸门一直缺的「门」—— 跑它、盖章、把候选清单写到你其他文件旁边 |

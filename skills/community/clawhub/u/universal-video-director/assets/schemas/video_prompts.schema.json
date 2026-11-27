@@ -1,0 +1,211 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "video_prompts",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "model",
+    "motions"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "video_prompts"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "i2v",
+        "flf2v",
+        "t2v",
+        "ref2v",
+        "still"
+      ]
+    },
+    "motions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "cut_ids",
+          "duration_sec",
+          "prompt",
+          "ref_bindings"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "cut_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\-]+$"
+            },
+            "minItems": 1
+          },
+          "duration_sec": {
+            "type": "number",
+            "minimum": 0.5
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "negative": {
+            "type": "string"
+          },
+          "ref_bindings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "slot",
+                "asset_id",
+                "purpose"
+              ],
+              "properties": {
+                "slot": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "asset_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "purpose": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "camera_move": {
+            "type": "string"
+          },
+          "sound": {
+            "type": "string"
+          },
+          "render": {
+            "enum": [
+              "video",
+              "still"
+            ],
+            "description": "mixed 模式下逐条指定；缺省跟随顶层 mode"
+          },
+          "still_move": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "static",
+                  "push_in",
+                  "pull_out",
+                  "pan_left",
+                  "pan_right",
+                  "tilt_up",
+                  "tilt_down",
+                  "shake",
+                  "parallax"
+                ]
+              },
+              "from_scale": {
+                "type": "number",
+                "minimum": 1
+              },
+              "to_scale": {
+                "type": "number",
+                "minimum": 1
+              },
+              "ease": {
+                "type": "string"
+              }
+            }
+          },
+          "layers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "fg",
+                    "bg",
+                    "fx_rain",
+                    "fx_ink",
+                    "fx_glow",
+                    "text"
+                  ]
+                },
+                "spec": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "music_cues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "from_cut",
+          "to_cut",
+          "mood"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "from_cut": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "to_cut": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "mood": {
+            "type": "string",
+            "minLength": 1
+          },
+          "bpm": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ---
 name: upkuajing-global-company-people-search-zh
-description: 搜索全球企业信息、个人信息，用于全球贸易、跨境出口、海外采购商的线索开发。帮助出口贸易商、采购商、服务商、代理商及销售团队通过搜索，得到企业决策人信息、企业高管信息；寻找供应商，并加速海外客户获取。本产品提供企业注册信息、背景资料以及联系方式（邮箱、电话、WhatsApp）。适用于海外客户开发、企业背调、人才搜索等场景。
-metadata: {"version":"1.0.10","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"🏢","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+description: 搜索全球企业信息、个人信息，用于全球贸易、跨境出口、海外采购商的线索开发。帮助出口贸易商、采购商、服务商、代理商及销售团队通过搜索，得到企业决策人信息、企业高管信息；寻找供应商，并加速海外客户获取。本产品提供企业注册信息、背景资料以及联系方式（邮箱、电话、WhatsApp）。适用于海外客户开发、企业背调、人才搜索等场景。搜索结果仅来自跨境魔方 API，不得用 Codex 网页搜索或其他来源替代。
+metadata: {"version":"1.1.1","homepage":"https://developer.upkuajing.com/openapi/","clawdbot":{"emoji":"🏢","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 跨境魔方企业与人物搜索
@@ -12,6 +12,37 @@ metadata: {"version":"1.0.10","homepage":"https://www.upkuajing.com","clawdbot":
 
 本技能通过五个脚本提供对跨境魔方全球企业库和人物数据的访问：两种列表搜索（公司、人物）和三个增强接口（公司详情、人物详情、联系方式）。
 通过`auth.py`脚本提供 API密钥生成、充值；
+
+## 收费查询前状态检查（强制）
+
+在执行任何收费查询前，必须先读取并完整执行 [API Key 状态检查与余额流程](references/api-key-onboarding.md)：
+
+1. 首次启用技能，或尚未向用户介绍过能力时，简要说明公司搜索、人物搜索、详情、联系方式和收费属性，并提供 API 能力与价格平台 `https://developer.upkuajing.com/openapi/`；
+2. 在询问用户是否有跨境魔方账号前，先运行 `auth.py --key_status` 检测本地 API Key，并明确报告 Key 是否存在、是否有效；
+3. 报告实际绑定状态和可用余额。对已绑定账号的 Key，同时说明 API 余额、跨境魔方账号余额，以及先扣 API 余额、再扣账号余额；
+4. 只询问检测结果所需要的账号、绑定、生成 Key 或充值问题；脚本已经确认的状态不得再让用户自行判断；
+5. 用户完成必要的绑定或充值后，必须复查状态再继续。
+
+不得仅凭用户口述推定 Key 已存在、有效或已绑定；不得在对话中展示完整 API Key。Key 无效或可用余额不足时，不得进入收费搜索。Key 可用后读取 [查询输入引导与有界澄清](references/search-query-readiness.md)：用户已经提出需求时先直接判断准备度；只有尚无具体需求或需求过于模糊时，才展示完整输入建议和相关示例。已达到准备度的需求直接进入自然语言查询与费用确认单。
+
+## 搜索来源边界（强制）
+
+本技能的搜索结果只能来自本目录脚本调用的跨境魔方 API。结果差、无结果、接口失败或用户不满意时，不得使用 Codex 网页搜索、浏览器、互联网、模型记忆、其他插件、其他数据库或其他技能补充或替换结果。只能如实说明跨境魔方结果，提出当前 API 支持的条件调整，并在用户再次确认费用后重查，或停止。
+
+## 收费结果交付（强制）
+
+每个已确认的完整收费任务结束后，必须读取并执行 [收费查询结果交付](references/result-delivery.md)。带自动联系方式补全的列表需求虽然会调用多个收费接口，但属于一个任务，中间不得交付。禁止只回复任务 ID、文件路径、“结果已保存”或“查询完成”。
+
+- 列表搜索：当前回复最多展示前 10 条，使用简洁 Markdown 表格，并根据用户问题弹性选择基础且有意义的字段；不得展示 ID、游标、内部评分或整列为空的字段；
+- 每次列表搜索同时提供包含全部记录的原始 JSONL 和完整可读的 XLSX；不得自动生成 CSV 或 Markdown 报告；
+- 部分成功：展示最多前 10 条已付费记录、实际数量、费用、停止原因，以及包含全部已保存记录的 JSONL 和 XLSX；
+- 列表脚本按用户确认数量精确交付。带职位条件的人物搜索会执行确定性的职位质量检查；只有目标职位匹配记录进入付费联系方式补全，预览优先展示目标职位匹配记录；
+- 用户可以继续针对完整 JSONL 提问。读取或分析已有 JSONL 不调用 API、不产生查询费用；只能依据该文件回答，缺失信息必须如实说明，不得猜测或使用其他来源补充；
+- 用户要求邮箱、电话、WhatsApp 或联系方式时，默认理解为需要具体地址或号码。执行前一次性说明列表费用、联系方式按 ID 计费规则、联系方式最高费用和整个任务最高费用，并对完整任务只确认一次。随后运行列表脚本的 `--include_contacts` 和所需 `--contact_types`，自动连续完成联系方式查询；中间不得展示无联系方式表格或再次确认。最终只展示一次带完整值的前 10 条，并交付已合并的 JSONL 和 XLSX。只有用户明确说不要具体值时才只做存在性筛选；
+- 涉及邮箱和电话的列表搜索只向用户提供三种受支持的选择：仅邮箱、仅电话、同时具备邮箱和电话。列表接口无法在一次查询中表达真正的“邮箱或电话”。用户说“邮箱或电话”“任一即可”“任意联系方式”或“至少一种”时，必须说明限制，请用户从三种方式中选择并等待回复；不得静默选择排在第一位的联系方式，也不得在收费列表任务中使用 `--contact_match any`。三种受支持方式都使用 `--contact_match all`，并在确认单中写明所选方式。用户明确要求 WhatsApp 时仍可单独处理；
+- 公司详情、人物详情和联系方式：当前回复展示全部返回对象；
+- 具体联系方式成功合并后才记为补全成功。合并数量为 0 时将联系方式阶段标记为失败，报告实际费用并提供本任务的响应核对文件；
+- 脚本输出中的 `delivery` 是强制动作，完成用户可见交付前不得结束任务。
 
 ## 脚本运行
 
@@ -34,6 +65,7 @@ metadata: {"version":"1.0.10","homepage":"https://www.upkuajing.com","clawdbot":
    - "找生产LED灯的厂家"
    - "找员工规模100-500人的科技公司"
 - **参数**：查看参数说明 [公司列表](references/company-list-api.md)
+- **自动联系方式链**：原始需求包含具体联系方式时，按需添加 `--include_contacts --contact_types email phone whatsapp`
 
 **人物列表搜索** (`human_list_search.py`)
 - **返回粒度**：每个人物为一行记录
@@ -42,6 +74,9 @@ metadata: {"version":"1.0.10","homepage":"https://www.upkuajing.com","clawdbot":
   - "找XXXX的CTO"
   - "找XXX中国区的销售总监"
 - **参数**：查看参数说明 [人物列表](references/human-list-api.md)
+- **自动联系方式链**：用户选择受支持的联系方式组合后，添加 `--include_contacts --contact_types ... --contact_match all`，不得向用户展示中间人物列表
+- **职位定位**：优先使用 Procurement、Purchasing、Supply Chain、Sales、Technology 等稳定业务岗位词；Manager、Director、Head 等职级词不单独作为匹配锚点
+- **服务端锚点**：岗位业务词写入 `titleNames`。脚本会在本地校验与联网前把仅使用职位角色的输入归一到 `titleNames`
 
 ### 三个增强接口
 
@@ -55,14 +90,16 @@ metadata: {"version":"1.0.10","homepage":"https://www.upkuajing.com","clawdbot":
 - 获取人物详细信息（教育经历、工作履历等）
 - **参数**：`--hids` 人物ID列表（空格分隔，从列表搜索获取），一次最多20个
 
-**联系方式** (`get_contact.py --bus_type * --bus_ids *`)
+**联系方式** (`get_contact.py --bus_type * --bus_ids * [--task_id *]`)
 - 获取联系方式（邮箱、电话、WhatsApp、社媒、网站）
 - **参数**：
   - `--bus_type`: 1=公司，2=人物
   - `--bus_ids`: 公司ID或人物ID 列表（空格分隔，从列表搜索获取），一次最多20个
+  - `--task_id`: 原列表任务 ID；列表转联系方式流程必须传入，以便把返回值合并进最终 JSONL 和 XLSX
 
 ## API密钥与充值
-使用此技能需要API密钥。API密钥保存在 `~/.upkuajing/.env` 文件中：
+
+使用此技能需要API密钥。API密钥通常保存在 `~/.upkuajing/.env` 文件中：
 ```bash
 cat ~/.upkuajing/.env
 ```
@@ -70,44 +107,27 @@ cat ~/.upkuajing/.env
 ```
 UPKUAJING_API_KEY=your_api_key_here
 ```
-### **未设置API密钥**
-请先检查 `~/.upkuajing/.env` 文件是否有 UPKUAJING_API_KEY;
-如果未设置 UPKUAJING_API_KEY API密钥，请提示并让用户选择：
-1. 用户有，由用户提供(手动添加到 ~/.upkuajing/.env 文件)
-2. 用户没有，你可使用接口进行申请（`auth.py --new_key`），申请到新密钥后，会自动保存到 ~/.upkuajing/.env
-等待用户选择；
 
-### **账户充值**
-如果调用接口响应账户余额不足时，需说明并引导用户进行账户充值：
-1. 创建充值订单（`auth.py --new_rec_order`）
-2. 根据订单响应，发送支付页面URL给用户，引导用户打开地址付款，付款成功后告诉你；
+- 检测 Key、绑定状态与双余额：`python scripts/auth.py --key_status`
+- 申请新 Key：`python scripts/auth.py --new_key`
+- 获取充值页面：`python scripts/auth.py --new_rec_order`
+- 账号及 API Key 绑定入口：[跨境魔方账户中心](https://developer.upkuajing.com/account/)
 
-### **获取账户信息**
-可通过此脚本，获取UPKUAJING_API_KEY对应的账户信息 `auth.py --account_info`
-
-## API密钥与跨境魔方账号
-- 新申请的API密钥：在[跨境魔方开放平台](https://developer.upkuajing.com/)注册、登录后进行账号绑定
-
-### **上报Skill调用异常**
-当API调用失败或返回异常数据（服务端错误、超时、响应格式错误等）时，先用自然语言向用户解释异常情况，并询问是否需要上报给平台追踪；用户确认后才执行上报：
-```bash
-python scripts/error_report.py --params '{"requestPath":"/agent/search/company/list","requestId":"f47ac10b58cc4372a5670e02b2c3d479","context":"企业与人搜索查询失败，服务端异常"}'
-```
-- **不要上报正常业务情况**（余额不足、API密钥无效、参数错误等），按各自原有流程处理
-- 异常上报不产生查询费用
-- **参数说明**：参见 [异常上报API](references/skill-error-report-api.md)
+所有账号分类、状态提示、扣款顺序和充值闭环以 [API Key 状态检查与余额流程](references/api-key-onboarding.md) 为准。
 
 ## 费用
 
 **所有API调用都会产生费用**，不同接口计费方式不同。
 
-**最新价格**：用户可访问 [详细价格说明](https://www.upkuajing.com/web/openapi/price.html)
+**API 能力与最新价格页面**：用户可访问 [跨境魔方 Open API](https://developer.upkuajing.com/openapi/)
 或者使用：`python scripts/auth.py --price_info`（返回接口完整定价）
 
 ### 列表搜索计费规则
 
 按**调用次数**计费，每次返回最多20条记录：
-- 调用次数：`ceil(query_count / 20)` 次
+- 基础调用次数：`ceil(query_count / 20)` 次
+- 需要具体联系方式时，为唯一 ID 去重补页预留 1 次列表调用。确认单按最高 `ceil(query_count / 20) + 1` 次列表调用计算，脚本不得超过此上限。
+- 断点续跑属于同一任务，不获得一套新的调用预算。续跑前再次向用户展示已保存唯一记录数、累计列表调用次数与费用、剩余调用额度、不变的查询/联系方式条件和剩余最高费用，并等待用户明确确认。确认后只传 `--task_id` 与 `--user_confirmed`；脚本自动恢复原数量和联系方式设置，跳过已具备所需具体联系方式的 ID，累计账本不得归零或扩大。旧断点若缺少累计账本字段，不得自动续跑；应在重新确认后新建任务。
 - **只要 query_count > 20，执行前必须：**
   1. 告知用户预计调用次数
   2. 停止，等待用户在独立消息中明确确认后，再执行脚本
@@ -121,9 +141,40 @@ python scripts/error_report.py --params '{"requestPath":"/agent/search/company/l
   1. 告知用户传入ID数量及对应费用次数
   2. 停止，等待用户在独立消息中明确确认后，再执行脚本
 
+例外：原始列表需求已经包含具体联系方式时，在列表任务的首次确认单中纳入联系方式接口的最高 ID 数量和最高费用。用户对该完整任务确认一次后，`--include_contacts` 可以在已批准上限内自动执行全部联系方式批次，不再中途暂停。该授权不涵盖本任务之外的详情或联系方式调用。
+
 ### 费用确认原则
 
 **任何会产生费用的操作，都必须先告知、等待用户明确确认，不得在告知的同一条消息中直接执行。**
+
+所有收费脚本都要求 `--user_confirmed`。只有用户在查看自然语言查询确认单和费用后，于独立消息中明确同意，才能添加该标记。该标记不是对话确认的替代品。
+
+### 套餐计费与余额降级
+
+搜索/海关/地图接口**默认走套餐**：脚本会自动携带 `"planMode": 2`。
+
+- **套餐不可用**（无有效套餐或额度已用完）：脚本在业务执行前停止，不会产生扣费；stdout 会输出一行以 `PLAN_UNAVAILABLE ` 开头的 JSON，退出码为 **3**。**禁止自动重试**。
+- **先询问用户**：用自然语言说明原因（无套餐 / 额度用完及恢复时间），说明改用余额将按接口定价扣费（单价用 `python scripts/auth.py --price_info` 查询），然后等待用户在独立消息中明确回复。
+- **用户同意**：用同一条命令加环境变量 `UPKUAJING_PLAN_MODE=1` 重跑（PowerShell：`$env:UPKUAJING_PLAN_MODE='1'`），成功后向用户展示 `fee` 扣费信息。
+- **用户拒绝**：本次不执行、不扣费；给出「稍后重试 / 升级套餐 / 使用余额」三个出口，同一轮不要重复弹窗。
+- **改余额后仍余额不足**（95）：提示充值并停止，不再重试。
+- **批量调用前**：先用 `python scripts/auth.py --plan_quota` 预检额度（档位上限用 `--plan_config`）；`available=0` 或目标窗口 `remaining=0` 时，直接先问是否用余额，避免必然失败的调用。
+- **调用成功**：把 stderr 中 `[套餐]` 开头的用量信息转述给用户。
+- **禁止**静默改走余额，**禁止**向用户暴露内部错误码原文。
+
+完整契约见 [references/plan-billing.md](references/plan-billing.md)
+
+## 收费搜索前的有界澄清（强制）
+
+执行公司或人物列表搜索前，必须读取并完整执行 [收费搜索前的有界澄清流程](references/search-query-readiness.md)：
+
+- 用户尚未提出具体需求时，展示相关的公司/人物输入建议和自然语言完整示例；用户已经提出需求时先判断准备度，需求已完整则跳过通用教程；
+- 最多两轮澄清；第一轮最多 3 个集中问题，第二轮最多 2 个问题；
+- 只追问会改变接口、搜索锚点、主要范围或费用的高影响信息；
+- 可安全默认的字段直接写入确认单，不逐项追问；
+- 两轮后仍没有可靠锚点时停止，不调用 API；
+- 达到准备度门槛后立即展示自然语言查询确认单，不再追问；
+- 用户确认后才使用 `--user_confirmed` 执行收费脚本。
 
 
 ## 工作流程
@@ -134,9 +185,9 @@ python scripts/error_report.py --params '{"requestPath":"/agent/search/company/l
 | 用户意图 | 使用API |
 |-------------|---------|
 | "找生产XXX的公司" | 公司列表 |
-| "找有邮箱/电话的公司" | 公司列表 existEmail=1/existPhone=1 |
+| "找有邮箱/电话的公司" | 一次确认后自动完成公司列表和具体联系方式补全，只交付最终结果 |
 | "找XX公司的CEO/CTO" | 人物列表 |
-| "找采购XXX的客户" | 公司列表 |
+| "找XXX的客户" | 根据用户提供的产品、行业、公司类型和地区执行公司列表搜索 |
 | "获取人物履历" | 人物详情 |
 | "获取公司联系方式" | 联系方式 bus_type=1 |
 
@@ -147,8 +198,9 @@ python scripts/error_report.py --params '{"requestPath":"/agent/search/company/l
 **用户请求**："找生产LED灯的中国厂家"
 ```bash
 python scripts/company_list_search.py \
-  --params '{"products": ["LED lights"], "countryCodes": ["CN"], "existEmail": 1}' \
-  --query_count 20
+  --params '{"products": ["LED lights"], "countryCodes": ["CN"]}' \
+  --query_count 20 \
+  --user_confirmed
 ```
 
 ### 场景2: 搜索人物
@@ -156,33 +208,31 @@ python scripts/company_list_search.py \
 **用户请求**："找XXXX的CTO"
 ```bash
 python scripts/human_list_search.py \
-  --params '{"companyNames": ["XXXX"], "titleRoles": ["CTO"]}' \
-  --query_count 20
+  --params '{"companyNames": ["XXXX"], "titleNames": ["CTO"]}' \
+  --query_count 20 \
+  --user_confirmed
 ```
 
 ### 场景3: 大量查询 — 需要多次调用脚本
 
 **用户请求**："找1000家有邮箱的美国电子产品进口商"
-**执行前**告知用户：ceil(1000/20) = 50 次API调用，确认后再执行。
+**执行前**告知用户：因启用联系方式补页，列表接口最高 ceil(1000/20) + 1 = 51 次，并说明联系方式接口的最高 ID 费用，确认后再执行。
 ```bash
-python scripts/company_list_search.py --params '{"products": ["electronics"], "countryCodes": ["US"], "existEmail": 1}' --query_count 1000
+python scripts/company_list_search.py --params '{"products": ["electronics"], "countryCodes": ["US"]}' --query_count 1000 --include_contacts --contact_types email --user_confirmed
 ```
 **执行结束**：脚本响应 {"task_id":"a1b2-c3d4", "file_url": "xxxxx", ……}
-**继续执行，追加数据**：指定task_id，让脚本从上次的cursor处继续查询并追加到文件
+**中断后继续同一任务**：先说明已累计用量和剩余额度并再次取得确认；只指定 task_id，脚本会恢复原数量和联系方式配置，从上次 cursor 继续，仅追加新的唯一记录。
 ```bash
-python scripts/company_list_search.py --task_id 'task-id-here' --query_count 2000
+python scripts/company_list_search.py --task_id 'task-id-here' --user_confirmed
 ```
 
 ## 错误处理
 
 - **API密钥无效/不存在**：检查 `~/.upkuajing/.env` 文件中的 `UPKUAJING_API_KEY`
 - **余额不足**：引导用户充值
+- **套餐不可用（退出码 3 / `PLAN_UNAVAILABLE`）**：说明原因并询问是否改用余额，不要自动重试；参见 [套餐计费与余额降级](references/plan-billing.md)
 - **参数无效**：**必须先查看 references/ 目录下的对应 API 文档**，从文档中获取正确的参数名称和格式，不要猜测
-- **Skill调用异常/响应异常**：先友好告知用户，经用户确认后用 `python scripts/error_report.py` 上报给平台（参见 [上报Skill调用异常](#上报skill调用异常)）
-
-### API 文档参考
-
-- 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 最佳实践
 
@@ -199,16 +249,19 @@ python scripts/company_list_search.py --task_id 'task-id-here' --query_count 200
    - 不要猜测参数名称，从文档中获取准确的参数名称和格式
 
 3. **优化查询参数**：
-   - 使用 `products` 参数精确筛选产品，需翻译为英文
+   - 公司和人物列表统一使用精准匹配，严禁使用模糊匹配；执行前按 [查询输入引导与有界澄清](references/search-query-readiness.md) 生成最小完整业务短语
+   - 产品使用 `products` 并翻译为常见英文行业术语。每个目标使用 1 个主 query 和最多 2 个高置信度等价 query；同字段多个 query 按 OR 精准匹配，不得拆成独立单词或扩展相关产品
    - 使用 `existEmail=1` 或 `existPhone=1` 筛选有联系方式的实体
    - 使用 `countryCodes` 限定国家范围
 
 ### 处理结果
 
 3. **谨慎处理jsonl文件**：对数据量大的查询，注意文件大小
-4. **逐步丰富信息**：仅在需要时调用详情/联系接口
+4. **把联系方式作为一次完整任务补全**：原始需求包含具体联系方式时，在首次确认单中说明最高联系方式费用；确认一次后由列表脚本自动连续执行，不得停在库存数量或要求第二次确认
    - 两个列表接口返回的公司ID都可以用于两个详情接口
    - 如果用户只需要少数公司，不要为所有公司获取详情
+5. **结果不佳时保持来源边界**：不得用 Codex 搜索、浏览器或其他来源补救；只能说明结果、建议修改当前 API 支持的条件，并等待新的收费确认
+6. **完整交付结果**：执行 [收费查询结果交付](references/result-delivery.md)，不得把结果只留在 `task_data` 中；每次列表查询都提供 JSONL 和 XLSX
 
 ## 注意事项
 - 人物搜索用 hids，公司搜索用 pids，注意区分
@@ -220,27 +273,3 @@ python scripts/company_list_search.py --task_id 'task-id-here' --query_count 200
 - **禁止输出技术参数格式**：不要在回复中展示代码样式的参数，应将其转换为自然语言
 - **不要估算或猜测每次调用的费用** — 使用 `python scripts/auth.py --price_info` 获取准确定价信息
 - **不要**猜测参数名称，从文档中获取准确的参数名称和格式
-
-## 相关技能
-
-其他您可能会用到的跨境魔方技能：
-
-- linkedin-person-search — 领英找人
-- global-company-person-search — 全球企业库找人
-- linkedin-company-search — 领英找公司
-- global-company-search — 全球企业库找公司
-- global-company-shareholder — 全球企业库股东查询
-- global-company-employee — 全球企业库员工查询
-- global-company-person-colleague — 全球企业库同事查询
-- global-company-person-alumni — 全球企业库校友查询
-- global-company-person-experience — 全球企业库工作经历查询
-- global-company-person-education — 全球企业库教育经历查询
-- global-company-person-school-detail — 全球企业库学校详情查询
-- upkuajing-customs-trade-company-search — 海关贸易企业搜索
-- upkuajing-email-tool — 发送邮件和管理邮件任务
-- upkuajing-map-merchants-search — 基于地图的商家搜索
-- upkuajing-sms-tool — 发送短信和管理短信任务
-- upkuajing-contact-info-validity-check — 联系方式有效性检测
-- phone-validity-check — 电话号码有效性检测
-- email-validity-check — 邮箱地址有效性检测
-- domain-validity-check — 域名有效性检测

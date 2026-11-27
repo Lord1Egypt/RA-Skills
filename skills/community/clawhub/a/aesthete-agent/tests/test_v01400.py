@@ -36,6 +36,7 @@ class TestRecipes(unittest.TestCase):
             self.assertEqual(css.count("{"), css.count("}"),
                              recipe + ": css 花括号不平衡({ %d vs } %d)"
                              % (css.count("{"), css.count("}")))
+            self.assertNotIn("{{", css, recipe + ": css 含字面双括号(f-string 转义泄漏,0.31 新闸)")
 
     def test_all_recipes_pass_own_gates(self):
         tokens = scaffold_kit.derive({"hexes": DP}, "夜松", "Night Pine", "")

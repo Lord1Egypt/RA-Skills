@@ -1,7 +1,7 @@
 ---
 name: ClawHub Skill Growth Engine
 description: AI-powered ClawHub skill growth optimizer v2.0 — analyzes reviews, tracks 2026 trending topics (AI Agent, MCP, video SEO), rewrites titles/descriptions for maximum downloads and stars. Supports video thumbnail prompts, cross-platform social syndication, and growth metrics tracking. Scope: advisory output only — analysis reports, rewrite suggestions, thumbnail prompts and promotion copy. The skill never edits skill metadata, never publishes anything, and never calls external services on the user’s behalf; every action is performed manually by the user after confirmation. Triggers: clawhub optimization, skill growth, SEO, stars, downloads, review analysis, trending keywords, skill improvement, GitHub stars strategy, video SEO, social media integration, thumbnail generation.
-version: "2.1.5"
+version: "2.1.6"
 allowed-tools: []
 capabilities:
   - educational-reference
@@ -59,7 +59,7 @@ capabilities:
 - 标题优化 / description 优化 / 关键词优化
 - skill 改进 / 技能改进 / 提升关注度
 
-## Section 0: Latest ClawHub Platform Updates (2026-11-19)
+## Section 0: Latest ClawHub Platform Updates (2026-11-27)
 
 | 更新日期 | 平台/趋势 | 对技能优化的影响 | 推荐动作 |
 |---------|-----------|----------------|---------|
@@ -928,4 +928,42 @@ Apply: Update SKILL.md + README.md + tags + thumbnail prompts + changelog
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### 3. SEO Title & Description Optimizer**：
+
+- 标题要素清单补一条「表述是否经人工确认后方可使用」的占位核对项，由使用者圈选并留白依据，草稿不代写标题。
+- 为关键词对照新增一张纸面对照：左列列关键词标签，右列留白记录需人工核实的适用语境，不代为检索或发布。
+
+**## 内容质量评分表（发布前自评）**：
+
+- 自评清单补一条「评分是否仅为纸面观测」的占位标注位，草稿不预置分值或放行结论。
+- 为扣分项新增一行「需人工复核的说明」占位：标注待确认项，具体文本留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 标题表述留白 | 运营人 + 复核人 | 标题要素清单草稿 | 是否标注待人工确认、未代写标题 | 中 | 纸面对照，物料须人工审核后使用 |
+| 评分观测标注 | 运营人 | 自评占位表 | 是否注明纸面观测、未预置分值或放行结论 | 中 | 文档记录，不构成发布决定 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于技能物料优化与发布前自评的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式对外物料、发布动作与运营决议的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

@@ -3,6 +3,7 @@
  */
 const constants = require("../config/constants");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost } = require("../utils/cost");
 
 function isEmptyValue(value) {
   if (value == null) return true;
@@ -60,7 +61,7 @@ async function createDetailTask(token, url) {
  * 获取抖音作品详情
  * @param {string} token - 技能令牌
  * @param {string} url - 与创建时相同的 url
- * @returns {Promise<Object|null>} 作品详情对象
+ * @returns {Promise<{ results: Object|null, cost?: number }>}
  */
 async function getDetailTask(token, url) {
   const response = await pollTaskResult(
@@ -69,12 +70,13 @@ async function getDetailTask(token, url) {
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processDetailResult(response.data);
+    return { results: processDetailResult(response.data), cost };
   }
 
-  return null;
+  return { results: null, cost };
 }
 
 module.exports = {

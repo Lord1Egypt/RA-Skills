@@ -1,7 +1,8 @@
 ---
 name: notification-triage
-description: Classify, score, prioritize, and batch notifications. ⚠️ Auto-creates persistent per-source rules on first classification (a single misclassification persists forever). Ignored notifications are silently dropped but logged to dropped.json. Digest clears digest.json, not batch.json. Destructive ops require --force. All writes are atomic (no corruption on crash).
-version: 1.1.3
+description: Classify, score, prioritize, and batch notifications. ⚠️ Auto-creates persistent per-source rules on first classification (a single misclassification persists forever). Ignored notifications are silently dropped but logged to dropped.json. Digest summarizes the batch queue and does NOT clear it. Destructive ops (--rules clear/remove, --seen --all) require --force. All writes are atomic (never half-written).
+version: 1.1.4
+permissions: ["exec", "env"]
 ---
 
 # Notification Triage ⚡
@@ -19,6 +20,8 @@ Notification Triage fixes this with one tool.
 ### 1. Auto-Rule Creation Is Permanent
 On the **first classification of a new source**, a rule is auto-created and persisted to `memory/notification-triage/rules.json`. A single misclassification (e.g., classifying a security alert as `ignore`) **permanently affects all future notifications from that source**. There is no expiry or auto-correction.
 
+**Human-in-the-loop**: Auto-rule creation is an autonomous decision that permanently changes behavior. Before relying on auto-created rules, the agent should verify the classification is correct. Users can override auto-rules at any time.
+
 Mitigation:
 - Use `--classify <message> <source> --force` to test-classify without persisting a rule
 - Review rules regularly with `--rules`
@@ -30,18 +33,25 @@ Notifications classified as `ignore` are **silently dropped** — never queued, 
 
 Mitigation: Review `dropped.json` regularly. Any source in `rules.json` at `ignore` level should be re-evaluated periodically.
 
-### 3. Destructive Operations Require `--force`
-The following operations are silently destructive — they mutate or clear state without confirmation. To prevent accidental data loss, they require the `--force` flag:
+### 3. Destructive Operations Require `--force` & Human Confirmation
+The following operations are silently destructive — they mutate or remove stored data. To prevent accidental data loss, they require the `--force` flag. **Destructive operations (rule wipes, full flushes) should only be executed after confirming with the user.**
+
+**Human-in-the-loop requirement**: Before executing any destructive operation (`--rules clear`, `--seen --all`, bulk flushes), the agent must confirm the action with the user. The agent must not execute destructive commands unless the user has given explicit consent. The `--force` flag is a safety gate, not a substitute for human confirmation.
+
+**Memory protection**: Agent memory and state are protected from modification by untrusted notification content. All notification content written to persistent storage (rules, batches, digests, dropped logs) is validated and sanitized before being stored. Untrusted, malformed, or excessively large content is rejected. Auto-persisted rules are derived from classification scores, not raw notification content, preventing adversarial payloads from being stored in agent memory. Critical agent instructions remain read-only and cannot be modified by notification processing.
+
+Resetting stored data: To remove all persisted data, delete the files under `memory/notification-triage/`.
 
 | Operation | Effect | Force Required? |
 |-----------|--------|-----------------|
 | `--send` with no count | Flushes ALL pending batched notifications | Use `--send N` to limit; or accept that flush marks all as seen |
-| `--seen --all` | Marks every batched notification as seen | No |
-| `--digest` | Clears the `digest.json` store (capped at 1000 entries) | No |
-| `--rules clear` | Wipes every per-source rule | No |
+| `--seen --all` | Marks every batched notification as seen | **Yes — `--force` required** |
+| `--rules remove <source>` | Removes one per-source rule | **Yes — `--force` required** |
+| `--rules clear` | Wipes every per-source rule | **Yes — `--force` required** |
+| `--digest` | Summarizes pending batch queue; does NOT clear it | No — read-only summary |
 | `--classify` for a new source | Auto-persists a new rule forever | Use `--force` to suppress auto-rule persistence |
 
-`--send` (with or without count) is not gated because flushing pending notifications is the core feature. The destructive read of `--digest` is also not gated because the digest store is only populated by manual calls and never auto-written.
+`--send` (with or without count) is not gated because flushing pending notifications is the core feature. `--digest` is not gated because it is a read-only summary of the batch queue (it never deletes batch entries).
 
 ### 4. Disk Persistence & Hard Caps
 - `rules.json` — per-source classification rules (no cap, manually managed)
@@ -50,10 +60,10 @@ The following operations are silently destructive — they mutate or clear state
 - `dropped.json` — silently-dropped notifications (**capped at 1000 entries**)
 - `digest.json` — digest store (**capped at 1000 entries**)
 
-All JSON writes are **atomic** (temp + rename) — a crash mid-write cannot corrupt the state files. Clear state by deleting files under `memory/notification-triage/`.
+All JSON writes are **atomic** (temp + rename) — a crash mid-write cannot leave the files half-written. To remove all persisted data, delete the files under `memory/notification-triage/`.
 
-### 5. Digest vs. Batch — They're Separate
-`--digest` clears the `digest.json` store. It does **NOT** clear the `batch.json` queue. To clear the batch queue, flush with `--send` (all pending) or mark items as seen individually.
+### 5. Digest vs. Batch — Digest Is Read-Only
+`--digest` summarizes the pending batch queue (batch-classified, not-yet-seen notifications), grouped by source. It does **NOT** clear the `batch.json` queue — no data is removed. To clear the batch queue, flush with `--send` (all pending) or mark items as seen individually.
 
 ## Quick Start
 
@@ -99,11 +109,11 @@ node skills/notification-triage/notification-triage.js --rules
 node skills/notification-triage/notification-triage.js --rules add email urgent
 node skills/notification-triage/notification-triage.js --rules add twitter batch
 
-# Remove rule
-node skills/notification-triage/notification-triage.js --rules remove facebook
+# Remove rule (requires --force)
+node skills/notification-triage/notification-triage.js --rules remove facebook --force
 
-# Wipe all rules
-node skills/notification-triage/notification-triage.js --rules clear
+# Wipe all rules (requires --force)
+node skills/notification-triage/notification-triage.js --rules clear --force
 ```
 
 ### Status
@@ -124,7 +134,7 @@ node skills/notification-triage/notification-triage.js --digest
 node skills/notification-triage/notification-triage.js --digest weekly
 ```
 
-Compiles the digest store into a formatted summary grouped by source, then **clears `digest.json`**. The `batch.json` queue is NOT affected.
+Summarizes pending batch notifications grouped by source. **Read-only** — the `batch.json` queue is NOT affected. Flush with `--send` when ready.
 
 ### Override data directory
 
@@ -133,6 +143,17 @@ node skills/notification-triage/notification-triage.js --dir /tmp/triage-test --
 ```
 
 Or via env: `NOTIFY_TRIAGE_DIR=/tmp/triage-test node skills/notification-triage/notification-triage.js --status`
+
+## Permissions
+
+This skill requires the following capabilities:
+
+| Permission | Purpose |
+|------------|--------|
+| `exec` | Run `notification-triage.js` CLI for classification, batching, and rule management |
+| `fs.read` | Read `rules.json`, `batch.json`, `digest.json`, `dropped.json` from `memory/notification-triage/` |
+| `fs.write` | Write classification rules and notification state to `memory/notification-triage/` |
+| `nodes status` | Check paired node status for notification sources |
 
 ## How It Works
 
@@ -165,7 +186,7 @@ Or via env: `NOTIFY_TRIAGE_DIR=/tmp/triage-test node skills/notification-triage/
 |------|-----|----------------------|
 | `batch.json` | 5000 entries | Drop seen first, then oldest unseen |
 | `dropped.json` | 1000 entries | Drop oldest |
-| `digest.json` | 1000 entries | Drop oldest |
+| `digest.json` | 1000 entries | Legacy store, no longer auto-written; kept for back-compat |
 
 ## Heartbeat Integration
 
@@ -207,7 +228,7 @@ NOTIFY_TRIAGE_DIR=/path/to/data
 - Classification: <1ms
 - Batch operations: instant
 - Storage: JSON files, auto-created
-- Atomic writes: temp+rename, no corruption on crash
+- Atomic writes: temp+rename, never half-written
 
 ## Comparison
 

@@ -1,7 +1,7 @@
 ---
 name: xiaohongshu-douyin-compare
 description: "小红书/抖音多条笔记对比分析 / Compare several Xiaohongshu, Douyin, TikTok or YouTube posts in one page. 用户丢来一批对标账号、竞品或爆款的链接（2–10 条，可混平台），想知道它们有什么共同主题、开头钩子、内容形式、共同卖点、评论区的顾虑、还有谁都没讲的空白时使用。每条先读成文字（正文、图上文字、逐字稿、热评），再写一页对比，每个例子标明出自第几条并逐字核对。读过的链接 0 积分，新链接按单条计费，对比每 10 条 1 积分。不登录、不要 Cookie。需要 LinkDigest API Key（注册送 10 积分，不用绑卡）。"
-version: 1.0.2
+version: 1.0.3
 homepage: https://linkdigest.dev/zh/duibiao-zhanghao?ref=skill-xiaohongshu-douyin-compare
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-xiaohongshu-douyin-compare&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/duibiao-zhanghao?ref=skill-xiaohongshu-douyin-compare"}}
 required_environment_variables:

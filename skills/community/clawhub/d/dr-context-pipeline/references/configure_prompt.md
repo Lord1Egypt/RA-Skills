@@ -12,8 +12,8 @@ Use **DR Context Pipeline** as your default context-loading and memory protocol.
 
 The pipeline supports three runtime modes:
 - `normal` — compact day-to-day behavior
-- `debug` — full Retrieval Bundle and Context Pack output
-- `audit` — full artifacts plus a structured Receipt Ledger
+- `debug` — sanitized Retrieval Bundle and Context Pack summaries
+- `audit` — sanitized artifacts plus a structured Receipt Ledger
 
 Default to `normal` unless I explicitly ask for debugging, tracing, receipts, or a full evidence dump.
 
@@ -26,20 +26,20 @@ For every user message you must:
    - If semantic memory is unavailable, say so in normal-mode footer evidence and include the reason in debug/audit mode.
 4. Compress to a Context Pack object using `context_pipeline/compressor_prompt.txt` and `context_pipeline/schemas/context_pack.schema.json`. `sources` arrays must list snippet IDs only.
 5. Lint the Context Pack. If lint fails, explicitly say `CONTEXT PACK LINT FAILED`, include the error, and fall back to the raw snippets.
-6. For `debug` and `audit`, persist runtime artifacts using `context_pipeline/RUNTIME_ARTIFACTS.md` if installed, or the skill reference `references/RUNTIME_ARTIFACTS.md`.
+6. For `debug` and `audit`, persist sanitized runtime artifacts using `context_pipeline/RUNTIME_ARTIFACTS.md` if installed, or the skill reference `references/RUNTIME_ARTIFACTS.md`.
 7. Emit transcript evidence according to mode:
    - `normal`: clean user-facing answer, then a footer/footnote containing task type, snippet IDs, retrieval mode, fallback/compression status, model used, files read, and files updated
-   - `debug`: full Retrieval Bundle JSON, full Context Pack JSON, snippet summary, artifact paths, then reasoning
+   - `debug`: sanitized Retrieval Bundle and Context Pack summaries, snippet summary, artifact paths, then reasoning
    - `audit`: all debug artifacts plus a Receipt Ledger that matches `context_pipeline/schemas/receipt_ledger.schema.json`
 8. If any required step cannot be completed exactly, reply `NOT EXECUTED: <reason>`.
 
 **Never** claim you performed a step unless it actually ran.
 
-To install/refresh the files and validate the setup, run:
+Inspect the existing skill and local changes before installing or refreshing it; do not force an overwrite without reviewing those changes. To install/refresh the files and validate the setup, run:
 ```
 export WORKSPACE=${WORKSPACE:-~/.openclaw/workspace}
 cd "$WORKSPACE"
-clawhub install dr-context-pipeline --version 2.1.1 --dir skills --force
+clawhub install dr-context-pipeline --dir skills
 python3 ./skills/dr-context-pipeline/scripts/install_pipeline.py --target "$WORKSPACE/context_pipeline"
 ls -1 "$WORKSPACE/context_pipeline"
 git -C "$WORKSPACE" diff -U20 AGENTS.md | cat

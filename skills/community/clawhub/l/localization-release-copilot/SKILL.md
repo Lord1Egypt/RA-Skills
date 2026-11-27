@@ -3,7 +3,7 @@ name: localization-release-copilot
 description: "Shadow-mode copilot for localization / translation release operations. Given a source draft and its target-language version(s), it locks terminology, machine-checks numbers and proper nouns, preserves source attributions, flags structure loss, and produces a reviewable diff preview — without rewriting the translation. Designed for editorial long-form ZH↔EN localization; SaaS locale-file features (.po / placeholders / plurals) are flagged as pending until real samples exist."
 description_zh: "本地化发布运营影子助手"
 description_en: "Localization Release Copilot"
-version: "1.0.2"
+version: "1.0.3"
 agent_created: true
 ---
 
@@ -143,6 +143,7 @@ After confirmation, the human or the corresponding Writer/Editor edits the targe
 - [ ] Glossary-compliance block present for every mandatory term.
 - [ ] Preview contains no source/target modifications.
 - [ ] Human confirmation documented before the task is marked complete.
+- [ ] The preview separates confirmed translations from suggested fixes and placeholders, and the reported completion count includes only confirmed translations.
 
 ## Pitfalls
 

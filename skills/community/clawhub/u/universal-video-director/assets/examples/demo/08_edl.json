@@ -1,0 +1,85 @@
+{
+  "schema": "uvd/edl",
+  "version": "2",
+  "stage": "edl",
+  "project_id": "demo",
+  "engine": "ffmpeg",
+  "clips": [
+    {
+      "order": 1,
+      "cut_id": "c1",
+      "source": "media/clips/m1.mp4",
+      "in_sec": 0,
+      "out_sec": 5,
+      "reason": "动作完成"
+    },
+    {
+      "order": 2,
+      "cut_id": "c2",
+      "source": "media/clips/m1.mp4",
+      "in_sec": 5,
+      "out_sec": 10,
+      "reason": "动作完成"
+    },
+    {
+      "order": 3,
+      "cut_id": "c3",
+      "source": "media/clips/m2.mp4",
+      "in_sec": 0,
+      "out_sec": 5,
+      "reason": "动作完成"
+    },
+    {
+      "order": 4,
+      "cut_id": "c4",
+      "source": "media/clips/m2.mp4",
+      "in_sec": 5,
+      "out_sec": 10,
+      "reason": "动作完成"
+    },
+    {
+      "order": 5,
+      "cut_id": "c5",
+      "source": "media/clips/m3.mp4",
+      "in_sec": 0,
+      "out_sec": 5,
+      "reason": "动作完成"
+    },
+    {
+      "order": 6,
+      "cut_id": "c6",
+      "source": "media/clips/m3.mp4",
+      "in_sec": 5,
+      "out_sec": 10,
+      "reason": "动作完成"
+    }
+  ],
+  "subtitles": [
+    {
+      "beat_id": "b2",
+      "text": "谁的手机？",
+      "start_sec": 6,
+      "end_sec": 8
+    },
+    {
+      "beat_id": "b4",
+      "text": "这……是我？",
+      "start_sec": 25,
+      "end_sec": 28
+    }
+  ],
+  "audio": {
+    "target_lufs": -14,
+    "fade_ms": 30,
+    "measured_lufs": -14.2
+  },
+  "output": {
+    "video": "media/final/ep1.mp4",
+    "measured_duration_sec": 30
+  },
+  "upstream": {
+    "02_story.json": "97e874c01ab5",
+    "05_storyboard.json": "5919e38da712",
+    "07_production.json": "2d38c3383827"
+  }
+}

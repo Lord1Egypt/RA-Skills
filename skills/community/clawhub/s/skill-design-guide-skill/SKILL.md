@@ -9,7 +9,7 @@ description: >
   Parallelization, Orchestrator-Workers, Evaluator-Optimizer), write clean
   SKILL.md files, and catch common mistakes with a governance-aware quality checklist.
   Based on design principles from Anthropic, OpenAI, and LangChain.
-version: "1.7.5"
+version: "1.7.6"
 agent_created: true
 category: "Architecture / Design Patterns"
 license: "MIT"
@@ -127,6 +127,7 @@ Field-tested generative-engine optimization rules for skill descriptions. Apply 
 4. **Description–content consistency**: every capability the description promises must exist as a section in the body. A stale promise poisons routing — the agent loads the skill, finds nothing, and trust in the description degrades. (Empirical: a description advertised a tool quick-reference the body never had.)
 5. **Slug discipline**: a slug change is a platform identity rebuild (links, installs, stats break; old slug becomes orphaned). Never rename casually. Before publishing a NEW slug, probe availability via API and validate the probe method itself against known-existing slugs — a naive probe can silently miss or mislead.
 6. **Boundary declarations reduce misrouting**: keep `not_for` in sync with the description — when the description gains a new trigger phrase, check whether any not_for exclusion now conflicts with it.
+7. **Frontmatter survives both parsers**: keep description fields as single-line quoted strings and the version on one complete line, then read the file back with both a YAML parser and a line-by-line parser before publishing.
 
 ---
 

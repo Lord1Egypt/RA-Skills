@@ -18,7 +18,6 @@ from __future__ import annotations
 
 import hashlib
 import json
-import math
 import os
 from pathlib import Path
 
@@ -158,7 +157,7 @@ def load_local_archetypes(store: Path | None = None) -> list[dict]:
                 record = json.loads(path.read_text(encoding="utf-8"))
             except (OSError, ValueError):
                 continue
-            if isinstance(record, dict) and record.get("pattern_id") and record.get("rows"):
+            if record.get("pattern_id") and record.get("rows"):
                 records.append(record)
     return records
 
@@ -193,117 +192,16 @@ def rows_from_pattern(slide: dict, record: dict) -> list[dict] | None:
 
 # ---- contribution export ----------------------------------------------------
 
-# Export vocabulary is deliberately independent of caller-supplied labels.
-_EXPORT_ROLES = frozenset(("fact", "quote", "metric", "list", "table", "image",
-                           "insight", "risk", "recommendation", "context"))
-_EXPORT_DIAGRAMS = frozenset((
-    "causal_chain", "phase_roadmap", "layered_architecture", "heat_matrix",
-    "drill_down_stair", "interaction_storyboard", "product_ui_overview",
-    "process_flow", "process_lane", "swimlane", "timeline", "issue_tree",
-    "decision_tree", "flywheel", "hub_spoke", "zoned_ecosystem",
-    "capability_landscape", "dependency_graph", "data_flow", "state_transition"))
-_EXPORT_REFINES = frozenset(("split", "wheel", "contrast", "spotlight"))
-_EXPORT_CHOICES = frozenset((
-    "kpi_wall", "full_table", "quote_focus", "list_stack", "image_story",
-    "evidence_stack", "step_cards", "proposed_grid",
-    *("chart_" + x for x in ("column", "bar", "line", "pie", "doughnut", "combo", "scatter")),
-    *("diagram_" + x for x in _EXPORT_DIAGRAMS),
-    *("refine_" + x for x in _EXPORT_REFINES)))
-_EXPORT_STAGES = frozenset(("narrative", "archetype", "component", "layout_variant",
-                            "style_mapping", "text_fitting", "repair", "fallback"))
-_EXPORT_ACTORS = frozenset(("rule", "fallback", "autonomy_l1", "autonomy_l2",
-                            "llm_advisor", "llm_proposal", "user_override"))
-_EXPORT_COUNTS = frozenset(("block_count", "metric_count", "table_count", "list_count",
-                            "quote_count", "image_count", "fact_count", "insight_count",
-                            "risk_count", "relation_count"))
-
-
-def _export_enum(value: object, allowed: frozenset) -> str | None:
-    return value if type(value) is str and value in allowed else None
-
-
-def _export_confidence(value: object) -> float | None:
-    if type(value) in (int, float) and 0 <= value <= 1 and math.isfinite(value):
-        return round(value, 2)
-    return None
-
-
-def _export_evidence(evidence: object) -> dict:
-    items = evidence.get("structural", []) if isinstance(evidence, dict) else []
-    safe = []
-    for item in items[:64] if isinstance(items, list) else []:
-        if not isinstance(item, dict):
-            continue
-        feature, value = item.get("feature"), item.get("value")
-        if type(feature) is not str:
-            continue
-        valid = (feature in _EXPORT_COUNTS and type(value) is int and 0 <= value <= 10000)
-        valid |= feature in ("has_steps", "chart") and type(value) is bool
-        valid |= feature == "diagram" and _export_enum(value, _EXPORT_DIAGRAMS) is not None
-        valid |= feature == "refine" and _export_enum(value, _EXPORT_REFINES) is not None
-        if valid:
-            safe.append({"feature": feature, "value": value})
-    return {"structural": safe}
-
-
-def _export_pattern(record: dict) -> dict | None:
-    rows = record.get("rows")
-    if not isinstance(rows, list) or not 1 <= len(rows) <= MAX_ROWS:
-        return None
-    safe_rows, counts = [], {}
-    for row in rows:
-        roles = row.get("roles") if isinstance(row, dict) else None
-        if not isinstance(roles, list) or not 1 <= len(roles) <= MAX_COLS:
-            return None
-        if any(_export_enum(role, _EXPORT_ROLES) is None for role in roles):
-            return None
-        safe_rows.append({"roles": list(roles)})
-        for role in roles:
-            counts[role] = counts.get(role, 0) + 1
-    # Never copy local identifiers, signatures, versions or extension fields.
-    structure = {"rows": safe_rows,
-                 "roles_signature": "|".join(f"{k}:{v}" for k, v in sorted(counts.items()))}
-    return {"pattern_id": "local-" + proposal_sha(structure)[:10],
-            "version": 1, **structure}
-
-
-def contribution_bundle(traces: list[dict], store: Path | None = None, *,
-                        shared_export: bool = False) -> dict:
-    """Build a local, allowlisted sharing bundle only after explicit consent.
-
-    Callers must obtain user authorization before setting shared_export=True.
-    This function never uploads. Structural statistics can still be sensitive;
-    the allowlist prevents raw content leakage, not statistical inference.
-    The three version-1 top-level keys remain stable; unknown data is omitted.
-    """
-    if shared_export is not True:
-        raise PermissionError("Contribution sharing requires explicit authorization")
-    patterns = []
-    for record in load_local_archetypes(store):
-        safe = _export_pattern(record)
-        if safe is not None:
-            patterns.append(safe)
-    decisions = []
-    for trace in traces:
-        entries = trace.get("decisions", []) if isinstance(trace, dict) else []
-        for decision in entries if isinstance(entries, list) else []:
-            if not isinstance(decision, dict):
-                continue
-            candidates = decision.get("candidates", [])
-            safe_candidates = []
-            for candidate in candidates[:16] if isinstance(candidates, list) else []:
-                if not isinstance(candidate, dict):
-                    continue
-                choice = _export_enum(candidate.get("choice"), _EXPORT_CHOICES)
-                if choice is not None:
-                    safe_candidates.append({"choice": choice,
-                                            "confidence": _export_confidence(candidate.get("confidence"))})
-            decisions.append({
-                "stage": _export_enum(decision.get("stage"), _EXPORT_STAGES),
-                "evidence": _export_evidence(decision.get("evidence")),
-                "candidates": safe_candidates,
-                "chosen": _export_enum(decision.get("chosen"), _EXPORT_CHOICES),
-                "chosen_by": _export_enum(decision.get("chosen_by"), _EXPORT_ACTORS),
-                "confidence": _export_confidence(decision.get("confidence")),
-            })
-    return {"bundle_version": 1, "local_archetypes": patterns, "decisions": decisions}
+def contribution_bundle(traces: list[dict], store: Path | None = None) -> dict:
+    """Content-free bundle: hardened structures + decision evidence
+    features. Safe to share by construction — no source or slide text
+    exists in any input field."""
+    return {
+        "bundle_version": 1,
+        "local_archetypes": load_local_archetypes(store),
+        "decisions": [
+            {k: d.get(k) for k in ("stage", "evidence", "candidates",
+                                   "chosen", "chosen_by", "confidence")}
+            for trace in traces for d in trace.get("decisions", [])
+        ],
+    }

@@ -248,6 +248,10 @@ KEPT_EVERYWHERE_BECAUSE = {
     "assumptions": (
         "a list of sentences the plan states as fact. 'Stated as fact while unverifiable' is a "
         "verdict every one of the five can return, and these sentences span all five subjects."),
+    "place_check": (
+        "check_places.py's map-data findings: pins on the wrong building, walks over the limit, "
+        "venues no map lists. The unverifiable ones are exactly what transport, sights_and_hours "
+        "and booking_and_lodging are asked to settle, and the block is small."),
     "recheck_before_purchase": (
         "the warnings about what may change before the traveller pays -- inventory, price, hours, "
         "weather. Same argument as assumptions: cross-domain by construction, and small."),

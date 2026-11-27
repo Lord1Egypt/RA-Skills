@@ -1,4 +1,4 @@
 interface:
   display_name: "UNIHIKER K10 PlatformIO"
-  short_description: "K10 PlatformIO builds, uploads, and ASR diagnostics"
-  default_prompt: "Use $unihiker-k10-platformio to create, build, upload, or diagnose a UNIHIKER K10 PlatformIO project."
+  short_description: "K10 PlatformIO builds, uploads, simulation, and ASR diagnostics"
+  default_prompt: "Use $unihiker-k10-platformio to create, build, upload, simulate, or diagnose a UNIHIKER K10 PlatformIO project."

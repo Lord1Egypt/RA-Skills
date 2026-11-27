@@ -1,0 +1,85 @@
+{
+  "pattern_id": "retry-guard-reply",
+  "version": "1.0",
+  "purpose": "答案守卫与兜底设计参考：守卫节点评估上游答案并统一输出 finalText；retry 仅表示命中兜底，不会自动重新调用上游模型。跨节点变量引用统一使用 {{$nodeId.varName$}} 语法。",
+  "importable": false,
+  "schema_type": "conceptual-pattern",
+  "use_when": "需要为 LLM、检索或工具答案增加质量守卫与兜底时，按目标实例导出结构实现；不要把本文件直接导入",
+  "limitations": [
+    "本参考只完成质量守卫与兜底输出，不会自动重试上游模型",
+    "如需真正重试，必须增加次数上限、终止条件、幂等与失败回退，并在测试实例验证连线",
+    "节点类型、输入引用数组和 Handle 必须以目标 FastGPT 实例导出为准"
+  ],
+  "critical_syntax_note": "跨节点变量引用必须使用 {{$nodeId.varName$}} 格式（前后各一个 $），写作 {{nodeId.varName}} 将被平台原样输出，导致 BUG。",
+  "nodes": [
+    {
+      "nodeId": "processAnswer",
+      "name": "主答案节点",
+      "flowNodeType": "placeholder",
+      "intro": "概念占位：替换为实际生成答案且可输出 answer 的 LLM、检索或工具节点",
+      "inputs": [
+        {
+          "key": "text",
+          "valueType": "any",
+          "renderTypeList": ["textarea", "reference"],
+          "value": "{{REPLY_TEXT_PLACEHOLDER}}"
+        }
+      ],
+      "outputs": [{"id": "answer", "key": "answer", "type": "static", "valueType": "string", "label": "待评估答案"}]
+    },
+    {
+      "nodeId": "processAnswerGuardRetry",
+      "name": "答案守卫与兜底代码",
+      "flowNodeType": "code",
+      "intro": "评估主答案是否满足质量要求；不满足则生成兜底文本并标记 retry=true",
+      "inputs": [
+        {
+          "key": "answer",
+          "valueType": "string",
+          "renderTypeList": ["reference"],
+          "value": ["processAnswer", "text", "answer"]
+        }
+      ],
+      "outputs": [
+        {"id": "finalText", "key": "finalText", "type": "static", "valueType": "string", "label": "最终回复文本"},
+        {"id": "retry", "key": "retry", "type": "static", "valueType": "boolean", "label": "是否命中兜底"}
+      ],
+      "code_hint": "见 assets/code-snippets/answer-guard-template.js"
+    },
+    {
+      "nodeId": "processAnswerReplyRetry",
+      "name": "守卫后最终回复",
+      "flowNodeType": "answerNode",
+      "intro": "始终输出守卫节点的 finalText；正常答案原样通过，低质量答案由守卫替换为兜底文本",
+      "inputs": [
+        {
+          "key": "text",
+          "valueType": "any",
+          "renderTypeList": ["textarea", "reference"],
+          "value": "{{$processAnswerGuardRetry.finalText$}}"
+        }
+      ],
+      "outputs": []
+    }
+  ],
+  "edges": [
+    {
+      "source": "processAnswer",
+      "target": "processAnswerGuardRetry",
+      "sourceHandle": "processAnswer-source-right",
+      "targetHandle": "processAnswerGuardRetry-target-left"
+    },
+    {
+      "source": "processAnswerGuardRetry",
+      "target": "processAnswerReplyRetry",
+      "sourceHandle": "processAnswerGuardRetry-source-right",
+      "targetHandle": "processAnswerReplyRetry-target-left"
+    }
+  ],
+  "validation_checklist": [
+    "运行 python scripts/validate_fastgpt_workflow.py <agent.json> --strict",
+    "确认诊断码 FG080（缺 $ 语法）、FG081（未知节点）、FG082（未声明输出）均为 0",
+    "在测试实例分别触发正常与兜底条件，确认最终回复只发送一次且不是 {{...}} 原文",
+    "如增加真正重试，验证最大次数、终止条件、幂等、超时和最终失败回退"
+  ]
+}

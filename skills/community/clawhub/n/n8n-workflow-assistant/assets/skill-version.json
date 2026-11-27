@@ -1,0 +1,14 @@
+{
+  "skill_name": "n8n-workflow-assistant",
+  "display_name": "n8n工作流生成助手",
+  "display_name_en": "n8n Workflow Assistant",
+  "version": "1.0.0",
+  "release_date": "2026-10-26",
+  "author": "周鹏",
+  "automatic_update": false,
+  "runtime": {
+    "python": ">=3.10",
+    "node": ">=18 for JavaScript validation"
+  },
+  "external_skill_dependencies": []
+}

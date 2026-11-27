@@ -368,6 +368,20 @@ for (const [field, written, key, expected] of [
   }
 }
 
+// 10b. trip_debrief.py writes travel_history.trip_debriefs, which this form has no field for. A
+//      re-save from the form rebuilds travel_history, so it must carry them through untouched.
+{
+  const debrief = { plan: "2026-09-09-tokyo-5d4n", went: "yes", recorded_at: "2026-11-26" };
+  const f = loadForm({ language: "zh", existing_profile: { profile_id: "someone",
+    travel_history: { visited_places: [], wish_list: [], excluded_places: [], trip_debriefs: [debrief] } } });
+  f.store["profile-id"].value = "someone";
+  f.store.consent.checked = true;
+  const built = f.api.buildProfile();
+  check("a re-saved profile keeps its trip debriefs",
+        JSON.stringify(built.travel_history.trip_debriefs) === JSON.stringify([debrief]),
+        JSON.stringify(built.travel_history));
+}
+
 // 11. A submission says which language its page was in when it was sent, after a switch too, so
 //     the server answers a refusal in the language on screen.
 async function languageHeaderCases() {

@@ -12,8 +12,8 @@
 #   tunnel events [--domain D | --temporary] [N]   the last N events (default 20)
 #   tunnel check [--domain D | --temporary]        is the app answering, locally and through the URL
 #   tunnel key                                     the skill's own SSH key: creates it if needed
-#   tunnel claim-url <name>                        the link to claim a managed domain with that key
-#   tunnel verify --domain D                       check a domain and the key work, then save them
+#   tunnel verify --domain D                       check the key and domain work, then save the domain;
+#                                                  if not, prints localhost.run's link to fix it
 #   tunnel config                                  show the saved domain and the key's path
 #
 # The skill's own key: ${XDG_DATA_HOME:-~/.local/share}/localhost-run/. It only
@@ -83,6 +83,86 @@ read_state_message() { [ -f "$1/state" ] && sed -n 2p "$1/state"; }
 
 alive() { [ -n "${1:-}" ] && kill -0 "$1" 2>/dev/null; }
 
+# Links from localhost.run that fix a refused key or a denied domain. Only
+# ever links to localhost.run's own admin site, in plain URL characters:
+# anything else is dropped, never shown.
+admin_link_ok() {
+    case "$1" in https://admin.localhost.run/*) ;; *) return 1 ;; esac
+    [ ${#1} -le 2048 ] || return 1
+    ! printf '%s' "$1" | grep -q '[^A-Za-z0-9%._~:/?&=+-]'
+}
+
+# The fingerprint of the skill's own key.
+key_fingerprint() { ssh-keygen -lf "$(public_key_file "$1")" 2>/dev/null | awk '{ print $2 }'; }
+
+# From a link_required event: its link, if it adds the skill's own key.
+key_link() {
+    # $1 = event line, $2 = key
+    local url fp
+    url=$(json_field "$1" data.url)
+    fp=$(json_field "$1" data.fingerprint)
+    case "$url" in https://admin.localhost.run/ssh-keys/add\?*) ;; *) return 0 ;; esac
+    admin_link_ok "$url" || return 0
+    [ -n "$fp" ] && [ "$fp" = "$(key_fingerprint "$2")" ] || return 0
+    printf '%s' "$url"
+}
+
+# From a tunnel.denied event: its link, if it's about the domain asked for.
+domain_link() {
+    # $1 = event line, $2 = domain
+    local url name
+    url=$(json_field "$1" data.url)
+    admin_link_ok "$url" || return 0
+    # A link naming a domain must name this one.
+    case "$url" in
+        *\?name=*|*\&name=*)
+            name=$(printf '%s' "$url" | sed 's/.*[?&]name=//; s/&.*//' | tr 'A-Z' 'a-z')
+            [ "$name" = "$2" ] || return 0
+            ;;
+    esac
+    printf '%s' "$url"
+}
+
+# A denial's message, without the link written into it: the script shows
+# the link itself, once checked.
+denied_message() {
+    json_field "$1" data.message | sed -E 's/( at)? ?\[https?:[^]]*\]//g' | head -n 1
+}
+
+# localhost.run caches its answer for a short while: retrying sooner gets
+# the same answer. After a link, wait that out before connecting again:
+# for the key, whatever the domain, and for a denial, on that domain.
+KEY_RETRY_FILE="$STATE_ROOT/key-retry-at"
+note_retry() {
+    # $1 = seconds, $2 = file
+    mkdir -p "$(dirname "$2")"
+    echo $(( $(date +%s) + $1 )) > "$2"
+}
+wait_retry() {
+    # $1 = domain
+    local at=0 f t now
+    for f in "$KEY_RETRY_FILE" "$(state_dir "$1")/retry-at"; do
+        t=$(cat "$f" 2>/dev/null)
+        rm -f "$f"
+        case "$t" in ''|*[!0-9]*) continue ;; esac
+        [ "$t" -gt "$at" ] && at=$t
+    done
+    now=$(date +%s)
+    [ "$at" -gt "$now" ] || return 0
+    local s=$(( at - now > 60 ? 60 : at - now ))
+    echo "waiting ${s}s for localhost.run to see the change..." >&2
+    sleep "$s"
+}
+# A key link's retry_after, if it has one.
+note_key_retry() {
+    local n
+    n=$(printf '%s' "$1" | grep -o '"retry_after":[0-9]*' | head -n 1 | sed 's/.*://')
+    [ -n "$n" ] && note_retry "$n" "$KEY_RETRY_FILE"
+    return 0
+}
+# How long localhost.run caches a denial (its reauth_in, about 30 s).
+DENIAL_CACHE=30
+
 # A domain name, as this script accepts one: lowercase letters, digits,
 # hyphens and dots, with at least one dot, and nothing that could be a
 # path (no "/", no "..", no leading dot). Domains name state directories,
@@ -101,20 +181,10 @@ ensure_data_dir() {
     mkdir -p "$DATA_DIR" && chmod 700 "$DATA_DIR" 2>/dev/null
 }
 
-ssh_args() {
-    # $1 = key, $2 = domain, $3 = port, $4 = "1" to record requests.
-    # No domain means a temporary tunnel: nokey@ with no key, and
-    # localhost.run picks the address.
-    # Each option its own word: never build these into one string.
-    local login forward
-    if [ -n "$2" ]; then
-        login=(-i "$1" -o IdentitiesOnly=yes)
-        forward=(-R "$2:80:localhost:$3" "plan@$HOST")
-    else
-        login=(-o PubkeyAuthentication=no)
-        forward=(-R "80:localhost:$3" "nokey@$HOST")
-    fi
-    SSH_ARGS=(
+# The options every connection uses, whatever it's for.
+# Each option its own word: never build these into one string.
+ssh_common_args() {
+    SSH_COMMON=(
         # No ssh_config at all (neither ~/.ssh/config nor the system's),
         # and no ssh-agent: only the options below apply, so nothing the
         # user has configured for other hosts (keys, agent forwarding,
@@ -127,7 +197,6 @@ ssh_args() {
         -o ControlMaster=no
         -o ControlPath=none
         -o Tunnel=no
-        "${login[@]}"
         -o BatchMode=yes
         -o StrictHostKeyChecking=yes
         -o UserKnownHostsFile="$KNOWN_HOSTS"
@@ -135,11 +204,32 @@ ssh_args() {
         -o HostKeyAlias=localhost.run
         -o HostKeyAlgorithms=ssh-ed25519
         -o UpdateHostKeys=no
-        -o ExitOnForwardFailure=yes
         -o ServerAliveInterval=30
         -o ServerAliveCountMax=3
         -o ConnectTimeout=15
         -p "$SSH_PORT"
+    )
+}
+
+ssh_args() {
+    # $1 = key, $2 = domain, $3 = port, $4 = "1" to record requests.
+    # agent@ answers an unknown key with a link that adds it to the
+    # user's account, and a denied domain with a link that sets it up.
+    # No domain means a temporary tunnel: nokey@ with no key, and
+    # localhost.run picks the address.
+    local login forward
+    if [ -n "$2" ]; then
+        login=(-i "$1" -o IdentitiesOnly=yes)
+        forward=(-R "$2:80:localhost:$3" "agent@$HOST")
+    else
+        login=(-o PubkeyAuthentication=no)
+        forward=(-R "80:localhost:$3" "nokey@$HOST")
+    fi
+    ssh_common_args
+    SSH_ARGS=(
+        "${SSH_COMMON[@]}"
+        "${login[@]}"
+        -o ExitOnForwardFailure=yes
         "${forward[@]}"
         --
         --output json
@@ -177,7 +267,8 @@ supervise() {
                 local line
                 line=$(printf '%s\n' "$new" | grep '"type":"run.localhost.tunnel.denied"' | tail -n 1)
                 kill "$sshpid" 2>/dev/null
-                set_state "$dir" denied "$(json_field "$line" data.message)"
+                domain_link "$line" "$domain" > "$dir/link"
+                set_state "$dir" denied "$(denied_message "$line")"
                 exit 0
             fi
             # Every registration, not just the first: a temporary address
@@ -194,6 +285,7 @@ supervise() {
                 address=$(printf '%s' "$address" | tr 'A-Z' 'a-z')
                 valid_domain "$address" || address="$domain"
                 echo "$address" > "$dir/address"
+                rm -f "$dir/link"
                 set_state "$dir" connected "https://$address"
             fi
             sleep 1
@@ -204,8 +296,14 @@ supervise() {
             set_state "$dir" host_key_mismatch "localhost.run's server didn't present the host key this skill expects"
             exit 0
         fi
+        if [ "$code" -eq 10 ]; then
+            key_link "$(tail -n +"$from" "$events" | grep '"type":"run.localhost.session.link_required"' | tail -n 1)" "$key" > "$dir/link"
+            set_state "$dir" key_refused "the skill's key isn't on a localhost.run account yet"
+            exit 0
+        fi
+        # Servers that can't link keys refuse unknown ones instead.
         if grep -q "Permission denied" "$err"; then
-            set_state "$dir" key_refused "the skill's key isn't on a localhost.run account"
+            set_state "$dir" key_refused "the skill's key isn't on a localhost.run account yet"
             exit 0
         fi
         set_state "$dir" reconnecting "ssh exited ($code): $(last_line "$err"); retrying in ${backoff}s"
@@ -255,16 +353,17 @@ stop_domain() {
     alive "$sup" && kill -9 "$sup" 2>/dev/null
     ssh_pid=$(cat "$dir/ssh.pid" 2>/dev/null)
     alive "$ssh_pid" && kill "$ssh_pid" 2>/dev/null
-    rm -f "$dir/supervisor.pid" "$dir/ssh.pid"
+    rm -f "$dir/supervisor.pid" "$dir/ssh.pid" "$dir/link"
     [ -d "$dir" ] && set_state "$dir" stopped "stopped"
 }
 
 parse_common() {
     # The key is always the skill's own: there's no option for another.
     DOMAIN=""; KEY="$DEFAULT_KEY"; TEMPORARY=""; REQUESTS=""; HOURS="$DEFAULT_HOURS"; REST=()
+    NAMED_DOMAIN=""
     while [ $# -gt 0 ]; do
         case "$1" in
-            --domain) DOMAIN="${2:-}"; shift 2 ;;
+            --domain) DOMAIN="${2:-}"; NAMED_DOMAIN=1; shift 2 ;;
             --hours) HOURS="${2:-}"; shift 2 ;;
             --temporary) TEMPORARY=1; shift ;;
             --requests) REQUESTS=1; shift ;;
@@ -296,8 +395,39 @@ tunnel_address() {
 }
 
 need_config() {
-    [ -n "$DOMAIN" ] || die "not set up: no stable domain saved in $CONFIG. Follow the skill's setup guide to claim a domain that stays the same. (Only if the user chooses a temporary address instead: tunnel start <port> --temporary)"
+    [ -n "$DOMAIN" ] || die "not set up: no stable domain saved in $CONFIG. Follow the skill's setup guide to set up a domain that stays the same. (Only if the user chooses a temporary address instead: tunnel start <port> --temporary)"
     [ -f "$KEY" ] || die "needs setup: the skill doesn't have its key yet. Follow the skill's setup guide."
+}
+
+# What start and verify print for a denied domain or a refused key. The
+# exit codes stay 2 and 3; a "link:" line says localhost.run gave a page
+# that fixes it.
+denied_output() {
+    # $1 = message, $2 = link (may be empty), $3 = the account the key
+    # signed in as (may be empty): says which account the domain must be on.
+    echo "denied: $1"
+    [ -n "${3:-}" ] && echo "signed in as: $3"
+    if [ -n "$2" ]; then
+        echo "link: $2"
+        echo "the user can fix this for $DOMAIN on that page, in their own localhost.run account; then connect again"
+        note_retry "$DENIAL_CACHE" "$(state_dir "$DOMAIN")/retry-at"
+    else
+        echo "check the domain's spelling, that it's on the same account as the skill's key, or use another domain"
+    fi
+}
+key_refused_output() {
+    # $1 = link (may be empty)
+    local fp
+    fp=$(key_fingerprint "$KEY")
+    echo "key refused: the skill's key ($fp) isn't on a localhost.run account yet"
+    if [ -n "$1" ]; then
+        echo "link: $1"
+        echo "fingerprint: $fp"
+        echo "tell the user: open this link to connect this skill to your localhost.run account; sign in (or create an account), check the page shows the fingerprint $fp, and approve."
+        echo "when they say they're done, connect again"
+    else
+        echo "the user adds the contents of $(public_key_file "$KEY") at https://admin.localhost.run/; then connect again"
+    fi
 }
 
 cmd_start() {
@@ -310,6 +440,7 @@ cmd_start() {
     [ "$HOURS" -ge 1 ] && [ "$HOURS" -le "$MAX_HOURS" ] || die "--hours takes a whole number of hours, 1 to $MAX_HOURS"
     command -v ssh >/dev/null || die "ssh isn't installed"
     ensure_data_dir
+    [ -n "$TEMPORARY" ] || wait_retry "$DOMAIN"
 
     local dir
     dir=$(state_dir "$TARGET")
@@ -364,13 +495,21 @@ cmd_start() {
         denied)
             local why
             why=$(read_state_message "$dir")
+            local link
+            link=$(cat "$dir/link" 2>/dev/null)
             stop_domain "$TARGET"
             set_state "$dir" denied "$why"
-            echo "denied: $why"
+            [ -n "$link" ] && echo "$link" > "$dir/link"
+            local user
+            user=$(json_field "$(grep '"type":"run.localhost.session.authenticated"' "$dir/events.jsonl" | tail -n 1)" data.user_id)
+            denied_output "$why" "$link" "$user"
             exit 2
             ;;
         key_refused)
-            echo "key refused: $(read_state_message "$dir"). This needs setup: follow the skill's setup guide."
+            local link
+            link=$(cat "$dir/link" 2>/dev/null)
+            note_key_retry "$(grep '"type":"run.localhost.session.link_required"' "$dir/events.jsonl" | tail -n 1)"
+            key_refused_output "$link"
             exit 3
             ;;
         host_key_mismatch)
@@ -395,17 +534,18 @@ cmd_stop() {
 cmd_status() {
     parse_common "$@"
     local domains=()
-    if [ -n "$TEMPORARY" ] || [ -n "$DOMAIN" ]; then
+    if [ -n "$TEMPORARY" ] || [ -n "$NAMED_DOMAIN" ]; then
         domains=("$TARGET")
     elif [ -d "$STATE_ROOT" ]; then
         local d
-        for d in "$STATE_ROOT"/*/; do [ -d "$d" ] && domains+=("$(basename "$d")"); done
+        for d in "$STATE_ROOT"/*/; do [ -f "$d/state" ] && domains+=("$(basename "$d")"); done
     fi
     [ ${#domains[@]} -gt 0 ] || { echo "no tunnels"; return 0; }
     local domain dir state sup
     for domain in "${domains[@]}"; do
         dir=$(state_dir "$domain")
         state=$(read_state "$dir")
+        [ -n "$state" ] || { echo "$domain: no tunnel"; continue; }
         sup=$(cat "$dir/supervisor.pid" 2>/dev/null)
         # A supervisor that died (e.g. a reboot) leaves a stale state.
         case "$state" in
@@ -416,6 +556,13 @@ cmd_status() {
         local label="$domain"
         [ "$domain" = temporary ] && label="temporary ($(tunnel_address temporary))"
         echo "$label: ${state:-unknown}, localhost:$port - $(read_state_message "$dir")"
+        case "$state" in
+            denied|key_refused)
+                local link
+                link=$(cat "$dir/link" 2>/dev/null)
+                [ -n "$link" ] && echo "  link: $link"
+                ;;
+        esac
         case "$state" in
             connected|reconnecting|starting)
                 [ -n "$port" ] && echo "  $(local_check "$port")"
@@ -498,6 +645,7 @@ cmd_verify() {
     [ -n "$DOMAIN" ] || die "usage: tunnel verify --domain D"
     need_config
     ensure_data_dir
+    wait_retry "$DOMAIN"
     local dir out err
     dir=$(mktemp -d)
     out="$dir/out"; err="$dir/err"
@@ -513,6 +661,7 @@ cmd_verify() {
     done
     alive "$pid" && kill "$pid" 2>/dev/null
     wait "$pid" 2>/dev/null
+    local code=$?
     local user
     user=$(json_field "$(grep '"type":"run.localhost.session.authenticated"' "$out" | head -n 1)" data.user_id)
     case "$result" in
@@ -522,8 +671,9 @@ cmd_verify() {
             echo "ok: the skill's key signs in as ${user:-your account}, and $DOMAIN is yours. Saved to $CONFIG"
             ;;
         denied)
-            echo "denied: $(json_field "$(grep '"type":"run.localhost.tunnel.denied"' "$out" | tail -n 1)" data.message)"
-            echo "the key signed in${user:+ as $user}, but the domain isn't on that account (check the spelling, or that it's set up at https://admin.localhost.run/)"
+            local line
+            line=$(grep '"type":"run.localhost.tunnel.denied"' "$out" | tail -n 1)
+            denied_output "$(denied_message "$line")" "$(domain_link "$line" "$DOMAIN")" "$user"
             rm -rf "$dir"; exit 2
             ;;
         exited)
@@ -531,8 +681,11 @@ cmd_verify() {
                 echo "host key mismatch: localhost.run's server didn't present the host key this skill expects. Not connecting: this could be an interception, or the skill may need updating."
                 rm -rf "$dir"; exit 5
             fi
-            if grep -q "Permission denied" "$err"; then
-                echo "key refused: the skill's key isn't on a localhost.run account yet. Add the contents of $KEY.pub at https://admin.localhost.run/"
+            if [ "$code" -eq 10 ] || grep -q "Permission denied" "$err"; then
+                local line
+                line=$(grep '"type":"run.localhost.session.link_required"' "$out" | tail -n 1)
+                note_key_retry "$line"
+                key_refused_output "$(key_link "$line" "$KEY")"
                 rm -rf "$dir"; exit 3
             fi
             echo "failed: $(last_line "$err")"
@@ -552,20 +705,6 @@ public_key_file() {
         *.pub) echo "$1" ;;
         *) echo "$1.pub" ;;
     esac
-}
-
-# Percent-encode everything but RFC 3986's unreserved characters, so a
-# key's "+", "/", "=" and spaces survive any query-string parser.
-url_encode() {
-    local s="$1" out="" c i
-    for (( i = 0; i < ${#s}; i++ )); do
-        c="${s:i:1}"
-        case "$c" in
-            [A-Za-z0-9.~_-]) out+="$c" ;;
-            *) out+=$(printf '%%%02X' "'$c") ;;
-        esac
-    done
-    printf '%s' "$out"
 }
 
 # The skill's own key: shows it, creating it the first time. It's only for
@@ -590,23 +729,6 @@ cmd_key() {
     ssh-keygen -lf "$pub"
 }
 
-cmd_claim_url() {
-    parse_common "$@"
-    local name="${REST[0]:-}"
-    [ -n "$name" ] || die "usage: tunnel claim-url <name>"
-    case "$name" in
-        *[!a-z0-9-]*|-*|*-) die "a name is lowercase letters, digits and hyphens, not starting or ending with a hyphen" ;;
-    esac
-    local pub
-    pub=$(public_key_file "$KEY")
-    [ -f "$pub" ] || die "no public key at $pub: create the skill's key first, with: tunnel key"
-    # Type and key only: the comment is often a username and hostname.
-    local key
-    key=$(awk 'NF >= 2 { print $1 " " $2; exit }' "$pub")
-    [ -n "$key" ] || die "$pub doesn't look like a public key"
-    echo "https://admin.localhost.run/claim?managed=true&name=$(url_encode "$name")&ssh_pubkey=$(url_encode "$key")"
-}
-
 cmd_config() {
     local domain
     domain=$(config_get domain)
@@ -622,7 +744,6 @@ case "${1:-}" in
     check) shift; cmd_check "$@" ;;
     verify) shift; cmd_verify "$@" ;;
     key) shift; cmd_key "$@" ;;
-    claim-url) shift; cmd_claim_url "$@" ;;
     config) cmd_config ;;
     __supervise) shift; supervise "$@" ;;
     *) sed -n '2,21p' "$0" | sed 's/^# \{0,1\}//'; exit 1 ;;

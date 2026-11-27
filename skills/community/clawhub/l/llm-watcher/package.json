@@ -1,0 +1,26 @@
+{
+  "name": "llm-watcher",
+  "version": "1.2.0",
+  "displayName": "LLM Watcher — 模型变化追踪器",
+  "description": "盯住你正在用的模型，看它哪天悄悄变差。用你自己的活定期测，把「感觉变笨了」变成数据。只测有客观检验的任务，不靠模型自己打分。",
+  "author": "",
+  "license": "MIT-0",
+  "runtime": {
+    "language": "python",
+    "python": ">=3.9",
+    "network": true
+  },
+  "permissions": {
+    "network": "需要访问 LLM API（dashscope / deepseek）",
+    "filesystem": "写 out/watch/ 下的题库和快照"
+  },
+  "entry": "watch.py",
+  "commands": [
+    {"name": "init", "desc": "建一个题库"},
+    {"name": "run", "desc": "跑一轮，存快照"},
+    {"name": "compare", "desc": "和上一次比"},
+    {"name": "list", "desc": "列出历史快照"}
+  ],
+  "tags": ["llm", "evaluation", "regression", "monitoring", "api"],
+  "categories": ["AI 工具", "开发工具", "监控"]
+}

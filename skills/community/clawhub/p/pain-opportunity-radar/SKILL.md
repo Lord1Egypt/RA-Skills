@@ -4,7 +4,7 @@ description: "Systematically discover, verify, score, and validate high-frequenc
 description_zh: "高频痛点与Agent机会雷达"
 description_en: "Pain and agent opportunity radar"
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Pain opportunity radar
@@ -193,6 +193,7 @@ Before delivery, verify:
 - The top opportunities include counter-evidence and risk boundaries.
 - The validation plan includes real artifacts, human checkpoints, pass thresholds, and stop conditions.
 - The report states important source bias and failed-source evidence.
+- Every quoted sample in the evidence CSV is checked for names, handles and contact details; identifiable fields are replaced with neutral labels before the file is shared.
 
 ## Output format
 

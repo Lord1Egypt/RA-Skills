@@ -4,7 +4,7 @@ display_name: "Deep Search Engine（深度搜索与验证引擎）"
 description: "中文互联网深度搜索与验证引擎：多通道扫描（Google News RSS site: 定向、百度搜索、搜狗微信、 媒体池三路扫描、海外 GDELT/GNews EN/HN）+ 三要素全文验证（标题+发布日期+正文指纹）， 输出带置信度分级的可核验结论（findings JSON）。输入目标内容/事件指纹/媒体名，输出验证过的条目。 适用：传播监测、发布核验、转载追踪、首发溯源、事实存在性验证、内容扩散面盘点。 不适用：单次简单事实查询（直接 WebSearch 即可）、订阅式源抓取（daily-brief 主流程）、登录墙后内容。 Multi-channel deep search & verification engine for the Chinese internet: channel-matrix scanning + three-element full-text verification (title + date + fingerprint), outputs confidence-graded verifiable findings. Triggers: 深度搜索, 传播监测, 发布核验, 转载追踪, 通稿监测, 首发溯源, deep search, verify publication, publication tracking, syndication tracking."
 description_zh: "中文互联网深度搜索与验证引擎"
 description_en: "Deep Search and Verification Engine"
-version: "0.4.1"
+version: "0.4.2"
 agent_created: true
 category: "Search / Verification"
 license: "MIT"
@@ -216,6 +216,7 @@ python fingerprint_check.py --url <URL> --subject <主体名> --window <起:止>
 - GNews 盲区回归：改纯关键词查询，对 gnews_not_indexed 站点返回 0 条
 - `link_clean.py` 对搜狗链接正确截断
 - 搜狗网页结果须能补 `https://www.sogou.com` 前缀成绝对链
+- 「改标题版」候选在结论中同时写出主体不符与指纹命中依据，并与标题含主体的 PASS 分开计数；两类不得合并成同一个「已发布」条目。
 
 **注意：v0.1.0 的百度回归用例已失效**（2026-08-31 IP 级封禁），不要用它判断脚本是否工作正常。
 

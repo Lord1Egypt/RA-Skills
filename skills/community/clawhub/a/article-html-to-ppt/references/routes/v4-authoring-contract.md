@@ -1,7 +1,5 @@
 # V4 compatibility authoring contract
 
-Before running task-authored Python, obtain explicit user approval and set the single-process host-code authorization and reviewed script hash described in [security boundaries](../security-boundaries.md). Quality gates do not sandbox Python or authorize execution. Fixed native-template operations do not need this compatibility opt-in.
-
 Read for Bespoke or Template authoring only. The current default create workflow uses the declarative task contract.
 
 ## Required model workflow

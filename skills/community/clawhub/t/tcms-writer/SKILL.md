@@ -2,7 +2,7 @@
 slug: tcms-writer
 displayName: Tcms Writer
 name: tcms-writer
-version: "1.3.3"
+version: "1.3.4"
 not_for:
   - Social posts, short content, or channel adaptation (use an adaptation skill)
   - Neutral third-party industry research (use a deep-dive pipeline skill)
@@ -204,6 +204,7 @@ Path: same directory, filename with `-review` suffix
 - [ ] Customer-name redaction check
 - [ ] Product-capability public-status check
 - [ ] Data points PM needs to confirm
+- [ ] Core message is traceable to the knowledge base; if it is not, the draft is held and the gap is reported instead of filled with a plausible claim.
 ```
 
 ---

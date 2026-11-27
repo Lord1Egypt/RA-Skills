@@ -1,7 +1,7 @@
 ---
 name: xiaohongshu-note-to-text
 description: "小红书笔记提取 / 小红书笔记转文字：图文笔记每张图里的字（OCR）、图片描述、正文、标签、点赞收藏，视频笔记给口播逐字稿和画面文字，附分享页前几条热评；加 --insight 得消费者洞察（受众、卖点、顾虑、购买意向、产品价格、读者提问，每条带核对过的引文）。用户发来 xiaohongshu.com、xhslink.com、rednote.com 链接或分享口令，要提取笔记内容、图片文字、文案、做笔记总结或翻译时使用。不需要 Key 也能先免费看一条摘要；注册拿 Key（送 10 积分）后给完整逐字稿和逐图文字，一条图文 1 积分（约 ¥0.14）。不需要小红书账号或 Cookie，不是下载/去水印工具。"
-version: 1.1.5
+version: 1.1.7
 homepage: https://linkdigest.dev/zh/docs?ref=skill-xiaohongshu-note-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-xiaohongshu-note-to-text&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 1 条摘要"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-xiaohongshu-note-to-text"}}
 required_environment_variables:
@@ -52,6 +52,18 @@ export LINKDIGEST_API_KEY=ld_live_...
 
 Key 只放在环境变量或配置里，不要贴进对话、代码或提交记录。
 
+### 先确认 Key 能用（0 积分，不要自己编链接）
+
+不要编一个链接或笔记 ID 来测试。`<笔记ID>` 这类写法是占位符：带尖括号的链接会得到 `400 placeholder_link`，编出来的 ID（比如全是 0）会得到 `422 not_a_post`，都不扣费，但也读不到任何东西。用户还没给链接时，用这条真实的示例笔记试——它已经读过，0 积分，一秒内返回：
+
+```bash
+python3 {baseDir}/scripts/linkdigest.py "https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share"
+```
+
+试通之后，向用户要他真正想读的那条笔记的分享链接（App 里「分享」→「复制链接」）。
+
+Never invent a link or a note id to test with: a made-up id answers `422 not_a_post`, a link with `<...>` left in it answers `400 placeholder_link`. To check the key, read the sample note above (already read, 0 credits), then ask the user for the real link.
+
 ## 用法
 
 推荐用自带脚本。它只用 Python 3.8+ 标准库，已经处理好 202 排队和轮询：
@@ -76,7 +88,7 @@ python3 {baseDir}/scripts/linkdigest.py "<笔记链接或整段分享文案>"
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"url": "https://www.xiaohongshu.com/explore/<笔记ID>?xsec_token=<...>", "format": "json"}'
+  -d '{"url": "https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share", "format": "json"}'
 ```
 
 - `200`：结果 JSON，字段见下文。
@@ -94,7 +106,7 @@ curl -sS "https://linkdigest.dev/api/v1/digest/<jobId>?wait=20" \
 ```bash
 API=https://linkdigest.dev/api/v1/digest
 AUTH="Authorization: Bearer $LINKDIGEST_API_KEY"
-LINK='https://www.xiaohongshu.com/explore/<笔记ID>?xsec_token=<...>'
+LINK='https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share'   # 真实的示例笔记（已读过，0 积分）；换成用户给的链接
 res=$(curl -sS -w '\n%{http_code}' -X POST "$API" -H "$AUTH" \
   -H "Content-Type: application/json" -d "{\"url\": \"$LINK\", \"format\": \"json\"}")
 code=${res##*$'\n'}; body=${res%$'\n'*}

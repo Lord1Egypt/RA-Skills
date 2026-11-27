@@ -55,6 +55,15 @@ TEMPLATE_REGISTRY: dict[str, tuple[str, str]] = {
             "format the AI appends during ``/iterate`` sessions."
         ),
     ),
+    "ci-workflow.yml": (
+        "templates/ci-workflow.yml",
+        (
+            "GitHub Actions workflow template: a ready-to-paste "
+            "``.github/workflows/iterate.yml`` that runs ``iterate report`` "
+            "with inline annotations (--annotate) and the run summary "
+            "(--github-summary), and uploads the JSON report as an artifact."
+        ),
+    ),
 }
 
 #: Friendly aliases so ``iterate template show iterate`` is not forced to spell
@@ -67,6 +76,9 @@ _ALIASES: dict[str, str] = {
     "decisions": "iterate-decisions.template.md",
     "decision-log": "iterate-decisions.template.md",
     "decisionlog": "iterate-decisions.template.md",
+    "ci-workflow": "ci-workflow.yml",
+    "ci": "ci-workflow.yml",
+    "github-actions": "ci-workflow.yml",
 }
 
 #: Template search roots, in priority order:

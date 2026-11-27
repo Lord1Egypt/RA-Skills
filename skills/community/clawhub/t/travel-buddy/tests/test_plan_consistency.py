@@ -325,6 +325,7 @@ def full_verification() -> dict:
     return {
         "checked_at": "2026-08-03",
         "plan": "plan.json",
+        "verification_mode": "independent_agents",
         "domains": [
             # The fixture is a domestic trip and carries no entry_context at all, so the entry
             # block has nothing entry-shaped to cite and points at what it read to reach "no

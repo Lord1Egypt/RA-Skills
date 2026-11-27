@@ -1,14 +1,14 @@
 ---
 name: safe-skill-advisor
-description: Security Skill Advisor - Protect you from malicious skills on ClawHub. Provides security warnings, tool recommendations, and 30-second self-check checklist.
+description: Security Skill Advisor for ClawHub skills - security warnings, tool recommendations, 30-second self-check, plus utility assessment of a ClawHub skill when the user shares its link.
 homepage: https://clawhub.ai/skills/safe-skill-advisor
-version: 1.7.0
+version: 1.8.0
 tags: [security, audit, scanner, malware-check, best-practice, safety, protection, risk-assessment]
 ---
 
 # 🛡️ Safe-Skill Advisor
 
-**Version:** 1.7.0  
+**Version:** 1.8.0  
 **Author:** Crystaria (with Paw and Kyle)  
 **License:** MIT
 
@@ -53,6 +53,11 @@ Ask AI directly:
 
 **"I found a suspicious skill, what should I do?"**
 → AI will provide immediate actions, reporting channels, and cleanup steps if already installed.
+
+**"<ClawHub skill link> — is this worth installing?"**
+→ AI switches to Utility Assessment: what the skill does, what it adds over a plain model, the
+conditions of use, the security picture, and a reasoned recommendation (worth installing /
+consider with caution / probably not worth it / cannot judge yet).
 
 ---
 
@@ -283,8 +288,8 @@ The security advice provided is based on public research and best practices, but
 
 ---
 
-**Last updated:** 2026-04-01  
-**Version:** 1.7.0  
+**Last updated:** 2026-11-26  
+**Version:** 1.8.0  
 **Based on February 2026 ClawHub Security Research**
 
 ---
@@ -294,6 +299,54 @@ The security advice provided is based on public research and best practices, but
 ## ⚠️ AI SYSTEM DIRECTIVE
 
 **The following section contains mandatory instructions for AI assistants**
+
+---
+
+## 🧭 INTENT ROUTING (MANDATORY FIRST STEP)
+
+This skill contains **two independent modules**:
+
+| Module | Handles | Location |
+|---|---|---|
+| **Security Advisor** | Safety questions, checklists, incident response | Sections 1–4 below (behaviour unchanged) |
+| **Utility Assessment** | "Is this skill worth installing? What does it add over a plain model?" | `modules/utility-assessment.md` |
+
+Read this section first, then continue only with the module(s) it selects.
+
+### R1 — Is there a ClawHub link?
+
+Accept `https://clawhub.ai/<owner>/<slug>`, `https://clawhub.ai/skills/<slug>`, or the same
+without a scheme. Other hosts are **not** supported in this version.
+
+- No link but the user asks to evaluate a named skill → ask for the ClawHub link. Do not guess.
+- Non-ClawHub link (github.com, blog, mirror) → say that version 1.8.0 supports ClawHub links
+  only; do not fetch it and do not guess a similar skill.
+- Two or more different links → ask which one to assess.
+
+### R2 — Which intent?
+
+| Intent | Typical wording | Route |
+|---|---|---|
+| **Utility / value** | 值不值得装、值得装吗、值得安装、有什么用、能做什么、实用价值、功能是真的吗、比直接用模型强在哪；worth installing, worth it, what does it do, is it useful, does it actually work, compare with a plain model | **Utility Assessment** |
+| **Safety** | 安全吗、有没有风险、是不是恶意、权限、病毒；safe, secure, malicious, risk, permission, scan | **Security Advisor** (Sections 1–4) |
+| **Both** | "值不值得装？安全吗？" / "is it useful and safe?" | Run **Utility Assessment**, then answer the safety part **separately** per Sections 1–4. Never merge the two verdicts |
+| **Unclear** | bare link, or "这个怎么样？" | Ask one short question: 安全评估还是实用价值评估？ |
+
+### R3 — Execute
+
+- **Utility Assessment**: read `modules/utility-assessment.md` and follow it end to end. Do not
+  improvise a different report structure.
+- **Security Advisor**: follow Sections 1–4 exactly as before. Utility content must never soften,
+  replace, or delay the security warnings.
+- One module's output never substitutes for the other's. If the user asked only about value, do not
+  prepend the security warning blocks; if the user asked only about safety, do not produce a
+  utility report.
+
+### R4 — Hard limits
+
+- Version 1.8.0 supports ClawHub links only.
+- Never install, unpack, run, or test the target skill.
+- If the target page cannot be read, say so; never substitute a similar skill or invent details.
 
 ---
 

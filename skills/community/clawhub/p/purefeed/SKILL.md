@@ -104,7 +104,11 @@ When the user only wants a signal to stop, turn it off. `DELETE` is irreversible
 
 | Error | Agent Action |
 |-------|-------------|
-| 401 Unauthorized | Tell user to create new key at purefeed.ai/profile |
+| 401 `missing_authorization` | No key reached the API. Send `Authorization: Bearer $PUREFEED_API_KEY` from code (curl, Python). Web-browsing and page-fetch tools usually cannot send headers. Do not ask for a new key |
+| 401 `unknown_key` | The key was deleted or copied incompletely. Ask the user to compare it with the keys at purefeed.ai/profile, or to create a new one |
+| 401 `disabled_key` | Ask the user to turn the key back on at purefeed.ai/profile |
+| 401 `key_in_query` | Keys are read only from the header. Tell the user to rotate the key that was put in a URL |
+| 503 `key_check_failed` | The key was not rejected. Retry with the same key after `Retry-After` (30 s) |
 | 429 Too Many Requests | Wait and retry. Check `Retry-After` header |
 | "Signal not found" | Call `GET /signals` to get valid IDs |
 | 403 `SIGNAL_LIMIT_REACHED` | The account is at its active-signal limit. Ask the user which signal to turn off, send `PUT /signals/{id}` with `{"active": false}`, then retry |
@@ -116,7 +120,7 @@ When the user only wants a signal to stop, turn it off. `DELETE` is irreversible
 
 Read `API_REFERENCE.md` for full endpoint documentation, parameters, curl examples, and response shapes.
 
-All endpoints return `{ "data": ..., "error": null }` on success and `{ "data": null, "error": { "message": "...", "code": "...", "hint"?: { "action": "...", "docs_url"?: "..." } } }` on error.
+All endpoints return `{ "data": ..., "error": null }` on success and `{ "data": null, "error": { "message": "...", "code": "...", "reason"?: "...", "hint"?: { "action": "...", "docs_url"?: "..." } } }` on error. `reason` is set when a request was refused before reaching the endpoint (see Error Handling).
 
 ### Endpoint Summary
 

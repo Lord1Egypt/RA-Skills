@@ -1,7 +1,7 @@
 {
   "source_repository": "https://github.com/zzxCoding/Flydb",
-  "source_commit": "56bc3baef4a4e5c9eefe440644a4343aa960d0a4",
-  "source_version": "0.3.6",
+  "source_commit": "c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17",
+  "source_version": "0.3.9",
   "source_inputs_dirty": false,
   "source_input_status": [],
   "release_status": "not_verified",
@@ -9,25 +9,25 @@
     {
       "source": "docs/reference/commands.md",
       "destination": "skills/flydb-cli-release/references/commands.md",
-      "sha256": "7f575e2b869e67b25cdedb5968c824943752212490b510c3be6475cd70a1e186",
+      "sha256": "6d02bbe67b3850a610ebb7c9ca2515f0c8c8131886dd21c0eb5344078cc1eeea",
       "adaptations": []
     },
     {
       "source": "docs/reference/configuration.md",
       "destination": "skills/flydb-cli-release/references/configuration.md",
-      "sha256": "69392041a2dea35d1c246fe7cab5165af0dfee62fe000e30d653781ae73f6ec8",
+      "sha256": "5acd16cbe9b33e1818545f8f3142105d5ad1392083cd22380386202233187571",
       "adaptations": []
     },
     {
       "source": "docs/reference/errors.md",
       "destination": "skills/flydb-cli-release/references/errors.md",
-      "sha256": "99f1ea3581328d212f179a0d0347095b62c83239efbf1b5176e88c292a5e2bd7",
+      "sha256": "9ddc9dd0272e61d4b9560f10e2d8f1a5306e30e7f12aee6049be7668e555ede9",
       "adaptations": []
     },
     {
       "source": "docs/reference/json-output.md",
       "destination": "skills/flydb-cli-release/references/json-output.md",
-      "sha256": "f6fcf0866233dc97f4325dc38a6569c3ddc861082d9579eb2c6bb8d719088836",
+      "sha256": "48653ad7c9b986bf70cec6f54cd825566cceac547cb58faa5caf3ae8d285212f",
       "adaptations": [
         "按 commands.md 补充 web 不支持 --json 的例外"
       ]
@@ -35,19 +35,19 @@
     {
       "source": "docs/reference/mcp-tools.md",
       "destination": "skills/flydb-cli-release/references/mcp-tools.md",
-      "sha256": "11ef35560c5363b113a153e77a33ed33a7d898fcfd4abc591996a9ea7decb7f9",
+      "sha256": "19e2a619da95c27a87205c6f3a12996f6c68613faecd8a077bb4e4bbd62d0211",
       "adaptations": []
     },
     {
       "source": "docs/reference/web-api.md",
       "destination": "skills/flydb-cli-release/references/web-api.md",
-      "sha256": "8289579b4cdef6a2d6e0e2df18d248803b35a580bf1b82c64fa551893a5b5081",
+      "sha256": "852b35e0a3c0845a7124b01f8524cbe3c59be420e0e372fd107e036af44acc8f",
       "adaptations": []
     },
     {
       "source": "docs/getting-started/web.md",
       "destination": "skills/flydb-cli-release/references/web.md",
-      "sha256": "2fa17a55dbe79a3785a90f9dfef28db41695f2727e951131d5d8591e7d346854",
+      "sha256": "38d09ee54747c67b183ed7e638508b3eda4c57af13ec21ba4f753667994f2d8d",
       "adaptations": []
     },
     {
@@ -68,15 +68,15 @@
   "manual_review_sources": [
     {
       "source": "pom.xml",
-      "sha256": "fb6abb9bb136c2f135da833f5fde72f0fb21bfd8b4808d74f6f1a30866e9a7c7"
+      "sha256": "94de70c9b5e1f4188836482ee8eb058c2101beaec3799507269ea5c3f53fb80d"
     },
     {
       "source": "flydb-skills/skills/flydb-cli/SKILL.md",
-      "sha256": "5e8a4bd8d85ffae9b7edde49d92ba20a10d2c2df1579151bc76f2d5cb380b7cb"
+      "sha256": "0a825bb6d32f00e235120932e164fc721f07e41f8cab26bae0a4dcde37207860"
     },
     {
       "source": "docs/getting-started/multi-environment.md",
-      "sha256": "400a81e7f95b28df0a359e21cad718243c3adbe6d17f1c9dc33ea5ac1a30d25d"
+      "sha256": "3131ca766515c5a62ea142764d14f42620540429401681002dfd6c11b338df40"
     }
   ]
 }

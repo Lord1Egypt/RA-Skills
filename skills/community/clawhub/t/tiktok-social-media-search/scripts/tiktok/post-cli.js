@@ -5,7 +5,7 @@ const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/url");
 const { assertChoice, assertIntegerRange } = require("../validate/keyword");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseCliArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
@@ -39,6 +39,12 @@ const SCHEMA = {
       transform: (v) => Number(v),
       desc: "作品数量, 1-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -50,7 +56,8 @@ function printHelp() {
   process.stderr.write(
     buildHelp(SCHEMA, "node scripts/tiktok/post-cli.js <主页或sec_uid> [选项]", [
       'node scripts/tiktok/post-cli.js --url "https://www.tiktok.com/@username" --limit 20',
-      "node scripts/tiktok/post-cli.js --url username --sort 1 --limit 20",
+      "node scripts/tiktok/post-cli.js --url username --sort 1 --limit 20",,
+      `node scripts/tiktok/post-cli.js --json-args "{\"url\":\"https://www.tiktok.com/@user\",\"limit\":20}"`
     ]) +
       "\n\n注意:\n" +
       "  - 这是博主主页、@用户名或 MS4w 开头的 sec_uid，不是视频链接，也不是纯数字 aweme_id\n" +
@@ -72,7 +79,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -142,10 +149,11 @@ async function main() {
     limit,
   };
   let postTask = null;
+  let cost;
   try {
     await post.createPostTask(tokenValue, url, sort, limit);
     utils.printSuccess("获取作品任务创建成功, 正在查询中...");
-    postTask = await post.getPostTask(tokenValue, url, sort, limit);
+    ({ results: postTask, cost } = await post.getPostTask(tokenValue, url, sort, limit));
   } catch (error) {
     utils.printError(`获取作品失败: ${error.message}`);
     emitError(
@@ -161,7 +169,7 @@ async function main() {
 
   if (!Array.isArray(postTask) || postTask.length === 0) {
     utils.printInfo("没有找到作品");
-    emitEmpty("没有找到作品", startTime, postRequest);
+    emitEmpty("没有找到作品", startTime, postRequest, cost);
     return;
   }
 
@@ -170,10 +178,12 @@ async function main() {
     startTime,
     postRequest,
     postTask,
+    cost,
   );
   await finishSuccess(finalOutput, {
     logFilename: `${startTime}_${validator.url2Name(url)}_post.json`,
     stderrMessage: `获取作品任务完成, 共 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
   });
 }
 

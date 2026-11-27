@@ -50,6 +50,15 @@ def execution_capabilities():
             "posix_resource_limits": os.name == "posix"}
 
 
+class ProcessFailed(DesignError):
+    def __init__(self, executable, returncode, stdout, stderr):
+        self.returncode = returncode
+        self.stdout = stdout
+        self.stderr = stderr
+        detail = (stderr or stdout).decode("utf-8", "replace")[-1800:].strip() or "no diagnostic output"
+        super().__init__(f"PROCESS_FAILED ({Path(executable).name}, exit {returncode}): {detail}")
+
+
 def run_process(args, *, cwd, timeout=120, env=None, capture_stderr=False):
     """No shell; terminate the process tree after a bounded wait."""
     options = ({"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt"
@@ -81,7 +90,7 @@ def run_process(args, *, cwd, timeout=120, env=None, capture_stderr=False):
             p.stderr.close()
         raise DesignError("PROCESS_TIMEOUT") from exc
     if p.returncode:
-        raise DesignError(f"PROCESS_FAILED ({Path(args[0]).name}): {(err or out).decode('utf-8', 'replace')[-1800:]}")
+        raise ProcessFailed(args[0], p.returncode, out, err)
     return (out + (b"\n" + err if capture_stderr else b"")).decode("utf-8", "replace").strip()
 
 
@@ -148,14 +157,50 @@ def renderer_identity():
             "dependencies": {p: importlib.metadata.version(p) for p in ("python-pptx", "Pillow", "jsonschema", "lxml")}}
 
 
+CURATED_LATIN_FONTS = (
+    "Inter", "Arial", "Helvetica", "Helvetica Neue", "Calibri", "DejaVu Sans",
+    "Liberation Sans", "Georgia", "Times New Roman",
+)
+CURATED_CJK_FONTS = (
+    "Noto Sans CJK SC", "Noto Sans SC", "Noto Serif CJK SC", "Source Han Sans SC",
+    "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Songti SC", "Microsoft YaHei",
+    "SimSun", "DengXian", "WenQuanYi Micro Hei", "HarmonyOS Sans SC",
+)
+
+
+def installed_fonts():
+    """Fast fontconfig inventory of common Latin/CJK faces; does not prove Office glyph rendering."""
+    lister = find_tool("fc-list")
+    if not lister:
+        return {"available": False, "reason": "fc_list_unavailable", "latin": [], "cjk": []}
+    try:
+        listing = run_process([lister, ":", "family"], cwd=CODE_ROOT, timeout=10)
+    except (OSError, DesignError) as exc:
+        return {"available": False, "reason": "fc_list_failed", "detail": str(exc)[:300], "latin": [], "cjk": []}
+    families = {name.strip().casefold() for line in listing.splitlines() for name in line.split(",") if name.strip()}
+    return {
+        "available": True,
+        "latin": [f for f in CURATED_LATIN_FONTS if f.casefold() in families],
+        "cjk": [f for f in CURATED_CJK_FONTS if f.casefold() in families],
+        "scope": "fontconfig_installed_only; run preflight to verify actual LibreOffice glyph rendering",
+    }
+
+
 def fonts_for(task):
     from .contract import walk
     families = set()
     for page in task["scene"]["pages"]:
         for n, *_ in walk(page["nodes"]):
-            if "font" in n:
-                families.add(n["font"]["family"])
-            families.update(s["font"]["family"] for s in n.get("spans", []))
+            fonts = ([n["font"]] if "font" in n else []) + [s["font"] for s in n.get("spans", [])]
+            for row in n.get("cell_styles", []):
+                for cell in row:
+                    if "font" in cell:
+                        fonts.append(cell["font"])
+                    fonts.extend(span["font"] for span in cell.get("spans", []))
+            for font in fonts:
+                families.add(font["family"])
+                if font.get("ea_family"):
+                    families.add(font["ea_family"])
     result = []
     matcher = find_tool("fc-match")
     for family in sorted(families):

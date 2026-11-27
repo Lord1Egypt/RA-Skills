@@ -1,0 +1,34 @@
+# sayplain
+
+> 一套面向中文技术书与开源文档的「去 AI 味」二创工作流 Agent Skill 与零依赖 Python 质检脚本集。Python 3 标准库零依赖，MIT。
+
+## 是什么
+- 类型：Agent Skill（SKILL.md）+ 4 个零依赖 Python 3 质检脚本（`scripts/`）
+- 入口：`npx skills add shxuk/sayplain`
+- 本地质检：
+  - `python scripts/format_check.py <draft.md>`（格式与术语口径扫描）
+  - `python scripts/fact_anchor_check.py <orig.md> <edit.md>`（数字/代码/专名事实锚差集对比）
+  - `python scripts/style_check.py <edit.md>`（可疑 AI 腔与高危文风扫描）
+  - `python scripts/consistency_check.py <dir>`（跨篇一致性扫描）
+
+## 何时使用
+- 用户要求“去 AI 味 / 消除翻译腔 / 改写技术书章节 / 洗掉 AI 写作腔 / 二创原稿”
+- 用户需要对中文技术文档做术语口径统一、减法删冗余与事实锚对齐复核
+- 用户点名使用 `sayplain`
+
+## 何时不用
+- 外文到中文的常规翻译
+- 无原稿的从零写作或续写
+- 需要新增原稿之外的论据、案例或重新立论
+
+## 关键事实
+- 版本：1.0.0
+- 许可：MIT
+- 运行时：Python ≥ 3.8（纯标准库，0 第三方依赖）
+- 工序：第零道格式统一 → 第一道改写 → 第二道减法（只删不添）→ 第三道复核与修正
+- 保护机制：含凭证检测拦截（检测到疑似 API key/私钥/cookie 立即中止）
+
+## 链接
+- 仓库：https://github.com/shxuk/sayplain
+- 主页：https://shxuk.cn/lab
+- 规则库：references/风格手册.md, references/改写规则.md, references/毛病词典.md

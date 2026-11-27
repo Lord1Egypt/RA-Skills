@@ -1,0 +1,59 @@
+{
+  "name": "mpress",
+  "version": "1.2.0",
+  "description": "Markdown to WeChat Official Account typesetter: inline HTML, editorial cards, native SVG folds, 1800x766 cover, idempotent draft publishing. Pure script, no LLM in the loop.",
+  "type": "module",
+  "main": "scripts/wechat.mjs",
+  "bin": {
+    "mpress": "scripts/wechat.mjs",
+    "wechat-publisher": "scripts/wechat.mjs"
+  },
+  "files": [
+    "scripts/",
+    "components/",
+    "assets/",
+    "templates/",
+    "docs/",
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "llms.txt"
+  ],
+  "scripts": {
+    "gen": "node scripts/wechat.mjs gen",
+    "push": "node scripts/wechat.mjs push",
+    "preview": "node scripts/build-preview.mjs"
+  },
+  "dependencies": {
+    "juice": "^11.0.0",
+    "markdown-it": "^14.1.0"
+  },
+  "keywords": [
+    "wechat",
+    "wechat-official-account",
+    "wechat-public-platform",
+    "markdown-to-wechat",
+    "公众号",
+    "排版",
+    "typesetting",
+    "publisher",
+    "draft",
+    "svg-fold",
+    "agent-skill",
+    "claude-skill",
+    "ai-skill",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shxuk/mpress.git"
+  },
+  "homepage": "https://github.com/shxuk/mpress#readme",
+  "bugs": {
+    "url": "https://github.com/shxuk/mpress/issues"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

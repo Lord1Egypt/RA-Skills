@@ -1,7 +1,7 @@
 # Settle a discussion
 
 - Start with needs: identify users, expected outcomes, and the scope of this work.
-- Explain each concept: its purpose says what it is for, its state and actions define its behavior, and a typical scenario shows how it achieves its purpose.
+- Explain each concept: first separate reused [mature capabilities](../model-criteria.md#mature-capabilities); for each remaining concept, its purpose says what it is for, its state and actions define its behavior, and a typical scenario shows how it achieves its purpose.
 - Explain the composition: identify concept instances, type bindings, and synchronization rules.
 - Check the result: the application meets the needs, and the composition respects each concept's own behavior definition.
 - Record decisions: capture choices, reasons, and confirmation status; ask only questions that affect the next step.

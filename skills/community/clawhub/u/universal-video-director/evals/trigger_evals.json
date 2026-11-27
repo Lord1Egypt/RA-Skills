@@ -1,0 +1,66 @@
+[
+  {
+    "query": "我写了个 5 集的赘婿逆袭短剧大纲，帮我把第 1 集拆成分镜，每镜给我 Seedance 能用的提示词",
+    "should_trigger": true
+  },
+  {
+    "query": "把这本 txt 小说（downloads/斗罗同人.txt）改成竖屏漫剧，先评估值不值得改",
+    "should_trigger": true
+  },
+  {
+    "query": "我的 AI 短剧第三集主角每个镜头脸都不一样，衣服也变色了，怎么系统地修",
+    "should_trigger": true
+  },
+  {
+    "query": "给新品咖啡机做个 15 秒抖音广告，要有配音和字幕",
+    "should_trigger": true
+  },
+  {
+    "query": "做个 2 分钟讲解 Transformer 原理的动画解说视频，要分镜和旁白",
+    "should_trigger": true
+  },
+  {
+    "query": "用 kling 生成视频总是超时截断，我分镜是 12 秒一段，应该怎么拆",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我把这个剧本做成动态漫，预算只有 30 块，能省就省",
+    "should_trigger": true
+  },
+  {
+    "query": "review 一下我这个短剧项目目录 ./ep3，看看字幕和台词对不上是哪一步的问题",
+    "should_trigger": true
+  },
+  {
+    "query": "帮我写个 ffmpeg 命令把 a.mov 转成 mp4，码率 4M",
+    "should_trigger": false
+  },
+  {
+    "query": "把这段 10 分钟的访谈视频剪掉口头禅和停顿",
+    "should_trigger": false
+  },
+  {
+    "query": "给我写一篇小红书文案，主题是秋天的穿搭",
+    "should_trigger": false
+  },
+  {
+    "query": "帮我生成一张古风少女的头像插画",
+    "should_trigger": false
+  },
+  {
+    "query": "Remotion 的 useCurrentFrame 和 interpolate 怎么配合做淡入",
+    "should_trigger": false
+  },
+  {
+    "query": "总结一下这部电影的剧情和人物关系",
+    "should_trigger": false
+  },
+  {
+    "query": "写一个 3000 字的玄幻小说开头",
+    "should_trigger": false
+  },
+  {
+    "query": "给视频加上中英双语字幕 srt，原视频在 talk.mp4",
+    "should_trigger": false
+  }
+]

@@ -1,9 +1,9 @@
 ---
 name: insurance-advisor-china
 description: 中国大陆AI保险顾问。为个人和家庭提供全方位的保险咨询、产品对比、方案设计、投保指导。当用户询问保险配置、保险方案、产品对比、重疾险/医疗险/寿险/意外险/储蓄险推荐、保费计算、保障缺口分析、需求分析、核保合规、理赔等问题时使用。发布产物仅含 SKILL.md + 3 个只读参考文件（references/products.json、insurance-knowledge.md、compliance.md）+ 3 个运行时脚本（needs_analyzer / premium_calculator / plan_designer）；数据清洗脚本与回归测试脚本是本地维护工具，不随发布产物分发。
-version: 2.4.40
+version: 2.4.46
 tags: insurance, china, financial, advisor, product-comparison, medical, family-protection, health
-last_published: 2026-11-26
+last_published: 2026-11-28
 allowed-tools:
   - read
   - exec
@@ -742,191 +742,39 @@ fallback 三件套 / SKILL.md 引用 / 联系方式展示策略与本 skill 既�
 ---
 
 ## 更新日志
-- v2.4.22 (2026-11-19)：**官方 2.4.21 复扫后整改（SDI-4 变体 · 条件化承保决定不得转为无条件承保宣称）**：
-  - **官方 2.4.21 复扫结果（scanner 2.12.0，官方扫描包实测）**：
-    `issueCount=1 / score=12 / severity=LOW / recommendation=CAUTION /
-    clawscan verdict=suspicious`（finding = **SDI-4×1** · Excessive Agency · MEDIUM）
-  - **官方 finding 原文**：
-    「Conditional structured coverage decisions can become unconditional treatment-benefit claims.」
-    「Conditional treatment coverage can still be converted into an unconditional benefit claim
-     despite the documented suppression requirement.」
-  - **官方 remediation 原文（本轮实现的唯一依据）**：
-    「Validate structured treatment entries against an explicit schema that includes applicable
-      conditions and exclusions. Classify conditional, malformed, or unresolved decisions as
-      unverified unless their applicability to the customer has been established, and do not let
-      a covered=true flag alone resolve conflicting exclusion evidence. Preserve verified
-      restrictions in generated benefit descriptions …」
-    「Require validated, treatment-specific coverage decisions with explicit eligibility conditions,
-      exclusions, and reimbursement limits before generating benefit claims. Preserve those
-      conditions in the output; if they cannot be reliably interpreted or rendered, suppress the
-      affirmative claim and mark coverage as unverified. Add regression tests for restrictions
-      such as 仅限、须、需、经审批、指定医院 and structured …」
-  - **根因（两条独立缺陷 · 方向相反）**：
-    ① **过度收紧**：结构化权威字段的「显式除外裁决信号」被当成**普遍前置条件**
-       → 结构化 `covered=True` **永远无法**解决记录级冲突
-       → 实测正例（covered=True + 文本「含CAR-T治疗 不含CAR-T治疗」）宣称被压成 `[]`
-       → 即「实际可保的 CAR-T 被说成不可保」，比原缺陷更糟；
-    ② **条件泄漏**：记录级「适用条件」检测**只扫文本叶子**，
-       **看不到结构化条目里的条件字段**（如 `eligibility: 仅限指定医院`）
-       → 官方要求的「条件无法渲染 → 压制」在「文本自带肯定证据」这条路径上
-       **没有对应通道** → 条件被静默丢弃。
-  - **修法（两库同口径 · 业务逻辑零改动 · 仅肯定授权判定层）**：
-    ① 「显式裁决信号」从**普遍前置条件**降级为**显式声明未裁决才阻断**
-       （`exclusion_resolved: False` 之类 → 冲突未解决 → 压制；
-        `True` 或未声明 → 不阻断）；
-    ② 条件通道**同时覆盖文本叶子与结构化条目** → 两个宣称产出分支
-       **共用**同一个 `record_condition` → 两侧口径自动一致；
-    ③ 否定（negative / ambiguous / contradictory）与**条件**是两套**独立闸门**，
-       不混成前置条件：否定 → 一律不得宣称；条件 → 条件无法渲染 → 不得无条件宣称；
-       纯肯定（无否定、无条件）→ 正常授权，可裁决跨字段冲突。
-  - **新增测试**：`test_f23_residual_lmn_conditions_and_structured_authority()` ——
-    条件压制组（扁平 / 嵌套 / 无冲突三种）+ 结构化 covered=True 保留组
-    （dict 形态 / 裸布尔 / list dict 形态）+ 源码级防改回。
-  - **实测复现（修复前 → 修复后）**：
-    结构化条目携带条件（`eligibility: 仅限指定医院`）+ 文本「含CAR-T治疗」
-    → `['CAR-T']`（**条件被丢弃的无条件宣称**）→ `[]` ✓
-    结构化 `covered=True` + 文本「含CAR-T治疗 不含CAR-T治疗」
-    → `[]`（**过度收紧，正例被误杀**）→ `['CAR-T']` ✓
-  - **全语料回归**：2584 款产品逐条对比旧/新宣称 → **0 处差异**（无误压制、无漏压制）。
-  - **业务逻辑零改动**（仅肯定授权判定层；产品库数据文件、选品、保费、方案逻辑均未改动）。
-  - **红线未改动**：400-860-0058 / 安盛天平保险销售有限公司 保持原样。
-- v2.4.21 (2026-11-18)：**官方 2.4.20 复扫后整改（SDI-4 变体 · 不确定 / 条件性表述不得转为承保证言）**：
-  - **官方 2.4.20 复扫结果（scanner 2.12.0，官方扫描包实测）**：
-    `issueCount=1 / score=12 / severity=LOW / recommendation=CAUTION /
-    clawscan verdict=suspicious`（finding = **SDI-4×1** · Excessive Agency · MEDIUM）
-    → **v2.4.19 的 post-treatment 否定变体（残余 J）已消除**，本轮是**新变体**。
-  - **官方 finding 原文**：
-    「Uncertain treatment statements are converted into affirmative coverage claims
-     despite the documented requirement to suppress unverified benefits.」
-    「The affirmative-evidence check accepts words such as 「报销」 or 「含」 without
-     establishing that the surrounding statement actually confirms coverage. For example,
-     a product highlight reading 「CAR-T治疗是否报销待核实」 contains an accepted affirmative
-     marker and no recognized exclusion, allowing it to become the unconditional claim
-     「含CAR-T治疗」.」
-  - **官方 remediation 原文（本轮实现的唯一依据）**：
-    「Require validated, treatment-specific affirmative coverage decisions and preserve
-     applicable conditions before emitting benefit claims. Treat questions, uncertainty,
-     conditional eligibility, pending verification, and conflicting evidence as unverified,
-     suppressing affirmative claims rather than relying on keyword presence. Add regression
-     tests for phrases such as 「CAR-T治疗是否报销待核实」, 「可能包含CAR-T治疗」, and
-     「CAR-T报销以核保结果为准」, alongside verified positive and explicit exclusion cases.」
-  - **根因**：肯定授权判定**只看重肯定关键字在场**（报销 / 含 / 包含 / 覆盖 …）——
-    **没有校验这句话本身是否真的在确认承保**。疑问（是否报销）、不确定性（可能包含）、
-    条件性（以核保结果为准）、待核实（待核实）都会带着肯定关键字被当成承保授权。
-  - **修法（两库同口径 · 业务逻辑零改动 · 仅肯定授权判定层）**：
-    ① **字段元素级守卫**：元素内出现疑问 / 不确定 / 条件性 / 待核实表述
-       → 该次出现的肯定证据**不成立** → 按 unverified 压制；
-    ② **记录级守卫**：同一治疗手段在**任一文本叶子的同一子句**里带不确定表述
-       → 属「未经确认」→ 跨字段 / 跨元素一律不宣称（**不得**被结构化裁决翻案）；
-    ③ 「以……为准」按**通用形态**覆盖（以核保结果为准 / 以实际理赔为准 / 以合同为准 …）。
-  - **新增测试**：`test_f22_residual_k_uncertainty_guard()`（29 项断言）——
-    官方三个反例 / 疑问与条件性措辞变体 / 跨字段记录级不确定证据 /
-    显式除外 / **verified positive 仍能宣称** / 源码级防改回。
-  - **实测复现（修复前 → 修复后）**：
-    `_medical_treatment_claims({'key_benefits':['CAR-T治疗是否报销待核实'],'highlights':''})`
-    → `['CAR-T']`（**假承保宣称**）→ `[]` ✓
-  - **全语料回归**：2584 款产品逐条对比旧/新宣称 → **0 处差异**（无误压制）；
-    正例（含CAR-T治疗费用报销 / CAR-T治疗费用可报销 / 覆盖CAR-T细胞免疫治疗 /
-    含质子重离子治疗费用报销 / 特药费用可报销）→ 宣称**不变** ✓
-  - **业务逻辑零改动**（仅肯定授权判定层；产品库数据文件、选品、保费、方案逻辑均未改动）。
-- v2.4.20 (2026-11-18)：**官方 2.4.19 复扫后整改（SDI-4 变体 · post-treatment 否定必须绑定到治疗手段）**：
-  - **官方 2.4.19 复扫结果（scanner 2.12.0，官方扫描包实测）**：
-    `issueCount=1 / score=12 / severity=LOW / recommendation=CAUTION /
-    clawscan verdict=suspicious`（finding = **SDI-4×1** · Excessive Agency · MEDIUM）
-  - **官方 finding 原文**：
-    「Some exclusion markers remain forward-only, so a product statement such as
-     「CAR-T治疗不支持报销」 does not negate the preceding CAR-T occurrence; the subsequent
-     「报销」 can instead satisfy the affirmative-evidence check and generate 「含CAR-T治疗」.
-     The record-level exclusion check uses the same incomplete logic, and absent structured
-     coverage fields provide no suppression, making this particularly consequential in an
-     insurance-advice skill where users may rely on a false coverage claim when purchasing
-     insurance.」
-  - **官方 remediation 原文（本轮实现的唯一依据）**：
-    「Handle post-treatment exclusions such as 「CAR-T治疗不支持报销」 and
-     「CAR-T治疗不包含在保障范围」 by binding exclusion semantics to the relevant treatment
-     regardless of word order, while preventing reimbursement words inside those exclusions
-     from authorizing coverage. Treat uncertain or conflicting interpretations as unverified
-     and suppress affirmative claims. Add end-to-end regression tests covering these examples,
-     alternative negation wording, punctuation and spacing variants, and records without
-     structured coverage fields.」
-  - **根因（三处同源）**：
-    ① 「不支持」「不包含」等是**纯前瞻型**否定词 —— 否定词出现在治疗手段**之后**
-       （post-treatment negation）时，前瞻作用域落在治疗手段**之后** → 绑不到前面的治疗手段；
-    ② 否定词跨度**不含谓词** → 其后的「报销」落在跨度之外 → 通过肯定授权检查 →
-       产出「含CAR-T治疗」的**承保宣称**；
-    ③ 记录级除外证据 `_record_exclusion_keywords()` 复用同一套判定 → 同样漏判。
-  - **修法（两库同口径 · 业务逻辑零改动）**：
-    A. **复合除外短语**：「<否定词><除外谓词>」（如「不支持报销」「不包含在保障范围」）
-       视为**一个**除外短语 —— 谓词纳入否定跨度（其内的「报销」不再充当肯定授权证据）
-       + 该短语**双向**绑定（否定词在治疗手段之后时同样绑定到它）；
-    B. **post-treatment 回溯绑定**：纯前瞻否定词若**前瞻作用域内无任何治疗手段** →
-       回溯绑定到最近一次治疗手段出现（真实语料存在「质子重离子不含」形态）。
-  - **新增测试**：`test_f21_residual_j_post_treatment_negation()`（39 项断言）——
-    官方两个形态 / 同义措辞变体 / 标点与空白变体 / 跨字段记录级冲突 /
-    无结构化覆盖字段 / **不得过度收紧**（真正承保证明仍正常宣称）/ 源码级防改回。
-  - **实测复现（修复前 → 修复后）**：
-    `_medical_treatment_claims({'key_benefits':['CAR-T治疗不支持报销'],'highlights':''})`
-    → `['CAR-T']`（**假承保宣称**）→ `[]` ✓
-  - **全语料回归**：2584 款产品逐条对比旧/新宣称 → **0 处差异**（无误压制）；
-    真实语料「质子重离子不含」的记录级除外证据由 `set()` → `{'质子重离子'}` ✓
-  - **业务逻辑零改动**（仅否定/除外判定层；产品库数据文件、选品、保费、方案逻辑均未改动）。
-- v2.4.9 (2026-11-14)：**官方 2.4.8 复扫后整改（SDI-4 变体 · 除外作用域内的肯定词不得授权承保宣称）**：
-  - **官方 2.4.8 复扫结果（scanner 2.12.0，官方扫描包实测）**：
-    `issueCount=17 / score=81 / severity=CRITICAL / recommendation=DO_NOT_INSTALL /
-    clawscan verdict=suspicious`，finding 构成 = **AE1×13 + EA3×2 + YR4×1 + SDI-4×1**
-    → **比 2.4.7（1 / 12 / LOW / suspicious）更差 → 2.4.8 是回归版**。
-    （ai 库 2.4.8 同为 CRITICAL / 81 分，其扫描包 issueCount=36，AE1×25 全部由未压缩大文件造成。）
-  - **根因 ①（发布侧 · 与本轮代码整改无关）**：`publish_one_skill.py` 只调
-    `compact_salary_database_for_publish`，对 basename != `salary_database.json` 是 **no-op**
-    → 保险双库 `references/products.json` 以 **7,553,592 B 原形态**上线 →
-    AE1（未完整检查的大文件）×13 + YR4（`"description":;` 共 2563 处）+ EA3×2 全部由它造成。
-    （压缩后发布的 2.4.7 只有 **1** 条 finding，即 SDI-4。）
-  - **根因 ②（代码侧 · 本轮修的就是它）**：官方 SDI-4 finding 原文——
-    「The treatment-claim logic can override a detected exclusion because
-     `_occurrence_is_affirmative` does not require the treatment occurrence or its
-     affirmative wording to be outside the negated scope. For example,
-     「不包含CAR-T治疗费用给付」 marks CAR-T as excluded, but the nearby 「给付」 satisfies
-     the affirmative check, causing `_medical_treatment_suffix` to advertise 「含CAR-T治疗」.」
-    机制：肯定回退只检查肯定词**是否落在否定词字符跨度内**，**没检查是否落在否定作用域内** ——
-    「不含」的字符跨度仅 (0,2)，而「报销」在 (11,13) → 被当成对 CAR-T 的授权 →
-    回退分支把已判否定的 CAR-T 又加回。实测复现：
-    `_medical_treatment_claims({'key_benefits':['不含CAR-T治疗费用报销'],'highlights':''})`
-    → `['CAR-T']`（错）。
-  - **官方 remediation 口径（本轮实现的唯一依据）**：
-    「Require affirmative evidence to apply to the **same treatment occurrence** and to lie
-     **outside its entire exclusion scope**, not merely outside the negation marker's character
-     span. Treat conflicting or ambiguous coverage statements as **unverified** rather than
-     emitting unconditional coverage claims.」
-  - **修法（作用域 ≠ 字符跨度）**：
-    - 新增 `_negation_scope_map(blob, occurrences, spans, owner)` —— 建立「否定**作用域**」映射
-      （作用域 ≠ 否定词字符跨度）。官方例子里「不含」的跨度只有 (0,2)，但作用域覆盖到子句末尾，
-      作用域内的「报销」「给付」属于除外条款自身 → **不得**当作承保授权。
-    - 新增 `_medical_fact_owner_map(product)` —— 事实源文本的**字段归属映射**
-      （0 = key_benefits，1 = highlights，-1 = 分隔空格），函数内含 `assert owner_blob == blob`
-      → 与 `_medical_fact_text` 口径**锁死一致**；用于判定「跨字段冲突 → unverified」。
-    - 新增 `_scope_has_affirmative(blob, negated_occ, scope_map)` —— 除外表述**自身**含肯定字样
-      （如「不含CAR-T治疗费用报销」里的「报销」）→ 该表述自相矛盾 → 按官方口径
-      「conflicting statements as unverified」**不宣称**。
-    - `_has_affirmative(text, base, spans, excluded=())` 增加 `excluded` 参数：肯定证据必须
-      ① 不在否定词字符跨度内 **且** ② 不在除外作用域内。
-    - `_occurrence_is_affirmative(..., scope_map=None)` 透传 excluded；
-      `_medical_treatment_claims()` 建 scope_map → 授权证据必须 ① 落在该次出现之外、
-      ② 落在**整个除外作用域**之外、③ 与除外条款**同字段**。
-  - **未改动**：`_TREATMENT_CLAIMS` 关键词集合、`_medical_fact_text()` 事实源口径、
-    `_medical_treatment_suffix()`、`_negation_context()` / `_keyword_is_negated()` /
-    `_scope_bounds()` / `_clause_head()` / `_clause_tail()`、`_AFFIRM_MARKERS` 词表。
-  - **对现有产品库零变化**：实测 `references/products.json` 原始条目 **2563 条**；
-    `negation_bound_products = 0`；**179 条对外宣称**的 claims 签名 md5 修复前后**完全一致**
-    （`bb2fbf3abf874e0b9587721915cf1d6a`，两库一致）→ 属**纯防御性加固**。
-  - **回归**：新增 **F14**（8 个对抗场景 + 3 条源码级断言 + F13 全 6 场景交叉验证）。
-  - **测试**：`test_audit_remediation.py` 152 → **184 项** → **184/184 PASS**；
-    连同其余 4 套件共 **375 项全 PASS**（budget 149 + data_hygiene 22 + discontinued 13 +
-    recommendations 7）
+- v2.4.42 (2026-11-26)：**官方 2.4.41 复扫后整改（SDI-4 残余 AC · 结构化路径 · 除外表达被当作肯定授权）**：
+  - **官方 finding**：china v2.4.41 · SDI-4 · Excessive Agency · MEDIUM · confidence 0.99
+    ——「Structured coverage validation can accept an explicit exclusion as affirmative coverage.」
+    结构化条目 `{"CAR-T":{"covered":true,"payment_status":"不在承保范围"}}` 被判 **affirmative**
+    → **授权**该治疗手段 → 最终 benefits / features 仍宣称「含CAR-T治疗」。
+  - **根因（结构性 · 不是「又漏抄了两个词」）**：否定/除外语义在代码里维护了**多份互相独立**的词表
+    （自由文本侧 / 结构化侧 / 主体级 / 类别级），且**彼此无任何一致性约束** → 官方每轮复扫只点出
+    **其中一份**漏掉的短语 → 上一轮补进自由文本侧、结构化侧照样漏 → **必然复发**。
+  - **修法（结构性 · 一次性）**：
+    ① **单一事实源**：结构化侧词表**从共享归一化除外词表派生**（官方硬要求），不再另抄一份
+       → 一处增词，两侧同步生效；
+    ② **超集不变量**：结构化侧 ⊇ 自由文本侧（模块级 `assert` + 独立守卫测试双重把关）
+       → **正面封死**「结构化 ⊉ 自由文本」这一类复发；
+    ③ **通用模式**：`_EXCL_PATTERNS` 按**构式**覆盖同族任意新表述（两路共用同一份）
+       → 下一轮换个词再来也能命中，无需再改代码；
+    ④ **绑定到治疗手段**：结构化条目的除外证据按**标识**并入记录级除外集合
+       （官方 finding 点名的「record-wide checks do not associate its exclusion with CAR-T」）；
+    ⑤ **不可解读即压制**：疑问 / 待核实 /「以…为准」等不可解释语义 → **ambiguous**（压制）
+       （官方 remediation：「suppress affirmative claims with an explicit unverified limitation
+       whenever evidence is contradictory or **uninterpretable**」）→ 并产出**显式未证实限制说明**。
+  - **回归**：新增 **F35**（30 项：源码级 + 超集不变量 + finding 原文场景 + 未枚举表述 + 反向回归）
+    + 新增独立守卫 `scripts/test_exclusion_vocab.py`（49 项：单一事实源 / 超集不变量 / 通用模式 /
+    finding 原文 / 真实语料 golden 基线）。
+  - **测试**：`test_audit_remediation.py` 1508 → **1539 项**（**全 PASS**）；
+    连同其余 5 套件共 **1779 项全 PASS**（exclusion_vocab 49 + budget 149 + data_hygiene 22 +
+    discontinued 13 + recommendations 7）
+  - **语料零差异**：真实语料 2590 款、结构化承保字段命中 **0 款** → claims **逐款零差异**
+    （通用模式仅新增命中 1 处「普通意外不在覆盖范围」——该句不含任何治疗手段关键词
+    → 不进宣称、不进除外集合；语义上它本就是除外条款）
+  - **验收**：官方探针 `probe_residual_ac.py` rc=3（未复现）；新增独立验收器
+    `sdi4_residual_ac_accept_check.py` **54/54 ACCEPT**（两库通用）；既有 15 个验收器全部仍 ACCEPT
   - ⚠️ **400 电话优先推荐功能零改动**：规范三整段与**基线快照**字节级一致；
     客服电话 / 首选公司 / 锁定标记语义均未改动
-  - **发布前门禁**（已落地于 `_scratch/publish/publish_one_skill.py`）：
-    未压缩 / 压缩后体积未变小 / 最大行长 > 1000 → **拒绝发布**
-    （版本号**永久占位**，带缺陷上线不可逆）
 
 - v2.4.8 (2026-11-14)：**官方 2.4.7 复扫后整改（SDI-4 治疗手段宣称否定语境）**：
   - **官方扫描（v2.4.7 已公开）**：scanner 2.12.0 仍报 **SDI-4（Excessive Agency，MEDIUM，置信 0.99）**

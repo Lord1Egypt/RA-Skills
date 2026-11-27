@@ -1,6 +1,6 @@
 ---
 name: treza
-description: "Make videos, images, voiceovers, music, finished narrated shorts and captioned clips from long videos, paid per call in USDC over x402 with no account or API key. Video on Veo 3.1, Kling 3.0, Seedance 2.5, Wan 2.7 and Hailuo 3 (text or image to video), images on Nano Banana, GPT Image 2.6, Seedream and FLUX.2, ElevenLabs voices, Lyria music, 30-second vertical shorts with script, narration, music and captions, and the best 30 to 60 seconds of a podcast or talk cut, reframed and captioned."
+description: "Make videos, images, voiceovers, music, finished narrated shorts and captioned clips from long videos, paid per call in USDC over x402 with no account or API key. Video on Veo 3.1, Seedance 2.5 and Hailuo 3 (text or image to video), images on Nano Banana, GPT Image 2.6, Seedream and FLUX.2, ElevenLabs voices, Lyria music, 30-second vertical shorts with script, narration, music and captions, and the best 30 to 60 seconds of a podcast or talk cut, reframed and captioned."
 homepage: https://www.trezalabs.com/x402
 metadata:
   {
@@ -30,7 +30,7 @@ API key or email.
 
 | Make | Endpoint | From | Usually ready in |
 |---|---|---|---|
-| Video clip | `https://www.trezalabs.com/api/x402/video` | $0.42 (5 s) | 1 to 5 minutes |
+| Video clip | `https://www.trezalabs.com/api/x402/video` | $0.28 (4 s) | 1 to 5 minutes |
 | Narrated short | `https://www.trezalabs.com/api/x402/short` | $0.87 (stills), $3.22 (animated) | 3 to 5 minutes |
 | Clip from a long video | `https://www.trezalabs.com/api/x402/clip` | $0.04 (1 min source) | a few minutes, longer for long sources |
 | Image | `https://www.trezalabs.com/api/x402/image` | $0.02 | under a minute |
@@ -210,7 +210,7 @@ purchase; Treza sends the file.
   the least likely to refuse a prompt, but it takes text only. To
   animate a picture, send `image_url` (a public https JPEG, PNG or WebP) as the
   first frame on a model with `firstFrame: true`; `veo-3.1-lite` is the cheapest
-  of those, and of the whole menu ($0.28 for 4 s). Wan 2.7, Kling 3.0, Seedance 2.5 and Veo 3.1 cost
+  of those, and of the whole menu ($0.28 for 4 s). Seedance 2.5, Veo 3.1 Fast and Veo 3.1 cost
   more for higher fidelity. Aspect ratios are `16:9` and `9:16`. Every model
   sells its own lengths, so check the menu.
 - **Short**: send a `topic` (up to 500 characters). `style` is `motion`

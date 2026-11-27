@@ -1,0 +1,28 @@
+# 本机私有数据：真实会话提取结果（含任务标题、路径、token 明细）
+output/*
+!output/.gitkeep
+
+# 本机私有配置：项目规则、噪音样本、定价表、自定义根目录
+config/local/*
+!config/local/.gitkeep
+
+# 运行时缓存（含本机 WSL 用户名/路径）
+scripts/_env_paths_cache.json
+
+# Python 缓存与临时文件
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# 备份目录（若误建在 skill 内）
+*.bak/
+*.bak.*/
+*.bak
+
+# 编辑器/系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

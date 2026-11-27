@@ -23,7 +23,7 @@ Market intelligence and technology trend analysis utility. Receives a topic or m
 
 ## Calls (outbound)
 
-None — pure L3 utility using `WebSearch` tools directly.
+None — pure L3 utility using the web search tool directly.
 
 ## Called By (inbound)
 
@@ -51,7 +51,7 @@ Parse the input topic and determine the analysis angle:
 
 ### Step 2 — Search Trends
 
-Execute `WebSearch` with these query patterns:
+Execute the web search tool with these query patterns:
 - `"[topic] 2026 trends"`
 - `"[topic] vs alternatives 2026"`
 - `"[topic] market share growth"`
@@ -61,7 +61,7 @@ Collect results. Identify the most evidence-rich URLs per query.
 
 ### Step 3 — Competitor Analysis
 
-Execute `WebSearch` with:
+Execute the web search tool with:
 - `"[topic] competitors comparison"`
 - `"best [topic] tools 2026"`
 - `"[topic] alternative"`
@@ -74,7 +74,7 @@ From results, extract:
 
 ### Step 4 — Community Sentiment
 
-Execute `WebSearch` with:
+Execute the web search tool with:
 - `"site:reddit.com [topic]"` or `"[topic] reddit discussion"`
 - `"[topic] site:news.ycombinator.com"`
 - `"[topic] GitHub stars"` or `"[topic] downloads per week"`
@@ -91,7 +91,7 @@ Synthesize all gathered data into the output format below. Note where data is sp
 
 ## Constraints
 
-- Use `WebSearch` only — do not call `WebFetch` unless a specific page has critical data not in snippets
+- Use the web search tool only — do not call the web fetch tool unless a specific page has critical data not in snippets
 - Label all data points with their source
 - Do not infer trends from a single data point — note confidence level
 - If the topic is too broad, report what was analyzed and suggest narrowing
@@ -150,7 +150,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~300-600 tokens input, ~200-400 tokens output. Haiku.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

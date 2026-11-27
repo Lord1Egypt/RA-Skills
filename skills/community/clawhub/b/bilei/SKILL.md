@@ -4,8 +4,8 @@ name: 避雷
 display_name: "避雷"
 displayName: "避雷"
 summary: "反投毒购物顾问：只认行政处罚/抽检/召回等公关不了的数据，反软广反GEO投毒，证据分级，溢价定量对价，制造商与供应链审计，信源质量分级过滤，二手保值率对比，夯→拉五级梯队，结论先行"
-version: "4.3.11"
-description: "反投毒购物顾问：买任何东西前，先查公关不了的负面数据——行政处罚、抽检不合格、召回公告，把散落在社区角落的差评捞回来，按证据等级定论。反软广反GEO投毒，溢价对价跑脚本定量（TCO/EAC、临界故障率、溢价ROI、公允价格上限），审计制造商谁生产谁兜底，结论先行给唯一推荐；没有可靠选项直说「目前没有」，不硬推。触发词：想买XX、买什么、求推荐、对比、值不值得买、避坑、扫雷、性价比、质价比、溢价、历史低价、好价、预算XX买什么、哪个牌子靠谱、是不是贴牌、代工、梯队、二手保值、保值率。English: anti-astro-turfing shopping advisor — evidence-graded product vetting with manufacturer/ODM audit and a 5-tier ranking, use when the user asks what to buy or whether something is worth it."
+version: "4.3.12"
+description: "反投毒购物顾问：先查行政处罚/抽检/召回与社区差评，证据分级、溢价定量与ODM代工审计，给唯一推荐，无可靠选项直说「目前没有」。触发词：想买、买什么、求推荐、值不值得买、避坑、扫雷、性价比、溢价、代工、保值率。Anti-astro-turfing shopping advisor."
 license: MIT
 metadata:
   displayName: "避雷"

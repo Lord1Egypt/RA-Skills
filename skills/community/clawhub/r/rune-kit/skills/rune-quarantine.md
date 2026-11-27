@@ -28,7 +28,7 @@ This is **forcing-function discipline**, not structural defense. Document this h
 
 ## Triggers
 
-- Auto-trigger: PostToolUse on `mcp__.*` / `WebFetch` / read_file of `**/uploads/**`
+- Auto-trigger: PostToolUse on `mcp__.*` / the web fetch tool / read_file of `**/uploads/**`
 - Auto-installed by `rune hooks install --preset gentle` (or `--preset strict`)
 - `/rune quarantine status` — manual report on quarantine activity (telemetry summary)
 - Listen: `external.content.received` — emitted by skills that ingest external data through non-tool paths
@@ -58,7 +58,7 @@ Trusted-MCP namespaces (default skip):
 
 Operators extend the list at `~/.claude/quarantine.d/trusted-mcp-allowlist.txt` (one namespace per line, `#` for comments). The hook reads the file every call — no daemon restart needed.
 
-See [`references/trusted-mcp-allowlist.md`](references/trusted-mcp-allowlist.md) for full path resolution + customization.
+See [`rune-quarantine/references/trusted-mcp-allowlist.md`](rune-quarantine/references/trusted-mcp-allowlist.md) for full path resolution + customization.
 
 ## Execution
 
@@ -69,7 +69,7 @@ The hook runs in three steps:
 Read JSON event from stdin. Inspect `tool_name` and `tool_input`:
 
 1. If `tool_name` matches `mcp__*`: extract namespace (`mcp__<ns>__<rest>`), check trusted-MCP allowlist. Skip if trusted.
-2. If `tool_name` is `WebFetch`: always quarantine.
+2. If `tool_name` is the web fetch tool: always quarantine.
 3. If `tool_name` is read_file: check `tool_input.file_path` against `**/uploads/**`. Skip otherwise.
 4. If `QUARANTINE_DISABLE=1` env-var is set: skip.
 
@@ -135,7 +135,7 @@ On timeout the hook emits `decision=timeout` to telemetry and exits 0 (advisory 
 
 | Failure Mode | Severity | Mitigation |
 |---|---|---|
-| Operator over-trusts marker as structural defense | HIGH | SKILL.md "When NOT to use" + references/quarantine-discipline.md call out advisory-only nature explicitly |
+| Operator over-trusts marker as structural defense | HIGH | SKILL.md "When NOT to use" + rune-quarantine/references/quarantine-discipline.md call out advisory-only nature explicitly |
 | Trusted-MCP allowlist file deleted mid-session → all MCPs quarantined | LOW | Skip-on-empty default; advisory mode means worst case is verbose context, not breakage |
 | `<UNTRUSTED>` close-tag spoofing in payload | MEDIUM | Document in references — author-time pedagogy only, not structural |
 | Telemetry file grows unbounded | LOW | Operator owns rotation; document in SKILL.md "Performance Budget" |
@@ -163,7 +163,7 @@ Hook is Node-only — no LLM tokens. Adds ~5-10 ms per matched call. Telemetry ~
 
 ## Done When
 
-- Every `mcp__*` (untrusted) / `WebFetch` / upload-read_file call gets a `[QUARANTINE-NOTICE]` in next-turn context
+- Every `mcp__*` (untrusted) / the web fetch tool / upload-read_file call gets a `[QUARANTINE-NOTICE]` in next-turn context
 - Trusted-MCP allowlist respected (no advisory for whitelisted namespaces)
 - `QUARANTINE_DISABLE=1` per-session disable honored
 - Telemetry contains exactly 1 line per matched call (privacy: tool name + decision + source + session ID only)
@@ -172,11 +172,11 @@ Hook is Node-only — no LLM tokens. Adds ~5-10 ms per matched call. Telemetry ~
 
 ## References
 
-- [`references/trusted-mcp-allowlist.md`](references/trusted-mcp-allowlist.md) — default trusted MCPs + how operators extend
-- [`references/quarantine-discipline.md`](references/quarantine-discipline.md) — `<UNTRUSTED>` author-time pedagogy + layered defense pattern + honesty framing
+- [`rune-quarantine/references/trusted-mcp-allowlist.md`](rune-quarantine/references/trusted-mcp-allowlist.md) — default trusted MCPs + how operators extend
+- [`rune-quarantine/references/quarantine-discipline.md`](rune-quarantine/references/quarantine-discipline.md) — `<UNTRUSTED>` author-time pedagogy + layered defense pattern + honesty framing
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

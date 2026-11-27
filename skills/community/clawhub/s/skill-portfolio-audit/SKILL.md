@@ -2,7 +2,7 @@
 name: skill-portfolio-audit
 slug: skill-portfolio-audit
 displayName: Skill Portfolio Audit
-version: "1.1.9"
+version: "1.1.10"
 description: >
   Generates evidence-based portfolio audits, candidate scorecards, privacy
   classifications, consolidation plans, and a persistent execution queue with
@@ -176,3 +176,4 @@ Output must include:
 - [ ] Checked for credentials, personal data, company internal data, and external publish risk.
 - [ ] Identified same-name copies and version drift.
 - [ ] Recommendations can be acted on: retain, merge, split, private, or publish.
+- [ ] Every candidate is labelled public, private or excluded with a stated reason, and private candidates are not counted in the publishable total.

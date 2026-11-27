@@ -14,8 +14,22 @@ function localDateStr() {
   );
 }
 
-async function taskWrite(filename, content) {
-  if (process.env.TT_GUAIKEI_ENABLE_LOG !== "1") return;
+/**
+ * @param {boolean} [saveFromCli]
+ * @returns {boolean}
+ */
+function isLogEnabled(saveFromCli) {
+  if (saveFromCli === true) return true;
+  return process.env.GUAIKEI_ENABLE_LOG === "1";
+}
+
+/**
+ * @param {string} filename
+ * @param {string} content
+ * @param {boolean} [saveFromCli]
+ */
+async function taskWrite(filename, content, saveFromCli) {
+  if (!isLogEnabled(saveFromCli)) return;
   if (!filename || typeof filename !== "string") {
     utils.printError("日志文件名必须是非空字符串");
     return;
@@ -33,7 +47,7 @@ async function taskWrite(filename, content) {
   if (safeFilename.length > 200) {
     safeFilename = stem.slice(0, Math.max(1, 200 - ext.length)) + ext;
   }
-  if (safeFilename === "") {
+  if (!safeFilename) {
     safeFilename = `log_${Date.now()}`;
   }
 
@@ -55,5 +69,6 @@ async function taskWrite(filename, content) {
 }
 
 module.exports = {
+  isLogEnabled,
   taskWrite,
 };

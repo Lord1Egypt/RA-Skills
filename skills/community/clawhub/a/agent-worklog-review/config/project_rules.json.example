@@ -1,0 +1,34 @@
+{
+  "_说明": "复制本文件为 project_rules.json 后按你的实际项目修改。不填也能跑，会用内置通用规则 + 从工作目录路径推断项目名。正则匹配任务标题和首条用户消息。",
+
+  "projects": [
+    {
+      "name": "示例：XX业务系统",
+      "patterns": ["xx-system", "项目代号A", "业务关键词"]
+    },
+    {
+      "name": "示例：AI工具研究",
+      "patterns": ["skillopt", "openspec", "superpowers"]
+    }
+  ],
+
+  "work_types": [
+    {"name": "代码审查/Review", "patterns": ["review", "审查", "code review", "代码检查"]},
+    {"name": "Bug修复/问题定位", "patterns": ["bug", "修复", "定位", "排查", "报错", "异常"]},
+    {"name": "性能优化/容量", "patterns": ["性能", "容量", "并发", "压测", "优化"]},
+    {"name": "开发实现/编码", "patterns": ["实现", "开发", "编写", "新增", "改造", "重构"]},
+    {"name": "测试验证", "patterns": ["测试", "验证", "回归", "验收", "用例"]},
+    {"name": "部署/环境/运维", "patterns": ["部署", "安装", "升级", "环境", "配置", "docker", "k8s"]},
+    {"name": "文档/规范/报告", "patterns": ["文档", "报告", "方案", "周报", "总结", "规范"]},
+    {"name": "AI工具使用/提示词", "patterns": ["提示词", "prompt", "skill", "agent", "模型", "llm"]},
+    {"name": "咨询/问答/调研", "patterns": ["怎么", "如何", "为什么", "调研", "了解", "解释", "看下"]},
+    {"name": "Agent评估/测试任务", "patterns": ["transcript start", "you are implementing task", "assessing"]}
+  ],
+
+  "skill_tags": [
+    {"name": "AI编程助手", "patterns": ["claude", "codex", "copilot", "cursor", "dsh"]},
+    {"name": "Skill/技能体系", "patterns": ["skill", "技能"]},
+    {"name": "MCP/工具链", "patterns": ["mcp", "codegraph", "lsp", "工具链"]},
+    {"name": "自动化/定时任务", "patterns": ["automation", "自动化", "定时", "cron"]}
+  ]
+}

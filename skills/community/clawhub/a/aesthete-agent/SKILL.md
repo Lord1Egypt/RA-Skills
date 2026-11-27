@@ -1,5 +1,5 @@
 ---
-version: 0.29.0
+version: 0.31.0
 name: aesthete-agent
 description: Color palette generation, frontend aesthetics, UI color schemes — mechanically validated color output for UI/HTML, SVG slides, video covers, charts and posters. An 119-palette evidence library matched by register, OKLCH harmony generation, luminance ramps and image extraction; 60-30-10 role mapping with semantic colors; a 5-dimension scorecard plus WCAG contrast, color-blind simulation and AI-slop detection as four mechanical gates; card and six-scene visualizer previews; a preference-learning profile that evolves with every verdict. Named theme packs, full contrast matrices, CB-safe data-viz palettes, five-lens critique reports, and APCA (WCAG 3 draft) perceptual contrast included. Pure stdlib, offline. Skip when pure text layout, translation or polishing, copywriting, or any task unrelated to color and frontend aesthetics. Trigger words — color palette, color scheme, palette generation, frontend aesthetics, UI color, design aesthetics, hex, contrast, WCAG, color blind, visual taste, aesthete-agent.
 ---

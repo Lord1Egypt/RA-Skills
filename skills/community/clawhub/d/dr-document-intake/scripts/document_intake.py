@@ -7,9 +7,12 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import tempfile
 import time
+import zipfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 HEADER = "<!-- dr-document-intake "
@@ -56,6 +59,101 @@ def digest(p: Path) -> str:
         for block in iter(lambda: f.read(1024 * 1024), b""):
             h.update(block)
     return h.hexdigest()
+
+
+def spreadsheet_cells(source: Path) -> tuple[str, list[str], int]:
+    """List each populated XLSX cell, formula, cached value and comment."""
+    try:
+        import openpyxl
+    except ImportError as exc:
+        raise ValueError("openpyxl is required to verify XLSX extraction") from exc
+    try:
+        formulas = openpyxl.load_workbook(source, data_only=False)
+        cached = openpyxl.load_workbook(source, data_only=True)
+    except Exception as exc:
+        raise ValueError(f"XLSX inspection failed: {type(exc).__name__}") from exc
+    lines = ["## Complete spreadsheet cell listing"]
+    limitations = []
+    missing_formula_cache = 0
+    cell_count = 0
+    try:
+        for sheet in formulas.worksheets:
+            lines.append(f"\n### Sheet: {sheet.title}")
+            values_sheet = cached[sheet.title]
+            # openpyxl stores only materialized cells here. Iterating worksheet
+            # dimensions can allocate millions of empty cells in sparse files.
+            for coordinates, cell in sorted(sheet._cells.items()):
+                if cell.value is None and cell.comment is None:
+                    continue
+                cell_count += 1
+                lines.append(f"\nCell {cell.coordinate}:")
+                if cell.value is not None:
+                    if cell.data_type == "f" and hasattr(cell.value, "text"):
+                        lines.append("Array formula: " + str(cell.value.text or ""))
+                        lines.append("Formula range: " + str(cell.value.ref))
+                    elif cell.data_type == "f" and not isinstance(cell.value, str):
+                        lines.append("Formula attributes: " + json.dumps(dict(cell.value), ensure_ascii=False, sort_keys=True))
+                    else:
+                        lines.append(str(cell.value))
+                if cell.data_type == "f":
+                    cached_cell = values_sheet._cells.get(coordinates)
+                    value = cached_cell.value if cached_cell is not None else None
+                    if value is None:
+                        missing_formula_cache += 1
+                    else:
+                        lines.append(f"Cached value: {value}")
+                if cell.comment is not None:
+                    lines.append("Comment:\n" + cell.comment.text)
+            if sheet._images or sheet._charts:
+                limitations.append(f"Sheet {sheet.title} contains images or charts requiring visual review")
+        if missing_formula_cache:
+            limitations.append(f"{missing_formula_cache} formula cells have no stored cached value")
+    finally:
+        formulas.close()
+        cached.close()
+    return "\n".join(lines), limitations, cell_count
+
+
+def docx_missing_text(source: Path, content: str) -> tuple[str, list[str]]:
+    """Recover Word body, header, footer, note and drawing text omitted by conversion."""
+    word_ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+    drawing_ns = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
+    chart_ns = "{http://schemas.openxmlformats.org/drawingml/2006/chart}"
+    normal = re.sub(r"\s+", "", content)
+    missing = []
+    limitations = []
+    try:
+        with zipfile.ZipFile(source) as package:
+            names = package.namelist()
+            parts = [n for n in names if re.fullmatch(r"word/(document|header[0-9]+|footer[0-9]+|footnotes|endnotes|comments)\.xml", n)]
+            parts += [n for n in names if re.fullmatch(r"word/charts/chart[0-9]+\.xml", n)]
+            for part in parts:
+                root = ET.fromstring(package.read(part))
+                values = []
+                for paragraph in root.iter(word_ns + "p"):
+                    values.append("".join(t.text or "" for t in paragraph.iter(word_ns + "t")).strip())
+                values += [(t.text or "").strip() for t in root.iter(drawing_ns + "t")]
+                if part.startswith("word/charts/"):
+                    values += [(t.text or "").strip() for t in root.iter(chart_ns + "v")]
+                for value in values:
+                    compact = re.sub(r"\s+", "", value)
+                    if compact and compact not in normal:
+                        missing.append((part, value))
+                        normal += compact
+            if any(n.startswith("word/media/") and not n.endswith("/") for n in names):
+                limitations.append("Document contains embedded images requiring visual review")
+            if any(n.startswith("word/embeddings/") and not n.endswith("/") for n in names):
+                limitations.append("Document contains embedded objects requiring separate extraction")
+            if any(n.startswith("word/charts/") and n.endswith(".xml") for n in names):
+                limitations.append("Document contains charts requiring visual review")
+    except (OSError, zipfile.BadZipFile, ET.ParseError) as exc:
+        raise ValueError(f"DOCX completeness inspection failed: {type(exc).__name__}") from exc
+    if not missing:
+        return "", limitations
+    lines = ["## Additional document text"]
+    for part, value in missing:
+        lines.extend((f"\n### {part}", value))
+    return "\n".join(lines), limitations
 
 
 def target_path(root: Path, relative: str) -> Path:
@@ -151,6 +249,7 @@ def ingest(root: Path, value: str, markdown_from: str | None = None, source_sha2
         if out.exists() and metadata(out) and metadata(out).get("source") == rel:
             quarantine(root, out, rel)
         raise
+    limitations: list[str] = []
     try:
         if markdown_from:
             if not source_sha256 or source_sha256 != before:
@@ -172,6 +271,16 @@ def ingest(root: Path, value: str, markdown_from: str | None = None, source_sha2
                 content = MarkItDown(enable_plugins=False).convert(str(source)).text_content
             except Exception as exc:
                 raise ValueError(f"local conversion failed: {type(exc).__name__}") from exc
+        if ext == ".xlsx":
+            listing, limitations, cell_count = spreadsheet_cells(source)
+            content = (content or "").rstrip()
+            if content or cell_count:
+                content = content + "\n\n" + listing
+        elif ext == ".docx":
+            extra, limitations = docx_missing_text(source, content or "")
+            content = (content or "").rstrip()
+            if extra:
+                content = content + "\n\n" + extra
         if not content or not content.strip():
             raise ValueError("no text extracted; OCR or manual review may be required")
         if digest(source) != before:
@@ -212,7 +321,7 @@ def ingest(root: Path, value: str, markdown_from: str | None = None, source_sha2
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
-    return {"source": rel, "extract": out.relative_to(root).as_posix(), "status": "extracted", "index_verified": False}
+    return {"source": rel, "extract": out.relative_to(root).as_posix(), "status": "extracted", "index_verified": False, "limitations": limitations}
 
 
 def audit(root: Path) -> dict:
@@ -229,7 +338,7 @@ def audit(root: Path) -> dict:
             p = current / name
             if p.is_symlink():
                 items.append({"source": p.relative_to(root).as_posix(), "status": "symlinked_directory_unscanned", "index_verified": False})
-            elif name in SKIP_DIRS or (current == root / "memory" and name in {".dreams", "dreaming"}):
+            elif name in SKIP_DIRS or name.startswith((".venv-", ".venv_")) or (current == root / "memory" and name in {".dreams", "dreaming"}):
                 excluded.append(p.relative_to(root).as_posix())
             elif p != output_root:
                 keep.append(name)

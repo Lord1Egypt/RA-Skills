@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+
+# Temporary export files and artifacts (Privacy & Data Protection)
+*.pdf
+*.PDF
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+/tmp/
+temp/
+slides/
+output/
+*_images/
+
+# Browser profiles and cached sessions (Never commit cookies or profiles)
+*profile*
+*session*
+*.db
+*.sqlite
+*.sqlite3
+Cookies*
+Network*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

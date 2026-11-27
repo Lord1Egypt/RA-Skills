@@ -32,6 +32,7 @@ PRIORITY_ORDER = {
 PROBLEMS = []
 PROBLEM_DETAILS = {
     "read-retried": ("warning", "A GitLab read timed out and was retried.", "Refresh to check whether the timeout persists."),
+    "membership-unverified": ("warning", "Project membership could not be verified; work and labels were left unchanged.", "Refresh the assigned-work queue after GitLab membership reads recover."),
     "author-lookup-failed": ("error", "A collaborator author profile could not be read.", "Check GitLab access to the indicated user."),
     "author-email-unavailable": ("warning", "A collaborator has no accessible usable email/public_email.", "Use a public verified address or an explicit username/group selector."),
     "assignment-ambiguous": ("error", "A collaborator assignment write was ambiguous.", "Check the issue's assignees before retrying."),
@@ -215,7 +216,8 @@ def object_endpoint(item: dict[str, object], kind: str) -> tuple[str, str]:
 
 def owner_created_membership(
     project_path: str, agent_id: int, agent_username: str, owner: str
-) -> bool:
+) -> bool | None:
+    """Return None when membership is unknown, not an affirmative denial."""
     from urllib.parse import quote
 
     try:
@@ -223,15 +225,23 @@ def owner_created_membership(
             f"projects/{quote(project_path, safe='')}/members/all/{agent_id}"
         )
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError):
-        return False
+        membership = None
+    creator = membership.get("created_by") if isinstance(membership, dict) else None
+    if (
+        not isinstance(membership, dict)
+        or not isinstance(membership.get("username"), str)
+        or not isinstance(membership.get("membership_state"), str)
+        or type(membership.get("access_level")) is not int
+        or not isinstance(creator, dict)
+        or not isinstance(creator.get("username"), str)
+    ):
+        record_problem("membership-unverified", project_path=project_path)
+        return None
     return (
-        isinstance(membership, dict)
-        and membership.get("username") == agent_username
-        and membership.get("membership_state") == "active"
-        and type(membership.get("access_level")) is int
+        membership["username"] == agent_username
+        and membership["membership_state"] == "active"
         and membership["access_level"] >= 10
-        and isinstance(membership.get("created_by"), dict)
-        and membership["created_by"].get("username") == owner
+        and creator["username"] == owner
     )
 
 
@@ -294,6 +304,7 @@ def permitted_items(
         except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError):
             return None
 
+    records = [record for record in records if access[record[2]] is not None]
     snapshots = parallel_reads(checked_labels, records)
     result: list[dict[str, object]] = []
     for (item, kind, project_path, endpoint), labels in zip(records, snapshots):
@@ -630,6 +641,8 @@ def adopt_incident(
         allowed = username == owner or owner_created_membership(
             project_path, user_id, username, owner
         )
+        if allowed is None:
+            return None
         synchronize_forbidden(endpoint, allowed=allowed)
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError, ValueError):
         return None

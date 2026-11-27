@@ -33,15 +33,15 @@ function isLoopbackOrPrivateHost(hostname: string): boolean {
 function parseEndpoint(raw: string, label: string): URL {
   try {
     const parsed = new URL(raw.trim());
-    if (parsed.protocol !== 'https:') throw new Error(`${label} must use https://`);
-    if (parsed.username || parsed.password) throw new Error(`${label} must not include embedded credentials`);
+    if (parsed.protocol !== 'https:') throw new Error(('' + String(label) + ' must use https://'));
+    if (parsed.username || parsed.password) throw new Error(('' + String(label) + ' must not include embedded credentials'));
     if (!parsed.hostname || isLoopbackOrPrivateHost(parsed.hostname)) {
-      throw new Error(`${label} host is unsafe (private/loopback not allowed)`);
+      throw new Error(('' + String(label) + ' host is unsafe (private/loopback not allowed)'));
     }
     return parsed;
   } catch (error) {
     if (error instanceof Error && error.message.includes(label)) throw error;
-    throw new Error(`${label} must be an absolute https URL`);
+    throw new Error(('' + String(label) + ' must be an absolute https URL'));
   }
 }
 
@@ -79,10 +79,10 @@ function net(cfg: ThetaConfig, service: string, authOverride?: BasicAuth) {
 
 export const edgecloudInferenceClient = {
   listModels: (cfg: ThetaConfig, e?: string, a?: BasicAuth) =>
-    getJson(`${endpoint(cfg, e)}/v1/models`, net(cfg, 'edgecloud-inference', auth(cfg, e, a))),
+    getJson(('' + String(endpoint(cfg, e)) + '/v1/models'), net(cfg, 'edgecloud-inference', auth(cfg, e, a))),
 
   gradioConfig: (cfg: ThetaConfig, e?: string, a?: BasicAuth) =>
-    getJson(`${endpoint(cfg, e)}/config`, net(cfg, 'edgecloud-inference', auth(cfg, e, a))),
+    getJson(('' + String(endpoint(cfg, e)) + '/config'), net(cfg, 'edgecloud-inference', auth(cfg, e, a))),
 
   chat: (cfg: ThetaConfig, body: { model: string; messages: Array<{ role: string; content: string }>; max_tokens?: number }, e?: string, a?: BasicAuth) => {
     assertLive(cfg, 'Dedicated inference chat');
@@ -93,7 +93,7 @@ export const edgecloudInferenceClient = {
       throw new Error('body must be an object with a non-empty messages array');
     }
     const hooks = findCallbackFields(finalBody);
-    if (hooks.length) throw new Error(`Dedicated chat does not support webhook/callback fields (${hooks.map((h) => h.path).join(', ')})`);
-    return postJson(`${endpoint(cfg, e)}/v1/chat/completions`, finalBody, net(cfg, 'edgecloud-inference', auth(cfg, e, a)));
+    if (hooks.length) throw new Error(('Dedicated chat does not support webhook/callback fields (' + String(hooks.map((h) => h.path).join(', ')) + ')'));
+    return postJson(('' + String(endpoint(cfg, e)) + '/v1/chat/completions'), finalBody, net(cfg, 'edgecloud-inference', auth(cfg, e, a)));
   }
 };

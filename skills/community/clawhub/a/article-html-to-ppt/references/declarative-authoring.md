@@ -1,7 +1,7 @@
 # 紧凑作者输入与局部修订
 
-在已选择 create/recreate 并锁定内容后读取。此格式由固定编译器展开为完整 task.json，
-不执行模型脚本；当前不提供任意 HTML/SVG 导入或浏览器到 PPT 转换。
+在已选择 create/recreate 并锁定内容后读取。本页说明紧凑 JSON 输入，固定编译器将其展开为完整 task.json。
+create 默认使用[受限 HTML 设计面](html-design-authoring.md)测量浏览器布局并编译原生对象，紧凑 JSON 可用于局部修订或无浏览器环境。
 
 ## 作者输入
 
@@ -32,6 +32,14 @@ task 填入 init 产生的信封、设计 brief、逐页 content/notes/scene 与
  "required_edit":"native","source_ref":"source-p1"}
 ```
 
+无附件逐页文稿先按[逐页稿制作](outline-to-deck.md)保留原文与设计要求。`sources` 可使用用户来源（下例仅为条目片段，放入 `sources`，核对后再填写 `checked: true`）：
+
+```json
+{"input-p1-b1":{"kind":"user","source":"user-input.md / page-1 / block-1","checked":false,"uncertainties":[]}}
+```
+
+内容条目通过 `source_ref: "input-p1-b1"` 引用；`checked` 只表示与本次输入核对，不表示已做外部事实核查。逐页分析摘要写入既有 `design.pages[].composition`；详细内容定位、关系依据、硬约束/偏好及处理结果留在任务内的 `page-plan.md`，不要向严格 Schema 塞入自定义字段。
+
 节点可省略 page_id、role 和按数组顺序的 z；文字默认左对齐、顶部对齐、允许换行。
 引用样式后可局部覆盖字号等属性：
 
@@ -58,13 +66,13 @@ symbol_ref、id、box；固定编译器按等比尺寸展开原生组、形状�
 
 ```bash
 python3 -m engine design author --task-dir "$TASK" --file author.json
-python3 -m engine design preflight --task-dir "$TASK" --isolation host
-python3 -m engine design build --task-dir "$TASK" --isolation host
+python3 -m engine design preflight --task-dir "$TASK" --isolation auto
+python3 -m engine design build --task-dir "$TASK" --isolation auto
 ```
 
 author 保留原始作者输入，并对展开结果执行完整合同与素材校验；身份和路线不能被输入偷偷改写。
 不支持的视觉效果需调整设计或登记独立素材，不能用任务作者代码绕过渲染器。
-已有完整任务可运行 compact，将来源、重复字体等自动压缩为作者格式，并验证展开前后完全一致：
+已有任务可用 `compact` 导出可编辑的作者文件，工具会核对展开前后的内容。刚导入的页面也可导出，在作者文件里补齐简报和备注，再运行 `author`。
 
 ```bash
 python3 -m engine design compact --task-dir "$TASK" --output compact-author.json
@@ -72,6 +80,20 @@ python3 -m engine design context --task-dir "$TASK" --page page-1 --section cont
 ```
 
 摘要中的 compact_bytes/expanded_bytes 是同一 JSON 编码口径的字节数，不是实际 token 或计费。
+
+## 轻量元数据与页序维护
+
+逐页 `html-import` 或局部调整整册结构时，无需导出并改写整份 `author.json`：
+
+```bash
+python3 -m engine design set-meta --task-dir "$TASK" --brief-file brief.md
+python3 -m engine design set-page --task-dir "$TASK" --page page-1 --notes-file notes/p01.txt --composition-file comp/p01.json
+python3 -m engine design add-page --task-dir "$TASK" --page page-6 --after page-5
+python3 -m engine design remove-page --task-dir "$TASK" --page page-4
+python3 -m engine design reorder-pages --task-dir "$TASK" --pages page-1,page-2,page-5,page-3,page-6
+```
+
+上述命令逐次保存 `history/` 快照并按未完成态校验，支持在导入阶段渐进填写 `brief`、备注和 `composition`（不允许降级已设置的 `review_profile`）。
 
 ## 原子补丁
 
@@ -91,7 +113,7 @@ context 返回当前 task_sha256。patch.json 必须绑定该版本；更新 fon
 
 ```bash
 python3 -m engine design patch --task-dir "$TASK" --file patch.json
-python3 -m engine design build --task-dir "$TASK" --parent-build "$PREVIOUS_BUILD" --isolation host
+python3 -m engine design build --task-dir "$TASK" --parent-build "$PREVIOUS_BUILD" --isolation auto
 python3 -m engine design review-template --task-dir "$TASK" --build-id "$BUILD" \
   --inherit-from previous-review.json --output current-review.json
 ```

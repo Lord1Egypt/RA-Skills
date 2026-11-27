@@ -1,11 +1,11 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { placeImage, renderManifest } from './markdown.mjs';
+import { NO_SEARCH_RESULTS, placeImage, renderManifest } from './markdown.mjs';
 
 export async function firstRun(client, { query = 'ancient Rome', out } = {}) {
   if (!out || typeof out !== 'string') throw new Error('Provide --out with a new workspace folder for your first search.');
   const result = await client.search({ query, page_size: 3, page: 1 });
-  if (!result.items?.length) throw new Error('没有找到相关素材。请换一个更具体的关键词后重试；尚未创建预览目录。');
+  if (!result.items?.length) throw new Error(NO_SEARCH_RESULTS + '尚未创建预览目录。');
   const directory = path.resolve(out);
   await mkdir(directory); // Exclusive: never overwrite an existing preview or project.
   await writeFile(path.join(directory, 'candidates.json'), JSON.stringify(result, null, 2), { flag: 'wx' });

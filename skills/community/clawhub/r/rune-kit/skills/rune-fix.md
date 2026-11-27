@@ -27,6 +27,7 @@ Apply code changes. Fix receives a plan, debug finding, or review finding and wr
 
 <HARD-GATE>
 Never change test files to make tests pass unless the tests themselves are provably wrong (wrong expected value, wrong test setup, testing a removed API). The rule: fix the CODE, not the TESTS.
+The test-integrity hook (preflight on Edit/Write, sentinel on `git commit`) will BLOCK assertion removal, new skips, changed expected literals, and any edit under `tests/char/**` or `tests/holdout/**`. Do not work around it. If a human has approved the test change, retry with `RUNE_TEST_CHANGE_APPROVED="<reason>"` or a `Test-Change-Approved: <reason>` commit trailer — see [test-integrity-gate](rune-test/references/test-integrity-gate.md).
 If unsure whether the test is wrong or the implementation is wrong → call `rune-debug.md` to investigate.
 </HARD-GATE>
 
@@ -341,7 +342,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail**: Do not refactor unrelated code or create new features beyond the diagnosed fix target unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

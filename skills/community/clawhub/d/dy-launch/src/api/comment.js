@@ -1,0 +1,98 @@
+/**
+ * 抖音评论模块
+ */
+const constants = require("../config/constants");
+const { SkillError } = require("../utils/errors");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { formatUnixSeconds } = require("../utils/time");
+const { pickCost, pickTaskId } = require("../utils/cost");
+
+function enrichCommentItem(item) {
+  if (!item || typeof item !== "object") return item;
+  const processedItem = { ...item };
+
+  if (item.user_sec_uid) {
+    processedItem.user_url = `https://www.douyin.com/user/${item.user_sec_uid}`;
+  }
+
+  if (
+    typeof item.create_time === "number" &&
+    item.create_time &&
+    !item.create_time_str
+  ) {
+    processedItem.create_time_str = formatUnixSeconds(item.create_time);
+  }
+
+  if (Array.isArray(item.reply_comment)) {
+    processedItem.reply_comment = item.reply_comment.map(enrichCommentItem);
+  }
+
+  return processedItem;
+}
+
+function processCommentResults(data) {
+  if (!Array.isArray(data)) {
+    throw new SkillError("API_SCHEMA_CHANGED", "评论结果格式异常", true);
+  }
+  return data.map(enrichCommentItem);
+}
+
+/**
+ * 创建抖音评论任务
+ * @param {string} token - 技能令牌
+ * @param {string} url - 视频URL
+ * @param {number} limit - 评论数量, 1-10000
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）
+ * @throws {Error} API调用失败时抛出错误
+ */
+async function createCommentTask(token, url, limit) {
+  const params = { _: Date.now() };
+
+  const data = {
+    url,
+    limit,
+  };
+
+  const response = await requestApi(
+    "POST",
+    "/api/douyin/comment/url",
+    params,
+    data,
+    token,
+    constants.CREATE_MAX_ATTEMPTS,
+    "创建任务",
+  );
+  return pickTaskId(response);
+}
+
+/**
+ * 获取抖音评论任务结果
+ * @param {string} token - 技能令牌
+ * @param {string} url - 视频URL
+ * @param {number} limit - 评论数量, 1-10000
+ * @param {string} [taskId] - Create 返回的任务 id；有则查询只传 id（不带业务字段）
+ * @returns {Promise<{ results: Array, cost?: number }>}
+ * @throws {Error} API调用失败时抛出错误
+ */
+async function getCommentTask(token, url, limit, taskId) {
+  const params = taskId ? { id: taskId } : { url: url, limit: limit };
+
+  const response = await pollTaskResult(
+    "/api/douyin/comment/info",
+    params,
+    token,
+    "查询任务",
+  );
+  const cost = pickCost(response);
+
+  if (response.data) {
+    return { results: processCommentResults(response.data), cost };
+  }
+
+  return { results: [], cost };
+}
+
+module.exports = {
+  createCommentTask,
+  getCommentTask,
+};

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5b5b5b; --line:#d6d6d6; --soft:#f5f5f5;
+    --accent:#b42318; --paper:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:#e9e9e9; color:var(--ink);
+    font-family:"Source Han Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:10pt; line-height:1.55;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .screen-hint{
+    max-width:210mm;margin:6mm auto 0;padding:2.5mm 3.5mm;
+    background:#fff;border-left:1mm solid var(--accent);
+    font-size:9pt;color:var(--muted);
+  }
+  .page{
+    position:relative; width:210mm;min-height:297mm;
+    padding:13mm 13mm 17mm; margin:6mm auto;
+    background:var(--paper);
+    box-shadow:0 1mm 5mm rgba(0,0,0,.16);
+    break-after:page;page-break-after:always;
+  }
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+  .doc-head{padding-bottom:3mm;border-bottom:.5mm solid var(--ink);margin-bottom:4mm}
+  .kicker{font-size:9pt;letter-spacing:.12em;color:var(--accent);font-weight:600;margin-bottom:1.5mm}
+  h1{font-size:17pt;line-height:1.28;margin:0 0 1.5mm;letter-spacing:-.01em}
+  .meta{font-size:9pt;color:var(--muted)}
+  .page-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding-bottom:2mm;border-bottom:.5mm solid var(--ink);margin-bottom:4mm;
+  }
+  .page-head h2{font-size:13pt;margin:0}
+  .page-head .crumb{font-size:9pt;color:var(--muted)}
+  .lead{
+    margin:3mm 0 4mm;padding:2.5mm 0 2.5mm 3.5mm;
+    border-left:1.2mm solid var(--accent);
+    font-size:11pt;font-weight:600;line-height:1.5; break-inside:avoid;
+  }
+  h3{font-size:10.5pt;font-weight:600;margin:4mm 0 1.8mm;break-after:avoid}
+  p{margin:0 0 2mm}
+  ul.points{list-style:none;margin:0;padding:0}
+  ul.points li{position:relative;margin:1.6mm 0;padding-left:5mm;break-inside:avoid}
+  ul.points li::before{content:"";position:absolute;left:0;top:1.8mm;width:1.6mm;height:1.6mm;background:var(--accent)}
+  .chain{margin:2mm 0;padding:1.8mm 3mm;background:var(--soft);font-size:9.5pt;break-inside:avoid}
+  .chain strong{font-weight:600}
+  .detail-card{
+    margin:2.5mm 0;padding:2.5mm 3.5mm;
+    border:.3mm solid var(--line);border-left:1.2mm solid var(--muted);
+    break-inside:avoid;
+  }
+  .detail-card.high{border-left-color:var(--accent)}
+  .detail-card h4{margin:0 0 1.2mm;font-size:10pt}
+  .detail-card h4 .no{color:var(--muted);font-weight:600;margin-right:1.5mm}
+  .detail-card .stars{color:var(--accent);font-size:9pt;margin-left:1.5mm}
+  .detail-card p{margin:0 0 1.2mm;font-size:9.5pt}
+  .detail-card p:last-child{margin-bottom:0}
+  .detail-card .say{color:var(--muted)}
+  .figure{margin:3mm 0;break-inside:avoid}
+  .figure svg{display:block;width:100%;height:auto;max-height:80mm}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt;table-layout:fixed}
+  th,td{border-bottom:.25mm solid var(--line);padding:1.5mm 2mm;text-align:left;vertical-align:top;word-break:break-word}
+  th{font-weight:600;background:var(--soft)}
+  .todo{
+    margin:3mm 0;padding:2.5mm 3.5mm;border:.3mm dashed var(--muted);
+    font-size:9.5pt;break-inside:avoid;
+  }
+  .todo h3{margin-top:0}
+  .freshness{
+    margin:3.5mm 0 0;padding:2.5mm 3.5mm 2.5mm 4mm;
+    border-left:1.2mm solid var(--muted);background:var(--soft);
+    font-size:9pt;line-height:1.45; break-inside:avoid;
+  }
+  .freshness-head{font-weight:600;letter-spacing:.04em;margin-bottom:1.2mm}
+  .freshness ul{list-style:none;margin:0;padding:0}
+  .freshness li{margin:1mm 0;padding-left:4mm;position:relative}
+  .freshness li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.4mm;height:1.4mm;background:var(--muted)}
+  .footer{
+    position:absolute;left:13mm;right:13mm;bottom:7mm;
+    display:flex;justify-content:space-between;gap:4mm;
+    padding-top:2mm;border-top:.25mm solid var(--line);
+    font-size:9pt;color:var(--muted);
+  }
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .screen-hint{display:none!important}
+    .page{margin:0;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="screen-hint">打印建议：A4 · 边距“无” · 缩放 100% · 勾选“背景图形/背景颜色”。配套交互图谱：知识图谱-*.html。本提示不会打印。</div>
+<main>
+  <!-- 第 1 页：总览
+  <section class="page">
+    <header class="doc-head">
+      <div class="kicker">{{KICKER：项目 · 领域 · 用途}}</div>
+      <h1>{{TITLE}}</h1>
+      <div class="meta">{{SOURCE}} · {{DATE}} · 收录 {{N}} 份文档</div>
+    </header>
+    <div class="lead">{{一句话定位}}</div>
+    <h3>系统主图</h3>
+    <div class="figure">…内联 SVG ≤15 节点…</div>
+    <h3>模块分工</h3>
+    <table>…</table>
+    <h3>核心决策（含 why）</h3>
+    <ul class="points">…</ul>
+    <div class="footer"><span>{{SOURCE}}</span><span>第 1 页 / 共 {{M}} 页</span></div>
+  </section>
+  -->
+  <!-- 主题页 ×2–4
+  <section class="page">
+    <div class="page-head">
+      <h2>{{主题：模块或接缝组}}</h2>
+      <span class="crumb">{{所属模块}}</span>
+    </div>
+    <div class="chain"><strong>链路：</strong>A → B → C → D</div>
+    <ul class="points">…机制要点…</ul>
+    <div class="figure">…子图 ≤10 节点…</div>
+    <h3>该环节的细节与坑</h3>
+    <div class="detail-card high">
+      <h4><span class="no">01</span>标题<span class="stars">⭐⭐⭐</span></h4>
+      <p><strong>坑：</strong>现象一句话（保留"没有报错，只会表现为…"这类关键说明）。</p>
+      <p><strong>做法：</strong>正确做法骨架（数字/配置原样保留）。</p>
+      <p class="say"><strong>口径：</strong>结论性话术原话或骨架。</p>
+    </div>
+    <div class="todo">
+      <h3>待确认 / 待补</h3>
+      <p>…原样保留的诚实标记…</p>
+    </div>
+    <div class="footer"><span>{{SOURCE}}</span><span>第 N 页 / 共 {{M}} 页</span></div>
+  </section>
+  -->
+  <!-- 末页：交叉索引 + 待办 + 时效区块
+  <section class="page">
+    <div class="page-head"><h2>交叉索引与遗留</h2><span class="crumb">图谱的打印形态</span></div>
+    <table>
+      <thead><tr><th>细节</th><th>所在机制</th><th>关联细节</th><th>优先</th></tr></thead>
+      <tbody>…</tbody>
+    </table>
+    <div class="freshness">
+      <div class="freshness-head">版本演进 · 截至 <产品> <版本> 官方文档 · <YYYY-MM-DD> 核实</div>
+      <ul><li><strong>[演进]</strong> 正文结论自 X.Y 起；≤A.B 时为旧行为 —— 出处</li></ul>
+    </div>
+    <div class="footer"><span>{{SOURCE}}</span><span>第 {{M}} 页 / 共 {{M}} 页</span></div>
+  </section>
+  -->
+</main>
+</body>
+</html>

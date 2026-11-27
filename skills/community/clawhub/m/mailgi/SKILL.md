@@ -1,7 +1,7 @@
 ---
 name: mailgi
-description: Give an AI agent a real, deliverable email address. Register in one POST with no OAuth and no signup form, then send, receive, read and organise mail over a plain REST API — polling or webhooks — on a shared handle or your own verified domain. Receiving and mail between agents are free; mail to outside addresses is prepaid, pay as you go.
-version: 1.5.1
+description: Give an AI agent a real, deliverable email address. Register in one POST with no OAuth and no signup form, then send, receive, read and organise mail over a plain REST API — polling or webhooks — on a shared handle or your own verified domain. Also available as a hosted MCP server. Receiving and mail between agents are free; on @mailgi.xyz, mail from outside your wallet arrives 15 minutes late unless the mailbox has a MailPass. Until the first top-up, mail to up to 50 new outside addresses a day is free too, with Mailgi branding; after it, outside mail is prepaid, pay as you go.
+version: 1.8.1
 homepage: https://www.mailgi.xyz
 metadata:
   openclaw:
@@ -18,12 +18,13 @@ metadata:
 This file teaches you how to use the mailgi email API.
 You are an AI agent. Read this file, then you can send and receive email.
 
-**Skill version 1.5.1 · updated 2026-10-31**
+**Skill version 1.6.0 · updated 2026-10-31**
 Canonical copy: https://www.mailgi.xyz/SKILL.md — if yours is older, re-fetch it.
 This file tracks the live API; a stale copy will describe endpoints that changed.
 
 **Base URL:** `https://api.mailgi.xyz`
 **Auth:** `Authorization: Bearer <apiKey>` on all authenticated requests.
+**MCP:** the same API is available as MCP tools at `https://api.mailgi.xyz/mcp` — see §15.
 
 ---
 
@@ -87,7 +88,8 @@ Optional query params:
 any other query param is ignored, not rejected. To find a message, page through
 the list and match it yourself.
 
-Response: `{ messages: [...], total: N, position: N }`
+Response: `{ messages: [...], total: N, position: N }`, plus `held` when mail is
+waiting (below).
 
 Each message has: `id`, `subject`, `from`, `to`, `receivedAt`, `size`, `preview`,
 `seen`, `mailboxIds`.
@@ -102,6 +104,42 @@ and is fine for most work: call `GET /v1/mail` again, every few seconds when
 waiting for something specific (a verification code), every minute or two for a
 background inbox. If you would rather be told, see section 7 — but there is
 still no WebSocket and no long-poll.
+
+### Held mail: free mail arrives in 15 minutes
+
+On a `@mailgi.xyz` address, mail from outside your wallet reaches you
+**15 minutes after it arrived**, unless this mailbox has a **MailPass**. Until
+then it is not in the list, not counted in `total`, and `GET /v1/mail/<id>`
+answers `404 MESSAGE_HELD`. Never held:
+
+- mail you sent, including to yourself, wherever you file it;
+- mail from a mailbox on the same wallet;
+- any mailbox on your own organisation's domain;
+- any mailbox with a MailPass.
+
+When something is waiting, the list says so:
+
+```json
+{
+  "messages": [],
+  "total": 0,
+  "position": 0,
+  "held": {
+    "status": "held",
+    "message": "New mail is on hold. Get a MailPass to receive mail instantly.",
+    "count": 1,
+    "nextReleaseAt": "2026-11-26T16:30:00Z",
+    "holdMinutes": 15,
+    "mailPassUsd": 0.2,
+    "payLink": "https://app.mailgi.xyz/topup?address=buzzing-falcon%40mailgi.xyz"
+  }
+}
+```
+
+**Waiting for a verification code?** Most codes expire before 15 minutes are
+up. If you see `held` while waiting for one, give `payLink` to whoever you work
+for: paying it starts this mailbox's MailPass, and held mail appears at once.
+Otherwise keep polling; it appears at `nextReleaseAt`. See §4, "MailPass".
 
 **Get full body of a message:**
 
@@ -143,13 +181,49 @@ usually looks right to a human — but there is no `In-Reply-To` header, so a
 strict client will show it as a separate message. There is also no `threadId`
 anywhere in the API: group related mail yourself, by subject and correspondent.
 
-Response: `{ "messageId": "..." }`
+Response: `{ "messageId": "..." }`, plus a `billing` object when there is
+something to tell you. On the free tier that is every send (see below).
 
 **Recipients must be bare addresses** — `someone@example.com`, never
 `Name <someone@example.com>`. A display name or group syntax is rejected with
 `400 VALIDATION_ERROR`. At most 50 addresses per field.
 
-### What sending costs
+### The free tier: before your first top-up
+
+Every wallet starts on the free tier and stays there until it is topped up for
+the first time:
+
+- **Sending is free.** No per-recipient price, no introduction fee.
+- **Up to 50 new recipients per UTC day** — addresses you have never
+  corresponded with. Known contacts (below) are not counted, so replies are
+  never capped by it. The usual rate limits still apply.
+- **Your mail carries Mailgi branding**, added for you. Don't add it yourself.
+- **Every successful send says so**, in the response's `billing` object:
+
+```json
+{
+  "messageId": "...",
+  "billing": {
+    "status": "unfunded",
+    "message": "Fund this mailbox to remove ads.",
+    "topupPage": "https://app.mailgi.xyz/topup?address=buzzing-falcon%40mailgi.xyz"
+  }
+}
+```
+
+  Forward `topupPage` to whoever you work for if the branding or the cap gets
+  in the way. `GET /v1/billing` → `freeTier` shows
+  `{ "active": true, "newRecipientsPerDay": 50, "newRecipientsUsedToday": 3 }`.
+- **Past the cap**, the whole send is refused with `402 PAYMENT_REQUIRED` and
+  nothing is sent: `details.reason` is `"free_tier_limit"`, with
+  `newRecipientsPerDay`, `newRecipientsUsedToday`, `unknownRecipients` and
+  `topupPage`. Drop new recipients, wait for the next UTC day, or get topped up.
+
+**The first top-up ends the free tier for good**: no branding, no daily cap on
+new recipients, and from then on you pay the meters below. Running the balance
+down to zero later does not bring the free tier back; it means the 402 below.
+
+### What sending costs (after the first top-up)
 
 Everything external is metered and paid from a prepaid **wallet**. Receiving
 is free. Mail to any `@mailgi.xyz` address, or to any address on your own
@@ -166,10 +240,35 @@ confirmations, verification codes, notifications, human replies all make their
 sender a known contact at no cost to you. Replying to them costs the per-email
 price only.
 
-**Whose wallet?** A self-registered `@mailgi.xyz` agent has its own. An agent
-on an organisation's domain spends from — and tops up — the **organisation's**
-wallet, shared with every agent on its domains. `GET /v1/billing` tells you
-which (`wallet.kind` is `agent` or `org`).
+**Whose wallet?** An agent on an organisation's domain spends from — and tops
+up — the **organisation's** wallet, shared with every agent on its domains. A
+`@mailgi.xyz` agent spends from the wallet it is linked to: its first top-up
+creates one and links it (see "MailPass"). Before that it has none of its own
+(`wallet.kind` is `agent`). `GET /v1/billing` tells you which: `wallet.kind` is
+`wallet`, `org` or `agent`.
+
+### MailPass: instant mail for a `@mailgi.xyz` mailbox
+
+A MailPass makes this mailbox's inbound mail instant instead of 15 minutes late.
+It is charged per mailbox per month, up front, from the mailbox's wallet. The
+price is `GET /v1/billing` → `prices.mailPassUsd`. It renews automatically while
+the wallet can pay, and lapses back to delayed mail when it can't. Mailboxes on
+your own organisation's domain are always instant and never need one.
+
+- **Starting one:** pay this mailbox's pay link (`POST /v1/billing/topup`, or the
+  `topupPage` / `payLink` in any notice). The first payment creates a wallet,
+  links this mailbox to it and starts the MailPass.
+- **One wallet, several mailboxes:** on the mailbox that created the wallet,
+  `POST /v1/billing/link-codes` returns `{ code, expiresAt }`: single use, valid
+  24 hours. Another mailbox you control calls `POST /v1/billing/link` with
+  `{ "code": "..." }`. It then spends from the same wallet and its MailPass
+  starts, or the call returns `402` if the wallet can't pay the first month (the
+  code stays valid). Mail between mailboxes on one wallet is always instant.
+- **Stopping:** `DELETE /v1/billing/link` unlinks this mailbox. The month already
+  paid stays instant. It is refused (`402`) while the wallet is in debt, and a
+  mailbox that was ever linked doesn't return to the free tier.
+- **Checking:** `GET /v1/billing` → `mailPass`:
+  `{ "active": true, "until": "...", "linked": true, "priceUsd": 0.2 }`.
 
 If the wallet cannot cover a send, **the whole send is refused** with
 `402 PAYMENT_REQUIRED` and nothing is sent:
@@ -206,6 +305,7 @@ negative. Your **low-balance level** is about one week of your own spend
 | below the level | `low_balance` | everything works; you are warned |
 | below $0 | `in_debt` | outside sending is refused (402); reading, receiving and internal mail work |
 | below **minus** the level | `reads_blocked` | reading stops too (agent wallets only) |
+| never topped up | `unfunded` | free tier, see above; shown on successful sends instead of `low_balance` |
 
 **You are told on every read.** While the status is not `ok`, `GET /v1/mail`,
 `GET /v1/mail/<id>` and a successful `POST /v1/mail/send` carry a `billing`
@@ -389,8 +489,9 @@ It is the HMAC key you need to verify that a delivery really came from Mailgi,
 and `GET /v1/webhook-endpoints` does not return it. Lose it and you must delete
 the endpoint and create a new one.
 
-Optional fields: `eventTypes` (default `["mail.received"]` — the only event
-there is today) and `scope`.
+Optional fields: `eventTypes` (default `["mail.received", "mail.held"]`) and
+`scope`. Endpoints created before `mail.held` existed don't get it; create a new
+one to add it.
 
 **`scope: "domain"` returns `501` / `NOT_AVAILABLE_YET`.** It would notify you
 about mail for every agent on a whole domain, which discloses other people's
@@ -421,6 +522,23 @@ There is no update endpoint. To change a URL, delete and create.
   "size": 4096,
   "spam": false,
   "fetchUrl": "https://api.mailgi.xyz/v1/mail/<id>"
+}
+```
+
+**`mail.held`** fires at once when mail to a `@mailgi.xyz` mailbox without a
+MailPass is held (§3, "Held mail"). It doesn't name the sender, and
+`mail.received` follows at release:
+
+```json
+{
+  "event": "mail.held",
+  "agentId": "...",
+  "messageId": "...",
+  "receivedAt": "2026-09-03T10:00:00Z",
+  "releaseAt": "2026-09-03T10:15:00Z",
+  "holdMinutes": 15,
+  "mailPassUsd": 0.2,
+  "payLink": "https://app.mailgi.xyz/topup?address=buzzing-falcon%40mailgi.xyz"
 }
 ```
 
@@ -503,12 +621,17 @@ Common codes:
 - `400 VALIDATION_ERROR` — a field failed validation; `error.details` lists which
 - `401 UNAUTHORIZED` — missing or invalid API key
 - `402 PAYMENT_REQUIRED` — your wallet cannot cover this send's external
-  recipients, or (`details.reason: "debt_limit"`) its debt is past the limit
-  and reading is paused. `error.details` says how much is needed and where to
-  top up. See §4, "What sending costs" and "Running low, and debt".
+  recipients, or (`details.reason: "free_tier_limit"`) the send would go past
+  the free tier's 50 new recipients today, or (`details.reason: "debt_limit"`)
+  its debt is past the limit and reading is paused. `error.details` says how
+  much is needed and where to top up. See §4, "The free tier", "What sending
+  costs" and "Running low, and debt".
 - `403 FORBIDDEN` — your domain has not finished outbound setup, or sending is
   suspended for your organisation
 - `404 NOT_FOUND` — message or mailbox not found
+- `404 MESSAGE_HELD` — the message exists but is held: this `@mailgi.xyz`
+  mailbox has no MailPass. `error.details` has `releaseAt` and `payLink`. See §3,
+  "Held mail"
 - `409 CONFLICT` — e.g. mailbox name already exists
 - `429 TOO_MANY_REQUESTS` — a sending quota from §4 is exhausted; wait for the window
 - `429 RATE_LIMITED` — too many requests per minute from one IP, any endpoint
@@ -555,9 +678,9 @@ EMAIL=$(echo $RESP | jq -r .emailAddress)
 KEY=$(echo $RESP | jq -r .apiKey)
 
 # 2. Send a message to yourself (free: mail between Mailgi addresses costs
-# nothing). Mail to outside addresses needs a balance; without one you get a
-# 402 with a top-up link (see §4). Give the mailbox a moment first: sending
-# right after registering can 500 while it is provisioned. Retry once if so.
+# nothing). On the free tier you can also write to up to 50 new outside
+# addresses a day, with Mailgi branding (see §4). Give the mailbox a moment first:
+# sending right after registering can 500 while it is provisioned. Retry once.
 sleep 3
 curl -s -X POST https://api.mailgi.xyz/v1/mail/send \
   -H "Authorization: Bearer $KEY" \
@@ -741,6 +864,60 @@ If the token is invalid, revoked, or the domain isn't verified yet, you
 get back a generic `401 Invalid or unusable registration token` —
 deliberately the same error for all three cases, so tell the human to
 check the dashboard rather than guessing which one it is.
+
+---
+
+## 15. MCP server
+
+Everything in this file is also available as tools on a hosted MCP
+(Model Context Protocol) server, for agents that run inside an MCP client
+such as Claude Code, Claude Desktop or Cursor.
+
+```
+Endpoint:   https://api.mailgi.xyz/mcp
+Transport:  Streamable HTTP, stateless
+```
+
+**Credentials are HTTP headers on the MCP connection, never tool arguments:**
+
+| Header | Unlocks |
+|---|---|
+| `Authorization: Bearer amb_...` | agent tools — your own mail, mailboxes, API keys, wallet, webhooks |
+| `X-Mailgi-Session: <token>` | org tools — the dashboard actions of the human who signed in |
+| neither | public tools only: `register_agent`, `org_login_request_code`, `org_login_verify`, `topup_lookup`, `topup_start`, `topup_status`, `health` |
+
+**Tool names map 1:1 to the REST endpoints in this file and behave
+identically** — each tool calls that endpoint and returns its response.
+Same validation, same rate limits, same metering against the same wallet,
+same errors. `mail_send` is `POST /v1/mail/send`, `mail_list` is
+`GET /v1/mail`, `mail_get` is `GET /v1/mail/{id}`, and so on. The full
+table of tools and endpoints: https://www.mailgi.xyz/mcp.html
+
+**Bootstrap — getting from no credentials to a working connection:**
+
+1. Connected with no headers, call `register_agent` (same body as
+   `POST /v1/agents/register`, section 1). It returns your address and an
+   API key **shown exactly once**.
+2. You cannot attach that key to the connection yourself. Give it to your
+   human and ask them to add `Authorization: Bearer <apiKey>` to the MCP
+   client config and reconnect. In Claude Code:
+   `claude mcp add --transport http mailgi https://api.mailgi.xyz/mcp --header "Authorization: Bearer amb_..."`
+   (after `claude mcp remove mailgi` if it was added without the header).
+3. For org tools, call `org_login_request_code` with your human's email
+   address. They receive a 6-digit code; ask them for it and call
+   `org_login_verify` with the email and code. It returns a session token —
+   ask them to add it as `X-Mailgi-Session`. Call `org_logout` when done.
+
+**Know before you use it:**
+
+- A session token carries the signing-in human's org role. With an owner's
+  or admin's session you can detach domains, remove members and delete
+  inboxes. Tools that delete, revoke or remove are annotated
+  `destructiveHint` — confirm with your human before calling them.
+- There is no OAuth, so this server cannot be added as a hosted custom
+  connector in claude.ai or ChatGPT yet. Use a client where the human
+  controls the headers.
+- The server exposes this file as the MCP resource `mailgi://skill`.
 
 ---
 

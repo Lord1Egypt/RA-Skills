@@ -1,7 +1,7 @@
 ---
 name: "AI Trading Strategy Backtester"
 description: "AI-powered quantitative trading strategy backtesting assistant. Designs, codes, and evaluates trading strategies across historical market data. Supports A-share (China), Hong Kong, US equity markets. Covers mean reversion, momentum, breakout, pairs trading, and machine learning-based strategies. Built for quantitative analysts and retail traders. Keywords: trading backtest, quantitative strategy, algorithmic trading, Python backtesting, backtrader, vectorbt, trading strategy, momentum, mean reversion, pairs trading, A-share strategy, financial data, technical indicators."
-version: "5.0.6"
+version: "5.0.7"
 ---
 
 # AI Trading Strategy Backtester
@@ -10,7 +10,7 @@ version: "5.0.6"
 
 An AI-powered quantitative trading strategy design and backtesting assistant that helps you transform trading ideas into fully-coded, backtested strategies. It guides you through strategy design (mean reversion, momentum, breakout, pairs trading, ML-based), implements them in Python (backtrader, vectorbt, pandas), evaluates performance across historical data for A-share, HK, and US markets, and produces risk-adjusted performance reports.
 
-## Market & Regulatory Context (as of 2026-11-19)
+## Market & Regulatory Context (as of 2026-11-27)
 
 | 事项 | 对回测的直接影响 |
 |------|----------------|
@@ -20,7 +20,7 @@ An AI-powered quantitative trading strategy design and backtesting assistant tha
 | **交易成本口径** | 佣金、印花税、滑点合计常被低估，年换手率高时成本可吞掉全部超额收益 |
 | **数据复权与幸存者偏差** | 使用不复权价格或仅含现存标的历史，会系统性高估策略表现 |
 
-**新动态（截至 2026-11-19）：**
+**新动态（截至 2026-11-27）：**
 - **程序化交易监管常态化**：境内市场对程序化交易的报备、交易行为监测与异常交易认定持续细化，高频与日内回转类策略的合规成本上升。回测时应把"报单频率上限""撤单率约束"纳入假设，而非只追求收益最大化。
 - **AI 选股与因子挖掘的合规关注上升**：以大模型或机器学习生成交易信号时，监管与机构风控普遍要求可解释、可复现、留痕，纯黑箱信号在实盘落地时面临额外审核成本。
 - **数据要素与另类数据应用扩展**：产业、舆情、供应链等另类数据被更广泛用于因子构建，但数据可得性的时点（point-in-time）问题更突出，回测中须严格避免引入未来信息。
@@ -515,7 +515,7 @@ This skill provides backtesting tools and historical analysis for educational an
 > **Source**: Alibaba Dianjin Digital Employee — `investment-advisor` (AI投资顾问) & `quant-researcher` (AI量化研究员)  
 > **Essence**: 策略回测、参数优化、风险控制、绩效评估  
 > **Integrated**: 2026-05-31
-> **Last reviewed**: 2026-11-19
+> **Last reviewed**: 2026-11-27
 
 ---
 
@@ -771,4 +771,42 @@ Additional Cases:
 ### 时效性说明
 
 - 本期时效性核查：**截至 2026-11-19**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
+- 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。
+
+## 本轮增量（2026-11-27）：复核维度与举例补充
+
+> 本节为 2026-11-27 例行轮转的净增量记录：新增举例与复核维度均为本期首次出现，与既有条目不重复；仅作方法论参考，需具备相应资质的人员复核后使用。
+
+### 补充举例（按模块，本期新增）
+
+**### Step 3: Backtest Execution**：
+
+- 执行前提清单补一条「市场口径是否经人工确认」的占位核对项，由使用者圈选并留白依据，草稿不预置成交假设。
+- 为成本与过滤对照新增一张纸面对照：左列列口径标签，右列留白记录需人工核实的参数，不代为回测。
+
+**### Step 5: Optimization & Stress Testing**：
+
+- 稳健性清单补一条「情形是否仅为纸面观测」的占位标注位，草稿不预置最优参数。
+- 为压力情形新增一行「需人工确认的假设」占位：标注假设标签，具体数值留白。
+
+### 新增复核维度表（2026-11-27）
+
+> 本表新增「由谁执行 / 数据来源 / 复核要点 / 风险等级 / 适用边界」等维度列，把口径责任、数据来源与人工复核要求落到具体条目。
+
+| 复核维度 | 由谁执行 | 数据来源 | 复核要点 | 风险等级 | 适用边界 |
+| --- | --- | --- | --- | --- | --- |
+| 市场口径留白 | 研究人 + 复核人 | 执行前提清单草稿 | 是否标注待人工确认、未预置成交假设 | 高 | 纸面对照，结论需人工确认 |
+| 纸面观测标注 | 研究人 | 稳健性占位表 | 是否注明纸面观测、未预置最优参数 | 高 | 文档记录，不构成策略上线 |
+
+### 适用边界 / 数据最小化 / 执行边界（本期复核与补齐）
+
+**适用边界**：本技能仅用于策略回测与稳健性示例的纸面草稿的方法论参考与纸面草稿，输出为供使用者自行判断的参考文本；不构成正式结论、专业意见或对外发布内容。涉及正式策略上线、实盘交易与对外绩效披露的场景不适用，应由具备相应资质的人员按既有制度独立完成。
+
+**数据最小化**：本期补齐：示例、清单与提问只保留占位标签与抽象情境描述，不写入可识别个人、客户或机构的信息；草稿阶段即标注需人工复核后再补充任何具体背景。
+
+**执行边界**：本期复核：文中「生成 / 输出 / 形成」均指生成待确认的纸面草稿，由使用者自行决定是否采用；不代为发布、提交、保存或进行任何系统操作。
+
+### 时效性说明
+
+- 本期时效性核查：**截至 2026-11-27**。正文中的监管、政策、市场与行业动态为公开资料整理，具体文号、生效日期、数据区间与统计口径请以监管机构及官方渠道最新发布为准；未获官方原文核实的条目标注「需人工复核」，不填入未经核实的文号、日期或数字。
 - 历史条目保留原发布日期以便追溯；本次更新未引入新的具体文号或统计数值。

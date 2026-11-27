@@ -1,0 +1,11 @@
+name: agent-spend-gate
+version: 1.1.0
+description: Local policy check for agent spending - budgets, merchant allowlists, Trust Rank floors and approval thresholds with a hash-linked audit log. Read-only; no wallet or key access.
+author: PayCensusLabs
+homepage: https://github.com/PayCensusLabs/openclaw-skill-agent-spend-gate
+skill_file: SKILL.md
+tags:
+  - agents
+  - budget
+  - x402
+  - trust

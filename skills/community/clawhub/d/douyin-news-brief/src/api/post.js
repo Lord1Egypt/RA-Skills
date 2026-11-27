@@ -4,6 +4,7 @@
 const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost } = require("../utils/cost");
 
 function processPostResults(data) {
   if (!data || typeof data !== "object" || Array.isArray(data)) {
@@ -52,7 +53,7 @@ async function createPostTask(token, url, limit) {
  * @param {string} token 技能令牌
  * @param {string} url 抖音博主主页URL
  * @param {number} limit 作品数量
- * @returns {Promise<{post?: Array, user?: Object}|null>} 作品列表与博主信息
+ * @returns {Promise<{ results: {post?: Array, user?: Object}|null, cost?: number }>}
  * @throws {Error} API调用失败时抛出错误
  */
 async function getPostTask(token, url, limit) {
@@ -66,10 +67,11 @@ async function getPostTask(token, url, limit) {
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
   if (response.data) {
-    return processPostResults(response.data);
+    return { results: processPostResults(response.data), cost };
   }
-  return null;
+  return { results: null, cost };
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 {
   "name": "move_task_to_backlog",
-  "description": "Move a task to the backlog. This removes the task from its current scheduled day. Confirm the task title and ID with the user before executing.",
+  "description": "Move one scheduled Sunsama task off its day and into the user's Sunsama backlog. WRITE - this removes the task from its current scheduled day. Use it only when the user asked to defer or unschedule that specific task, and confirm the task title and ID with the user first. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

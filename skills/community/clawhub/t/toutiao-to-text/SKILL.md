@@ -1,7 +1,7 @@
 ---
 name: toutiao-to-text
 description: "今日头条转文字 / 今日头条文案提取 / 头条文章提取 / 今日头条 API：一条头条链接读成文字——文章的标题、作者、发布日期、正文全文、每张配图的描述和图上的字；视频的口播逐字稿（带时间）和画面文字；再加逐字核对的要点。用户发来 toutiao.com 或 m.toutiao.com 的文章、视频链接，要提取正文、扒视频文案、让 AI 总结或改写时使用。不用登录头条，不用 Cookie，不用自己起浏览器。文章 1 积分起，1 分钟视频 2 积分；注册送 10 积分。"
-version: 1.0.1
+version: 1.0.3
 homepage: https://linkdigest.dev/zh/toutiao-api?ref=skill-toutiao-to-text
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":false,"description":"可选。LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-toutiao-to-text&next=/app/keys 创建，注册送 10 积分；没有 Key 时每天可免费看 2 条摘要"}],"homepage":"https://linkdigest.dev/zh/toutiao-api?ref=skill-toutiao-to-text"}}
 required_environment_variables:
@@ -25,8 +25,8 @@ required_environment_variables:
 ## 一条命令
 
 ```bash
-python3 {baseDir}/scripts/linkdigest.py "https://www.toutiao.com/article/<编号>/"
-python3 {baseDir}/scripts/linkdigest.py "https://www.toutiao.com/video/<编号>/" --depth transcript   # 长视频省钱：只要逐字稿，每开始 2 分钟 1 积分
+python3 {baseDir}/scripts/linkdigest.py "https://www.toutiao.com/article/7709705250554266155"
+python3 {baseDir}/scripts/linkdigest.py "$VIDEO_LINK" --depth transcript   # 长视频省钱：只要逐字稿，每开始 2 分钟 1 积分
 python3 {baseDir}/scripts/linkdigest.py "<头条链接>" --format json
 python3 {baseDir}/scripts/linkdigest.py "<头条链接>" --translate-to en                               # 另附英文译文，+1 积分
 ```
@@ -38,10 +38,18 @@ python3 {baseDir}/scripts/linkdigest.py "<头条链接>" --translate-to en      
 ```bash
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" -H "Content-Type: application/json" \
-  -d '{"url": "https://www.toutiao.com/article/<编号>/", "format": "json"}'
+  -d '{"url": "https://www.toutiao.com/article/7709705250554266155", "format": "json"}'
 ```
 
 返回 `202` 时用响应里的 `poll_url` 约 15 秒后 GET。
+
+**不要自己编链接或编号来测试。** 上面尖括号里的是占位符：带尖括号的链接会得到 `400 placeholder_link`，编出来的编号会得到 `422`，都不扣费，也读不到东西。用户还没给链接就先向用户要。只想确认 Key 能用，读这条真实的示例笔记（已读过，0 积分）：
+
+```bash
+python3 {baseDir}/scripts/linkdigest.py "https://www.xiaohongshu.com/discovery/item/6a6bf662000000002402de7e?xsec_token=CBCe01s1uyd2C8uMx6ycYcnEwPV5_31OX1u_I19FCSd54=&xsec_source=app_share"
+```
+
+Never invent a link or an id to test with; ask the user for one, or read the sample above (already read, 0 credits) to check the key.
 
 ## 返回的字段
 

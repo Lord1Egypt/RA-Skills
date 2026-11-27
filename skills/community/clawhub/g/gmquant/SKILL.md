@@ -1,30 +1,11 @@
 ---
 name: gm-quant
-version: 2.1.0
-description: >
-  掘金量化 Python SDK 专家技能。 当用户提到掘金、gm、gm.api、掘金量化、掘金策略、掘金SDK、掘金终端、
-  量化策略开发、回测、实时行情、订阅行情、历史行情、下单、委托、持仓、
-  order_volume、subscribe、history、set_token、get_symbols、get_symbol_infos、
-  get_history_symbol、history_n、current、last_tick、current_price、get_trading_dates、
-  order_percent、order_value、order_target_volume、algo_order、
-  get_orders、get_position、get_cash、bond_convertible、
-  L2行情、逐笔成交、逐笔委托、schedule定时任务、 财务数据、资产负债表、利润表、现金流量表、估值指标、PE/PB/PS/股息率、
-  市值、股本、流通股、成分股、行业分类、 可转债分析、转股溢价率、纯债价值、ETF成分股、基金净值、 期货合约信息、仓单数据、成交持仓排名、连续合约、
-  stk_get_fundamentals、stk_get_daily_valuation、stk_get_index_constituents、
-  stk_get_industry_category、stk_get_industry_constituents、stk_get_symbol_industry、
-  stk_get_sector_category、stk_get_sector_constituents、stk_get_symbol_sector、
-  stk_get_dividend、stk_get_ration、stk_get_adj_factor、stk_get_shareholder_num、
-  stk_get_top_shareholder、stk_get_share_change、stk_abnor_change_stocks、
-  stk_abnor_change_detail、stk_quota_shszhk_infos、stk_active_stock_top10_shszhk_info、
-  stk_get_money_flow、stk_get_finance_audit、stk_get_finance_forecast、
-  bnd_get_analysis、bnd_get_conversion_price、bnd_get_call_info、bnd_get_put_info、bnd_get_amount_change、
-  fnd_get_portfolio、fnd_get_etf_constituents、fnd_get_net_value、fnd_get_adj_factor、fnd_get_dividend、fnd_get_split、fnd_get_share、
-  fut_get_contract_info、fut_get_continuous_contracts、fut_get_transaction_rankings、fut_get_warehouse_receipt、
-  get_open_call_auction
-  时，自动加载此 skill。
+version: 2.2.0
+description: |
+  掘金量化 Python SDK 专家技能。 当用户提到掘金、gm、gm.api、掘金量化、掘金策略、掘金SDK、掘金终端、 量化策略开发、回测、实时行情、订阅行情、历史行情、下单、委托、持仓、 order_volume、subscribe、history、set_token、get_symbols、get_symbol_infos、 get_history_symbol、history_n、current、last_tick、current_price、get_trading_dates、 order_percent、order_value、order_target_volume、algo_order、 get_orders、get_position、get_cash、bond_convertible、 L2行情、逐笔成交、逐笔委托、schedule定时任务、 财务数据、资产负债表、利润表、现金流量表、估值指标、PE/PB/PS/股息率、 市值、股本、流通股、成分股、行业分类、 可转债分析、转股溢价率、纯债价值、ETF成分股、基金净值、 期货合约信息、仓单数据、成交持仓排名、连续合约、 stk_get_fundamentals、stk_get_daily_valuation、stk_get_index_constituents、 stk_get_industry_category、stk_get_industry_constituents、stk_get_symbol_industry、 stk_get_sector_category、stk_get_sector_constituents、stk_get_symbol_sector、 stk_get_dividend、stk_get_ration、stk_get_adj_factor、stk_get_shareholder_num、 stk_get_top_shareholder、stk_get_share_change、stk_abnor_change_stocks、 stk_abnor_change_detail、stk_quota_shszhk_infos、stk_active_stock_top10_shszhk_info、 stk_get_money_flow、stk_get_finance_audit、stk_get_finance_forecast、 bnd_get_analysis、bnd_get_conversion_price、bnd_get_call_info、bnd_get_put_info、bnd_get_amount_change、 fnd_get_portfolio、fnd_get_etf_constituents、fnd_get_net_value、fnd_get_adj_factor、fnd_get_dividend、fnd_get_split、fnd_get_share、 fut_get_contract_info、fut_get_continuous_contracts、fut_get_transaction_rankings、fut_get_warehouse_receipt、 get_open_call_auction、 持久化数据、persist_init、persist_set、persist_get、persist_delete、persist_clear、persist_delete_bucket、persist_get_all_buckets、persist_get_all_keys、persist_set_obj、persist_get_obj、 策略状态持久化、股票池持久化、跨bar状态、跨运行状态、 free_shr、free_turnrate、自由流通股本、自由流通换手率、自由流通市值、 时，自动加载此 skill。
 ---
 
-# 掘金量化 SDK 技能 — v2.0 自然语言策略引擎
+# 掘金量化 SDK 技能 — v2.2 自然语言策略引擎
 
 ## 定位
 
@@ -269,13 +250,10 @@ python scripts/run_strategy.py --strategy <策略文件路径> --strategy-id <�
 | `12-dataobjects.md` | 数据对象字段定义 |
 | `13-enums.md` | 枚举常量速查 |
 | `14-context.md` | context 对象 |
-| `15-user-guide.md` | 用户指南（常见问题） |
-| `16-premium-data-apis.md` | 增值数据 API 速查合集（股票/基金/转债/期货） |
-| `17-financial-data-fields.md` | 财务数据字段定义 |
-| `18-stock-premium-apis.md` | 股票增值数据 API 完整文档（行业/板块/分红/龙虎榜/沪深港通/资金流向等） |
-| `19-fund-premium-apis.md` | 基金增值数据 API 完整文档（ETF成分股/净值/资产组合/规模等） |
-| `20-cb-premium-apis.md` | 可转债增值数据 API 完整文档（转股价/赎回/回售/分析指标等） |
-| `21-futures-premium-apis.md` | 期货增值数据 API 完整文档（品种信息/成交持仓排名/仓单/连续合约映射等） |
+| `16-premium-data-apis.md` | 付费增值数据 API（期货/基金/可转债） |
+| `17-financial-data-fields.md` | 股票财务与基础数据字段速查 |
+| `18-user-guide.md` | 使用指南 |
+| `19-persist-data.md` | **持久化数据 API 全集**（persist_init/set/get/delete/clear/bucket 管理） |
 
 ## 交易 API 补充
 
@@ -522,6 +500,177 @@ get_history_l2_queue(symbol, start_time, end_time, fields=None, df=True)
 
 > ⚠️ L2 数据接口为付费功能，仅特定券商可用，需要开通相应权限。
 
+## 持久化数据（gm ≥ 3.0.191）
+
+策略运行期间的 key-value 持久化存储，用于保存股票池、动态参数、策略级持仓记录等**需要跨 bar、跨进程重启保留**的状态。
+
+> ⚠️ **必须 `pip install gm --upgrade` 到 3.0.191 及以上**，低版本没有这些函数。
+
+### 通用约定（先看这段，能避掉 80% 的坑）
+
+| 约定 | 说明 |
+|------|------|
+| **调用时机** | 允许在策略运行（`init` + `run`）**和数据研究场景**调用；非策略运行期间调用会被拒绝 |
+| **策略隔离** | 每个策略运行周期只能绑定 **1 个 bucket**，对应 1 个持久化数据文件 |
+| **模式切换** | 同一 bucket 的回测/实时数据**不隔离**，切换模式仍访问同一份数据 |
+| **返回约定** | 写操作统一返回 `status`，`0` 成功，非 0 失败 |
+| **并发** | 同一数据文件同一时间只能被一个策略进程访问，后访问者初始化即报错 |
+
+### 错误码
+
+```python
+71001  ERR_PERSIST_INIT_ERROR      # Persist组件初始化失败
+71002  ERR_PERSIST_NOT_INIT        # Persist组件未初始化
+71003  ERR_PERSIST_KEY_ERROR       # KEY太长或为空（key 上限 512 字符）
+71004  ERR_PERSIST_STSTEM_ERROR    # Persist系统错误
+71005  ERR_PERSIST_USING           # bucket正在使用中，无法删除
+71006  ERR_PERSIST_INIT_ALREADY    # Persist组件已初始化，不能再初始化别的bucket
+```
+
+### persist_init — 初始化持久化数据
+
+```python
+persist_init(bucket, is_async=True) -> int
+```
+
+| 参数 | 类型 | 必填 | 默认 | 说明 |
+|------|------|:---:|------|------|
+| `bucket` | str | Y | 无 | 持久化数据标识（命名空间），同一策略全局唯一 |
+| `is_async` | bool | N | `True` | 异步持久化。**回测/数据查询模式请传 `False`** |
+
+```python
+bucket = "strategy_demo"
+status = persist_init(bucket, is_async=False)
+if status == 0:
+    print("初始化成功")
+else:
+    print("初始化失败, 错误码:", status)
+```
+
+**`is_async` 怎么选：**
+- `True`（默认）：`persist_set` 立即返回，几毫秒后异步落盘。适合盘中高频写入（行情、持仓、资金变化），不阻塞行情处理
+- `False`：同步落盘，`persist_set` 确认写入硬盘才返回。适合写入量少、或写完进程要立即退出。**非实时模式（回测 / 数据查询）请设为 `False`**
+
+**注意事项：**
+1. 必须在策略运行期间调用（`init` 阶段），每个运行周期只能初始化 1 个 bucket
+2. 重复初始化**同一 bucket** 幂等返回 `0`；初始化**不同 bucket** 返回 `71006`
+3. 初始化成功后才能调用 set/get/delete/clear，且这些方法**无需再指定 bucket**
+
+### persist_set / persist_get — 字符串读写
+
+```python
+persist_set(key, value) -> int      # value 必须是 str，按 UTF-8 编码
+persist_get(key) -> str | None
+```
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|:---:|------|
+| `key` | str | Y | 同一 bucket 下唯一，**长度上限 512** |
+| `value` | str | Y | 字符串数据值 |
+
+```python
+# 写
+status = persist_set("stock_pool", "SHSE.600519,SZSE.000001")
+if status == 0:
+    print("写入成功")
+
+# 读（key 不存在返回 None，不视为错误）
+value = persist_get("stock_pool")
+if value is not None:
+    print("读取成功:", value)
+else:
+    print("该 key 不存在")
+```
+
+> `persist_set` 对已存在的 key 是**覆盖写入**；首次写入会自动创建 bucket 数据文件。
+
+### persist_set_obj / persist_get_obj — JSON 对象读写
+
+自动序列化/反序列化，适合保存 dict / list 等结构化数据（比手动 json.dumps 更省事）。
+
+```python
+persist_set_obj(key, value) -> int
+persist_get_obj(key) -> Any | None
+```
+
+```python
+pool = {"stocks": ["SHSE.600519", "SZSE.000001"], "updated_at": 20260928}
+status = persist_set_obj("stock_pool", pool)
+
+data = persist_get_obj("stock_pool")
+print(data["stocks"])   # ["SHSE.600519", "SZSE.000001"]
+```
+
+### persist_delete / persist_clear — 删除
+
+```python
+persist_delete(key) -> int    # 删除单个 key；key 不存在也返回 0（幂等）
+persist_clear() -> int        # 清空当前 bucket 全部 key-value
+```
+
+```python
+persist_delete("stock_pool")
+persist_clear()
+```
+
+### persist_delete_bucket / persist_get_all_buckets / persist_get_all_keys — bucket 管理
+
+```python
+persist_delete_bucket(bucket) -> int    # 只能删【非当前绑定】的 bucket，删当前绑定返回 71005
+persist_get_all_buckets() -> list[str]  # 本地全部 bucket 列表
+persist_get_all_keys() -> list[str]     # 当前绑定 bucket 的全部 key
+```
+
+```python
+ids = persist_get_all_buckets()
+print("本地持久化数据标识:", ids)      # 例如 ['strategy_demo', 'signal_cache']
+
+keys = persist_get_all_keys()
+print("bucket 下全部 key:", keys)      # 例如 ['stock_pool', 'strategy_name']
+
+persist_delete_bucket(bucket="other_strategy_bucket")
+```
+
+> `persist_get_all_buckets()` 只读元数据，**不受「单次进程只能读写 1 个 bucket」限制**，可在 `persist_init()` 之前调用。
+
+### 实战：用 persist 做跨 bar / 跨重启的状态保持
+
+```python
+BUCKET = 'my_strategy_state'
+
+def init(context):
+    # 回测/数据查询模式用 False
+    st = persist_init(BUCKET, is_async=False)
+    if st != 0:
+        print(f'persist 初始化失败: {st}')
+
+    # 首次运行创建股票池，之后复用
+    if persist_get('stock_pool') is None:
+        persist_set('stock_pool', 'SHSE.600519,SZSE.000001')
+        print('首次写入股票池')
+
+    # 恢复上次运行留下的计数（跨进程重启的关键）
+    cnt = persist_get('bar_count')
+    context.bar_count = int(cnt) if cnt else 0
+    print(f'恢复 bar_count = {context.bar_count}')
+
+    subscribe(symbols='SHSE.600519', frequency='1d', count=20)
+
+def on_bar(context, bars):
+    context.bar_count += 1
+    persist_set('bar_count', str(context.bar_count))       # 每根 bar 落盘
+    persist_set_obj('meta', {'bars': context.bar_count})   # 结构化状态
+```
+
+### 持久化数据实测要点（已实测验证）
+
+1. **数据查询模式也能用**：`set_token()` 之后直接 `persist_init` 即可，不一定要 `run()`。实测返回 0，可正常读写
+2. **策略 `run()` 场景正常**：`init` 里 init + set，`on_bar` 里 get/set，跨 bar 状态保持正常
+3. **跨运行持久化生效**：重跑同一策略，上次写入的 `bar_count=9` 能被读到并接着累加到 18 —— 这才是持久化的核心价值
+4. **未 init 直接 set 返回 `71002`**（不是抛异常），容易静默失败，务必检查返回值
+5. **未 init 直接 `persist_get_all_keys()` 会抛 `UnicodeDecodeError`**（SDK 缺陷），必须先 `persist_init`
+6. **`persist_get` 对不存在的 key 返回 `None`**，不报错；`persist_delete` 对不存在的 key 返回 `0`（幂等）
+
 ## 进阶策略示例
 
 ### 配对交易（均值回归）
@@ -660,6 +809,94 @@ def rebalance(context, bar_dict):
 ```
 
 ## API 参数补充说明
+
+### 基础指标：股本 / 换手率（stk_get_daily_basic / _pt）
+
+**函数原型：**
+
+```python
+# 截面（多标的），查询指定日期的股本等基础指标
+stk_get_daily_basic_pt(symbols, fields, trade_date=None, df=False)
+
+# 时序（单标的），查询指定时间段的每日基础指标
+stk_get_daily_basic(symbol, fields, start_date=None, end_date=None, df=False)
+```
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|:---:|------|
+| `symbols` / `symbol` | str or list / str | Y | `_pt` 版可多标的（逗号分隔或 list）；无 `_pt` 版**只能单标的** |
+| `fields` | str | Y | 必填，逗号分隔，**不能为空、不能超过 20 个** |
+| `trade_date` | str | N | 仅 `_pt` 版。交易日期 `%Y-%m-%d`，`None` = 最新 |
+| `start_date` / `end_date` | str | N | 仅时序版。交易日期 `%Y-%m-%d`，`None` = 最新 |
+| `df` | bool | N | 默认 `False` 返回 `list[dict]`，`True` 返回 DataFrame |
+
+**基础指标字段表（含新增的 free_shr / free_turnrate）：**
+
+| 字段名 | 类型 | 中文名称 | 量纲 | 说明 |
+|--------|------|---------|------|------|
+| `tclose` | float | 收盘价 | 元 | |
+| `turnrate` | float | 当日换手率 | % | 成交量 ÷ 流通股本 |
+| `ttl_shr` | float | 总股本 | 股 | |
+| `circ_shr` | float | 流通股本 | 股 | = 无限售条件流通股本 + 有限售条件流通股本 |
+| `ttl_shr_unl` | float | 无限售条件流通股本 | 股 | **A股 + H股** |
+| `ttl_shr_ltd` | float | 有限售条件股本 | 股 | |
+| `a_shr_unl` | float | 无限售条件流通A股股本 | 股 | **行情软件定义的"流通股"** |
+| `h_shr_unl` | float | 无限售条件流通H股股本 | 股 | |
+| **`free_shr`** | float | **自由流通股本** ⭐新增 | 股 | = A股总股本 − A股限售股本 − 减持受控非限售股本 − 合计持股5%以上大股东持有的其他非限售股本 |
+| **`free_turnrate`** | float | **自由流通换手率** ⭐新增 | % | = 成交量 ÷ 自由流通股本 × 100% |
+
+```python
+# 截面查询（推荐批量场景）
+df = stk_get_daily_basic_pt(
+    symbols=['SHSE.600519', 'SZSE.000001'],
+    fields='tclose,turnrate,ttl_shr,circ_shr,ttl_shr_unl,a_shr_unl,h_shr_unl,free_shr,free_turnrate',
+    trade_date=None, df=True)
+
+# 时序查询（单标的）
+df = stk_get_daily_basic(
+    symbol='SHSE.600519',
+    fields='tclose,turnrate,circ_shr,free_shr,free_turnrate',
+    start_date='2026-11-18', end_date='2026-11-26', df=True)
+```
+
+**流通市值怎么算（重要）：**
+
+`stk_get_daily_basic` 里的 `tclose` 是**当日收盘价**，但市值需要用**上一交易日收盘价**计算（避免用当日收盘价算当日市值，造成未来函数）。所以：
+
+```python
+import pandas as pd
+
+d = stk_get_daily_basic(symbol='SHSE.600519',
+                        fields='tclose,circ_shr,free_shr',
+                        start_date='2026-11-18', end_date='2026-11-26', df=True)
+d = d.sort_values('trade_date').reset_index(drop=True)
+
+# 自由流通市值 = free_shr × 上一交易日收盘价
+d['free_mv'] = d['free_shr'] * d['tclose'].shift(1)
+# 流通市值 = circ_shr × 上一交易日收盘价
+d['circ_mv'] = d['circ_shr'] * d['tclose'].shift(1)
+
+# 换成亿元
+d['free_mv_yi'] = d['free_mv'] / 1e8
+```
+
+> 截面查询（`_pt`）算市值时，需另取上一交易日的 `tclose`，不能直接用同一行的 `tclose`。
+
+**实测样例（SHSE.600519 贵州茅台，2026-11-26）：**
+
+| 字段 | 值 |
+|------|-----|
+| `tclose` | 1469.00 |
+| `turnrate` | 0.2593 % |
+| `free_turnrate` | 0.5185 % |
+| `circ_shr` | 1,250,081,601 股 |
+| `free_shr` | 625,040,801 股 |
+| `ttl_shr` | 1,250,081,601 股 |
+| `a_shr_unl` | 1,250,081,601 股 |
+| `h_shr_unl` | 0 |
+| `ttl_shr_ltd` | 0 |
+
+自洽性校验：`free_turnrate / turnrate = 0.5185 / 0.2593 ≈ 2.0`，恰好等于 `circ_shr / free_shr = 2.0` —— 两个换手率口径互相印证，数据可用。
 
 ### current() 回测 vs 实盘字段差异
 
@@ -849,7 +1086,7 @@ get_execution_reports(cl_ord_id=None, symbol=None, start_time=None,
 16. **`stk_get_index_constituents` 没有 `df` 参数**：直接返回 DataFrame，不需要传 df=True
 17. **财务数据 API 的 `fields` 必填且不能为空**：所有 `stk_get_fundamentals_*_pt` / `stk_get_finance_*_pt` / `stk_get_daily_*_pt` 函数的 `fields` 参数是必填的，不能传空字符串 `""`，否则报错"填写的 fields 不正确"。fields 不能超过 20 个
 18. **`stk_get_finance_prime_pt` ROE 字段名是 `roe_weight_avg`**，不是 `roe_waa`。常用字段: eps_basic/eps_dil/roe_weight_avg/roe_weight_avg_cut/net_prof_pcom_yoy/inc_oper_yoy
-19. **`stk_get_daily_basic_pt` 股本字段名**：流通股本是 `circ_shr`（不是 float_shr），无限售条件流通股本是 `ttl_shr_unl`（不是 free_shr），有限售条件股本是 `ttl_shr_ltd`
+19. **`stk_get_daily_basic_pt` 股本字段名**：流通股本是 `circ_shr`（不是 float_shr），有限售条件股本是 `ttl_shr_ltd`，总股本是 `ttl_shr`。**注意字段语义已更新**：`ttl_shr_unl` = 无限售条件流通股本（**A股+H股**），`a_shr_unl` = 无限售条件流通A股股本（**行情软件显示的"流通股"**）。`free_shr`（自由流通股本）现在是**真实存在的字段**，与 `ttl_shr_unl` 口径完全不同——`free_shr` 剔除了限售股本和持股 5% 以上大股东的非限售股本，通常显著小于 `ttl_shr_unl`
 20. **财务衍生指标 `eps_dil2` vs `eps_dil`**：`stk_get_finance_deriv_pt` 中稀释 EPS 字段名是 `eps_dil2`（不是 `eps_dil`），而 `stk_get_finance_prime_pt` 中是 `eps_dil`
 21. **`_pt` 后缀 = 截面数据(多标的)**，无后缀 = 时序数据(单标的)。截面用 date/trade_date 参数，时序用 start_date/end_date 参数
 22. **付费增值数据 API**：期货(fut_get_*)、基金(fnd_get_*)、可转债(bnd_get_*) 的增值数据需要开通相应权限。详见 `references/16-premium-data-apis.md`
@@ -863,3 +1100,11 @@ get_execution_reports(cl_ord_id=None, symbol=None, start_time=None,
     - ④ **检查打印日志**：确认是否有数据推送 → 是否有交易信号发出 → 是否有下单指令 → 订单状态是否正常。按这个链路逐级排查
 27. **`order_volume()` vs `order_target_volume/percent` 参数名不同**：`order_volume()` 的开平仓参数叫 `position_effect`（用 `PositionEffect_Open/Close`），而 `order_target_volume/percent/value` 的持仓方向参数叫 `position_side`（用 `PositionSide_Long/Short`）。ETF调仓推荐用 `order_target_percent`，更简洁不用算股数
 28. **56开头的ETF是沪市**：如562500机器人ETF应为 `SHSE.562500`，不是深市。5开头=沪市(SHSE)，1开头=深市(SZSE)
+29. **持久化 API 需要 gm ≥ 3.0.191**：`persist_init` / `persist_set` / `persist_get` 等函数在低版本 SDK 中**不存在**（会直接 `NameError`）。用前先 `pip install gm --upgrade`，并确认 `importlib.metadata.version('gm')` ≥ 3.0.191
+30. **`persist_init` 未调用时静默失败**：未 init 直接 `persist_set` 返回 `71002`（不抛异常），容易忽略导致数据没写进去。**每次写操作都要检查返回值是否为 0**
+31. **未 init 调用 `persist_get_all_keys()` 会抛 `UnicodeDecodeError`**（实测 SDK 3.0.193 的缺陷，`'utf-8' codec can't decode byte 0x80`）。必须 `persist_init` 之后再调用
+32. **`persist_init` 一个运行周期只能绑 1 个 bucket**：重复 init 同一 bucket 返回 0（幂等）；init 不同 bucket 返回 `71006`。要操作多个 bucket 只能分多次策略运行，或用 `persist_get_all_buckets` 只读盘点
+33. **`persist_delete_bucket` 不能删当前绑定的 bucket**：会返回 `71005`（bucket 正在使用中）。要删只能换一个 bucket 绑定时去删旧的
+34. **回测/数据查询模式下 `persist_init` 的 `is_async` 要传 `False`**：默认 `True` 是异步落盘，回测跑到一半进程结束可能丢最后几次写入。实时模式才用默认 `True` 避免阻塞行情处理
+35. **`free_shr` 和 `ttl_shr_unl` 不是一回事**：`ttl_shr_unl` 是无限售条件流通股本（A股+H股），`free_shr` 是自由流通股本（再剔除限售和 5% 以上大股东持股）。**算自由流通市值必须用 `free_shr`**，用 `ttl_shr_unl` 会显著高估。两者差异见茅台实测：`ttl_shr_unl` 12.5 亿股 vs `free_shr` 6.25 亿股，差整整一倍
+36. **市值要用上一交易日收盘价算**：`stk_get_daily_basic` 返回的 `tclose` 是当日收盘价，直接乘股本得到的是"当日收盘市值"。做因子或选股时应用 `tclose.shift(1)`，否则引入未来函数

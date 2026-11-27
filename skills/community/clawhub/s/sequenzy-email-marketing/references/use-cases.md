@@ -837,11 +837,10 @@ sequenzy inbox address --local-part help --domain support.acme.com
 
 Guidance:
 
-- mail to any address on a receiving domain lands in the inbox; a workspace has one, and once it is verified, replies to emails from all sending domains come back to reply addresses on it (until then they use Sequenzy's shared address)
-- a second receiving domain returns `409 limit_reached`; remove the current one first, after confirming with the user
-- publish the MX record `add` prints (and the TXT record when listed), then run `verify`; `pending` names are reserved for 7 days; the first verification turns Inbox on
+- mail to any address on a receiving domain lands in the inbox; once verified, replies to emails from your sending domains come back to reply addresses on it (preferring the sender's own domain or one on the same root, else the oldest verified one; until then they use Sequenzy's shared address)
+- publish the MX record `add` prints (and the TXT record when listed), then run `verify`; `pending` names are reserved for 7 days; the first verification turns reply tracking on
 - a domain that already receives email elsewhere (Google Workspace, Microsoft 365, Cloudflare Email Routing...) is refused with `409 domain_has_mailbox`: suggest a subdomain such as `support.acme.com` and confirm the name before adding; `503 dns_check_failed` means retry in a minute
-- a workspace that has never received a conversation can't turn Inbox on with `companies update --enable-reply-tracking` until it has a verified receiving domain (`409 receiving_domain_required`)
+- you can also turn reply tracking on directly with `companies update --enable-reply-tracking`; without a verified receiving domain, replies use Sequenzy's shared address
 - `failed` means something broke: mail that still arrives is accepted, but new reply addresses use Sequenzy's address until it is fixed; read `error` and the per-record status
 - `remove` stops all mail to the domain, including replies to emails already sent, and clears a branded inbox address on it; confirm with the user first
 - subscribe a webhook to the opt-in `email.received` event to hear about new mail to inbox addresses and receiving domains (not replies, not spam)

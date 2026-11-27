@@ -252,8 +252,10 @@ def emit(hexes, name="", brand="", dark=False, out_base="tokens", contrast="stan
     lines += ["  %s:#%s;  /* %s */" % (k, v, note) for k, v, note in rows]
     for k, v in FONTS:
         lines.append("  --%s:%s;" % (k, v))
-    for i, s in enumerate(SPACE_SCALE, 1):
-        lines.append("  --s%d:%dpx;" % (i, s))
+    # 0.32 间距母变量派生(Tailwind v4 模式):全部间距 = calc(--spacing × 倍数)
+    lines.append("  --spacing:8px;  /* 母变量:改一个数,全间距阶联动 */")
+    for i, (mult, s) in enumerate(zip((0.5, 1, 1.5, 2, 3, 4, 6, 8, 12, 16), SPACE_SCALE), 1):
+        lines.append("  --s%d:calc(var(--spacing) * %g);  /* %dpx */" % (i, mult, s))
     for suf, v in RADII:
         lines.append("  --r-%s:%dpx;" % (suf, v))
     for k, v in MOTION:
@@ -299,11 +301,24 @@ def emit(hexes, name="", brand="", dark=False, out_base="tokens", contrast="stan
             hx = steps12.get(i, "CCCCCC")
             o = okl(hx)
             block += f"  --step-{i:02d}-{role}: #{hx};" + (f"  /* {o} */" if o else "") + "\n"
+            if o:                                   # 0.32:OKLCH 伴生变量(感知空间直接接线)
+                block += f"  --step-{i:02d}-{role}-ok: {o};\n"
         for i in (2, 3, 4, 5):                      # 面态步的 12% 透明变体(hover/柔底)
             role = STEP_ROLES[i - 1]
             hx = steps12.get(i, "CCCCCC")
             block += (f"  --step-{i:02d}-{role}-a12: color-mix(in oklab, #{hx} 12%, transparent);\n")
         block += "}\n"
+        # 0.32 暗色别名块:六核心面/墨变量随系统 scheme 自动换幕(文字/强调已双幕成对,不换)
+        try:
+            dt, _dr, _dp = build_tokens([h.lstrip("#").upper() for h in hexes],
+                                        name, brand, dark=True, need=need)
+            block += ("/* 暗色别名(0.32):跟随系统 scheme 换幕——六核心面/墨;night/paper 双幕对不换 */\n"
+                      "@media (prefers-color-scheme: dark){\n:root{\n")
+            for k in ("bg", "bg_raised", "ink", "ink_muted", "line"):
+                block += f"  --{k.replace('_', '-')}:#{dt[k]};\n"
+            block += "}\n}\n"
+        except Exception:
+            pass
         css = css + block
         with open(out_base + ".css", "w", encoding="utf-8", newline="\n") as f2:
             f2.write(css)

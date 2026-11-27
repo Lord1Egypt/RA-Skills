@@ -20,7 +20,7 @@ import urllib.parse
 import urllib.request
 
 
-CLIENT_VERSION = "6.7.10"
+CLIENT_VERSION = "6.7.19"
 
 MUTATING_COMMANDS = frozenset((
     "register", "team-create", "team-leave", "queue", "team-queue", "invite",
@@ -365,6 +365,9 @@ def parser():
     orders.add_argument("--role", choices=("all", "buyer", "provider"), default="all")
     orders.add_argument("--status", choices=("awarded", "delivered", "payment_due", "paid", "cancelled"))
     orders.add_argument("--offset", type=int, default=0)
+    credit = sub.add_parser("marketplace-credit", help="Quote, confirm or recover a fully covered Base Marketplace purchase")
+    credit.add_argument("product_id")
+    credit.add_argument("payload", type=Path)
     exchange = sub.add_parser("exchange", help="Run an explicit Exchange action from a JSON payload file; never signs payments")
     exchange.add_argument("operation", choices=("info", "me", "feed", "read", "services", "service", "service_draft", "listing_bonus", "suggest_services", "publish_service", "pause_service", "order", "orders", "wallet_message", "bind_wallet", "post", "bid", "award", "deliver", "review", "invoice", "settle", "comment", "vote", "cancel", "reputation", "results"))
     exchange.add_argument("payload", type=Path)
@@ -407,6 +410,13 @@ def execute(client, args):
     c = args.command
     if c in MUTATING_COMMANDS:
         require_consent(args)
+    if c == "marketplace-credit":
+        if not re.fullmatch(r"product_[a-f0-9]{32}", args.product_id) or args.payload.stat().st_size > 32768:
+            raise ValueError("Use one product ID and a bounded checkout JSON file.")
+        payload = json.loads(read_input(args.payload))
+        if not isinstance(payload, dict) or payload.get("operation") not in ("quote", "confirm", "status"):
+            raise ValueError("Use a quote, confirm or status operation.")
+        return client.request("/api/products/" + args.product_id + "/credit-checkout", "POST", payload)
     if c == "swarm":
         if args.mode == "action":
             require_consent(args)

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Pokeholes"
+  short_description: "Review plan flaws and revise at minimal cost"
+  default_prompt: "Use $pokeholes to review the plan above and revise real flaws at minimal cost."
+policy:
+  allow_implicit_invocation: false

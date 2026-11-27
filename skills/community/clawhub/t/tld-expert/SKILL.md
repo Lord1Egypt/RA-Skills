@@ -79,6 +79,9 @@ read-only and needs no key.
 - `"likely"` or `"unknown"`: do not call it available. Say it could not be confirmed and link `buyUrl`
   or the registrar to check. If `retry` is true, ask again once after a few seconds.
 - `"taken"`: registered or reserved. Offer step 3.
+- `"restricted"`: the ending is in a launch period where its registry sells only through one route
+  (.pay through PayPal Business until February 1, 2027). Say who may register and where, link the
+  route's url from the registration_route block and cite its source_url. Never send the user to a registrar.
 - Quote one price: `offer.y1` at `offer.registrar`, with `offer.renewal` next to it, and the date in
   `offer.checkedAt`. Never quote year one without renewal; renewal is often several times higher.
 - A few endings are sold only in multi-year terms (.ai: 2 years minimum). There `offer` also carries
@@ -105,9 +108,14 @@ year (checked 2026-10-21). Source: tld.expert/de"
 
 ## Limits
 
-- About 600 availability lookups a minute per client (a name sweep costs one per ending) and 120
-  suggest calls a minute. On HTTP 429, wait
-  `Retry-After` seconds. The 429 body has `verdict: "unknown"`; it is never an answer.
+- 600 availability lookups at once per client, then 60 a minute (a name sweep costs one per
+  ending, a single domain one, or two when it is taken and the answer carries its registry
+  record), and 120 suggest calls a minute. On HTTP 429, wait
+  `Retry-After` seconds. The 429 body has `verdict: "unknown"`; it is never an answer. A client
+  that keeps calling through its 429s is blocked at the edge for an hour.
+- Free API and MCP calls share part of our registrar capacity, and the rest is kept for people
+  searching on tld.expert. When that part is busy, a free check still answers from the registry
+  and a slower registrar, in about 1 to 3 seconds instead of under one. The answer is just as careful.
 - Prices are USD from public registrar feeds, rebuilt daily. Taxes and currency fees are not included.
 
 tld.expert is made by [Leftway](https://leftway.ai/agents). Leftway's other tools and skills for agents are listed there.

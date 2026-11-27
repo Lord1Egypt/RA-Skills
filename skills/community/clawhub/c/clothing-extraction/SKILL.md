@@ -1,6 +1,6 @@
 ---
 name: clothing-extraction
-version: 1.0.37
+version: 1.0.38
 description: 从任意图提取干净商品平铺图。真人图 / 街拍图 → 白底平铺商品图。当用户说「提取衣服」「扒图」「转平铺」「抠成商品图」「从买家秀提取」时使用。
 ---
 

@@ -100,6 +100,8 @@ def main():
     ap.add_argument("--lexicon", metavar="文件",
                     help="外挂词表 JSON（v5.11.0）：同名键逐项追加——多 skill 共享同一外部词表；"
                          "透传扫描与清理")
+    ap.add_argument("--summary-json", action="store_true",
+                    help="单行 JSON 摘要（v5.20.0）：score 前后/guard/violations/残留——与 --summary 互斥，优先级更高")
     ap.add_argument("--summary", action="store_true",
                     help="一行速览：单文件=SUMMARY 行替换详细报告（分数前后/档位/守卫/违规数）；"
                          "--batch=逐文件 SUMMARY 行——agent/CI 快消费")
@@ -269,11 +271,8 @@ def main():
         if getattr(args, "summary", False):
             # v5.19.0 批量一行速览：逐文件 SUMMARY 行（agent/CI 快消费）
             for row in rows_out:
-                _g = row[3]
-                _guard = "PASS" if _g == "PASS" else "FAIL"
-                print("SUMMARY | %s | score %s→%s | guard %s(%s) | delta %s"
-                      % (row[0], row[1], row[2].split("[")[0],
-                         _guard, _g, row[4]))
+                print("SUMMARY | %s | score %s→%s | guard %s | delta %s"
+                      % (row[0], row[1], row[2].split("[")[0], row[3], row[4]))
         else:
             writer = _csv.writer(sys.stdout)
             writer.writerow(["file", "before", "after", "integrity", "len_delta"])
@@ -701,6 +700,19 @@ def main():
             print("错误: 无法写入 %s（%s）" % (args.handoff, e), file=sys.stderr)
             sys.exit(2)
 
+    if getattr(args, "summary_json", False):
+        print(json.dumps({"mode": mode,
+                          "before": {"score": ro["score"], "level": ro["level"]},
+                          "after": {"score": rn["score"], "level": rn["level"]},
+                          "guard": "PASS" if vr["ok"] else "FAIL",
+                          "violations": len(vr.get("violations") or []),
+                          "warnings": len(vr.get("warnings") or []),
+                          "residue": bool(rn.get("critical_hit")),
+                          "exit_verdict": report.get("exit_verdict")},
+                         ensure_ascii=False))
+        if args.exit_verdict:
+            sys.exit(report["exit_verdict"])
+        sys.exit(0)
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
         if args.exit_verdict:

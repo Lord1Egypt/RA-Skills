@@ -1,0 +1,119 @@
+{
+  "application_name": "示例混合业务助手",
+  "primary_mode": "hybrid",
+  "trigger_type": "chat",
+  "missing_input_route": "request-missing-field",
+  "default_max_latency_ms": 8000,
+  "default_max_answer_chars": 500,
+  "forbidden_substrings": ["CITE", "Bearer ", "debug_trace"],
+  "routes": [
+    {
+      "id": "structured-summary",
+      "kind": "single-llm",
+      "sample_input": "请把示例文本整理为包含标题和摘要的 JSON",
+      "required_fields": ["source_text"],
+      "expected_substrings": ["标题", "摘要"],
+      "side_effect": "none",
+      "mode_tests": [
+        {
+          "id": "invalid-structure",
+          "category": "single-llm",
+          "simulated_condition": "model-output-invalid-json",
+          "expected_behavior": "输出校验失败时修复一次或返回受控错误，不交付无效 JSON"
+        }
+      ]
+    },
+    {
+      "id": "knowledge-query",
+      "kind": "knowledge",
+      "sample_input": "请说明示例主题的办理规则",
+      "required_fields": ["topic"],
+      "expected_substrings": ["规则"],
+      "side_effect": "none"
+    },
+    {
+      "id": "tool-query",
+      "kind": "tool",
+      "sample_input": "请查询对象 EXAMPLE-001 的当前状态",
+      "required_fields": ["object_id"],
+      "expected_substrings": ["状态"],
+      "side_effect": "read"
+    },
+    {
+      "id": "action-update",
+      "kind": "action-approval",
+      "sample_input": "请把对象 EXAMPLE-001 的示例字段更新为 VALUE-02",
+      "required_fields": ["object_id", "new_value"],
+      "expected_substrings": ["确认"],
+      "success_expected_route": "request-confirmation",
+      "side_effect": "write",
+      "confirmation_required": true,
+      "mode_tests": [
+        {
+          "id": "confirmed-success",
+          "category": "action-execution",
+          "input": "确认把对象 EXAMPLE-001 的示例字段更新为 VALUE-02",
+          "expected_route": "action-update",
+          "expected_substrings": ["更新成功"]
+        },
+        {
+          "id": "duplicate-submit",
+          "category": "idempotency",
+          "simulated_condition": "same-idempotency-key",
+          "expected_behavior": "返回首次执行结果，不重复写入"
+        },
+        {
+          "id": "readback-mismatch",
+          "category": "action-readback",
+          "simulated_condition": "readback-mismatch",
+          "expected_substrings": ["未确认成功"]
+        }
+      ]
+    },
+    {
+      "id": "scheduled-batch",
+      "kind": "event-batch",
+      "sample_input": "处理示例批次 BATCH-001",
+      "required_fields": ["batch_id"],
+      "expected_substrings": ["处理结果"],
+      "side_effect": "write",
+      "confirmation_required": false,
+      "mode_tests": [
+        {
+          "id": "duplicate-event",
+          "category": "event-batch",
+          "simulated_condition": "duplicate-event-id",
+          "expected_behavior": "重复事件被去重，不重复执行已成功副作用"
+        },
+        {
+          "id": "partial-failure",
+          "category": "event-batch",
+          "simulated_condition": "one-item-failed",
+          "expected_behavior": "分别报告成功、失败和待重试集合"
+        }
+      ]
+    },
+    {
+      "id": "multi-tool-task",
+      "kind": "multi-tool-agent",
+      "sample_input": "根据请求选择合适的只读示例工具完成任务",
+      "required_fields": ["request"],
+      "expected_substrings": ["结果"],
+      "side_effect": "read",
+      "mode_tests": [
+        {
+          "id": "tool-conflict",
+          "category": "agent-control",
+          "simulated_condition": "ambiguous-tools",
+          "expected_behavior": "先澄清或走确定性预路由，不随机选择高风险工具"
+        },
+        {
+          "id": "max-steps",
+          "category": "agent-control",
+          "simulated_condition": "tool-loop",
+          "expected_behavior": "达到最大步骤后受控终止并说明未完成"
+        }
+      ]
+    }
+  ]
+}

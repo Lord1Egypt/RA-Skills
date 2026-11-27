@@ -17,8 +17,8 @@ const RETRIABLE_STATUS = new Set([408, 425, 429, 500, 502, 503, 504]);
 
 function withAuth(headers: HeadersInit = {}, auth?: BasicAuth): HeadersInit {
   if (!auth) return headers;
-  const token = Buffer.from(`${auth.user}:${auth.pass}`).toString('base64');
-  return { ...headers, Authorization: `Basic ${token}` };
+  const token = Buffer.from(('' + String(auth.user) + ':' + String(auth.pass))).toString('base64');
+  return { ...headers, Authorization: ('Basic ' + String(token)) };
 }
 
 function toPositiveInt(value: number | undefined, fallback: number, opts?: { min?: number; max?: number }): number {
@@ -74,16 +74,27 @@ async function request(url: string, method: string, body: BodyInit | undefined, 
         continue;
       }
 
-      throw fromTransportError(opts?.service ?? 'unknown', url, error);
+      // A failure after a write was sent is never reported as retriable (it may have been received).
+      throw fromTransportError(opts?.service ?? 'unknown', url, error, method !== 'GET');
     }
   }
 
-  throw fromTransportError(opts?.service ?? 'unknown', url, new Error('HTTP request failed after retries'));
+  throw fromTransportError(opts?.service ?? 'unknown', url, new Error('HTTP request failed after retries'), method !== 'GET');
+}
+
+// Reads the body of an accepted (2xx) response. For writes, a failure here (dropped connection,
+// timeout, invalid JSON) is reported as non-retriable, because the provider already accepted it.
+async function acceptedJson<T>(res: Response, url: string, method: string, opts?: HttpOpts): Promise<T> {
+  try {
+    return (await res.json()) as T;
+  } catch (error) {
+    throw fromTransportError(opts?.service ?? 'unknown', url, error, method !== 'GET');
+  }
 }
 
 export async function getJson<T>(url: string, opts?: HttpOpts): Promise<T> {
   const res = await request(url, 'GET', undefined, opts);
-  return res.json() as Promise<T>;
+  return acceptedJson<T>(res, url, 'GET', opts);
 }
 
 export async function postJson<T>(url: string, body: unknown, opts?: HttpOpts): Promise<T> {
@@ -92,7 +103,7 @@ export async function postJson<T>(url: string, body: unknown, opts?: HttpOpts): 
     headers: withAuth({ 'content-type': 'application/json', ...(opts?.headers ?? {}) }, opts?.auth),
     auth: undefined
   });
-  return res.json() as Promise<T>;
+  return acceptedJson<T>(res, url, 'POST', opts);
 }
 
 export async function putEmpty(url: string, opts?: HttpOpts): Promise<void> {
@@ -104,9 +115,10 @@ export async function putJson<T>(url: string, body: unknown, opts?: HttpOpts): P
     ...opts,
     headers: { 'content-type': 'application/json', ...(opts?.headers ?? {}) }
   });
-  return res.json() as Promise<T>;
+  return acceptedJson<T>(res, url, 'PUT', opts);
 }
 
 export async function deleteEmpty(url: string, opts?: HttpOpts): Promise<void> {
   await request(url, 'DELETE', undefined, opts);
+  // Theta's delete endpoints take no body. Like every non-GET request, it is never retried.
 }

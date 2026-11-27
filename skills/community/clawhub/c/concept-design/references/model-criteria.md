@@ -1,6 +1,18 @@
 # Model criteria
 
-Judge whether a concept qualifies, a composition fits, and a subset is usable. Judge against requirements and counterexamples, not form, rule counts, or flow length. See the [specification notation](spec-notation.md).
+Judge concept qualification, composition fit, and subset usability against requirements and counterexamples, not form, rule counts, or flow length. See the [specification notation](spec-notation.md).
+
+## Mature capabilities
+
+Before modeling, separate mature capabilities: technical or business capabilities that already have mature, replaceable implementations and carry no rules that differentiate this product. Classify them by their purpose for this product's users, not by technology name:
+
+| Category | Model expression | Implementation |
+| --- | --- | --- |
+| Business rules that differentiate this product | Full concept | Business module |
+| Mature capability with a user-visible purpose, such as session, notification, or payment | Thin concept or external-entry contract stating only observable behavior | Outbound adapter reusing a mature component behind a consumer-owned port |
+| Technical mechanism without a user purpose, such as caching, retries, connection pools, or serialization | Outside the model | Infrastructure or adapter internals |
+
+One name can fall into different categories: a restaurant waitlist queue is a concept; a message transport queue is a mechanism. Declare business invariants in concepts even when storage or a component enforces them. Component models stay out of concept state. Reuse is a product decision recorded in the decision record.
 
 ## Concepts
 

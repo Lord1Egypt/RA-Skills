@@ -5,6 +5,48 @@ All notable changes to Browser Auto Download will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2026-11-27
+
+### Security 🔒
+- Added a resolved-response redirect check: an off-site hop closes the page and fails the run, in addition to the request filter and download host check
+- Declared `file_write` and `network` explicitly in both `permissions` and `allowed-tools`
+- Documentation now describes the three enforcement layers instead of claiming redirects are impossible
+
+## [1.0.5] - 2026-11-27
+
+### Security 🔒
+- Replaced registrable-suffix comparison with exact-host matching plus an explicit `--allow-host` allowlist; public-suffix confusion such as `a.github.io` vs `b.github.io` no longer counts as same-site
+- Browser-level route guard and download-host check use the same exact-host policy
+- Permissions declaration now matches behavior: filesystem write is declared as a capability rather than a fixed path, removing the manifest/docs mismatch
+- `--meitu` preset declares its platform host (`pc.meitu.com`) explicitly
+- Docs updated to describe `--allow-host` and exact-host scope
+
+## [1.0.4] - 2026-11-27
+
+### Security 🔒
+- Browser-level navigation guard aborts off-site document requests and redirects, so clicks cannot bypass the same-site rule
+- Downloads whose final URL is off-site are deleted and refused
+- `find_platform_specific_page` now scores links by the detected platform instead of returning the first keyword match
+- Manifest declares `permissions` and `allowed-tools` (network, filesystem write, Chromium, no process)
+- Description aligned with supported behavior: direct installer URLs are in scope only when the URL needs a browser session or redirect chain
+- Examples labeled as browser-required installer links; plain static files should use curl/wget with a checksum
+
+## [1.0.3] - 2026-11-27
+
+### Security 🔒
+- Pinned Playwright to `1.65.0` in `requirements.txt` and `package.json`; the pin also fixes the Chromium build
+- Navigation is restricted to the starting site by default; add `--allow-external-hosts` to opt in
+- Page-supplied filenames are sanitized and confined to the output directory
+- Executables require `--sha256` or `--acknowledge-executable`
+- Downloads now report a SHA-256 digest; a `--sha256` mismatch deletes the file
+- Debug artifacts get best-effort redaction plus a `WARNING.txt`
+- Default output directory is now `~/Downloads/browser-auto-download`
+
+### Changed ⚡
+- SKILL.md description now states explicit triggers, scope, and exclusions
+- Safety notices added to README, QUICKSTART, USER_GUIDE, and SKILL.md
+- Package version aligned with the published ClawHub version
+
 ## [5.0.0] - 2026-02-04
 
 ### Added ⭐

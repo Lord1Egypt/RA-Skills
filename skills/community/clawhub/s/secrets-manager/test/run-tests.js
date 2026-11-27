@@ -4,6 +4,9 @@ module.exports = [
   { name: "--get retrieves masked secret", args: ["--get", "testkey"], expected: "tes****ue" },
   { name: "--list shows stored secrets", args: ["--list"], expected: "testkey" },
 
+  // ── Inject ─────────────────────────────────────────────────────────────
+  { name: "--inject replaces placeholder", args: ["--inject", "hello {{testkey}}"], expected: "[secrets-manager] Injected:" },
+
   // ── Delete ─────────────────────────────────────────────────────────────
   { name: "--delete removes the secret", args: ["--delete", "testkey"], expected: "[secrets-manager] Deleted:" },
   { name: "--list after deletion shows empty", args: ["--list"], expected: "No secrets stored" },

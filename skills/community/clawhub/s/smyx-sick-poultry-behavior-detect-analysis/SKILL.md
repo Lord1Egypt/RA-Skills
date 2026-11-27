@@ -1,7 +1,7 @@
 ---
 name: "smyx-sick-poultry-behavior-detect-analysis"
 description: "Detects morbid behavioral cues in poultry and pigs from continuous barn videos — such as difficulty standing, ruffled feathers/piloerection, isolation, drowsiness and appetite loss — and outputs behavior type with risk level up to 2-3 days ahead of visible clinical signs. | 识别站立困难、羽毛蓬松、离群、嗜睡等病态行为，比人工观察提前2-3天。"
-version: "1.0.20"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

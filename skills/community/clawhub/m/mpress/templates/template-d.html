@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 1800px; height: 766px;
+    overflow: hidden;
+    background: #F4F7F6;
+    font-family: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  .cover {
+    width: 1800px; height: 766px;
+    box-sizing: border-box;
+    display: flex;
+    color: #111819;
+    position: relative;
+    background: #F4F7F6;
+  }
+
+  /* 左侧精装墨青书脊 */
+  .spine {
+    width: 148px; height: 100%;
+    background: #005C5F;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 52px 0; box-sizing: border-box; color: #FFFFFF;
+    flex-shrink: 0;
+    position: relative; z-index: 2;
+    border-right: 4px solid #007275;
+  }
+  .spine-top {
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .spine-badge {
+    width: 44px; height: 44px;
+    border: 2px solid rgba(255,255,255,0.65);
+    display: flex; align-items: center; justify-content: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 18px; font-weight: 700; color: #FFFFFF;
+  }
+  .spine-text {
+    writing-mode: vertical-rl;
+    letter-spacing: 0.34em;
+    font-size: 24px; font-weight: 700;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: #F2F7F6;
+    margin-top: 8px;
+  }
+  .spine-year {
+    font-size: 20px; font-family: ui-monospace, monospace;
+    color: rgba(255,255,255,0.8); font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  /* 右侧杂志编辑部主版面 */
+  .main {
+    flex: 1;
+    height: 100%;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 76px 52px 76px;
+    overflow: hidden;
+  }
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(to right, rgba(0, 114, 117, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 114, 117, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  /* 顶部刊头栏 */
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid #111819;
+    padding-bottom: 18px;
+    position: relative; z-index: 2;
+  }
+  .brand {
+    font-size: 32px; font-weight: 800;
+    display: flex; align-items: center; gap: 12px;
+    color: #111819; letter-spacing: -0.01em;
+  }
+  .brand-sq { width: 14px; height: 14px; background: #007275; }
+  .meta-right {
+    display: flex; align-items: center; gap: 18px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .meta-tag {
+    font-size: 18px; font-weight: 700; color: #FFFFFF;
+    background: #007275; padding: 6px 16px; border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+  .meta-issue {
+    font-size: 20px; font-weight: 700; color: #5d6667;
+    letter-spacing: 0.08em;
+  }
+
+  /* 中部双栏：左主标题+导语，右 1:1 裁剪视觉徽章卡（精准落于 x=1280~1780, y=50~550） */
+  .middle {
+    margin: auto 0;
+    position: relative; z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .title-col {
+    flex: 1;
+    max-width: 960px;
+    border-left: 8px solid #007275;
+    padding-left: 36px;
+  }
+  .eyebrow {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 19px; font-weight: 700;
+    color: #007275; letter-spacing: 0.14em;
+    margin-bottom: 16px; text-transform: uppercase;
+  }
+  .heading {
+    font-size: 72px; font-weight: 800; line-height: 1.2; margin: 0 0 22px;
+    color: #111819; letter-spacing: -0.025em;
+    word-break: break-word;
+  }
+  .subtitle {
+    margin: 0;
+    font-size: 26px; font-weight: 500; line-height: 1.55;
+    color: #465152;
+    max-width: 820px;
+  }
+
+  /* 右侧 1:1 微信小图安全区卡片 */
+  .square-card {
+    width: 410px;
+    height: 410px;
+    flex-shrink: 0;
+    background: #111819;
+    color: #F2F7F6;
+    border-radius: 8px;
+    padding: 36px 34px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .sq-accent-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: #007275;
+  }
+  .sq-ring {
+    position: absolute; right: -55px; bottom: -55px;
+    width: 240px; height: 240px; opacity: 0.14; color: #4FA8AB;
+  }
+  .sq-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 15px; letter-spacing: 0.14em; color: #7CC5C7; font-weight: 700;
+  }
+  .sq-hero-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 86px; font-weight: 800; line-height: 1.0;
+    color: #FFFFFF; letter-spacing: -0.04em; margin: 6px 0 8px;
+  }
+  .sq-hero-caption {
+    font-size: 22px; font-weight: 700; line-height: 1.4; color: #DCEBEB; margin: 0;
+  }
+  .sq-foot {
+    border-top: 1px solid rgba(255,255,255,0.18);
+    padding-top: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 16px; color: #9DB2B4;
+  }
+  .sq-foot strong { color: #FFFFFF; }
+
+  /* 底部版权栏 */
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid #C7D1D1;
+    padding-top: 18px;
+    position: relative; z-index: 2;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 19px; color: #5d6667;
+  }
+  .footer-left { display: flex; align-items: center; gap: 12px; }
+  .footer-rect { width: 10px; height: 10px; background: #007275; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="spine">
+      <div class="spine-top">
+        <div class="spine-badge">{{ISSUE_SHORT}}</div>
+        <span class="spine-text">{{SPINE_TEXT}}</span>
+      </div>
+      <span class="spine-year">{{YEAR}}</span>
+    </div>
+
+    <div class="main">
+      <div class="grid-bg"></div>
+
+      <div class="header">
+        <div class="brand"><span class="brand-sq"></span>{{BRAND}}</div>
+        <div class="meta-right">
+          <span class="meta-tag">{{TAG}}</span>
+          <span class="meta-issue">{{ISSUE_NO}}</span>
+        </div>
+      </div>
+
+      <div class="middle">
+        <div class="title-col">
+          <div class="eyebrow">{{EYEBROW}}</div>
+          <h1 class="heading" id="title">{{TITLE}}</h1>
+          <p class="subtitle" id="sub">{{COVER_SUBTITLE}}</p>
+        </div>
+
+        <div class="square-card">
+          <div class="sq-accent-bar"></div>
+          <svg class="sq-ring" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="50" cy="50" r="46" />
+            <circle cx="50" cy="50" r="30" stroke-dasharray="4 4" />
+            <path d="M50 0v100M0 50h100" />
+          </svg>
+          <div class="sq-top">
+            <span>{{COVER_STAT_TAG}}</span>
+            <span>{{ISSUE_DATE}}</span>
+          </div>
+          <div>
+            <div class="sq-hero-num">{{COVER_STAT_NUM}}</div>
+            <p class="sq-hero-caption">{{COVER_STAT_CAPTION}}</p>
+          </div>
+          <div class="sq-foot">
+            <span>AUTHOR // <strong>{{AUTHOR}}</strong></span>
+            <span>{{STATUS_LABEL}}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-left">
+          <span class="footer-rect"></span>
+          <span>{{FOOTER_SLOGAN}}</span>
+        </div>
+        <span>{{WORD_COUNT_LABEL}} · {{SITE_DOMAIN}}</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const t = document.getElementById("title");
+    const sub = document.getElementById("sub");
+    if (!sub.innerText.trim()) sub.style.display = "none";
+    if (t.innerText.length > 22) t.style.fontSize = "62px";
+    if (t.innerText.length > 32) t.style.fontSize = "52px";
+  </script>
+</body>
+</html>

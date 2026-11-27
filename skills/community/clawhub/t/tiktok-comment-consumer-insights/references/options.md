@@ -89,4 +89,4 @@ node scripts/tiktok/comment-cli.js --url 1234567890123456789 --limit 40
 
 同一组参数再次执行时，搜索大约 9 分钟内、作品和评论大约 20 分钟内会复用已有任务。搜索等到 `TIMEOUT` 之后再立刻重跑，复用窗口通常已过。
 
-成功结果默认不写文件。需要留底时设置 `TT_GUAIKEI_ENABLE_LOG=1`。
+成功结果默认不写文件。需要留底时加 `--save` 或设置 `GUAIKEI_ENABLE_LOG=1`。旧变量 `TT_GUAIKEI_ENABLE_LOG` 已废弃。

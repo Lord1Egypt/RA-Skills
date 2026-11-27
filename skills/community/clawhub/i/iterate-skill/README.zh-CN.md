@@ -587,9 +587,14 @@ iterate report --out report.md  # 原子写入文件（stdout 保持为空）
 iterate report --out report.md --force  # 覆盖已存在的报告文件
 iterate report --json           # 单个结构化 JSON 文档
 iterate report --strict         # warning 也判失败（退出码 1），同 doctor --strict
+iterate report --github-summary # 把 Markdown 报告追加到 $GITHUB_STEP_SUMMARY，渲染在
+                                #   workflow 的 run-summary 页；GITHUB_STEP_SUMMARY 存在时
+                                #   自动开启，--no-github-summary 关闭
 ```
 
 Markdown 包含技术栈、生效的审查配置（目标分支、范围、维度、维度集、校验命令/白名单、个性化规则数）、doctor 全项检查表、漂移与建议、以及可直接执行的下一步命令。单元格中的 `|`、换行、反引号与 HTML 标记会转义，粘贴后表格不会散，也不会被项目内容注入裸 HTML。`--out` 默认拒绝覆盖已存在文件（以及 iterate 自己的状态文件），需显式 `--force`，避免误删你的笔记。健康时退出码 0，阻塞时 1（错误；`--strict` 下还包括警告），可直接作为 CI 门禁。
+
+在 GitHub Actions 里报告还能落到开发者本来就会看的地方：`--github-summary` 把它追加到 workflow 的 run-summary 页（配合 `--annotate` 把每条失败检查钉在 diff 上），开发者无需翻 job 日志。`iterate template show ci-workflow` 可打印一份可直接粘贴的 `.github/workflows/iterate.yml`，把两者接好并额外上传 JSON artifact。
 
 ### iterate completion（Shell Tab 补全）
 

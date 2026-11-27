@@ -25,7 +25,7 @@ One coordination primitive that gathers N INDEPENDENT perspectives for any skill
 Council's entire value proposition is *decorrelated* model bias — two different architectures independently reaching the same conclusion is signal; two instances of the same model agreeing is an echo. council refuses to launder the second case as the first.
 
 <HARD-GATE>
-If fewer than 2 distinct real `model_family` values answered (excluding `is_fallback` voices AND voices with `model_family: "unknown"` — unconfirmed wrapper-CLI backends, see `references/dispatch-protocol.md` §Detect), council MUST stamp the run `NO_DECORRELATION` and the Arbitrate step MUST NOT use consensus language ("voices agree", "consensus view", "the panel concludes"). Say what happened instead: "N subagents of the same model family produced overlapping output — treat as one perspective, not independent confirmation."
+If fewer than 2 distinct real `model_family` values answered (excluding `is_fallback` voices AND voices with `model_family: "unknown"` — unconfirmed wrapper-CLI backends, see `rune-council/references/dispatch-protocol.md` §Detect), council MUST stamp the run `NO_DECORRELATION` and the Arbitrate step MUST NOT use consensus language ("voices agree", "consensus view", "the panel concludes"). Say what happened instead: "N subagents of the same model family produced overlapping output — treat as one perspective, not independent confirmation."
 </HARD-GATE>
 
 ## Triggers
@@ -71,8 +71,8 @@ Contract source of truth: `.rune/council-voice-contract.md` (Voice v2). This sec
 ### Step 1: DETECT
 
 1. Check for a cached runtime report at `.rune/runtimes.json`. If it exists and is from the current session (same date), reuse it — skip to Step 2.
-2. Otherwise probe for the `1devtool-agent` bridge (the local CLI that fans prompts out to installed AI coding agents — Claude, Codex, Gemini, Antigravity, Cline, Amp, OpenCode, Qwen, Grok, Aider). Detection and family-mapping details: `references/dispatch-protocol.md` §Detect.
-3. Write `.rune/runtimes.json`: `{ detected: [{runtime, status, model_family, version}], checked_at: <session marker>, bridge_path: <resolved path> }` — exact field list owned by `references/dispatch-protocol.md` §Detect, keep the two in sync.
+2. Otherwise probe for the `1devtool-agent` bridge (the local CLI that fans prompts out to installed AI coding agents — Claude, Codex, Gemini, Antigravity, Cline, Amp, OpenCode, Qwen, Grok, Aider). Detection and family-mapping details: `rune-council/references/dispatch-protocol.md` §Detect.
+3. Write `.rune/runtimes.json`: `{ detected: [{runtime, status, model_family, version}], checked_at: <session marker>, bridge_path: <resolved path> }` — exact field list owned by `rune-council/references/dispatch-protocol.md` §Detect, keep the two in sync.
 4. No bridge found → `runtime_report.detected = []`. This is not an error — proceed straight to subagent-only mode (Step 3 DEGRADE).
 
 ### Step 2: ALLOCATE
@@ -91,7 +91,7 @@ Contract source of truth: `.rune/council-voice-contract.md` (Voice v2). This sec
 
 For each allocated slot:
 
-1. **External slot** (`source: external-cli`): update that voice's `status: "running"` in the run file, dispatch per `references/dispatch-protocol.md` §Dispatch with `budget.per_voice_timeout_s` enforced. On timeout or non-zero exit → mark `is_fallback: true` and immediately dispatch a subagent for that slot instead (do not drop the slot) — update `status` back to `"running"` for the fallback attempt, not straight to failed.
+1. **External slot** (`source: external-cli`): update that voice's `status: "running"` in the run file, dispatch per `rune-council/references/dispatch-protocol.md` §Dispatch with `budget.per_voice_timeout_s` enforced. On timeout or non-zero exit → mark `is_fallback: true` and immediately dispatch a subagent for that slot instead (do not drop the slot) — update `status` back to `"running"` for the fallback attempt, not straight to failed.
 2. **Subagent slot** (`source: subagent`): update `status: "running"`, dispatch via `Task` with the persona/constraint from Step 2.4 baked into the prompt. `runtime: "internal"`, `model_family: "anthropic"`, `is_fallback: false` if this was the slot's original allocation, `is_fallback: true` if it's covering a dead external slot.
 3. Run all slots in parallel (single message, multiple tool calls) — sequential dispatch defeats the purpose of gathering independent perspectives at reasonable cost.
 4. As each slot resolves (raw response received, whether or not it will later pass GATE), record `latency_ms` and update that voice's `status: "complete"` in the run file — GATE (Step 4) may still later flip a completed voice to `"dropped"`, but "complete" at this point means "produced a raw answer," not "counted toward the result." Populate `runtime_report.used` / `runtime_report.degraded_to_subagent` at the same time.
@@ -118,7 +118,7 @@ Determines whether two voices made "the same claim" — meaningless until define
 
 ### Step 6: ARBITRATE (inline)
 
-1. Apply the min-decorrelation gate (see HARD-GATE above): count distinct real `model_family` values among voices that passed GATE, **excluding both `is_fallback` voices AND voices with `model_family: "unknown"`** (unconfirmed wrapper-CLI backends — see `references/dispatch-protocol.md` §Detect; an unconfirmed wrapper is not evidence of a distinct architecture, it may be the same backend as another voice in the run). `< 2` → `decorrelation: NO_DECORRELATION`. `>= 2` → `decorrelation: MULTI_FAMILY`.
+1. Apply the min-decorrelation gate (see HARD-GATE above): count distinct real `model_family` values among voices that passed GATE, **excluding both `is_fallback` voices AND voices with `model_family: "unknown"`** (unconfirmed wrapper-CLI backends — see `rune-council/references/dispatch-protocol.md` §Detect; an unconfirmed wrapper is not evidence of a distinct architecture, it may be the same backend as another voice in the run). `< 2` → `decorrelation: NO_DECORRELATION`. `>= 2` → `decorrelation: MULTI_FAMILY`.
 2. Build `agreement.consensus_claims`: clusters (from Step 5) with **>= 2 voices from >= 2 distinct, confirmed `model_family` (never `unknown`), all evidence `verified: true`**. Anything short of this bar is NOT consensus — label it `unverified agreement` and put it in `agreement.dissent` with that label, not in `consensus_claims`.
 3. Build `agreement.dissent`: everything else — genuine disagreement, unverified agreement, single-voice claims, and the correlated-agreement-penalty notes from Step 5.5. Dissent is surfaced, NEVER averaged away or silently dropped in favor of a "majority view."
 4. Check the perturbation slot (Step 2.3): did the claims that survive the inverted framing match the claims from the standard framing? Agreement that survives inversion is trustworthy; agreement that doesn't is flagged in dissent as "framing-sensitive."
@@ -166,7 +166,7 @@ Determines whether two voices made "the same claim" — meaningless until define
 4. MUST record every dropped voice in `voices_dropped[]` with a reason — no silent drops
 5. MUST run all allocated voices in parallel, not sequentially — the value is independence, not throughput, but sequential dispatch adds latency without adding independence
 6. MUST NOT retry a malformed or off-topic voice mid-run — drop it via GATE and move on; retries reintroduce correlation with the prompt that just failed
-7. MUST NOT dispatch an external CLI without going through `references/dispatch-protocol.md` safety properties (authorization, read-only sandbox, stdin-not-args, binary preflight)
+7. MUST NOT dispatch an external CLI without going through `rune-council/references/dispatch-protocol.md` safety properties (authorization, read-only sandbox, stdin-not-args, binary preflight)
 8. MUST operate in JUDGMENT mode only (critique/review/judge) — `generate` mode is declared in the contract but deferred; if a caller requests `mode: generate`, respond with `NOT_IMPLEMENTED` rather than improvising artifact generation across voices
 
 ## Mesh Gates
@@ -181,13 +181,13 @@ Determines whether two voices made "the same claim" — meaningless until define
 | Failure Mode | Severity | Mitigation |
 |---|---|---|
 | Caller (or a future reader) treats `NO_DECORRELATION` output as consensus anyway | CRITICAL | HARD-GATE strips consensus wording at the source; Output Format always prints the decorrelation stamp first line |
-| Wrapper CLI (Cline/Amp/OpenCode/Aider) misreported as a distinct model family when its backend is actually Claude | HIGH | `references/dispatch-protocol.md` family map defaults unconfirmed wrapper backends to `unknown` — excluded from distinct-family count until confirmed |
+| Wrapper CLI (Cline/Amp/OpenCode/Aider) misreported as a distinct model family when its backend is actually Claude | HIGH | `rune-council/references/dispatch-protocol.md` family map defaults unconfirmed wrapper backends to `unknown` — excluded from distinct-family count until confirmed |
 | Prose-similarity claims counted as consensus because arbiter clustering got lazy | CRITICAL | Step 5.2 hard requirement: shared `evidence.ref`, not text similarity, gates the arbiter-cluster match |
 | Self-certified verification (voice grades its own claim) | CRITICAL | Step 5.4: `verified_by` must differ from producing voice, mechanically checked |
 | Off-topic voice counted toward `n` because its answer merely looked substantive | HIGH | Step 4.2 `question_echo` vs `request.question` gate — the Agy fix — before anything downstream sees the voice |
 | External CLI hangs past `per_voice_timeout_s`, stalling the whole run | MEDIUM | Step 3.1: timeout triggers immediate subagent fallback for that slot, not a wait-and-retry |
 | Devil's-advocate/perturbation slots quietly reused as regular voices under time pressure | MEDIUM | Step 2.3 reserves them explicitly in ALLOCATE — Step 6.4/6.5 checks they were actually applied before arbitrating |
-| Bundle/prompt interpolated into shell args for external dispatch | CRITICAL | `references/dispatch-protocol.md` inherits adversary's stdin-only transport — never inline `-p "<bundle>"` |
+| Bundle/prompt interpolated into shell args for external dispatch | CRITICAL | `rune-council/references/dispatch-protocol.md` inherits adversary's stdin-only transport — never inline `-p "<bundle>"` |
 | Council invoked for every trivial decision, burning cost on low-stakes calls | MEDIUM | Triggers section: council is opt-in per caller (adversary high-risk gate, review blast-radius gate, brainstorm Design-It-Twice high-stakes gate, problem-solver one-way-door/ethics gate) — never auto-fires on every plan/diff/design/analysis |
 | **"Confirmed" `model_family` is CLI-brand identity, not verified runtime-backend identity** — a user pointing 2+ "confirmed" CLIs (e.g. `claude` + `codex`, or an IDE CLI like `agy` with a model picker) at the same actual backend via BYOK/proxy/gateway override collapses the real distinct-family count without tripping the `is_fallback`/`unknown` exclusions. Found via a real council self-test dispatch (2026-07-11, grok + 2 subagent voices independently converged on this). | CRITICAL, currently UNCLOSED | Step 5.5's near-verbatim check now fires regardless of family label (previous version only fired for same-family/unknown, which this exact scenario bypassed). There is no mechanical way to verify a CLI's actual serving backend from user-space today — council cannot cryptographically close this gap, only flag the behavioral symptom. Documented here rather than falsely claimed solved. |
 | GATE's `question_echo` on-topic check is self-reported by the same voice being graded — a shallow-but-parseable non-answer that echoes the question passes | MEDIUM | Partial: the arbiter reads the echoed question against the actual answer content at Step 6, not just the schema shape, so an echo with no substantive claims behind it still contributes little to consensus/dissent even if it technically passes GATE |
@@ -226,7 +226,7 @@ IF ANY check fails → fix before reporting done. Do NOT defer to completion-gat
 **Scope guardrail**: council gathers and arbitrates perspectives — it does not implement fixes, does not rewrite the artifact under discussion, and does not run in `generate` mode (deferred to Phase 2 cockpit work). If asked to produce code or a revised plan, hand the arbitrated findings back to the caller (`adversary`/`review`) to act on.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

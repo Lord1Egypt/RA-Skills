@@ -1,5 +1,14 @@
 # 快手定向舆情监测助手 更新日志
 
+## 1.1.3
+
+- 新增 `references/faq.md`；SKILL 写入 Windows cmd/PowerShell 双壳例与「cmd 只用双引号」。
+- CLI 支持 `--json-args`（与传统 flag 互斥；键名用 `keyword`/`url`/`sort` 等）；`parseCliArgs` 统一入口；SKILL/faq 补例。
+- 落盘开关统一为 `GUAIKEI_ENABLE_LOG=1` 或 CLI `--save`；废弃 `KS_GUAIKEI_ENABLE_LOG`。
+- `backendCodes`：在余额判断之后将裸 `errcode === 14` 稳定映射为 `PLAN_LIMIT`（不再仅依赖 errmsg 正则）。
+- 修正 `requestApi` 创建重试注释：以 `noRetry` 为准；频控（多为后端 2）不重试，勿写「2–9 一律重试」。
+- stdout 信封顶层可选 `cost`（透传取数接口花费估算；错误省略）。
+
 ## 1.1.2
 
 - 链接尾部 scrub 补齐中文引号/书名号等，避免 `「」` 粘在短链/视频 id 后误判无效。

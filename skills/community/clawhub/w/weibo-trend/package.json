@@ -1,0 +1,22 @@
+{
+  "name": "weibo-trend",
+  "version": "1.0.0",
+  "description": "微博公开数据只读技能。热搜、关键词搜索、微博评论。输出结构化 JSON。",
+  "keywords": [
+    "weibo",
+    "search",
+    "hot",
+    "comment"
+  ],
+  "author": "um-why",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "hot": "node scripts/weibo/hot-cli.js",
+    "search": "node scripts/weibo/search-cli.js",
+    "comment": "node scripts/weibo/comment-cli.js"
+  }
+}

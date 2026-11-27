@@ -16,12 +16,22 @@ export function imageMarkdown(item) {
   return `**${label}｜${text(item.caption || item.title)}**\n\n![${label}：${text(item.caption || item.title)}](<${item.url}>)\n\n*${label} · AI 配图 · 带水印 · [Imagen 来源](<${item.detail_url}>)*`;
 }
 export const WATERMARK_NOTICE = '以上为免费水印图链接，可直接引用或按需下载。部分终端或聊天客户端可能无法显示网络图片；可使用已下载的本地素材查看，或在支持远程图片的网页及 Markdown 渲染器中使用。显示效果取决于客户端与网络环境。';
+export const NO_SEARCH_RESULTS = '没有找到合适的图片。可以试试缩短关键词、换个中英文同义词，或减少筛选条件。';
 export function searchMarkdown(result) {
-  if (!result.items.length) return '没有找到合适的图片。请换一个更具体的关键词。';
-  return result.items.map(asset => {
+  const page = result.page_info;
+  if (!result.items.length) {
+    if (page?.total > 0 && page.page > page.total_pages) {
+      return `第 ${page.page} 页超出范围。共 ${page.total} 张，${page.total_pages} 页。请用 \`--page ${page.total_pages}\` 或更小的页码重试。`;
+    }
+    return NO_SEARCH_RESULTS;
+  }
+  const summary = page ? `第 ${page.page}/${page.total_pages} 页，共 ${page.total} 张。` : '';
+  const next = page?.has_next ? `用 \`--page ${page.page + 1}\` 查看下一页。` : '';
+  const candidates = result.items.map(asset => {
     const label = `候选 ${asset.public_id.slice(0, 8)}`;
     return `**${label}｜${text(asset.title)}**\n\n![${label}：${text(asset.title)}](<${preview(asset)}>)\n\n[查看来源](<${source(asset)}>) · public_id: \`${asset.public_id}\``;
-  }).join('\n\n') + '\n\n> ' + WATERMARK_NOTICE;
+  });
+  return [summary + next, ...candidates, '> ' + WATERMARK_NOTICE].filter(Boolean).join('\n\n');
 }
 export async function readManifest(file) {
   try {

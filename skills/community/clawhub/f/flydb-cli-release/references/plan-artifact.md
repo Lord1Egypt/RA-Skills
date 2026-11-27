@@ -1,10 +1,10 @@
 # 11 Plan Artifact v1：dry-run 计划的结构化表示
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/design/11-plan-artifact.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/design/11-plan-artifact.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
-> [← 10 机器契约](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/design/10-machine-contract.md) | [返回总览](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/design/00-overview.md)
+> [← 10 机器契约](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/design/10-machine-contract.md) | [返回总览](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/design/00-overview.md)
 
-**本文档是契约**：标记为契约的章节不能静默偏离；实现与文档冲突时，先按 [AGENTS.md](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/AGENTS.md) §3 处理冲突，再决定修代码或更新契约。使用者视角的 schema 见[JSON 输出参考](json-output.md)。
+**本文档是契约**：标记为契约的章节不能静默偏离；实现与文档冲突时，先按 [AGENTS.md](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/AGENTS.md) §3 处理冲突，再决定修代码或更新契约。使用者视角的 schema 见[JSON 输出参考](json-output.md)。
 
 ## 1. 定位与问题
 
@@ -21,7 +21,7 @@ Plan Artifact v1 回答一个问题：**人、CI 与 Agent 如何指称并核对
 
 ## 2. 载荷 schema（契约）
 
-`--json --dry-run migrate` / `--json --dry-run undo` 成功信封在机器契约（[10](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/design/10-machine-contract.md)）基础上追加：
+`--json --dry-run migrate` / `--json --dry-run undo` 成功信封在机器契约（[10](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/design/10-machine-contract.md)）基础上追加：
 
 ```json
 {"protocolVersion":1,"command":"migrate","status":"success","exitCode":0,

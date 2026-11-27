@@ -1,7 +1,7 @@
 ---
 name: flydb-cli-release
 description: >-
-  使用和排查 Flydb CLI 发行包，包括安装、迁移预演与执行、本机 Web 工作台、JSON/Plan 输出、MCP 调用和 JDBC 驱动接入。用户提到 bin/flydb、flydb web、flydb.conf、flydb-cli ZIP、FLYDB 错误码、长迁移或失败恢复时使用。自带运行参考；迁移 SQL 编写与多环境流水线分别交给同族专门技能。
+  使用和排查 Flydb CLI 发行包，包括安装、迁移预演与执行、本机 Web 工作台、JSON/Plan 输出、MCP 调用和 JDBC 驱动接入。用户提到 bin/flydb、flydb web、flydb new、flydb_preflight、flydb.conf、flydb-cli ZIP、FLYDB 错误码、长迁移或失败恢复时使用。自带运行参考；迁移 SQL 编写与多环境流水线分别交给同族专门技能。
 metadata:
   compatibility: Flydb CLI 0.3.x，Web 入口需 0.3.5+；Java 8+。MCP 宿主另需 Node.js 20+ 和兼容 Adapter；普通 CLI/Web 无需 Node.js。
 ---
@@ -72,6 +72,8 @@ Java 缺失时报告并停止（安装任意 JDK 8+ 并设置 `JAVA_HOME` 后重
 | 用户目标 | 命令 | 默认动作 |
 |---|---|---|
 | 创建配置和迁移目录 | `init` | 只生成本地文件，不连接数据库 |
+| 创建下一份版本化 SQL（0.3.9+） | `new <描述>` | 离线创建空文件，版本与目录参数见命令参考 |
+| 发布前一次核对目标、校验结果和计划（0.3.9+） | `preflight` | 只读预演，返回摘要和本机详情路径 |
 | 本机图形化配置与执行进度 | `web` | 启动本机服务，启动本身不连接数据库 |
 | 查看迁移状态 | `info` | 读取数据库和本地脚本，不持锁 |
 | 校验 checksum、失败记录和迁移集合 | `validate` | 只读校验 |
@@ -103,11 +105,15 @@ Java 缺失时报告并停止（安装任意 JDK 8+ 并设置 `JAVA_HOME` 后重
 
 ### 5. Web 工作台与 MCP
 
+0.3.9+ 的工作台支持在「连接与配置」按用途搜索全部设置，查看示例、生效值与来源。复制环境时可跟随源配置，只写入差异。在「迁移」页选择「新建 SQL 脚本」离线创建文件，切换发布目录后先核对数据库历史与本地脚本。
+
 **Web**：按 [`references/web.md`](references/web.md) 启动，仅报告普通 `127.0.0.1` 地址与进程状态。已有配置直接导入，新建复用 init 规则；表单和文件编辑作用于原文件，外部修改先合并修订。文件编辑可能显示原文凭据，不复制到对话或报告。启动 GUI、修改配置、打开浏览器均不扩大数据库写入授权。
 
-预览后使用对应确认引用执行；配置、目标或脚本变化、`FLYDB-2011` 或确认过期均需重新预览。Web `planId` 是临时确认引用，CLI `plan.id` 是内容摘要，两者不能互换。HTTP 200 只代表操作已提交，继续观察 Run 终态及独立 verification；关闭浏览器不取消任务，无可信终态按 UNKNOWN 核验。Web 不提供 clean。
+预览后使用对应确认引用执行；配置、目标或脚本变化、`FLYDB-2011` 或确认过期均需重新预览。Web `planId` 是临时确认引用，CLI `plan.id` 是内容摘要，两者不能互换。HTTP 200 只代表操作已提交，继续观察 Run 终态及独立 verification；关闭浏览器不取消任务，无可信终态按 UNKNOWN 核验。Web 清库入口的版本、目标核对和单次确认要求见随包的 Web 指南。
 
 **MCP**：先读 [`references/mcp-tools.md`](references/mcp-tools.md)，检查 CLI 版本握手与宿主现有配置。数据库工具只接收绝对 `workingDirectory`、`configPath`；密码由宿主环境或密码文件注入，驱动提前准备（调用固定 `--driver-download never`）。默认仅有只读/计划工具；启用 `FLYDB_MCP_ENABLE_WRITES=true` 只是开放工具，不能替代本次写入授权。先 plan 核对 `plan.id`、SQL 与目标，再按授权调用写工具；不臆造 clean/init/execute_sql/rawArgs。
+
+只做发布前检查时先看 `tools/list`。有 `flydb_preflight` 就一次读取目标、`validation` 和 `plan`。需要逐条核对时读取宿主机 `detailsFile`，为空或当前客户端无法读取时调用 `flydb_plan_migrate`。旧版组合用 `flydb_validate` 和 `flydb_plan_migrate`，项目依赖校验回调时也要单独运行校验。0.3.9 的 `new` 通过 CLI 或 Web 创建本地文件。
 
 MCP 超时/取消会终止 CLI 子进程，与后台 CLI 分支不同；收到 `FLYDB_MCP-0002/0003` 后保留诊断并核验数据库，不能推断已回滚或自动重试。预计超出调用期限时先选择合适执行方式，不能静默更换用户指定的 MCP 入口。
 

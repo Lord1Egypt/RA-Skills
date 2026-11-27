@@ -246,7 +246,7 @@ Run this loop whenever a deliverable carries a mechanically checkable surface co
 <HARD-GATE name="surface-constraint">
 "The output satisfies the constraint" is a verified claim only after step 3 has run against
 the EXACT delivered text. Asserted from a re-read, it is an assumption wearing the grammar of
-an observation — see `completion-gate` → `references/claim-discipline.md`. Report the check
+an observation — see `completion-gate` → `rune-completion-gate/references/claim-discipline.md`. Report the check
 that was run, not the conclusion.
 </HARD-GATE>
 
@@ -370,6 +370,7 @@ When any skill calls verification and then reports results upstream:
 | "0 tests failed" | A non-zero collected/ran count in the same output | REJECTED — a run that collected 0 tests also reports 0 failures |
 | "Clean scan / no findings" | The count of files, rules, or rows actually examined | REJECTED — an empty target set is indistinguishable from a clean one |
 | "No diff / no change detected" | Evidence the probe can report a difference at all | REJECTED — show it non-zero on a case known to differ |
+| "Tests pass" after this diff changed test files | `rune verify --integrity` clean (or a recorded `Test-Change-Approved` / `RUNE_TEST_CHANGE_APPROVED` override) | REJECTED — a green suite that was weakened is not evidence. See [test-integrity-gate](rune-test/references/test-integrity-gate.md) |
 
 ## Constraints
 
@@ -417,7 +418,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~$0.01-0.03 per run. Haiku + Bash commands. Fast and cheap.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

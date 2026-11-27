@@ -1,0 +1,29 @@
+{
+  "name": "video-text",
+  "version": "1.0.0",
+  "displayName": "Video Text — 画面文字提取与分区分析",
+  "description": "从视频里逐帧读画面上的字，按区域分，区分固定层（水印/台标）和内容层（真字幕），导出 SRT 和报告。本地处理，不联网。",
+  "author": "",
+  "license": "MIT-0",
+  "runtime": {
+    "language": "python",
+    "python": ">=3.9",
+    "network": false
+  },
+  "permissions": {
+    "network": "不联网。OCR 在本地跑",
+    "filesystem": "只读视频文件，写你指定的输出路径"
+  },
+  "dependencies": {
+    "python": ["opencv-python", "numpy", "rapidocr_onnxruntime"],
+    "system": ["ffmpeg", "ffprobe"]
+  },
+  "entry": "scan.py",
+  "commands": [
+    {"name": "scan", "desc": "扫描视频，输出固定层和内容层"},
+    {"name": "--srt", "desc": "导出 SRT 字幕"},
+    {"name": "--report", "desc": "导出 markdown 报告"}
+  ],
+  "tags": ["video", "ocr", "subtitle", "srt", "ffmpeg", "video-text"],
+  "categories": ["自动化", "创意", "知识"]
+}

@@ -4,7 +4,7 @@ MUST remain read-only.
 Without code, review design only; without specifications, limit conclusions to evidenced code properties.
 Record scope, versions, contract confirmation/coverage, and unknowns before judging differences; read contracts under the [specification notation](../spec-notation.md).
 
-1. Apply [concept criteria](../model-criteria.md#concepts) to the actual user, including API programmers.
+1. Apply [concept criteria](../model-criteria.md#concepts) to the actual user, including API programmers; classify by [mature capability](../model-criteria.md#mature-capabilities) and flag inflation where technical mechanisms or component models enter concepts.
 2. With code, check [engineering architecture](../architecture.md#review-and-verification); for Java/Spring projects, also read the [Java/Spring conventions](../architecture-java.md). With applicable behavior contracts, also apply [drift checks and severity](guard/drift.md).
 3. Trace required success and refusal through rules and actual composition/adapters.
    Compare matching, binding sources/cardinality, occurrence/object/request isolation, and outcomes against the [execution constraints and shared checks](../architecture-execution.md#execution-constraints).

@@ -66,7 +66,7 @@ metadata:
 | 改写动作明细 | 删八股开场（众所周知→直入论点）/拆「不仅X而且Y」/清残留/标点全角化/２０２５→2025 | ——（全部确定性零信息损失） | `transform --deep` 自动 |
 | 深改动作明细 | 黑话/翻译腔替换、节奏、具体性（**绝不编造数据**） | 重写句必须过 verify 才算完成 | agent 深改 |
 
-**功能状态（v5.19.0）**——⚠️ 行 = 实验性（可能拒收合法文件或需人工复核）；**完整逐代际清单已下沉 [references/feature_status.md](references/feature_status.md)**，明细见 references/errors.md 与各专题文档。稳定速览（全部稳定）按五类：**诊断**（风格自查·章节专项 --top N 裁剪 · 统计一致性 · 术语漂移/统一稿 · 阈值校准证据化 · EN 特征库 v3）｜**深改**（句级计划·指令单行号锚 · pipeline --handoff 交接块 · EN/CN 特征库与密度镜像（v3））｜**守卫**（完整性 verify+守卫处方报告 · 编造防线 · 守卫自学习可导出共享 · 输出分级+--strict 门禁+--allow-list 豁免清单（宽词放大豁免面，逐条核对原文是调用方责任） · 统计一致性 --html+评分门禁 --fail-under · 豁免清单 --allow-list）｜**批量**（断点续传·并发隔离 · 工作单/统计卡 · 修订记录 · 自动化门禁 --exit-verdict/--ci · 清理预览 --dry-run）｜**交付**（投稿自查包 12 件·写入清单自证 · 体检报告/前后对照 · docx 回写 · 打印友好报告 · 包内自检 selfcheck 双形态自适应 · 外挂词表 --lexicon 多 skill 共享）。唯一 ⚠️ 实验性：
+**功能状态（v5.21.0）**——⚠️ 行 = 实验性（可能拒收合法文件或需人工复核）；**完整逐代际清单已下沉 [references/feature_status.md](references/feature_status.md)**，明细见 references/errors.md 与各专题文档。稳定速览（全部稳定）按五类：**诊断**（风格自查·章节专项 --top N 裁剪 · 统计一致性 --html · 术语漂移/统一稿 · 阈值校准证据化 --coverage · EN 特征库 v3 · 守卫/词表 validate）｜**深改**（句级计划·指令单行号锚 · pipeline --handoff 交接块 · EN/CN 特征库与密度镜像（v3））｜**守卫**（完整性 verify+守卫处方报告 · 编造防线 · 守卫自学习可导出共享 · 输出分级+--strict 门禁+--allow-list 豁免清单（宽词放大豁免面，逐条核对原文是调用方责任） · 统计一致性 --html+评分门禁 --fail-under · 豁免清单 --allow-list）｜**批量**（断点续传·并发隔离 · 工作单/统计卡 · 修订记录 · 自动化门禁 --exit-verdict/--ci/--fail-under · 清理预览 --dry-run · 批量清洗 --batch/--summary/--csv）｜**交付**（投稿自查包 12 件·写入清单自证 · 体检报告/前后对照 · docx 回写 · 打印友好报告 · 包内自检 selfcheck 双形态自适应 · 外挂词表 --lexicon 多 skill 共享）。唯一 ⚠️ 实验性：
 
 | 能力 | 状态 | 版本 |
 |---|---|---|

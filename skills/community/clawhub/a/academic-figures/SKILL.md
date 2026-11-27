@@ -36,8 +36,8 @@ ZCode skill auto-discovery reads ONLY the frontmatter whitelist keys
 (name / description / when_to_use / license / metadata); a description over
 1024 chars is silently dropped (root cause of the v2.x discovery failure).
 Keys moved out of frontmatter (info preserved):
-  version: 8.1.2
-  date: 2026-11-25
+  version: 8.1.6
+  date: 2026-11-27
   author: docsor1212
   metadata: {clawdbot: {emoji: "📊", category: visualization}}
   requires: {python: ">=3.8", pip: [matplotlib, numpy, pymupdf, scipy, openpyxl]}
@@ -183,7 +183,7 @@ python3 scripts/gen_figure.py -t heatmap -d data.json -o heatmap.png --cjk \
 | Composite | **Composite** | `-t composite` | Multi-panel A+B+C (⚠ no nested composite/diagram/upset panels); `panel_labels:true` corner letters (v4.1); `span:[rows,cols]` multi-cell panels with overlap detection (v4.3) |
 | Flow | **Diagram** | `-t diagram` | Architecture/flow blocks, arrows, groupings, annotations |
 | Review | **PRISMA Flow** | `-t prisma` | PRISMA 2020 review flow; counts auto-validated (must add up), EN/ZH wording via `lang` |
-| Flow | **Semantic Flowchart** | `-t flow` | Semantic JSON (zero coordinates); layouts chain/layered/snake/swimlane (TB columns + LR rows with rotated lane titles); 14 semantic shapes + role palette; edge types thick/bidirectional/open/dashed; `--from-mermaid` imports mermaid sources directly; magnet arrows, lane back-edges, edge-style legend, ink-verified labels; `--gate strict` triple-bbox + area gates |
+| Flow | **Semantic Flowchart** | `-t flow` | Semantic JSON (zero coordinates); layouts chain/layered/snake/swimlane (TB columns + LR rows with rotated lane titles); 14 semantic shapes + role palette; edge types thick/bidirectional/open/dashed; `--from-mermaid` imports mermaid sources directly; magnet arrows, lane back-edges, edge-style legend, ink-verified labels; `--gate strict` triple-bbox + area gates; `--flow-hops on` crossing hop arcs (opt-in) |
 
 Scan the Category column at a glance; getting-started path in `references/quickstart.md`, full command cheatsheet in `references/cheatsheet.md`.
 
@@ -405,7 +405,7 @@ Code layout: `scripts/gen_figure.py` (main, 41 types) + `gen_legend.py` (journal
 
 ## Version History
 
-Full bilingual history: `references/changelog.md` (index + recent details; full archive: `references/changelog-full.md`). Recent: **v8.1.0** swimlane layouts (TB/LR channel tracks) + mermaid import + edge-style legend + routing/label rework; **v8.0.4** role palette + snake layout + routing root-fixes; **v8.0.3** label-system finalization; **v8.0.2** copy sanitization; **v8.0.1/8.0.0** `-t flow` semantic flowcharts + diagram engine rewrite (absolute-inch layout, magnet arrows, lane back-edges, edge-style legend, ink-verified labels, --gate strict triple-bbox gate); **v7.9.x** WCAG contrast, gates, sanitization packs. Earlier in changelog.
+Full bilingual history: `references/changelog.md` (index + recent details; full archive: `references/changelog-full.md`). Recent: **v8.1.5** `--flow-hops` crossing hop arcs; **v8.1.4** academic flow templates (PRISMA/CONSORT/STROBE/STARD); **v8.1.3** endpoint clearance; **v8.1.2** changelog archive rework; **v8.1.1** port corner clearance; **v8.1.0** swimlane layouts + mermaid import + edge-style legend + routing/label rework
 
 ## 🚀 Pro Edition
 

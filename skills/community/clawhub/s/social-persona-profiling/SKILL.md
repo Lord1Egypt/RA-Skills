@@ -19,7 +19,7 @@ description: >
   deletes any statement true of anyone.
 description_zh: 社交人格侧写与关系分析
 description_en: Social Persona Profiling
-version: "1.0.15"
+version: "1.0.16"
 agent_created: true
 ---
 
@@ -157,4 +157,5 @@ After producing the report, self-check:
 - Does it close with a clear psychological formulation (what kind of person + one-sentence formulation), not stopping at behavior listing?
 - Is there a "specific over-inference list" separating out the least-supported items and downgrading them?
 - Did you remind the client: the subject cannot defend themselves in this document?
+- Every trait statement carries its confidence and the observable traces behind it; a conclusion drawn only from self-description is labelled as self-presentation, not as a trait finding.
 If any answer is "no", the report has not reached the honesty standard and needs rework.

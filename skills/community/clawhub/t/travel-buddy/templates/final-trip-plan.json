@@ -623,6 +623,8 @@
         "comparison_checked_at": null,
         "direct_provider": null,
         "direct_review_url": null,
+        "exact_booking_url": null,
+        "exact_booking_provider": null,
         "source_type": null,
         "checked_at": null,
         "review_url": null,
@@ -893,5 +895,22 @@
     }
   ],
   "assumptions": [],
-  "recheck_before_purchase": []
+  "recheck_before_purchase": [],
+  "place_check": {
+    "tool": "check_places.py",
+    "checked_at": null,
+    "inputs": [],
+    "findings": [],
+    "addresses": [
+      {
+        "pointer": "booking_options.accommodations[0].property_name",
+        "property_name": null,
+        "local_name": null,
+        "address": null,
+        "lat": null,
+        "lon": null,
+        "source": "OpenStreetMap"
+      }
+    ]
+  }
 }

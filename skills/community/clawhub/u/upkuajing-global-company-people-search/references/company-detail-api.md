@@ -2,6 +2,7 @@
 
 ## python脚本参数
 - `--pids`：公司ID列表（空格分隔，必需，最多20个）
+- `--user_confirmed`：用户已在独立消息中确认ID数量和费用后必须传入
 
 ## 响应数据
 
@@ -41,3 +42,5 @@
 - stock_codes：股票代码列表
 - logos：公司logo信息
 - products：公司产品列表
+
+脚本成功时会在 `delivery.displayRows` 中返回全部公司详情，当前回复必须展示，不得只报告查询成功。

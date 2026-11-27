@@ -1,0 +1,45 @@
+{
+ "skill_name": "universal-verify",
+ "evals": [
+  {
+   "id": 1,
+   "prompt": "帮我写了一篇公众号文章 draft.md，介绍我们新上线的 AI 客服，发之前帮我验证一下质量和去AI味",
+   "expected_output": "Runs ai_tone_lint and fact extraction, isolated judge for structural AI tone, returns report with per-item evidence and ≤5 human cards",
+   "files": [
+    "evals/files/draft.md"
+   ],
+   "assertions": [
+    "Report contains a Verdict line",
+    "ai_tone_lint was executed and its hit count reported",
+    "At least one structural (not lexical) AI-tone finding is evaluated",
+    "Numbers without a source are marked UNVERIFIED"
+   ]
+  },
+  {
+   "id": 2,
+   "prompt": "I just implemented a rate limiter in evals/files/limiter/src/limiter.py (tests in evals/files/limiter/tests), verify it before I open the PR",
+   "expected_output": "Runs tests/lint, checks tests assert behavior, judges edge cases, bounded fix loop",
+   "files": [
+    "evals/files/limiter/"
+   ],
+   "assertions": [
+    "A test command is actually run and its exit code cited",
+    "No PASS claim without command output",
+    "Edge cases (burst, clock skew, concurrency) assessed"
+   ]
+  },
+  {
+   "id": 3,
+   "prompt": "这是用 AI 生成的 4 张产品海报候选（evals/files/posters/），文案应为 SUMMER SALE 50% OFF，帮我挑出最好的一张，并检查有没有崩坏",
+   "expected_output": "Per-image checklist (anatomy, text, prompt alignment), pairwise comparison with swapped order, uncertain marked",
+   "files": [
+    "evals/files/posters/"
+   ],
+   "assertions": [
+    "Each image gets anatomy and text-rendering checks",
+    "Pairwise comparison is done twice with swapped order or disagreement marked uncertain",
+    "Final pick cites evidence"
+   ]
+  }
+ ]
+}

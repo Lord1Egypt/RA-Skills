@@ -1,6 +1,6 @@
 ---
 name: damdit
-description: Run and explain Damdit website audits with the `damdit` or `damdit-cli` command line. Use when the user asks to audit a website, what is wrong with a site, what to fix first, what changed since the last audit, whether a fix worked, or for an audit summary for a client or developer.
+description: Run and explain Damdit website audits with the `damdit` or `damdit-cli` command line. Use when the user asks to audit or check a website (broken links, accessibility, SEO, security headers), whether a site is ready for launch or for handover to a client, what is wrong with a site, what to fix first, what changed since the last audit, whether a fix worked, or for a report about the state of a website for a client or developer.
 ---
 
 # Damdit website audits

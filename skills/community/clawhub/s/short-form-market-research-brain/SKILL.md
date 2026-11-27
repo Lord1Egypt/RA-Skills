@@ -1,7 +1,7 @@
 ---
 name: short-form-market-research-brain
 description: Short-form video market research via the Virlo API: viral niche research, trend tracking, creator vetting, hashtag, sound, and hook intelligence across TikTok, YouTube Shorts, and Instagram Reels. Use when the user wants to research what's working in a niche, find rising creators, monitor trends, get viral hooks (opening lines) to model, or analyze social video performance.
-version: 1.36.0
+version: 1.36.1
 homepage: https://dev.virlo.ai/docs
 metadata:
   openclaw:
@@ -53,7 +53,7 @@ All parameter names and response fields use snake_case. All responses are wrappe
 
 ## Billing
 
-Pay-as-you-go prepaid dollar balance. Add funds (the Billing page shows the minimum; bigger top-ups come with bonus credits, milestones at https://dev.virlo.ai/docs/credits#bonus-credits), use the API, auto top-up keeps you running. No subscriptions. Balance never expires. 1 credit = $0.01.
+Pay-as-you-go prepaid dollar balance. Add funds (the Billing page shows the minimum; bigger top-ups come with bonus credits, milestones at https://dev.virlo.ai/docs/credits#bonus-credits), use the API, auto top-up keeps you running. No subscription needed, and a Virlo plan's monthly credits work here too. Credits last 3 months from the day you get them; credits you had before Nov 27, 2026 never expire. 1 credit = $0.01.
 
 Rejected requests (4xx/5xx) are never charged. An accepted request is charged even when it returns nothing, except for these automatic refunds, paid back after the job ends: a creator, sound, hashtag, place, or video outlier lookup that fails (for example, a creator handle that doesn't exist) is refunded in full, batch creators included; a `trend_analysis` surcharge is refunded when no trends come out; a creator lookup's audience surcharge is refunded when no new snapshot was needed, and its `data_intelligence` surcharge when there were no posts to enrich or its analysis failed; a lookup that stalls and is closed out as failed by the stuck-run sweep is refunded in full; and a post collection that finds no posts or fails is refunded in full. Not refunded: the hashtag `depth` surcharge (unless the whole lookup fails) and a one-time agent whose run fails. `X-Cost` always shows the full charge; the refund is its own row in usage history, and lookups echo it as `credits_refunded` (in credits) on the completed result, the saved run, or the failed status. Recurring agent runs and tracking checks are charged in the background after each successful run or check, so they never appear in `X-Cost`. If the balance runs out, recurring agents and tracking pause, and adding funds won't restart them: resume with `PUT /v1/agents/:id {"active": true}` or `PATCH /v1/tracking/.../:id {"status": "active"}`.
 

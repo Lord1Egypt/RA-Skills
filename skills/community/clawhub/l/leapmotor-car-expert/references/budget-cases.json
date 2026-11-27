@@ -1,0 +1,434 @@
+{
+  "version": "0.5.3",
+  "checked": "2026-11-11",
+  "legend": "预算用例是测试预期的唯一来源。expected_qualified 为精确集合，逐项比较；expected_excluded 给出边界反例的实际金额。金额单位元，税费按含税价÷1.13×5% 独立算出，与本库 compute_tax 的另一条算式（原税−减税）互为校验。余额只扣裸车与购置税，未扣保险、上牌、贷款费用，正余额不等于可成交。scope 区分两类用例：open 是没有额外硬条件的基线（含原题未确认硬件时的对照），branch 是用户已明确确认硬件或车系条件后的分支；branch 必须写 precondition 与 fallback_case，且分支集合只能是 fallback 集合的子集。不得用 branch 集合判原始开放问题的唯一正确答案。",
+  "cases": [
+    {
+      "id": "Q17-price-140000",
+      "question": "Q17",
+      "label": "裸车 14 万（硬上限）",
+      "basis": "裸车",
+      "budget_yuan": 140000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-290-zx",
+        "c10-660-zx"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c10-660-lidar",
+          "price": 142800,
+          "why": "裸车价超预算"
+        }
+      ]
+    },
+    {
+      "id": "Q17-landing-140000",
+      "question": "Q17",
+      "label": "落地 14 万",
+      "basis": "落地",
+      "budget_yuan": 140000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-zx",
+        "c10-660-zx"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c10-290-lidar",
+          "price": 135800,
+          "tax": "6008.85",
+          "balance": "-1808.85",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q18-price-150000",
+      "question": "Q18",
+      "label": "裸车 15 万",
+      "basis": "裸车",
+      "budget_yuan": 150000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-290-zx",
+        "c10-660-lidar",
+        "c10-660-zx",
+        "c11-300-lidar",
+        "c11-640-lidar",
+        "c11-640-zx",
+        "c16-280-zx-5",
+        "c16-280-zx-6"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c11-300-zun",
+          "price": 153800,
+          "why": "裸车价 15.38 万，超预算 0.38 万"
+        },
+        {
+          "trim": "c11-640-zun",
+          "price": 159800,
+          "why": "裸车价 15.98 万，超预算 0.98 万"
+        },
+        {
+          "trim": "c16-280-lidar-5",
+          "price": 159800,
+          "why": "裸车价 15.98 万，超预算 0.98 万"
+        }
+      ]
+    },
+    {
+      "id": "Q18-landing-150000",
+      "question": "Q18",
+      "label": "落地 15 万",
+      "basis": "落地",
+      "budget_yuan": 150000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-290-zx",
+        "c10-660-lidar",
+        "c10-660-zx"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c11-300-lidar",
+          "price": 143800,
+          "tax": "6362.83",
+          "balance": "-162.83",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c11-640-zx",
+          "price": 143800,
+          "tax": "6362.83",
+          "balance": "-162.83",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c16-280-zx-5",
+          "price": 145800,
+          "tax": "6451.33",
+          "balance": "-2251.33",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q19-price-170000",
+      "question": "Q19",
+      "scope": "stated",
+      "precondition": "原题写明「必须六座」，六座是用户自己提出的硬条件，不是模型补的。",
+      "label": "裸车 17 万、必须六座",
+      "basis": "裸车",
+      "budget_yuan": 170000,
+      "filter": {
+        "min_seats": 6
+      },
+      "expected_qualified": [
+        "c16-280-lidar-6",
+        "c16-280-zx-6",
+        "c16-630-lidar-6",
+        "c16-630-zx-6"
+      ],
+      "expected_excluded": []
+    },
+    {
+      "id": "Q19-landing-170000",
+      "question": "Q19",
+      "scope": "stated",
+      "precondition": "原题写明「必须六座」，六座是用户自己提出的硬条件，不是模型补的。",
+      "label": "落地 17 万、必须六座",
+      "basis": "落地",
+      "budget_yuan": 170000,
+      "filter": {
+        "min_seats": 6
+      },
+      "expected_qualified": [
+        "c16-280-zx-6",
+        "c16-630-zx-6"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c16-280-lidar-6",
+          "price": 162800,
+          "tax": "7203.54",
+          "balance": "-3.54",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c16-630-lidar-6",
+          "price": 169800,
+          "tax": "7513.27",
+          "balance": "-7313.27",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q20-price-130000",
+      "question": "Q20",
+      "label": "裸车 13 万",
+      "basis": "裸车",
+      "budget_yuan": 130000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-zx"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c10-660-zx",
+          "price": 132800,
+          "why": "裸车价超预算"
+        }
+      ]
+    },
+    {
+      "id": "Q20-landing-130000",
+      "question": "Q20",
+      "label": "落地 13 万",
+      "basis": "落地",
+      "budget_yuan": 130000,
+      "filter": {},
+      "expected_qualified": [],
+      "expected_excluded": [
+        {
+          "trim": "c10-290-zx",
+          "price": 125800,
+          "tax": "5566.37",
+          "balance": "-1366.37",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q21-price-150000",
+      "question": "Q21",
+      "scope": "branch",
+      "precondition": "用户已明确说「必须带激光雷达」。原题「辅助驾驶好一点」不构成这条硬件要求，未确认前不得使用本用例的集合。",
+      "fallback_case": "Q18-price-150000",
+      "label": "裸车 15 万（分支：用户已确认必须激光雷达）",
+      "basis": "裸车",
+      "budget_yuan": 150000,
+      "filter": {
+        "require_lidar": true
+      },
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-660-lidar",
+        "c11-300-lidar",
+        "c11-640-lidar"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c11-300-zun",
+          "price": 153800,
+          "why": "裸车价超预算 0.38 万"
+        }
+      ]
+    },
+    {
+      "id": "Q21-landing-150000",
+      "question": "Q21",
+      "scope": "branch",
+      "precondition": "用户已明确说「必须带激光雷达」。原题「辅助驾驶好一点」不构成这条硬件要求，未确认前不得使用本用例的集合。",
+      "fallback_case": "Q18-landing-150000",
+      "label": "落地 15 万（分支：用户已确认必须激光雷达）",
+      "basis": "落地",
+      "budget_yuan": 150000,
+      "filter": {
+        "require_lidar": true
+      },
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-660-lidar"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c11-300-lidar",
+          "price": 143800,
+          "tax": "6362.83",
+          "balance": "-162.83",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c11-640-lidar",
+          "price": 149800,
+          "tax": "6628.32",
+          "balance": "-6428.32",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q22-baseline-price-160000",
+      "question": "Q22",
+      "scope": "open",
+      "label": "裸车 16 万（原题基线：不限定车系）",
+      "basis": "裸车",
+      "budget_yuan": 160000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-290-zx",
+        "c10-660-lidar",
+        "c10-660-zx",
+        "c11-300-lidar",
+        "c11-300-zun",
+        "c11-640-lidar",
+        "c11-640-zx",
+        "c11-640-zun",
+        "c16-280-lidar-5",
+        "c16-280-zx-5",
+        "c16-280-zx-6",
+        "c16-630-zx-5",
+        "c16-630-zx-6"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c16-280-lidar-6",
+          "price": 162800,
+          "why": "裸车价超预算 0.28 万"
+        }
+      ]
+    },
+    {
+      "id": "Q22-baseline-landing-160000",
+      "question": "Q22",
+      "scope": "open",
+      "label": "落地 16 万（原题基线：不限定车系）",
+      "basis": "落地",
+      "budget_yuan": 160000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-lidar",
+        "c10-290-zx",
+        "c10-660-lidar",
+        "c10-660-zx",
+        "c11-300-lidar",
+        "c11-640-lidar",
+        "c11-640-zx",
+        "c16-280-zx-5",
+        "c16-280-zx-6",
+        "c16-630-zx-5"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c11-300-zun",
+          "price": 153800,
+          "tax": "6805.31",
+          "balance": "-605.31",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c16-630-zx-6",
+          "price": 155800,
+          "tax": "6893.81",
+          "balance": "-2693.81",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "Q22-price-160000",
+      "question": "Q22",
+      "scope": "branch",
+      "precondition": "用户已确认只在 C16 内选，并已确认乘员人数与座位需求。「长途＋大空间」本身不构成 C16 筛选条件。",
+      "fallback_case": "Q22-baseline-price-160000",
+      "label": "裸车 16 万（分支：用户已确认只看 C16）",
+      "basis": "裸车",
+      "budget_yuan": 160000,
+      "filter": {
+        "series": [
+          "C16"
+        ]
+      },
+      "expected_qualified": [
+        "c16-280-lidar-5",
+        "c16-280-zx-5",
+        "c16-280-zx-6",
+        "c16-630-zx-5",
+        "c16-630-zx-6"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c16-280-lidar-6",
+          "price": 162800,
+          "why": "裸车价超预算"
+        }
+      ]
+    },
+    {
+      "id": "Q22-landing-160000",
+      "question": "Q22",
+      "scope": "branch",
+      "precondition": "用户已确认只在 C16 内选，并已确认乘员人数与座位需求。「长途＋大空间」本身不构成 C16 筛选条件。",
+      "fallback_case": "Q22-baseline-landing-160000",
+      "label": "落地 16 万（分支：用户已确认只看 C16）",
+      "basis": "落地",
+      "budget_yuan": 160000,
+      "filter": {
+        "series": [
+          "C16"
+        ]
+      },
+      "expected_qualified": [
+        "c16-280-zx-5",
+        "c16-280-zx-6",
+        "c16-630-zx-5"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c16-630-zx-6",
+          "price": 155800,
+          "tax": "6893.81",
+          "balance": "-2693.81",
+          "why": "超预算或余额为负"
+        },
+        {
+          "trim": "c16-280-lidar-5",
+          "price": 159800,
+          "tax": "7070.80",
+          "balance": "-6870.80",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "B01-landing-140000",
+      "question": "B01",
+      "label": "落地 14 万、一分不加",
+      "basis": "落地",
+      "budget_yuan": 140000,
+      "filter": {},
+      "expected_qualified": [
+        "c10-290-zx",
+        "c10-660-zx"
+      ],
+      "expected_excluded": [
+        {
+          "trim": "c10-290-lidar",
+          "price": 135800,
+          "tax": "6008.85",
+          "balance": "-1808.85",
+          "why": "超预算或余额为负"
+        }
+      ]
+    },
+    {
+      "id": "B07-ceiling-130000",
+      "question": "B07",
+      "label": "13 万落地 → 裸车上限",
+      "kind": "price_ceiling",
+      "basis": "落地",
+      "budget_yuan": 130000,
+      "filter": {},
+      "expected_max_price_yuan": "124491.53",
+      "expected_qualified": [],
+      "expected_excluded": []
+    }
+  ]
+}

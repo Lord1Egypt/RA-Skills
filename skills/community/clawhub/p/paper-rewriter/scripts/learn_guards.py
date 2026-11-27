@@ -106,6 +106,12 @@ def main():
     p_ctx.add_argument("--lang", choices=["zh", "en"], default=None)
 
     sub.add_parser("list", help="列出现有用户守卫")
+    p_val = sub.add_parser("validate", help="校验守卫/外挂词表 JSON 的 schema（v5.21.0，HR3 配套）")
+    p_val.add_argument("file", nargs="?", default="",
+                       help="待校验 JSON（缺省=scripts/user_guards.json）；接受 term_guards/"
+                            "vocabulary/ai_freq_vocab/auto_fixes/aggressive_fixes 同名键")
+    p_val.add_argument("--template", action="store_true",
+                       help="输出 HR3 共享词表最小模板（可直接作 --lexicon 外挂文件）")
 
     p_rm = sub.add_parser("remove", help="删除守卫：remove 术语")
     p_rm.add_argument("term")
@@ -125,6 +131,62 @@ def main():
     p_t.add_argument("text")
 
     args = ap.parse_args()
+
+    # ── validate（v5.21.0，HR3 配套）：守卫/外挂词表 schema 校验 + 共享模板输出 ──
+    if args.cmd == "validate":
+        if getattr(args, "template", False):
+            tpl = {
+                "vocabulary": [{"w": "示例黑话", "alt": "规范说法", "weight": 1.0, "fam": "custom"}],
+                "ai_freq_vocab": [{"w": "示例高频词", "alt": "…", "fam": "custom"}],
+                "term_guards": [{"term": "示例术语", "allow_before": ["正当搭配"], "allow_after": []}],
+                "auto_fixes": [{"pattern": "示例正则", "replacement": "替换", "note": "说明"}],
+            }
+            print(json.dumps(tpl, ensure_ascii=False, indent=1))
+            print("（保存为 JSON 后可作 --lexicon 外挂文件/共享词表——schema 与内置词表同名键）",
+                  file=sys.stderr)
+            return
+        target = args.file or os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                           "user_guards.json")
+        if not os.path.exists(target):
+            print("文件不存在: %s（validate 缺省校验 scripts/user_guards.json）" % target,
+                  file=sys.stderr)
+            sys.exit(2)
+        try:
+            with open(target, encoding="utf-8") as f:
+                data = json.load(f)
+        except ValueError as e:
+            print("FAIL: JSON 不可解析（%s）" % e, file=sys.stderr)
+            sys.exit(1)
+        if not isinstance(data, dict):
+            print("FAIL: 顶层须为 JSON 对象", file=sys.stderr)
+            sys.exit(1)
+        _KEYS = ("vocabulary", "ai_freq_vocab", "term_guards",
+                 "auto_fixes", "aggressive_fixes")
+        problems, counts = [], {}
+        for key in _KEYS:
+            items = data.get(key)
+            if items is None:
+                continue
+            if not isinstance(items, list):
+                problems.append("%s 须为数组" % key)
+                continue
+            counts[key] = len(items)
+            for it in items:
+                if not isinstance(it, dict):
+                    problems.append("%s 含非对象条目" % key)
+                elif key in ("vocabulary", "ai_freq_vocab") and not it.get("w"):
+                    problems.append("%s 条目缺 w 字段" % key)
+                elif key == "term_guards" and not (it.get("term") or it.get("when")):
+                    problems.append("term_guards 条目缺 term 字段")
+                elif key in ("auto_fixes", "aggressive_fixes") and not (it.get("pattern") and it.get("replacement") is not None):
+                    problems.append("%s 条目缺 pattern/replacement" % key)
+        if problems:
+            print("VALIDATE FAIL（%d 项）:" % len(problems), file=sys.stderr)
+            for pp in problems:
+                print("  -", pp, file=sys.stderr)
+            sys.exit(1)
+        print("VALIDATE OK：%s" % " · ".join("%s=%d" % kv for kv in counts.items()))
+        return
 
     try:
         if args.cmd == "add":

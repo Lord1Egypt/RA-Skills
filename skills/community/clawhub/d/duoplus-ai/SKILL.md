@@ -1,6 +1,6 @@
 ---
 name: duoplus-ai
-version: 1.0.8
+version: 1.0.9
 description: Manage and automate DuoPlus Android cloud phones through the official OpenAPI and the synchronous HTTP Gateway. Use when an AI needs to discover cloud phones, inspect status/details, initialize a proxy, start/stop/restart a phone, wait until it is controllable, read UI state or screenshots, complete Android UI actions, or run an explicitly authorized shell command on a cloud phone.
 ---
 
@@ -16,7 +16,7 @@ Use an existing securely injected `DUOPLUS_API_KEY`, or a user-selected private 
 
 Commands below assume secure environment injection. With a private file, place `--api-key-file /absolute/private/key-file` before the subcommand; the argument is a path, never the key. Only Python 3.8+ and its standard library are required; no OpenClaw/ClawHub CLI is needed to run the already installed client. Resolve scripts and references relative to this installed skill, not the user's working directory.
 
-The client sends the key only to the chosen DuoPlus production API and Gateway. Never extract connector OAuth tokens or bypass a denied account's permissions. Task authorization and uncertain-mutation protections still apply.
+The client validates destinations before loading the credential file and before each request: only HTTPS openapi.duoplus.net/openapi.duoplus.cn on port 443 and the fixed HTTPS Gateway below are allowed. Custom hosts, userinfo, query/fragment routing, plaintext HTTP and automatic redirects are rejected. It does not use environment HTTP proxies. Never extract connector OAuth tokens or bypass a denied account's permissions. Task authorization and uncertain-mutation protections still apply.
 
 Use optional deployment overrides only if automatic routing cannot resolve legacy data:
 
@@ -77,7 +77,7 @@ python3 scripts/duoplus_ai.py init-proxy IMAGE_ID --proxy-id PROXY_ID
 Or initialize from explicit connection data:
 
 ```bash
-export DUOPLUS_PROXY_PASSWORD='...'
+# Proxy password must already be injected through the host's secure secret channel.
 python3 scripts/duoplus_ai.py init-proxy IMAGE_ID \
   --host proxy.example.com --port 1080 --protocol socks5 --user account
 ```
@@ -162,6 +162,6 @@ Apply these fallback rules:
 
 ## High-frequency page element reads
 
-For element-only polling, run `scripts/duoplus_ai.py --api-key KEY ui-state IMAGE_ID --no-screenshot --max-age-ms 300`. Omit `--no-screenshot` and use `--screenshot-out PATH` when visual verification is needed. Do not treat an element-only response as screenshot evidence.
+For element-only polling, run `scripts/duoplus_ai.py ui-state IMAGE_ID --no-screenshot --max-age-ms 300` with privately configured credentials. Omit `--no-screenshot` and use `--screenshot-out PATH` when visual verification is needed. Do not treat an element-only response as screenshot evidence.
 
 HTTP equivalents are `payload.need_screenshot=false` (default true) and `payload.max_age_ms=300` (0–2000 milliseconds; 0 forces a fresh capture). These belong directly in payload for get_ui_state, not params. The result screenshot is empty when disabled; snapshot_cached and snapshot_age_ms identify cache reuse. Execute actions invalidate the cache; autonomous page changes may remain stale within the allowed window.

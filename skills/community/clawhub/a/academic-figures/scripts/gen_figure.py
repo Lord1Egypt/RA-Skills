@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-academic-figures v8.1.2: Publication-quality academic figure generator.
+academic-figures v8.1.6: Publication-quality academic figure generator.
 
 Generates charts from JSON/CSV data with:
 - Publication-grade aesthetics (Nature/Science/Lancet style)
@@ -2561,6 +2561,8 @@ def main():
                "｜ 组学 -t volcano/-t cluster_heatmap ｜ 多面板 -t composite（share_y 统一尺度）"
                "｜ 偏倚风险 -t rob（robvis 同款交通灯）｜ 投稿包 --pub-ready ｜ 场景卡 references/scenario-cards.md ｜ 对智能体说 references/prompt-cards.md")
     parser.add_argument("--gate", default="basic", choices=["basic", "strict"], help="流程图/示意图渲染闸（v8.0.0）：strict=渲染后跑三层 bbox 断言（节点×边标签×箭头线段），任何非零交集 exit 2 拒绝交付")
+    parser.add_argument("--flow-hops", choices=("on", "off"), default="off",
+                        help="flow/diagram 交叉处画跳线弧号（后画的边跳过先画的边；默认 off=直线交叉）")
     parser.add_argument("--dump-flow-routes", default=None, metavar="PATH", help="QC 边车：flow 渲染后把路由/块几何快照写 JSON（几何闸测试真值源，v8.0.9）")
     parser.add_argument("--type", "-t", choices=list(GENERATORS.keys()),
                         help="图型（如 bar/box/violin/km/roc/forest/prisma，--demo 可看菜单）")
@@ -3215,6 +3217,7 @@ def main():
         "horizontal": args.horizontal or args.type in ("hbar", "horizontal_bar"),
         "hatch": args.hatch, "sig_bracket": getattr(args, "sig_bracket", False),
         "sig_auto": getattr(args, "sig_auto", False), "gate": getattr(args, "gate", "basic"),
+        "flow_hops": getattr(args, "flow_hops", "off") == "on",
         "direct_label": getattr(args, "direct_label", False),
         "alternate": args.alternate,
         "show_ratio": args.show_ratio,

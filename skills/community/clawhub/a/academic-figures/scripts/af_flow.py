@@ -605,6 +605,17 @@ def magnet(src, dst, attach_in=0, attach_out=0, force_key=None):
     # v8.0.9 端点列钳制（同 H 分支行钳制：错层过大时 x 出 bbox=悬浮）
     sx = min(max(sx, sx0 + 0.12), sx1 - 0.12)      # v8.1.1 同上：顶/底端口离框角 ≥0.12in
     dx = min(max(dx, dx0 + 0.12), dx1 - 0.12)
+    # v8.1.3 入列避开源节点侧尖顶点：菱形/六边形/IO 等的左右顶点就在 bbox 竖边
+    # 上，入列（竖段）距顶点 <0.10in 读作贴着尖角走（decision「Low」边竖段离
+    # 菱形左顶点 0.045in，评审 minor）。外推到 0.10in 净空；外推后落在目标边
+    # 内才生效，否则维持原值（窄目标的候选不因净空而消失）。
+    if resolve_shape(src.get("shape", "round")) in (
+            "diamond", "hexagon", "io", "manual-op", "manual-input"):
+        for _vx in (sx0, sx1):
+            if abs(dx - _vx) < 0.10:
+                _dx2 = _vx - 0.10 if dx <= _vx else _vx + 0.10
+                if dx0 + 0.12 <= _dx2 <= dx1 - 0.12:
+                    dx = _dx2
     # v8.0.5 边贴合：非平顶/平底形状（斜顶/顶点/收腰）入出点按**实际轮廓
     # 高度**取——at_t/at_b 语义=该 x 处轮廓边的 y 分数（1.0=bbox 顶 dy1，
     # 0.0=bbox 底 dy0）。入点在边外 |EDGE_NIB| 处，出点在边线上。
@@ -2470,7 +2481,8 @@ def _role_colors(blocks, arrows, colors):
 
 # ── 渲染管线（diagram/flow 共用单一事实源） ──────────────────────────────
 def render(ax, fig, blocks, arrows, groups=(), annotations=(), theme=None,
-           cjk_fp=None, gate="basic", orthogonal=False, legend_flag=None):
+           cjk_fp=None, gate="basic", orthogonal=False, legend_flag=None,
+           hops=False):
     """完整渲染。返回 (violations, ratio)。gate="strict" 违规由调用方 exit 2。"""
     from matplotlib.patches import FancyBboxPatch, Polygon, Rectangle
 
@@ -2687,7 +2699,63 @@ def render(ax, fig, blocks, arrows, groups=(), annotations=(), theme=None,
                     fontproperties=fp_s, zorder=4, linespacing=LINE_K)
 
     # ── 4) 画箭头（折线+实体头三角；v8.0.5 F4 边型 thick/bidirectional/open）──
-    for (e, pts) in route_meta:
+    # v8.1.5 --flow-hops：交叉跳线。后画的边在与先画边的规范相交处断线画半圆弧
+    # （半径 0.055in，交点距两端点 ≥0.06in 才记），读作「跳过」而非 T 形分岔。
+    # off（默认）时 _hop_map 恒空，绘制路径与旧版逐字节等价。
+    _hop_map = {}
+    if hops:
+        _segs = []
+        for _i, (_e, _pts) in enumerate(route_meta):
+            for _k in range(len(_pts) - 1):
+                # 携带本边点数：末段换算守卫用存储值（外层 _pts 在配对循环时
+                # 已是最后一条边的残留值——LES 级教训：循环变量泄漏进闭包外）
+                _segs.append((_i, _k, _pts[_k], _pts[_k + 1], len(_pts)))
+        for _a in range(len(_segs)):
+            _i, _ka, _p0, _p1, _npts = _segs[_a]
+            for _b in range(_a):
+                _j, _kb, _q0, _q1, _qnpts = _segs[_b]
+                if _j == _i or not _seg_cross_line(_p0, _p1, _q0, _q1):
+                    continue
+                # 交点（两段均为轴对齐；一般式解两线交点再钳到段内）
+                _d1x, _d1y = _p1[0] - _p0[0], _p1[1] - _p0[1]
+                _d2x, _d2y = _q1[0] - _q0[0], _q1[1] - _q0[1]
+                _den = _d1x * _d2y - _d1y * _d2x
+                if abs(_den) < 1e-12:
+                    continue
+                _t2 = ((_q0[0] - _p0[0]) * _d1y - (_q0[1] - _p0[1]) * _d1x) / _den
+                _ip = (_q0[0] + _t2 * _d2x, _q0[1] + _t2 * _d2y)
+                if not (min(_p0[0], _p1[0]) - 1e-9 <= _ip[0] <= max(_p0[0], _p1[0]) + 1e-9
+                        and min(_p0[1], _p1[1]) - 1e-9 <= _ip[1] <= max(_p0[1], _p1[1]) + 1e-9
+                        and min(_q0[0], _q1[0]) - 1e-9 <= _ip[0] <= max(_q0[0], _q1[0]) + 1e-9
+                        and min(_q0[1], _q1[1]) - 1e-9 <= _ip[1] <= max(_q0[1], _q1[1]) + 1e-9):
+                    continue                     # 交点不在两段之内（退化/镜像）：放弃
+                if min(math.hypot(_ip[0] - _p0[0], _ip[1] - _p0[1]),
+                       math.hypot(_ip[0] - _p1[0], _ip[1] - _p1[1]),
+                       math.hypot(_ip[0] - _q0[0], _ip[1] - _q0[1]),
+                       math.hypot(_ip[0] - _q1[0], _ip[1] - _q1[1])) < 0.06:
+                    continue
+                _L = math.hypot(_d1x, _d1y) or 1.0
+                _tt = ((_ip[0] - _p0[0]) * _d1x + (_ip[1] - _p0[1]) * _d1y) / (_L * _L)
+                if _ka == _npts - 2:             # 末段：参数换算到实际绘制的杆部
+                    _Ld = max(_L - HEAD_LEN, 1e-9)
+                    _tt = _tt * _L / _Ld
+                    if _tt >= 0.9:               # 跳点落在头部区（不画线）：放弃
+                        continue
+                _hop_map.setdefault((_i, _ka), []).append((min(max(_tt, 0.0), 1.0), _ip))
+        print(f"[flow-hops] {sum(len(v) for v in _hop_map.values())} crossing(s) hopped", file=sys.stderr)
+    # 屏幕比例（像素/数据单位）：跳弧要画成屏幕正圆（数据坐标里 x/y 比例不同，
+    # 直接用数据半径画出来是椭圆——虚线上的椭圆弧回摆会与下一根虚线粘连成
+    # 「泪滴」，评审 R1 实锤）。渲染器尚未落图时用 get_renderer 现取。
+    _hop_sx = _hop_sy = None
+    if hops:
+        try:
+            _ren = fig.canvas.get_renderer()
+            _ta, _tb = ax.transData.transform((0, 0)), ax.transData.transform((1, 1))
+            _hop_sx, _hop_sy = abs(_tb[0] - _ta[0]) or 1.0, abs(_tb[1] - _ta[1]) or 1.0
+        except Exception:
+            _hop_sx = _hop_sy = None
+
+    for _ei, (e, pts) in enumerate(route_meta):
         col = e.get("color", arrow_color)
         ls = (0, (5, 3)) if e.get("dashed") else "-"
         lw = 2.2 if e.get("thick") else (1.4 if e.get("dashed") else 1.5)
@@ -2699,15 +2767,44 @@ def render(ax, fig, blocks, arrows, groups=(), annotations=(), theme=None,
         # open=True：无头→shaft 画到 apex（留头回退只该在有头时发生——
         # judge 实锤：无头线短 HEAD_LEN=96px 悬空观感）
         _shaft_end = _head if e.get("open") else _base
-        if len(pts) > 2:
-            xs = [p[0] for p in pts[:-1]] + [_shaft_end[0]]
-            ys = [p[1] for p in pts[:-1]] + [_shaft_end[1]]
-            ax.plot(xs, ys, color=col, lw=lw, linestyle=ls, zorder=2,
-                    solid_capstyle="butt")
-        else:
-            ax.plot([_tail[0], _shaft_end[0]], [_tail[1], _shaft_end[1]],
-                    color=col, lw=lw, linestyle=ls, zorder=2,
-                    solid_capstyle="butt")
+        # v8.1.5：跳点处断线画弧（_hop_map 空=单段直画，与旧版等价）
+        _P = list(pts[:-1]) + [_shaft_end]
+        _pieces = [[_P[0]]]
+        _arcs = []
+        for _k in range(len(_P) - 1):
+            _A, _B = _P[_k], _P[_k + 1]
+            _hl = math.hypot(_B[0] - _A[0], _B[1] - _A[1]) or 1e-9
+            for (_t, _ip) in sorted(_hop_map.get((_ei, _k), []), key=lambda z: z[0]):
+                if _hop_sx is None:
+                    continue                       # 拿不到屏幕比例：保持直线交叉
+                _r = 0.055                          # 数据单位（终裁画布 1unit=1in=屏幕圆）
+                _g = _r / _hl
+                if _g * 2 >= 0.8:
+                    continue                       # 段太短放不下跳弧：放弃
+                _a = (_A[0] + (_B[0] - _A[0]) * (_t - _g),
+                      _A[1] + (_B[1] - _A[1]) * (_t - _g))
+                _b = (_A[0] + (_B[0] - _A[0]) * (_t + _g),
+                      _A[1] + (_B[1] - _A[1]) * (_t + _g))
+                _nv0 = (-( _B[1] - _A[1]) / _hl * _r, (_B[0] - _A[0]) / _hl * _r)
+                _arc = []
+                for _s in range(11):
+                    _cs = math.cos(math.pi * _s / 10)
+                    _sn = math.sin(math.pi * _s / 10)
+                    _arc.append((_ip[0] + (_a[0] - _ip[0]) * _cs + _nv0[0] * _sn,
+                                 _ip[1] + (_a[1] - _ip[1]) * _cs + _nv0[1] * _sn))
+                _pieces[-1].append(_a)
+                _arcs.append(_arc)
+                _pieces.append([_b])
+            _pieces[-1].append(_B)
+        for _pc in _pieces:
+            if len(_pc) >= 2:
+                ax.plot([q_[0] for q_ in _pc], [q_[1] for q_ in _pc],
+                        color=col, lw=lw, linestyle=ls, zorder=2,
+                        solid_capstyle="butt")
+        for _arc in _arcs:
+            ax.plot([q_[0] for q_ in _arc], [q_[1] for q_ in _arc],
+                    color=col, lw=lw, linestyle="-", zorder=2,
+                    solid_capstyle="round")
         _px, _py = -_uy, _ux
         # open=True：无头线（开放连接）；默认实体箭头
         if not e.get("open"):
@@ -2716,7 +2813,11 @@ def render(ax, fig, blocks, arrows, groups=(), annotations=(), theme=None,
                                   (_base[0] - _px * HEAD_LEN * 0.42,
                                    _base[1] - _py * HEAD_LEN * 0.42)],
                                  closed=True, facecolor=col, edgecolor=col,
-                                 lw=0.4, zorder=5))
+                                 lw=0.4, zorder=2.5))
+        # v8.1.3：箭头三角 zorder 5→2.5（连线 2 之上、节点 3 之下）——浅斜边上
+        # 水平进入时翼片会探入节点 0.027in（mermaid 复查箭头实测），探入部分
+        # 由节点填充盖住；尖端停在描边外沿（EDGE_NIB）不受影响。连线穿节点
+        # 本来就是路由硬禁，节点置顶不会遮住任何合法线段。
         # bidirectional=True：起点反向箭头（双头）。apex 与终点头同纪律负咬合
         # （v8.0.5 补：apex=_tail 裸压源框边线=600dpi 刺描边同型缺陷）
         if e.get("bidirectional"):
@@ -2727,7 +2828,7 @@ def render(ax, fig, blocks, arrows, groups=(), annotations=(), theme=None,
                                   (_b2[0] - _px * HEAD_LEN * 0.42,
                                    _b2[1] - _py * HEAD_LEN * 0.42)],
                                  closed=True, facecolor=col, edgecolor=col,
-                                 lw=0.4, zorder=5))
+                                 lw=0.4, zorder=2.5))
         if e.get("label"):
             fp_e = cjk_fp if cjk_fp and has_cjk_local(e["label"]) else None
             # 白底标签只避让**其他边**的线段（自身段有白垫可贴线，graphviz 同款）

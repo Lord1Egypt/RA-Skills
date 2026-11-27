@@ -1,0 +1,162 @@
+{
+  "schema": "uvd/storyboard",
+  "version": "2",
+  "stage": "storyboard",
+  "project_id": "demo",
+  "segments": [
+    {
+      "id": "g1",
+      "scene_id": "street",
+      "duration_sec": 10,
+      "opening_blocking": "阿杰站在电动车左侧，低头看向积水",
+      "cuts": [
+        {
+          "id": "c1",
+          "order": 1,
+          "beat_ids": [
+            "b1"
+          ],
+          "duration_sec": 5,
+          "shot_size": "INSERT",
+          "camera": {
+            "station": "A",
+            "angle": "top",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s1a",
+          "end_frame": "s1b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        },
+        {
+          "id": "c2",
+          "order": 2,
+          "beat_ids": [
+            "b2"
+          ],
+          "duration_sec": 5,
+          "shot_size": "MCU",
+          "camera": {
+            "station": "B",
+            "angle": "low",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s2a",
+          "end_frame": "s2b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        }
+      ]
+    },
+    {
+      "id": "g2",
+      "scene_id": "room",
+      "duration_sec": 10,
+      "opening_blocking": "阿杰坐在床沿正中，盯着手机",
+      "cuts": [
+        {
+          "id": "c3",
+          "order": 1,
+          "beat_ids": [
+            "b3"
+          ],
+          "duration_sec": 5,
+          "shot_size": "CU",
+          "camera": {
+            "station": "C",
+            "angle": "eye",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s3a",
+          "end_frame": "s3b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        },
+        {
+          "id": "c4",
+          "order": 2,
+          "beat_ids": [
+            "b3"
+          ],
+          "duration_sec": 5,
+          "shot_size": "INSERT",
+          "camera": {
+            "station": "D",
+            "angle": "high",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s4a",
+          "end_frame": "s4b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        }
+      ]
+    },
+    {
+      "id": "g3",
+      "scene_id": "room",
+      "duration_sec": 10,
+      "cuts": [
+        {
+          "id": "c5",
+          "order": 1,
+          "beat_ids": [
+            "b4"
+          ],
+          "duration_sec": 5,
+          "shot_size": "ECU",
+          "camera": {
+            "station": "E",
+            "angle": "eye",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s5a",
+          "end_frame": "s5b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        },
+        {
+          "id": "c6",
+          "order": 2,
+          "beat_ids": [
+            "b4"
+          ],
+          "duration_sec": 5,
+          "shot_size": "LS",
+          "camera": {
+            "station": "F",
+            "angle": "high",
+            "movement": "static"
+          },
+          "asset_ids": [
+            "jie"
+          ],
+          "start_frame": "s6a",
+          "end_frame": "s6b",
+          "first_frame_prompt": "9:16, yellow hooded rain poncho, ... no text, no logo",
+          "transition": "cut"
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "02_story.json": "97e874c01ab5",
+    "03_assets.json": "333faf2a53e0",
+    "04_staging.json": "1598f952870a"
+  }
+}

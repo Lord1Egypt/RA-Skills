@@ -1,0 +1,41 @@
+# mpress
+
+> Markdown 排成微信公众号图文，连同封面一起 5 秒进草稿箱。纯脚本，运行时不调用大模型。
+
+- 仓库：https://github.com/shxuk/mpress
+- 许可：MIT
+- 版本：1.2.0
+- 运行时：Node ≥ 18，仅依赖 markdown-it 与 juice，无需构建
+- 能力：Markdown/纯文本 → 微信公众号内联 HTML（table 布局、内联样式、无外链 CSS）；10 个杂志风卡片组件；原生 SVG 折叠；自动合成 1800×766 封面；图片自动上传并替换为微信 CDN 地址；新建或更新草稿（幂等，重复推送更新同一 media_id）
+- 不做什么：不群发（只写草稿）、不改写正文、不做数据统计、不绕过微信外链限制（无支付权限的公众号，正文 `<a>` 会被剥离）
+- 确定性：同输入同输出，逐字节相同；运行时无 LLM、无采样、无重试式改写
+- 离线能力：`gen` 模式不联网、不需要任何密钥
+
+## 何时使用
+
+用户要求：公众号排版 / 微信图文 / 推文排版 / 排成公众号格式 / 生成封面图 / 推到公众号草稿箱 / 一键发布到公众号。
+
+## 何时不要使用
+
+用户要改写或创作文章内容；用户要自动群发；用户没有微信公众号或开发者权限。
+
+## 安装与调用
+
+```bash
+npx skills add shxuk/mpress          # 装成 Agent Skill
+npm i -g mpress && mpress gen 文章.md  # 或直接当 CLI 用（npm 发布后）
+node scripts/wechat.mjs gen 文章.md    # 克隆仓库后直接跑
+node scripts/wechat.mjs push 文章.md --source-url https://example.com/post
+```
+
+## 失败分类
+
+退出码 `2` 凭证 · `3` IP 白名单 · `4` 图片 · `5` 结构 · `6` 网络。
+
+## 文档
+
+- `SKILL.md`：Agent 技能规范与固定形态映射表
+- `docs/规范/VISUAL-SYSTEM.md`：视觉系统
+- `docs/规范/SVG-FOLD.md`：SVG 折叠实现约束
+- `templates/editorial.md`：全部组件语法
+- `README.md`：完整说明（含实测数据与对比）

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --muted:#5b5b5b;
+    --line:#d6d6d6;
+    --soft:#f5f5f5;
+    --accent:#b42318;
+    --paper:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:#e9e9e9;
+    color:var(--ink);
+    font-family:"Source Han Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:10pt;
+    line-height:1.55;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .screen-hint{
+    max-width:210mm;margin:6mm auto 0;padding:2.5mm 3.5mm;
+    background:#fff;border-left:1mm solid var(--accent);
+    font-size:9pt;color:var(--muted);
+  }
+  .page{
+    position:relative;
+    width:210mm;min-height:297mm;
+    padding:13mm 13mm 17mm;
+    margin:6mm auto;
+    background:var(--paper);
+    box-shadow:0 1mm 5mm rgba(0,0,0,.16);
+    break-after:page;page-break-after:always;
+  }
+  .page:last-of-type{break-after:auto;page-break-after:auto}
+  .doc-head{padding-bottom:3mm;border-bottom:.5mm solid var(--ink);margin-bottom:4mm}
+  .kicker{font-size:9pt;letter-spacing:.12em;color:var(--accent);font-weight:600;margin-bottom:1.5mm}
+  h1{font-size:17pt;line-height:1.28;margin:0 0 1.5mm;letter-spacing:-.01em}
+  .meta{font-size:9pt;color:var(--muted)}
+  .lead{
+    margin:4mm 0 5mm;padding:2.5mm 0 2.5mm 3.5mm;
+    border-left:1.2mm solid var(--accent);
+    font-size:11pt;font-weight:600;line-height:1.5;
+    break-inside:avoid;
+  }
+  h2{
+    font-size:9pt;font-weight:600;letter-spacing:.08em;
+    margin:4.5mm 0 1.8mm;padding-bottom:1mm;
+    border-bottom:.3mm solid var(--line);
+    break-after:avoid;
+  }
+  h3{font-size:10pt;margin:0 0 1.5mm;break-after:avoid}
+  p{margin:0 0 2mm}
+  ul.points{list-style:none;margin:0;padding:0}
+  ul.points li{position:relative;margin:1.7mm 0;padding-left:5mm;break-inside:avoid}
+  ul.points li::before{
+    content:"";position:absolute;left:0;top:1.9mm;
+    width:1.6mm;height:1.6mm;background:var(--accent);
+  }
+  ol.steps{margin:0;padding-left:5mm}
+  ol.steps li{margin:1.5mm 0;padding-left:1mm;break-inside:avoid}
+  .card{
+    margin:3mm 0;padding:3mm 3.5mm;
+    border:.3mm solid var(--line);
+    break-inside:avoid;
+  }
+  .card p:last-child,.card ul:last-child{margin-bottom:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+  .figure{margin:3mm 0;break-inside:avoid}
+  .figure svg{display:block;width:100%;height:auto;max-height:72mm}
+  .caption{font-size:9pt;color:var(--muted);margin-top:1.2mm;line-height:1.4}
+  table{width:100%;border-collapse:collapse;font-size:9.5pt;table-layout:fixed}
+  th,td{border-bottom:.25mm solid var(--line);padding:1.6mm 2mm;text-align:left;vertical-align:top;word-break:break-word}
+  th{font-weight:600;background:var(--soft)}
+  .footer{
+    position:absolute;left:13mm;right:13mm;bottom:7mm;
+    display:flex;justify-content:space-between;gap:4mm;
+    padding-top:2mm;border-top:.25mm solid var(--line);
+    font-size:9pt;color:var(--muted);
+  }
+  .freshness{
+    margin:3.5mm 0 0;padding:2.5mm 3.5mm 2.5mm 4mm;
+    border-left:1.2mm solid var(--muted);
+    background:var(--soft);
+    font-size:9pt;line-height:1.45;
+    break-inside:avoid;
+  }
+  .freshness-head{font-weight:600;letter-spacing:.04em;margin-bottom:1.2mm}
+  .freshness ul{list-style:none;margin:0;padding:0}
+  .freshness li{margin:1mm 0;padding-left:4mm;position:relative}
+  .freshness li::before{content:"";position:absolute;left:0;top:1.5mm;width:1.4mm;height:1.4mm;background:var(--muted)}
+  .freshness li:last-child{margin-bottom:0}
+  .tag{display:inline-block;font-size:9pt;border:.25mm solid var(--line);padding:.3mm 1.6mm;margin-right:1mm}
+  .muted{color:var(--muted)}
+  .small{font-size:9pt}
+  @page{size:A4;margin:0}
+  @media print{
+    body{background:#fff}
+    .screen-hint{display:none!important}
+    .page{margin:0;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="screen-hint">打印建议：A4 · 边距“无” · 缩放 100% · 勾选“背景图形/背景颜色”。本提示不会打印。</div>
+<main>
+  <section class="page">
+    <header class="doc-head">
+      <div class="kicker">{{KICKER：领域 · 主题 · 频率}}</div>
+      <h1>{{TITLE：题目或主题，≤20 字}}</h1>
+      <div class="meta">{{SOURCE：来源}} · {{DATE：日期}}</div>
+    </header>
+
+    <div class="lead">{{一句话答案或一句话定义，≤40 字，结论先行}}</div>
+
+    <h2>核心要点</h2>
+    <ul class="points">
+      <li><strong>{{要点 1}}</strong>：{{一句话展开，整条 ≤25 字}}</li>
+      <li><strong>{{要点 2}}</strong>：{{一句话展开，整条 ≤25 字}}</li>
+      <li><strong>{{要点 3}}</strong>：{{一句话展开，整条 ≤25 字}}</li>
+      <!-- 1 页 3–5 条；2 页 6–10 条 -->
+    </ul>
+
+    <h2>机制图 / 对比表</h2>
+    <div class="figure">
+      <!-- 内联 SVG，节点 ≤8；或者放一张 3–4 行的对比表 -->
+      <div class="caption">图注：这张图回答的问题是……</div>
+    </div>
+
+    <h2>易错点 / 边界</h2>
+    <ul class="points">
+      <li>{{易错点 1}}</li>
+      <li>{{易错点 2}}</li>
+      <!-- 2–3 条 -->
+    </ul>
+
+    <div class="card">
+      <h3>一句话记忆</h3>
+      <p>{{记忆锚：四个字或一句口诀}}</p>
+    </div>
+
+    <!--
+      时效区块（可选，来自 fact-freshness-check）。
+      职责：正文必须已是当前版本的事实；区块只记演进脉络与深度，不承担纠错。
+      ≤4 条放这里（footer 之前）；5–12 条改为追加附录页（见文末注释）。
+      格式契约见 references/freshness-rules.md。
+    <div class="freshness">
+      <div class="freshness-head">版本演进 · 截至 <产品> <版本> 官方文档 · <YYYY-MM-DD> 核实</div>
+      <ul>
+        <li><strong>[仍成立]</strong> 断言（≤30 字）—— 出处章节号</li>
+        <li><strong>[演进]</strong> 正文结论自 X.Y 起；≤A.B 时为旧行为 —— 出处</li>
+        <li><strong>[未核实]</strong> 断言 —— 未能找到当前版依据，需人工确认</li>
+      </ul>
+    </div>
+    -->
+
+    <!-- 页脚可选：正文已完整落页、仅页脚轻微溢出时，直接删除本 div；不要为页脚升页或缩字号。 -->
+    <div class="footer">
+      <span>{{SOURCE：来源}}</span>
+      <span>第 1 页 / 共 {{PAGES}} 页</span>
+    </div>
+  </section>
+
+  <!--
+    需要第 2 页时复制上面的 <section class="page">：
+    - 第 2 页不要再放大的 doc-head，只放 h2 小节标题；
+    - 优先放：对比表、追问、完整流程、边界条件；
+    - 页脚改成“第 2 页 / 共 2 页”；
+    - 两页正文合计不要超过 1600 中文字符。
+  -->
+    <!--
+      时效附录页（形态 B，5–12 条时使用，不计入知识点页数预算）：
+      <section class="page page--freshness">
+        <header class="doc-head">
+          <div class="kicker">附录 · 不计入知识点页数</div>
+          <h1>版本演进与出处</h1>
+          <div class="meta">截至 <产品> <版本> 官方文档 · <YYYY-MM-DD> 核实</div>
+        </header>
+        <table>
+          <thead><tr><th>断言（正文已按当前版书写）</th><th>判定</th><th>适用版本</th><th>演进脉络 / 出处</th></tr></thead>
+          <tbody><tr><td>…</td><td>[演进]</td><td>…</td><td>…</td></tr></tbody>
+        </table>
+        <div class="footer"><span>来源见各条</span><span>附录页</span></div>
+      </section>
+    -->
+</main>
+</body>
+</html>

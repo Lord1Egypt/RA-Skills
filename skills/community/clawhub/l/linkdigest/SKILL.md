@@ -32,7 +32,7 @@ fine, read it directly — this costs credits and takes longer.
 ## Calling it
 
 ```
-digest_url(url: "https://v.douyin.com/…")
+digest_url(url: "https://v.douyin.com/VeXgdE_QwTE")
 ```
 
 `url` is the only required argument. The others:

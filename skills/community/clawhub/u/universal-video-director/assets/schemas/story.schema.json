@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "story",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "logline",
+    "characters",
+    "scenes",
+    "beats"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "story"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "logline": {
+      "type": "string",
+      "minLength": 1
+    },
+    "episode": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "role",
+          "want",
+          "voice"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "want": {
+            "type": "string",
+            "minLength": 1
+          },
+          "voice": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "location",
+          "time"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time": {
+            "type": "string",
+            "minLength": 1
+          },
+          "characters": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\-]+$"
+            }
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "beats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "order",
+          "scene_id",
+          "type",
+          "purpose",
+          "duration_sec"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "scene_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "type": {
+            "enum": [
+              "action",
+              "dialogue",
+              "os",
+              "vo",
+              "insert"
+            ]
+          },
+          "purpose": {
+            "enum": [
+              "hook",
+              "setup",
+              "rise",
+              "twist",
+              "climax",
+              "payoff",
+              "cliff"
+            ]
+          },
+          "action": {
+            "type": "string"
+          },
+          "character_id": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "locked": {
+            "type": "boolean"
+          },
+          "duration_sec": {
+            "type": "number",
+            "minimum": 0.5
+          },
+          "causal_from": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\-]+$"
+            }
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "line_book": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "character_id",
+          "beat_id",
+          "line",
+          "tts_prompt"
+        ],
+        "properties": {
+          "character_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "beat_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "line": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tts_prompt": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

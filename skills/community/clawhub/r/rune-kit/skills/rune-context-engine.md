@@ -107,7 +107,7 @@ Emit recommendation to the calling orchestrator:
 
 Identify the next safe boundary (end of current loop iteration, end of current file being processed) and flag it.
 
-**Auto-activate Caveman Output Mode** (see `references/caveman-mode.md`) — emit `output.density.set` with `mode=caveman, scope=session, source=context-orange`. Reduces output token cost ~75% with no information loss; persists until /compact returns context to GREEN. Manual override (`/caveman` or "stop caveman") always wins.
+**Auto-activate Caveman Output Mode** (see `rune-context-engine/references/caveman-mode.md`) — emit `output.density.set` with `mode=caveman, scope=session, source=context-orange`. Reduces output token cost ~75% with no information loss; persists until /compact returns context to GREEN. Manual override (`/caveman` or "stop caveman") always wins.
 
 ### Step 5 — If RED
 
@@ -203,80 +203,11 @@ Most compaction loses the **continuation point** — the agent knows WHAT was di
 
 ## Incremental Stream Processing
 
-When processing streaming LLM output (e.g., in skills that invoke AI calls or process tool output incrementally), use **sentence-level buffering** instead of waiting for the full response:
-
-### Pattern: Buffer → Detect Boundary → Act
-
-```
-1. ACCUMULATE: Feed incoming chunks into a text buffer
-2. DETECT: Check for sentence boundaries:
-   - Primary: 40+ chars ending in . ! ? ; :
-   - Secondary: paragraph break (\n\n) with 15+ chars accumulated
-   - Never split mid-word or mid-code-block
-3. EXTRACT: Remove the complete sentence from the buffer
-4. ACT: Process the extracted sentence immediately (e.g., queue for TTS, parse for structured data, update progress display)
-5. CONTINUE: Keep accumulating the next sentence while processing the current one
-```
-
-### When to Use
-
-- **Skills that stream AI responses to the user**: process and display incrementally instead of waiting for the full response
-- **Background note-taking**: extract key points from streaming output as they arrive
-- **Progress reporting**: detect milestone keywords in streaming output to update progress
-
-### When NOT to Use
-
-- **Code generation**: wait for the full code block — partial code is useless
-- **JSON output**: accumulate until the closing brace — partial JSON can't be parsed
-- **Short responses** (<100 chars expected): overhead of boundary detection exceeds benefit
+> Full detail moved to [`rune-context-engine/references/stream-processing.md`](rune-context-engine/references/stream-processing.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Artifact Folding (Large Output Management)
 
-When tool results are excessively large, they consume disproportionate context without proportionate value. **Artifact folding** saves the full output to a file and replaces it in context with a compact preview.
-
-### When to Fold
-
-| Condition | Action |
-|-----------|--------|
-| Tool output > 4000 characters | Fold to artifact |
-| Tool output > 120 lines | Fold to artifact |
-| Multiple tool outputs from the same command class (e.g., 5+ Grep results) | Fold all into single artifact |
-| Code block output > 200 lines | Fold to artifact |
-
-### Folding Procedure
-
-1. **Save full output** to `.rune/artifacts/artifact-{timestamp}-{tool}.md`:
-   ```markdown
-   # Artifact: {tool_name} output
-   Generated: {timestamp}
-   Command: {tool_call_summary}
-   
-   {full_output}
-   ```
-
-2. **Replace in context** with a compact preview:
-   ```
-   [FOLDED: {tool_name} output — {line_count} lines, {char_count} chars]
-   Preview (first 10 lines):
-   {first_10_lines}
-   ...
-   Full output: .rune/artifacts/artifact-{timestamp}-{tool}.md
-   Use Read to access the full artifact if needed.
-   ```
-
-3. **On compaction**: Artifact files survive compaction — the continuation summary references them by path. This means large outputs are preserved across compaction boundaries without consuming context.
-
-### Rules
-
-- **Never fold user messages** — only tool outputs
-- **Never fold error outputs** — errors need full visibility for debugging
-- **Never fold outputs < 1000 chars** — folding overhead exceeds savings
-- **Fold preemptively in YELLOW/ORANGE** — don't wait for RED to start managing output size
-- **Clean up artifacts** at session end: artifacts older than the current session can be deleted (they're already in git history or irrelevant)
-
-### Why
-
-A single grep across a large codebase can return 3000+ lines. Without folding, this consumes ~4000 tokens of context — often more than the rest of the conversation combined. Folding preserves the information (accessible via Read) while keeping context lean. Combined with the Structured Summary compaction technique, artifact folding enables much longer productive sessions.
+> Full detail moved to [`rune-context-engine/references/artifact-folding.md`](rune-context-engine/references/artifact-folding.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Context Health Levels
 
@@ -384,13 +315,13 @@ When Context Budget Warning fires, append to Context Health report:
 ```
 
 ## Output Modes
-<MUST-READ path="references/output-modes.md" trigger="when any output mode is active OR two modes are active at once"/>
+<MUST-READ path="rune-context-engine/references/output-modes.md" trigger="when any output mode is active OR two modes are active at once"/>
 
-Rune ships more than one opinion about response shape, and they conflict. `references/output-modes.md` is the layer that holds them: the mode registry, the shared activation contract (activate → persist → release, identical for every mode), and the precedence rule for when two active modes want opposite things.
+Rune ships more than one opinion about response shape, and they conflict. `rune-context-engine/references/output-modes.md` is the layer that holds them: the mode registry, the shared activation contract (activate → persist → release, identical for every mode), and the precedence rule for when two active modes want opposite things.
 
 **The precedence, in short — shape is negotiable, substance is not:**
 
-1. Calibration outranks every style — a style compresses prose, never a claim into stronger grammar than its evidence supports (`completion-gate` → `references/claim-discipline.md`).
+1. Calibration outranks every style — a style compresses prose, never a claim into stronger grammar than its evidence supports (`completion-gate` → `rune-completion-gate/references/claim-discipline.md`).
 2. Evidence outranks brevity — what was run and what it returned is not filler.
 3. A skill's `## Output Format` outranks every style — shape the prose inside the sections, never drop a section or a finding.
 4. Safety outranks all shaping — destructive/irreversible confirmations revert to full prose.
@@ -398,13 +329,13 @@ Rune ships more than one opinion about response shape, and they conflict. `refer
 
 | Mode | Optimizes for | Reference |
 |------|---------------|-----------|
-| `caveman` | Token economy | `references/caveman-mode.md` |
-| `actionable` | Legibility — next action first, state restated each turn | `references/actionable-mode.md` |
+| `caveman` | Token economy | `rune-context-engine/references/caveman-mode.md` |
+| `actionable` | Legibility — next action first, state restated each turn | `rune-context-engine/references/actionable-mode.md` |
 
 ### Output Density Mode (Caveman)
-<MUST-READ path="references/caveman-mode.md" trigger="when context reaches ORANGE/RED OR user says 'caveman'/'be brief'/'less tokens'"/>
+<MUST-READ path="rune-context-engine/references/caveman-mode.md" trigger="when context reaches ORANGE/RED OR user says 'caveman'/'be brief'/'less tokens'"/>
 
-Caveman is a terse output mode that strips filler, articles, hedging, and pleasantries while preserving full technical accuracy. ~75% output token reduction with no information loss when applied per the rules in `references/caveman-mode.md`.
+Caveman is a terse output mode that strips filler, articles, hedging, and pleasantries while preserving full technical accuracy. ~75% output token reduction with no information loss when applied per the rules in `rune-context-engine/references/caveman-mode.md`.
 
 **Hedging is the one deletion with a hard limit.** Filler hedges (`I think`, `basically`) die; a hedge carrying real uncertainty (`I am assuming the migration ran`) stays — cutting it promotes an ASSUMED claim to OBSERVED grammar, which precedence rule 1 forbids. Terse and overconfident is worse than verbose.
 
@@ -431,7 +362,7 @@ Auto-activation emits `output.density.set` signal carrying `{mode: caveman, scop
 Caveman in the FIRST response of a task. The user can't calibrate severity from a single output yet — verbose first response is fine. Caveman starts on response 2+.
 
 ### Actionable Output Mode
-<MUST-READ path="references/actionable-mode.md" trigger="user says 'adhd mode'/'actionable'/'just tell me what to do' OR the deliverable is steps a human will execute"/>
+<MUST-READ path="rune-context-engine/references/actionable-mode.md" trigger="user says 'adhd mode'/'actionable'/'just tell me what to do' OR the deliverable is steps a human will execute"/>
 
 Shapes a response so it can be *acted on* rather than merely understood: next action first, multi-step work numbered, position restated every turn ("step 3 of 5 done"), estimates in real units, one concrete next action at the end. Optimizes distance-to-doing, where caveman optimizes token count — the two stack, and rule 5 above resolves them.
 
@@ -440,7 +371,7 @@ Shapes a response so it can be *acted on* rather than merely understood: next ac
 | User says "adhd mode" / "actionable" / "action first" / "just tell me what to do" | Explicit user signal | Until "stop adhd mode" / "normal mode" |
 | Deliverable is steps a human executes (runbook, incident response, onboarding) | Skill-initiated | Scoped to that deliverable |
 
-Not a diagnosis and not a persona — it is the right shape for anyone reading mid-incident, on a phone, or in a second language. Full rules, exceptions and pre-send check in `references/actionable-mode.md`.
+Not a diagnosis and not a persona — it is the right shape for anyone reading mid-incident, on a phone, or in a second language. Full rules, exceptions and pre-send check in `rune-context-engine/references/actionable-mode.md`.
 
 ## Mode: preview (v1.1.0)
 
@@ -456,7 +387,7 @@ Without preview, callers learn about budget overruns AFTER the bundle is built a
 estimated_tokens = total_chars × 0.25
 ```
 
-Char count includes the `[SYSTEM]` line, `[USER]` line, and all `### File N:` blocks per `references/preview-gate.md`. The 0.25 ratio is calibrated for English code/markdown — overestimates Japanese/Chinese, underestimates highly-repetitive content. Both error directions are safe (overestimate → over-cautious block; underestimate → caller still hits dispatch-time hard cap).
+Char count includes the `[SYSTEM]` line, `[USER]` line, and all `### File N:` blocks per `rune-context-engine/references/preview-gate.md`. The 0.25 ratio is calibrated for English code/markdown — overestimates Japanese/Chinese, underestimates highly-repetitive content. Both error directions are safe (overestimate → over-cautious block; underestimate → caller still hits dispatch-time hard cap).
 
 ### Threshold Defaults (per caller)
 
@@ -518,7 +449,7 @@ else: action = proceed
 
 Emit `context.preview` with full payload. Caller decides whether to proceed.
 
-See `references/preview-gate.md` for tunable points and integration with each caller.
+See `rune-context-engine/references/preview-gate.md` for tunable points and integration with each caller.
 
 ## Constraints
 
@@ -541,8 +472,8 @@ Known failure modes for this skill. Check these before declaring done.
 | Mid-loop compaction breaks tool_use/tool_result pair | CRITICAL | Always keep tool pairs together — splitting causes orphaned results and context corruption |
 | Mid-loop compaction without flushing state first | HIGH | session-bridge + neural-memory MUST run before compaction — losing unsaved decisions is worse than hitting context limit |
 | (preview) Caller bundles before requesting preview | HIGH | Constraint 4 enforces order; reject preview-after-build calls with explicit error |
-| (preview) Estimated tokens off by 2x for non-English content | LOW | Document calibration in `references/preview-gate.md`; safe both directions (block-too-eager or block-too-late but hard cap at dispatch saves us) |
-| Caveman activated in first response of a task | MEDIUM | First response = user calibration baseline. Verbose first; caveman from response 2+ (see `references/caveman-mode.md`) |
+| (preview) Estimated tokens off by 2x for non-English content | LOW | Document calibration in `rune-context-engine/references/preview-gate.md`; safe both directions (block-too-eager or block-too-late but hard cap at dispatch saves us) |
+| Caveman activated in first response of a task | MEDIUM | First response = user calibration baseline. Verbose first; caveman from response 2+ (see `rune-context-engine/references/caveman-mode.md`) |
 | Caveman compresses code blocks or error messages | CRITICAL | Caveman strips filler ONLY. Code, errors, paths, technical terms stay verbatim. Compression of those = wrong fix |
 | Caveman drift back to verbose mid-session | MEDIUM | Once activated, persists every response until explicit deactivation. Drift defeats the token savings |
 | Caveman during destructive-action confirmation | HIGH | Auto-clarity exception: revert ONE response for security/irreversible-action confirmations, then resume |
@@ -561,7 +492,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~200-500 tokens input, ~100-200 tokens output. Haiku for minimal overhead. Runs frequently as a background monitor.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

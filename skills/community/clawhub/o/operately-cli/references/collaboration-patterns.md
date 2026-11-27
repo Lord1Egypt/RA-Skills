@@ -439,8 +439,7 @@ operately notifications mark_all_as_read
 ```bash
 operately companies create_member \
   --full-name "John Doe" \
-  --email "john@example.com" \
-  --title "Senior Engineer"
+  --email "john@example.com"
 ```
 
 **Create admin:**
@@ -559,6 +558,17 @@ operately companies list_activities \
   --actions goal_created \
   --actions project_check_in_submitted
 ```
+
+Activity listing returns all matching activities by default. For 20-item pages, add `--paginate`:
+
+```bash
+operately companies list_activities --scope-id c1 --scope-type company --actions project_created --paginate
+
+# Pass the returned next_cursor to retrieve the next page
+operately companies list_activities --scope-id c1 --scope-type company --actions project_created --paginate --cursor CURSOR
+```
+
+Keep the same scope and filters for subsequent pages. Stop when `next_cursor` is null.
 
 ## Common Collaboration Patterns
 

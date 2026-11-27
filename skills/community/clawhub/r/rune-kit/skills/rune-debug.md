@@ -69,13 +69,13 @@ If root cause cannot be identified after 3 hypothesis cycles:
 ## Execution
 
 ### Step 0: Build a Feedback Loop (the actual skill)
-<MUST-READ path="references/feedback-loop-ladder.md" trigger="when current repro is not a single command returning pass/fail in <5s, or when bug is intermittent/multi-component"/>
+<MUST-READ path="rune-debug/references/feedback-loop-ladder.md" trigger="when current repro is not a single command returning pass/fail in <5s, or when bug is intermittent/multi-component"/>
 
 **The loop is the speed limit.** A fast, deterministic, agent-runnable pass/fail signal turns debugging into mechanical bisection. Without one, hypotheses just consume noise.
 
 Skip Step 0 only if the existing repro is already one command, deterministic, and runs in < 5s.
 
-Otherwise, before Step 1: pick the highest viable rung from `references/feedback-loop-ladder.md` (10-rank ladder: failing test → curl → CLI snapshot → headless browser → trace replay → throwaway harness → fuzz → bisection → differential → HITL script). Construct it. Verify it currently FAILS (proves it measures the bug, not noise). Only then proceed.
+Otherwise, before Step 1: pick the highest viable rung from `rune-debug/references/feedback-loop-ladder.md` (10-rank ladder: failing test → curl → CLI snapshot → headless browser → trace replay → throwaway harness → fuzz → bisection → differential → HITL script). Construct it. Verify it currently FAILS (proves it measures the bug, not noise). Only then proceed.
 
 If loop construction takes > 10 minutes, that itself is the diagnosis: the bug surface is too large or the system too coupled. Trigger the 3-Fix Escalation Rule (Step 6) — architecture is the problem, not the bug.
 
@@ -179,7 +179,7 @@ ALL diagnostic code added during debug MUST be wrapped in `#region agent-debug` 
 Unmarked instrumentation will be treated as stray code and removed prematurely.
 </HARD-GATE>
 
-**Observability gap as a finding.** If you had to add temporary `console.log` markers because the code emitted *nothing useful* about this path, that absence is itself a root-cause-adjacent signal: the bug was hard to diagnose because the system is blind here. When the fix lands, recommend converting the throwaway markers into **durable structured telemetry** (a stable event name + correlation ID, not prose) so the next occurrence is a query, not another archaeology session. This is advisory — note it in the report, don't block on it. Contract: `../deploy/references/observability.md`.
+**Observability gap as a finding.** If you had to add temporary `console.log` markers because the code emitted *nothing useful* about this path, that absence is itself a root-cause-adjacent signal: the bug was hard to diagnose because the system is blind here. When the fix lands, recommend converting the throwaway markers into **durable structured telemetry** (a stable event name + correlation ID, not prose) so the next occurrence is a query, not another archaeology session. This is advisory — note it in the report, don't block on it. Contract: `rune-deploy/references/observability.md`.
 
 ### Step 2c: Check Debug Knowledge Base
 
@@ -468,7 +468,7 @@ chain_metadata:
 | Debug report recommends touching 5+ unrelated files | HIGH | Symptom of fixing at crash sites instead of source. Backward trace (Step 2) to find origin. If truly 5+ files → likely architectural issue → escalate via 3-Fix Rule |
 | Re-investigating known error patterns from scratch | MEDIUM | Step 2d: match error against Known Error Pattern Catalog first — skip hypothesis cycling for recognized patterns |
 | Same error fingerprint across cycles treated as different errors | MEDIUM | Step 2d: normalize line numbers, paths, variable names before comparison — same fingerprint = same error |
-| Forming hypotheses with a slow / non-deterministic / manual repro | CRITICAL | Step 0: build a fast deterministic pass/fail signal first — see `references/feedback-loop-ladder.md` 10-rank ladder. Hypothesis testing on a slow loop wastes 10x the cycles |
+| Forming hypotheses with a slow / non-deterministic / manual repro | CRITICAL | Step 0: build a fast deterministic pass/fail signal first — see `rune-debug/references/feedback-loop-ladder.md` 10-rank ladder. Hypothesis testing on a slow loop wastes 10x the cycles |
 | Skipping loop construction "to save time" on non-trivial bugs | HIGH | The loop IS the time-saver. 10 min on the loop saves hours of cycling. If construction takes > 10 min, escalate via 3-Fix Rule — bug is architectural |
 | Memory leak diagnosed without cost-impact framing | HIGH | Long-running process leak = production cost driver. Memory growth → OOM kill → cold start → autoscaler provisions extra replicas → 20-40% bill inflation vs leak-free baseline. Diagnosed leaks MUST flag this in Debug Report and hand off to `perf` for tier-ranked recommendation (LRU vs WeakRef vs explicit lifecycle). Slope of memory growth matters more than absolute heap at diagnosis time |
 | Recurring OOM/restart treated as infra issue, not code bug | HIGH | Repeated container restarts with memory pressure = code leak, not "needs bigger instance". Verify via heap profile + retained-references analysis BEFORE recommending vertical scale. Vertical scale on a leak buys days, not fix |
@@ -491,7 +491,7 @@ chain_metadata:
 **Scope guardrail**: Do not apply code changes or expand investigation beyond the locked scope directory unless explicitly delegated by the parent agent.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

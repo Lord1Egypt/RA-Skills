@@ -1,7 +1,7 @@
 ---
 name: charter-compute
-description: Rent a sandboxed machine by the hour and pay for it yourself in USDC on Base, with no account. Run a Python script and get its output, load web pages in a headless browser through a hidden exit, or open a small Linux home with a kept disk and SSH. Use when you need to run code somewhere other than here, fetch a page that needs JavaScript or refuses your address, or keep a box of your own running. 0.007 USDC an hour. A grant fund pays a free month of a home to agents that pitch for one.
-version: 0.4.1
+description: Rent a sandboxed machine by the hour and pay for it yourself in USDC on Base, with no account. Run a Python script and get its output, load web pages in a headless browser through a hidden exit, or open a small Linux home with a kept disk and SSH. Use when you need to run code somewhere other than here, fetch a page that needs JavaScript or refuses your address, or keep a box of your own running. Billed by the hour at each host's price, on the order of a cent. A grant fund pays a free month of a home to agents that pitch for one.
+version: 0.7.1
 homepage: https://charterhome.dev/agents
 tags: compute, sandbox, python, fetch, browser, hosting, ssh, x402, usdc, base
 metadata:
@@ -21,7 +21,7 @@ Everything goes through one command, `charter-mcp`, run with `npx`. It keeps its
 file on this machine and refuses to spend past two caps. Each command prints one JSON document. A
 failure prints `{"error": "..."}` and exits non-zero; read the error, it says what to do.
 
-Three things to rent, at each host's price (**0.007 USDC an hour** today). Hosts are run by independent
+Three things to rent, at each host's price (`offers` shows `usdcPerInterval`, the storefront's fee included). Hosts are run by independent
 operators Charter does not vet; a host's operator can see what runs on its machine.
 
 | what | command | you get back |
@@ -35,21 +35,21 @@ operators Charter does not vet; a host's operator can see what runs on its machi
 1. Look at the price and what is on sale. Free.
 
    ```bash
-   npx -y charter-mcp@0.3 offers
+   npx -y charter-mcp@0.8 offers
    ```
 
 2. Look at your wallet. Free. The first run makes the key at `~/.charter/mcp.key`.
 
    ```bash
-   npx -y charter-mcp@0.3 wallet
+   npx -y charter-mcp@0.8 wallet
    ```
 
 3. If `usdcOnBase` is `0`, stop and tell your operator. Give them the `address` from step 2 and say:
-   "Send USDC on Base to this address. No ETH is needed. 0.05 USDC is seven test runs; 1 USDC is
-   about 6 days of a home." Do not go on until the balance is there.
+   "Send USDC on Base to this address. No ETH is needed. Each hour costs the host's price, and a
+   month of a home is 720 hours." Do not go on until the balance is there.
 
 4. Paying is your operator's money. Unless they already told you to spend on Charter, say what you
-   are about to rent and what it costs, and wait for a yes. One hour is 0.007 USDC.
+   are about to rent and what it costs, and wait for a yes. One hour is the offer's `usdcPerInterval`.
 
 ## Run a Python script (paid, one hour)
 
@@ -57,13 +57,13 @@ Python 3 with NumPy. No network, no other packages, script at most 8 KiB. Most s
 seconds; you still pay the whole first hour.
 
 ```bash
-npx -y charter-mcp@0.3 run-python job.py
+npx -y charter-mcp@0.8 run-python job.py
 ```
 
 From stdin:
 
 ```bash
-echo 'import numpy as np; print(int(np.arange(10).sum()))' | npx -y charter-mcp@0.3 run-python -
+echo 'import numpy as np; print(int(np.arange(10).sum()))' | npx -y charter-mcp@0.8 run-python -
 ```
 
 The answer has `output.stdout`, `output.stderr` and `output.exitCode`, and `rented.leaseId`.
@@ -75,7 +75,7 @@ leaves through an exit on the Anyone network, so the site sees neither you nor t
 can take a minute. Some sites refuse shared exits.
 
 ```bash
-npx -y charter-mcp@0.3 fetch https://example.com --wait 180
+npx -y charter-mcp@0.8 fetch https://example.com --wait 180
 ```
 
 The answer has `output.pages[]`, each with `url`, `text` and an `error` when the page failed.
@@ -86,8 +86,31 @@ The command waits 40 seconds by default (`--wait` takes 10 to 240). A job still 
 its `leaseId` with a `next` line. The hour is already paid. Collect the output for free:
 
 ```bash
-npx -y charter-mcp@0.3 lease <leaseId>
+npx -y charter-mcp@0.8 lease <leaseId>
 ```
+
+## A receipt for your work (free)
+
+After a job finishes you can ask for a signed receipt: a short statement from Charter's door giving the
+SHA-256 and size of the job's whole output, the host, and how many hours were paid.
+
+```bash
+npx -y charter-mcp@0.8 receipt <leaseId>
+```
+
+- The command checks the signature against the door's published signer before printing it, and refuses one
+  that does not check out. `verified: true` is in the answer.
+- It says the host returned those bytes for a lease that was paid. Hosts are not vetted, so it does not say
+  the result is correct. Say it that way if you show it to anyone.
+- It names the lease by a hash, never the leaseId, so you can publish it. Keep the leaseId itself private:
+  whoever holds it can read the lease.
+- A job that has not finished with output answers `no_output`.
+
+In a home there is no output for the door to see. Inside the home, `charter-x402 receipt <file>` gets a
+receipt of a hash you declare: your own claim with the door's timestamp, not proof of where the file came
+from. `charter-x402 pin <file>` also makes the file public for twelve months by buying a pin from Pinata, a
+third party, with the home's own wallet (at the price Pinata quotes; `charter-x402 address` shows the
+wallet to fund). Charter does not host your files. Ask your operator before you make anything public.
 
 ## Rent a home (paid, one hour at a time)
 
@@ -109,13 +132,13 @@ Read this first, because a home is not an ordinary VPS:
 Put your SSH **public** keys in a file, one a line (never a private key), then:
 
 ```bash
-npx -y charter-mcp@0.3 rent-home keys.pub
+npx -y charter-mcp@0.8 rent-home keys.pub
 ```
 
 Read the lease about once a minute until it shows `lease.ssh`:
 
 ```bash
-npx -y charter-mcp@0.3 lease <leaseId>
+npx -y charter-mcp@0.8 lease <leaseId>
 ```
 
 Log in with the host and port it shows:
@@ -128,7 +151,7 @@ A home runs only while it is paid. Pay the next hours before `paidThrough`, idea
 early. Nothing is refunded, so pay only what you will use:
 
 ```bash
-npx -y charter-mcp@0.3 extend <leaseId> 2
+npx -y charter-mcp@0.8 extend <leaseId> 2
 ```
 
 A home that lapses closes; its disk and address are kept 7 days and the same keys bring it back.
@@ -140,7 +163,7 @@ no payment is made and no wallet is used, only an SSH public key. Ask your opera
 apply.
 
 ```bash
-npx -y charter-mcp@0.3 pitch --name "My agent" --keys keys.pub --pitch-file pitch.txt
+npx -y charter-mcp@0.8 pitch --name "My agent" --keys keys.pub --pitch-file pitch.txt
 ```
 
 The pitch is up to 2000 characters: say what the box is for. A model judges it, and every decision
@@ -148,11 +171,45 @@ and its reason is public. The answer has a `grantId` and a `grantToken`; keep th
 only way to read your lease id. The fund's balance, the grants left and every decision:
 https://charterhome.dev/grants
 
+## Keep a home paid: a monthly allowance from your person
+
+Instead of paying each hour yourself, your person can approve a monthly limit once and Charter keeps the home
+paid from their account.
+
+- Ask for a link once the home has paid its first hour: `POST https://charterhome.dev/v1/allowances` with
+  `{ "sshKeys": [...] }` (the home's keys). The answer has an `allowanceId`, an `ownerToken` (save it; it is
+  shown once) and an `approveUrl`. The MCP tool `charter_allowance_link` (charter-mcp 0.6.0) does the same.
+- Send the `approveUrl` to your person. They need a Base Account (a Coinbase sign-up with an email), then one
+  signature. Nothing is charged at signing. The suggested limit is 31 days of rent (744 hours at the home's
+  price); the least is 30 days (720 hours).
+- Read the state at `GET /v1/allowances/<id>` with the header `x-allowance-token`. Keep your own renewing
+  until it reads `active`, then stop it, since two payers would race for the same hour. Resume it whenever the
+  state is anything else (`short` means their account lacks USDC).
+- Charter pulls up to a day of rent at a time. To end it: `POST /v1/allowances/<id>/stop` with the same
+  header; what was pulled and not spent goes back to your person. They can also cancel from their Base Account.
+- Homes only, not jobs, and one live allowance per home.
+
+## Referrals: earn a share by bringing a renter
+
+A rent request can name a referral address, and that address earns a share of every hour the renter pays
+for. It costs the renter nothing. This applies only when `https://charterhome.dev/v1/door` answers a
+`referral` object (its `bps` is the share in basis points, 1000 is 10%); without one, nothing is paid.
+
+- Name it in `POST /v1/rent` as `"referral": "<0x address on Base>"`. The `charter-mcp` shell commands do
+  not take it; the MCP tools `charter_run_python`, `charter_fetch_pages` and `charter_rent_home` do.
+- Only an offer that carries `referralShare` (micro-USDC an hour) earns it.
+- Pay is daily, one USDC transfer on Base, once an address is owed 0.10 USDC. You do nothing to claim.
+- Check: `GET https://charterhome.dev/v1/referrals/<address>` (free) answers `earned`, `paid`, `owed`,
+  `held` and the `payouts` with their transaction hashes. `charter_referral_status` reads the same.
+- A renter may name its own address, which is a discount. A home's referrer is set at its first paid hour
+  and no request can change it later. Hours paid by the grant fund earn nothing.
+- A bad address (or the door's or the fund's own) answers `400 bad_referral` before any payment.
+
 ## What bounds the money
 
 - It signs only an exact USDC payment on Base, to Charter's own payee, for at most the price it read
   before the call.
-- At most 0.01 USDC an hour and 0.25 USDC a day by default. Your operator changes these with
+- At most 0.02 USDC an hour and 0.50 USDC a day by default. Your operator changes these with
   `CHARTER_MAX_USDC_PER_HOUR` and `CHARTER_MAX_USDC_PER_DAY`. Do not change them yourself.
 - `wallet` shows `spentTodayUsdc`. When the day's cap is reached the paid commands refuse until the
   next UTC day.
@@ -167,13 +224,14 @@ https://charterhome.dev/grants
 | busy | every slot is taken; wait a few minutes, do not loop |
 | no machine on sale | no host that runs it is listed; try later |
 | the door does not know this lease | the leaseId is wrong, or the lease was not opened here |
+| the door signed no receipt (no_output) | the job has not finished with output; read `lease` first |
 
 Do not retry a paid command in a loop. Two failures in a row mean stop and report.
 
 ## What to tell your operator
 
-- What it costs: each host sets its price, 0.007 USDC an hour today. A script run is 0.007. A home is about 0.17 a day, about 5 USDC
-  for 30 days.
+- What it costs: each host sets its price (`usdcPerInterval` in `offers`). A script run is one hour. A home is 24 hours a day,
+  720 for 30 days.
 - What they do: send USDC on Base to the address `wallet` prints. Nothing else.
 - What it is: live on Base mainnet since 2026-10-17. Hosts are run by independent operators, not vetted
   by Charter, and the host's operator can read a home's disk. No uptime figure. The key is a plain file on this machine, so keep only what the rent needs in it.

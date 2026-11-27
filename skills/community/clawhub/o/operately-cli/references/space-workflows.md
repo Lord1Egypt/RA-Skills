@@ -48,7 +48,7 @@ operately spaces update_tools \
 
 When `templates_enabled` is true on a space, the template library is available via `operately project_templates list --space-id s1`. See [Project Template Workflows](project-template-workflows.md).
 
-**Note:** Docs & Files commands use `--space-id` directly. You do not need to look up a hub ID from `list_tools`.
+`--space-id` selects the space’s default Resource Hub. Use `documents list_hubs --space-id s1` to choose another.
 
 ### 3. Add Members
 

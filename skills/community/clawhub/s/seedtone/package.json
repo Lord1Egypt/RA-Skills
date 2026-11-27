@@ -1,0 +1,51 @@
+{
+  "name": "@shxuk/seedtone",
+  "version": "2.0.0",
+  "description": "Glue-architecture color system generator & AI skill: Primer semantic roles + Adobe Leonardo contrast math + OKLCH tinted neutrals + W3C DTCG + APCA/WCAG verification",
+  "type": "module",
+  "main": "scripts/generate-color-system.mjs",
+  "bin": {
+    "color-gen": "scripts/generate-color-system.mjs",
+    "token-build": "scripts/build-color-tokens.mjs",
+    "token-check": "scripts/check-color-tokens.mjs"
+  },
+  "files": [
+    "scripts/",
+    "tokens/",
+    "assets/",
+    "color-roles.md",
+    "SKILL.md",
+    "README.md",
+    "README.en.md",
+    "llms.txt"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-color-system.mjs",
+    "tokens:build": "node scripts/build-color-tokens.mjs",
+    "tokens:check": "node scripts/check-color-tokens.mjs"
+  },
+  "dependencies": {
+    "@adobe/leonardo-contrast-colors": "^1.0.0",
+    "apca-w3": "^0.1.9",
+    "style-dictionary": "^4.3.0"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@bundled-es-modules/glob",
+      "style-dictionary"
+    ]
+  },
+  "keywords": [
+    "design-tokens",
+    "dtcg",
+    "color-system",
+    "primer",
+    "leonardo",
+    "apca",
+    "wcag",
+    "oklch",
+    "tailwindcss",
+    "ai-skill"
+  ],
+  "license": "MIT"
+}

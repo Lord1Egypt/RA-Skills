@@ -137,6 +137,7 @@ def _render(rep):
 
 def main():
     argv = sys.argv[1:]
+    coverage = "--coverage" in argv
     as_json = "--json" in argv
     pos = [a for a in argv if not a.startswith("--")]
     cdir = None
@@ -149,6 +150,53 @@ def main():
     if not cdir:
         bundled = os.path.join(ROOT, "references", "calib_corpus")
         cdir = bundled if os.path.isdir(bundled) else os.path.join(ROOT, "tests")
+    if coverage:
+        import glob as _g
+        if pos:
+            cdir = pos[0]
+        _files = sorted(x for x in _g.glob(os.path.join(cdir, "*.txt")))
+        if not _files:
+            print("错误: 目录无 .txt（%s）" % cdir, file=sys.stderr)
+            sys.exit(2)
+        _vocab = (hxt_core.load_patterns("zh", extra=None).get("vocabulary", [])
+                  + hxt_core.load_patterns("en", extra=None).get("vocabulary", []))
+        _zh_ws = [e["w"] for e in hxt_core.load_patterns("zh").get("vocabulary", [])]
+        _en_ws = [e["w"].lower() for e in hxt_core.load_patterns("en").get("vocabulary", [])]
+        _hit_zh, _hit_en, _total_zh, _total_en = set(), set(), 0, 0
+        for fp in _files:
+            try:
+                _t = open(fp, encoding="utf-8", errors="replace").read()
+            except OSError:
+                continue
+            _is_en = "en" in os.path.basename(fp).lower()
+            for w in _zh_ws:
+                if w in _t:
+                    _hit_zh.add(w)
+            for w in _en_ws:
+                if re.search(r"\b" + re.escape(w) + r"\b", _t, re.IGNORECASE):
+                    _hit_en.add(w)
+            if _is_en:
+                _total_en += 1
+            else:
+                _total_zh += 1
+        _unhit_zh = [w for w in _zh_ws if w not in _hit_zh]
+        _unhit_en = [w for w in _en_ws if w.lower() not in {x.lower() for x in _hit_en}]
+        rep = {"coverage": True,
+               "corpus_dir": os.path.relpath(cdir, ROOT),
+               "zh_total": len(_zh_ws), "zh_hit": len(_hit_zh),
+               "en_total": len(_en_ws), "en_hit": len(_hit_en),
+               "unhit_zh": _unhit_zh[:20], "unhit_en": _unhit_en[:20],
+               "violations": [], "files": [], "table": []}
+        if as_json:
+            print(json.dumps(rep, ensure_ascii=False, indent=1))
+        else:
+            print("词表覆盖统计（语料 %s）" % rep["corpus_dir"])
+            print("  CN 词表 %d 词，语料命中 %d（%d 文件）" % (rep["zh_total"], rep["zh_hit"], _total_zh))
+            print("  EN 词表 %d 词，语料命中 %d（%d 文件）" % (rep["en_total"], rep["en_hit"], _total_en))
+            print("  未命中样例 ZH: %s" % "、".join(rep["unhit_zh"][:8]))
+            print("  未命中样例 EN: %s" % ", ".join(rep["unhit_en"][:8]))
+            print("  口径：覆盖统计是词表资产盘点（哪些词在本语料无样本），非检测力声明。")
+        sys.exit(0)
     try:
         rep = calibrate(cdir)
     except ValueError as e:

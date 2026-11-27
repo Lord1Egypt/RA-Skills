@@ -15,11 +15,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-if __package__:
-    from .output_safety import MARKER, OutputTransaction, check_source, checked_path
-else:
-    from output_safety import MARKER, OutputTransaction, check_source, checked_path
-
 
 PROFILES = {"fast", "standard", "premium"}
 STATUS_ORDER = ["planned", "created", "rendered", "read_back", "verified", "final"]
@@ -406,11 +401,10 @@ def resolve_role_path(role: str, build_manifest: dict[str, Any], workdir: Path) 
 
 
 def copy_artifact(role: str, source: Path, output: Path, *, required: bool) -> dict[str, Any]:
-    source = check_source(source)
     target = output / (source.name if source.name else role)
-    if target.name in {MARKER, "delivery-manifest.json"} or target.exists():
-        raise ValueError(f"Colliding artifact name: {target.name}")
     if source.is_dir():
+        if target.exists():
+            shutil.rmtree(target)
         shutil.copytree(source, target)
         hash_value = sha256_tree(target)
     else:
@@ -486,7 +480,14 @@ def package_delivery(args: argparse.Namespace) -> tuple[int, list[str]]:
     if args.strict and not status_at_least(status, PROFILE_MIN_STATUS[profile]):
         errors.append(f"Trusted status {status} does not meet {profile} requirement {PROFILE_MIN_STATUS[profile]}")
 
-    output = checked_path(args.output)
+    output = args.output.resolve()
+    if output.exists():
+        shutil.rmtree(output)
+    staging = output.parent / f".{output.name}.staging-{os.getpid()}"
+    if staging.exists():
+        shutil.rmtree(staging)
+    staging.mkdir(parents=True)
+
     files: list[dict[str, Any]] = []
     roles = list(REQUIRED_DELIVERY_ROLES[profile])
     # Standard visual rendering is best-effort by contract. Do not invent a PDF
@@ -498,54 +499,48 @@ def package_delivery(args: argparse.Namespace) -> tuple[int, list[str]]:
         roles.append("assets")
     if args.include_sources:
         roles.append("source_package")
-    sources = [resolve_role_path(role, build_manifest, workdir) for role in roles]
-    manifest_path = checked_path(args.manifest)
-    manifest_in_output = manifest_path.parent == output
-    if manifest_in_output and manifest_path.name == MARKER:
-        raise ValueError("Manifest collides with ownership marker")
-    zip_target = output.with_suffix(".zip") if args.zip else None
-    sidecars = ([zip_target] if zip_target else []) + ([] if manifest_in_output else [manifest_path])
-    transaction = OutputTransaction(
-        output, tool="package_delivery", overwrite=getattr(args, "overwrite", False),
-        sources=[workdir, *sources], sidecars=sidecars,
-    )
+    for role in roles:
+        source = resolve_role_path(role, build_manifest, workdir)
+        required = role in REQUIRED_DELIVERY_ROLES[profile]
+        if not source.exists():
+            if required:
+                errors.append(f"Missing required delivery file for {role}: {source}")
+            continue
+        if role == "pptx" and not pptx_readable(source):
+            errors.append(f"PPTX package is not readable: {source}")
+        files.append(copy_artifact(role, source, staging, required=required))
+
+    privacy = scan_privacy(staging)
+    if args.strict and privacy["issues"]:
+        for item in privacy["issues"]:
+            errors.append(f"{item['code']}: {item['file']}")
+
     if errors:
+        shutil.rmtree(staging, ignore_errors=True)
         return 1, errors
-    with transaction.staging() as staging:
-        for role, source in zip(roles, sources):
-            required = role in REQUIRED_DELIVERY_ROLES[profile]
-            if not source.exists():
-                if required:
-                    errors.append(f"Missing required delivery file for {role}: {source}")
-                continue
-            if role == "pptx" and not pptx_readable(source):
-                errors.append(f"PPTX package is not readable: {source}")
-            files.append(copy_artifact(role, source, staging, required=required))
 
-        privacy = scan_privacy(staging)
-        if args.strict and privacy["issues"]:
-            errors.extend(f"{item['code']}: {item['file']}" for item in privacy["issues"])
-        if errors:
-            return 1, errors
-
-        # ZIP contains the final directory name, excludes the manifest (whose
-        # package_zip hash would otherwise be circular), and excludes ownership.
-        zip_path = write_zip(staging) if args.zip else None
-        manifest = build_delivery_manifest(
-            profile=profile, status=status, build_manifest=build_manifest,
-            qa_report=qa_report, benchmark_score=benchmark_score, files=files,
-            privacy=privacy, zip_path=zip_path, commit_sha=git_commit(),
-        )
-        staged_manifest = staging / (manifest_path.name if manifest_in_output else "delivery-manifest.json")
-        if staged_manifest.exists():
-            raise ValueError("Manifest collides with delivery artifact")
-        staged_manifest.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
-        publications = [(zip_path, zip_target)] if zip_path else []
-        if not manifest_in_output:
-            external = transaction.temp / "external-manifest.json"
-            shutil.copy2(staged_manifest, external)
-            publications.append((external, manifest_path))
-        transaction.commit(staging, publications)
+    zip_path = write_zip(staging) if args.zip else None
+    manifest = build_delivery_manifest(
+        profile=profile,
+        status=status,
+        build_manifest=build_manifest,
+        qa_report=qa_report,
+        benchmark_score=benchmark_score,
+        files=files,
+        privacy=privacy,
+        zip_path=zip_path,
+        commit_sha=git_commit(),
+    )
+    manifest_in_output = args.manifest.parent.resolve() == output
+    staged_manifest = staging / args.manifest.name if manifest_in_output else staging / "delivery-manifest.json"
+    staged_manifest.write_text(json.dumps(manifest, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+    # The manifest must not claim a hash for itself. Rewriting the file after
+    # computing that hash changes its bytes, so a self-entry can never be
+    # truthful. External release checksums may cover the manifest as a whole.
+    staging.replace(output)
+    if not manifest_in_output:
+        args.manifest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(output / staged_manifest.name, args.manifest)
     return 0, []
 
 
@@ -556,7 +551,6 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--zip", action="store_true")
-    parser.add_argument("--overwrite", action="store_true", help="Replace only owned output directories")
     parser.add_argument("--include-assets", action="store_true")
     parser.add_argument("--include-sources", action="store_true")
     parser.add_argument("--keep-workdir", action="store_true")
@@ -579,6 +573,10 @@ def main(argv: list[str]) -> int:
                 print(error, file=sys.stderr)
         return code
     except Exception as exc:
+        if args is not None:
+            shutil.rmtree(args.output, ignore_errors=True)
+            for staging in args.output.resolve().parent.glob(f".{args.output.name}.staging-*"):
+                shutil.rmtree(staging, ignore_errors=True)
         print(f"package_delivery: {exc}", file=sys.stderr)
         return 1
 

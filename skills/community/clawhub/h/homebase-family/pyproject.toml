@@ -1,0 +1,58 @@
+[project]
+name = "homebase"
+version = "0.7.3"
+description = "Family household coordinator skill for OpenClaw — calendar, meals, school, shopping, health, briefing"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.12"
+authors = [
+    { name = "hchawla" },
+]
+keywords = ["openclaw", "family", "household", "calendar", "whatsapp", "meal-planner"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Home Automation",
+]
+dependencies = [
+    # Google access is the `gog` CLI (gogcli.sh), not a Python client, so no
+    # google-* or credential-store packages appear here. gog is a BINARY dependency and
+    # pip cannot install it; see README setup and `gog auth status`.
+    "requests>=2.32.4,<3.0.0",  # 2.32.4: CVE-2024-47081 (.netrc leak)
+    # PDF text extraction (bill statements, school flyer attachments). Also the
+    # canary tools.py imports to decide whether to re-exec under the venv.
+    "pypdf>=6.21.4,<7.0.0",  # floor = version tested 2026-11-27; parses untrusted attachments, keep current
+]
+
+# NOTE: classifiers and dependencies must stay ABOVE [project.urls]. They sat
+# below it until 2026-09-20, which TOML reads as project.urls.classifiers and
+# project.urls.dependencies — the build failed on the former and, had it not,
+# would have silently installed no dependencies at all.
+[project.urls]
+Homepage = "https://github.com/hchawla/homebase"
+Repository = "https://github.com/hchawla/homebase"
+Issues = "https://github.com/hchawla/homebase/issues"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0,<9.0.0",
+    "pytest-mock>=3.10.0,<4.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=78.1.1"]  # 78.1.1: CVE-2025-47273
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["tools", "utils", "setup_check"]
+
+[tool.setuptools.packages.find]
+include = ["core*", "features*"]
+exclude = ["tests*", "logs*", "household*", "calendar_data*"]

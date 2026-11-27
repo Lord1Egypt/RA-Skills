@@ -91,6 +91,6 @@ stale material and repeated meaning. Whether guidance changes behavior depends
 on the target model and harness, so verify that claim when it matters instead
 of treating a sentence as a no-op by intuition.
 
-For Codex skill packaging and invocation policy, read
+For a task that targets Codex packaging or invocation, read
 [Codex skill mechanics](references/codex-skill-mechanics.md).
 For this variant's origin and changes, see [provenance](PROVENANCE.md).

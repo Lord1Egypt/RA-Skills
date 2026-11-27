@@ -3,7 +3,7 @@ name: "Skill Audit & Publish"
 slug: skill-audit-publish
 displayName: "Skill Audit & Publish"
 description: "Audit-first pipeline to publish an OpenClaw skill to ClawHub, SkillHub, and GitHub without leaking personal data, credentials, or model-specific references. Five stages — Sanitize, Transform, Verify, Publish, Install-check — with explicit user approval before every irreversible step. Use this when the user wants to publish a skill to ClawHub, sanitize a skill before publishing, run a pre-publish PII/secret audit, or follow the ClawHub publish workflow. A bundled sync helper (disclosed in the body below) mirrors a publish folder to a GitHub repo via the GitHub Contents API using environment-provided credentials only; it only creates or updates files and never deletes anything. Trigger phrases: 'publish to ClawHub', 'publish my skill', 'sanitize before publish', 'pre-publish checklist', 'clawhub publish command', 'upload a skill to clawhub'."
-version: "1.5.13"
+version: "1.5.14"
 allowed-tools: execute_command, read_file, file_read, write_to_file, file_write, env, network
 metadata:
   openclaw:
@@ -112,6 +112,7 @@ The transform stage will re-run these rules against the user's skill and present
 14. **`inspect`'s table view is cached; `--json` is authoritative.** After a publish the table can keep showing the previous `Latest` for several minutes. Read `inspect <slug> --json` → `latestVersion.version` and `skill.tags.latest` instead. Do not re-publish because the table looks stale, and do not poll with long sleeps — one JSON read settles it. (Verified 2026-09-11.)
 15. **GitHub mirror sync must push from the publish staging dir (`pub-*`), never from an install-sourced dir.** An install dir holds whatever the registry had (possibly a phantom-occupied old `version:` field without your patch), while the staging dir is the exact content you verified. Upsert-only: contents-API pushes add/update files but never delete removed ones — audit the repo file list after major restructures.
 16. **Use a pinned or locally installed `clawhub` CLI, never an unpinned one-shot runner.** Executing a CLI straight from the registry without a pinned version downloads the latest third-party package at run time — a supply-chain risk for a command that reads your token and uploads content. Install once (`npm i -g clawhub`) and invoke the reviewed local binary; if a one-shot run is truly unavoidable, pin the exact package version.
+17. **Version bumps match the whole line.** A frontmatter version rewrite must consume the existing closing quote and anchor the line end; after writing, assert that no doubled closing quote remains anywhere in the file.
 
 ---
 

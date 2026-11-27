@@ -1,0 +1,39 @@
+{
+  "language": "zh",
+  "title": null,
+  "origin": null,
+  "destination": null,
+  "start_date": null,
+  "end_date": null,
+  "travellers": 1,
+  "rooms": 1,
+  "currency": "EUR",
+  "entry": {"status": "not_required", "note": null},
+  "getting_there": [
+    {
+      "label": "Carrier and flight numbers, or the train",
+      "outbound": "AMS 06:45 → OPO 08:30",
+      "return": "OPO 10:20 → AMS 14:05",
+      "stops": 0,
+      "per_person_low": null,
+      "per_person_high": null,
+      "source": "Kiwi.com",
+      "checked_at": null,
+      "url": null
+    }
+  ],
+  "stay_areas": [
+    {
+      "name": "The area, not a hotel",
+      "why": "One line: why this area for this traveller",
+      "nightly_low": null,
+      "nightly_high": null,
+      "source": "Booking.com",
+      "checked_at": null,
+      "url": null
+    }
+  ],
+  "daily_spend": {"per_person_low": null, "per_person_high": null, "basis": "estimate", "note": "food, local transport, entry fees"},
+  "outline": ["Day 1: one line, no opening hours"],
+  "decisions": ["Every question the full plan needs answered, in one list"]
+}

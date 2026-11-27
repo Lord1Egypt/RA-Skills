@@ -9,7 +9,7 @@ Portable spec for agents:
 5) Lint Context Pack; if it fails, fall back to raw snippets.
 6) Feed Always-on policy + Context Pack (+ optional raw snippets) + user message to the reasoning model.
 7) For `debug` and `audit`, persist runtime artifacts according to `RUNTIME_ARTIFACTS.md`.
-8) Emit evidence according to runtime mode: clean answer plus footer metadata in `normal`, full artifacts in `debug`, full artifacts plus Receipt Ledger in `audit`. Every reply should include retrieval mode, compression/fallback status, model used, files read, and files updated.
+8) Emit evidence according to runtime mode: clean answer plus footer metadata in `normal`, sanitized evidence in `debug`, sanitized evidence plus Receipt Ledger in `audit`. Every reply should include retrieval mode, compression/fallback status, model used, files read, and files updated.
 
 Files:
 - `always_on.md` — tiny always-on policy + topic catalog (template).

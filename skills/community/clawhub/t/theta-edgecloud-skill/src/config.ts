@@ -32,6 +32,10 @@ function readInt(name: string, fallback: number, opts?: { min?: number; max?: nu
   return parsed;
 }
 
+// Credential access: reads only the Theta credential variables documented in SKILL.md (on-demand
+// token, EdgeCloud project key, Video service account, Characters key, dedicated-endpoint Basic
+// auth). Each value is sent only as the auth header to its matching Theta host. Values are never
+// logged, and public results report only which credential families are configured.
 export function loadConfig(): ThetaConfig {
   const user = processEnv.THETA_INFERENCE_AUTH_USER;
   const pass = processEnv.THETA_INFERENCE_AUTH_PASS;

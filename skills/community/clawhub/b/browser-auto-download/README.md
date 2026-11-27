@@ -9,6 +9,29 @@
 
 Automatically download files from dynamic webpages using Playwright browser automation. Supports auto-downloads, multi-step navigation, direct links, relative paths, and precise button clicking with cross-platform (Windows/macOS/Linux) intelligent detection.
 
+## ⚠️ Safety First
+
+This skill writes files to disk and lets a webpage steer browser navigation and
+clicks. Before using it:
+
+- **Treat every download as untrusted.** The skill does not scan, sign, or
+  sandbox files. Verify the publisher signature or a SHA-256 digest before
+  opening or installing anything.
+- **Prefer a dedicated output folder.** The default is
+  `~/Downloads/browser-auto-download`; use `--output` to isolate a run.
+- **Installers are gated.** Saving `.exe`, `.msi`, `.dmg`, `.pkg`, `.appimage`,
+  `.deb`, `.rpm`, or script files requires `--sha256 <digest>` or
+  `--acknowledge-executable`.
+- **Navigation stays on-site by default.** Cross-site targets are blocked unless
+  you pass `--allow-external-hosts`. Review the printed URLs before allowing it.
+- **Debug artifacts are sensitive.** `--debug` saves screenshots, HTML, and text
+  that may contain credentials or personal data; redaction is best effort.
+  Delete the debug folder after review.
+
+Do not point this skill at authenticated or private pages you are not authorized
+to automate.
+
+
 ## ✨ Features
 
 ### 🎯 Multi-Modal Download Support
@@ -56,9 +79,14 @@ Stage 3: Button Clicking
 ### Requirements
 
 ```bash
-pip install playwright
+pip install -r requirements.txt   # pinned to playwright==1.65.0
 playwright install chromium
 ```
+
+The pinned Playwright version also fixes the Chromium build that
+`playwright install chromium` downloads. For a fully hash-verified install,
+generate a lock with `pip-compile --generate-hashes` and install with
+`pip install --require-hashes -r requirements.txt`.
 
 ### Install Skill
 
@@ -128,6 +156,28 @@ python skills/browser-auto-download/scripts/auto_download.py \
   --url "https://example.com" \
   --headless
 ```
+
+### Safety Controls
+
+```bash
+# Verify the downloaded file against a known digest (recommended)
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --sha256 "<expected-sha256>"
+
+# Installer with no published digest: accept the risk explicitly
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --acknowledge-executable
+
+# Allow a cross-site download target (only after checking the URL)
+python skills/browser-auto-download/scripts/auto_download.py \
+  --url "https://example.com/download" \
+  --allow-external-hosts
+```
+
+The result JSON includes a `sha256` field so you can record or compare the
+digest of every download.
 
 ## 📊 Test Results
 
@@ -272,6 +322,21 @@ python -m skill_creator.package_skill.py \
 ```
 
 ## 📝 Changelog
+
+### v1.0.6 (2026-11-27) - Security Hardening 🔒
+
+**Security:**
+- ✅ Browser-level request filter blocks off-site document requests; off-site redirect hops are detected and fail the run
+- ✅ Downloads whose final URL is off-site are deleted and refused
+- ✅ Pinned Playwright to `1.65.0` (`requirements.txt`, `package.json`)
+- ✅ Navigation restricted to the exact starting host by default (`--allow-host` for one extra host, `--allow-external-hosts` for any)
+- ✅ Page-supplied filenames sanitized and confined to the output directory
+- ✅ Executables require `--sha256` or `--acknowledge-executable`
+- ✅ Every download now reports a SHA-256 digest
+- ✅ Debug artifacts get best-effort secret redaction plus a warning file
+- ✅ Default output moved to `~/Downloads/browser-auto-download`
+- ✅ Manifest declares network, filesystem, browser, and process scope
+- ✅ Safety notices added to README, QUICKSTART, USER_GUIDE, and SKILL.md
 
 ### v5.0.0 (2026-02-04) - Optimization Release ⚡
 

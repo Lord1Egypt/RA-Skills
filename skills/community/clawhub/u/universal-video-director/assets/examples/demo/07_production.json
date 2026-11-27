@@ -1,0 +1,57 @@
+{
+  "schema": "uvd/production",
+  "version": "2",
+  "stage": "production",
+  "project_id": "demo",
+  "confirmed": true,
+  "estimate": {
+    "count": 4,
+    "cost": 30
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "kind": "video",
+      "ref": "m1",
+      "backend": "seedance",
+      "status": "done",
+      "task_id": "x1",
+      "output": "media/clips/m1.mp4",
+      "actual_duration_sec": 10
+    },
+    {
+      "id": "t2",
+      "kind": "video",
+      "ref": "m2",
+      "backend": "seedance",
+      "status": "done",
+      "task_id": "x2",
+      "output": "media/clips/m2.mp4",
+      "actual_duration_sec": 10
+    },
+    {
+      "id": "t3",
+      "kind": "video",
+      "ref": "m3",
+      "backend": "seedance",
+      "status": "done",
+      "task_id": "x3",
+      "output": "media/clips/m3.mp4",
+      "actual_duration_sec": 10
+    },
+    {
+      "id": "t4",
+      "kind": "tts",
+      "ref": "b2",
+      "backend": "minimax",
+      "status": "done",
+      "task_id": "y",
+      "output": "media/audio/b2.wav"
+    }
+  ],
+  "upstream": {
+    "03_assets.json": "333faf2a53e0",
+    "05_storyboard.json": "5919e38da712",
+    "06_video_prompts.json": "888edb62c698"
+  }
+}

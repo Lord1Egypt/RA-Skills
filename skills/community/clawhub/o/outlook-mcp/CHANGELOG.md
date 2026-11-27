@@ -6,6 +6,86 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [1.34.0] — 2026-11-25
+
+An event time given in UTC or with an offset keeps the event's time zone, including zones Outlook
+names in Windows terms, and the time Microsoft stored is read back and put right if it moved. Moving
+a repeating event to another day moves its occurrences. Adding an email address to a contact right
+after creating it no longer fails. Drafts return their subject and a link to open them. 78 tools,
+71 by default.
+
+### Added
+
+- **`outlook_create_draft` and `outlook_update_draft` return the draft's `subject` and
+  `web_link` (#268, reported by @benjamin-di).** `subject` is the one Graph saved, so a reply's
+  or forward's `RE:`/`FW:` subject no longer takes a separate read. It is cleaned the same way the
+  read tools clean a subject. `web_link` is Graph's link to open the draft in Outlook on the web,
+  for a user who reviews a draft before it is sent. Either is `null` when Graph's answer leaves it
+  out. A new draft and an update take both from Graph's answer to the write; a reply or forward
+  draft gets them from the read it already makes for its recipients. No new parameters.
+
+### Fixed
+
+- **`outlook_update_contact` with `add_emails` or `remove_emails` no longer fails right after the
+  contact is created (#259).** Graph can answer the read of a just-created contact with `404`, or
+  refuse the change key it has just issued with `412`. Each now gets one more read after a short
+  wait. The merge is rebuilt from that read and pinned to its change key, so an address added
+  elsewhere in between is still kept. A second `404` or `412` is reported as before.
+
+- **Moving a repeating event to another day moves its occurrences (#98).** Given a new `start` on a
+  different day for a series, in the same time zone and without `recurrence`,
+  `outlook_update_event` answered `updated` while Graph put the series back on its old day, so
+  nothing moved. The series' repeat rule now goes with the change, and the result's `note` says
+  what it now reads (as it does when a `timezone` change puts the series on other days). A rule
+  that already repeats on the new day is kept and only its start date moves: weekdays started on
+  a Wednesday stay weekdays. A rule naming one day moves to the new day: a weekly Monday series
+  moved to a Tuesday becomes a weekly Tuesday series. An end date moves by as many days as the
+  start (for a monthly or yearly rule that can be one occurrence fewer, and the `note` gives the
+  new end). The same holds when `timezone` changes in the same call: the zone's own share still
+  moves every day, and the caller's move on top follows these rules. A `recurrence` handed back
+  beside a start on another day keeps a single day following the new start, as before, and is
+  now sent with several days exactly as written. A start moved later also starts the series later:
+  occurrences before it are dropped, and a numbered series counts from the new start. A new time
+  on the same day is sent as before. Refused instead of reported as `updated`, with nothing sent:
+  several weekdays moved to a day they skip, and a rule with no exact equivalent on the new day
+  ("the first Monday of the month" moved to a Tuesday), where `recurrence` with the days wanted
+  says what is meant; a series whose rule skips the first day of its range, such as weekdays
+  begun on a Saturday, where `recurrence` passed with the days wanted is now sent as written
+  rather than shifted; and a `Z` or offset `start` that could not be converted into the series'
+  zone, where a local time without a zone works. A monthly series moved to the same day of a
+  later month is no longer refused.
+
+- **An event created from a `Z` or offset time keeps its time zone (#236).** Graph kept the
+  moment of a `start`/`end` such as `2026-12-13T02:00:00Z` but filed a single event in UTC,
+  whatever `timezone` said. A later local-time edit was then read in UTC, a series made from the
+  event later shifted an hour at each daylight-saving change, and `outlook_get_event` reported
+  `UTC`. `outlook_create_event` now sends such a time as the same moment in local time in the
+  event's zone, which is the form Graph keeps the zone for. `outlook_update_event` does the same,
+  including for an event Graph files under a Windows name such as `Pacific Standard Time` (as it
+  does for events made in Outlook): the time is converted through CLDR's usual zone for that name,
+  and the name sent back stays Graph's own. That also starts a series moved with a `Z` start on its
+  local day for such an event (#235). A zone name neither Python nor that list knows is sent as
+  before. All-day events and local times without a zone are sent as written. So is an event with
+  either end in the hour that repeats when clocks go back, or outside the years Python can hold
+  (such as `9999-12-31`): both ends are sent as written, and that event is still filed in UTC.
+  For a single event, the event's times are read back after the write, with one extra request
+  made only when a time was converted, and each converted time is checked against where Graph
+  put it. (Graph's answer to the write itself cannot be used: it gives the times in the event's
+  own zone, whatever the request asks for.) If they differ by whole minutes, three hours at most,
+  for example because Graph's rules for the zone differ from this server's (recent changes such
+  as Cuba's or Morocco's, or out-of-date time zone data on the host), the time is sent again as
+  typed and read back once more. The moment is then right but that time is filed in UTC, the
+  result's `note` says where Graph had placed it, and any attendees get a second update. The
+  `note` calls the time right only when that second read finds it at the moment typed. If the
+  second read finds it elsewhere, the `note` says where; if it fails, or still shows where the
+  first read found it, the `note` says the time was not confirmed. A larger or odder difference
+  is not changed, since no zone rule explains it: the `note` says where Graph placed the time,
+  so it can be checked with the user. If the first read fails, or shows an updated event still
+  at the time it had before the change (a read that came too soon, not a zone rule), the event
+  stays as sent, with no `note`. Neither read is retried when Graph is busy, so a throttled read
+  does not hold back the answer. A series is not checked: Graph may report its first occurrence
+  rather than the start sent, and a correction would file the whole series in UTC.
+
 ## [1.33.0] — 2026-11-16
 
 To Do due dates, reminders and repeat rules are sent in the configured time zone, and a relative

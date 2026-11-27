@@ -1,6 +1,6 @@
 {
   "name": "move_task_to_day",
-  "description": "Reschedule a task to a different day",
+  "description": "Reschedule one existing Sunsama task from its current day to another day. WRITE - this changes the user's Sunsama plan for both days. Use it only when the user asked to move that specific task to that date. It does not move calendar events. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

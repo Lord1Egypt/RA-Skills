@@ -4,6 +4,7 @@
 const constants = require("../config/constants");
 const { SkillError } = require("../utils/errors");
 const { requestApi, pollTaskResult } = require("../utils/request");
+const { pickCost } = require("../utils/cost");
 
 /**
  * 处理用户搜索结果。字段原样透出，有 sec_uid 时补 author_url。
@@ -53,7 +54,7 @@ async function createUserSearchTask(token, keyword, limit) {
  * @param {string} token
  * @param {string} keyword
  * @param {number} limit
- * @returns {Promise<Array>}
+ * @returns {Promise<{ results: Array, cost?: number }>}
  */
 async function getUserSearchTask(token, keyword, limit) {
   const response = await pollTaskResult(
@@ -67,12 +68,13 @@ async function getUserSearchTask(token, keyword, limit) {
     token,
     "查询任务",
   );
+  const cost = pickCost(response);
 
   if (response.data) {
-    return processUserSearchResults(response.data);
+    return { results: processUserSearchResults(response.data), cost };
   }
 
-  return [];
+  return { results: [], cost };
 }
 
 module.exports = {

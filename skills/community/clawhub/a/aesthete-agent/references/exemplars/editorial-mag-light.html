@@ -25,6 +25,9 @@ regen: python3 scripts/make_exemplars.py(勿手改本文件)
 @supports (text-spacing-trim: space-all){
   :lang(zh){text-spacing-trim:space-all} /* 0.28:全角标点挤压渐进增强(Chrome 123+;不支持则原样,clreq 口径) */
 }
+@supports (container-type: inline-size){
+  .wrap{container-type:inline-size} /* 0.33:容器查询渐进底座——组件按所处空间响应,非按视口 */
+}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 :lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}

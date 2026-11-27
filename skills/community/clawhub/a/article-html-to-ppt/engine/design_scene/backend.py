@@ -23,6 +23,7 @@ SHAPES = {"rect": MSO_SHAPE.RECTANGLE, "rounded_rect": MSO_SHAPE.ROUNDED_RECTANG
           "ellipse": MSO_SHAPE.OVAL, "arrow": MSO_SHAPE.RIGHT_ARROW,
           "diamond": MSO_SHAPE.DIAMOND, "triangle": MSO_SHAPE.ISOSCELES_TRIANGLE}
 CHARTS = {"bar": XL_CHART_TYPE.BAR_CLUSTERED, "column": XL_CHART_TYPE.COLUMN_CLUSTERED,
+          "stacked_bar": XL_CHART_TYPE.BAR_STACKED, "stacked_column": XL_CHART_TYPE.COLUMN_STACKED,
           "line": XL_CHART_TYPE.LINE, "pie": XL_CHART_TYPE.PIE, "doughnut": XL_CHART_TYPE.DOUGHNUT}
 
 
@@ -45,7 +46,31 @@ def _font(font, spec):
         if q is None:
             q = _xml(tag)
             font._rPr.append(q)
-        q.set("typeface", spec["family"])
+        q.set("typeface", spec.get("ea_family", spec["family"]))
+
+
+A = "{http://schemas.openxmlformats.org/drawingml/2006/main}"
+NO_TABLE_STYLE = "{2D5ABB26-0587-4C30-8999-92F81FD0307C}"
+
+
+def _alpha(parent, alpha):
+    """Attach transparency to the solid colour directly under ``parent`` (spPr, ln or tcPr)."""
+    if parent is None or alpha is None or alpha >= 0.999:
+        return
+    clr = parent.find(A + "solidFill/" + A + "srgbClr")
+    if clr is not None:
+        for old in clr.findall(A + "alpha"):
+            clr.remove(old)
+        clr.append(_xml("a:alpha", val=round(alpha * 100000)))
+
+
+def _solid(color, alpha=None):
+    fill = _xml("a:solidFill")
+    clr = _xml("a:srgbClr", val=color.upper())
+    if alpha is not None and alpha < 0.999:
+        clr.append(_xml("a:alpha", val=round(alpha * 100000)))
+    fill.append(clr)
+    return fill
 
 
 def _paint(shape, spec):
@@ -55,11 +80,13 @@ def _paint(shape, spec):
     if spec.get("fill"):
         shape.fill.solid()
         shape.fill.fore_color.rgb = RGBColor.from_string(spec["fill"])
+        _alpha(shape._element.spPr, spec.get("fill_alpha"))
     else:
         shape.fill.background()
     if spec.get("stroke"):
         shape.line.color.rgb = RGBColor.from_string(spec["stroke"])
         shape.line.width = Pt(spec.get("stroke_width", 1))
+        _alpha(shape._element.spPr.find(A + "ln"), spec.get("stroke_alpha"))
     else:
         shape.line.fill.background()
     sppr = shape._element.spPr
@@ -81,7 +108,7 @@ def _text(frame, text, node):
     for i, line in enumerate(text.split("\n")):
         p = frame.paragraphs[0] if i == 0 else frame.add_paragraph()
         p.alignment = {"left": PP_ALIGN.LEFT, "center": PP_ALIGN.CENTER, "right": PP_ALIGN.RIGHT}[node.get("align", "left")]
-        p.line_spacing = node.get("line_spacing", 1.15)
+        p.line_spacing = Pt(node["line_height"]) if "line_height" in node else node.get("line_spacing", 1.15)
         p.space_before = p.space_after = Pt(0)
         _font(p.font, node["font"])
         boundaries = {offset, offset + len(line)}
@@ -118,6 +145,180 @@ def _path(shape, node):
     pr.insert(1, geom)
 
 
+def _styled_table(table, cells, n):
+    """Write editable merged regions, styled paragraphs and cell borders."""
+    tbl_pr = table._tbl.tblPr
+    style_id = tbl_pr.find(A + "tableStyleId")
+    if style_id is None:
+        style_id = _xml("a:tableStyleId")
+        tbl_pr.append(style_id)
+    style_id.text = NO_TABLE_STYLE
+    for r, row in enumerate(cells):
+        for col, value in enumerate(row):
+            cell, st = table.cell(r, col), n["cell_styles"][r][col]
+            if cell.is_spanned:
+                continue
+            height, width = st.get("row_span", 1), st.get("col_span", 1)
+            if height > 1 or width > 1:
+                cell.merge(table.cell(r + height - 1, col + width - 1))
+            font = st.get("font", n["font"])
+            _text(cell.text_frame, value, {"font": font, "margin": 0, "align": st.get("align", "left"),
+                                           "valign": st.get("valign", "middle"),
+                                           "spans": st.get("spans", []),
+                                           "line_height": st.get("line_height", font["size"] * 1.35)})
+            tc_pr = cell._tc.get_or_add_tcPr()
+            for child in list(tc_pr):
+                tc_pr.remove(child)
+            for tag, side in (("lnL", "left"), ("lnR", "right"), ("lnT", "top"), ("lnB", "bottom")):
+                line = _xml("a:" + tag)
+                border = st.get("border_" + side)
+                if border:
+                    line.set("w", str(round(border["width"] * 12700)))
+                    line.append(_solid(border["color"], border.get("alpha")))
+                else:
+                    line.append(_xml("a:noFill"))
+                tc_pr.append(line)
+            tc_pr.append(_solid(st["fill"], st.get("fill_alpha")) if st.get("fill") else _xml("a:noFill"))
+            top, right, low, left = st.get("margin", [2, 4, 2, 4])
+            cell.margin_top, cell.margin_right, cell.margin_bottom, cell.margin_left = (Pt(v) for v in (top, right, low, left))
+            cell.vertical_anchor = {"top": MSO_ANCHOR.TOP, "middle": MSO_ANCHOR.MIDDLE,
+                                    "bottom": MSO_ANCHOR.BOTTOM}[st.get("valign", "middle")]
+
+
+def _contrast_color(hex_color):
+    """Pick readable dark or white text on a solid bar/segment fill using sRGB luminance."""
+    r, g, b = (int(hex_color[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    lin = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in (r, g, b)]
+    lum = 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
+    return "1E2235" if lum > 0.36 else "FFFFFF"
+
+
+def _chart_extensions(chart, n):
+    """Optional axis, marker, label and area-layer styling; absent fields keep the legacy rendering."""
+    if n["chart_type"] in {"pie", "doughnut"}:
+        return
+    plot = chart.plots[0]
+    if "gap_width" in n and n["chart_type"] in {"bar", "column", "stacked_bar", "stacked_column"}:
+        plot.gap_width = n["gap_width"]
+    colors = n["colors"]
+    for i, series in enumerate(plot.series):
+        color = RGBColor.from_string(colors[i % len(colors)])
+        if n["chart_type"] == "line":
+            series.smooth = False
+            series.format.line.color.rgb = color
+            series.format.line.width = Pt(2)
+            if n.get("markers"):
+                from pptx.enum.chart import XL_MARKER_STYLE
+                series.marker.style = XL_MARKER_STYLE.CIRCLE
+                series.marker.size = 5
+                series.marker.format.fill.solid()
+                series.marker.format.fill.fore_color.rgb = RGBColor(255, 255, 255)
+                series.marker.format.line.color.rgb = color
+                series.marker.format.line.width = Pt(1.5)
+        if n["labels"] and "label_position" in n:
+            labels = series.data_labels
+            labels.show_value = True
+            labels.position = {"above": XL_DATA_LABEL_POSITION.ABOVE, "below": XL_DATA_LABEL_POSITION.BELOW,
+                               "center": XL_DATA_LABEL_POSITION.CENTER,
+                               "outside_end": XL_DATA_LABEL_POSITION.OUTSIDE_END,
+                               "inside_end": XL_DATA_LABEL_POSITION.INSIDE_END,
+                               "best_fit": XL_DATA_LABEL_POSITION.BEST_FIT}[n["label_position"]]
+            series_hex = colors[i % len(colors)]
+            label_hex = _contrast_color(series_hex) if n["label_position"] in {"center", "inside_end"} else series_hex
+            _font(labels.font, {**n["font"], "color": label_hex, "bold": True})
+            labels.number_format = n.get("label_number_format", "General")
+            labels.number_format_is_linked = False
+    axis = n.get("axis")
+    if axis:
+        from pptx.enum.chart import XL_TICK_MARK
+        value_axis, category_axis = chart.value_axis, chart.category_axis
+        if "min" in axis:
+            value_axis.minimum_scale = axis["min"]
+        if "max" in axis:
+            value_axis.maximum_scale = axis["max"]
+        if "major" in axis:
+            value_axis.major_unit = axis["major"]
+        if "gridline_color" in axis:
+            value_axis.has_major_gridlines = True
+            value_axis.major_gridlines.format.line.color.rgb = RGBColor.from_string(axis["gridline_color"])
+            value_axis.major_gridlines.format.line.width = Pt(0.75)
+        value_axis.format.line.fill.background()
+        if "line_color" in axis:
+            category_axis.format.line.color.rgb = RGBColor.from_string(axis["line_color"])
+        value_axis.major_tick_mark = category_axis.major_tick_mark = XL_TICK_MARK.NONE
+        for ax in (value_axis, category_axis):
+            if "label_size" in axis:
+                ax.tick_labels.font.size = Pt(axis["label_size"])
+            if "label_color" in axis:
+                ax.tick_labels.font.color.rgb = RGBColor.from_string(axis["label_color"])
+        value_axis.tick_labels.number_format = axis.get("number_format", "General")
+        value_axis.tick_labels.number_format_is_linked = False
+        if axis.get("category_padding"):
+            val_ax = value_axis._element
+            cross = val_ax.find("{http://schemas.openxmlformats.org/drawingml/2006/chart}crossBetween")
+            if cross is None:
+                cross = _xml("c:crossBetween")
+                unit = val_ax.find("{http://schemas.openxmlformats.org/drawingml/2006/chart}majorUnit")
+                unit.addprevious(cross) if unit is not None else val_ax.append(cross)
+            cross.set("val", "between")
+    if n.get("area_series") and n["chart_type"] == "line":
+        _area_layer(chart, n)
+
+
+def _area_layer(chart, n):
+    """Draw a translucent area under selected line series from the same data (one editable data sheet)."""
+    import copy
+    C = "{http://schemas.openxmlformats.org/drawingml/2006/chart}"
+    plot_area = chart._chartSpace.find(".//" + C + "plotArea")
+    line = plot_area.find(C + "lineChart")
+    sers = line.findall(C + "ser")
+    area = _xml("c:areaChart")
+    area.append(_xml("c:grouping", val="standard"))
+    area.append(_xml("c:varyColors", val="0"))
+    for i in n["area_series"]:
+        ser = copy.deepcopy(sers[i])
+        for tag in ("marker", "dLbls", "smooth"):
+            for el in ser.findall(C + tag):
+                ser.remove(el)
+        ser.find(C + "idx").set("val", str(len(sers) + i))
+        ser.find(C + "order").set("val", str(len(sers) + i))
+        sp = ser.find(C + "spPr")
+        if sp is None:
+            sp = _xml("c:spPr")
+            ser.find(C + "tx").addnext(sp)
+        for child in list(sp):
+            sp.remove(child)
+        sp.append(_solid(n["colors"][i % len(n["colors"])], 0.12))
+        ln = _xml("a:ln")
+        ln.append(_xml("a:noFill"))
+        sp.append(ln)
+        area.append(ser)
+    for ax in line.findall(C + "axId"):
+        area.append(_xml("c:axId", val=ax.get("val")))
+    line.addprevious(area)
+
+
+def _round_image(im, radius_pt, box_w_pt, box_h_pt):
+    """Apply an antialiased rounded-corner alpha mask to a Pillow image."""
+    from PIL import Image, ImageDraw
+    rgba = im.convert("RGBA")
+    pw, ph = rgba.size
+    if pw <= 0 or ph <= 0:
+        return rgba
+    scale = min(pw / max(0.1, box_w_pt), ph / max(0.1, box_h_pt))
+    r_px = min(radius_pt * scale, pw / 2, ph / 2)
+    if r_px < 0.5:
+        return rgba
+    ss = 2
+    mask = Image.new("L", (pw * ss, ph * ss), 0)
+    ImageDraw.Draw(mask).rounded_rectangle((0, 0, pw * ss - 1, ph * ss - 1), radius=r_px * ss, fill=255)
+    mask = mask.resize((pw, ph), Image.Resampling.BOX)
+    existing = rgba.getchannel("A")
+    from PIL import ImageChops
+    rgba.putalpha(ImageChops.darker(existing, mask))
+    return rgba
+
+
 def render(task, asset_bytes):
     """Return PPTX bytes. All input bytes have already passed asset ingestion."""
     validate(task, complete=True)
@@ -151,20 +352,31 @@ def render(task, asset_bytes):
                     shape = shapes.add_shape(SHAPES[n["shape"]] if kind == "shape" else MSO_SHAPE.RECTANGLE, x, y, w, h)
                 if kind == "path":
                     _path(shape, n)
+                elif n["shape"] == "rounded_rect" and "radius" in n["style"]:
+                    shape.adjustments[0] = min(0.5, n["style"]["radius"] / max(0.1, min(b["width"], b["height"])))
                 _paint(shape, n["style"])
             elif kind == "image":
                 data = asset_bytes[n["asset_id"]]
                 im = decode_image(data)
                 ratio = im.width / im.height
+                radius_pt = n.get("radius", 0)
                 if n["fit"] == "contain":
                     nw, nh = (w, int(w / ratio)) if ratio > w / h else (int(h * ratio), h)
-                    shape = shapes.add_picture(io.BytesIO(data), x + (w - nw) // 2, y + (h - nh) // 2, nw, nh)
+                    if radius_pt > 0.5:
+                        out = io.BytesIO()
+                        _round_image(im, radius_pt, nw / Pt(1), nh / Pt(1)).save(out, format="PNG")
+                        payload = out.getvalue()
+                    else:
+                        payload = data
+                    shape = shapes.add_picture(io.BytesIO(payload), x + (w - nw) // 2, y + (h - nh) // 2, nw, nh)
                 else:
                     # Encode the actual crop once; never embed the whole reference repeatedly.
                     scale = max(w / im.width, h / im.height)
                     cw, ch = max(1, round(w / scale)), max(1, round(h / scale))
                     left, top = (im.width - cw) // 2, (im.height - ch) // 2
                     cropped = im.crop((left, top, left + cw, top + ch))
+                    if radius_pt > 0.5:
+                        cropped = _round_image(cropped, radius_pt, b["width"], b["height"])
                     out = io.BytesIO()
                     cropped.save(out, format="PNG")
                     shape = shapes.add_picture(io.BytesIO(out.getvalue()), x, y, w, h)
@@ -174,7 +386,9 @@ def render(task, asset_bytes):
                 cd.categories = c["categories"]
                 for series in c["series"]:
                     cd.add_series(series["name"], series["values"])
-                shape = shapes.add_chart(CHARTS[n["chart_type"]], x, y, w, h, cd)
+                chart_kind = (XL_CHART_TYPE.LINE_MARKERS if n["chart_type"] == "line" and n.get("markers")
+                              else CHARTS[n["chart_type"]])
+                shape = shapes.add_chart(chart_kind, x, y, w, h, cd)
                 chart = shape.chart
                 chart.has_title = False
                 chart.has_legend = n["legend"]
@@ -219,6 +433,7 @@ def render(task, asset_bytes):
                                     label = point.data_label._get_or_add_dLbl()
                                     fmt = _xml("c:numFmt", formatCode=n["label_number_format"], sourceLinked="0")
                                     label.insert_element_before(fmt, "c:spPr", "c:txPr", "c:dLblPos", "c:showLegendKey", "c:showVal")
+                _chart_extensions(chart, n)
             elif kind == "table":
                 cells = content[n["content_id"]]["cells"]
                 shape = shapes.add_table(len(cells), len(cells[0]), x, y, w, h)
@@ -227,13 +442,18 @@ def render(task, asset_bytes):
                 table.horz_banding = table.vert_banding = False
                 for i, width in enumerate(n.get("column_widths", [])):
                     table.columns[i].width = Pt(width)
-                for r, row in enumerate(cells):
-                    for col, value in enumerate(row):
-                        cell = table.cell(r, col)
-                        cell.fill.solid()
-                        cell.fill.fore_color.rgb = RGBColor.from_string(n["header_fill"] if r == 0 else n["fill"])
-                        font = {**n["font"], **({"color": n["header_color"], "bold": True} if r == 0 else {})}
-                        _text(cell.text_frame, value, {"font": font, "margin": 4, "valign": "middle"})
+                for r, height in enumerate(n.get("row_heights", [])):
+                    table.rows[r].height = Pt(height)
+                if "cell_styles" in n:
+                    _styled_table(table, cells, n)
+                else:
+                    for r, row in enumerate(cells):
+                        for col, value in enumerate(row):
+                            cell = table.cell(r, col)
+                            cell.fill.solid()
+                            cell.fill.fore_color.rgb = RGBColor.from_string(n["header_fill"] if r == 0 else n["fill"])
+                            font = {**n["font"], **({"color": n["header_color"], "bold": True} if r == 0 else {})}
+                            _text(cell.text_frame, value, {"font": font, "margin": 4, "valign": "middle"})
             else:
                 raise DesignError("UNSUPPORTED_NODE")
             shape.name = n["id"]
@@ -335,13 +555,22 @@ def inspect_objects(data: bytes, task):
             if kind == "table":
                 if not shape.has_table or [[cell.text for cell in row.cells] for row in shape.table.rows] != c["cells"]:
                     raise DesignError("PPTX_TABLE_MISMATCH")
+                for r, row in enumerate(n.get("cell_styles", [])):
+                    for col, style in enumerate(row):
+                        cell = shape.table.cell(r, col)
+                        expected_merge = (style.get("row_span", 1), style.get("col_span", 1))
+                        actual_merge = (cell.span_height, cell.span_width) if cell.is_merge_origin else (1, 1)
+                        if actual_merge != expected_merge:
+                            raise DesignError("PPTX_TABLE_MERGE_MISMATCH")
             if kind == "chart":
                 if not shape.has_chart:
                     raise DesignError("PPTX_CHART_NOT_NATIVE")
                 chart = shape.chart
                 if [x.label for x in chart.plots[0].categories] != c["categories"]:
                     raise DesignError("PPTX_CHART_CATEGORY_MISMATCH")
-                series = [{"name": s.name, "values": list(s.values)} for s in chart.series]
+                series = [{"name": s.name, "values": list(s.values)} for plot in chart.plots
+                          if not (n.get("area_series") and plot._element.tag.endswith("}areaChart"))
+                          for s in plot.series]
                 if series != c["series"]:
                     raise DesignError("PPTX_CHART_DATA_MISMATCH")
             counts[n["role"]] += 1

@@ -13,6 +13,19 @@ const { mapBackendApiError } = require("./backendCodes");
 const utils = require("./utils");
 const { skillName } = require("./name");
 
+/**
+ * 从 REST path 推断接口族（供错误码分流）。
+ * @param {string} [path]
+ * @returns {"search"|"post"|"comment"|""}
+ */
+function tiktokApiKind(path) {
+  const p = String(path || "");
+  if (p.includes("/tiktok/search/")) return "search";
+  if (p.includes("/tiktok/post/")) return "post";
+  if (p.includes("/tiktok/comment/")) return "comment";
+  return "";
+}
+
 async function request(options, data = null) {
   return new Promise((resolve, reject) => {
     let timedOut = false;
@@ -56,6 +69,7 @@ async function request(options, data = null) {
                   mapBackendApiError(
                     jsonBody.errcode,
                     jsonBody.errmsg || "请求失败",
+                    tiktokApiKind(options.path),
                   ),
                 );
               }
@@ -155,10 +169,11 @@ async function getJson(path, params, token) {
 }
 
 /**
- * 创建任务。网络、超时、429、5xx，以及 errcode < 10 会重试。
- * 这些小于 10 的码都出现在插入成功之前：搜索 1、作品/评论 2 是提交过密；
- * 作品/评论 1 是查价失败；搜索 2、作品/评论 3 是插入失败。成功插入只返回 0，不会重试。
- * errcode >= 10 不重试：包月上限 14→PLAN_LIMIT；搜索的 15 是查价失败、16 是余额不足；作品和评论的 15 是余额不足。
+ * 创建任务（withRetry）。是否重试看错误的 noRetry，不是「errcode < 10 一律重试」。
+ * 会重试：网络/超时/HTTP 429·5xx；未标 noRetry 的瞬时失败（如 Gate 查价失败的裸 1、
+ * 搜索插入失败的裸 2、作品/评论插入失败的裸 3）。
+ * 不重试：RATE_LIMITED（搜索频控多为 1+文案；作品/评论频控多为 2）、PLAN_LIMIT、
+ * INSUFFICIENT_BALANCE、DAILY_LIMIT、AUTH_* 等（见 backendCodes）。
  * @param {string} method
  * @param {string} path
  * @param {object} params

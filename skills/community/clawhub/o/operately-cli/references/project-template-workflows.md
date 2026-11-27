@@ -15,7 +15,7 @@ See also: [Project Workflows](project-workflows.md) for live projects, [Docs & F
 | Staff a template blueprint | `project_templates create_person …` | roles, access, task assignments |
 | Add people to a live project | `projects create_contributor …` | `--permissions edit_access` |
 | Template Docs & Files | `project_templates create_document …` | materializes when a project is created |
-| Live Docs & Files | `documents create_document …` | `--space-id`, `--project-id`, or `--goal-id` |
+| Live Docs & Files | `documents create_document …` | `--space-id`, `--project-id`, `--goal-id`, or `--resource-hub-id` |
 
 ## Feature Availability
 

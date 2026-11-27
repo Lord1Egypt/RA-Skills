@@ -2,7 +2,7 @@
 slug: tcms-planner
 displayName: Tcms Planner
 name: tcms-planner
-version: "1.1.10"
+version: "1.1.11"
 not_for:
   - Content creation or drafting (brief output only)
   - Portfolio-level topic evaluation with scoring gates (use a portfolio skill)
@@ -132,6 +132,7 @@ After a topic brief is produced it **must be confirmed by a human** before enter
 4. **Internal cases default to redaction requirement.** Briefs involving internal-source customers must mark 📋.
 
 5. **Dedupe before recommending.** Check the topic against the last 12 published or planned items; a duplicate or near-duplicate is flagged, not recommended.
+6. **The comparison window is fixed.** Dedupe uses the same 12-item window for every suggestion in a run and names that window in the output, so two suggestions are not checked against different histories.
 
 ## Failure handling
 

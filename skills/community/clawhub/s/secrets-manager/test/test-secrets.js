@@ -35,6 +35,13 @@ module.exports = [
     expected: (output) => output.includes('[secrets-manager] Deleted:')
   },
 
+  // Test case 6: --inject — template injection
+  {
+    name: '--inject',
+    command: () => 'node secrets-manager.js --inject "echo {{test_secret}} and {{test_secret_2}}"',
+    expected: (output) => output.includes('[secrets-manager] Result:')
+  },
+
   // Test case 7: Edge case - missing args for store
   {
     name: 'Missing args for --store',

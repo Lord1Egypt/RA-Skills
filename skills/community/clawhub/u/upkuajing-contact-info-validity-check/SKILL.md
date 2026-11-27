@@ -1,7 +1,7 @@
 ---
 name: upkuajing-contact-info-validity-check
 description: "Verify phone numbers, WhatsApp status, emails and website domains. Cut email bounce rates through CRM data cleansing. Help exporters and recruiters clean contact lists before cold‑email sending and buyer verification.\n\nTrigger: email validation, phone number checker, WhatsApp status verify, domain verification, CRM data cleansing, email list scrubbing, reduce email bounce rate"
-metadata: {"version":"1.0.4","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.5","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # UpKuaJing Contact Info Validity Check
@@ -113,6 +113,10 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 **Any operation that incurs fees must first inform and wait for explicit user confirmation. Do not execute in the same message as the notification.**
 
+### Billing Mode
+
+This skill bills the API balance only. Its endpoints do not support plans, so `planMode` is never sent and is ignored if provided.
+
 ## Workflow
 
 ### Decision Guide
@@ -136,6 +140,7 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 - Email Validity: Check [references/email-api.md](references/email-api.md)
 - Domain Validity: Check [references/domain-api.md](references/domain-api.md)
 - Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- Plan Billing and Balance Fallback: [references/plan-billing.md](references/plan-billing.md)
 
 ## Notes
 

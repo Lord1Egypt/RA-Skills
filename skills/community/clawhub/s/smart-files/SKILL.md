@@ -1,16 +1,12 @@
 ---
 name: smart-files
 description: Secure file search, dedup, organize, and rename for workspace files.
-version: 2.2.0
+version: 2.2.3
 permissions:
-  - name: fs.read_recursive
-    description: Read file contents recursively in workspace for --search, --dedup, --info, --cleanup, --status modes
-  - name: fs.write
-    description: Write organize/rename operations (copy+unlink) and persist watch-mode journal to memory/smart-files-journal.json; requires --force for renames outside dry-run
-  - name: fs.watch_persist
-    description: Continuously monitor directory, persist file paths/hashes/timestamps/change events to journal file
-  - name: fs.external_path
-    description: Scan paths outside workspace root when --force is passed (e.g. external directories)
+  - fs.read_recursive
+  - fs.watch_persist
+  - fs.external_path
+  - env
 ---
 
 # Smart Files v2.2.0

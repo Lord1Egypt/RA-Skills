@@ -155,18 +155,73 @@
 | ev_ebitda | 企业倍数 | 倍 |
 | equity_value | 股权价值 | 元 |
 
-### 基础指标/股本 (stk_get_daily_basic_pt)
+### 基础指标/股本 (stk_get_daily_basic_pt / stk_get_daily_basic)
 
-| 字段名 | 中文 | 说明 |
-|--------|------|------|
-| tclose | 收盘价 | 元 |
-| turnrate | 换手率 | % |
-| **ttl_shr** | 总股本 | 股 ⭐最常用 |
-| **circ_shr** | 流通股本(含限售) | 股 ⭐最常用 ⚠️不是float_shr! |
-| ttl_shr_unl | 无限售条件流通股本 | 股 ⚠️不是free_shr! |
-| ttl_shr_ltd | 有限售条件股本 | 股 |
-| a_shr_unl | 无限售条件流通股本(A股) | 股 |
-| h_shr_unl | 无限售条件流通股本(H股) | 股 |
+**函数原型**
+
+```python
+stk_get_daily_basic_pt(symbols, fields, trade_date=None, df=False)          # 截面，多标的
+stk_get_daily_basic(symbol, fields, start_date=None, end_date=None, df=False)  # 时序，单标的
+```
+
+| 字段名 | 中文 | 量纲 | 说明 |
+|--------|------|------|------|
+| tclose | 收盘价 | 元 | 当日收盘价（算市值要用上一交易日的） |
+| turnrate | 当日换手率 | % | 成交量 ÷ 流通股本 |
+| **ttl_shr** | 总股本 | 股 | ⭐常用 |
+| **circ_shr** | 流通股本 | 股 | = 无限售条件流通股本 + 有限售条件流通股本。⚠️不是 float_shr |
+| ttl_shr_unl | 无限售条件流通股本 | 股 | **A股 + H股**。⚠️注意：不是"行情软件的流通股" |
+| ttl_shr_ltd | 有限售条件股本 | 股 | |
+| a_shr_unl | 无限售条件流通A股股本 | 股 | **行情软件显示的"流通股"就是这个** |
+| h_shr_unl | 无限售条件流通H股股本 | 股 | |
+| **free_shr** | **自由流通股本** | 股 | ⭐新增。= A股总股本 − A股限售股本 − 减持受控非限售股本 − 合计持股5%以上大股东持有的其他非限售股本 |
+| **free_turnrate** | **自由流通换手率** | % | ⭐新增。= 成交量 ÷ 自由流通股本 × 100% |
+
+**字段语义变更提醒（2026-11 官方更新）**
+
+旧版本字段含义：
+- `ttl_shr_unl` = 无限售条件流通股本（行情软件定义的流通股）
+- `a_shr_unl` = 无限售条件流通股本（A股）
+
+新版本字段含义：
+- `ttl_shr_unl` = 无限售条件流通股本（**A股 + H股**）
+- `a_shr_unl` = 无限售条件流通A股股本（**行情软件定义的流通股**）
+
+> 对纯 A 股标的（无 H 股）两者数值相同；对有 H 股的标的（如 A+H 上市的银行股）才会不同。做全市场截面筛选时要注意这个差异。
+
+**流通市值怎么算**
+
+```python
+import pandas as pd
+
+d = stk_get_daily_basic(symbol='SHSE.600519',
+                        fields='tclose,circ_shr,free_shr',
+                        start_date='2026-11-18', end_date='2026-11-26', df=True)
+d = d.sort_values('trade_date').reset_index(drop=True)
+
+# 必须用上一交易日收盘价，否则是"当日收盘市值"，引入未来函数
+d['free_mv'] = d['free_shr'] * d['tclose'].shift(1)   # 自由流通市值
+d['circ_mv'] = d['circ_shr'] * d['tclose'].shift(1)   # 流通市值
+d['free_mv_yi'] = d['free_mv'] / 1e8                  # 换成亿元
+```
+
+> `_pt` 截面版没有历史序列，要自己再查一次上一交易日的 `tclose`。
+
+**实测样例（SHSE.600519，2026-11-26）**
+
+| 字段 | 值 | 说明 |
+|------|-----|------|
+| tclose | 1469.00 | 元 |
+| turnrate | 0.2593 | % |
+| free_turnrate | 0.5185 | % |
+| circ_shr | 1,250,081,601 | 股 |
+| free_shr | 625,040,801 | 股 |
+| ttl_shr | 1,250,081,601 | 股 |
+| a_shr_unl | 1,250,081,601 | 股 |
+| h_shr_unl | 0 | 股 |
+| ttl_shr_ltd | 0 | 股 |
+
+自洽校验：`free_turnrate / turnrate = 0.5185 / 0.2593 ≈ 2.0`，等于 `circ_shr / free_shr = 2.0`。两个换手率口径互相印证。
 
 ---
 
@@ -196,3 +251,4 @@
 ---
 
 *整理于 2026-04-17, 已测试 9/9 通过*
+*2026-11-27 更新：基础指标新增 `free_shr`（自由流通股本）、`free_turnrate`（自由流通换手率），并修正 `ttl_shr_unl` / `a_shr_unl` 的语义（ttl_shr_unl 现为 A股+H股）。已实测通过（SHSE.600519）。*

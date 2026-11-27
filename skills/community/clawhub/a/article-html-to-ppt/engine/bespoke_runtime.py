@@ -6,16 +6,11 @@ layout decision is injected.  The runtime locks the module to an approved
 authoring manifest and source IR, then applies source-binding, structural,
 native-editability and real-render gates.  Passing those gates deliberately
 does *not* imply visual approval: that remains a separate human/model review.
-Author code requires process-level host opt-in and a reviewed source digest
-(see ``_load_trusted_module``); manifest hashes are not code authorization.
 """
 from __future__ import annotations
 
-import hashlib
-import importlib.machinery
 import importlib.util
 import json
-import os
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -48,40 +43,12 @@ def _reject(output_dir: Path, code: str, **extra: Any) -> dict[str, Any]:
     return report
 
 
-def _load_trusted_module(script_path: Path, module_name: str) -> ModuleType:
-    """Execute reviewed Python on the host, never an untrusted data payload.
-
-    These process-level settings must be supplied by the operator, not copied
-    from a manifest, IR, plan or model response. A matching hash is integrity,
-    not approval by itself. This is not a Python or OS sandbox.
-    """
-    if os.environ.get("PPTSMITH_ALLOW_HOST_CODE") != "1":
-        raise ValueError("HOST_CODE_EXECUTION_NOT_AUTHORIZED")
-    expected = os.environ.get("PPTSMITH_TRUSTED_SCRIPT_SHA256", "")
-    if expected.startswith("sha256:"):
-        expected = expected[7:]
-    if len(expected) != 64 or any(c not in "0123456789abcdef" for c in expected):
-        raise ValueError("TRUSTED_SCRIPT_SHA256_REQUIRED")
-    source = script_path.read_bytes()
-    if hashlib.sha256(source).hexdigest() != expected:
-        raise ValueError("TRUSTED_SCRIPT_SHA256_MISMATCH")
-
-    class ReviewedSourceLoader(importlib.machinery.SourceFileLoader):
-        def get_code(self, fullname):
-            # Compile the verified bytes, not a mutable path or cached .pyc.
-            return self.source_to_code(source, str(script_path))
-
-    loader = ReviewedSourceLoader(module_name, str(script_path))
-    spec = importlib.util.spec_from_file_location(module_name, script_path, loader=loader)
+def _load_author_module(script_path: Path) -> ModuleType:
+    spec = importlib.util.spec_from_file_location("pptsmith_bespoke_author", script_path)
     if spec is None or spec.loader is None:
         raise ValueError("AUTHOR_SCRIPT_LOAD_FAILED")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module
-
-
-def _load_author_module(script_path: Path) -> ModuleType:
-    module = _load_trusted_module(script_path, "pptsmith_bespoke_author")
     if not callable(getattr(module, "build", None)):
         raise ValueError("AUTHOR_SCRIPT_BUILD_REQUIRED")
     return module

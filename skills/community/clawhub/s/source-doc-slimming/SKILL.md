@@ -5,7 +5,7 @@ description_zh: "把过大的「必读」源文件瘦身——叙事外置 + 留
 description_en: "Slim an oversized always-read source doc without losing content"
 disable: false
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 allowed-tools:
   - Read
 metadata:
@@ -192,3 +192,4 @@ before externalising, and merge deliberately:
 - [ ] Platform-generated sidecar files left untouched; any defect in them recorded for a post-regeneration check.
 - [ ] Any comparator's expected include/exclude set was read off the **authoritative** side, not assumed.
 - [ ] The published/shared artifact's own file list was inspected, so no local sidecar rode along.
+- [ ] Moved text is byte-identical to its source block (ignoring only line endings), and any intentional edit is listed separately instead of being folded into the move.

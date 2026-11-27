@@ -39,7 +39,7 @@ Use this skill when the user wants to:
 
 - **ID types matter**: Templates and contact archive use MongoDB ObjectId (24-char hex). All other entities use UUID v4.
 - **GET `/lists/:id` returns a single object**: The API returns the list object directly under `data`, including a `fields` array of its column names in snake_case.
-- **Sequence status filters differ by endpoint**: `GET /sequences` uses status values `running`, `paused`, `completed`, `needs-attention`. `POST /sequences/:id/status` uses `ACTIVE`, `PAUSED`, `STOPPED`, `ARCHIVED`. Do not mix them up.
+- **Sequence status filters differ by endpoint**: `GET /sequences` uses status values `running`, `paused` (launched, then paused), `draft` (never launched), `completed`, `needs-attention`. A sequence created with the default `paused: true` and no schedule (`launchTimingMode` omitted or `"now"`) stays a draft until it is launched, so look for it under `draft` (or leave `status` out), not `paused`. One created paused with `launchTimingMode: "schedule"` is listed under `paused`. Cloned sequences are drafts too. `POST /sequences/:id/status` uses `ACTIVE`, `PAUSED`, `STOPPED`, `ARCHIVED`. Do not mix them up.
 - **GET `/sequences/:id` returns the internal flowchart**: The response includes the full internal `flowchart` object, not a simplified step list. Use `flowchart` to inspect steps.
 - **POST `/sequences/:id/clone` returns `clonedSequenceId`**: The response shape is `{ success, data: { clonedSequenceId }, message }`, not `data.id` or `data.name`.
 - **OAuth `redirectUrl` is ignored**: The API does not use a custom `redirectUrl` for `/oauth/google` or `/oauth/outlook`. The response field is `data.auth_url`, not `data.url`.
@@ -54,7 +54,10 @@ Use this skill when the user wants to:
 - **Remove template attachments via `remove_attachments`** array of file **names**.
 - **GET `/senders/connect-link` returns a login link; it does not create a sender**. For Gmail and Outlook, use `/oauth/google` or `/oauth/outlook`, which return an `auth_url` the user must open in a browser; the sender is created automatically after OAuth completion. SMTP/IMAP senders can be added with `POST /senders/add-sender` (JSON) or `POST /senders/add-bulk-senders` (CSV, `multipart/form-data`, field `csvFile`); they connect in the background, so wait for `sendingEnabled: true` before using them in a sequence.
 - **Forward content is optional**: `POST /inbox/:messageId/forward` uses the original email body when `content` is omitted.
+- **Replies and forwards respect the blocklist**: `POST /inbox/:messageId/reply` and `/forward` return `403` when any recipient (to, cc, bcc) or its domain is blocklisted or unsubscribed, and `503` if the blocklist could not be checked. Nothing is sent in either case.
 - **Archiving is done via dedicated archive routes**: `PATCH /lists/:id`, `PATCH /templates/:id`, and `PATCH /sequences/:id` ignore the `archived` field. Use `PUT /lists/:id/archive`, `PUT /templates/:id/archive`, and `PUT /sequences/:id/archive` instead.
+- **Archiving a list or template that a sequence uses returns `409 IN_USE`**: the response lists the `sequences` that use it and nothing is changed. Tell the user, and only repeat the request with `"force": true` (or `?force=true`) if they confirm.
+- **Narrowed API keys return `403 INSUFFICIENT_SCOPE`**: keys can be limited to scopes such as `lists.read` or `sequences.write`. Older keys and keys created without a scope list have full access. Magic login links need the `login_link` scope.
 - **Folder types matter**: General folders (created without a `type`) hold lists, templates, and sequences. `type: "email-sender"` folders hold email senders only. The API rejects a folder assignment to the wrong resource type.
 
 
@@ -176,8 +179,8 @@ Always check the `success` boolean in the response body. A `200` status can stil
 | 200    | Success      | Check `success` field                                 |
 | 400    | Bad request  | Re-check payload structure against the reference file |
 | 401    | Unauthorized | Verify API key                                        |
-| 403    | Forbidden    | Insufficient permissions (role too low)               |
+| 403    | Forbidden    | Read message/code: role too low, key lacks a scope (INSUFFICIENT_SCOPE), plan expired or plan limit, or blocklisted recipient |
 | 404    | Not found    | Verify the ID / endpoint                              |
-| 409    | Conflict     | Resource already exists or connection failed          |
+| 409    | Conflict     | Read message/code: already exists, connection failed, duplicate email, or IN_USE (confirm with the user before `force`) |
 | 429    | Rate limited | Wait 60s, then retry                                  |
 | 500    | Server error | Retry once after 10s                                  |

@@ -1,6 +1,6 @@
 {
   "name": "edit_task_time_estimate",
-  "description": "Set the time estimate for a task",
+  "description": "Set the planned duration, in minutes, of one existing Sunsama task. WRITE - this changes the user's Sunsama plan for the day. Use it only when the user gave or approved the estimate for that specific task. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

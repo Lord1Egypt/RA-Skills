@@ -1,0 +1,21 @@
+{
+  "templates": [
+    {
+      "pattern": "manual",
+      "file": "template-manual.json",
+      "evidence": "minimal synthetic scaffold using known exported node versions",
+      "offline_validation": "covered_by_release_selftests",
+      "target_version_import": "not_verified"
+    },
+    {
+      "pattern": "webhook",
+      "file": "template-webhook.json",
+      "evidence": "minimal synthetic scaffold using known exported node versions",
+      "offline_validation": "covered_by_release_selftests",
+      "target_version_import": "not_verified"
+    }
+  ],
+  "no_external_calls": true,
+  "no_credentials": true,
+  "active": false
+}

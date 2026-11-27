@@ -2,6 +2,7 @@
   "checked_at": "2026-08-04",
   "plan": "plans/2027-09-08-your-trip.json",
   "method": "seven-agent fan-out: five truth domains plus the consistency and completeness auditors; note here how it was run so a reader can judge the coverage",
+  "verification_mode": "independent_agents",
 
   "_contract": [
     "All five domains must appear and no others. Copy every block below even when a domain",

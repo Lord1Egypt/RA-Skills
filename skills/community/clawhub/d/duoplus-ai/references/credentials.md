@@ -17,7 +17,7 @@ python "SKILL_DIR/scripts/duoplus_ai.py" --api-key-file "/absolute/private/duopl
 
 On WorkBuddy's independently selected AI script route, its packaged wrapper also accepts the private file path; follow that package's task recipes. Do not treat illustrative output paths or PHONE_ID placeholders as bundled resources. Resolve the client against the installed skill root and save generated images in the user's writable task directory.
 
-Explicit file selection takes precedence over environment defaults; otherwise an injected key precedes an environment-selected file. An invalid explicit file fails closed, without falling back to another credential. Legacy raw-key CLI arguments remain for existing integrations, are hidden from normal help, and must not be used by the skill's recommended workflow.
+Explicit file selection takes precedence over environment defaults; otherwise an injected key precedes an environment-selected file. An invalid explicit file fails closed, without falling back to another credential. Raw-key CLI arguments are not supported: use only secure environment injection or a private file path. Endpoint options accept only the documented official HTTPS destinations, not arbitrary private deployments; requests never follow redirects or use environment HTTP proxies.
 
 ## Missing credentials and failures
 

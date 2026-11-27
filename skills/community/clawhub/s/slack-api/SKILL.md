@@ -3,7 +3,7 @@ name: slack
 description: |
   Slack API integration with managed OAuth. Send messages, manage channels, search conversations, and interact with Slack workspaces. Use this skill when users want to post messages, list channels, get user info, or automate Slack workflows. For other third party apps, use the api-gateway skill (https://clawhub.ai/byungkyu/api-gateway).
   Calls run through the `maton` CLI with OAuth login, or over raw HTTP with a Maton API key where the CLI cannot be installed. Every call is authenticated as the user's connection and reaches only what that connection's authorization allows, which the provider enforces on every request; the endpoints documented here are the ones this skill uses, and any other endpoint of this app needs the user to ask for it by name. Default to read and list calls, and confirm every write or new connection with the user.
-  This file also documents the three constructs that turn a Slack connection into automation, in the order they are used: the connection (the first step), a hosted function that runs a Slack action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Those sections are the platform's own reference text, shared with the api-gateway skill, with Slack examples; they add no Slack capability - Slack is itself an event source, so its own events are in `references/slack/triggers.md`, and the files under `references/<source>/triggers.md` are the platform's event catalogues for the sources Maton offers (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
+  This file also documents the three constructs that turn a Slack connection into automation, in the order they are used: the connection (the first step), a hosted function that runs a Slack action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Running that automation includes administering it, and the skill covers that too: listing, reauthorizing and deleting connections, and changing or clearing a connection's access policy, which sets the endpoints it may call; creating, deploying, searching, updating and deleting functions and their environment variables; creating, updating and deleting triggers and their destinations, including pointing a destination at a URL the user supplies and rotating its signing secret; listing, inspecting and replaying a trigger's past events, where a replay delivers that event again and re-runs whatever it starts; reading the account's request records, logs and metrics to debug a call, which is read-only; changing account settings, such as turning request and response body capture on or off; and watching events locally, including running a handler script the user supplies on each event with `--exec`. Every one of these that changes something is a write the user approves individually, and deletions and secret rotations are confirmed by exact ID. Slack is itself a Maton event source, with its own events in `references/slack/triggers.md`; a schedule (`time`) or another connected app's event starts a Slack function as well, and the files under `references/<source>/triggers.md` describe the sources Maton offers (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
 allowed-tools: Bash, Read, Grep, Glob
 compatibility: Requires network access and a Maton account
 metadata:
@@ -31,7 +31,7 @@ maton slack channel list --types public_channel,private_channel --limit 100  # f
 ### NPM
 
 ```bash
-npm install -g @maton/cli@0.4.0
+npm install -g @maton/cli@0.7.0
 ```
 
 ### Homebrew
@@ -103,6 +103,10 @@ Refer to `maton connection list --help` for possible flags and values.
 maton connection create slack
 ```
 
+`--access-policy '<json>'` (or `--access-policy-file policy.json`) limits which Slack endpoints the connection may call; see [Change Access Policy](#change-access-policy).
+
+[references/access-policy.md](references/access-policy.md) lists the access policy for read-only access and every reviewed endpoint, marked read or write (also at https://docs.maton.ai/slack#permissions).
+
 Refer to `maton connection create --help` for possible flags and values.
 
 ### Get Connection
@@ -120,17 +124,54 @@ maton connection get {connection_id}
     "last_updated_time": "2026-01-31T20:03:32.593153Z",
     "url": "https://connect.maton.ai/?session_token=5e9...",
     "app": "slack",
-    "metadata": {}
+    "metadata": {},
+    "access_policy": null
   }
 }
 ```
 
 Open the returned URL in a browser to complete authorizing Slack. If Slack offers scope selection, choose only the scopes the current task needs.
 
+`access_policy` is `null` when the connection has full access, or the allow and deny rules it is limited to.
+
+### Reauthorize Connection
+
+> **Requires explicit user approval.** Confirm the connection and that the user intends to authorize access again. Never reauthorize a connection on your own initiative.
+
+```bash
+maton connection reauthorize {connection_id}
+```
+
+Reauthorizes a `FAILED` or `PENDING` connection in place: the user authorizes the app again in the browser and the connection keeps its ID, so anything using that ID keeps working. An `ACTIVE` connection doesn't need reauthorizing and returns an error. Triggers that were paused because the connection failed stay paused; re-enable them after reauthorizing.
+
+Refer to `maton connection reauthorize --help` for possible flags and values.
+
+### Change Access Policy
+
+> **Requires explicit user approval.** Confirm the connection ID and show the user the rules that will change. Never widen access (add allow rules, remove deny rules, or switch to full access) unless the user asked for that specific change.
+
+```bash
+maton connection update {connection_id} --access-policy '{"allow": [{"method": "GET", "path": "**"}]}'
+maton connection update {connection_id} --access-policy-file policy.json
+maton connection update {connection_id} --access-policy null
+```
+
+An access policy limits which Slack endpoints a connection may call through Maton. The change applies immediately and replaces the connection's whole policy. For example, to allow only `GET` requests:
+
+```json
+{"allow": [{"method": "GET", "path": "**"}], "deny": []}
+```
+
+A call must match an allow rule and no deny rule. `method` is an HTTP method or `*`; `path` is relative to the app, where `*` or `{name}` matches one segment (in an allow rule, not one ending in a `:verb` custom method), a trailing `**` the rest, and `{id}:verb` a Google-style custom method. An optional `"when": {"graphql": "query"}` (or `"mutation"`) limits a GraphQL endpoint to that kind of operation. Pass the policy as JSON with `--access-policy`, or from a file with `--access-policy-file` (`-` for stdin); `--access-policy null` removes every restriction, as `"access_policy": null` does in the API.
+
+For read-only Slack access, start from the policy in [references/access-policy.md](references/access-policy.md); it also lists every reviewed endpoint, for narrower or custom rules.
+
+Refer to `maton connection update --help` for possible flags and values.
+
 ### Delete Connection
 
 ```bash
-maton connection delete {connection_id} --yes
+maton connection delete {connection_id}
 ```
 
 Deleting a connection is irreversible: it revokes the stored authorization, and any automation still pointing at that `connection_id` stops working. Confirm the exact connection with the user first — list connections and match the `id` — and never delete one on the agent's own initiative. `--yes` skips the interactive prompt, so it removes the last chance to catch a wrong id; omit it unless the user has already confirmed the specific connection.
@@ -163,10 +204,10 @@ Refer to `maton api --help` for possible flags and values.
 > ```
 >
 > ```bash
-> maton function create --name slack-check --file main.py --network-policy DENY_ALL
+> maton function create --name slack-check --file main.py --network-policy ALLOW_ALL
 > ```
 >
-> **This skill's function policy.** Data reached through the Slack connection is the user's own business data: a function that reads Slack must be one the user wrote for that purpose and approved, is deployed with `--network-policy DENY_ALL` (no outbound network), and reads only the Slack connection it was written for. A function that needs to reach the internet is an api-gateway task with its own review, host by host.
+> **This skill's function policy.** Data reached through the Slack connection is the user's own business data: a function that reads Slack must be one the user wrote for that purpose and approved, and reads only the Slack connection it was written for. It is deployed with `--network-policy ALLOW_ALL` because the SDK reaches Slack through the Maton API, which `DENY_ALL` blocks along with every other host. `ALLOW_ALL` does not filter hosts, so the limit is the handler the user reviews: it calls the Maton SDK and nothing else. A function that needs any other host is an api-gateway task with its own review, host by host.
 
 > **Execution identity.** A function runs as the Maton account that deployed it — the same identity
 > as the `maton` CLI session that performed the deploy, no more and no less. It receives that
@@ -174,9 +215,12 @@ Refer to `maton api --help` for possible flags and values.
 > only while the function runs, is never stored in the package or the code, is never set through
 > `function env`, and only the authenticated account owner can create, deploy, or update a function. Functions are `PRIVATE` unless the user chooses otherwise. Outbound network access is a
 > platform-enforced setting, not a handler decision: with `--network-policy DENY_ALL` the sandbox
-> cannot open any outbound connection regardless of what the code does, and that is the policy every
-> example here uses. Opening the network is the exception, made per function, only when the user has
-> named the hosts the code must reach and approved it.
+> cannot open any outbound connection regardless of what the code does, **and that includes Maton's
+> own API**. A handler that uses the Maton SDK, or calls `api.maton.ai` in any other way, cannot run
+> under `DENY_ALL`. Use `DENY_ALL` for self-contained code like the plain examples in this section. A
+> handler that uses a connection runs under `ALLOW_ALL`, the default, and `ALLOW_ALL` does not
+> filter hosts. The limit there is the code the user reviews: it should reach Maton and nothing else
+> unless the user has named another host and approved it.
 >
 > Invoking a function is an authenticated call: the URL alone grants nothing, and a request without
 > a Maton `Authorization` header is rejected with `401` before the handler runs — which is why
@@ -231,9 +275,8 @@ Refer to `maton function list --help` for possible flags and values.
 ### Search Functions
 
 ```bash
-maton function search 'stripe refund'
-maton function search '"def handler("' --context 2
-maton function search '/def\s+handler/' --owner ALL
+maton function search 'slack'
+maton function search '"slack"' --context 2
 ```
 
 Refer to `maton function search --help` for possible flags and values.
@@ -241,6 +284,7 @@ Refer to `maton function search --help` for possible flags and values.
 ### Create Function
 
 ```python title="main.py"
+# Minimal hosted-function handler: returns JSON to whoever invokes the function
 def handler(event, context):
     return {"hello": "ada"}
 ```
@@ -254,6 +298,7 @@ Refer to `maton function create --help` for possible flags and values.
 ### Update Function
 
 ```python title="main.py"
+# New code for an existing hosted function: reads the request body and answers with the caller's name
 import json
 
 def handler(event):
@@ -276,6 +321,7 @@ Refer to `maton function update --help` for possible flags and values.
 > `--yes` in an interactive session: it skips the confirmation prompt.
 
 ```python title="my-fn/main.py"
+# The handler in my-fn/main.py that `maton function deploy` publishes
 def handler(event):
     return {"hello": "ada"}
 ```
@@ -314,9 +360,13 @@ Refer to `maton function get --help` for possible flags and values.
 
 ### Delete Function
 
+> **Requires explicit user approval.** Confirm the exact function with the user (`maton function list`) and never delete one on your own initiative. Deleting removes the deployed function and its code.
+
 ```bash
-maton function delete {function_id} --yes
+maton function delete {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function delete --help` for possible flags and values.
 
@@ -395,9 +445,13 @@ Refer to `maton function env update --help` for possible flags and values.
 
 ### Delete Environment Variable
 
+> **Requires explicit user approval.** Confirm the variable name and the function with the user first. A function that reads the variable no longer finds it on its next run.
+
 ```bash
-maton function env delete GREETING -f {function_id} --yes
+maton function env delete GREETING -f {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function env delete --help` for possible flags and values.
 
@@ -532,6 +586,7 @@ sent as the response body with a `200`. A returned string is JSON-encoded, so
 headers, return an envelope carrying `statusCode` instead:
 
 ```python
+# Hosted-function response format: the status, headers and body the caller receives
 def handler(event, context):
     return {
         "statusCode": 201,
@@ -650,9 +705,13 @@ Refer to `maton trigger update --help` for possible flags and values.
 
 ### Delete Trigger
 
+> **Requires explicit user approval.** Confirm the exact trigger with the user (`maton trigger list`) and never delete one on your own initiative. Deleting stops the schedule or event subscription, and with it every delivery it made.
+
 ```bash
-maton trigger delete {trigger_id} --yes
+maton trigger delete {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger delete --help` for possible flags and values.
 
@@ -746,13 +805,19 @@ Refer to `maton trigger destination update --help` for possible flags and values
 
 ### Delete Destination
 
+> **Requires explicit user approval.** Confirm the destination and its trigger with the user (`maton trigger destination list`). Events stop reaching that URL as soon as it is deleted.
+
 ```bash
-maton trigger destination delete {destination_id} --trigger {trigger_id} --yes
+maton trigger destination delete {destination_id} --trigger {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger destination delete --help` for possible flags and values.
 
 ### Rotate Destination Secret
+
+> **Requires explicit user approval.** Rotation replaces the destination's signing secret, so the receiver must be updated to verify deliveries with the new one. Confirm the destination and that the user can update the receiver.
 
 ```bash
 maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
@@ -764,7 +829,7 @@ maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
 }
 ```
 
-The new signing secret is returned in plaintext **only once**.
+The new signing secret is returned in plaintext **only once**. It is a credential: give it to the user for the receiver's configuration, and do not repeat it in later replies, write it to a file, or pass it to any other command.
 
 Refer to `maton trigger destination rotate-secret --help` for possible flags and values.
 
@@ -874,6 +939,588 @@ The handler receives the event JSON on stdin and the event ID in `MATON_EVENT_ID
 
 Refer to `maton trigger event watch --help` for possible flags and values.
 
+## Observability
+
+> **Why this section is in a Slack skill.** These commands read the records Maton keeps of the user's own gateway traffic, to find out why a Slack call failed or ran slow. They are read-only and call no Slack endpoint. In a Slack task, filter to this app:
+>
+> ```bash
+> maton request list --app slack --status ">=400" --since 1h
+> ```
+>
+> Records for the account's other apps belong to the same user but are outside this skill's task: look at them only when the user asks. The examples below are the platform's reference text, identical in every Maton skill, and show a Gmail request.
+
+Maton records every request it handles for your account and the logs emitted while handling it. Use them to debug a failed call, find slow apps, or track usage over time.
+
+### List Requests
+
+```bash
+maton request list --app google-mail --status ">=400" --search "duration_ms:>200 AND request_path:/google-mail/gmail/v1/users/me/messages/*" --since 1h
+```
+
+```json
+[
+  {
+    "app": "google-mail",
+    "connection_id": "{connection_id}",
+    "duration_ms": 326,
+    "request_id": "{request_id}",
+    "request_method": "GET",
+    "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+    "response_status_code": 404,
+    "source": "gateway",
+    "start_time": "2026-11-26T20:31:55.996Z"
+  }
+]
+```
+
+Refer to `maton request list --help` for possible flags and values.
+
+### Get Request
+
+```bash
+maton request get {request_id}
+```
+
+```json
+{
+  "app": "google-mail",
+  "request_method": "GET",
+  "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+  "response_body": null,
+  "response_body_size": 163,
+  "response_body_url": "{response_body_url}",
+  "response_status_code": 404,
+  "upstream_duration_ms": 103,
+  "upstream_request_host": "gmail.googleapis.com",
+  "upstream_request_path": "/gmail/v1/users/me/messages/{message_id}",
+  "upstream_response_status_code": 404
+}
+```
+
+Request and response bodies are not captured by default. Capture is an account-wide setting that only the user turns on: open the More (⋯) menu on the [Logs](https://www.maton.ai/logs) page and turn on **Capture bodies**, or, with the user's approval, set `capture_bodies` using [Settings](#settings).
+
+Refer to `maton request get --help` for possible flags and values.
+
+### Query Requests
+
+```bash
+maton request query "SELECT app, count() AS errors FROM requests WHERE response_status_code >= {min:UInt16} AND start_time > now() - INTERVAL 1 DAY GROUP BY app ORDER BY errors DESC" --param min=400
+```
+
+```json
+[
+  {
+    "app": null,
+    "errors": 15
+  },
+  {
+    "app": "google-mail",
+    "errors": 1
+  }
+]
+```
+
+One read-only ClickHouse `SELECT` over the `requests` table, for questions `list` cannot answer.
+
+Refer to `maton request query --help` for possible flags and values.
+
+### List Logs
+
+```bash
+maton log list --level error --since 1h
+maton log list --request-id {request_id}
+maton log list --source gateway --search "timeout OR refused"
+```
+
+```json
+[
+  {
+    "level": "info",
+    "log_id": "{log_id}",
+    "message": "REPORT Duration: 326 ms  Upstream Duration: 103 ms  Overhead Duration: 223 ms",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  },
+  {
+    "level": "warning",
+    "log_id": "{log_id}",
+    "message": "Request failed with status 404",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  }
+]
+```
+
+Refer to `maton log list --help` for possible flags and values.
+
+### Tail Logs
+
+```bash
+maton log tail --source gateway --level warning
+```
+
+```json
+{"level":"warning","log_id":"{log_id}","message":"Request failed with status 404","request_id":"{request_id}","source":"gateway","timestamp":"2026-11-26T20:31:56.322Z"}
+```
+
+Refer to `maton log tail --help` for possible flags and values.
+
+### Query Metrics
+
+```bash
+maton metric query --group-by app --since 24h
+maton metric query --aggregation pc95 --metric duration_ms --interval 5m
+maton metric query --search "response_status_code:>=400" --group-by app --group-by response_status_code
+```
+
+```json
+[
+  {
+    "app": "",
+    "count": 93
+  },
+  {
+    "app": "google-mail",
+    "count": 1
+  }
+]
+```
+
+Refer to `maton metric query --help` for possible flags and values.
+
+## Context
+
+Context is what Maton observes in your connected apps through the gateway. When a request reads or writes an object, such as a Slack message, channel, or user, Maton records it as a **node** and links it to related nodes. Use it to:
+
+- **Follow relations** between objects such as a message's author, channel, and thread without calling the app.
+- **See what changed** since your last check including deletions.
+- **Track your own state** with tags and metadata such as which objects are already handled.
+
+Context stores IDs and relations, not content, and only for gateway requests. Context is also not captured by default. To enable it, open the More (⋯) menu on the [Context](https://www.maton.ai/context) page and turn on **Capture context** or set `capture_bodies` and `capture_context` to true using [Settings](#settings).
+
+### Get Schema
+
+```bash
+maton context graphql '{ __type(name: "Node") { possibleTypes { name } } }' | jq -r '.__type.possibleTypes[].name | select(startswith("Slack"))'
+```
+
+```text
+SlackBookmark
+SlackChannel
+SlackEmailAddress
+SlackFile
+SlackMessage
+SlackUser
+```
+
+Introspect before writing a query against an unfamiliar app. Type names are PascalCase such as `SlackMessage` and list fields are camelCase plurals such as `slackMessages`.
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Search Nodes
+
+```bash
+maton context graphql '
+{
+  search(
+    query: "jane@acme.com"
+    filter: {app: {eq: "slack"}, updatedAt: {gte: "-P30D"}}
+    sort: [{updatedAt: {order: asc}}]
+    includeDeleted: true
+    first: 20
+  ) {
+    nodes { __typename id createdAt updatedAt observedAt deletedAt tags metadata }
+    pageInfo { hasNextPage endCursor }
+  }
+}'
+```
+
+```json
+{
+  "search": {
+    "nodes": [
+      {
+        "__typename": "SlackEmailAddress",
+        "id": "slack/mailto/jane@acme.com",
+        "createdAt": "2026-09-30T11:48:02.250Z",
+        "updatedAt": "2026-11-18T09:41:37.006Z",
+        "observedAt": "2026-11-18T09:41:37.006Z",
+        "deletedAt": null,
+        "tags": [],
+        "metadata": {}
+      }
+    ],
+    "pageInfo": {"hasNextPage": false, "endCursor": "..."}
+  }
+}
+```
+
+`createdAt` is when a node was first seen, `updatedAt` when it last changed, and `observedAt` when it was last seen. A deleted node has a non-null `deletedAt` and appears only with `includeDeleted: true` (default: `false`).
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### List Nodes
+
+```bash
+maton context graphql '
+{
+  slackMessages(
+    filter: {channel: {id: {eq: "slack/teams/{team_id}/channels/{channel_id}"}}, createdAt: {gte: "-P7D"}}
+    first: 20
+  ) {
+    nodes { __typename id createdAt updatedAt observedAt deletedAt tags metadata }
+    pageInfo { hasNextPage endCursor }
+  }
+}'
+```
+
+```json
+{
+  "slackMessages": {
+    "nodes": [
+      {
+        "__typename": "SlackMessage",
+        "id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}",
+        "createdAt": "2026-11-26T22:53:08.323Z",
+        "updatedAt": "2026-11-26T22:53:08.323Z",
+        "observedAt": "2026-11-26T22:53:08.323Z",
+        "deletedAt": null,
+        "tags": [],
+        "metadata": {}
+      }
+    ],
+    "pageInfo": {"hasNextPage": false, "endCursor": "..."}
+  }
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Get Node
+
+```bash
+maton context graphql '{ node(id: "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}") { __typename id createdAt updatedAt observedAt deletedAt tags metadata } }'
+```
+
+```json
+{
+  "node": {
+    "__typename": "SlackMessage",
+    "id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}",
+    "createdAt": "2026-11-24T08:12:40.905Z",
+    "updatedAt": "2026-11-26T22:53:08.323Z",
+    "observedAt": "2026-11-26T22:53:08.323Z",
+    "deletedAt": null,
+    "tags": [],
+    "metadata": {}
+  }
+}
+```
+
+Add a type fragment such as `... on SlackMessage` to select the type's own fields:
+
+```bash
+maton context graphql '{ node(id: "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}") { __typename id ... on SlackMessage { user { id } channel { id } mentions(first: 10) { nodes { id } } files(first: 10) { nodes { id } } } } }'
+```
+
+```json
+{
+  "node": {
+    "__typename": "SlackMessage",
+    "id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}",
+    "user": {"id": "slack/teams/{team_id}/users/{user_id}"},
+    "channel": {"id": "slack/teams/{team_id}/channels/{channel_id}"},
+    "mentions": {"nodes": [{"id": "slack/teams/{team_id}/users/{mentioned_user_id}"}]},
+    "files": {"nodes": [{"id": "slack/teams/{team_id}/files/{file_id}"}]}
+  }
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Query Relations
+
+```bash
+maton context graphql '
+{
+  slackMessages(filter: {user: {email: {id: {eq: "slack/mailto/jane@acme.com"}}}}, first: 5) {
+    nodes {
+      id
+      relations(direction: out, first: 20) {
+        nodes {
+          property
+          targetId
+          target { __typename relations(direction: out, first: 5) { nodes { property targetId } } }
+        }
+      }
+    }
+  }
+}'
+```
+
+```json
+{
+  "slackMessages": {
+    "nodes": [
+      {
+        "id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}",
+        "relations": {
+          "nodes": [
+            {
+              "property": "user",
+              "targetId": "slack/teams/{team_id}/users/{user_id}",
+              "target": {
+                "__typename": "SlackUser",
+                "relations": {"nodes": [{"property": "email", "targetId": "slack/mailto/jane@acme.com"}]}
+              }
+            },
+            {
+              "property": "channel",
+              "targetId": "slack/teams/{team_id}/channels/{channel_id}",
+              "target": {
+                "__typename": "SlackChannel",
+                "relations": {"nodes": [{"property": "creator", "targetId": "slack/teams/{team_id}/users/{mentioned_user_id}"}]}
+              }
+            },
+            {
+              "property": "mention",
+              "targetId": "slack/teams/{team_id}/users/{mentioned_user_id}",
+              "target": {
+                "__typename": "SlackUser",
+                "relations": {"nodes": []}
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+Typed nodes expose relations as named fields. Filter on them and follow them in one query:
+
+```bash
+maton context graphql '
+{
+  slackMessages(filter: {replies: {length: {gte: 1}}}, first: 20) {
+    nodes {
+      id
+      channel { id }
+      replies(first: 5) { nodes { id user { id } } }
+    }
+  }
+}'
+```
+
+```json
+{
+  "slackMessages": {
+    "nodes": [
+      {
+        "id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}",
+        "channel": {"id": "slack/teams/{team_id}/channels/{channel_id}"},
+        "replies": {
+          "nodes": [
+            {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{reply_ts}", "user": {"id": "slack/teams/{team_id}/users/{mentioned_user_id}"}}
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+A **to-one** relation such as `channel` returns the node or null, even if deleted. A **to-many** relation such as `replies` returns a list to filter, sort, and paginate.
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### List Observations
+
+```bash
+maton context graphql '{ node(id: "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}") { observations(first: 5) { nodes { observedAt requestId } } } }'
+```
+
+```json
+{
+  "node": {
+    "observations": {
+      "nodes": [
+        {"observedAt": "2026-11-26T22:53:08.323Z", "requestId": "{request_id}"}
+      ]
+    }
+  }
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Add Tags
+
+```bash
+maton context graphql 'mutation { tag(ids: ["slack/teams/{team_id}/channels/{channel_id}/messages/{ts}"], tags: ["support/triaged"]) { id tags } }'
+```
+
+```json
+{
+  "tag": [
+    {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}", "tags": ["support/triaged"]}
+  ]
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Remove Tags
+
+```bash
+maton context graphql 'mutation { untag(ids: ["slack/teams/{team_id}/channels/{channel_id}/messages/{ts}"], tags: ["support/triaged"]) { id tags } }'
+```
+
+```json
+{
+  "untag": [
+    {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}", "tags": []}
+  ]
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Filter by Tags
+
+```bash
+maton context graphql '
+{
+  slackMessages(filter: {
+    channel: {id: {eq: "slack/teams/{team_id}/channels/{channel_id}"}}
+    tags: {none: {eq: "support/triaged"}}
+  }) {
+    nodes { id }
+  }
+}'
+```
+
+```json
+{
+  "slackMessages": {
+    "nodes": [
+      {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}"}
+    ]
+  }
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Set Metadata
+
+```bash
+maton context graphql 'mutation { setMetadata(ids: ["slack/teams/{team_id}/channels/{channel_id}/messages/{ts}"], metadata: [{key: "linear/issue", value: "{issue_id}"}]) { id metadata } }'
+```
+
+```json
+{
+  "setMetadata": [
+    {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}", "metadata": {"linear/issue": "{issue_id}"}}
+  ]
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Remove Metadata
+
+```bash
+maton context graphql 'mutation { unsetMetadata(ids: ["slack/teams/{team_id}/channels/{channel_id}/messages/{ts}"], keys: ["linear/issue"]) { id metadata } }'
+```
+
+```json
+{
+  "unsetMetadata": [
+    {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}", "metadata": {}}
+  ]
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Filter by Metadata
+
+```bash
+maton context graphql '
+{
+  slackMessages(filter: {
+    tags: {some: {eq: "needs-reply"}}
+    metadata: {some: {key: "reply/due", date: {lt: "P0D"}}}
+  }) {
+    nodes { id metadata }
+  }
+}'
+```
+
+```json
+{
+  "slackMessages": {
+    "nodes": [
+      {"id": "slack/teams/{team_id}/channels/{channel_id}/messages/{ts}", "metadata": {"reply/due": "2026-11-20T00:00:00Z"}}
+    ]
+  }
+}
+```
+
+Refer to `maton context graphql --help` for possible flags and values.
+
+### Filter Operators
+
+| Filter | Example |
+|--------|---------|
+| String | `id: {startsWith: "slack/teams/{team_id}/channels/{channel_id}/"}` |
+| Timestamp | `updatedAt: {gte: "2026-11-01T00:00:00Z"}` |
+| Relative time | `createdAt: {gte: "-P2W"}` |
+| One relation | `channel: {id: {eq: "slack/teams/{team_id}/channels/{channel_id}"}}` |
+| Many relations | `mentions: {some: {id: {eq: "slack/teams/{team_id}/users/{user_id}"}}}` |
+| Tags | `tags: {some: {eq: "needs-reply"}}` |
+| Metadata | `metadata: {some: {key: "priority", number: {gte: 2}}}` |
+
+- All fields in one filter object must match. Combine objects with `and` and `or`.
+- String comparators: `eq`, `neq`, `in`, `nin`, `contains`, `notContains`, `startsWith`, `notStartsWith`, `endsWith`, `notEndsWith`. `eq`, `neq`, `contains`, `notContains`, and `startsWith` have `IgnoreCase` variants, such as `eqIgnoreCase`.
+- Timestamp and number comparators: `eq`, `neq`, `in`, `nin`, `gt`, `gte`, `lt`, `lte`. `deletedAt` also takes `null: true` or `null: false`.
+- Relative times are ISO 8601 durations from now: `-P2W` is two weeks ago, `P1D` one day ahead.
+- To-one relations take `null`, such as `thread: {null: true}`.
+- `tags` and to-many relations take `some`, `every`, `none`, and `length`. `every` also matches nodes with no items, so add `length: {gte: 1}` to exclude them.
+- `metadata` takes `some` and `none`. Each condition sets `key` plus one of `string`, `number`, `date`, `boolean`, or `null`.
+
+## Settings
+
+> **These are Maton account settings, not Slack settings.** They apply to every connection on the account. Listing them is a read; changing one is a write the user approves.
+
+### List Settings
+
+```bash
+maton api user/settings
+```
+
+```json
+{
+  "settings": {
+    "capture_bodies": true,
+    "capture_context": false
+  }
+}
+```
+
+### Update Setting
+
+> **Requires explicit user approval.** Change a setting only when the user asks for that change. `capture_bodies` makes Maton store the request and response bodies of every call on the account, for every connected app, and those bodies can hold personal data and other sensitive content. Tell the user it is account-wide before turning it on, turn it on only to debug a specific problem, and turn it off again when that is done.
+
+```bash
+maton api user/settings/capture_bodies --method PUT -F value=true
+maton api user/settings/capture_bodies --method PUT -F value=false
+```
+
 ## Security & Permissions
 
 ### Credentials
@@ -886,7 +1533,8 @@ Refer to `maton trigger event watch --help` for possible flags and values.
 ### Access scope
 
 - Access is scoped to messages, channels, users, files, and reactions within the connected Slack account. The transport is pinned to this app's API host and authenticated as this connection, so it reaches exactly what the connection's authorization allows and nothing else — a limit the provider enforces on every request, not one this document sets. The endpoints listed above are the ones this skill uses; any other endpoint needs the user to ask for it by name, and the write-confirmation rules in this section apply to every call.
-- **Use least privilege.** Connect only the accounts the current task needs. When Slack offers scope selection during OAuth, select only the scopes the task requires — do not accept broader scopes for convenience. Prefer read-only scopes and revoke unused connections promptly (`maton connection delete {connection_id}`).
+- **Use least privilege.** Connect only the accounts the current task needs. When Slack offers scope selection during OAuth, select only the scopes the task requires — do not accept broader scopes for convenience. Prefer read-only scopes, use `--access-policy` to limit a connection to the endpoints the task calls, and revoke unused connections promptly (`maton connection delete {connection_id}`).
+- **Respect the limits the user set.** A connection's scopes and access policy are the user's decision. Never request broader scopes, add allow rules, remove deny rules, or switch a connection to full access unless the user asked for that specific change, even when a call fails because of them.
 - **Connection creation requires explicit user approval.** Ask the user to confirm they intend to authorize Slack access before running `maton connection create slack`. Never create connections on the agent's own initiative.
 - **Always specify the target.** Use `--connection` when the user has multiple connections for this app, and `-p/--profile` when they have multiple Maton accounts. Do not let an ambiguous default decide where a write lands.
 
@@ -1918,11 +2566,14 @@ const result = await maton.slack.channel.list({ limit: 10 });
 |--------|---------|
 | 400 | Missing Slack connection |
 | 401 | Invalid, missing, or expired Maton credential |
+| 403 | The connection's access policy doesn't allow the call (`Connection {id} has an access policy, and {METHOD} /{app}/{path} ...`); Maton did not send it to Slack |
 | 429 | Rate limited (10 requests/second per account) |
 | 500 | Internal Server Error |
 | 4xx/5xx | Passthrough error from the Slack API |
 
 Errors from Slack are passed through with their original status codes and response bodies.
+
+A `403` that says the connection has an access policy means the user limited what it may call. Tell the user which method and path was blocked; don't try other endpoints to get around it, and don't change the policy yourself.
 
 ### Troubleshooting: Authentication
 

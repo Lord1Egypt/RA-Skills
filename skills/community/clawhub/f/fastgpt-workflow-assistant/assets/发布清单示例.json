@@ -1,0 +1,32 @@
+{
+  "skill": "fastgpt-workflow-assistant",
+  "skill_version": "3.0.2",
+  "target_platform": "LeapRAG-or-FastGPT-compatible",
+  "target_version": "REQUIRED",
+  "primary_mode": "deterministic-workflow|single-llm|rag-qa|tool-query|action-approval|multi-tool-agent|event-batch|hybrid",
+  "secondary_modes": [],
+  "trigger_type": "chat|api|webhook|schedule|manual",
+  "workflow_version": "0.0.0",
+  "knowledge_version": "OPTIONAL-YYYY-MM-DD",
+  "source_type": "template|existing-workflow|browser-export",
+  "template_id": "optional",
+  "source_sha256": "REQUIRED",
+  "changed_nodes": [],
+  "changed_documents": [],
+  "required_rebindings": [
+    "only_resources_actually_used"
+  ],
+  "side_effect_controls": {
+    "confirmation": "not-applicable|pending|verified",
+    "idempotency": "not-applicable|pending|verified",
+    "readback": "not-applicable|pending|verified",
+    "audit": "not-applicable|pending|verified"
+  },
+  "validation": {
+    "offline": "pending",
+    "platform_import": "pending",
+    "runtime_regression": "pending",
+    "roundtrip": "pending"
+  },
+  "rollback_workflow": "REQUIRED"
+}

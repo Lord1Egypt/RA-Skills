@@ -4,7 +4,7 @@ const search = require("../api/search");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
-const { parseArgs, buildHelp } = require("../utils/args");
+const { parseCliArgs, buildHelp } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
@@ -46,6 +46,12 @@ const SCHEMA = {
       transform: (v) => Number(v),
       desc: "搜索数量, 1-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "keyword",
 };
@@ -57,7 +63,8 @@ function printHelp() {
   process.stderr.write(
     buildHelp(SCHEMA, "node scripts/tiktok/search-cli.js <关键词> [选项]", [
       "node scripts/tiktok/search-cli.js -k AI",
-      'node scripts/tiktok/search-cli.js --keyword "AI model" --sort 1 --time 7 --limit 20',
+      'node scripts/tiktok/search-cli.js --keyword "AI model" --sort 1 --time 7 --limit 20',,
+      `node scripts/tiktok/search-cli.js --json-args "{\"keyword\":\"AI tutorial\",\"sort\":1,\"limit\":20}"`
     ]) +
       "\n\n注意:\n" +
       "  - 关键词 1-100 个字符，不能是链接，不含 < > \" '\n" +
@@ -81,7 +88,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -157,16 +164,17 @@ async function main() {
     limit,
   };
   let searchTask = null;
+  let cost;
   try {
     await search.createSearchTask(tokenValue, keyword, sort, time, limit);
     utils.printSuccess("搜索任务创建成功, 正在搜索中...");
-    searchTask = await search.getSearchTask(
+    ({ results: searchTask, cost } = await search.getSearchTask(
       tokenValue,
       keyword,
       sort,
       time,
       limit,
-    );
+    ));
   } catch (error) {
     utils.printError(`搜索失败: ${error.message}`);
     emitError(
@@ -182,7 +190,7 @@ async function main() {
 
   if (!Array.isArray(searchTask) || searchTask.length === 0) {
     utils.printInfo("没有找到匹配的视频");
-    emitEmpty("没有找到匹配的视频", startTime, searchRequest);
+    emitEmpty("没有找到匹配的视频", startTime, searchRequest, cost);
     return;
   }
 
@@ -191,10 +199,12 @@ async function main() {
     startTime,
     searchRequest,
     searchTask,
+    cost,
   );
   await finishSuccess(finalOutput, {
     logFilename: `${startTime}_${keyword}_${sort}_${time}_${limit}_search.json`,
     stderrMessage: `搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
   });
 }
 

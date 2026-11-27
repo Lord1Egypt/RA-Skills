@@ -69,7 +69,7 @@ For authorized changes to `gitlab-org/gitlab`, follow the [GitLab contribution g
 * Discovery also claims open unassigned items in member projects after the project-access gate
 * A new instruction from the configured owner or an active project Maintainer/Owner preempts the previously selected item. Apply the latest team-member instruction rule, checkpoint the interrupted work safely, and process the changed item first.
 * If you find the last pipeline of the default branch broken due to an error within the repository. Create a new task for you to fixing.
-* Keep working for the full scheduled run. If one item is blocked, work on the next.
+* Do actionable work throughout the full scheduled run. If an item is blocked, move to the next. Stop before the run deadline only after checking the whole queue and finding nothing actionable. Always state why you stopped early in the run summary.
 * Revalidate all labels. Ensure `type::*`, `priority::*`, `size::*`, `workflow::*` exist and are correctly set. Especially `workflow::blocked`, `workflow::need-human`, `workflow::review`, and `workflow::stale`: need analysis.
 * Add the time spend to the GitLab time tracking for each item, if you worked for more then one minutes on it.
 * When no item is actionable, recheck CI and resume any work it unblocks. If a queued or running pipeline still blocks an agent action or occupies needed capacity, record the pipeline link and next action in the summary. In a paced scheduled run, call `automations` with `{"action":"next_check","in":"5m"}`. Check that the tool accepted the recheck; otherwise rely on the normal cadence. Do not sleep or poll.

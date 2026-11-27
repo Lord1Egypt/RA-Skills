@@ -649,6 +649,9 @@ Fine-tuning workflows — dataset preparation, training configuration, evaluatio
 
 #### Workflow
 
+**Step 0 — Pick the training path (check availability first)**
+Hosted fine-tuning availability changes fast — confirm on the provider's docs before emitting code. As of 2026-11 (developers.openai.com/api/docs/guides/supervised-fine-tuning and /deprecations): OpenAI is winding down self-serve fine-tuning — closed to organizations that never fine-tuned (May 7, 2026), new jobs end for everyone on **Jan 6, 2027**, and only `gpt-4.1-2025-04-14` / `gpt-4.1-mini-2025-04-14` remain trainable (both shut down Jan 14, 2027; `gpt-4.1-nano` shut down Oct 23, 2026). Default to **open-weight LoRA** (Hugging Face TRL + PEFT) unless the user already has an active OpenAI fine-tuning org and a deadline that fits. Before fine-tuning at all, confirm that prompting, few-shot examples, or retrieval cannot reach the target quality.
+
 **Step 1 — Audit training data**
 Use Read to examine the dataset files. Check for: data format (JSONL with `messages` array), train/eval split (eval must not overlap with train), sufficient examples (minimum 50, recommended 200+), balanced class distribution, and PII in training data.
 
@@ -656,14 +659,13 @@ Use Read to examine the dataset files. Check for: data format (JSONL with `messa
 Emit: JSONL formatter that validates each example, train/eval splitter with stratification, token count estimator (cost preview), and data quality checks (duplicate detection, format validation).
 
 **Step 3 — Execute fine-tuning and evaluate**
-Emit: fine-tune API call with hyperparameters, evaluation script that compares base vs fine-tuned on held-out set, and A/B deployment configuration.
+Emit: training call for the path chosen in Step 0 (TRL/PEFT LoRA config, or the legacy OpenAI job with a supported snapshot), evaluation script that compares base vs fine-tuned on held-out set, and A/B deployment configuration.
 
 #### Example
 
 ```python
 # Fine-tuning workflow — prepare, train, evaluate
 import json
-import openai
 from sklearn.model_selection import train_test_split
 
 # Step 1: Prepare JSONL dataset
@@ -681,29 +683,50 @@ def prepare_dataset(examples: list[dict], output_prefix: str):
                 ]}) + "\n")
         print(f"Wrote {len(split_data)} examples to {path}")
 
-# Step 2: Launch fine-tuning
-def start_fine_tune(train_file: str, eval_file: str):
+# Step 2a (default): open-weight LoRA with Hugging Face TRL + PEFT
+# Docs: huggingface.co/docs/trl/sft_trainer — conversational JSONL ("messages") works as-is.
+def start_lora_fine_tune(train_file: str, eval_file: str, base_model: str = "Qwen/Qwen3-0.6B"):
+    from datasets import load_dataset
+    from peft import LoraConfig
+    from trl import SFTConfig, SFTTrainer
+
+    data = load_dataset("json", data_files={"train": train_file, "eval": eval_file})
+    trainer = SFTTrainer(
+        model=base_model,
+        args=SFTConfig(output_dir="ft-out", num_train_epochs=3, assistant_only_loss=True),
+        train_dataset=data["train"],
+        eval_dataset=data["eval"],
+        peft_config=LoraConfig(),
+    )
+    trainer.train()
+    trainer.save_model("ft-out")  # LoRA adapter; serve with vLLM/TGI or merge into the base
+    return "ft-out"
+
+# Step 2b (legacy, existing OpenAI fine-tuning customers only, jobs end Jan 6, 2027)
+def start_openai_fine_tune(train_file: str, eval_file: str):
+    import openai
+
     train_id = openai.files.create(file=open(train_file, "rb"), purpose="fine-tune").id
     eval_id = openai.files.create(file=open(eval_file, "rb"), purpose="fine-tune").id
 
     job = openai.fine_tuning.jobs.create(
         training_file=train_id,
         validation_file=eval_id,
-        model="gpt-4o-mini-2024-07-18",
+        model="gpt-4.1-mini-2025-04-14",  # base shuts down Jan 14, 2027 — the fine-tune goes with it
         hyperparameters={"n_epochs": 3, "batch_size": "auto", "learning_rate_multiplier": "auto"},
     )
     print(f"Fine-tuning job: {job.id} — status: {job.status}")
     return job
 
-# Step 3: Evaluate base vs fine-tuned
-def evaluate(base_model: str, ft_model: str, eval_set: list[dict]) -> dict:
+# Step 3: Evaluate base vs fine-tuned on the held-out set
+# `generate(model, messages) -> str` wraps whichever runtime serves the models
+# (vLLM/TGI for a LoRA adapter, the OpenAI client for path 2b).
+def evaluate(generate, base_model: str, ft_model: str, eval_set: list[dict]) -> dict:
     results = {"base": {"correct": 0}, "finetuned": {"correct": 0}}
     for ex in eval_set:
         for label, model in [("base", base_model), ("finetuned", ft_model)]:
-            response = openai.chat.completions.create(
-                model=model, messages=ex["messages"][:2], max_tokens=500,
-            )
-            if response.choices[0].message.content.strip() == ex["messages"][2]["content"].strip():
+            answer = generate(model, ex["messages"][:2])
+            if answer.strip() == ex["messages"][2]["content"].strip():
                 results[label]["correct"] += 1
     for label in results:
         results[label]["accuracy"] = results[label]["correct"] / len(eval_set)
@@ -733,11 +756,11 @@ Based on requirements, recommend model tier:
 
 | Requirement | Recommended | Fallback |
 |------------|-------------|----------|
-| Fast + cheap (classification, routing) | Haiku / GPT-4o-mini | Local (Llama 3) |
-| Balanced (code, summaries, RAG) | Sonnet / GPT-4o | Haiku with retry |
+| Fast + cheap (classification, routing) | Haiku / GPT-6 Luna / Gemini 3.5 Flash-Lite | Local (Llama 3) |
+| Balanced (code, summaries, RAG) | Sonnet / GPT-6.1 Terra / Gemini 4 Hydrogen | Haiku with retry |
 | Deep reasoning (architecture, math) | Opus / o1 | Sonnet with chain-of-thought |
 | On-premise required | Llama 3 / Mistral | Ollama local deployment |
-| Multimodal (vision + text) | Sonnet / GPT-4o | Local LLaVA |
+| Multimodal (vision + text) | Sonnet / GPT-6.1 Terra / Gemini 4 Hydrogen | Local LLaVA |
 
 Emit: primary model, fallback model, estimated cost per 1K calls, and latency p50/p99.
 
@@ -770,21 +793,21 @@ interface ModelConfig {
 
 const MODELS: Record<string, ModelConfig> = {
   fast: {
-    id: 'claude-haiku-4-5',
+    id: 'claude-haiku-5-5',
     provider: 'anthropic',
     costPer1kTokens: 0.001,
     maxTokens: 4096,
     latencyP50Ms: 200,
   },
   balanced: {
-    id: 'claude-sonnet-5',
+    id: 'claude-sonnet-5-5',
     provider: 'anthropic',
     costPer1kTokens: 0.01,
     maxTokens: 8192,
     latencyP50Ms: 800,
   },
   deep: {
-    id: 'claude-opus-4-8',
+    id: 'claude-opus-5-5',
     provider: 'anthropic',
     costPer1kTokens: 0.05,
     maxTokens: 16384,
@@ -863,7 +886,7 @@ const SentimentSchema = z.object({
 });
 
 async function analyzeSentiment(text: string, attempt = 0): Promise<z.infer<typeof SentimentSchema>> {
-  const models = ['gpt-4o-mini', 'gpt-4o'] as const; // fallback chain
+  const models = ['gpt-6-luna', 'gpt-6.1-terra'] as const; // fallback chain (check the provider's current model list)
   const model = attempt >= 2 ? models[1] : models[0];
 
   try {
@@ -1127,7 +1150,7 @@ function deduplicateEntities<T>(entities: T[], keyFn: (e: T) => string): T[] {
 | Page structure changes break extraction (no error, wrong data) | Monitor extraction quality via sampling; alert on schema violation rate > 5% |
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

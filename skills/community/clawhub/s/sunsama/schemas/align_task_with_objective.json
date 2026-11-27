@@ -1,6 +1,6 @@
 {
   "name": "align_task_with_objective",
-  "description": "Link a task to a weekly objective",
+  "description": "Link one existing Sunsama task to one of the user's Sunsama weekly objectives, both identified by ID. WRITE - this changes how the user's week is organised in Sunsama. Use it only when the user asked to tie that specific task to that specific objective; do not infer links from task titles or align tasks in bulk. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

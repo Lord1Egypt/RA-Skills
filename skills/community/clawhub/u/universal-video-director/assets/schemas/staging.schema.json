@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "staging",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "scenes"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "staging"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scene_id",
+          "positions",
+          "blocking_sentence"
+        ],
+        "properties": {
+          "scene_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-]+$"
+          },
+          "axis": {
+            "type": "object",
+            "required": [
+              "a",
+              "b"
+            ],
+            "properties": {
+              "a": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_\\-]+$"
+              },
+              "b": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9_\\-]+$"
+              }
+            }
+          },
+          "positions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "character_id",
+                "anchor",
+                "side",
+                "posture",
+                "facing"
+              ],
+              "properties": {
+                "character_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_\\-]+$"
+                },
+                "anchor": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "side": {
+                  "enum": [
+                    "left",
+                    "right",
+                    "center",
+                    "fg",
+                    "bg",
+                    "on_person"
+                  ]
+                },
+                "posture": {
+                  "enum": [
+                    "stand",
+                    "sit",
+                    "lie",
+                    "kneel",
+                    "walk",
+                    "placed",
+                    "held",
+                    "concealed"
+                  ]
+                },
+                "facing": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "xy": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "kind": {
+                  "enum": [
+                    "character",
+                    "prop"
+                  ],
+                  "description": "道具用 placed/held/concealed"
+                }
+              }
+            }
+          },
+          "extras": {
+            "type": "string"
+          },
+          "provisional": {
+            "type": "boolean"
+          },
+          "blocking_sentence": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

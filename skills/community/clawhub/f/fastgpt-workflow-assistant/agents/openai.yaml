@@ -1,0 +1,4 @@
+interface:
+  display_name: "FastGPT工作流生成助手 v3.0.2"
+  short_description: "v3.0.2｜LeapRAG/FastGPT 工作流、文件输入、回导测试与跨客户端分发、对话日志驱动优化"
+  default_prompt: "使用 $fastgpt-workflow-assistant 为明确的 LeapRAG/FastGPT 需求生成并验证可导入工作流。"

@@ -21,7 +21,7 @@ Kiln is how AI agents make real things, safely. Describe what you want to exist,
 
 **The open-source MCP server for 3D printing.**
 
-Kiln lets AI agents (ChatGPT, Claude Desktop, Claude Code, Claude Duet, Codex, Cursor, Gemini, Grok, Hermes Agent, OpenClaw, or any custom MCP client) drive real 3D printers end to end — Bambu Lab, Creality, Prusa, Elegoo, Voron, Sovol, AnkerMake, Artillery, FlashForge, QIDI, RatRig, and SparkX. It is compatible with OctoPrint, Moonraker/Klipper, PrusaLink, and Direct USB.
+Kiln lets AI agents (ChatGPT, Claude Desktop, Claude Code, Gemini, GitHub Copilot, Grok, Codex, Cursor, Kimi Code, OpenCode, Devin Desktop, Amp, Claude Duet, Hermes Agent, OpenClaw, or any custom MCP client) drive real 3D printers end to end — Bambu Lab, Creality, Prusa, Elegoo, Voron, Sovol, AnkerMake, Artillery, FlashForge, QIDI, RatRig, and SparkX. It is compatible with OctoPrint, Moonraker/Klipper, PrusaLink, and Direct USB.
 
 In a single conversation, an agent can design a part, slice it, queue it on the right printer, monitor the camera, recover from failures, and ship the result. You approve every print, or let one printer run on its own for as long as you choose.
 
@@ -58,26 +58,27 @@ pip install kiln3d
 
 **Using Claude Desktop? Install Kiln in one click.** [Download `kiln.mcpb`](https://github.com/codeofaxel/Kiln/releases/latest/download/kiln.mcpb) and double-click it — Claude Desktop installs Kiln and wires it in (just Claude Desktop: steps 1 and 2 below are how Codex and every other AI app connect), so those steps aren't yours. Two things still are: OpenSCAD, and Kiln's terms — the command shows them and asks you to type your acceptance, which is why it's yours and not your AI's: `uvx --from kiln3d kiln accept-terms`. The bundle and that command both run on [`uv`](https://docs.astral.sh/uv/getting-started/installation/) — free, with a one-line install for each platform at that link. If Claude Desktop says the server failed to start, that's uv missing: install it and restart. Updates arrive with the extension, not via `kiln self-update`.
 
-**Using ChatGPT, Claude, Claude Duet, Gemini, Grok, Cursor or Hermes Agent? Nothing to install.** Add Kiln inside the app by its address, `https://api.kiln3d.com/mcp`, and sign in (Claude Duet uses the one you add in Claude; Hermes Agent takes one terminal command, on its page): it designs the part, checks it will print, and shows it in 3D, right in the chat where the app can show it. Each app's page says exactly what was seen there: [ChatGPT](https://kiln3d.com/chatgpt?utm_source=github&utm_medium=readme), [Claude](https://kiln3d.com/claude?utm_source=github&utm_medium=readme), [Claude Duet](https://kiln3d.com/claude-duet?utm_source=github&utm_medium=readme), [Codex](https://kiln3d.com/codex?utm_source=github&utm_medium=readme), [Cursor](https://kiln3d.com/cursor?utm_source=github&utm_medium=readme), [Gemini](https://kiln3d.com/gemini?utm_source=github&utm_medium=readme), [Grok](https://kiln3d.com/grok?utm_source=github&utm_medium=readme), [Hermes Agent](https://kiln3d.com/hermes?utm_source=github&utm_medium=readme). To run your own printer, do the three steps below on the computer next to it.
+**Using ChatGPT, Claude, Gemini, Grok, Cursor, Amp, Claude Duet or Hermes Agent? Nothing to install.** Add Kiln inside the app by its address, `https://api.kiln3d.com/mcp`, and sign in (Claude Duet uses the one you add in Claude; Hermes Agent takes one terminal command, on its page): it designs the part, checks it will print, and shows it in 3D, right in the chat where the app can show it. Each app's page says exactly what was seen there: [ChatGPT](https://kiln3d.com/chatgpt?utm_source=github&utm_medium=readme), [Claude](https://kiln3d.com/claude?utm_source=github&utm_medium=readme), [Gemini](https://kiln3d.com/gemini?utm_source=github&utm_medium=readme), [GitHub Copilot](https://kiln3d.com/copilot?utm_source=github&utm_medium=readme), [Grok](https://kiln3d.com/grok?utm_source=github&utm_medium=readme), [Codex](https://kiln3d.com/codex?utm_source=github&utm_medium=readme), [Cursor](https://kiln3d.com/cursor?utm_source=github&utm_medium=readme), [Kimi Code](https://kiln3d.com/kimi?utm_source=github&utm_medium=readme), [OpenCode](https://kiln3d.com/opencode?utm_source=github&utm_medium=readme), [Devin Desktop](https://kiln3d.com/devin?utm_source=github&utm_medium=readme), [Amp](https://kiln3d.com/amp?utm_source=github&utm_medium=readme), [Claude Duet](https://kiln3d.com/claude-duet?utm_source=github&utm_medium=readme), [Hermes Agent](https://kiln3d.com/hermes?utm_source=github&utm_medium=readme). To run your own printer, do the three steps below on the computer next to it.
 
 Using OpenClaw? Tell it to install Kiln from ClawHub and it sets Kiln up on the computer it runs on: [see how](https://kiln3d.com/openclaw?utm_source=github&utm_medium=readme).
 
-Everyone else — three steps. Then ask your AI to make something.
+Everyone else — two steps. Then ask your AI to make something.
 
-**1. Install**
-
-```bash
-pip install kiln3d
-```
-
-**2. Connect your AI** — Kiln sets itself up inside Claude Desktop, Claude Code, and Codex:
+**1. Install and connect** — one line in a terminal installs Kiln and connects it to the AI apps on your computer (Claude Code, Claude Desktop, Codex, Cursor, Gemini CLI, Grok Build, GitHub Copilot, Devin Desktop, Amp, opencode, Kimi Code, Hermes Agent and OpenClaw). For web apps (ChatGPT, Claude on the web, Claude Duet, Gemini, Grok) it prints the address to add in their settings:
 
 ```bash
-kiln signin        # create your free account
-kiln install-mcp   # connects Kiln to your AI apps
+curl -fsSL https://www.kiln3d.com/install.sh | sh
 ```
 
-Restart your AI app and it can run your printer. (Claude Code and Codex can even run this whole setup for you — the one-prompt version lives at [kiln3d.com/install](https://kiln3d.com/install?utm_source=github&utm_medium=readme).) Using a different MCP client? `kiln install-mcp --print` prints the config — or paste it yourself:
+On Windows, in PowerShell (new on Windows: if it stops, `pip install kiln3d` below always works, and please tell us at [github.com/codeofaxel/Kiln/issues](https://github.com/codeofaxel/Kiln/issues)):
+
+```powershell
+irm https://www.kiln3d.com/install.ps1 | iex
+```
+
+It shows what it will change in each app before it changes it, keeps a copy of every file it edits, and asks you to accept Kiln's terms yourself. Run it again to update. Add `--dry-run` to see the plan and change nothing, `--only cursor,codex` to pick apps, or `--uninstall` to take everything back exactly as it was (`curl -fsSL https://www.kiln3d.com/install.sh | sh -s -- --dry-run`). Restart your AI app afterwards.
+
+Already have Python? `pip install kiln3d` then `kiln install-mcp` does the same connecting. (Claude Code and Codex can even run the whole setup for you: the one-prompt version lives at [kiln3d.com/install](https://kiln3d.com/install?utm_source=github&utm_medium=readme).) Using a different MCP client? `kiln install-mcp --print` prints the config, or paste it yourself:
 
 <details>
 <summary><strong>Manual MCP config (any client, no sign-in needed)</strong></summary>
@@ -98,7 +99,7 @@ Restart your AI app and it can run your printer. (Claude Code and Codex can even
 Drop this into Claude Desktop, Claude Code, Codex, Cursor, or any MCP-capable agent. Runs on the free tier until you sign in.
 </details>
 
-**3. Ask** — paste a sentence like this into your agent. Kiln does the rest:
+**2. Ask** — paste a sentence like this into your agent. Kiln does the rest:
 
 > Make me a coaster with my dog's photo on it
 
@@ -191,7 +192,7 @@ kiln agent --model openai/gpt-4o
 kiln agent --model meta-llama/llama-3.1-70b-instruct --tier essential
 ```
 
-Tool tiers auto-match model capability: **essential** (15 tools) for smaller models, **standard** (60 tools) for mid-range, **full** (135 tools) for stronger models. All <!-- KILN_MCP_TOOL_COUNT:OLD --> 880 tools are available over MCP via `kiln serve`.
+Tool tiers auto-match model capability: **essential** (15 tools) for smaller models, **standard** (60 tools) for mid-range, **full** (135 tools) for stronger models. All <!-- KILN_MCP_TOOL_COUNT:OLD --> 890 tools are available over MCP via `kiln serve`.
 </details>
 
 <details>
@@ -258,7 +259,7 @@ export KILN_BAMBU_TLS_MODE=insecure   # legacy, no validation — trusted LANs o
 export KILN_BAMBU_TLS_FINGERPRINT=0123abcd...   # explicit SHA-256 pin
 ```
 
-Webcam capture is model-dependent: **A1, A1 Mini, P1P, P1S** serve frames over TLS+JPEG (no extra software), and Kiln can show that camera as live video in the print monitor on the computer connected to the printer. The **X1 series** (X1C, X1E) streams RTSPS, which Kiln's live-video relay does not carry: on an X1, Kiln takes snapshots by cutting a frame from that stream with `ffmpeg` (`brew install ffmpeg` / `sudo apt install ffmpeg`), and there is no live video. `can_snapshot` is reported `True` for every Bambu model; on an X1 without `ffmpeg`, the attempt surfaces a clear model-specific error rather than failing silently.
+**Camera.** Kiln can take a picture of your print on every Bambu Lab printer, and on the A1, A1 mini, A2L, P1P and P1S it can also show the camera live in the print monitor. The X1, X2, P2 and H series need a free camera add-on; Kiln tells you when yours does and can add it for you. To include it when you install Kiln: `pip install 'kiln3d[camera]'`.
 </details>
 
 Paid tiers ([kiln3d.com/pricing](https://kiln3d.com/pricing?utm_source=github&utm_medium=readme)) add version control on every design, product templates, assembly manuals, fleet workflows, SSO + SCIM, ERP webhooks, and long-term audit logs.
@@ -267,7 +268,7 @@ Paid tiers ([kiln3d.com/pricing](https://kiln3d.com/pricing?utm_source=github&ut
 
 - **One control plane, any printer** — compatible with OctoPrint, Moonraker, Creality, Bambu Lab, Prusa Link, Elegoo, Serial. Manage a mixed fleet from one place.
 - **No printer? No problem** — Outsource jobs to Craftcloud's 150+ manufacturing services, quoted and ordered through Kiln.
-- **AI-native** — <!-- KILN_MCP_CAPABILITY_COUNT:OLD --> 887 MCP capabilities and <!-- KILN_CLI_COUNT:OLD --> 253 CLI commands built for AI agents. Not a web UI with an API bolted on.
+- **AI-native** — <!-- KILN_MCP_CAPABILITY_COUNT:OLD --> 897 MCP capabilities and <!-- KILN_CLI_COUNT:OLD --> 260 CLI commands built for AI agents. Not a web UI with an API bolted on.
 - **Describe it, print it** — Natural-language to physical object pipeline: text or sketch → AI generation → validation → slice → print.
 - **Decorate anything** — QR codes, photos, logos, text, SVGs, and procedural textures (tiger stripe, marble, camo, wood grain, honeycomb) embossed or debossed onto any model with one command.
 - **Manuals included** — Multi-part prints can generate printable PDF assembly manuals with Bill of Materials, isometric step renders, mating arrows, and pause-and-check verification gates. (Business)
@@ -286,14 +287,14 @@ Paid tiers ([kiln3d.com/pricing](https://kiln3d.com/pricing?utm_source=github&ut
 | **OctoPrint** | Stable | Compatible with any OctoPrint-connected printer (Prusa, Ender, custom) |
 | **Moonraker** | Stable | Klipper-based printers (Voron, Ratrig, etc.) |
 | **Creality** | Stable when Moonraker is reachable | SPARKX i7, K1/K1 Max/K1C/K1 SE, K2/K2 Pro/K2 Plus/K2 SE, Creality Hi, Ender-3 V4/V3 KE, Ender-5 Max, CR-10 SE via local Moonraker. Older Marlin Creality printers use `serial` or `octoprint`. |
-| **Bambu** | Stable | Bambu Lab X1C, X1E, P1S, P1P, P2S, A1, A1 Mini, A2L, H2S, H2D, H2D Pro, H2C, X2D (via LAN MQTT) |
+| **Bambu** | Stable | Bambu Lab X1C, X1E, P1S, P1P, P2S, A1, A1 Mini, A2L, H2S, H2D, H2D Pro, H2C, H3C, X2D (via LAN MQTT) |
 | **Prusa Link** | Stable | Prusa MK4, XL, Mini+ (local REST API — type: `prusalink`) |
 | **Elegoo** | Stable | Centauri Carbon (via LAN WebSocket/SDCP). Neptune 4 / OrangeStorm Giga use Moonraker. |
 | **Duet / RepRapFirmware** | Beta — not yet verified against physical hardware | Duet 2 and Duet 3 controller boards, over the same HTTP interface Duet Web Control uses. Both RepRapFirmware 2 and 3 are supported. Vision Miner 22 IDEX v4 is the first catalogued machine. Type: `duet`. |
 | **Direct USB** | Stable | Any Marlin-based printer over USB (Ender 3, Prusa MK3, CR-10, etc.). No OctoPrint or Klipper needed — just a USB cable. Type: `serial`. |
 
 <!-- BEGIN SUPPORTED PRINTERS (auto-generated by scripts/generate_supported_printers.py) -->
-Kiln ships **tuned profiles for 70 models across 15 brands** — Creality, Bambu Lab, QIDI, Elegoo, Prusa Research, Sovol, Voron, AON3D, Artillery, AnkerMake, FlashForge, INTAMSYS, RatRig, SparkX, Vision Miner. [See the full searchable list →](https://kiln3d.com/printers?utm_source=github&utm_medium=readme)
+Kiln ships **tuned profiles for 76 models across 17 brands** — Creality, Bambu Lab, QIDI, Prusa Research, Elegoo, Sovol, Voron, AON3D, Anycubic, Artillery, AnkerMake, FlashForge, INTAMSYS, RatRig, Snapmaker, SparkX, Vision Miner. [See the full searchable list →](https://kiln3d.com/printers?utm_source=github&utm_medium=readme)
 <!-- END SUPPORTED PRINTERS -->
 
 ## Architecture
@@ -374,7 +375,7 @@ A printed part goes through versions the way code does, and usually ends up as `
 
 ## Tools
 
-The Kiln MCP server (`kiln serve`) exposes **<!-- KILN_MCP_TOOL_COUNT:OLD --> 880 tools** to agents, plus prompts and resources for **<!-- KILN_MCP_CAPABILITY_COUNT:OLD --> 887 total MCP capabilities**. Rather than list them all here, agents browse the live catalog with `get_skill_manifest` and ToolSearch-style discovery. A representative slice, in the order a print actually happens:
+The Kiln MCP server (`kiln serve`) exposes **<!-- KILN_MCP_TOOL_COUNT:OLD --> 890 tools** to agents, plus prompts and resources for **<!-- KILN_MCP_CAPABILITY_COUNT:OLD --> 897 total MCP capabilities**. Rather than list them all here, agents browse the live catalog with `get_skill_manifest` and ToolSearch-style discovery. A representative slice, in the order a print actually happens:
 
 - **design_session**
   - Talk to Kiln about what you're making and get back a design that matches what you asked for
@@ -443,8 +444,8 @@ The Kiln MCP server (`kiln serve`) exposes **<!-- KILN_MCP_TOOL_COUNT:OLD --> 88
   - Linear history is free; branching and merges are free on the designs you keep in a free Kiln account and on every design with Pro; signed releases are Pro
 - **export_step**
   - Export a finished design as a real STEP CAD file — analytic B-rep a machine shop can open and measure
-- **fleet_status** *(Business)*
-  - Live status of every printer in a fleet: state, temperatures, connection
+- **printer_status**
+  - What a printer is doing right now, and the list of printers you have set up; several printers' live status in one answer (state, temperatures, connection) is part of Kiln Business
 - **fulfillment_quote**
   - Get a manufacturing quote from Craftcloud's network — printing without owning a printer
 
@@ -477,13 +478,13 @@ Beyond this slice, the catalog covers fleet orchestration, print-failure predict
 
 ## Pricing
 
-All local printing is **free forever** — status, file management, slicing, fleet control, and printing to your own printers cost nothing. Kiln charges a **5% orchestration fee** on orders placed through external manufacturing services ($0.25 min / $200 max per order; a Pro account's first 3 orders each calendar month free; no fee on Business and Enterprise), shown transparently in every quote. Outsourced order volume is not capped on any tier.
+All local printing is **free forever** — status, file management, slicing, fleet control, and printing to your own printers cost nothing. Kiln charges a **5% orchestration fee** on orders placed through external manufacturing services ($0.25 min / $200 max per order; a Free account's first order free, a Pro account's first 3 orders each calendar month free; no fee on Business and Enterprise), shown transparently in every quote. Outsourced order volume is not capped on any tier.
 
 | Tier | Price | Headline |
 |------|-------|----------|
 | **Free** | $0 | Unlimited local printing, slicing, marketplace search, safety profiles, one printer, design intelligence, linear design history, and branching on the designs you keep in a free account. |
-| **Pro** | $49/mo | Branching on every design, signed releases, product templates, procedural textures, mid-print modification, print resume, failure recovery, nozzle-wear tracking, solo cloud sync. |
-| **Business** | $199/mo | Commercial use, 3 printers + 3 seats, fleet management, cross-printer learning, QR generation, assembly manuals, team pull requests, approval gates, webhooks. |
+| **Pro** | $49/mo | Branching on every design, signed releases, product templates, procedural textures, mid-print modification, print resume, failure recovery, nozzle-wear tracking, solo cloud sync, selling prints of your own designs. |
+| **Business** | $199/mo | Client and custom-order work, 3 printers + 3 seats, fleet management, cross-printer learning, QR generation, assembly manuals, team pull requests, approval gates, webhooks. |
 | **Enterprise** | Contact us | Large fleets, SSO/SCIM, RBAC, audit trail, encrypted G-code at rest, white-label manuals, 99.9% SLA, on-prem/VPC. |
 
 **Founding offer:** half off for life while founding spots last — Pro $24.50/mo or $234/yr, Business $99.50/mo or $954/yr. Students get half off for 12 months. Details and how to claim the student price: **[kiln3d.com/pricing](https://kiln3d.com/pricing?utm_source=github&utm_medium=readme)**.
@@ -496,7 +497,7 @@ Kiln is safety-first infrastructure for controlling physical machines:
 
 - **Pre-flight checks** validate printer state, temperatures, and files before every print
 - **G-code validation** blocks dangerous commands (firmware reset, unsafe temperatures)
-- **Temperature limits** enforce safe maximums (300 °C hotend, 130 °C bed)
+- **Temperature limits** hold each printer to its own maximums, and a printer whose model Kiln has not been told to 240 °C hotend and 80 °C bed, whether the request is a temperature setting or raw G-code
 - **A person says go** before every print — in your AI app's approval dialog, by typing a code Kiln shows on your screen, or at the terminal — unless you chose not to be asked: for a while (a day at most), always on a printer you named yourself (at your own terminal, or on your Kiln account page with two-factor), or by switching on auto-print yourself; stopping, pausing and watching a print never need that yes
 - **Confirmation required** for destructive operations (cancel, raw G-code)
 - **Optional authentication** with scope-based API keys for multi-user setups
@@ -610,7 +611,7 @@ Entry-point plugins are **default-deny** in production (`KILN_PLUGIN_POLICY=stri
 | `wallets.py` | Crypto wallet configuration (Solana/Ethereum for donations and fees) |
 | `pro_tool_manifest.json` | Public manifest for kiln-pro tool discovery and REST proxy stubs |
 | `decoration_quota.py` | Free-tier decoration quota tracking and tier resolution hooks |
-| `cli/` | Click CLI with <!-- KILN_CLI_COUNT:OLD --> 253 commands and JSON output |
+| `cli/` | Click CLI with <!-- KILN_CLI_COUNT:OLD --> 260 commands and JSON output |
 
 kiln-pro ([kiln3d.com](https://kiln3d.com/?utm_source=github&utm_medium=readme)) extends public Kiln with paid-tier REST serving, billing, licensing, SSO, RBAC, G-code encryption, uptime reporting, team administration, and project-cost workflows. Public Kiln exposes only the interface/proxy surface for those capabilities; the private implementation stays in kiln-pro.
 </details>

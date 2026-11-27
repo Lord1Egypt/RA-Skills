@@ -6,7 +6,7 @@ description: |
   For other third party apps, use the api-gateway skill (https://clawhub.ai/byungkyu/api-gateway).
   Calls run through the `maton` CLI after `maton login`; the Zoho Recruit credential stays in the gateway and is never handled locally.
   Default to read and list calls, and confirm every write or new connection with the user. Deletions are bulk and irreversible - approve each record individually.
-  This file also documents the three constructs that turn a Zoho Recruit connection into automation, in the order they are used: the connection (the first step), a hosted function that runs a Zoho Recruit action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Those sections are the platform's own reference text, shared with the api-gateway skill, with Zoho Recruit examples; they add no Zoho Recruit capability - Zoho Recruit is not an event source, a trigger cannot read Zoho Recruit data, and the files under `references/<source>/triggers.md` are the platform's event catalogues for the sources Maton offers (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
+  This file also documents the three constructs that turn a Zoho Recruit connection into automation, in the order they are used: the connection (the first step), a hosted function that runs a Zoho Recruit action through the Maton SDK, and a trigger that calls that function on a schedule or on an event. Running that automation includes administering it, and the skill covers that too: listing, reauthorizing and deleting connections, and changing or clearing a connection's access policy, which sets the endpoints it may call; creating, deploying, searching, updating and deleting functions and their environment variables; creating, updating and deleting triggers and their destinations, including pointing a destination at a URL the user supplies and rotating its signing secret; listing, inspecting and replaying a trigger's past events, where a replay delivers that event again and re-runs whatever it starts; reading the account's request records, logs and metrics to debug a call, which is read-only; changing account settings, such as turning request and response body capture on or off; and watching events locally, including running a handler script the user supplies on each event with `--exec`. Every one of these that changes something is a write the user approves individually, and deletions and secret rotations are confirmed by exact ID. Zoho Recruit itself emits no Maton events: a schedule (`time`) or another connected app's event starts a Zoho Recruit function, and the files under `references/<source>/triggers.md` describe the sources Maton offers (time, Calendly, GitHub, Gmail, HubSpot, Linear, Notion, Slack, Stripe).
 allowed-tools: Bash, Read, Grep, Glob
 compatibility: Requires network access and a Maton account
 metadata:
@@ -34,7 +34,7 @@ maton api '/zoho-recruit/recruit/v2/settings/modules'  # first call
 ### NPM
 
 ```bash
-npm install -g @maton/cli@0.4.0
+npm install -g @maton/cli@0.7.0
 ```
 
 ### Homebrew
@@ -106,6 +106,14 @@ Refer to `maton connection list --help` for possible flags and values.
 maton connection create zoho-recruit
 ```
 
+```bash
+maton connection create zoho-recruit --scopes ZohoRecruit.modules.READ
+```
+
+Zoho Recruit offers a choice of OAuth scopes: ask the user which permissions they want and propose the narrowest set the task needs, then pass them with `--scopes` (repeatable or comma-separated). The required scopes are always added, and leaving `--scopes` out requests the defaults. An unsupported scope returns `400` with the scopes Zoho Recruit offers. `--access-policy '<json>'` (or `--access-policy-file policy.json`) limits which Zoho Recruit endpoints the connection may call; see [Change Access Policy](#change-access-policy).
+
+[references/scopes.md](references/scopes.md) lists the OAuth scopes Zoho Recruit offers, and [references/access-policy.md](references/access-policy.md) the access policy for read-only access and every reviewed endpoint, marked read or write (also at https://docs.maton.ai/zoho-recruit#permissions).
+
 Refer to `maton connection create --help` for possible flags and values.
 
 ### Get Connection
@@ -123,17 +131,56 @@ maton connection get {connection_id}
     "last_updated_time": "2026-01-31T20:03:32.593153Z",
     "url": "https://connect.maton.ai/?session_token=5e9...",
     "app": "zoho-recruit",
-    "metadata": {}
+    "metadata": {},
+    "access_policy": null
   }
 }
 ```
 
 Open the returned URL in a browser to complete authorizing Zoho Recruit. If Zoho Recruit offers scope selection, choose only the scopes the current task needs.
 
+Once the connection is `ACTIVE`, `metadata.granted_scopes` lists the OAuth scopes Zoho Recruit actually granted; the user may grant fewer than were chosen.
+
+`access_policy` is `null` when the connection has full access, or the allow and deny rules it is limited to. If a call returns `403` from Zoho Recruit and the response's `maton_hint` names a missing permission, tell the user; don't retry and don't create a new connection. Offer to change the connection's scopes (see [Reauthorize Connection](#reauthorize-connection)), only if the user agrees.
+
+### Reauthorize Connection
+
+> **Requires explicit user approval.** Confirm the connection and that the user intends to authorize access again. Never reauthorize a connection on your own initiative.
+
+```bash
+maton connection reauthorize {connection_id}
+```
+
+Reauthorizes a `FAILED` or `PENDING` connection in place: the user authorizes the app again in the browser and the connection keeps its ID, so anything using that ID keeps working. To change the OAuth scopes of an `ACTIVE` connection, run `maton connection reauthorize {connection_id} --scopes ZohoRecruit.modules.READ` with the new set; the user approves it in the browser, and the connection keeps working with its current permissions until they do. Only change scopes the user asked to change. An `ACTIVE` connection without `--scopes` doesn't need reauthorizing and returns an error. Triggers that were paused because the connection failed stay paused; re-enable them after reauthorizing.
+
+Refer to `maton connection reauthorize --help` for possible flags and values.
+
+### Change Access Policy
+
+> **Requires explicit user approval.** Confirm the connection ID and show the user the rules that will change. Never widen access (add allow rules, remove deny rules, or switch to full access) unless the user asked for that specific change.
+
+```bash
+maton connection update {connection_id} --access-policy '{"allow": [{"method": "GET", "path": "**"}]}'
+maton connection update {connection_id} --access-policy-file policy.json
+maton connection update {connection_id} --access-policy null
+```
+
+An access policy limits which Zoho Recruit endpoints a connection may call through Maton, on top of its OAuth scopes. The change applies immediately and replaces the connection's whole policy. For example, to allow only `GET` requests:
+
+```json
+{"allow": [{"method": "GET", "path": "**"}], "deny": []}
+```
+
+A call must match an allow rule and no deny rule. `method` is an HTTP method or `*`; `path` is relative to the app, where `*` or `{name}` matches one segment (in an allow rule, not one ending in a `:verb` custom method), a trailing `**` the rest, and `{id}:verb` a Google-style custom method. An optional `"when": {"graphql": "query"}` (or `"mutation"`) limits a GraphQL endpoint to that kind of operation. Pass the policy as JSON with `--access-policy`, or from a file with `--access-policy-file` (`-` for stdin); `--access-policy null` removes every restriction, as `"access_policy": null` does in the API.
+
+For read-only Zoho Recruit access, start from the policy in [references/access-policy.md](references/access-policy.md); it also lists every reviewed endpoint, for narrower or custom rules.
+
+Refer to `maton connection update --help` for possible flags and values.
+
 ### Delete Connection
 
 ```bash
-maton connection delete {connection_id} --yes
+maton connection delete {connection_id}
 ```
 
 Deleting a connection is irreversible: it revokes the stored authorization, and any automation still pointing at that `connection_id` stops working. Confirm the exact connection with the user first — list connections and match the `id` — and never delete one on the agent's own initiative. `--yes` skips the interactive prompt, so it removes the last chance to catch a wrong id; omit it unless the user has already confirmed the specific connection.
@@ -173,10 +220,10 @@ Refer to `maton api --help` for possible flags and values.
 > ```
 >
 > ```bash
-> maton function create --name zoho-recruit-check --file main.py --network-policy DENY_ALL
+> maton function create --name zoho-recruit-check --file main.py --network-policy ALLOW_ALL
 > ```
 >
-> **This skill's function policy.** Data reached through the Zoho Recruit connection is the user's own business data: a function that reads Zoho Recruit must be one the user wrote for that purpose and approved, is deployed with `--network-policy DENY_ALL` (no outbound network), and reads only the Zoho Recruit connection it was written for. A function that needs to reach the internet is an api-gateway task with its own review, host by host.
+> **This skill's function policy.** Data reached through the Zoho Recruit connection is the user's own business data: a function that reads Zoho Recruit must be one the user wrote for that purpose and approved, and reads only the Zoho Recruit connection it was written for. It is deployed with `--network-policy ALLOW_ALL` because the SDK reaches Zoho Recruit through the Maton API, which `DENY_ALL` blocks along with every other host. `ALLOW_ALL` does not filter hosts, so the limit is the handler the user reviews: it calls the Maton SDK and nothing else. A function that needs any other host is an api-gateway task with its own review, host by host.
 
 > **Execution identity.** A function runs as the Maton account that deployed it — the same identity
 > as the `maton` CLI session that performed the deploy, no more and no less. It receives that
@@ -184,9 +231,12 @@ Refer to `maton api --help` for possible flags and values.
 > only while the function runs, is never stored in the package or the code, is never set through
 > `function env`, and only the authenticated account owner can create, deploy, or update a function. Functions are `PRIVATE` unless the user chooses otherwise. Outbound network access is a
 > platform-enforced setting, not a handler decision: with `--network-policy DENY_ALL` the sandbox
-> cannot open any outbound connection regardless of what the code does, and that is the policy every
-> example here uses. Opening the network is the exception, made per function, only when the user has
-> named the hosts the code must reach and approved it.
+> cannot open any outbound connection regardless of what the code does, **and that includes Maton's
+> own API**. A handler that uses the Maton SDK, or calls `api.maton.ai` in any other way, cannot run
+> under `DENY_ALL`. Use `DENY_ALL` for self-contained code like the plain examples in this section. A
+> handler that uses a connection runs under `ALLOW_ALL`, the default, and `ALLOW_ALL` does not
+> filter hosts. The limit there is the code the user reviews: it should reach Maton and nothing else
+> unless the user has named another host and approved it.
 >
 > Invoking a function is an authenticated call: the URL alone grants nothing, and a request without
 > a Maton `Authorization` header is rejected with `401` before the handler runs — which is why
@@ -241,9 +291,8 @@ Refer to `maton function list --help` for possible flags and values.
 ### Search Functions
 
 ```bash
-maton function search 'stripe refund'
-maton function search '"def handler("' --context 2
-maton function search '/def\s+handler/' --owner ALL
+maton function search 'zoho-recruit'
+maton function search '"zoho-recruit"' --context 2
 ```
 
 Refer to `maton function search --help` for possible flags and values.
@@ -251,6 +300,7 @@ Refer to `maton function search --help` for possible flags and values.
 ### Create Function
 
 ```python title="main.py"
+# Minimal hosted-function handler: returns JSON to whoever invokes the function
 def handler(event, context):
     return {"hello": "ada"}
 ```
@@ -264,6 +314,7 @@ Refer to `maton function create --help` for possible flags and values.
 ### Update Function
 
 ```python title="main.py"
+# New code for an existing hosted function: reads the request body and answers with the caller's name
 import json
 
 def handler(event):
@@ -286,6 +337,7 @@ Refer to `maton function update --help` for possible flags and values.
 > `--yes` in an interactive session: it skips the confirmation prompt.
 
 ```python title="my-fn/main.py"
+# The handler in my-fn/main.py that `maton function deploy` publishes
 def handler(event):
     return {"hello": "ada"}
 ```
@@ -324,9 +376,13 @@ Refer to `maton function get --help` for possible flags and values.
 
 ### Delete Function
 
+> **Requires explicit user approval.** Confirm the exact function with the user (`maton function list`) and never delete one on your own initiative. Deleting removes the deployed function and its code.
+
 ```bash
-maton function delete {function_id} --yes
+maton function delete {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function delete --help` for possible flags and values.
 
@@ -405,9 +461,13 @@ Refer to `maton function env update --help` for possible flags and values.
 
 ### Delete Environment Variable
 
+> **Requires explicit user approval.** Confirm the variable name and the function with the user first. A function that reads the variable no longer finds it on its next run.
+
 ```bash
-maton function env delete GREETING -f {function_id} --yes
+maton function env delete GREETING -f {function_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton function env delete --help` for possible flags and values.
 
@@ -542,6 +602,7 @@ sent as the response body with a `200`. A returned string is JSON-encoded, so
 headers, return an envelope carrying `statusCode` instead:
 
 ```python
+# Hosted-function response format: the status, headers and body the caller receives
 def handler(event, context):
     return {
         "statusCode": 201,
@@ -661,9 +722,13 @@ Refer to `maton trigger update --help` for possible flags and values.
 
 ### Delete Trigger
 
+> **Requires explicit user approval.** Confirm the exact trigger with the user (`maton trigger list`) and never delete one on your own initiative. Deleting stops the schedule or event subscription, and with it every delivery it made.
+
 ```bash
-maton trigger delete {trigger_id} --yes
+maton trigger delete {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger delete --help` for possible flags and values.
 
@@ -757,13 +822,19 @@ Refer to `maton trigger destination update --help` for possible flags and values
 
 ### Delete Destination
 
+> **Requires explicit user approval.** Confirm the destination and its trigger with the user (`maton trigger destination list`). Events stop reaching that URL as soon as it is deleted.
+
 ```bash
-maton trigger destination delete {destination_id} --trigger {trigger_id} --yes
+maton trigger destination delete {destination_id} --trigger {trigger_id}
 ```
+
+The CLI asks for confirmation before deleting. `--yes` skips that prompt, so add it only after the user has confirmed this exact ID.
 
 Refer to `maton trigger destination delete --help` for possible flags and values.
 
 ### Rotate Destination Secret
+
+> **Requires explicit user approval.** Rotation replaces the destination's signing secret, so the receiver must be updated to verify deliveries with the new one. Confirm the destination and that the user can update the receiver.
 
 ```bash
 maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
@@ -775,7 +846,7 @@ maton trigger destination rotate-secret {destination_id} --trigger {trigger_id}
 }
 ```
 
-The new signing secret is returned in plaintext **only once**.
+The new signing secret is returned in plaintext **only once**. It is a credential: give it to the user for the receiver's configuration, and do not repeat it in later replies, write it to a file, or pass it to any other command.
 
 Refer to `maton trigger destination rotate-secret --help` for possible flags and values.
 
@@ -885,6 +956,185 @@ The handler receives the event JSON on stdin and the event ID in `MATON_EVENT_ID
 
 Refer to `maton trigger event watch --help` for possible flags and values.
 
+## Observability
+
+> **Why this section is in a Zoho Recruit skill.** These commands read the records Maton keeps of the user's own gateway traffic, to find out why a Zoho Recruit call failed or ran slow. They are read-only and call no Zoho Recruit endpoint. In a Zoho Recruit task, filter to this app:
+>
+> ```bash
+> maton request list --app zoho-recruit --status ">=400" --since 1h
+> ```
+>
+> Records for the account's other apps belong to the same user but are outside this skill's task: look at them only when the user asks. The examples below are the platform's reference text, identical in every Maton skill, and show a Gmail request.
+
+Maton records every request it handles for your account and the logs emitted while handling it. Use them to debug a failed call, find slow apps, or track usage over time.
+
+### List Requests
+
+```bash
+maton request list --app google-mail --status ">=400" --search "duration_ms:>200 AND request_path:/google-mail/gmail/v1/users/me/messages/*" --since 1h
+```
+
+```json
+[
+  {
+    "app": "google-mail",
+    "connection_id": "{connection_id}",
+    "duration_ms": 326,
+    "request_id": "{request_id}",
+    "request_method": "GET",
+    "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+    "response_status_code": 404,
+    "source": "gateway",
+    "start_time": "2026-11-26T20:31:55.996Z"
+  }
+]
+```
+
+Refer to `maton request list --help` for possible flags and values.
+
+### Get Request
+
+```bash
+maton request get {request_id}
+```
+
+```json
+{
+  "app": "google-mail",
+  "request_method": "GET",
+  "request_path": "/google-mail/gmail/v1/users/me/messages/{message_id}",
+  "response_body": null,
+  "response_body_size": 163,
+  "response_body_url": "{response_body_url}",
+  "response_status_code": 404,
+  "upstream_duration_ms": 103,
+  "upstream_request_host": "gmail.googleapis.com",
+  "upstream_request_path": "/gmail/v1/users/me/messages/{message_id}",
+  "upstream_response_status_code": 404
+}
+```
+
+Request and response bodies are not captured by default. Capture is an account-wide setting that only the user turns on: open the More (⋯) menu on the [Logs](https://www.maton.ai/logs) page and turn on **Capture bodies**, or, with the user's approval, set `capture_bodies` using [Settings](#settings).
+
+Refer to `maton request get --help` for possible flags and values.
+
+### Query Requests
+
+```bash
+maton request query "SELECT app, count() AS errors FROM requests WHERE response_status_code >= {min:UInt16} AND start_time > now() - INTERVAL 1 DAY GROUP BY app ORDER BY errors DESC" --param min=400
+```
+
+```json
+[
+  {
+    "app": null,
+    "errors": 15
+  },
+  {
+    "app": "google-mail",
+    "errors": 1
+  }
+]
+```
+
+One read-only ClickHouse `SELECT` over the `requests` table, for questions `list` cannot answer.
+
+Refer to `maton request query --help` for possible flags and values.
+
+### List Logs
+
+```bash
+maton log list --level error --since 1h
+maton log list --request-id {request_id}
+maton log list --source gateway --search "timeout OR refused"
+```
+
+```json
+[
+  {
+    "level": "info",
+    "log_id": "{log_id}",
+    "message": "REPORT Duration: 326 ms  Upstream Duration: 103 ms  Overhead Duration: 223 ms",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  },
+  {
+    "level": "warning",
+    "log_id": "{log_id}",
+    "message": "Request failed with status 404",
+    "request_id": "{request_id}",
+    "source": "gateway",
+    "timestamp": "2026-11-26T20:31:56.322Z"
+  }
+]
+```
+
+Refer to `maton log list --help` for possible flags and values.
+
+### Tail Logs
+
+```bash
+maton log tail --source gateway --level warning
+```
+
+```json
+{"level":"warning","log_id":"{log_id}","message":"Request failed with status 404","request_id":"{request_id}","source":"gateway","timestamp":"2026-11-26T20:31:56.322Z"}
+```
+
+Refer to `maton log tail --help` for possible flags and values.
+
+### Query Metrics
+
+```bash
+maton metric query --group-by app --since 24h
+maton metric query --aggregation pc95 --metric duration_ms --interval 5m
+maton metric query --search "response_status_code:>=400" --group-by app --group-by response_status_code
+```
+
+```json
+[
+  {
+    "app": "",
+    "count": 93
+  },
+  {
+    "app": "google-mail",
+    "count": 1
+  }
+]
+```
+
+Refer to `maton metric query --help` for possible flags and values.
+
+## Settings
+
+> **These are Maton account settings, not Zoho Recruit settings.** They apply to every connection on the account. Listing them is a read; changing one is a write the user approves.
+
+### List Settings
+
+```bash
+maton api user/settings
+```
+
+```json
+{
+  "settings": {
+    "capture_bodies": true,
+    "capture_context": false
+  }
+}
+```
+
+### Update Setting
+
+> **Requires explicit user approval.** Change a setting only when the user asks for that change. `capture_bodies` makes Maton store the request and response bodies of every call on the account, for every connected app, and those bodies can hold personal data and other sensitive content. Tell the user it is account-wide before turning it on, turn it on only to debug a specific problem, and turn it off again when that is done.
+
+```bash
+maton api user/settings/capture_bodies --method PUT -F value=true
+maton api user/settings/capture_bodies --method PUT -F value=false
+```
+
 ## Security & Permissions
 
 ### Credentials
@@ -898,7 +1148,8 @@ Refer to `maton trigger event watch --help` for possible flags and values.
 
 - Access is scoped to the connected Zoho Recruit account. Within it, the record operations apply to every module in the [Available Modules](#available-modules) table — not just candidates and job openings, but also Applications, Interviews, Departments, Clients, Contacts, Campaigns, Referrals, Tasks, Events, and Vendors. That is a policy boundary this skill holds itself to, while the enforced limit is the connection's own authorization, which the provider checks on every call (see [API Reference](#api-reference)); user, role, permission, and org-settings administration are outside what this skill is for.
 - **Candidate records are sensitive personal data about job applicants.** They carry names, contact details, resumes, employment and education history, salary expectations, interview notes, and rejection reasons — supplied in confidence by people who are not the user, and in many jurisdictions covered by employment and data-protection law. Retrieve only the records the task needs, summarize rather than printing whole records, and never move candidate data into another app or an external destination without explicit approval for that specific transfer.
-- **Use least privilege.** Connect only the accounts the current task needs. When Zoho Recruit offers scope selection during OAuth, select only the scopes the task requires — do not accept broader scopes for convenience. Prefer read-only scopes and revoke unused connections promptly (`maton connection delete {connection_id}`).
+- **Use least privilege.** Connect only the accounts the current task needs. When Zoho Recruit offers scope selection during OAuth, select only the scopes the task requires — do not accept broader scopes for convenience. Prefer read-only scopes, use `--access-policy` to limit a connection to the endpoints the task calls, and revoke unused connections promptly (`maton connection delete {connection_id}`).
+- **Respect the limits the user set.** A connection's scopes and access policy are the user's decision. Never request broader scopes, add allow rules, remove deny rules, or switch a connection to full access unless the user asked for that specific change, even when a call fails because of them.
 - **Connection creation requires explicit user approval.** Ask the user to confirm they intend to authorize Zoho Recruit access before running `maton connection create zoho-recruit`. Never create connections on the agent's own initiative.
 - **Always specify the target.** Use `--connection` when the user has multiple connections for this app, and `-p/--profile` when they have multiple Maton accounts. Do not let an ambiguous default decide where a write lands.
 
@@ -1295,7 +1546,13 @@ Maximum 100 records per request.
 
 ```bash
 maton api -X POST '/zoho-recruit/recruit/v2/{module_api_name}' -H 'Content-Type: application/json' --input - <<'JSON'
-{"data": [{"Field_Name": "value"}]}
+{
+  "data": [
+    {
+      "Field_Name": "value"
+    }
+  ]
+}
 JSON
 ```
 
@@ -1307,7 +1564,13 @@ Update a single record by ID:
 
 ```bash
 maton api -X PUT '/zoho-recruit/recruit/v2/{module_api_name}/{record_id}' -H 'Content-Type: application/json' --input - <<'JSON'
-{"data": [{"Field_Name": "new_value"}]}
+{
+  "data": [
+    {
+      "Field_Name": "new_value"
+    }
+  ]
+}
 JSON
 ```
 
@@ -1315,7 +1578,14 @@ Update multiple records in one call (maximum 100), passing each `id` in the body
 
 ```bash
 maton api -X PUT '/zoho-recruit/recruit/v2/{module_api_name}' -H 'Content-Type: application/json' --input - <<'JSON'
-{"data": [{"id": "record_id", "Field_Name": "value"}]}
+{
+  "data": [
+    {
+      "id": "record_id",
+      "Field_Name": "value"
+    }
+  ]
+}
 JSON
 ```
 
@@ -1487,11 +1757,14 @@ const result = await maton.api.get("zoho-recruit", "/recruit/v2/settings/modules
 |--------|---------|
 | 400 | Missing Zoho Recruit connection |
 | 401 | Invalid, missing, or expired Maton credential |
+| 403 | The connection's access policy doesn't allow the call (`Connection {id} has an access policy, and {METHOD} /{app}/{path} ...`); Maton did not send it to Zoho Recruit |
 | 429 | Rate limited (10 requests/second per account) |
 | 500 | Internal Server Error |
 | 4xx/5xx | Passthrough error from the Zoho Recruit API |
 
 Errors from Zoho Recruit are passed through with their original status codes and response bodies.
+
+A `403` that says the connection has an access policy means the user limited what it may call. Tell the user which method and path was blocked; don't try other endpoints to get around it, and don't change the policy yourself.
 
 ### Troubleshooting: Authentication
 

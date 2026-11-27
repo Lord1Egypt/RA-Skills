@@ -1,6 +1,6 @@
 {
   "name": "mark_subtask_as_incomplete",
-  "description": "Mark a subtask as incomplete",
+  "description": "Reopen one existing subtask of a Sunsama task that is currently marked complete, identified by its parent task id and subtask id. WRITE - this changes state the user and their teammates see. Use it only when the user explicitly said that specific subtask is not done after all; do not use it to reopen the parent task, to reopen several subtasks inferred from a general remark such as 'undo that', or for tasks in any other app. It cannot mark a subtask complete (use mark_subtask_as_completed).",
   "inputSchema": {
     "type": "object",
     "properties": {

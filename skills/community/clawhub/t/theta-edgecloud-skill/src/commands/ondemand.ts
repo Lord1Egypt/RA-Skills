@@ -136,16 +136,16 @@ function normalizeMessages(messages: OnDemandChatMessage[]): OnDemandChatMessage
 
   return messages.map((message, index) => {
     if (!message || typeof message !== 'object') {
-      throw new Error(`messages[${index}] must be an object`);
+      throw new Error(('messages[' + String(index) + '] must be an object'));
     }
     if (typeof message.role !== 'string' || !message.role.trim()) {
-      throw new Error(`messages[${index}].role must be a non-empty string`);
+      throw new Error(('messages[' + String(index) + '].role must be a non-empty string'));
     }
     const toolOnly = message.role === 'assistant' && Array.isArray(message.tool_calls) && message.tool_calls.length > 0;
     if ((typeof message.content !== 'string' || !message.content.trim()) && !toolOnly) {
-      throw new Error(`messages[${index}].content must be a non-empty string`);
+      throw new Error(('messages[' + String(index) + '].content must be a non-empty string'));
     }
-    if (message.role === 'tool' && !message.tool_call_id?.trim()) throw new Error(`messages[${index}].tool_call_id is required`);
+    if (message.role === 'tool' && !message.tool_call_id?.trim()) throw new Error(('messages[' + String(index) + '].tool_call_id is required'));
     return { role: message.role.trim(), content: message.content,
       ...(message.tool_calls ? { tool_calls: message.tool_calls } : {}),
       ...(message.tool_call_id ? { tool_call_id: message.tool_call_id } : {}) };
@@ -236,7 +236,7 @@ function normalizeCategory(value: unknown): string | undefined {
 export function categorizeOnDemandService(service: Record<string, unknown>): string {
   const alias = typeof service.alias === 'string' ? service.alias.toLowerCase() : '';
   const name = typeof service.name === 'string' ? service.name.toLowerCase() : '';
-  const text = `${alias} ${name}`;
+  const text = ('' + String(alias) + ' ' + String(name));
   if (text.includes('whisper') || text.includes('audio') || text.includes('voice')) return 'audio';
   if (text.includes('video') || text.includes('talking_head')) return 'video';
   if (text.includes('llava') || text.includes('vision')) return 'vision';
@@ -334,12 +334,12 @@ export const ondemand = {
 
   chat: (cfg: ThetaConfig, service: string, messages: OnDemandChatMessage[], opts: OnDemandChatOptions = {}) => {
     if (!opts.allowUnknownService && !isOnDemandChatService(service)) {
-      throw new Error(`Unsupported on-demand chat service: ${service}. Known chat services: ${ONDEMAND_CHAT_SERVICE_SLUGS.join(', ')}`);
+      throw new Error(('Unsupported on-demand chat service: ' + String(service) + '. Known chat services: ' + String(ONDEMAND_CHAT_SERVICE_SLUGS.join(', '))));
     }
 
     if (opts.tools?.length && opts.allowUnverifiedTools !== true && !TOOL_CALLING_CHAT_SERVICES.includes(service)) {
       // Theta silently drops tools for these models and answers in plain text; fail loudly instead.
-      throw new Error(`Service ${service} does not return structured tool calls (live-verified 2026-10-03). Use ${TOOL_CALLING_CHAT_SERVICES.join(' or ')} for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.`);
+      throw new Error(('Service ' + String(service) + ' does not return structured tool calls (live-verified 2026-10-03). Use ' + String(TOOL_CALLING_CHAT_SERVICES.join(' or ')) + ' for tool use, or set allowUnverifiedTools:true (exactly) to send anyway.'));
     }
 
     const effectiveOpts = service === 'qwen3'

@@ -1,6 +1,6 @@
 {
   "name": "move_task_from_backlog",
-  "description": "Move a task from backlog to a specific day",
+  "description": "Schedule one task from the user's Sunsama backlog onto a specific day. WRITE - the task moves into that day's Sunsama plan. Use it only when the user asked to schedule that specific backlog task on that day; general talk about backlog planning is not a request to move anything. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {

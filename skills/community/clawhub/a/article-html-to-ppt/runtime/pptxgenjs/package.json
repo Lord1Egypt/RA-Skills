@@ -7,10 +7,5 @@
   "dependencies": {
     "jszip": "3.10.1",
     "pptxgenjs": "4.0.1"
-  },
-  "overrides": {
-    "pptxgenjs": {
-      "image-size": "2.0.4"
-    }
   }
 }

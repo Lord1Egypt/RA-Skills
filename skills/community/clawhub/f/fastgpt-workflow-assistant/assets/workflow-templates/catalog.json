@@ -1,0 +1,60 @@
+{
+  "logical_blueprints": {
+    "file": "../workflow-blueprints/mode-blueprints.json",
+    "importable": false,
+    "purpose": "Select a workflow mode and required gates before generating target-version JSON"
+  },
+  "templates": [
+    {
+      "id": "fastgpt-v481-minimal",
+      "file": "fastgpt-v481-minimal.json",
+      "platform": "FastGPT-compatible",
+      "application_mode": "workflow",
+      "schema_hint": "legacy node format marker 481; not a server-version compatibility declaration",
+      "node_types": [
+        "userGuide",
+        "workflowStart",
+        "answerNode"
+      ],
+      "source_evidence": "minimal interoperability template assembled from public FastGPT workflow concepts; import verification required",
+      "verification": {
+        "offline_structure": "pass",
+        "target_platform_import": "pending"
+      },
+      "use_when": "Create a new workflow scaffold without requiring a user export",
+      "verified_server_versions": []
+    },
+    {
+      "id": "retry-guard-reply",
+      "file": "retry-pattern.json",
+      "platform": "FastGPT-compatible",
+      "application_mode": "pattern-reference",
+      "schema_hint": "non-importable conceptual pattern for answer guard and fallback reply",
+      "node_types": [
+        "placeholder",
+        "code",
+        "answerNode"
+      ],
+      "source_evidence": "pattern extracted from V3.5.14 retry mechanism fix; cross-node variable references use {{$nodeId.var$}} syntax",
+      "verification": {
+        "offline_structure": "pass",
+        "target_platform_import": "not-applicable"
+      },
+      "use_when": "Add answer-quality guard and fallback to an existing workflow; true retries require bounded retry logic; validate with FG080/FG081/FG082 diagnostics"
+    }
+  ],
+  "code_snippets": [
+    {
+      "id": "ip-mac-validation",
+      "file": "../code-snippets/ip-mac-validation.js",
+      "purpose": "Reject 0.0.0.0, 255.255.255.255, loopback, link-local, multicast and broadcast addresses",
+      "use_when": "Code node needs to validate IP/MAC input before downstream processing"
+    },
+    {
+      "id": "answer-guard-template",
+      "file": "../code-snippets/answer-guard-template.js",
+      "purpose": "Evaluate answer quality and generate fallback text with configurable support contact",
+      "use_when": "Pair with retry-guard-reply pattern to guard LLM or retrieval answers"
+    }
+  ]
+}

@@ -2,20 +2,64 @@
 import { readAnalytics, setAnalytics } from './analytics.mjs';
 import { firstRun } from './first-run.mjs';
 import { writeFile, readFile } from 'node:fs/promises';
+import { parseArgs } from 'node:util';
 import { ImagenClient, readKey } from './client.mjs';
 import { previewDemand, submitDemand } from './demand.mjs';
 import { startPanel } from './panel.mjs';
 import { searchMarkdown, placeImage, renderManifest, WATERMARK_NOTICE } from './markdown.mjs';
 
 const [command, ...args] = process.argv.slice(2);
-const options = {};
-for (let i = 0; i < args.length; i++) {
-  if (!args[i].startsWith('--')) throw new Error('Use named --options.');
-  const name = args[i].slice(2);
-  options[name] = args[i+1] && !args[i+1].startsWith('--') ? args[++i] : true;
+const string = { type: 'string' };
+const flag = { type: 'boolean' };
+const outputOptions = { out: string, format: string };
+const originalOptions = { id: string, 'max-credits': string, 'operation-id': string };
+const commandOptions = new Map(Object.entries({
+  analytics: { keywords: string, confirm: flag },
+  version: { check: flag },
+  start: { query: string, ...outputOptions },
+  search: {
+    query: string, orientation: string, style: string, topic: string, 'use-case': string,
+    composition: string, limit: string, page: string, ...outputOptions,
+  },
+  'demand-preview': { file: string },
+  'demand-submit': { file: string, confirm: string },
+  place: { id: string, manifest: string, slot: string, caption: string, placement: string, format: string },
+  render: { manifest: string },
+  detail: { id: string },
+  status: {},
+  'original-link': originalOptions,
+  download: { ...originalOptions, out: string, original: flag },
+  panel: { manifest: string, selection: string, open: flag },
+  configure: { manifest: string, selection: string, open: flag },
+}));
+
+function boundedInteger(value, option, maximum, fallback) {
+  if (value === undefined) return fallback;
+  const number = Number(value);
+  if (!/^\d+$/.test(value) || number < 1 || number > maximum) {
+    throw new Error(`${option} 必须是 1 到 ${maximum} 之间的整数。`);
+  }
+  return number;
 }
+
+const orientations = new Map(Object.entries({
+  landscape: 'landscape', 横图: 'landscape', 横版: 'landscape',
+  portrait: 'portrait', 竖图: 'portrait', 竖版: 'portrait',
+  square: 'square', 方图: 'square', 方形: 'square',
+}));
+
 const client = new ImagenClient();
 try {
+  if (command && command !== 'help' && command !== '--help' && !commandOptions.has(command)) {
+    throw new Error(`未知命令 ${command}。运行 imagen.mjs help 查看用法。`);
+  }
+  const { values: options } = parseArgs({ args, options: commandOptions.get(command) || {} });
+  if (options.format !== undefined && !['json', 'markdown'].includes(options.format)) {
+    throw new Error('--format 支持 json 或 markdown。');
+  }
+  if (['search', 'start'].includes(command) && [...(options.query ?? '').trim()].length > 120) {
+    throw new Error('--query 最多支持 120 个字符。');
+  }
   let result;
   if (command === 'analytics') {
     if (options.keywords === 'on') {
@@ -37,13 +81,35 @@ try {
       result = { installed: installed.version, latest: latest.version, update_available: difference > 0, checked_online: true, changes: latest.changes, installation_guide: 'https://imagen.chat/install/imagen-search.md' };
     }
   } else if (command === 'start') {
-    result = await firstRun(client, { query: options.query || 'ancient Rome', out: options.out });
+    result = await firstRun(client, { query: options.query?.trim() || 'ancient Rome', out: options.out });
     if (options.format !== 'json') { console.log(result.markdown + '\n预览文件：' + result.preview + '\n图片清单：' + result.manifest); result = undefined; }
   } else if (command === 'demand-preview' || command === 'demand-submit') {
     if (!options.file) throw new Error('Provide --file with the minimal demand JSON.');
     result = command === 'demand-preview' ? await previewDemand(options.file) : await submitDemand(client, options.file, options.confirm);
   } else if (command === 'search') {
-    result = await client.search({ query: options.query || '', orientation: options.orientation, style: options.style, topic: options.topic, use_case: options['use-case'], composition: options.composition, page_size: options.limit || 12, page: options.page || 1 });
+    const orientation = orientations.get(options.orientation);
+    if (options.orientation !== undefined && !orientation) {
+      throw new Error('--orientation 支持 landscape（横图）、portrait（竖图）或 square（方图）。');
+    }
+    const topic = options.topic?.trim();
+    if (topic && (topic.length > 80 || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(topic))) {
+      throw new Error('--topic 需要专题链接里的短名，例如 history-civilizations-events。');
+    }
+    for (const [name, limit] of [['style', 64], ['use-case', 64], ['composition', 32]]) {
+      if ([...(options[name] ?? '').trim()].length > limit) {
+        throw new Error(`--${name} 最多支持 ${limit} 个字符。`);
+      }
+    }
+    result = await client.search({
+      query: options.query?.trim() ?? '',
+      orientation,
+      style: options.style?.trim(),
+      topic,
+      use_case: options['use-case']?.trim(),
+      composition: options.composition?.trim(),
+      page_size: boundedInteger(options.limit, '--limit', 60, 12),
+      page: boundedInteger(options.page, '--page', 10000, 1),
+    });
     if (options.out) await writeFile(options.out, JSON.stringify(result, null, 2), { flag: 'wx' });
     if (options.format !== 'json') { console.log(searchMarkdown(result)); result = undefined; }
   } else if (command === 'place') {

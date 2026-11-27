@@ -1,0 +1,136 @@
+/**
+ * 抖音搜索模块
+ */
+const constants = require("../config/constants");
+const { SkillError } = require("../utils/errors");
+const { requestApi, pollTaskResult } = require("../utils/request");
+const { formatUnixSeconds } = require("../utils/time");
+const { pickCost, pickTaskId } = require("../utils/cost");
+
+/**
+ * 处理搜索结果数据
+ * @param {Array} data - 原始搜索结果数组
+ * @returns {Array} 处理后的结果数组
+ */
+function processSearchResults(data) {
+  if (!Array.isArray(data)) {
+    throw new SkillError("API_SCHEMA_CHANGED", "搜索结果格式异常", true);
+  }
+
+  return data.map((item) => {
+    if (!item || typeof item !== "object") return item;
+    const processedItem = { ...item };
+
+    if (item.author_sec_uid) {
+      processedItem.author_url = `https://www.douyin.com/user/${item.author_sec_uid}`;
+    }
+
+    if (
+      typeof item.create_time === "number" &&
+      item.create_time &&
+      !item.create_time_str
+    ) {
+      processedItem.create_time_str = formatUnixSeconds(item.create_time);
+    }
+
+    return processedItem;
+  });
+}
+
+/**
+ * 创建抖音搜索任务
+ * @param {string} token - 技能令牌
+ * @param {string} keyword - 搜索关键词
+ * @param {number} sort - 排序依据, 0: 综合排序, 1: 最多点赞, 2: 最新发布
+ * @param {number} time - 发布时间, 0: 全部, 1: 一天内, 7: 七天内, 180: 半年内
+ * @param {number} duration - 视频时长, 0: 不限, 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上
+ * @param {number} content - 内容类型, 0: 不限, 1: 视频, 2: 图文
+ * @param {number} limit - 搜索数量, 1-10000
+ * @returns {Promise<string|undefined>} Create 成功时的任务 id（uuid）；缺失则查询仅带业务字段
+ * @throws {Error} API调用失败时抛出错误
+ */
+async function createSearchTask(
+  token,
+  keyword,
+  sort,
+  time,
+  duration,
+  content,
+  limit,
+) {
+  const params = { _: Date.now() };
+
+  const data = {
+    keyword,
+    sort_type: sort,
+    publish_time: time,
+    filter_duration: duration,
+    content_type: content,
+    limit: limit,
+  };
+
+  const response = await requestApi(
+    "POST",
+    "/api/douyin/general-search/keyword",
+    params,
+    data,
+    token,
+    constants.CREATE_MAX_ATTEMPTS,
+    "创建任务",
+  );
+  return pickTaskId(response);
+}
+
+/**
+ * 获取抖音搜索任务结果
+ * @param {string} token - 技能令牌
+ * @param {string} keyword - 搜索关键词
+ * @param {number} sort - 排序依据, 0: 综合排序, 1: 最多点赞, 2: 最新发布
+ * @param {number} time - 发布时间, 0: 全部, 1: 一天内, 7: 七天内, 180: 半年内
+ * @param {number} duration - 视频时长, 0: 不限, 1: 1分钟以下, 2: 1-5分钟, 3: 5分钟以上
+ * @param {number} content - 内容类型, 0: 不限, 1: 视频, 2: 图文
+ * @param {number} limit - 搜索数量, 1-10000
+ * @param {string} [taskId] - Create 返回的任务 id；有则查询只传 id（不带业务字段）
+ * @returns {Promise<{ results: Array, cost?: number }>}
+ * @throws {Error} API调用失败时抛出错误
+ */
+async function getSearchTask(
+  token,
+  keyword,
+  sort,
+  time,
+  duration,
+  content,
+  limit,
+  taskId,
+) {
+  const params = taskId
+    ? { id: taskId }
+    : {
+        keyword: keyword,
+        sort_type: sort,
+        publish_time: time,
+        filter_duration: duration,
+        content_type: content,
+        limit: limit,
+      };
+
+  const response = await pollTaskResult(
+    "/api/douyin/general-search/info",
+    params,
+    token,
+    "查询任务",
+  );
+  const cost = pickCost(response);
+
+  if (response.data) {
+    return { results: processSearchResults(response.data), cost };
+  }
+
+  return { results: [], cost };
+}
+
+module.exports = {
+  createSearchTask,
+  getSearchTask,
+};

@@ -1,0 +1,64 @@
+{
+  "schema": "uvd/assets",
+  "version": "2",
+  "stage": "assets",
+  "project_id": "demo",
+  "style_bible": {
+    "style": "写实电影感",
+    "palette": "冷蓝+霓虹红",
+    "lighting": "雨夜霓虹",
+    "lens": "35mm",
+    "negative": "畸形手指, 文字"
+  },
+  "assets": [
+    {
+      "id": "jie",
+      "type": "character",
+      "name": "阿杰",
+      "desc": "25岁外卖员",
+      "ref_prompt": "young delivery man in a yellow hooded rain poncho",
+      "locks": [
+        {
+          "id": "LOCK-JIE-PONCHO",
+          "phrase": "yellow hooded rain poncho"
+        }
+      ],
+      "ref_images": [
+        {
+          "view": "anchor_full",
+          "path": "media/ref/jie.png"
+        }
+      ],
+      "approved": true
+    },
+    {
+      "id": "street",
+      "type": "scene",
+      "name": "街头",
+      "desc": "雨夜街头",
+      "ref_prompt": "rainy neon street",
+      "ref_images": [
+        {
+          "view": "plate",
+          "path": "media/ref/street.png"
+        }
+      ]
+    },
+    {
+      "id": "room",
+      "type": "scene",
+      "name": "出租屋",
+      "desc": "狭小出租屋",
+      "ref_prompt": "tiny rented room",
+      "ref_images": [
+        {
+          "view": "plate",
+          "path": "media/ref/room.png"
+        }
+      ]
+    }
+  ],
+  "upstream": {
+    "02_story.json": "97e874c01ab5"
+  }
+}

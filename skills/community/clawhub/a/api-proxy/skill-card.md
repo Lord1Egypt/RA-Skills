@@ -1,6 +1,6 @@
 ## Description:
 
-Smart proxy for external API calls with retry, caching, rate limiting, and fallback providers.
+API Gateway is a local Node.js proxy for outbound API calls with retries, metadata-only caching by default, rate-limit handling, circuit breaking, fallback providers, and API key management.
 
 This skill is ready for commercial/non-commercial use.
 
@@ -14,7 +14,7 @@ MIT-0
 
 ## Use Case:
 
-Developers and agent operators use this skill to route outbound API requests through a local gateway with retries, caching, rate-limit tracking, fallback providers, and API key handling.
+Developers and agents use this skill to centralize outbound HTTP API calls through a reusable gateway with retry, fallback, rate-limit, cache, request-log, and API-key handling controls.
 
 ### Deployment Geography for Use:
 
@@ -22,38 +22,41 @@ Global
 
 ## Known Risks and Mitigations:
 
-Risk: Sensitive request bodies may be persisted in cache keys despite metadata-only cache claims.
+Risk: The gateway handles provider credentials and can store API keys as plaintext in the local workspace.
 
-Mitigation: Avoid sending secrets or regulated data in request bodies, clear cache after sensitive work, and treat memory/api-gateway as sensitive local storage.
+Mitigation: Prefer PROVIDER_API_KEY environment variables or a secrets manager, use tightly scoped allowlisted stored keys only when needed, and remove local keys after sensitive work.
 
-Risk: Plaintext API keys can be stored on disk in keys.json.
+Risk: Requests, prompts, headers, bodies, and responses are transmitted to the third-party provider endpoint selected by the caller.
 
-Mitigation: Prefer scoped PROVIDER_API_KEY environment variables or a secrets manager, and only use disk-stored keys in workspaces with appropriate local access controls.
+Mitigation: Send requests only to trusted endpoints, review provider retention policies, and avoid routing sensitive or regulated data through untrusted providers.
 
-Risk: Requests transmit URLs, headers, bodies, and prompts to external provider endpoints selected by the user.
+Risk: Full-body caching can persist complete responses that may contain secrets, personal data, or proprietary content.
 
-Mitigation: Use only trusted provider endpoints, review allowlists before adding keys, and use dry-run mode before important calls.
+Mitigation: Keep the default metadata-only cache, avoid --cache-full for sensitive providers, and clear cache and log files after sensitive sessions.
+
+Risk: Plain HTTP can expose traffic when API_GATEWAY_ALLOW_HTTP=1 is enabled.
+
+Mitigation: Use HTTPS endpoints and never enable API_GATEWAY_ALLOW_HTTP=1 when credentials or sensitive payloads may be attached.
 
 ## Reference(s):
 
 - [ClawHub skill page](https://clawhub.ai/jlacroix82/skills/api-proxy)
-- [README](artifact/README.md)
-- [Skill source](artifact/SKILL.md)
-- [ClawHub manifest](artifact/clawhub.yaml)
+- [README](README.md)
+- [Vetting report](VET-REPORT.md)
 
 ## Skill Output:
 
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance]
+**Output Type(s):** [text, shell commands, configuration, guidance]
 
-**Output Format:** [Markdown guidance with shell commands and JavaScript configuration examples]
+**Output Format:** [CLI text, JSON API responses, and Markdown guidance]
 
 **Output Parameters:** [1D]
 
-**Other Properties Related to Output:** [May execute outbound HTTPS requests and write local gateway state when invoked by an agent.]
+**Other Properties Related to Output:** [May perform outbound HTTP API calls and write local gateway state, including keys, cache metadata, request logs, rate-limit state, circuit state, and fallback mappings.]
 
 ## Skill Version(s):
 
-1.1.8 (source: server release evidence and artifact/clawhub.yaml)
+1.1.12 (source: frontmatter and server release metadata)
 
 ## Ethical Considerations:
 

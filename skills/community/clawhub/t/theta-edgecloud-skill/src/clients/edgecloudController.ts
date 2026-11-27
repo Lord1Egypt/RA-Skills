@@ -4,7 +4,7 @@
 // returned as received; the runtime and facade boundaries name-redact them.
 import { ThetaConfig } from '../config.js';
 import { deleteEmpty, getJson, postJson, putEmpty, putJson } from './http.js';
-import { isStructuredError, fromHttpError } from '../errors.js';
+import { isStructuredError, fromHttpError, fromTransportError } from '../errors.js';
 import { pathSegment } from '../security.js';
 import { assertApproved } from '../approval.js';
 
@@ -15,7 +15,7 @@ const CONTROLLER_DEFAULT_HEADERS = {
   'user-agent': 'theta-edgecloud-skill'
 };
 
-function k(cfg: ThetaConfig): HeadersInit {
+function apiKeyHeaders(cfg: ThetaConfig): HeadersInit {
   if (!cfg.edgecloudApiKey) throw new Error('THETA_EC_API_KEY missing');
   return { ...CONTROLLER_DEFAULT_HEADERS, 'x-api-key': cfg.edgecloudApiKey };
 }
@@ -41,7 +41,7 @@ function url(base: string, path: string, params: Record<string, unknown> = {}): 
     query.set(key, String(value));
   }
   const qs = query.toString();
-  return `${base}${path}${qs ? `?${qs}` : ''}`;
+  return ('' + String(base) + String(path) + String(qs ? ('?' + String(qs)) : ''));
 }
 
 function shouldTryNextRoute(error: unknown): boolean {
@@ -84,43 +84,51 @@ function documentForm(projectId: string, file: ChatbotDocumentFile, metadata?: R
   return form;
 }
 
-async function postForm<T>(targetUrl: string, form: FormData, cfg: ThetaConfig): Promise<T> {
-  const res = await fetch(targetUrl, {
-    redirect: 'error',
-    method: 'POST',
-    headers: k(cfg),
-    body: form,
-    signal: AbortSignal.timeout(cfg.httpTimeoutMs)
-  });
-  if (!res.ok) throw fromHttpError('edgecloud-controller', targetUrl, res.status, await res.text());
-  return res.json() as Promise<T>;
+// Document uploads are writes: any failure after sending (network, timeout, unreadable body) is
+// reported as non-retriable, because Theta may already have stored the document.
+async function sendForm<T>(targetUrl: string, method: 'POST' | 'PUT', form: FormData, cfg: ThetaConfig): Promise<T> {
+  let res: Response;
+  try {
+    res = await fetch(targetUrl, {
+      redirect: 'error',
+      method,
+      headers: apiKeyHeaders(cfg),
+      body: form,
+      signal: AbortSignal.timeout(cfg.httpTimeoutMs)
+    });
+  } catch (error) {
+    throw fromTransportError('edgecloud-controller', targetUrl, error, true);
+  }
+  let text: string;
+  try {
+    text = await res.text();
+  } catch (error) {
+    throw fromTransportError('edgecloud-controller', targetUrl, error, true);
+  }
+  if (!res.ok) throw fromHttpError('edgecloud-controller', targetUrl, res.status, text);
+  try {
+    return JSON.parse(text) as T;
+  } catch (error) {
+    throw fromTransportError('edgecloud-controller', targetUrl, error, true);
+  }
 }
 
-async function putForm<T>(targetUrl: string, form: FormData, cfg: ThetaConfig): Promise<T> {
-  const res = await fetch(targetUrl, {
-    redirect: 'error',
-    method: 'PUT',
-    headers: k(cfg),
-    body: form,
-    signal: AbortSignal.timeout(cfg.httpTimeoutMs)
-  });
-  if (!res.ok) throw fromHttpError('edgecloud-controller', targetUrl, res.status, await res.text());
-  return res.json() as Promise<T>;
-}
+const postForm = <T>(targetUrl: string, form: FormData, cfg: ThetaConfig): Promise<T> => sendForm<T>(targetUrl, 'POST', form, cfg);
+const putForm = <T>(targetUrl: string, form: FormData, cfg: ThetaConfig): Promise<T> => sendForm<T>(targetUrl, 'PUT', form, cfg);
 
 export const edgecloudControllerClient = {
   startDeploymentByBaseId: (cfg: ThetaConfig, projectId: string, baseId: string, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.deployments.startByBaseId') ?? putEmpty(url(BASE_CTRL, `/deployments/base/${segment(baseId, 'baseId')}/start`, {project_id:projectId}), net(cfg,'edgecloud-controller',k(cfg))),
+    assertApproved(cfg, confirm, 'theta.deployments.startByBaseId') ?? putEmpty(url(BASE_CTRL, ('/deployments/base/' + String(segment(baseId, 'baseId')) + '/start'), {project_id:projectId}), net(cfg,'edgecloud-controller',apiKeyHeaders(cfg))),
   listStandardTemplates: (cfg: ThetaConfig, category: 'prototyping' | 'serving' | 'training') =>
-    getJson(url(BASE_CTRL, '/deployment_template/list_standard_templates', {category}), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, '/deployment_template/list_standard_templates', {category}), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   listCustomTemplates: (cfg: ThetaConfig, projectId: string) =>
-    getJson(url(BASE_CTRL, '/deployment_template/list_custom_templates', {project_id:projectId}), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, '/deployment_template/list_custom_templates', {project_id:projectId}), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
-  listVmTypes: (cfg: ThetaConfig) => getJson(`${BASE_API}/resource/vm/list`, net(cfg, 'edgecloud-controller', CONTROLLER_DEFAULT_HEADERS)),
+  listVmTypes: (cfg: ThetaConfig) => getJson(('' + String(BASE_API) + '/resource/vm/list'), net(cfg, 'edgecloud-controller', CONTROLLER_DEFAULT_HEADERS)),
 
   createDeployment: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.deployments.create') ?? postJson(`${BASE_CTRL}/deployment`, payload, net(cfg, 'edgecloud-controller', k(cfg))),
+    assertApproved(cfg, confirm, 'theta.deployments.create') ?? postJson(('' + String(BASE_CTRL) + '/deployment'), payload, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   listDeployments: (cfg: ThetaConfig, projectId: string) =>
     firstRoute(
@@ -128,7 +136,7 @@ export const edgecloudControllerClient = {
         url(BASE_CTRL, '/deployment/list', { project_id: projectId }),
         url(BASE_CTRL, '/deployments/list', { project_id: projectId })
       ],
-      (route) => getJson(route, net(cfg, 'edgecloud-controller', k(cfg)))
+      (route) => getJson(route, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg)))
     ),
 
   routeProbeDeploymentsList: async (cfg: ThetaConfig, projectId: string) => {
@@ -139,7 +147,7 @@ export const edgecloudControllerClient = {
     const attempts: Array<Record<string, unknown>> = [];
     for (const route of routes) {
       try {
-        const response = await getJson(route, net(cfg, 'edgecloud-controller', k(cfg)));
+        const response = await getJson(route, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg)));
         attempts.push({ route, ok: true });
         return { ok: true, selectedRoute: route, attempts, response };
       } catch (error) {
@@ -156,56 +164,57 @@ export const edgecloudControllerClient = {
   },
 
   balance: (cfg: ThetaConfig, orgId: string) =>
-    getJson(url(BASE_API, '/balance', { orgID: orgId }), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_API, '/balance', { orgID: orgId }), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   createChatbot: (cfg: ThetaConfig, payload: Record<string, unknown>, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.ai.agent.create') ?? postJson(`${BASE_CTRL}/chatbot`, payload, net(cfg, 'edgecloud-controller', k(cfg))),
+    assertApproved(cfg, confirm, 'theta.ai.agent.create') ?? postJson(('' + String(BASE_CTRL) + '/chatbot'), payload, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   getChatbot: (cfg: ThetaConfig, chatbotId: string, projectId: string) =>
-    getJson(url(BASE_CTRL, `/chatbot/${segment(chatbotId, 'chatbotId')}`, { project_id: projectId }), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, ('/chatbot/' + String(segment(chatbotId, 'chatbotId'))), { project_id: projectId }), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   updateChatbot: (cfg: ThetaConfig, chatbotId: string, payload: Record<string, unknown>, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.ai.agent.update') ?? putJson(`${BASE_CTRL}/chatbot/${segment(chatbotId, 'chatbotId')}`, payload, net(cfg, 'edgecloud-controller', k(cfg))),
+    assertApproved(cfg, confirm, 'theta.ai.agent.update') ?? putJson(('' + String(BASE_CTRL) + '/chatbot/' + String(segment(chatbotId, 'chatbotId'))), payload, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   listChatbots: (cfg: ThetaConfig, projectId: string, page = 0, number = 100) =>
-    getJson(url(BASE_CTRL, '/chatbot/list', { project_id: projectId, page, number }), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, '/chatbot/list', { project_id: projectId, page, number }), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   createChatbotDocument: (cfg: ThetaConfig, chatbotId: string, projectId: string, file: ChatbotDocumentFile, metadata?: Record<string, unknown>, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.ai.agent.document.create') ?? postForm(url(BASE_CTRL, `/chatbot/${segment(chatbotId, 'chatbotId')}/document`), documentForm(projectId, file, metadata), cfg),
+    assertApproved(cfg, confirm, 'theta.ai.agent.document.create') ?? postForm(url(BASE_CTRL, ('/chatbot/' + String(segment(chatbotId, 'chatbotId')) + '/document')), documentForm(projectId, file, metadata), cfg),
 
   updateChatbotDocument: (cfg: ThetaConfig, chatbotId: string, documentId: string, projectId: string, file: ChatbotDocumentFile, metadata?: Record<string, unknown>, confirm?: boolean) =>
-    assertApproved(cfg, confirm, 'theta.ai.agent.document.update') ?? putForm(url(BASE_CTRL, `/chatbot/${segment(chatbotId, 'chatbotId')}/document/${segment(documentId, 'documentId')}`), documentForm(projectId, file, metadata), cfg),
+    assertApproved(cfg, confirm, 'theta.ai.agent.document.update') ?? putForm(url(BASE_CTRL, ('/chatbot/' + String(segment(chatbotId, 'chatbotId')) + '/document/' + String(segment(documentId, 'documentId')))), documentForm(projectId, file, metadata), cfg),
 
   getChatbotDocument: (cfg: ThetaConfig, chatbotId: string, documentId: string) =>
-    getJson(url(BASE_CTRL, `/chatbot/${segment(chatbotId, 'chatbotId')}/document/${segment(documentId, 'documentId')}`), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, ('/chatbot/' + String(segment(chatbotId, 'chatbotId')) + '/document/' + String(segment(documentId, 'documentId')))), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   listChatbotDocuments: (cfg: ThetaConfig, chatbotId: string, projectId: string, page = 0, number = 30) =>
-    getJson(url(BASE_CTRL, `/chatbot/${segment(chatbotId, 'chatbotId')}/document/list`, { project_id: projectId, page, number }), net(cfg, 'edgecloud-controller', k(cfg))),
+    getJson(url(BASE_CTRL, ('/chatbot/' + String(segment(chatbotId, 'chatbotId')) + '/document/list'), { project_id: projectId, page, number }), net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg))),
 
   stopDeployment: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) =>
     assertApproved(cfg, confirm, 'theta.deployments.stop') ?? firstRoute(
       [
-        url(BASE_CTRL, `/deployment/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}/stop`, { project_id: projectId }),
-        url(BASE_CTRL, `/deployments/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}/stop`, { project_id: projectId })
+        url(BASE_CTRL, ('/deployment/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix')) + '/stop'), { project_id: projectId }),
+        url(BASE_CTRL, ('/deployments/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix')) + '/stop'), { project_id: projectId })
       ],
-      (route) => putEmpty(route, net(cfg, 'edgecloud-controller', k(cfg)))
+      (route) => putEmpty(route, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg)))
     ),
 
   startDeployment: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) =>
     assertApproved(cfg, confirm, 'theta.deployments.start') ?? firstRoute(
       [
-        url(BASE_CTRL, `/deployment/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}/start`, { project_id: projectId }),
-        url(BASE_CTRL, `/deployments/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}/start`, { project_id: projectId })
+        url(BASE_CTRL, ('/deployment/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix')) + '/start'), { project_id: projectId }),
+        url(BASE_CTRL, ('/deployments/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix')) + '/start'), { project_id: projectId })
       ],
-      (route) => putEmpty(route, net(cfg, 'edgecloud-controller', k(cfg)))
+      (route) => putEmpty(route, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg)))
     ),
 
   deleteDeployment: (cfg: ThetaConfig, projectId: string, shard: string, suffix: string, confirm?: boolean) =>
     assertApproved(cfg, confirm, 'theta.deployments.delete') ?? firstRoute(
+      // Theta's controller exposes two path forms. The first one that exists is used, sent once each.
       [
-        url(BASE_CTRL, `/deployment/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}`, { project_id: projectId }),
-        url(BASE_CTRL, `/deployments/${segment(shard, 'shard')}/${segment(suffix, 'suffix')}`, { project_id: projectId })
+        url(BASE_CTRL, ('/deployment/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix'))), { project_id: projectId }),
+        url(BASE_CTRL, ('/deployments/' + String(segment(shard, 'shard')) + '/' + String(segment(suffix, 'suffix'))), { project_id: projectId })
       ],
-      (route) => deleteEmpty(route, net(cfg, 'edgecloud-controller', k(cfg)))
+      (route) => deleteEmpty(route, net(cfg, 'edgecloud-controller', apiKeyHeaders(cfg)))
     )
 };

@@ -2,7 +2,7 @@
 name: content-publishing-suite
 slug: content-publishing-suite-skill
 displayName: Content Publishing Suite
-version: "1.1.16"
+version: "1.1.18"
 description: This skill should be used when a fact-checked and compliance-approved final Markdown draft needs to be turned into multi-channel publishing assets — WeChat article (135-editor-compatible inline HTML), WeChat image-summary card (公众号发图/摘要图/图文卡/810×1080), LinkedIn post, standalone responsive HTML page, and an archive ledger (local record plus optional Notion entry). It only orchestrates publishing and format conversion; it does not repeat fact-checking and does not auto-publish. Can optionally pair with a dedicated WeChat-layout skill if one is installed. Trigger keywords: 发布物料, 排版并入库, 多平台发布, 定稿发到微信, 公众号发图, 摘要图, 图文卡, 810×1080, publishing suite, multi-channel publish, final draft to WeChat/LinkedIn, package for publishing.
 description_zh: 内容发布套件
 description_en: Content publishing suite
@@ -74,7 +74,7 @@ read_only_upstream: true    # 不引入上游未覆盖的新事实
 
 - **微信长文**：依 `references/wechat-style.md` 和 `references/wechat_layout_baseline.json` 将 Markdown 转为全内联 `<section>` HTML。唯一排版基线固定为：标题 23px 居中；摘要块 15px / 行高 1.7；正文 16px / 行高 1.8 / `margin-bottom:1.5em` / `letter-spacing:1px`；小标题 18px、`#1a1a1a`、`margin:2.5em 0 1em`、左侧 4px 深蓝线、`padding-left:10px`。**普通正文段落、列表、引用和表格信息条禁止设置 `text-align`，避免编辑器导入后触发“文字对齐异常”结构检测；只有标题需要居中时才允许 `text-align:center`，且仅作用于 `<h1>`。正文不要使用 `text-align:left/justify` 这类多余默认值。**生成器不得自行写入另一套字号。**微信长文摘要最多 120 字符，默认控制在 30 字符以内；必须与标题形成配合，作为正文引子或一句实质结论，禁止把摘要卡配文或首段长篇复制进来。**文末必须加 `<v2></v2>`；生成后必须运行 `scripts/validate_wechat_layout.py <snippet> --baseline references/wechat_layout_baseline.json --title <title>`。不通过即停止交付。绝不使用 `<style>`、`<script>`、外联 class、外层 `<div>` 容器。模板见 `templates/wechat-snippet.html`。
 - **长文封面**：在任何摘要卡设计前，先建立封面 brief 和 prompt，生成无文字长文封面底图，并按 2.35:1 规则裁切成最终封面。记录 brief、prompt、原始生成图和最终封面路径；未完成封面链路不得进入摘要卡设计。
-- **微信发图摘要**：封面完成后强制加载 `tech-writing-pipeline`，并以其 **6.1「公众号发图摘要卡：固定骨架，有限自适应」**作为唯一完整视觉规范；本 skill 只负责编排、交付与台账，不能用本段摘要替代 6.1。同步生成 `wechat_summary_card.jpg`（810×1080、3:4）和 `wechat_summary_copy.md`。卡片必须执行 A/B/C/D 四区、56px 左右安全边距、左对齐阅读路径、系列既定视觉语言、三色上限、一个主体结构加一个对照状态、主题行与一条最多三行的核心判断；仅能在主题隐喻、主体位置、同系列色盘微调、主题行和核心判断五项中自适应。不得把 2.35:1 长文封面机械裁切为摘要卡；A 区必须基于最终封面视觉进行重排。文案应保留长文的判断闭环，而不是只写一句口号；包含短摘要、关键词/Hashtags、`【原文链接：待填】`和后台使用说明。图片不预制公众号账号水印，平台上传后的自动标识即可。**摘要卡必须完整内嵌发布套件文档**：成品图路径、配图文字全文（可直接复制）、关键词和后台使用方式写入 `发布套件_<篇名>.md` 专节（对齐篇 2 格式）；单独的 `wechat_summary_copy.md` 只是资产副本，不能替代套件内文。
+- **微信发图摘要**：封面完成后只加载 `tech-writing-pipeline` 的 **6.1「公众号发图摘要卡：固定骨架，有限自适应」**、`scripts/check_summary_card_6_1.py` 与 `scripts/summary_card_6_1_baseline.json`，以它们为唯一视觉与结构规范；本 skill 只负责编排、交付与台账，不能用本段摘要替代 6.1。规格属 B 层交付硬约束，按选定物料触发，写作阶段不加载。同步生成 `wechat_summary_card.jpg`（810×1080、3:4）和 `wechat_summary_copy.md`。卡片必须执行 A/B/C/D 四区、56px 左右安全边距、左对齐阅读路径、系列既定视觉语言、三色上限、一个主体结构加一个对照状态、主题行与一条最多三行的核心判断；仅能在主题隐喻、主体位置、同系列色盘微调、主题行和核心判断五项中自适应。不得把 2.35:1 长文封面机械裁切为摘要卡；A 区必须基于最终封面视觉进行重排。文案应保留长文的判断闭环，而不是只写一句口号；包含短摘要、关键词/Hashtags、`【原文链接：待填】`和后台使用说明。图片不预制公众号账号水印，平台上传后的自动标识即可。**摘要卡必须完整内嵌发布套件文档**：成品图路径、配图文字全文（可直接复制）、关键词和后台使用方式写入 `发布套件_<篇名>.md` 专节（对齐篇 2 格式）；单独的 `wechat_summary_copy.md` 只是资产副本，不能替代套件内文。
 - **LinkedIn**：依 `templates/linkedin-post.md`，取独立英文正文文件的核心判断作 hook，正文压缩到 200-300 字，末尾 3-5 个话题标签。无 Markdown、无内部备注、无未公开数据、无流程元信息。**前置依赖硬规则：英文正文（`正文-EN`）定稿之前不得生成 LinkedIn caption；未完成时在发布套件与台账中把 LinkedIn/X 标记为"前置依赖：英文正文未完成"，不产出任何英文物料，不得从中文定稿直接翻译替代。**LinkedIn 正文应作为文章主目录下的独立内容文件，不以零散 `linkedin-post.md` 作为文章主文档。
 - **Substack / 英文长文**：英文长正文作为文章主目录下的独立 `正文-EN` 文件；发布套件只登记标题、副标题、渠道说明和文件路径，不重复粘贴全文。
 - **英文正文门禁**：英文正文完成后、任何 LinkedIn/X/摘要英文物料生成前，加载 `tech-writing-pipeline/references/english-ai-writing-strategy.md`，建立 `Claim / Evidence / Counterargument / Boundary / What the reader should not infer` claim map，并通过作者性门禁。P0 包括虚构或无来源归因、空泛开场承载主信息、反方只列不裁决、中文句序直译；P1 包括组合式修辞包装、模板化对举、破折号或三项并列密集、积极形容词超过证据。单个风格词、服务于机制说明的 LinkedIn 清单或有事实功能的结构母题不单独构成 AI 腔；detector 分数不进入发布 PASS/FAIL。
@@ -129,7 +129,7 @@ python3 {SKILL_DIR}/scripts/build_publish_package.py \
 6. 凭据只走环境变量（Notion 用 `NOTION_TOKEN`、库 ID 用 `NOTION_DB_ID`；文章管理平台经既有 MCP/连接器），绝不硬编码。
 7. 微信发图摘要卡必须为 810×1080（3:4），且图与文案都围绕同一篇已审核长文；图中不重复添加公众号账号水印。台账需记录 `summary_card` 路径。
 8. 跨渠道数字一致性：同一篇长文衍生的多渠道物料（微信 / Notion / 平台版）发布前必须做关键数字与案例名的跨文件比对，不一致一律退回上游，不得带歧义发布。
-9. 一旦交付包含微信发图摘要，必须先完整加载 `tech-writing-pipeline` 并逐项执行其 6.1；未加载或无法访问时，停止摘要卡制作并说明缺少的规范，不能凭本 skill 的简写规则自行补全。
+9. 一旦交付包含微信发图摘要，必须先加载 `tech-writing-pipeline` §6.1、对应基准与校验器并逐项验收；未加载或无法访问时，停止摘要卡制作并说明缺少的规范，不能凭本 skill 的简写规则自行补全。此处只加载该物料规格，不要求通读整份写作参考层。
 10. 脚本只读取用户指定的定稿、写入用户指定的输出目录；不引入网络外送。
 11. 发布套件 ready 的前置条件包含封面 brief、封面 prompt、最终 2.35:1 长文封面、摘要卡 A 区视觉依赖、摘要卡文章级内容契约、摘要卡 6.1 范围门禁和 baseline 逐字段门禁；基础渠道格式脚本通过不能替代这些视觉、内容与流程门禁。
 12. 微信排版和摘要卡都必须使用确定性校验器：排版校验字号/行高/颜色/间距/背景/结构；摘要卡校验 A/B/C/D 文本、A 区素材、背景、位置和配文锚点。只有自然语言复核没有脚本结果时，不得标记 ready。
@@ -196,6 +196,7 @@ gate 报告：P0/P1 列表；有 P0 时明确标注"未通过、禁止发布"。
 - [ ] 独立 HTML 以 `<!DOCTYPE html>` 开头，无科技电路风/发光/数字网格。
 - [ ] `package-manifest.json` 各渠道均生成，`archive-ledger.json` 已追加一条。
 - [ ] 外部动作前已取得用户确认；默认 dry-run。
+- [ ] 摘要卡制作前已加载 6.1 基准与校验器并逐项验收，未以发布套件的简写规则替代；未加载时已停止制作并记录缺失规范。
 
 ## Pitfalls
 
@@ -214,10 +215,10 @@ gate 报告：P0/P1 列表；有 P0 时明确标注"未通过、禁止发布"。
 - 视觉链路的 PNG 尺寸解析必须使用真实 PNG 签名字节（`b"\\x89PNG\\r\\n\\x1a\\n"`）；若源代码误写成双反斜杠字面量，校验器会误报“无法读取 PNG/JPEG 尺寸”。遇到该错误先检查文件签名与解析器，再改用 JPG 绕过，修复后重新运行完整视觉链路门禁。
 - 下游悄悄补一句"新事实"绕过上游核验——任何新事实都要回退上游。
 - 把横版封面当公众号发图摘要卡——长文封面是 2.35:1；发图摘要是 810×1080 的独立二次分发物料，需主题图重排、长文摘要、关键词和原文链接占位。
-- 先做摘要卡、后补封面 prompt/封面图——封面视觉链路必须先完成：封面 brief/prompt → 2.35:1 长文封面图 → 以最终封面为视觉基准重排 A 区并叠加系列标签 → 摘要卡结构门禁 + baseline 逐字段门禁 + 手机视觉对齐门禁 → 发布套件 ready。摘要卡 6.1 结构通过只证明尺寸、布局和文字字段正确，不能替代最终封面依赖和视觉对齐检查；因此必须使用 `validate_publish_output.py --require-visual-chain` 把这些依赖变成 P0，而不能只把顺序写在 Pitfalls 里。当前系列若沿用已验收基准卡，必须保持 343px 头图 + 57px 承接条结构；改成完整 400px 头图时需同步重定 baseline。
+- 先做摘要卡、后补封面 prompt/封面图——封面视觉链路必须先完成：封面 brief/prompt → 2.35:1 长文封面图 → 以最终封面为视觉基准重排 A 区并叠加系列标签 → 摘要卡结构门禁 + baseline 逐字段门禁 + 手机视觉对齐门禁 → 发布套件 ready。摘要卡 6.1 结构通过只证明尺寸、布局和文字字段正确，不能替代最终封面依赖和视觉对齐检查；因此必须使用 `validate_publish_output.py --require-visual-chain` 把这些依赖变成 P0，而不能只把顺序写在 Pitfalls 里。当前系列按 §6.1 的 baseline v2：封面图完整铺满 810×400、无承接条；`images/boundary-layer-summary-card.html` 是 343px + 57px 的旧结构，不得作为母版。文字规范、基准 JSON、校验器与 v2 基准卡必须一致，任何升级同步重定 baseline。
 - 把英文正文、LinkedIn 正文和摘要卡配文分别拆成多个根目录小文件——参考系列归档结构，渠道正文分别保留为 `正文-EN`、`正文-LinkedIn-EN` 等主文档，摘要卡配文、封面 brief、渠道短句和发布动作集中写入一个 `发布套件` 文档；图片、HTML、JSON 仅作为发布资产和机器门禁文件。
 - 在摘要图里再加“公众号·账号名”水印——上传后平台会自动显示账号标识，设计图不重复加，避免视觉重叠。
-- 只加载发布套件并按其中的短说明制作摘要卡——这会遗漏 A/B/C/D 分区、固定文字层级、有限自适应边界和手机缩略验收。只要交付摘要卡，就必须额外完整加载 `tech-writing-pipeline` 的 6.1；发布套件不再作为摘要卡视觉规范的替代品。
+- 只加载发布套件并按其中的短说明制作摘要卡——这会遗漏 A/B/C/D 分区、固定文字层级、有限自适应边界和手机缩略验收。只要交付摘要卡，就必须加载 §6.1 及其基准、校验器；发布套件不再作为摘要卡视觉规范的替代品。规格必须完整验收，但不要求加载写作参考层全文。
 - Markdown 表格转设计图后，微信片段不能继续保留脚本生成的残缺表头片段；应删除全部自动表格节点，只保留一个符合微信内联规范的图片占位，并在独立 HTML 中插入同一张表格设计图，避免重复占位或移动端表格溢出。
 - 微信正文中的 Markdown 表格不能按逐行 `<table>` 生成：这会把分隔行 `---` 当作数据，并在手机端形成深色大色块。默认先判断该表是否需要作为干净图片交付；若需要图片，微信片段只放一个无标题、无说明、无额外装饰的 `<img>`，图片文件与 HTML 一起登记到 manifest。其他表格才改为浅底竖向信息条，独立 HTML 可保留完整 `<table>`。信息条的标签样式放在 `span` 或 `section`，正文 `p` 仍复用唯一排版基线，避免校验器把新组件误判为字号和间距漂移。
 - 使用 `--require-visual-chain` 时，必须同时传入根目录排版参数和一个真实存在的已验收摘要卡基准文件；不要猜测不存在的 baseline 路径，也不要把“校验当前卡本身”伪装成跨卡基准。若仓库没有独立基准文件，应先定位此前已验收的摘要卡 HTML，或明确只运行范围门禁并记录未完成逐字段基准比对。

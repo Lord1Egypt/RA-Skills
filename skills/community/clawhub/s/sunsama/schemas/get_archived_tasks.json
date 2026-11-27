@@ -1,6 +1,6 @@
 {
   "name": "get_archived_tasks",
-  "description": "List archived tasks",
+  "description": "List the tasks the user has archived in Sunsama. Read-only. Use it when the user asks about archived Sunsama tasks, for example to find one to restore with unarchive_task. It is not for tasks in any other app (Asana, Todoist, Jira, a calendar and so on).",
   "inputSchema": {
     "type": "object",
     "properties": {},

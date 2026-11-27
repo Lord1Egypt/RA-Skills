@@ -1,0 +1,133 @@
+{
+  "$type": "color",
+  "fgColor": {
+    "default": {
+      "$value": "{color.dark.neutral.900}",
+      "$description": "主正文与标题"
+    },
+    "muted": {
+      "$value": "{color.dark.neutral.400}",
+      "$description": "次要说明、时间、元数据"
+    },
+    "disabled": {
+      "$value": "{color.dark.neutral.300}",
+      "$description": "禁用态文字与图标"
+    },
+    "accent": {
+      "$value": "{color.dark.accent.100}",
+      "$description": "链接与可交互强调文字"
+    },
+    "accentHover": {
+      "$value": "{color.dark.accent.200}",
+      "$description": "强调态 Hover / Pressed"
+    },
+    "onEmphasis": {
+      "$value": "{color.dark.neutral.900}",
+      "$description": "强调实底上的反白文字"
+    },
+    "onDeep": {
+      "$value": "{color.dark.surface.onDeep}",
+      "$description": "深图版上的文字"
+    },
+    "danger": {
+      "$value": "{color.dark.danger.fg}",
+      "$description": "错误与危险操作文字"
+    },
+    "success": {
+      "$value": "{color.dark.success.fg}",
+      "$description": "success 语义文字"
+    },
+    "warning": {
+      "$value": "{color.dark.warning.fg}",
+      "$description": "warning 语义文字"
+    },
+    "info": {
+      "$value": "{color.dark.info.fg}",
+      "$description": "info 语义文字"
+    }
+  },
+  "bgColor": {
+    "default": {
+      "$value": "{color.dark.neutral.0}",
+      "$description": "页面与主内容底"
+    },
+    "muted": {
+      "$value": "{color.dark.neutral.100}",
+      "$description": "次级面板、表头、卡片衬底"
+    },
+    "accent": {
+      "emphasis": {
+        "$value": "{color.dark.accent.emphasis}",
+        "$description": "主按钮、刊头、整块强调平涂"
+      }
+    },
+    "deep": {
+      "$value": "{color.dark.surface.deep}",
+      "$description": "深图版背景（亮暗皆深）"
+    },
+    "success": {
+      "muted": {
+        "$value": "{color.dark.success.muted}",
+        "$description": "success 浅色提示底"
+      },
+      "emphasis": {
+        "$value": "{color.dark.success.emphasis}",
+        "$description": "success 实底"
+      }
+    },
+    "warning": {
+      "muted": {
+        "$value": "{color.dark.warning.muted}",
+        "$description": "warning 浅色提示底"
+      },
+      "emphasis": {
+        "$value": "{color.dark.warning.emphasis}",
+        "$description": "warning 实底"
+      }
+    },
+    "info": {
+      "muted": {
+        "$value": "{color.dark.info.muted}",
+        "$description": "info 浅色提示底"
+      },
+      "emphasis": {
+        "$value": "{color.dark.info.emphasis}",
+        "$description": "info 实底"
+      }
+    },
+    "danger": {
+      "muted": {
+        "$value": "{color.dark.danger.muted}",
+        "$description": "危险浅色提示底"
+      },
+      "emphasis": {
+        "$value": "{color.dark.danger.emphasis}",
+        "$description": "危险实底"
+      }
+    }
+  },
+  "borderColor": {
+    "default": {
+      "$value": "{color.dark.neutral.300}",
+      "$description": "输入框与交互控件边框"
+    },
+    "muted": {
+      "$value": "{color.dark.neutral.200}",
+      "$description": "分割线、发丝线"
+    },
+    "emphasis": {
+      "$value": "{color.dark.neutral.900}",
+      "$description": "强结构边界"
+    },
+    "accent": {
+      "$value": "{color.dark.accent.100}",
+      "$description": "选中态边框"
+    }
+  },
+  "focus": {
+    "outlineColor": {
+      "$value": "{color.dark.accent.100}",
+      "$description": "键盘焦点环"
+    }
+  }
+}

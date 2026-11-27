@@ -1,7 +1,8 @@
 /**
  * 后端数字 errcode → Skill 稳定 error_code。
- * 优先按 errmsg 判别：搜索余额为 16、作品/评论余额为 15；搜索频控误用 1（与「处理中」同码）。
- * 禁止只按数字硬映射 14/16。
+ * 顺序：包月文案 → 余额（搜索 16 / 作品·评论 15 / 文案）→ 裸 14 作 PLAN_LIMIT → 频控 → 日限。
+ * 搜索 Create：余额官方码 16；查价失败走 Gate 的 1（可重试），不用 15。
+ * 搜索频控误用 1（与「处理中」同码），靠 RATE_RE；搜索的 2 是插入失败（可重试）。
  */
 const { ApiError } = require("./errors");
 
@@ -10,25 +11,25 @@ const BALANCE_RE = /余额可能不足|TOKEN余额|请通过www\.guaikei\.com充
 const RATE_RE = /短时间内请勿提交过多/;
 const DAY_LIMIT_RE = /今日消费已达每日上限|每日消费限额|每日上限/;
 
+const PLAN_LIMIT_FALLBACK =
+  "当前 TOKEN 套餐单次条数超限（包月：搜索/作品最多 30，评论最多 40）。请降低 --limit，或到 www.guaikei.com 升级按量套餐";
+
 /**
  * @param {number} errcode
  * @param {string} [errmsg]
+ * @param {"search"|"post"|"comment"|""} [apiKind]
  * @returns {ApiError}
  */
-function mapBackendApiError(errcode, errmsg) {
+function mapBackendApiError(errcode, errmsg, apiKind) {
   const msg = (errmsg && String(errmsg).trim()) || "";
+  const kind = apiKind || "";
 
   if (PLAN_LIMIT_RE.test(msg)) {
-    return new ApiError(
-      "PLAN_LIMIT",
-      msg ||
-        "当前 TOKEN 套餐单次条数超限（包月：搜索/作品最多 30，评论最多 40）。请降低 --limit，或到 www.guaikei.com 升级按量套餐",
-      true,
-    );
+    return new ApiError("PLAN_LIMIT", msg || PLAN_LIMIT_FALLBACK, true);
   }
 
-  // 作品/评论 15；搜索 16（靠 errmsg）；勿把搜索 16 当成其它平台的 PLAN_LIMIT
-  if (errcode === 15 || BALANCE_RE.test(msg)) {
+  // 搜索余额 16；余额文案通用（含搜索异常带 15+余额文案）
+  if (errcode === 16 || BALANCE_RE.test(msg)) {
     return new ApiError(
       "INSUFFICIENT_BALANCE",
       msg ||
@@ -37,8 +38,22 @@ function mapBackendApiError(errcode, errmsg) {
     );
   }
 
-  // 作品/评论频控为 2；搜索频控为 1 + 本正则（须先于「处理中」透传）
-  if (errcode === 2 || RATE_RE.test(msg)) {
+  // 作品/评论余额 15；搜索现行后端不用 15 表余额，裸 15 勿引导充值
+  if (errcode === 15 && kind !== "search") {
+    return new ApiError(
+      "INSUFFICIENT_BALANCE",
+      msg ||
+        "TOKEN 余额可能不足，请通过 www.guaikei.com 充值后重试",
+      true,
+    );
+  }
+
+  if (errcode === 14) {
+    return new ApiError("PLAN_LIMIT", msg || PLAN_LIMIT_FALLBACK, true);
+  }
+
+  // 作品/评论频控官方码 2；搜索频控为 1 + 文案（搜索的 2 是插入失败，勿当频控）
+  if (RATE_RE.test(msg) || (errcode === 2 && kind !== "search")) {
     return new ApiError(
       "RATE_LIMITED",
       msg || "短时间内请勿提交过多任务，请稍后重试",

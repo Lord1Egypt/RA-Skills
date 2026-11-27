@@ -18,7 +18,7 @@ from datetime import date, datetime, timedelta
 from pathlib import Path
 from urllib.parse import parse_qsl, urlparse
 
-from plan_flags import is_mainland_market, stay_sequence
+from plan_flags import is_mainland_market, is_search_url, stay_sequence
 from plan_to_calendar import build_with_summary as build_calendar
 from fetch_plan_imagery import ImagerySidecarError, resolve_plan_imagery
 from travel_workspace import find_sensitive_values
@@ -390,6 +390,22 @@ def labels_for(language: object, custom_labels: object = None) -> dict[str, str]
             "station_access": "车站与接驳：",
             "why_providers": "为什么选这些服务商：",
             "constraints_heading": "你的硬性约束",
+            "next_heading": "下单前要做的事",
+            "next_all_in": "人均全部花费 {amount}（含下方预算明细里的每一项）",
+            "next_book": "选定并预订{kind}：{n} 个选项，价格核对于 {date}",
+            "next_sale": "{name}：{when} 开售",
+            "next_reserve": "预订 {venue}（第 {day} 天，必须预约）",
+            "next_place_venue": "{name}：地图数据里查不到这家店，出发前确认它仍在营业",
+            "next_place_hotel": "{name}：地图数据里查不到这家住宿，预订前核对地址",
+            "next_place_pin": "{name}：地图按钮的位置与地名对不上，使用前核对",
+            "next_place_walk": "{name}：按真实路线步行约 {now} 分钟，计划写的是 {planned} 分钟",
+            "next_more": "完整的购买前复核清单",
+            "review_search": "在 {provider} 搜索，需要在结果里自己找到这一项",
+            "exact_stay": "在 {provider} 打开这家住宿的页面",
+            "driver_heading": "给司机看的地址",
+            "driver_note": "名称和地址按当地地图（{source}）的写法，请和预订确认邮件里的地址对一下；这一页存在手机上，离线也能打开。",
+            "kind_flights": "机票", "kind_accommodations": "住宿", "kind_ground_transport": "铁路/巴士/渡轮",
+            "kind_rental_cars": "租车",
             "constraints_severity": "过敏严重程度：",
             "constraints_dietary": "饮食限制：",
             "constraints_mobility": "行动能力：",
@@ -652,6 +668,12 @@ def labels_for(language: object, custom_labels: object = None) -> dict[str, str]
 # label set authored before they existed, silently dropping that page back to English -- so they
 # are optional, and localize_static_page falls back to the English source string when absent.
 OPTIONAL_UI_LABEL_KEYS = frozenset({
+    # The "Before you book" panel (2026-11-25), optional like every key added after custom labels.
+    "next_heading", "next_all_in", "next_book", "next_sale", "next_reserve", "next_place_venue",
+    "next_place_hotel", "next_place_pin", "next_place_walk", "next_more", "kind_flights",
+    "kind_accommodations", "kind_ground_transport", "kind_rental_cars",
+    # The taxi card (2026-11-26).
+    "driver_heading", "driver_note", "review_search", "exact_stay",
     "anchor_serves_label",
     "fig_walking_caption",
     "fig_map_caption",
@@ -1492,6 +1514,16 @@ def _apply_replacements(page: str, replacements: dict[str, str], labels: dict[st
     page = re.sub(
         r'(data-booking-purpose="(?:review-option|rental-search)"[^>]*>)Review option in ([^<]+)(</a>)',
         lambda match: f"{match.group(1)}{labels['review_option_provider'].replace('{provider}', match.group(2))}{match.group(3)}",
+        page,
+    )
+    page = re.sub(
+        r'(data-booking-purpose="review-option"[^>]*>)Search ([^<]+) and pick this option from the results(</a>)',
+        lambda match: f"{match.group(1)}{labels.get('review_search', 'Search {provider} and pick this option from the results').replace('{provider}', match.group(2))}{match.group(3)}",
+        page,
+    )
+    page = re.sub(
+        r'(data-booking-purpose="exact-option"[^>]*>)Open this exact property on ([^<]+)(</a>)',
+        lambda match: f"{match.group(1)}{labels.get('exact_stay', 'Open this exact property on {provider}').replace('{provider}', match.group(2))}{match.group(3)}",
         page,
     )
     page = re.sub(
@@ -2439,6 +2471,121 @@ def sale_moment(value: object) -> str:
     return f"{day} {clock}{zone}"
 
 
+NEXT_STEP_DEFAULTS = {
+    "next_heading": "Before you book",
+    "next_all_in": "{amount} per person, everything in the budget breakdown below included",
+    "next_book": "Choose and book {kind}: {n} option(s), prices checked {date}",
+    "next_sale": "{name}: on sale from {when}",
+    "next_reserve": "Reserve {venue} (day {day}; reservation required)",
+    "next_place_venue": "{name}: no map lists this place; confirm it is still open before you go",
+    "next_place_hotel": "{name}: no map lists this property; check its address before booking",
+    "next_place_pin": "{name}: the map button's point does not match the place; check it before use",
+    "next_place_walk": "{name}: about {now} minutes on the real walking route; the plan says {planned}",
+    "next_more": "Full recheck list",
+    "driver_heading": "Show the driver",
+    "driver_note": "Names and addresses as the local map ({source}) writes them; compare with your booking confirmation. Saved on the phone, this page opens offline.",
+    "kind_flights": "a flight", "kind_accommodations": "a place to stay",
+    "kind_ground_transport": "rail, coach or ferry", "kind_rental_cars": "a rental car",
+}
+
+
+def next_steps_panel(plan: dict, labels: dict[str, str]) -> str:
+    """What the traveller has to do before booking, first on the page.
+
+    The page used to open with the hero, the constraints and a budget card whose big number covered
+    only the capped categories -- on the Alicante plan, flights and hotel, €659 -- while food and
+    city transport sat further down in smaller type. A traveller skimming on a phone read €659 as
+    the trip. This panel puts the all-in figure and the open decisions first; everything in it is
+    read from fields the plan already carries.
+    """
+    def t(key: str, **values) -> str:
+        template = html.unescape(labels.get(key) or NEXT_STEP_DEFAULTS[key])
+        return esc(template.format(**values))
+
+    currency = str(_obj_get(plan, "trip", "currency") or "")
+    rows: list[str] = []
+    breakdown = [b for b in as_list(_obj_get(plan, "budget", "breakdown")) if isinstance(b, dict)]
+    lows = [b.get("per_person_low") for b in breakdown]
+    highs = [b.get("per_person_high", b.get("per_person_low")) for b in breakdown]
+    total = ""
+    if breakdown and all(isinstance(v, (int, float)) for v in lows + highs):
+        low, high = sum(lows), sum(highs)
+        amount = f"{currency} {low:,.0f}" + (f"–{high:,.0f}" if round(high) != round(low) else "")
+        total = f'<p class="next-total"><strong>{t("next_all_in", amount=amount)}</strong></p>'
+
+    booking = plan.get("booking_options") if isinstance(plan.get("booking_options"), dict) else {}
+    recorded = booking_rules.record_by_option(plan)
+    for kind in ("flights", "accommodations", "ground_transport", "rental_cars"):
+        options = [o for o in as_list(booking.get(kind)) if isinstance(o, dict)]
+        if not options:
+            continue
+        if any(str(_obj_get(recorded, str(o.get("id")), "state") or "") == "booked" for o in options):
+            continue
+        dates = sorted(str(o.get("price_checked_at") or o.get("checked_at") or "")[:10]
+                       for o in options if o.get("price_checked_at") or o.get("checked_at"))
+        rows.append(f"<li>{t('next_book', kind=html.unescape(labels.get('kind_' + kind) or NEXT_STEP_DEFAULTS['kind_' + kind]), n=len(options), date=dates[0] if dates else '?')}</li>")
+    for item in as_list(booking.get("attraction_tickets")):
+        sale = item.get("sale_opens_at") if isinstance(item, dict) else None
+        if isinstance(sale, dict) and sale.get("status") == "scheduled_release" and sale.get("opens_at"):
+            rows.append(f"<li>{t('next_sale', name=str(item.get('attraction_name') or ''), when=str(sale['opens_at']))}</li>")
+    for day in as_list(plan.get("days")):
+        for card in as_list(_obj_get(day, "dining")):
+            if isinstance(card, dict) and card.get("reservation_need") == "required":
+                rows.append(f"<li>{t('next_reserve', venue=str(card.get('venue_name') or ''), day=_obj_get(day, 'number') or '?')}</li>")
+    place_check = plan.get("place_check") if isinstance(plan.get("place_check"), dict) else {}
+    seen: set[str] = set()
+    for finding in as_list(place_check.get("findings")):
+        if not isinstance(finding, dict) or str(finding.get("resolution") or "").strip():
+            continue
+        name = str(finding.get("label") or finding.get("pointer") or "")
+        key = {"venue": "next_place_venue", "hotel": "next_place_hotel", "walk": "next_place_walk"}.get(
+            str(finding.get("kind")), "next_place_pin")
+        if (key, name) in seen:
+            continue
+        seen.add((key, name))
+        extra = {"now": finding.get("routed_minutes", "?"), "planned": finding.get("planned_minutes", "?")}
+        rows.append(f'<li class="warning">{t(key, name=name, **extra)}</li>')
+    if not total and not rows:
+        return ""
+    items = f"<ol>{''.join(rows)}</ol>" if rows else ""
+    return (f'<section id="next-steps" class="panel"><h2>{t("next_heading")}</h2>{total}{items}'
+            f'<p class="meta"><a href="#source-register">{t("next_more")}</a></p></section>')
+
+
+def driver_card_panel(plan: dict, labels: dict[str, str]) -> str:
+    """Each hotel's name and address in the local language, large enough to show a driver.
+
+    The plan's own `address_or_location_reference` is often a description ("1.1 km from the
+    centre") and is written in the traveller's language, which the driver may not read. These come
+    from the map match `check_places.py` recorded, so they are the map's words, not ours.
+    """
+    place_check = plan.get("place_check") if isinstance(plan.get("place_check"), dict) else {}
+    entries = [a for a in as_list(place_check.get("addresses")) if isinstance(a, dict) and a.get("address")]
+    if not entries:
+        return ""
+    def t(key: str, **values) -> str:
+        return esc(html.unescape(labels.get(key) or NEXT_STEP_DEFAULTS[key]).format(**values))
+    cards = []
+    for entry in entries:
+        local = str(entry.get("local_name") or entry.get("property_name") or "")
+        own = str(entry.get("property_name") or "")
+        cards.append(
+            f'<article class="fact driver-card" data-pointer="{attr(entry.get("pointer"))}">'
+            f'<p style="font-size:1.7rem;font-weight:800;line-height:1.2;margin:0">{esc(local)}</p>'
+            f'<p style="font-size:1.3rem;line-height:1.35;margin:8px 0 0">{esc(entry.get("address"))}</p>'
+            + (f'<p class="meta">{esc(own)}</p>' if own and own.casefold() != local.casefold() else "")
+            + "</article>")
+    sources = ", ".join(dict.fromkeys(str(e.get("source") or "OpenStreetMap") for e in entries))
+    return (f'<section id="driver-card" class="panel"><h2>{t("driver_heading")}</h2>'
+            f'<div class="grid">{"".join(cards)}</div><p class="meta">{t("driver_note", source=sources)}</p></section>')
+
+
+def _obj_get(node: object, *keys: str) -> object:
+    for key in keys:
+        node = node.get(key) if isinstance(node, dict) else None
+    return node
+
+
 def ticket_sale_row(sale: object) -> str:
     """When the tickets can be bought, and what that rests on, on the ticket's own card.
 
@@ -2624,7 +2771,18 @@ def option_card(kind: str, item: dict, record: dict | None = None) -> str:
     stay_total = ""
     if kind == "hotel":
         stay_total = f'<p class="meta"><strong>Trip total for stay: </strong>{markup(money(item.get("trip_cost_low"), item.get("trip_cost_high"), item.get("currency")))}</p>'
-    actions = [booking_link(kind, provider, checked_at, url, f"Review option in {provider_shown}", "review-option")]
+    # A results list is labelled as one: "Review option" on a name search sent a traveller to a
+    # list whose first hotel was not the one on the card.
+    review_label = (f"Search {provider_shown} and pick this option from the results" if is_search_url(url)
+                    else f"Review option in {provider_shown}")
+    actions = [booking_link(kind, provider, checked_at, url, review_label, "review-option")]
+    # The property's own page, when the plan found one: the search below may list it anywhere.
+    exact_url = item.get("exact_booking_url")
+    if exact_url and kind == "hotel":
+        exact_provider = printed(item.get("exact_booking_provider"), "Provider")
+        actions.insert(0, booking_link(kind, as_text(item.get("exact_booking_provider"), "Provider"),
+                                       item.get("price_checked_at") or checked_at, exact_url,
+                                       f"Open this exact property on {exact_provider}", "exact-option"))
     direct_url = item.get("direct_review_url")
     if direct_url and direct_url != url:
         direct_provider = as_text(item.get("direct_provider"), "Direct provider")
@@ -3698,6 +3856,8 @@ def validate_plan(plan: dict) -> list[str]:
                 errors.append(cite("booking.option_contract", f"Every compared {kind} option.comparison_checked_at must be an ISO date or date-time."))
             if item.get("direct_review_url") and not is_https(item.get("direct_review_url")):
                 errors.append(cite("booking.option_contract", f"Every direct {kind} cross-check URL must be HTTPS."))
+            if item.get("exact_booking_url") and (not is_https(item.get("exact_booking_url")) or not item.get("exact_booking_provider")):
+                errors.append(cite("booking.option_contract", f"A {kind} exact_booking_url must be HTTPS and name its exact_booking_provider."))
             if kind == "ground":
                 # Held to the flight standard on purpose. A category with looser evidence rules
                 # becomes the place authors put the thing they did not research, and this is the
@@ -4525,6 +4685,8 @@ def render_unlocalized(plan: dict) -> str:
     # A plan saved with --unverified skipped the five-domain pass. Recording that in a JSON
     # field only tells whoever opens the JSON; the person who reads the page and books from it
     # has to see it too, so the gap stays visible where the decision actually gets made.
+    next_steps = next_steps_panel(plan, labels_for(trip["language"], plan.get("ui_labels")))
+    next_steps += driver_card_panel(plan, labels_for(trip["language"], plan.get("ui_labels")))
     unverified_banner = (
         '<section id="verification-notice" class="panel"><p class="warning">'
         '<strong>Not fact-checked</strong> — No verification pass is recorded for this plan. '
@@ -4735,7 +4897,7 @@ def render_unlocalized(plan: dict) -> str:
         paid_text = " + ".join(markup(money(v, v, c)) for c, v in sorted(paid.items())) or "—"
         booking_facts = (f'<div class="fact booked-so-far"><strong>{paid_text}</strong><span>Booked so far (user-confirmed)</span></div>'
                          f'<div class="fact still-to-book"><strong>{len(all_groups - booked_groups)}</strong><span>Groups still to book</span></div>')
-    return f'''<!doctype html><html lang="{attr(trip["language"])}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(trip["title"])}</title><style>:root{{--ink:#162235;--muted:#5d6b7c;--paper:#f7f9fc;--card:#fff;--accent:#0b6e69;--soft:#e4f4f1;--line:#d9e2ec;--warn:#8a4b08;--warn-bg:#fff5df}}*{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}}main{{max-width:1120px;margin:auto;padding:32px 20px 56px}}h1{{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05}}h2{{font-size:1.35rem}}h3{{font-size:1.05rem}}h4{{margin:18px 0 0;font-size:1rem}}.hero,.panel,.day-card{{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:20px 0;box-shadow:0 8px 24px rgb(20 40 65/.05)}}.hero{{background:linear-gradient(135deg,#fff,var(--soft))}}.grid,.dining-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px}}.fact,.option,.dining-stop{{border:1px solid var(--line);border-radius:12px;padding:14px}}.fact strong{{display:block}}.eyebrow,.meta{{color:var(--muted);font-size:.92rem}}.eyebrow{{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}}.pill{{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--soft);color:#075952;font-size:.78rem;font-weight:700}}.day-top{{display:flex;justify-content:space-between;gap:16px}}.day-number{{min-width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#fff;font-weight:800}}.timeline,.segment-list,.option-details{{list-style:none;padding:0}}.timeline li{{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}}.timeline time{{color:var(--accent);font-weight:800}}.option-details li{{margin:7px 0}}.segment-list{{margin:8px 0}}.route-segment{{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}}.route-segment p{{margin:4px 0 0}}.route-map{{padding:14px;border-radius:12px;background:#f1f7f8;margin:16px 0}}.route-map svg{{display:block;width:100%;height:auto}}.route-map figcaption{{color:var(--muted);font-size:.88rem;margin-top:8px}}a{{color:#075952;font-weight:700}}.booking-link,.map-link,.dining-link,.dining-reservation-link{{display:inline-block;margin:8px 8px 0 0;padding:9px 12px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none}}.map-link{{background:var(--ink)}}.warning{{border-left:4px solid var(--warn);background:var(--warn-bg);padding:14px;border-radius:0 10px 10px 0}}@media(max-width:600px){{main{{padding:18px 12px 36px}}.hero,.panel,.day-card{{padding:18px}}.timeline li{{grid-template-columns:66px 1fr}}.route-segment{{align-items:flex-start;flex-direction:column}}}}.plan-age{{display:table;margin-top:8px;padding:3px 10px;border-radius:8px;background:var(--warn-bg);color:var(--warn);font-weight:700}}.plan-age:empty{{display:none}}.booking-badge{{display:inline-block;margin:6px 0;padding:3px 10px;border-radius:8px;background:var(--soft);color:#075952;font-weight:700}}.booking-badge[data-booking-state="chosen"]{{background:var(--warn-bg);color:var(--warn)}}.reservation-need{{font-weight:700;color:var(--accent)}}details.not-chosen{{margin:10px 0}}details.not-chosen summary{{cursor:pointer;color:var(--muted);font-weight:700}}.calendar-offer{{margin:16px 0}}.calendar-offer .meta{{display:block;margin-top:6px}}.calendar-offer .calendar-undecided,.calendar-offer .calendar-floating{{display:block;margin-top:4px}}#arrival-essentials .grid{{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}}#arrival-essentials .fact strong{{margin-bottom:6px;color:var(--accent)}}.spine{{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}}.spine-stop{{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--soft)}}.spine-stop strong{{display:block}}.spine-move{{color:var(--muted);font-size:.85rem;font-weight:700;white-space:nowrap}}.spine-move::before{{content:"→ ";color:var(--accent)}}.anchor-photo{{margin:10px 0 0}}.anchor-photo img{{width:100%;height:auto;border-radius:10px;display:block}}.photo-credit{{color:var(--muted);font-size:.72rem;margin-top:4px}}.hero-photo{{margin:20px 0}}.hero-photo img{{width:100%;max-height:340px;object-fit:cover;border-radius:16px}}@media print{{.hero-photo img{{max-height:200px}}}}{plan_visuals.VISUAL_CSS}@media print{{body{{background:#fff}}main{{max-width:none;padding:0}}.hero,.panel,.day-card{{box-shadow:none;break-inside:avoid}}.booking-link,.map-link,.dining-link,.dining-reservation-link{{color:#075952;background:transparent;padding:0;text-decoration:underline}}}}</style></head><body><main id="trip-plan" data-trip-plan><header id="trip-summary" class="hero"><p class="eyebrow">Plan status · {vocab(plan.get("plan_status"))}</p><h1>{esc(trip["title"])}</h1><p>{esc(trip["origin"])} → {esc(trip["destination"])} · {esc(trip["start_date"])} to {esc(trip["end_date"])} · {esc(trip["traveler_count"])} traveller(s)</p><p class="meta">Arrival: {vocab(trip["arrival_transport_mode"])} · Pace: {esc(trip["pace"])} · Currency: {esc(trip["currency"])} · Research last checked: {stamp(plan.get("generated_at"))}. Prices and availability require recheck before purchase. <span id="plan-age" class="plan-age" data-generated="{attr(str(plan.get("generated_at") or "")[:10])}" data-start="{attr(trip["start_date"])}" data-age-tpl="Opened N day(s) after that research." data-until-tpl="Departure is in N day(s)." data-past-tpl="This trip has already started or passed." data-stale-tpl="Prices, opening hours and entry rules drift; treat every figure here as needing a recheck."></span></p></header>{calendar_button}{stay_spine}{hero_photo}{unverified_banner}{constraints_panel}{preferences_panel}{page_nav}<section id="budget-summary" class="panel"><h2>Budget at a glance</h2><div class="grid"><div class="fact"><strong>{markup(total)}</strong><span>Comparable cost per person</span></div>{cap_fact}<div class="fact"><strong>{esc(trip["budget_basis"])}</strong><span>Included assumptions</span></div><div class="fact"><strong>{vocab(plan["transport_preference"]["mode"])}</strong><span>Ground-mobility plan</span></div>{unpriced}{booking_facts}</div>{budget_note}{budget_figure}{walking_figure}</section>{entry_panel}{essentials_panel}{budget_breakdown}{anchors}<section id="booking-panel" class="panel" data-bookings="{panel_state}">{booking_heading}{platform_note}<p class="meta">Current researched options only. Opening a link never creates a reservation.</p>{"".join(cards)}</section>{"".join(day_cards)}<section id="transport-overview" class="panel"><h2>Overall transport</h2><p>{markup(overview_headline)}</p>{"".join(f"<p>{esc(note)}</p>" for note in as_list(overview.get("notes")) if note)}<a class="map-link" data-map-scope="{attr(overview_scope)}" data-verified-at="{attr(overview["overall_map_checked_at"])}" href="{attr(overview["overall_route_map_url"])}" target="_blank" rel="noopener noreferrer">{overview_map_label}</a></section><section id="source-register" class="panel"><h2>Sources, confidence, and recheck list</h2><details open><summary>Sources used</summary><ul>{source_rows}</ul></details>{assumptions_block}<details open><summary>Recheck before purchase</summary><p>{recheck}</p></details>{gates_line}{rechecked_line}</section></main><script>/* How old is this page, computed when it is opened. The plan carries fixed
+    return f'''<!doctype html><html lang="{attr(trip["language"])}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>{esc(trip["title"])}</title><style>:root{{--ink:#162235;--muted:#5d6b7c;--paper:#f7f9fc;--card:#fff;--accent:#0b6e69;--soft:#e4f4f1;--line:#d9e2ec;--warn:#8a4b08;--warn-bg:#fff5df}}*{{box-sizing:border-box}}body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}}main{{max-width:1120px;margin:auto;padding:32px 20px 56px}}h1{{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05}}h2{{font-size:1.35rem}}h3{{font-size:1.05rem}}h4{{margin:18px 0 0;font-size:1rem}}.hero,.panel,.day-card{{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:20px 0;box-shadow:0 8px 24px rgb(20 40 65/.05)}}.hero{{background:linear-gradient(135deg,#fff,var(--soft))}}.grid,.dining-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px}}.fact,.option,.dining-stop{{border:1px solid var(--line);border-radius:12px;padding:14px}}.fact strong{{display:block}}.eyebrow,.meta{{color:var(--muted);font-size:.92rem}}.eyebrow{{color:var(--accent);font-weight:800;text-transform:uppercase;letter-spacing:.08em}}.pill{{display:inline-block;padding:3px 8px;border-radius:99px;background:var(--soft);color:#075952;font-size:.78rem;font-weight:700}}.day-top{{display:flex;justify-content:space-between;gap:16px}}.day-number{{min-width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#fff;font-weight:800}}.timeline,.segment-list,.option-details{{list-style:none;padding:0}}.timeline li{{display:grid;grid-template-columns:88px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line)}}.timeline time{{color:var(--accent);font-weight:800}}.option-details li{{margin:7px 0}}.segment-list{{margin:8px 0}}.route-segment{{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line)}}.route-segment p{{margin:4px 0 0}}.route-map{{padding:14px;border-radius:12px;background:#f1f7f8;margin:16px 0}}.route-map svg{{display:block;width:100%;height:auto}}.route-map figcaption{{color:var(--muted);font-size:.88rem;margin-top:8px}}a{{color:#075952;font-weight:700}}.booking-link,.map-link,.dining-link,.dining-reservation-link{{display:inline-block;margin:8px 8px 0 0;padding:9px 12px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none}}.map-link{{background:var(--ink)}}.warning{{border-left:4px solid var(--warn);background:var(--warn-bg);padding:14px;border-radius:0 10px 10px 0}}@media(max-width:600px){{main{{padding:18px 12px 36px}}.hero,.panel,.day-card{{padding:18px}}.timeline li{{grid-template-columns:66px 1fr}}.route-segment{{align-items:flex-start;flex-direction:column}}}}.plan-age{{display:table;margin-top:8px;padding:3px 10px;border-radius:8px;background:var(--warn-bg);color:var(--warn);font-weight:700}}.plan-age:empty{{display:none}}.booking-badge{{display:inline-block;margin:6px 0;padding:3px 10px;border-radius:8px;background:var(--soft);color:#075952;font-weight:700}}.booking-badge[data-booking-state="chosen"]{{background:var(--warn-bg);color:var(--warn)}}.reservation-need{{font-weight:700;color:var(--accent)}}details.not-chosen{{margin:10px 0}}details.not-chosen summary{{cursor:pointer;color:var(--muted);font-weight:700}}.calendar-offer{{margin:16px 0}}.calendar-offer .meta{{display:block;margin-top:6px}}.calendar-offer .calendar-undecided,.calendar-offer .calendar-floating{{display:block;margin-top:4px}}#arrival-essentials .grid{{grid-template-columns:repeat(auto-fit,minmax(330px,1fr))}}#arrival-essentials .fact strong{{margin-bottom:6px;color:var(--accent)}}.spine{{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:10px}}.spine-stop{{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--soft)}}.spine-stop strong{{display:block}}.spine-move{{color:var(--muted);font-size:.85rem;font-weight:700;white-space:nowrap}}.spine-move::before{{content:"→ ";color:var(--accent)}}.anchor-photo{{margin:10px 0 0}}.anchor-photo img{{width:100%;height:auto;border-radius:10px;display:block}}.photo-credit{{color:var(--muted);font-size:.72rem;margin-top:4px}}.hero-photo{{margin:20px 0}}.hero-photo img{{width:100%;max-height:340px;object-fit:cover;border-radius:16px}}@media print{{.hero-photo img{{max-height:200px}}}}{plan_visuals.VISUAL_CSS}@media print{{body{{background:#fff}}main{{max-width:none;padding:0}}.hero,.panel,.day-card{{box-shadow:none;break-inside:avoid}}.booking-link,.map-link,.dining-link,.dining-reservation-link{{color:#075952;background:transparent;padding:0;text-decoration:underline}}}}</style></head><body><main id="trip-plan" data-trip-plan><header id="trip-summary" class="hero"><p class="eyebrow">Plan status · {vocab(plan.get("plan_status"))}</p><h1>{esc(trip["title"])}</h1><p>{esc(trip["origin"])} → {esc(trip["destination"])} · {esc(trip["start_date"])} to {esc(trip["end_date"])} · {esc(trip["traveler_count"])} traveller(s)</p><p class="meta">Arrival: {vocab(trip["arrival_transport_mode"])} · Pace: {esc(trip["pace"])} · Currency: {esc(trip["currency"])} · Research last checked: {stamp(plan.get("generated_at"))}. Prices and availability require recheck before purchase. <span id="plan-age" class="plan-age" data-generated="{attr(str(plan.get("generated_at") or "")[:10])}" data-start="{attr(trip["start_date"])}" data-age-tpl="Opened N day(s) after that research." data-until-tpl="Departure is in N day(s)." data-past-tpl="This trip has already started or passed." data-stale-tpl="Prices, opening hours and entry rules drift; treat every figure here as needing a recheck."></span></p></header>{calendar_button}{stay_spine}{hero_photo}{unverified_banner}{next_steps}{constraints_panel}{preferences_panel}{page_nav}<section id="budget-summary" class="panel"><h2>Budget at a glance</h2><div class="grid"><div class="fact"><strong>{markup(total)}</strong><span>Comparable cost per person</span></div>{cap_fact}<div class="fact"><strong>{esc(trip["budget_basis"])}</strong><span>Included assumptions</span></div><div class="fact"><strong>{vocab(plan["transport_preference"]["mode"])}</strong><span>Ground-mobility plan</span></div>{unpriced}{booking_facts}</div>{budget_note}{budget_figure}{walking_figure}</section>{entry_panel}{essentials_panel}{budget_breakdown}{anchors}<section id="booking-panel" class="panel" data-bookings="{panel_state}">{booking_heading}{platform_note}<p class="meta">Current researched options only. Opening a link never creates a reservation.</p>{"".join(cards)}</section>{"".join(day_cards)}<section id="transport-overview" class="panel"><h2>Overall transport</h2><p>{markup(overview_headline)}</p>{"".join(f"<p>{esc(note)}</p>" for note in as_list(overview.get("notes")) if note)}<a class="map-link" data-map-scope="{attr(overview_scope)}" data-verified-at="{attr(overview["overall_map_checked_at"])}" href="{attr(overview["overall_route_map_url"])}" target="_blank" rel="noopener noreferrer">{overview_map_label}</a></section><section id="source-register" class="panel"><h2>Sources, confidence, and recheck list</h2><details open><summary>Sources used</summary><ul>{source_rows}</ul></details>{assumptions_block}<details open><summary>Recheck before purchase</summary><p>{recheck}</p></details>{gates_line}{rechecked_line}</section></main><script>/* How old is this page, computed when it is opened. The plan carries fixed
 dates; a reader four months later sees the same page as one opened the day it was made, while every
 price, opening hour and entry rule has drifted. Progressive enhancement on purpose: with scripting
 off this element stays empty and the static sentence above it is already complete, so nothing is

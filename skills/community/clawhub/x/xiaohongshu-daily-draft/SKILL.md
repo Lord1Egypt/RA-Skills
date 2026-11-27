@@ -1,7 +1,7 @@
 ---
 name: xiaohongshu-daily-draft
 description: "小红书 / 抖音赛道日报 + 照着就能发的稿：告诉它一个赛道，每天固定时间读赛道里最火的新帖、排热榜、写对比，再按你的口吻写一篇稿（标题三选一、正文、话题、封面文字，每个数字都来自笔记），发到邮箱并附可分享的链接。用户说「每天帮我看 XX 赛道」「帮我写今天的小红书稿」「订阅赛道日报」「下一篇发什么」时使用。每次约 7–12 积分，没有新帖那天不扣费；注册送 10 积分，先免费体检一次自己的账号。不碰用户账号，不替用户发。"
-version: 1.0.0
+version: 1.0.1
 homepage: https://linkdigest.dev/zh/docs?ref=skill-xiaohongshu-daily-draft
 metadata: {"openclaw":{"requires":{"anyBins":["python3"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-xiaohongshu-daily-draft&next=/app/keys 创建，注册送 10 积分"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-xiaohongshu-daily-draft"}}
 required_environment_variables:
@@ -50,7 +50,7 @@ python3 {baseDir}/scripts/watch.py delete <watch_id>
 python3 {baseDir}/scripts/watch.py draft "露营装备 推荐" --platform xiaohongshu --voice "……"
 
 # 账号体检：贴 3–5 条自己的笔记，读完、排热榜、写对比、写下一篇
-python3 {baseDir}/scripts/watch.py checkup "https://www.xiaohongshu.com/explore/…?xsec_token=…" "https://xhslink.com/…"
+python3 {baseDir}/scripts/watch.py checkup "$NOTE_1" "$NOTE_2" "$NOTE_3"   # 用户自己的笔记分享链接（App 里「分享」→「复制链接」），不要自己编
 ```
 
 `--platform xiaohongshu` 出图文稿；`--platform douyin` 搜抖音、出口播稿。`--voice` 贴一两条用户自己写过的笔记，稿就按那个口吻写。

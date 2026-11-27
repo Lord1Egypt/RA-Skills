@@ -28,12 +28,50 @@ import uuid
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request, build_opener, HTTPRedirectHandler, ProxyHandler
+from urllib.parse import urlsplit
 
 
 # Default to DuoPlus' official global production OpenAPI. Mainland production
 # deployments can override this with DUOPLUS_API_BASE or --api-base.
 DEFAULT_API_BASE = "https://openapi.duoplus.net"
+
+OFFICIAL_API_HOSTS = frozenset(("openapi.duoplus.net", "openapi.duoplus.cn"))
+OFFICIAL_GATEWAY_HOST = "agent-gateway.duoplus.net"
+
+
+def validate_destination(url, control_api=False, base_only=False):
+    """Fail closed before creating a credential-bearing request; no custom hosts."""
+    try:
+        if not isinstance(url, str) or any(c.isspace() or ord(c) < 32 for c in url) or "\\" in url:
+            raise ValueError()
+        parsed = urlsplit(url)
+        if (parsed.scheme != "https" or parsed.username is not None or parsed.password is not None
+                or parsed.port not in (None, 443) or parsed.query or parsed.fragment):
+            raise ValueError()
+        if control_api:
+            if parsed.hostname not in OFFICIAL_API_HOSTS:
+                raise ValueError()
+            if base_only and parsed.path not in ("", "/"):
+                raise ValueError()
+            if not base_only and (not parsed.path.startswith("/api/v1/")
+                                  or ".." in parsed.path or "%" in parsed.path):
+                raise ValueError()
+        elif parsed.hostname != OFFICIAL_GATEWAY_HOST or parsed.path != "/agent-command":
+            raise ValueError()
+    except (ValueError, TypeError):
+        raise DuoPlusError("Destination blocked: only documented DuoPlus production HTTPS endpoints on port 443 are supported; no credentials were sent.") from None
+
+
+def validate_configured_endpoints(api_base=None, gateway_template=None):
+    validate_destination(api_base if api_base is not None else os.environ.get("DUOPLUS_API_BASE", DEFAULT_API_BASE), True, True)
+    validate_destination(gateway_template if gateway_template is not None else os.environ.get(
+        "DUOPLUS_GATEWAY_URL_TEMPLATE", "https://agent-gateway.duoplus.net/agent-command"))
+
+
+class NoCredentialRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise DuoPlusError("HTTP redirect blocked; credentials were not forwarded to the redirect destination.")
 
 
 def load_api_key(api_key=None, api_key_file=None):
@@ -344,6 +382,7 @@ class DuoPlusClient:
         gateway_template: str,
         gateway_token: Optional[str],
     ) -> None:
+        validate_configured_endpoints(api_base, gateway_template)
         if not api_key:
             raise DuoPlusError(
                 "API key is required. Configure DUOPLUS_API_KEY through a secure host secret "
@@ -375,6 +414,7 @@ class DuoPlusClient:
         retries: int = 2,
         control_api: bool = False,
     ) -> Tuple[int, Dict[str, Any]]:
+        validate_destination(url, control_api)
         raw_payload = _json_bytes(payload)
         request_context = _request_context(url, headers, payload)
         for attempt in range(retries + 1):
@@ -382,7 +422,9 @@ class DuoPlusClient:
                 self._pace_control_api()
             request = Request(url, data=raw_payload, headers=headers, method="POST")
             try:
-                with urlopen(request, timeout=timeout or self.timeout) as response:
+                # No environment proxy or redirect may silently change the credential destination.
+                with build_opener(ProxyHandler({}), NoCredentialRedirect()).open(
+                        request, timeout=timeout or self.timeout) as response:
                     status = int(response.status)
                     body = response.read()
                 try:
@@ -911,11 +953,8 @@ def _summarize_gateway_result(
 
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
+        allow_abbrev=False,
         description="Manage and automate DuoPlus cloud phones with one API key"
-    )
-    parser.add_argument(
-        "--api-key",
-        help=argparse.SUPPRESS,
     )
     parser.add_argument("--api-key-file", help="Path to a private UTF-8 key file; never the key itself")
     parser.add_argument("--api-base", default=_env("DUOPLUS_API_BASE", DEFAULT_API_BASE))
@@ -979,7 +1018,6 @@ def _build_parser() -> argparse.ArgumentParser:
     init_proxy.add_argument("--host")
     init_proxy.add_argument("--port", type=int)
     init_proxy.add_argument("--user")
-    init_proxy.add_argument("--password")
     init_proxy.add_argument("--protocol", choices=("socks5", "http", "https"), default="socks5")
     init_proxy.add_argument("--ip-scan-channel", choices=("ip2location", "ipapi"), default="ip2location")
     init_proxy.add_argument("--name")
@@ -1026,8 +1064,9 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def _client(args: argparse.Namespace) -> DuoPlusClient:
+    validate_configured_endpoints(args.api_base, args.gateway_url_template)
     return DuoPlusClient(
-        api_key=load_api_key(args.api_key, getattr(args, "api_key_file", None)),
+        api_key=load_api_key(api_key_file=getattr(args, "api_key_file", None)),
         api_base=args.api_base,
         lang=args.lang,
         timeout=args.timeout,
@@ -1145,7 +1184,7 @@ def main() -> int:
             }
             if args.user:
                 proxy["user"] = args.user
-            password = args.password or _env("DUOPLUS_PROXY_PASSWORD")
+            password = _env("DUOPLUS_PROXY_PASSWORD")
             if password:
                 proxy["password"] = password
         image: Dict[str, Any] = {

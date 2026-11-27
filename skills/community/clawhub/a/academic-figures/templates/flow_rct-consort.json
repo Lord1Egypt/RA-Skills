@@ -1,0 +1,103 @@
+{
+ "_command": "python3 scripts/gen_figure.py -t flow -d templates/flow_rct-consort.json --gate strict -o flow_rct-consort.png",
+ "_chart_type": "flow",
+ "_scene": "",
+ "_description": "",
+ "_caption_template": "",
+ "_note": "随机对照试验参与者流程（CONSORT 范式）：资格评估→随机分组→两组平行随访→分析，各阶段排除/脱落框（document 形）以虚线挂出。n=… 为占位符，非数据。",
+ "layout": "layered",
+ "title": "CONSORT randomised controlled trial participant flow",
+ "nodes": [
+  {
+   "id": "assessed",
+   "label": "Assessed for eligibility",
+   "sublabel": "(n = )",
+   "shape": "terminal"
+  },
+  {
+   "id": "excl",
+   "label": "Excluded",
+   "sublabel": "not meeting criteria (n = )",
+   "shape": "document"
+  },
+  {
+   "id": "rand",
+   "label": "Randomised",
+   "sublabel": "(n = )"
+  },
+  {
+   "id": "armA",
+   "label": "Allocated to intervention",
+   "sublabel": "received as allocated (n = )"
+  },
+  {
+   "id": "armB",
+   "label": "Allocated to control",
+   "sublabel": "received as allocated (n = )"
+  },
+  {
+   "id": "lostA",
+   "label": "Lost to follow-up",
+   "sublabel": "(n = )",
+   "shape": "document"
+  },
+  {
+   "id": "lostB",
+   "label": "Lost to follow-up",
+   "sublabel": "(n = )",
+   "shape": "document"
+  },
+  {
+   "id": "anaA",
+   "label": "Analysed",
+   "sublabel": "intention-to-treat (n = )"
+  },
+  {
+   "id": "anaB",
+   "label": "Analysed",
+   "sublabel": "intention-to-treat (n = )"
+  }
+ ],
+ "edges": [
+  {
+   "from": "assessed",
+   "to": "excl",
+   "dashed": true
+  },
+  {
+   "from": "assessed",
+   "to": "rand",
+   "thick": true
+  },
+  {
+   "from": "rand",
+   "to": "armA",
+   "thick": true
+  },
+  {
+   "from": "rand",
+   "to": "armB",
+   "thick": true
+  },
+  {
+   "from": "armA",
+   "to": "lostA",
+   "dashed": true
+  },
+  {
+   "from": "armB",
+   "to": "lostB",
+   "dashed": true
+  },
+  {
+   "from": "armA",
+   "to": "anaA",
+   "thick": true
+  },
+  {
+   "from": "armB",
+   "to": "anaB",
+   "thick": true
+  }
+ ]
+}

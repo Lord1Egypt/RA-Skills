@@ -1,6 +1,6 @@
 ---
 name: docs-skill-builder
-description: Use when creating or refreshing a local documentation skill for another tool, SDK, API, or docs repository, with install instructions for Codex or OpenClaw.
+description: Use when creating or refreshing a local documentation skill for another tool, SDK, API, or docs repository, with install instructions for OpenClaw or Codex.
 metadata:
   short-description: Build local documentation skills
 ---
@@ -25,7 +25,7 @@ For arbitrary repositories, the only intended difference from Hindsight is a req
 
 ## Use When
 
-- The user wants external docs available locally to Codex or OpenClaw.
+- The user wants external docs available locally to OpenClaw or Codex.
 - The user wants a Hindsight-style docs skill for another tool.
 - The user wants a repeatable refresh/update model for tool documentation.
 - The user wants a source folder that generates a docs skill like `hindsight-docs`.
@@ -91,8 +91,7 @@ tool-skills/
     `--global` installs to `~/.openclaw/skills` and cannot be combined with
     `--agent`. Do not bypass an install policy warning or block. The install
     target is the generated skill directory, not the enclosing source bundle.
-11. For Codex, put the generated directory under the selected
-    `CODEX_HOME/skills/<skill-name>` or use the native Codex skill installer.
+11. For a Codex target, follow the optional [Codex installation notes](references/docs-skill-model.md#codex-installation).
 12. Verify discovery in the target runtime. A successful file copy alone is
     not discovery proof.
 13. For portable publication, confirm authority covers destination, visibility,

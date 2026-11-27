@@ -7,7 +7,7 @@
 以下收录 `assets/samples/` 中的示例图，按**图片首次加入仓库的日期倒序**排列；日期不是 PPT 的制作日期。点击缩略图查看原图，较早的设计与架构示例可展开查看。可编辑对象数仅对应各自的交付 PPTX，历史案例的验证范围见下文。
 
 <p>
-  <a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="小米集团2025年第二季度及上半年经营复盘，22页装饰商务PPT实际渲染总览" width="100%"></a><br>
+  <a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="小米集团2025年第二季度及上半年经营复盘，22页装饰商务PPT实际渲染总览" width="100%"></a><br>
   <strong>2026-10-18 · 小米经营复盘 · 22 页装饰商务实测</strong><br>
   <small>本次合入能力的开发分支实测 · 519 个原生对象，含 6 个图表、4 个表格 · 点击查看完整预览</small>
 </p>
@@ -23,19 +23,19 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 
 <table>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-image-guided-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-image-guided-4page-2col-overview.png" alt="生图设计后原生重建，四页两列总览" width="100%"></a><br><strong>2026-09-23 · 模板风格重建</strong><br><small>4 页 · 179 个可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-image-guided-4page.pptx">下载 PPTX</a></small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="原生模板组件复用，四页两列总览" width="100%"></a><br><strong>2026-09-23 · 原生组件复用</strong><br><small>4 页 · 61 个可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page.pptx">下载 PPTX</a></small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png" alt="v5.1 无生图政策解读封面" width="100%"></a><br><strong>2026-09-21 · v5.1 无生图封面</strong><br><small>6 页政策解读中的第 1 页 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-native.pptx">下载 PPTX</a></small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-image-guided-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-image-guided-4page-2col-overview.png" alt="生图设计后原生重建，四页两列总览" width="100%"></a><br><strong>2026-09-23 · 模板风格重建</strong><br><small>4 页 · 179 个可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-image-guided-4page.pptx">下载 PPTX</a></small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="原生模板组件复用，四页两列总览" width="100%"></a><br><strong>2026-09-23 · 原生组件复用</strong><br><small>4 页 · 61 个可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page.pptx">下载 PPTX</a></small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png" alt="v5.1 无生图政策解读封面" width="100%"></a><br><strong>2026-09-21 · v5.1 无生图封面</strong><br><small>6 页政策解读中的第 1 页 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-native.pptx">下载 PPTX</a></small></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-02.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-02.png" alt="v5.1 无生图政策解读三年目标页" width="100%"></a><br><strong>2026-09-21 · v5.1 目标页</strong><br><small>同一份 6 页可编辑政策 PPT</small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-06.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-06.png" alt="v5.1 无生图政策解读行动页" width="100%"></a><br><strong>2026-09-21 · v5.1 行动页</strong><br><small>同一份 6 页可编辑政策 PPT</small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-overview.png" alt="v5.0 拉美 AI 与就业研究二十页总览" width="100%"></a><br><strong>2026-09-21 · v5.0 研究解读</strong><br><small>20 页 · 447 个原生可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-native.pptx">下载 PPTX</a></small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-02.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-02.png" alt="v5.1 无生图政策解读三年目标页" width="100%"></a><br><strong>2026-09-21 · v5.1 目标页</strong><br><small>同一份 6 页可编辑政策 PPT</small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-06.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-06.png" alt="v5.1 无生图政策解读行动页" width="100%"></a><br><strong>2026-09-21 · v5.1 行动页</strong><br><small>同一份 6 页可编辑政策 PPT</small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-overview.png" alt="v5.0 拉美 AI 与就业研究二十页总览" width="100%"></a><br><strong>2026-09-21 · v5.0 研究解读</strong><br><small>20 页 · 447 个原生可编辑对象 · <a href="https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-native.pptx">下载 PPTX</a></small></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5-declarative-design-native-preview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5-declarative-design-native-preview.png" alt="v5 声明式设计原生预览" width="100%"></a><br><strong>2026-09-20 · v5 设计预览</strong><br><small>早期声明式设计示例</small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/mgi-template-v4-31-page-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/mgi-template-v4-31-page-contact-sheet.png" alt="V4 模板路线三十一页联系表" width="100%"></a><br><strong>2026-09-10 · V4 Template</strong><br><small>31 页研究报告演示</small></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png" alt="V4 Bespoke 路线二十三页联系表" width="100%"></a><br><strong>2026-09-10 · V4 Bespoke</strong><br><small>23 页独立设计演示</small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5-declarative-design-native-preview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5-declarative-design-native-preview.png" alt="v5 声明式设计原生预览" width="100%"></a><br><strong>2026-09-20 · v5 设计预览</strong><br><small>早期声明式设计示例</small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/mgi-template-v4-31-page-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/mgi-template-v4-31-page-contact-sheet.png" alt="V4 模板路线三十一页联系表" width="100%"></a><br><strong>2026-09-10 · V4 Template</strong><br><small>31 页研究报告演示</small></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png" alt="V4 Bespoke 路线二十三页联系表" width="100%"></a><br><strong>2026-09-10 · V4 Bespoke</strong><br><small>23 页独立设计演示</small></td>
   </tr>
 </table>
 
@@ -44,19 +44,19 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 
 <table>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v120-deepseek-v4-pro-state-of-ai-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v120-deepseek-v4-pro-state-of-ai-contact-sheet.png" alt="早期 State of AI 模型路径演示联系表" width="100%"></a><br><strong>2026-08-11 · State of AI 对照稿</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/model-path-comparison-grid.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/model-path-comparison-grid.png" alt="模型路径对照网格" width="100%"></a><br><strong>2026-08-11 · 模型路径对照</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/stateofai-2025-final-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/stateofai-2025-final-contact-sheet.png" alt="早期 State of AI 演示联系表" width="100%"></a><br><strong>2026-07-21 · State of AI 演示</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v120-deepseek-v4-pro-state-of-ai-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v120-deepseek-v4-pro-state-of-ai-contact-sheet.png" alt="早期 State of AI 模型路径演示联系表" width="100%"></a><br><strong>2026-08-11 · State of AI 对照稿</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/model-path-comparison-grid.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/model-path-comparison-grid.png" alt="模型路径对照网格" width="100%"></a><br><strong>2026-08-11 · 模型路径对照</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/stateofai-2025-final-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/stateofai-2025-final-contact-sheet.png" alt="早期 State of AI 演示联系表" width="100%"></a><br><strong>2026-07-21 · State of AI 演示</strong></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-core-upgrade-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-core-upgrade-contact-sheet.png" alt="AI 项目核心升级示例联系表" width="100%"></a><br><strong>2026-07-21 · AI 项目升级</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-model-routing.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-model-routing.png" alt="AI 项目模型路由示意" width="100%"></a><br><strong>2026-07-21 · 模型路由</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-agent-router.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-agent-router.png" alt="AI 项目 Agent Router 示意" width="100%"></a><br><strong>2026-07-21 · Agent Router</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-core-upgrade-contact-sheet.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-core-upgrade-contact-sheet.png" alt="AI 项目核心升级示例联系表" width="100%"></a><br><strong>2026-07-21 · AI 项目升级</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-model-routing.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-model-routing.png" alt="AI 项目模型路由示意" width="100%"></a><br><strong>2026-07-21 · 模型路由</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-agent-router.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-agent-router.png" alt="AI 项目 Agent Router 示意" width="100%"></a><br><strong>2026-07-21 · Agent Router</strong></td>
   </tr>
   <tr>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-execution-layer.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/ai-project-execution-layer.png" alt="AI 项目执行层示意" width="100%"></a><br><strong>2026-07-21 · 执行层</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/palette-upgrade-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/palette-upgrade-overview.png" alt="早期配色升级总览" width="100%"></a><br><strong>2026-07-21 · 配色升级</strong></td>
-    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/native-architecture-diagram.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/native-architecture-diagram.png" alt="原生架构示意图" width="100%"></a><br><strong>2026-07-21 · 原生架构</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-execution-layer.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/ai-project-execution-layer.png" alt="AI 项目执行层示意" width="100%"></a><br><strong>2026-07-21 · 执行层</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/palette-upgrade-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/palette-upgrade-overview.png" alt="早期配色升级总览" width="100%"></a><br><strong>2026-07-21 · 配色升级</strong></td>
+    <td width="33%" valign="top"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/native-architecture-diagram.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/native-architecture-diagram.png" alt="原生架构示意图" width="100%"></a><br><strong>2026-07-21 · 原生架构</strong></td>
   </tr>
 </table>
 
@@ -73,13 +73,13 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 | 只借鉴模板风格，可使用生图工具 | `create`：锁定内容 → 生成并核对整页设计目标 → 冻结目标 → 原生重建 → 逐页对照与编辑验收 | B 展示生图设计稿后原生重建 |
 | 已有批准的完整页面设计图，要求尽量还原 | `recreate`：登记目标图 → 以源文档核对文字和数据 → 原生重建与差异审核 | 设计目标由用户提供时适用；本组 B 的目标由生图工具产生 |
 
-**A · 原生模板组件复用。** [下载四页可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page.pptx)。使用真实原生形状、图表和工作簿克隆与数据绑定能力，完成本次四页编排。**这是组件能力与视觉效果的对照样本，不是完整 strict-template 输入合同的端到端认证。**
+**A · 原生模板组件复用。** [下载四页可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page.pptx)。使用真实原生形状、图表和工作簿克隆与数据绑定能力，完成本次四页编排。**这是组件能力与视觉效果的对照样本，不是完整 strict-template 输入合同的端到端认证。**
 
-![A：原生模板组件复用的四页 PPT 实际渲染，两列总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png)
+![A：原生模板组件复用的四页 PPT 实际渲染，两列总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png)
 
-**B · 参考模板生图设计后原生重建。** [下载四页可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-image-guided-4page.pptx)。本例先生成四张整页设计稿，其中一张因未锁定文案被修正；再把合格设计稿作为目标，用原生文字、形状和图表重建。B 通过完整声明式构建与独立逐页审核，交付门禁为 `final_delivery_ready`、0 个阻断项。设计稿与交付稿在纹理、渐变、图标和换行上仍有差异，不能视为逐像素 1:1。
+**B · 参考模板生图设计后原生重建。** [下载四页可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-image-guided-4page.pptx)。本例先生成四张整页设计稿，其中一张因未锁定文案被修正；再把合格设计稿作为目标，用原生文字、形状和图表重建。B 通过完整声明式构建与独立逐页审核，交付门禁为 `final_delivery_ready`、0 个阻断项。设计稿与交付稿在纹理、渐变、图标和换行上仍有差异，不能视为逐像素 1:1。
 
-![B：模板风格生图设计并重建的四页 PPT 实际渲染，两列总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-image-guided-4page-2col-overview.png)
+![B：模板风格生图设计并重建的四页 PPT 实际渲染，两列总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-image-guided-4page-2col-overview.png)
 
 | 最终 PPTX 中的对象 | A 原生模板组件复用 | B 生图后原生重建 |
 | --- | ---: | ---: |
@@ -95,19 +95,19 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 
 输入为用户提供的 7 页《人工智能中小企业创业支持计划（2026—2028年）》PDF。独立作者只使用新版 Skill 和源文档完成原创稿，未调用生图工具。输出包括 6 页中文内容、逐页来源和 6 页演讲者备注；90 天行动步骤明确标为作者建议。
 
-**下载同一份 [可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-native.pptx)**，或查看 [对象统计与验收摘要 JSON](../../assets/samples/v5.1-no-image-policy-evidence.json)。以下图片均直接来自该 PPTX 的真实办公软件渲染，没有重绘或美化截图。
+**下载同一份 [可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-native.pptx)**，或查看 [对象统计与验收摘要 JSON](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-evidence.json)。以下图片均直接来自该 PPTX 的真实办公软件渲染，没有重绘或美化截图。
 
 ### 封面：13 个文本对象 + 6 个原生形状
 
-![v5.1 无生图原创封面，主标题与三条政策主线均为原生对象](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png)
+![v5.1 无生图原创封面，主标题与三条政策主线均为原生对象](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png)
 
 ### 目标页：16 个文本对象 + 3 个原生形状
 
-![v5.1 三年目标页，保留“1万家以上”“突破2000家”及三个10个的原文限定](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-02.png)
+![v5.1 三年目标页，保留“1万家以上”“突破2000家”及三个10个的原文限定](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-02.png)
 
 ### 行动页：18 个文本对象 + 5 个原生形状
 
-![v5.1 原生时间轴，明确标记为作者建议而非官方申报流程](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-06.png)
+![v5.1 原生时间轴，明确标记为作者建议而非官方申报流程](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-06.png)
 
 统计直接读取交付 PPTX，每个文本框或形状计一次：
 
@@ -129,9 +129,9 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 
 输入为 67 页 *Agents, robots, and us: How AI reshapes work and skills in Latin America* 报告，输出 20 页《智能体、机器人与我们》中文研究解读，涵盖自动化潜力、经济价值、岗位与技能、国家对照和企业案例。每页均有来源与演讲者备注。这是 v5.0 阶段的真实历史成品，单独统计，不与上面的 v5.1 案例混算。
 
-流程为“源文档 → 完整页面设计图 → 多模态识读与声明式重建 → 原生 PPTX → 实际渲染与验收”。以下保留原交付的 20 页总览图；[下载原始可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-native.pptx)，[查看逐页对象数据](../../assets/samples/v5.0-latin-america-ai-zh-evidence.json)。
+流程为“源文档 → 完整页面设计图 → 多模态识读与声明式重建 → 原生 PPTX → 实际渲染与验收”。以下保留原交付的 20 页总览图；[下载原始可编辑 PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-native.pptx)，[查看逐页对象数据](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-evidence.json)。
 
-![v5.0 智能体、机器人与我们：20 页中文可编辑 PPT 实际渲染总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-overview.png)
+![v5.0 智能体、机器人与我们：20 页中文可编辑 PPT 实际渲染总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-overview.png)
 
 | 对象类别 | 数量 | 可编辑范围 |
 | --- | ---: | --- |
@@ -185,13 +185,13 @@ PPT 含 370 个文本、139 个形状/路径、6 个原生图表、4 个原生�
 
 **Template：31 页研究报告演示。** 基于源报告和原生模板组件完成编排，29 个正文页具备演讲者备注。
 
-![V4 Template 31 页实际渲染联系表](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/mgi-template-v4-31-page-contact-sheet.png)
+![V4 Template 31 页实际渲染联系表](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/mgi-template-v4-31-page-contact-sheet.png)
 
 **Bespoke：23 页独立设计演示。** 从空白页面制作，含 12 个原生图表和 23 页备注。两份样例使用不同报告，不作为同源质量比较，也不表示与源报告出版方或模板品牌存在合作、授权或背书关系。
 
-![V4 Bespoke 23 页实际渲染联系表](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png)
+![V4 Bespoke 23 页实际渲染联系表](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png)
 
-更多历史资源见 [样例目录](../../assets/samples/)。
+更多历史资源见 [样例目录](https://github.com/SkillMelody/PPT-Smith/tree/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples)。
 
 </details>
 

@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-26",
+  "sources": [
+    {
+      "repository": "https://github.com/n8n-io/skills",
+      "commit": "27b6b9f429ac0be90cae764512dbc579d7107e95",
+      "license": "Apache-2.0",
+      "use": "Independent Chinese synthesis of engineering concepts; no upstream hooks or full skill modules redistributed"
+    },
+    {
+      "repository": "https://github.com/czlonkowski/n8n-skills",
+      "commit": "e037563e101749e630e6688d121d04529fe6ee7b",
+      "license": "MIT",
+      "use": "Independent Chinese synthesis of engineering concepts; no upstream hooks or full skill modules redistributed"
+    }
+  ],
+  "project_experience": "generic failure patterns only; no business exports or company policies",
+  "independent_maintenance": true
+}

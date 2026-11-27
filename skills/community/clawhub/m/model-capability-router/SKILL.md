@@ -11,7 +11,7 @@ Ask "Which model should I use for this task?" to get a model, a thinking level, 
 
 1. Install it with `openclaw skills install @theangrypit/model-capability-router`.
 2. In chat, ask "Use Model Capability Router to pick a model for this review." Add "GPT only" to restrict the choice to GPT.
-3. Use `/model list` to see the model IDs available in that chat. To apply a recommendation to the current session, use `/model <provider/model>`. Use `/think` to see the thinking levels available for your model.
+3. Use `/model list` to see the model IDs available in that chat. To apply a recommendation to the current session, use `/model <provider/model> -s`. Use `/think` to see the thinking levels available for your model.
 
 ## Make a recommendation
 

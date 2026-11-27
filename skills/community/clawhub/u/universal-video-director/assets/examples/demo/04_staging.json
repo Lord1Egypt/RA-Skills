@@ -1,0 +1,38 @@
+{
+  "schema": "uvd/staging",
+  "version": "2",
+  "stage": "staging",
+  "project_id": "demo",
+  "scenes": [
+    {
+      "scene_id": "street",
+      "positions": [
+        {
+          "character_id": "jie",
+          "anchor": "电动车",
+          "side": "left",
+          "posture": "stand",
+          "facing": "手机"
+        }
+      ],
+      "blocking_sentence": "阿杰站在电动车左侧，低头看向积水"
+    },
+    {
+      "scene_id": "room",
+      "positions": [
+        {
+          "character_id": "jie",
+          "anchor": "床沿",
+          "side": "center",
+          "posture": "sit",
+          "facing": "手机屏幕"
+        }
+      ],
+      "blocking_sentence": "阿杰坐在床沿正中，盯着手机"
+    }
+  ],
+  "upstream": {
+    "02_story.json": "97e874c01ab5",
+    "03_assets.json": "333faf2a53e0"
+  }
+}

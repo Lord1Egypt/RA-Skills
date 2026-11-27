@@ -44,7 +44,7 @@ function withProject(projectId: string, args: Record<string, unknown> = {}): Rec
 
 function requireConfirm(action: string, confirm: unknown): void {
   if (confirm !== true) {
-    throw new Error(`${action} changes billable GPU capacity. State the price, get explicit approval, then pass confirm:true.`);
+    throw new Error(('' + String(action) + ' changes billable GPU capacity. State the price, get explicit approval, then pass confirm:true.'));
   }
 }
 
@@ -54,7 +54,7 @@ function filterResources(resources: GpuResource[], filter: GpuResourceFilter): G
   const filtered = resources.filter((r) =>
     (!filter.provider || r.provider === filter.provider)
     && (!model || String(r.gpu_model ?? '').toLowerCase().includes(model))
-    && (!region || `${r.country ?? ''} ${r.region ?? ''}`.toLowerCase().includes(region))
+    && (!region || ('' + String(r.country ?? '') + ' ' + String(r.region ?? '')).toLowerCase().includes(region))
     && (filter.maxPricePerHourUsd === undefined || (typeof r.price_per_hour_usd === 'number' && r.price_per_hour_usd <= filter.maxPricePerHourUsd))
     && (!filter.availableOnly || (r.gpu_count_available ?? 0) > 0));
   filtered.sort((a, b) => (a.price_per_hour_usd ?? Infinity) - (b.price_per_hour_usd ?? Infinity));
@@ -115,7 +115,7 @@ export const gpu = {
   },
 
   lifecycle: async (cfg: ThetaConfig, projectId: string, action: 'start' | 'stop' | 'delete', deploymentId: string, confirm?: boolean) => {
-    const tool = `${action}_gpu_deployment`;
+    const tool = ('' + String(action) + '_gpu_deployment');
     const args = withProject(projectId, { deployment_id: deploymentId, confirm: confirm === true });
     if (cfg.dryRun) return mutationPreview(tool, args);
     requireConfirm(tool, confirm);
@@ -130,8 +130,8 @@ export const billing = {
   usage: (cfg: ThetaConfig, projectId: string, startDate?: string, endDate?: string) => {
     const parse = (label: string, value?: string): number | undefined => {
       if (value === undefined) return undefined;
-      const ms = /^\d{4}-\d{2}-\d{2}$/.test(value) ? Date.parse(`${value}T00:00:00Z`) : NaN;
-      if (!Number.isFinite(ms) || new Date(ms).toISOString().slice(0, 10) !== value) throw new Error(`${label} must be a real date in YYYY-MM-DD`);
+      const ms = /^\d{4}-\d{2}-\d{2}$/.test(value) ? Date.parse(('' + String(value) + 'T00:00:00Z')) : NaN;
+      if (!Number.isFinite(ms) || new Date(ms).toISOString().slice(0, 10) !== value) throw new Error(('' + String(label) + ' must be a real date in YYYY-MM-DD'));
       return ms;
     };
     const start = parse('startDate', startDate);

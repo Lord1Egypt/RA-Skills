@@ -26,7 +26,7 @@ The counterpart to `review`. While `review` finds issues in code, `review-intake
 | Mode | When | Workflow |
 |------|------|----------|
 | **PR Review Mode** (default) | Input is PR comments / code review feedback / external suggestions | Phases 1-6 below — absorb, comprehend, verify, evaluate, respond, implement |
-| **Issue Triage Mode** | Input is issue tracker item (`gh-42`, URL, pasted issue body), or user says "triage" / "process the inbox" | See `references/issue-triage.md` — state machine (needs-triage → ready-for-agent / ready-for-human / needs-info / wontfix) + repro-first for bugs + AGENT-BRIEF emission |
+| **Issue Triage Mode** | Input is issue tracker item (`gh-42`, URL, pasted issue body), or user says "triage" / "process the inbox" | See `rune-review-intake/references/issue-triage.md` — state machine (needs-triage → ready-for-agent / ready-for-human / needs-info / wontfix) + repro-first for bugs + AGENT-BRIEF emission |
 
 Both modes share Phase 4.5 (Rejection KB Write) — `wontfix-enhancement` from Issue Triage and OUT OF SCOPE from PR Review both write `.out-of-scope/<slug>.md`.
 
@@ -54,8 +54,8 @@ Both modes share Phase 4.5 (Rejection KB Write) — `wontfix-enhancement` from I
 
 ## Workflow (PR Review Mode)
 
-For Issue Triage Mode, see [references/issue-triage.md](references/issue-triage.md). Both modes converge at Phase 4.5 for rejection KB writes.
-<MUST-READ path="references/issue-triage.md" trigger="when input is an issue tracker item, batch inbox sweep, or user explicitly says 'triage' / 'process the inbox'"/>
+For Issue Triage Mode, see [rune-review-intake/references/issue-triage.md](rune-review-intake/references/issue-triage.md). Both modes converge at Phase 4.5 for rejection KB writes.
+<MUST-READ path="rune-review-intake/references/issue-triage.md" trigger="when input is an issue tracker item, batch inbox sweep, or user explicitly says 'triage' / 'process the inbox'"/>
 
 ### Phase 1 — ABSORB
 
@@ -170,7 +170,7 @@ A rejection without a written record is a rejection that didn't happen.
 
 1. Generate `slug` from the rejected concept (kebab-case, lowercase, max 40 chars, recognizable without opening the file).
 2. Lexical-similarity check: glob `.out-of-scope/*.md`, parse each frontmatter's `concept` + `aliases`, compute overlap with the new slug's tokens. If any existing concept has ≥0.7 overlap → APPEND to that file's `prior_requests` list instead of creating a new one.
-3. If new file: write the format from [`ba/references/out-of-scope-format.md`](../ba/references/out-of-scope-format.md) — YAML frontmatter (concept / aliases / decision: rejected / rejected_at / rejected_by: review-intake / prior_requests / revisit_if) + Markdown body (concept name, "Why out of scope" reasoning, "What would change our mind" signals).
+3. If new file: write the format from [`ba/references/out-of-scope-format.md`](rune-ba/references/out-of-scope-format.md) — YAML frontmatter (concept / aliases / decision: rejected / rejected_at / rejected_by: review-intake / prior_requests / revisit_if) + Markdown body (concept name, "Why out of scope" reasoning, "What would change our mind" signals).
 4. The reasoning MUST be substantive — not "we don't want this" but *why*. Reference project scope, technical constraints, or strategic decisions. Reject deferrals ("we're busy") — those don't belong here.
 
 Only **enhancement** rejections produce `.out-of-scope/` entries. Bug rejections (won't fix because already fixed / not reproducible / not a bug) get a comment on the issue, not a KB file.
@@ -295,7 +295,7 @@ How to push back:
 **Scope guardrail:** review-intake processes the feedback items provided — it does not pull new reviews, open PRs, or change architectural decisions without owner confirmation.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

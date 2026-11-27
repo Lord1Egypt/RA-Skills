@@ -1,0 +1,10 @@
+{
+  "slug": "leadsail-radar",
+  "name": "LeadSail Radar",
+  "version": "1.0.0",
+  "tags": ["latest"],
+  "description": "Find verified buyer contacts for a software product at the moment makers complain about a competitor. Scans Product Hunt launches, extracts makers, verifies emails.",
+  "source": "https://github.com/LeadSail/leadsail-io/tree/main/skills/radar",
+  "homepage": "https://www.leadsail.io/app/radar",
+  "changelog": "Initial release: radar_scan MCP-first call contract, REST fallback, output contract, evidence guardrails."
+}

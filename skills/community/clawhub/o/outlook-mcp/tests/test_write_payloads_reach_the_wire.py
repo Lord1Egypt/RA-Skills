@@ -59,12 +59,13 @@ from outlook_mcp.tools import (
     todo,
     todo_attachments,
 )
+from tests.test_calendar_write import reads_no_times
 
 _CFG = Config(client_id="test")
 
 
-def wire(model) -> str:
-    """The JSON the Graph request adapter would actually send for this model.
+def adapter_json(model) -> str:
+    """What the Graph request adapter's writer produces for this model, unchecked.
 
     Deliberately not a bare ``JsonSerializationWriter``. ``BaseGraphServiceClient``
     routes the adapter's writer factory through
@@ -72,6 +73,9 @@ def wire(model) -> str:
     always serializes through the backing-store proxy — and only that path emits
     a field that was explicitly assigned ``None``. The bare writer drops those,
     which is the whole difference between this guard seeing a leak and not.
+
+    Tests call ``wire()``. This is the kiota half of it, for the tests that pin
+    what kiota itself does with a field assigned ``None``.
 
     **Destructive: build a fresh model for every call.** Serializing marks the
     entire object graph clean — the proxy's ``on_after`` sets
@@ -82,21 +86,42 @@ def wire(model) -> str:
     factory = BackingStoreSerializationWriterProxyFactory(JsonSerializationWriterFactory())
     writer = factory.get_serialization_writer("application/json")
     writer.write_object_value(None, model)
-    try:
-        return writer.get_serialized_content().decode()
-    except ValueError as exc:
-        if "Invalid Json output" not in str(exc):
-            raise
-        # kiota writes a top-level null beside the object body rather than
-        # inside it, and then refuses to serialize the mixed document at all.
-        # Reported as an assertion because it is a bug in the caller, not here.
+    return writer.get_serialized_content().decode()
+
+
+def wire(model) -> str:
+    """The JSON the Graph request adapter would actually send for this model.
+
+    A top-level field explicitly assigned ``None`` is refused here, before
+    serializing, because what kiota does with it depends on the version
+    installed (#233). kiota-serialization-json before 1.15 writes the null
+    beside the object body and then refuses the whole document
+    (``ValueError("Invalid Json output")``), so the request never leaves the
+    process. 1.15 and later write it inside the body under the **Python**
+    attribute name: ``"mobile_phone": null``, a key Graph does not have, or for
+    a one-word field such as ``location``, a null that clears it. Both are bugs
+    in the caller, and this guard has to catch them under whichever kiota a
+    lock or a fresh install resolved. Checking the backing store does that, and
+    keeps catching it when ``assert_on_wire`` is told to allow a null.
+
+    A field assigned ``None`` on a *nested* model is left to the serializer:
+    every kiota emits it under its Python name, only in a different place, and
+    ``assert_on_wire``'s Python-name and null checks report it.
+
+    **Destructive** — see ``adapter_json``.
+    """
+    store = getattr(model, "backing_store", None)
+    assigned_none = sorted(store.enumerate_keys_for_values_changed_to_null()) if store else []
+    if assigned_none:
         raise AssertionError(
-            "A top-level field was explicitly assigned None, so this payload "
-            "cannot be serialized and the request would fail before leaving the "
-            "process. Leave the field unset instead — or, if Graph genuinely "
-            "needs an explicit null, send it through additional_data (see "
-            "calendar_write.update_event's remove_recurrence)."
-        ) from exc
+            f"A top-level field was explicitly assigned None: {assigned_none}. kiota "
+            "before 1.15 cannot serialize this payload, so the request would fail "
+            "before leaving the process; 1.15 and later send each one as a null "
+            "under its Python attribute name. Leave the field unset instead — or, "
+            "if Graph genuinely needs an explicit null, send it through "
+            "additional_data (see calendar_write.update_event's remove_recurrence)."
+        )
+    return adapter_json(model)
 
 
 def _walk_keys(body: str):
@@ -119,7 +144,8 @@ def assert_on_wire(model, *needles: str, allow_null: bool = False) -> None:
 
     ``allow_null`` opts out of the null check for the one shape that wants an
     explicit null on the wire — ``remove_recurrence``, which sends it through
-    ``additional_data`` on purpose.
+    ``additional_data`` on purpose. It never excuses a top-level field assigned
+    ``None``: ``wire()`` refuses that first, whichever kiota is installed.
     """
     body = wire(model)
 
@@ -198,6 +224,7 @@ class TestCalendarWrite:
         """The key lives in a hidden extended property, under Graph's camelCase name."""
         client = AsyncMock()
         client.me.events.post = AsyncMock(return_value=MagicMock(id="E1", subject="s"))
+        reads_no_times(client.me.events)
         await calendar_write.create_event(
             client,
             subject="s",
@@ -300,6 +327,84 @@ class TestCalendarWrite:
             '"dateTime": "2026-11-11T19:30:00"',
             '"timeZone": "America/Chicago"',
         )
+
+    async def test_a_typed_instant_reaches_the_wire_as_local_time(self):
+        """A ``Z`` start goes out as the same moment in the anchor zone (#236).
+
+        Sent with its ``Z``, Graph anchors a single event in UTC whatever
+        ``timeZone`` says. Each needle carries its closing quote, so a trailing
+        ``Z`` or offset fails it.
+        """
+        client = MagicMock()
+        client.me.events.post = AsyncMock(return_value=MagicMock(id="E1", subject="s"))
+        reads_no_times(client.me.events)
+        await calendar_write.create_event(
+            client,
+            subject="s",
+            start="2026-12-13T02:00:00Z",
+            end="2026-12-13T03:00:00-00:00",
+            timezone="America/Los_Angeles",
+            config=_CFG,
+        )
+        assert_on_wire(
+            client.me.events.post.call_args[0][0],
+            '"dateTime": "2026-12-12T18:00:00"',
+            '"dateTime": "2026-12-12T19:00:00"',
+            '"timeZone": "America/Los_Angeles"',
+        )
+
+        builder = MagicMock()
+        builder.patch = AsyncMock(return_value=MagicMock(id="E1"))
+        current = MagicMock(type=MagicMock(value="singleInstance"))
+        current.start = MagicMock(date_time="2026-12-13T02:00:00.0000000", time_zone="UTC")
+        current.original_start_time_zone = "America/Chicago"
+        current.original_end_time_zone = "America/Chicago"
+        current.is_all_day = False
+        builder.get = AsyncMock(return_value=current)
+        client = MagicMock()
+        client.me.events.by_event_id = MagicMock(return_value=builder)
+        await calendar_write.update_event(
+            client,
+            event_id="AAMkAG123=",
+            start="2026-12-13T03:00:00Z",
+            end="2026-12-13T04:00:00Z",
+            config=_CFG,
+        )
+        assert_on_wire(
+            builder.patch.call_args[0][0],
+            '"dateTime": "2026-12-12T21:00:00"',
+            '"dateTime": "2026-12-12T22:00:00"',
+            '"timeZone": "America/Chicago"',
+        )
+
+    async def test_a_windows_zoned_event_gets_local_time_and_its_own_zone_name(self):
+        """A `Z` time on an event Graph names "Pacific Standard Time" (#262).
+
+        Converted through the Windows table, and sent beside the name Graph gave,
+        not the IANA one the conversion used.
+        """
+        builder = MagicMock()
+        builder.patch = AsyncMock(return_value=MagicMock(id="E1"))
+        current = MagicMock(type=MagicMock(value="singleInstance"))
+        current.start = MagicMock(date_time="2026-12-13T02:00:00.0000000", time_zone="UTC")
+        current.original_start_time_zone = "Pacific Standard Time"
+        current.original_end_time_zone = "Pacific Standard Time"
+        current.is_all_day = False
+        builder.get = AsyncMock(return_value=current)
+        client = MagicMock()
+        client.me.events.by_event_id = MagicMock(return_value=builder)
+        await calendar_write.update_event(
+            client,
+            event_id="AAMkAG123=",
+            start="2026-12-13T02:00:00Z",
+            end="2026-12-13T03:00:00Z",
+            config=_CFG,
+        )
+        body = wire(builder.patch.call_args[0][0])
+        assert '"dateTime": "2026-12-12T18:00:00"' in body
+        assert '"dateTime": "2026-12-12T19:00:00"' in body
+        assert '"timeZone": "Pacific Standard Time"' in body
+        assert "America/Los_Angeles" not in body
 
     async def test_update_event_every_argument_reaches_the_wire(self):
         builder = MagicMock()
@@ -522,6 +627,183 @@ class TestCalendarWrite:
             '"firstDayOfWeek": "saturday"',
             '"startDate": "2026-11-04"',
             '"timeZone": "America/Los_Angeles"',
+        )
+
+    async def test_a_series_moved_to_another_day_puts_its_moved_days_on_the_wire(self):
+        """#98: a same-zone date move with no `recurrence` still sends the series' own.
+
+        Without it Graph answers `updated` and leaves every occurrence on the
+        old day. Monday 09:00 New York moved to Tuesday has to go out as a
+        Tuesday series starting that Tuesday, in the event's own zone.
+        """
+        from outlook_mcp.tools._recurrence import build_event_recurrence
+
+        builder = MagicMock()
+        builder.patch = AsyncMock(return_value=MagicMock(id="E1"))
+        current = MagicMock(type=MagicMock(value="seriesMaster"))
+        current.start = MagicMock(date_time="2026-11-02T14:00:00.0000000", time_zone="UTC")
+        current.original_start_time_zone = "America/New_York"
+        current.original_end_time_zone = "America/New_York"
+        current.is_all_day = False
+        current.additional_data = {"@odata.etag": 'W/"key"'}
+        current.cancelled_occurrences = []
+        current.exception_occurrences = []
+        current.recurrence = build_event_recurrence(
+            {
+                "pattern": {"type": "weekly", "interval": 1, "daysOfWeek": ["monday"]},
+                "range": {"type": "numbered", "numberOfOccurrences": 3},
+            },
+            start="2026-11-02T09:00:00",
+            zone="America/New_York",
+        )
+        builder.get = AsyncMock(return_value=current)
+        client = MagicMock()
+        client.me.events.by_event_id = MagicMock(return_value=builder)
+
+        await calendar_write.update_event(
+            client,
+            event_id="AAMkAG123=",
+            start="2026-11-03T09:00:00",
+            end="2026-11-03T09:30:00",
+            config=_CFG,
+        )
+
+        assert_on_wire(
+            builder.patch.call_args[0][0],
+            '"daysOfWeek": ["tuesday"]',
+            '"startDate": "2026-11-03"',
+            '"numberOfOccurrences": 3',
+            '"dateTime": "2026-11-03T09:00:00"',
+            '"timeZone": "America/New_York"',
+        )
+
+    async def test_weekdays_started_on_a_wednesday_go_out_as_weekdays(self):
+        """#98 review: the days are kept, the range moves, and so does its `endDate`.
+
+        Two weeks of weekdays to Friday 2026-11-13, started two days later, go
+        out as weekdays from Wednesday the 4th to Sunday the 15th. The stored
+        range carries `recurrenceTimeZone`; it must not reach the wire.
+        """
+        from outlook_mcp.tools._recurrence import build_event_recurrence
+
+        weekdays = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+        builder = MagicMock()
+        builder.patch = AsyncMock(return_value=MagicMock(id="E1"))
+        current = MagicMock(type=MagicMock(value="seriesMaster"))
+        current.start = MagicMock(date_time="2026-11-02T14:00:00.0000000", time_zone="UTC")
+        current.original_start_time_zone = "America/New_York"
+        current.original_end_time_zone = "America/New_York"
+        current.is_all_day = False
+        current.additional_data = {"@odata.etag": 'W/"key"'}
+        current.cancelled_occurrences = []
+        current.exception_occurrences = []
+        current.recurrence = build_event_recurrence(
+            {
+                "pattern": {"type": "weekly", "interval": 1, "daysOfWeek": weekdays},
+                "range": {
+                    "type": "endDate",
+                    "endDate": "2026-11-13",
+                    "recurrenceTimeZone": "Eastern Standard Time",
+                },
+            },
+            start="2026-11-02T09:00:00",
+            zone="America/New_York",
+        )
+        builder.get = AsyncMock(return_value=current)
+        client = MagicMock()
+        client.me.events.by_event_id = MagicMock(return_value=builder)
+
+        await calendar_write.update_event(
+            client,
+            event_id="AAMkAG123=",
+            start="2026-11-04T09:00:00",
+            end="2026-11-04T09:30:00",
+            config=_CFG,
+        )
+
+        body = wire(builder.patch.call_args[0][0])
+        assert '"daysOfWeek": ["monday", "tuesday", "wednesday", "thursday", "friday"]' in body
+        assert '"startDate": "2026-11-04"' in body
+        assert '"endDate": "2026-11-15"' in body
+        assert "recurrenceTimeZone" not in body
+        # `assert_on_wire`'s other half, on the same single serialization.
+        pairs = _walk_keys(body)
+        assert not [k for k, v in pairs if v is None or ("_" in k and not k.startswith("@"))]
+
+    @pytest.mark.parametrize(
+        ("days", "given", "start", "sent"),
+        [
+            # The ordinary read-modify-write: the shorthand handed back, started Wednesday.
+            (
+                ["monday", "tuesday", "wednesday", "thursday", "friday"],
+                "weekdays",
+                "2026-11-04",
+                '"daysOfWeek": ["monday", "tuesday", "wednesday", "thursday", "friday"]',
+            ),
+            # The refusal's remedy for a day the pattern skips: the same days, from Tuesday.
+            (
+                ["monday", "thursday"],
+                {
+                    "pattern": {
+                        "type": "weekly",
+                        "interval": 1,
+                        "daysOfWeek": ["monday", "thursday"],
+                    },
+                    "range": {"type": "numbered", "numberOfOccurrences": 3},
+                },
+                "2026-11-03",
+                '"daysOfWeek": ["monday", "thursday"]',
+            ),
+        ],
+        ids=["weekdays-to-wednesday", "mon-thu-to-tuesday"],
+    )
+    async def test_several_days_passed_with_a_move_go_out_as_written(
+        self, days, given, start, sent
+    ):
+        """#98 re-review S1: days the caller wrote are never shifted.
+
+        Equal to the stored pattern, they used to be moved with the start: weekdays
+        went out Wednesday to Sunday, Monday and Thursday as Tuesday and Friday.
+        Now exactly those days go out, the range starting on the new start.
+        """
+        from outlook_mcp.tools._recurrence import build_event_recurrence
+
+        builder = MagicMock()
+        builder.patch = AsyncMock(return_value=MagicMock(id="E1"))
+        current = MagicMock(type=MagicMock(value="seriesMaster"))
+        current.start = MagicMock(date_time="2026-11-02T14:00:00.0000000", time_zone="UTC")
+        current.original_start_time_zone = "America/New_York"
+        current.original_end_time_zone = "America/New_York"
+        current.is_all_day = False
+        current.additional_data = {"@odata.etag": 'W/"key"'}
+        current.cancelled_occurrences = []
+        current.exception_occurrences = []
+        current.recurrence = build_event_recurrence(
+            {
+                "pattern": {"type": "weekly", "interval": 1, "daysOfWeek": days},
+                "range": {"type": "numbered", "numberOfOccurrences": 3},
+            },
+            start="2026-11-02T09:00:00",
+            zone="America/New_York",
+        )
+        builder.get = AsyncMock(return_value=current)
+        client = MagicMock()
+        client.me.events.by_event_id = MagicMock(return_value=builder)
+
+        await calendar_write.update_event(
+            client,
+            event_id="AAMkAG123=",
+            start=f"{start}T09:00:00",
+            end=f"{start}T09:30:00",
+            recurrence=given,
+            config=_CFG,
+        )
+
+        assert_on_wire(
+            builder.patch.call_args[0][0],
+            sent,
+            f'"startDate": "{start}"',
+            '"timeZone": "America/New_York"',
         )
 
     async def test_update_event_remove_recurrence_is_an_explicit_null(self):
@@ -1578,16 +1860,17 @@ def test_wire_helper_detects_a_dropped_field():
         assert_on_wire(Event(subject="kept"), '"location"')
 
 
-def test_a_nested_none_is_emitted_onto_the_parent_under_its_python_name():
+def test_a_nested_none_is_emitted_under_its_python_name():
     """The mechanism this file was blind to until #63.
 
-    A field assigned ``None`` on a *nested* model does not vanish and does not
-    stay nested — the backing store emits it on the **parent**, keyed by the
-    Python attribute name. ``country_or_region`` is not a Graph property, so
-    Graph answered 400; had the name been single-word it would have matched a
-    real property and Graph would have cleared it instead.
+    A field assigned ``None`` on a *nested* model does not vanish — the backing
+    store emits it keyed by the Python attribute name. kiota-serialization-json
+    before 1.15 puts it on the **parent**; 1.15 and later keep it inside the
+    nested object (#233). Either way ``country_or_region`` is not a Graph
+    property, so Graph answered 400; had the name been single-word it would
+    have matched a real property and Graph would have cleared it instead.
 
-    If kiota ever stops doing this, this test fails and the adapter-fidelity
+    If kiota ever stops emitting it, this test fails and the adapter-fidelity
     serializer in ``wire()`` can go back to being a bare writer.
     """
     from msgraph.generated.models.contact import Contact
@@ -1609,23 +1892,52 @@ def test_a_nested_none_is_emitted_onto_the_parent_under_its_python_name():
 
 
 def test_a_top_level_none_is_reported_as_an_assertion_not_a_kiota_error():
-    """``event.recurrence = None`` cannot be serialized at all.
+    """A top-level field assigned ``None`` fails the guard on every kiota (#233).
 
-    kiota writes the null beside the object body rather than inside it, then
-    refuses the mixed document with ``ValueError("Invalid Json output")``. That
-    is why ``update_event(remove_recurrence=True)`` routes the null through
-    ``additional_data`` — the plain assignment does not produce a null, it
-    produces an unsendable request. The bare writer showed neither, which is
-    how the workaround's comment came to describe the wrong mechanism.
+    What kiota does with it changed in kiota-serialization-json 1.15: before,
+    the adapter refuses the document (``ValueError("Invalid Json output")``);
+    from 1.15 it sends the null under the Python attribute name. The lock and a
+    fresh install can resolve either side, so ``wire()`` reports it from the
+    backing store, the same way on both, before kiota sees it. One-word and
+    multi-word names are both covered: only the multi-word one would also trip
+    ``assert_on_wire``'s Python-name check.
     """
+    from msgraph.generated.models.contact import Contact
     from msgraph.generated.models.event import Event
 
     event = Event()
     event.subject = "kept"
     event.recurrence = None
 
-    with pytest.raises(AssertionError, match="top-level field"):
+    with pytest.raises(AssertionError, match=r"top-level field .*\['recurrence'\]"):
         wire(event)
+
+    contact = Contact()
+    contact.given_name = "kept"
+    contact.mobile_phone = None
+
+    with pytest.raises(AssertionError, match=r"top-level field .*\['mobile_phone'\]"):
+        wire(contact)
+
+
+def test_allowing_a_null_does_not_excuse_a_field_assigned_none():
+    """``allow_null`` is for a null sent on purpose, not for one assigned by mistake.
+
+    ``update_event(remove_recurrence=True)`` puts ``"recurrence": null`` in
+    ``additional_data`` and asserts with ``allow_null=True``. Under kiota 1.15+
+    a stray ``event.location = None`` beside it would serialize as
+    ``"location": null`` (one word, so no Python-name leak) and clear the
+    event's location. Under older kiota the guard caught it only because
+    serializing failed. ``wire()`` catches it on both.
+    """
+    from msgraph.generated.models.event import Event
+
+    event = Event()
+    event.additional_data = {"recurrence": None}
+    event.location = None
+
+    with pytest.raises(AssertionError, match=r"top-level field .*\['location'\]"):
+        assert_on_wire(event, '"recurrence": null', allow_null=True)
 
 
 def test_serializing_twice_would_report_a_clean_payload():

@@ -1,0 +1,29 @@
+# color-system-design
+
+> 给 1 个主视觉 Hex 色号，自动生成明暗双模式 UI 颜色矩阵、人类可读 HTML 预览报告及 CSS/Tailwind 约束工具的开源 Agent Skill + CLI。Node ≥ 18，MIT。
+
+## 是什么
+- 类型：Agent Skill（SKILL.md）+ 命令行工具（`scripts/generate-color-system.mjs`）
+- 入口：`npx skills add shxuk/color-system-design` 或 `npx @shxuk/color-system-design --seed "#007275"`
+- 约束检查：`pnpm tokens:check`（支持 `--scan ./src` 扫描代码硬编码 Hex）
+
+## 何时使用
+- 用户要为网站、App 或 Vibe Coding 项目生成一套稳定的明暗模式配色方案
+- 用户给出 1 个主视觉 Hex 色号，要求输出 CSS 变量、Tailwind v3/v4 配置或 HTML 配色报告
+- 用户需要检查前端代码是否存在对比度不达标或乱写 Hex 色号的问题
+
+## 何时不用
+- 品牌 LOGO 矢量设计、插画创作或非 UI 领域的印刷 CMYK 配色
+- 需要完全脱离对比度规范（WCAG/APCA）的艺术化/实验性高饱和自由混搭
+
+## 关键事实
+- 版本：2.0.0
+- 许可：MIT
+- 运行时：Node ≥ 18
+- 核心融合标准：GitHub Primer 角色命名 + Adobe Leonardo 对比度 + OKLCH 中性灰 + W3C DTCG + APCA/WCAG 2.1
+- 产物：`dist/color-report.html`、`dist/tokens.css`、`dist/tailwind.theme.css`、`dist/tailwind.preset.cjs`
+
+## 链接
+- 仓库：https://github.com/shxuk/color-system-design
+- 主页：https://shxuk.cn/lab
+- 角色规范：color-roles.md

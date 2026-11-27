@@ -5,7 +5,7 @@ displayName: GitHub PAT Debugging
 description: 排查 GitHub PAT 认证失败、401、Bad credentials、推送失败、token 看起来失效等问题。先检查命令、变量传递、路径和请求参数，再用 curl、Node、Python 或 PowerShell 交叉验证，确认后才判断权限、撤销或网络原因。适用于 GitHub API、Contents API、GitHub Pages 和 Skill 镜像推送。 Diagnose GitHub Personal Access Token failures before declaring a token expired or revoked.
 description_zh: GitHub PAT 认证排障
 description_en: Debug GitHub PAT failures
-version: "1.0.8"
+version: "1.0.9"
 disable: false
 agent_created: true
 ---
@@ -57,3 +57,4 @@ agent_created: true
 - Read the public raw file and verify the new marker is present and stale markers are absent.
 - Confirm the Contents API write included the current remote blob SHA fetched immediately before the update (not a stale or omitted SHA).
 - Record the precise root cause and command correction in the project daily log.
+- The token value and any command echo containing it are absent from the report, the daily log and saved diagnostics; only the required scope and the failing check are recorded.

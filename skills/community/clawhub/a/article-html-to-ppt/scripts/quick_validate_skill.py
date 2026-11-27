@@ -35,7 +35,13 @@ def main() -> int:
     assert scalar(block, "version") == version
     assert "public_slug: \"meowclaw-pptsmith\"" in block
     assert "MODEL_AUTHORING_REQUIRED" in text
-    assert "Bespoke" in text and "Template" in text and "Standard / Engineering" in text
+    guides = set(re.findall(r"\]\((?:\./)?(references/[^)\s#]+)(?:#[^)]*)?\)", text))
+    for guide in ("references/declarative-design.md", "references/native-template-workflow.md"):
+        if guide not in guides:
+            raise ValueError(f"SKILL.md must link to the workflow in {guide}")
+    for guide in sorted(guides):
+        if not (ROOT / guide).is_file():
+            raise ValueError(f"SKILL.md links to a missing guide: {guide}")
     assert not re.search(r"(?i)TODO|TBD|replace me|placeholder description", block)
     print(f"skill validation passed: article-html-to-ppt {version}")
     return 0

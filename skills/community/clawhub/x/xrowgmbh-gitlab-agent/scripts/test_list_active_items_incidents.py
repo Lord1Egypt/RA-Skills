@@ -95,6 +95,14 @@ class IncidentDiscoveryTests(unittest.TestCase):
         self.assertIn("add_labels=priority::blocker,type::support,workflow::in-progress", command)
         self.assertIn("remove_labels=priority::low,workflow::backlog", command)
 
+    def test_unavailable_membership_does_not_relabel_or_adopt_incident(self):
+        item = {"project_id": 7, "iid": 2, "web_url": "https://gitlab.com/team/project/-/issues/2"}
+        with (patch.object(module, "owner_created_membership", return_value=None),
+              patch.object(module, "api_json", return_value={"labels": ["workflow::backlog"]}),
+              patch.object(module.subprocess, "run") as write):
+            self.assertIsNone(module.adopt_incident(item, "agent", 12, "owner"))
+            write.assert_not_called()
+
     def test_denied_gate_only_replaces_workflow_label(self):
         item = {"project_id": 7, "iid": 2, "web_url": "https://gitlab.com/team/project/-/issues/2"}
         with patch.object(module, "owner_created_membership", return_value=False), patch.object(

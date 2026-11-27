@@ -6,7 +6,7 @@ Historical examples keep their original versions and evidence limits; they are n
 
 **2026-10-18 · Decorative business design.** The user-supplied Xiaomi Q2/H1 2025 report and data sheet became a 22-slide presentation through real rendering, revisions, and independent agent review. Click the image for the full preview.
 
-[![Xiaomi Q2/H1 2025 business review: actual rendered overview of 22 slides](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png)
+[![Xiaomi Q2/H1 2025 business review: actual rendered overview of 22 slides](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png)
 
 <details>
 <summary>Version and validation scope</summary>
@@ -21,19 +21,19 @@ On Linux + LibreOffice, sampled text and table edits persisted after saving and 
 
 An independent author used the current Skill and a seven-page user-provided PDF, *AI SME Entrepreneurship Support Plan (2026–2028)*, to create a six-slide Chinese overview without image-generation calls. Every slide includes speaker notes and source references. The 90-day action sequence is explicitly labeled as an author recommendation.
 
-Download the same [editable PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-native.pptx), or inspect the [object counts and acceptance evidence](../../assets/samples/v5.1-no-image-policy-evidence.json). These images are unmodified previews rendered from that PPTX.
+Download the same [editable PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-native.pptx), or inspect the [object counts and acceptance evidence](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-evidence.json). These images are unmodified previews rendered from that PPTX.
 
 ### Cover: 13 text objects and 6 native shapes
 
-![v5.1 original cover rendered without image generation](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png)
+![v5.1 original cover rendered without image generation](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png)
 
 ### Targets: 16 text objects and 3 native shapes
 
-![v5.1 policy targets with original numeric qualifiers preserved](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-02.png)
+![v5.1 policy targets with original numeric qualifiers preserved](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-02.png)
 
 ### Actions: 18 text objects and 5 native shapes
 
-![v5.1 native timeline labeled as author advice, not an official application process](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-06.png)
+![v5.1 native timeline labeled as author advice, not an official application process](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-06.png)
 
 Counts come directly from the delivered PPTX. Each text box or shape is counted once:
 
@@ -55,9 +55,9 @@ The candidate passed independent review of all pages and source content, reachin
 
 A 67-page report, *Agents, robots, and us: How AI reshapes work and skills in Latin America*, became a 20-slide Chinese overview covering automation potential, economic value, jobs and skills, country comparisons, and business cases. All 20 slides have sources and speaker notes. This is the original v5.0-era output, counted separately from the v5.1 example above.
 
-The workflow was source document → complete slide design images → multimodal interpretation and declarative reconstruction → native PPTX → real rendering and acceptance. The original contact sheet is preserved below. [Download the original editable PPTX](https://github.com/SkillMelody/PPT-Smith/blob/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-native.pptx) or inspect [per-slide object data](../../assets/samples/v5.0-latin-america-ai-zh-evidence.json).
+The workflow was source document → complete slide design images → multimodal interpretation and declarative reconstruction → native PPTX → real rendering and acceptance. The original contact sheet is preserved below. [Download the original editable PPTX](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-native.pptx) or inspect [per-slide object data](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-evidence.json).
 
-![v5.0 Agents, robots, and us: actual rendered overview of 20 Chinese slides](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.0-latin-america-ai-zh-overview.png)
+![v5.0 Agents, robots, and us: actual rendered overview of 20 Chinese slides](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.0-latin-america-ai-zh-overview.png)
 
 | Object type | Count | Editing scope |
 | --- | ---: | --- |
@@ -111,13 +111,13 @@ These are real renders from earlier versions and are not part of the v5.1 object
 
 **Template: a 31-slide research presentation**, with notes on 29 body slides, using a source report and native template components.
 
-![V4 Template 31-slide rendered contact sheet](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/mgi-template-v4-31-page-contact-sheet.png)
+![V4 Template 31-slide rendered contact sheet](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/mgi-template-v4-31-page-contact-sheet.png)
 
 **Bespoke: a 23-slide independent presentation**, with 12 native charts and notes on all 23 slides. These examples use different reports and are not a controlled quality comparison. They do not imply partnership, authorization, or endorsement by report publishers or template brands.
 
-![V4 Bespoke 23-slide rendered contact sheet](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png)
+![V4 Bespoke 23-slide rendered contact sheet](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/state-ai-2025-independent-bespoke-23-page-contact-sheet.png)
 
-More historical assets are in the [sample directory](../../assets/samples/).
+More historical assets are in the [sample directory](https://github.com/SkillMelody/PPT-Smith/tree/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples).
 
 </details>
 

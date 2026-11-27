@@ -551,6 +551,8 @@
         return number;
       };
       const today = () => new Date().toISOString().slice(0, 10);
+      // Written by scripts/trip_debrief.py, not by this form: carried through a re-save untouched.
+      let keptDebriefs = [];
       function buildProfile() {
         const profileId = text("profile-id");
         if (!profileId || !$("consent").checked) throw keyedError("msg.name-and-consent");
@@ -563,7 +565,8 @@
           travel_history: {
             visited_places: lines("visited", ([place, scope, visit_period, revisit_interest, notes], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), visit_period: visit_period || null, revisit_interest: pick(revisit_interest, REVISIT, "unknown", "field.revisit", row), notes: notes || null })),
             wish_list: lines("wishlist", ([place, scope, priority, why], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), priority: rank(priority, row), why: why || null })),
-            excluded_places: lines("excluded", ([place, scope, reason, exclusion_strength], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), reason: reason || null, exclusion_strength: pick(exclusion_strength, STRENGTH, "never_recommend", "field.strength", row), confirmed_at: today() }))
+            excluded_places: lines("excluded", ([place, scope, reason, exclusion_strength], row) => ({ place: place || null, scope: pick(scope, SCOPE, "city_or_region", "field.scope", row), reason: reason || null, exclusion_strength: pick(exclusion_strength, STRENGTH, "never_recommend", "field.strength", row), confirmed_at: today() })),
+            trip_debriefs: keptDebriefs
           },
           recurring_preferences: { experience_direction: text("direction") || null, natural_subtypes: checked("natural"), human_cultural_subtypes: checked("cultural"), pace: text("pace") || null, lodging_style: text("lodging") || null, location_priority: text("location-priority") || null, food_and_dietary_preferences: list("dietary"), accessibility_needs: list("accessibility"), comfort_and_safety_preferences: [], avoid_list: list("avoid-list") },
           data_controls: { last_reviewed_at: today(), sensitive_data_not_stored: ["passport number", "passport or visa image", "payment card or bank details", "exact home address", "account credentials"], forget_on_explicit_request: true }
@@ -601,6 +604,7 @@
         const ident = existing.identity_and_language || {}, home = existing.home_and_logistics || {};
         const access = existing.digital_travel_access || {}, prefs = existing.recurring_preferences || {};
         const history = existing.travel_history || {};
+        keptDebriefs = Array.isArray(history.trip_debriefs) ? history.trip_debriefs : [];
         const put = (id, value) => { if ($(id) && typeof value === "string" && value) $(id).value = value; };
         const putList = (id, value) => { if ($(id) && Array.isArray(value) && value.length) $(id).value = value.join(", "); };
         put("profile-id", existing.profile_id);

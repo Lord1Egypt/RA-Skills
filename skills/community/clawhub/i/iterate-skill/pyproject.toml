@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "iterate-skill"
-version = "3.19.0"
+version = "3.20.0"
 description = "Iterate skill CLI — onboarding and project knowledge management for the iterate AI coding assistant skill."
 readme = "README.md"
 requires-python = ">=3.10"

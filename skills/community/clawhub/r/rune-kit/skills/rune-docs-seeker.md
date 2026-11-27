@@ -23,7 +23,7 @@ Documentation lookup utility. Receives a library name, API reference, or error m
 
 ## Calls (outbound)
 
-None — pure L3 utility using `WebSearch`, `WebFetch`, and Context7 MCP tools directly.
+None — pure L3 utility using the web search tool, the web fetch tool, and Context7 MCP tools directly.
 
 ## Called By (inbound)
 
@@ -82,18 +82,18 @@ context7.com/vercel/next.js/llms.txt?topic=cache
 
 **Traditional llms.txt fallback**: `WebSearch "[library] llms.txt"` → common paths: `docs.[lib].com/llms.txt`, `[lib].dev/llms.txt`
 
-Use `WebFetch` on the resolved llms.txt URL. If it contains multiple section URLs (3+), launch parallel Explorer agents (one per section, max 5).
+Use the web fetch tool on the resolved llms.txt URL. If it contains multiple section URLs (3+), launch parallel Explorer agents (one per section, max 5).
 
 ### Step 4 — Fallback to Web Search
 
 If neither Context7 nor llms.txt available:
 
-1. Use `WebSearch` with queries:
+1. Use the web search tool with queries:
    - "[library] [api/method] official documentation"
    - "[library] [version] [query]"
    - "[error message] [library] fix"
 2. Identify official documentation URLs (docs.*, official GitHub, npm/pypi pages)
-3. Call `WebFetch` on the top 1-3 official sources
+3. Call the web fetch tool on the top 1-3 official sources
 
 **Repository analysis fallback** (when docs are sparse but code is available):
 ```bash
@@ -183,7 +183,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail:** docs-seeker looks up documentation only — it does not apply changes, write code, or interpret whether the API fits the caller's use case.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

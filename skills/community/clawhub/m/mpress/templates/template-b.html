@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 1800px; height: 766px;
+    overflow: hidden;
+    background: #0B0F10;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  .cover {
+    position: relative;
+    width: 1800px; height: 766px;
+    box-sizing: border-box;
+    padding: 72px 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #e9efee;
+    background: #0B0F10;
+  }
+  .grid-bg {
+    position: absolute; inset: 0;
+    background-image: 
+      radial-gradient(#1b2c2e 2px, transparent 2px),
+      linear-gradient(to right, rgba(0,114,117,0.08) 1px, transparent 1px);
+    background-size: 40px 40px, 200px 200px;
+    opacity: 0.9;
+  }
+  .content {
+    position: relative; z-index: 1; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .top { display: flex; justify-content: space-between; align-items: center; }
+  .corner {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 22px; color: #4FA8AB; letter-spacing: 0.12em; font-weight: 600;
+  }
+  .title-box {
+    border-left: 6px solid #007275;
+    padding-left: 44px;
+    margin: auto 0;
+    max-width: 1380px;
+  }
+  .category {
+    font-size: 24px; color: #4FA8AB;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600;
+  }
+  .heading {
+    font-size: 74px; font-weight: 700; line-height: 1.25; margin: 0; color: #FFFFFF;
+    word-break: break-word;
+  }
+  .bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 22px; color: #627173;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  .status-dot {
+    display: inline-block; width: 12px; height: 12px;
+    background: #4FA8AB; border-radius: 50%; margin-right: 12px;
+    box-shadow: 0 0 14px #4FA8AB;
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="grid-bg"></div>
+    <div class="content">
+      <div class="top">
+        <span class="corner">SYS://{{BRAND_UPPER}}.ESSAY</span>
+        <span class="corner">{{ISSUE_DATE}}</span>
+      </div>
+      <div class="title-box">
+        <div class="category">{{TAG}}</div>
+        <h1 class="heading" id="title">{{TITLE}}</h1>
+      </div>
+      <div class="bottom">
+        <span><span class="status-dot"></span>PUBLISHED · INDEPENDENT LOG</span>
+        <span>{{BRAND_UPPER}} · PERSPECTIVE</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const t = document.getElementById("title");
+    if (t.innerText.length > 32) t.style.fontSize = "62px";
+    if (t.innerText.length > 45) t.style.fontSize = "52px";
+  </script>
+</body>
+</html>

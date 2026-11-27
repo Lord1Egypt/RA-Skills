@@ -113,7 +113,7 @@ env = { OWL_BASE = "https://owl.skillsutra.cn", OWL_API_KEY = "owl_sk_你的key"
 ### 配好后验证与冷启动注意
 
 对话里说「查一下肠道菌群和代谢的文献」，能返回带 DOI 的文献列表即接入成功；
-再说「看看我的余额」（owl_wallet，免费）可确认计费链路。
+再说「看看我的余额」（owl_wallet，不收费）可确认计费链路。
 
 ### 常见问题
 
@@ -140,12 +140,12 @@ env = { OWL_BASE = "https://owl.skillsutra.cn", OWL_API_KEY = "owl_sk_你的key"
 
 | 工具 | 作用 | 计费 |
 |---|---|---|
-| `owl_search` | 文献检索（相关性重排 + 核心刊标记 + 关键词扩展） | 实时报价（缓存 1 积分 / 0 结果 0 积分） |
-| `owl_article` | 文献详情（DOI / 年卷期等完整元数据） | 实时报价；72 小时缓存 1 积分 |
-| `owl_fulltext` | 中文期刊全文 PDF 直链（约 1 小时有效，立即下载） | 实时报价；72 小时内同篇重取 1 积分 |
-| `owl_oa` | 外文 OA 免费全文（arXiv / OpenAlex / Unpaywall / Europe PMC） | **0 积分，免费** |
-| `owl_citations` | 引文追溯（它引用了谁 / 谁引用了它） | 实时报价；72 小时缓存 1 积分 |
-| `owl_figure` | 科研配图（TikZ 示意 / 数据图表 / AI 配图） | 25 积分/张，按实际交付张数；未出图 0 积分 |
+| `owl_search` | 文献检索（相关性重排 + 核心刊标记 + 关键词扩展） | 以 `owl_products` / `owl_quote` 实时报价为准 |
+| `owl_article` | 文献详情（DOI / 年卷期等完整元数据） | 实时报价；72 小时内按缓存价 |
+| `owl_fulltext` | 中文期刊全文 PDF 直链（约 1 小时有效，立即下载） | 实时报价；72 小时内同篇按缓存价 |
+| `owl_oa` | 外文 OA 免费全文（arXiv / OpenAlex / Unpaywall / Europe PMC） | **免费** |
+| `owl_citations` | 引文追溯（它引用了谁 / 谁引用了它） | 实时报价；72 小时内按缓存价 |
+| `owl_figure` | 科研配图（TikZ 示意 / 数据图表 / AI 配图） | 实时报价，按实际交付张数；未出图不收费 |
 | `owl_products` | 全平台实时价目（价格唯一可信来源） | 免费 |
 | `owl_meta` | 技能最新版本 + 平台公告（开工校准；含 `channels.weipu_ready` 检测服务状态） | 免费 |
 | `owl_disciplines` | 斟知智评学科码表（class_id 用，逐级筛给用户选） | 免费 |
@@ -158,15 +158,15 @@ env = { OWL_BASE = "https://owl.skillsutra.cn", OWL_API_KEY = "owl_sk_你的key"
 | `owl_run_content` | 写作完整正文与参考文献 | 免费 |
 | `owl_wallet` | 查余额（含 30 天内到期积分、赠送积分余额） | 免费 |
 | `owl_ledger` | 逐笔积分流水（含每笔后余额，对账用） | 免费 |
-| `owl_recharge` | 发起充值（10/30/50/100/500 元） | 免费 |
+| `owl_recharge` | 发起充值（档位以官网实时展示为准） | 免费 |
 | `owl_recharge_status` | 查充值单 / 核实到账 | 免费 |
 | `owl_typeset` | 论文排版（LaTeX 工程 / Word 按学校模板 → 可提交 PDF + 同版式 Word + 格式体检单；支持盲审版与 GB/T 7714 双标准；72 小时内同稿重排只收工本） | 实拉（一篇一价） |
 | `owl_claim_favorite` | 收藏活动领积分（在技能市场收藏本技能后提交截图） | 免费 |
 
-1 积分 = 0.01 元；充值购买积分有效期 1 年，活动/赠送积分有效期 90 天，均先到期先扣；
-全平台缓存命中统一 1 积分，**缓存窗口统一 72 小时**。
+1 积分 = 0.01 元（单位换算）；充值购买积分有效期 1 年，活动/赠送积分有效期 90 天，均先到期先扣；
+全平台缓存命中按缓存价，**缓存窗口统一 72 小时**；具体价格以 `owl_products` / `owl_quote` 实时返回为准。
 价格可能调整，一切以 `owl_products` / `owl_quote` 实时返回与官网 /price 页为准。
-任务失败自动退款；检索无结果不收费；OA 探测不收费。
+任务失败自动退款；检索无结果不收费；OA 探测不收费（均不写死价格数字）。
 
 ## 4. 官网能补什么（可选，不是必经）
 

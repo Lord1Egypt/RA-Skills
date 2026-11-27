@@ -6,6 +6,6 @@ evidence is incomplete. Model-directed Bespoke and Template routes retain
 their distinct authoring authority; Standard remains diagnostic.
 """
 
-__version__ = "5.3.1"
+__version__ = "5.4.0"
 
 IR_SCHEMA_VERSION = "4.0.0"

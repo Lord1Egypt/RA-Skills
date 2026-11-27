@@ -8,7 +8,7 @@ import sys
 from common import (
     make_request, parse_params, print_json_output,
     generate_task_id, load_task_meta, save_task_meta,
-    append_result_data, get_task_result_file
+    append_result_data, get_task_result_file, cover_fee_info
 )
 
 
@@ -110,6 +110,10 @@ def main():
     total_retrieved = 0
     error_message = None
     last_request_id = None
+    # 总费用 单位分钱
+    total_cost = 0
+    # 余额
+    account_balance = 0
 
     # 显示查询目标
     print(f"开始查询：目标获取 {args.query_count} 条数据...")
@@ -128,8 +132,15 @@ def main():
             # 提取数据
             data = response.get('data', {})
             last_request_id = response.get('requestId')
+            # 提取费用信息 金额单位 分钱
+            fee = response.get('fee') or {}
             merchants_list = data.get('list') or []
             current_cursor = data.get('cursor')  # 获取新的游标
+
+            # 累计费用与余额
+            if fee:
+                total_cost += fee.get("apiCost", 0)
+                account_balance = fee.get("accountBalance", 0)
 
             # 保存数据到文件
             if merchants_list:
@@ -170,7 +181,7 @@ def main():
     if error_message:
         print(f"查询失败：{error_message}", file=sys.stderr)
     else:
-        print(f"查询完成：共获取 {total_retrieved} 条数据")
+        print(f"查询完成：共获取 {total_retrieved} 条数据，总费用 {total_cost}分钱(RMB)")
 
     # 构建最终输出
     output_data = {
@@ -179,7 +190,11 @@ def main():
         'total_hits': total_retrieved,
         'error_msg': error_message,
         'requestId': last_request_id,
-        'file_url': get_task_result_file(task_id)
+        'file_url': get_task_result_file(task_id),
+        'fee': cover_fee_info({
+            'apiCost': total_cost,
+            'accountBalance': account_balance
+        })
     }
 
     # 输出结果

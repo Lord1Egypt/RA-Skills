@@ -1,6 +1,6 @@
 # MCP 工具参考
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/mcp-tools.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/mcp-tools.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
 Flydb MCP Adapter（`flydb-skills/mcp/`，npm 包 `flydb-mcp`）把 Flydb CLI 暴露为 [MCP](https://modelcontextprotocol.io/) tools。本文是工具清单、输入输出约定与安全模型的事实来源；CLI 信封 schema 以[JSON 输出参考](json-output.md)为准，命令语义以[命令参考](commands.md)为准，错误码以[错误码参考](errors.md)为准，计划摘要以[Plan Artifact 设计](plan-artifact.md)为准。
 
@@ -33,6 +33,7 @@ Adapter 只是协议 seam：每次 tool 调用以受控子进程执行 `flydb --
 | `flydb_version` | `--json version` | 不连接数据库 | 始终 |
 | `flydb_info` | `--json info` | 只读 | 始终 |
 | `flydb_validate` | `--json validate` | 只读 | 始终 |
+| `flydb_preflight` | `--json preflight` | 一次内置校验和预演，完整详情由本机 `detailsFile` 指向 | Adapter 0.2.0+ 且 CLI ≥ 0.3.9 |
 | `flydb_plan_migrate` | `--json --dry-run migrate` | 只读预演（Plan Artifact） | 始终 |
 | `flydb_plan_undo` | `--json --dry-run undo` | 只读预演（Plan Artifact） | 始终 |
 | `flydb_migrate` | `--json migrate` | 持迁移锁写库 | 默认不注册 |
@@ -93,4 +94,4 @@ FLYDB_E2E_CLI=<bin/flydb> npm run test:e2e   # 真实 CLI + 官方 MCP client �
 FLYDB_E2E_WRITE=1 FLYDB_E2E_CLI=<bin/flydb> npm run test:e2e  # 追加写入闭环（Docker 测试库）
 ```
 
-接入配置与宿主样例见[MCP 接入指南](https://github.com/zzxCoding/Flydb/blob/56bc3baef4a4e5c9eefe440644a4343aa960d0a4/docs/getting-started/mcp-adapter.md)。
+接入配置与宿主样例见[MCP 接入指南](https://github.com/zzxCoding/Flydb/blob/c8cc5ff89a1fcbb31effbabce7da6a81e2d39f17/docs/getting-started/mcp-adapter.md)。

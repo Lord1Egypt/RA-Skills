@@ -1,7 +1,7 @@
 ---
 name: upkuajing-contact-info-validity-check-zh
 description: 核验邮箱、手机号及其余联系方式的真实有效性，在开展客户触达前筛选无效数据，提升联系信息准确度，降低消息无效发送概率，服务外贸获客、CRM 数据清洗和销售线索核验工作。
-metadata: {"version":"1.0.4","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.5","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # 跨境魔方联系方式有效性检测
@@ -120,6 +120,10 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/email
 
 **任何会产生费用的操作，都必须先告知、等待用户明确确认，不得在告知的同一条消息中直接执行。**
 
+### 计费方式
+
+本技能固定按API余额计费，其接口不支持套餐：脚本不会传 `planMode`，传入也会被忽略。
+
 ## 工作流程
 
 ### 决策指南
@@ -143,6 +147,7 @@ python scripts/error_report.py --params '{"requestPath":"/agent/validation/email
 - 邮件有效性检测：查看 [references/email-api.md](references/email-api.md)
 - 域名有效性检测：查看 [references/domain-api.md](references/domain-api.md)
 - 异常上报：查看 [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- 套餐计费与余额降级：[references/plan-billing.md](references/plan-billing.md)
 
 ## 注意事项
 

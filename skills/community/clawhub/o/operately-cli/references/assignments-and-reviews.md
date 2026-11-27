@@ -12,7 +12,7 @@ The `people list_assignments` command retrieves all assignments and items requir
 operately people list_assignments
 ```
 
-This returns all items assigned to you or requiring your review, with no additional parameters needed.
+For just your open assigned tasks, run `operately people list_my_tasks`.
 
 ## Response Structure
 
@@ -25,11 +25,10 @@ Items you own that require immediate attention:
 - **Due soon** - Due within the next few days
 
 ### 2. `needs_review`
-Items where you are the reviewer and need to provide acknowledgment:
+Items assigned to you for acknowledgment:
 - Project check-ins awaiting review
 - Goal updates requiring acknowledgment
 - Project and goal retrospectives awaiting acknowledgment
-- Milestone completions needing approval
 
 ### 3. `upcoming`
 Items you own with future due dates:
@@ -41,15 +40,14 @@ Items you own with future due dates:
 Each assignment includes:
 
 - **`type`** - The kind of item:
-  - `project_check_in` - Project status update
-  - `goal_check_in` - Goal progress update
+  - `check_in` - Project status update
+  - `goal_update` - Goal progress update
   - `project_retrospective` - Closed project retrospective awaiting review
   - `goal_retrospective` - Closed goal retrospective awaiting review
   - `milestone` - Project milestone
   - `project_task` - Task within a project
   - `space_task` - Task within a space
-  - `goal` - Goal itself
-  - `project` - Project requiring review
+  - `kpi_update` - KPI awaiting a new value
 
 - **`role`** - Your relationship to the item:
   - `owner` - You are responsible for completing it
@@ -71,71 +69,69 @@ Assignments are grouped by their origin (parent project, goal, or space), making
 
 ```json
 {
-  "data": {
-    "due_soon": [
-      {
-        "origin": {
-          "id": "project-123",
-          "name": "Q2 Roadmap",
-          "type": "project",
-          "path": "/space/projects/q2-roadmap",
-          "space_name": "Engineering"
-        },
-        "assignments": [
-          {
-            "name": "Complete API design",
-            "type": "milestone",
-            "role": "owner",
-            "due_date": "2026-04-15",
-            "due_status": "overdue",
-            "due_status_label": "Overdue by 2 days"
-          }
-        ]
-      }
-    ],
-    "needs_review": [
-      {
-        "origin": {
-          "id": "goal-456",
-          "name": "Revenue Growth",
-          "type": "goal",
-          "path": "/space/goals/revenue-growth",
-          "space_name": "Sales"
-        },
-        "assignments": [
-          {
-            "name": "Q1 Check-in",
-            "type": "goal_check_in",
-            "role": "reviewer",
-            "author_name": "John Doe",
-            "action_label": "Review Q1 Check-in"
-          }
-        ]
-      }
-    ],
-    "upcoming": [
-      {
-        "origin": {
-          "id": "project-789",
-          "name": "Mobile App",
-          "type": "project",
-          "path": "/space/projects/mobile-app",
-          "space_name": "Product"
-        },
-        "assignments": [
-          {
-            "name": "Design mockups",
-            "type": "project_task",
-            "role": "owner",
-            "due_date": "2026-05-30",
-            "due_status": "upcoming",
-            "due_status_label": "Due in 45 days",
-            "task_status": "pending"
-          }
-        ]
-      }
-    ]
-  }
+  "due_soon": [
+    {
+      "origin": {
+        "id": "project-123",
+        "name": "Q2 Roadmap",
+        "type": "project",
+        "path": "/space/projects/q2-roadmap",
+        "space_name": "Engineering"
+      },
+      "assignments": [
+        {
+          "name": "Complete API design",
+          "type": "milestone",
+          "role": "owner",
+          "due_date": "2026-04-15",
+          "due_status": "overdue",
+          "due_status_label": "Overdue by 2 days"
+        }
+      ]
+    }
+  ],
+  "needs_review": [
+    {
+      "origin": {
+        "id": "goal-456",
+        "name": "Revenue Growth",
+        "type": "goal",
+        "path": "/space/goals/revenue-growth",
+        "space_name": "Sales"
+      },
+      "assignments": [
+        {
+          "name": "Q1 Check-in",
+          "type": "goal_update",
+          "role": "reviewer",
+          "author_name": "John Doe",
+          "action_label": "Review Q1 Check-in"
+        }
+      ]
+    }
+  ],
+  "upcoming": [
+    {
+      "origin": {
+        "id": "project-789",
+        "name": "Mobile App",
+        "type": "project",
+        "path": "/space/projects/mobile-app",
+        "space_name": "Product"
+      },
+      "assignments": [
+        {
+          "name": "Design mockups",
+          "type": "project_task",
+          "role": "owner",
+          "due_date": "2026-05-30",
+          "due_status": "upcoming",
+          "due_status_label": "Due in 45 days",
+          "task_status": "pending"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -145,23 +141,23 @@ Use `jq` to filter specific categories or types:
 
 ```bash
 # Only items needing review
-operately people list_assignments --compact | jq '.data.needs_review'
+operately people list_assignments --compact | jq '.needs_review'
 
 # Only overdue items
 operately people list_assignments --compact | \
-  jq '.data.due_soon[].assignments[] | select(.due_status == "overdue")'
+  jq '.due_soon[].assignments[] | select(.due_status == "overdue")'
 
 # Count items in each category
 operately people list_assignments --compact | \
   jq '{
-    due_soon: (.data.due_soon | map(.assignments | length) | add // 0),
-    needs_review: (.data.needs_review | map(.assignments | length) | add // 0),
-    upcoming: (.data.upcoming | map(.assignments | length) | add // 0)
+    due_soon: (.due_soon | map(.assignments | length) | add // 0),
+    needs_review: (.needs_review | map(.assignments | length) | add // 0),
+    upcoming: (.upcoming | map(.assignments | length) | add // 0)
   }'
 
 # All project check-ins needing review
 operately people list_assignments --compact | \
-  jq '.data.needs_review[].assignments[] | select(.type == "project_check_in")'
+  jq '.needs_review[].assignments[] | select(.type == "check_in")'
 ```
 
 ## Common Workflows
@@ -176,7 +172,7 @@ operately people list_assignments
 
 # Focus on urgent items
 operately people list_assignments --compact | \
-  jq '.data.due_soon, .data.needs_review'
+  jq '.due_soon, .needs_review'
 ```
 
 ### Acknowledge Reviews
@@ -200,7 +196,7 @@ Move tasks forward after working on them:
 ```bash
 # Find your pending tasks
 operately people list_assignments --compact | \
-  jq '.data.due_soon[].assignments[] | select(.type == "project_task" and .task_status == "pending")'
+  jq '.due_soon[].assignments[] | select(.type == "project_task" and .task_status == "pending")'
 
 # Update task status
 operately tasks update_status \

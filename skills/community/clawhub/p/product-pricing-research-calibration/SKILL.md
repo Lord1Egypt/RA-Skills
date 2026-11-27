@@ -5,7 +5,7 @@ description_zh: "产品定价研究校准"
 description_en: "Product Pricing Research Calibration"
 disable: false
 agent_created: true
-version: "1.0.1"
+version: "1.0.2"
 ---
 
 # Product Pricing Research Calibration
@@ -114,6 +114,7 @@ Before review, verify:
 4. Do not turn research into procurement advice. Describe the commercial structure and leave decisions to the reader.
 5. Title and thesis must state the actual research object. Avoid vague suspense and media-style oppositions.
 6. Mark unpublished pricing as unpublished. Do not fill gaps with analyst estimates or unverified reseller claims.
+7. **Titles carry the same boundary as the body.** A headline or subheading must not state a price, discount or commercial term that the fact matrix marks unpublished; the title stays neutral until the figure is published.
 
 ## Failure handling
 

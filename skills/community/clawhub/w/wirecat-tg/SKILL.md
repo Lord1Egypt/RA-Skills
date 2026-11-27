@@ -24,7 +24,7 @@ for a write to Telegram); `tg <command> --help` is shorter; `tg guide` lists sce
 
 **The first word is the profile when it is not a command.** `tg work chats list` is profile `work`. There is
 no `--profile` flag; `TG_PROFILE` does the same. No profile is assumed: without one, an account command exits
-`2` and lists the profiles (`tg account list` shows them too). **Never pick one for the owner**; ask which,
+`2` and lists the profiles (`tg session list` shows them too). **Never pick one for the owner**; ask which,
 unless the task or `TG_PROFILE` says. `personal` below stands for the profile the owner chose.
 
 ## Answer a question from the chats

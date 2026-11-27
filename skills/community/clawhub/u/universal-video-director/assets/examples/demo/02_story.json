@@ -1,0 +1,87 @@
+{
+  "schema": "uvd/story",
+  "version": "2",
+  "stage": "story",
+  "project_id": "demo",
+  "logline": "外卖员雨夜捡到一部预告他死亡的手机",
+  "characters": [
+    {
+      "id": "jie",
+      "name": "阿杰",
+      "role": "主角",
+      "want": "活下去",
+      "voice": "年轻、疲惫"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "street",
+      "location": "雨夜街头",
+      "time": "夜",
+      "characters": [
+        "jie"
+      ]
+    },
+    {
+      "id": "room",
+      "location": "出租屋",
+      "time": "夜",
+      "characters": [
+        "jie"
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "id": "b1",
+      "order": 1,
+      "scene_id": "street",
+      "type": "action",
+      "purpose": "hook",
+      "action": "积水里一部手机突然亮起",
+      "duration_sec": 5
+    },
+    {
+      "id": "b2",
+      "order": 2,
+      "scene_id": "street",
+      "type": "dialogue",
+      "purpose": "setup",
+      "character_id": "jie",
+      "line": "谁的手机？",
+      "duration_sec": 5
+    },
+    {
+      "id": "b3",
+      "order": 3,
+      "scene_id": "room",
+      "type": "action",
+      "purpose": "twist",
+      "action": "屏幕显示：阿杰，明晚 23:00 死亡",
+      "duration_sec": 10,
+      "causal_from": [
+        "b2"
+      ]
+    },
+    {
+      "id": "b4",
+      "order": 4,
+      "scene_id": "room",
+      "type": "os",
+      "purpose": "cliff",
+      "line": "这……是我？",
+      "duration_sec": 10
+    }
+  ],
+  "line_book": [
+    {
+      "character_id": "jie",
+      "beat_id": "b2",
+      "line": "谁的手机？",
+      "tts_prompt": "疑惑，轻声"
+    }
+  ],
+  "upstream": {
+    "00_project.json": "eaaec9777591"
+  }
+}

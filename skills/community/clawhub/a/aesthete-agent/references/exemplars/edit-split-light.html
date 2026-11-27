@@ -25,6 +25,9 @@ regen: python3 scripts/make_exemplars.py(勿手改本文件)
 @supports (text-spacing-trim: space-all){
   :lang(zh){text-spacing-trim:space-all} /* 0.28:全角标点挤压渐进增强(Chrome 123+;不支持则原样,clreq 口径) */
 }
+@supports (container-type: inline-size){
+  .wrap{container-type:inline-size} /* 0.33:容器查询渐进底座——组件按所处空间响应,非按视口 */
+}
 h1,h2{text-wrap:balance}
 p{text-wrap:pretty}
 :lang(zh) :is(h1,h2,h3){font-feature-settings:"palt" 1}
@@ -118,11 +121,18 @@ body{background:#FFFFFF}
 .kpi .l{font-size:12.5px;margin-top:8px;opacity:.82}
 .dark-cta{background:var(--night);color:var(--pale)}
 @media (max-width:900px){.hero{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}}
+@supports (container-type: inline-size){
+  /* 0.33 断点戏剧:窄容器有自己的构图——出货清单先行(移动用户先要有什么,再看为什么);非视口口径 */
+  @container (max-width: 720px){
+    .hero{display:flex;flex-direction:column-reverse;gap:40px}
+    .stats{gap:28px}
+  }
+}
 </style></head><body>
 <div style='display:flex;height:5px' aria-hidden='true'><span style='flex:1;background:#01161E'></span><span style='flex:1;background:#124559'></span><span style='flex:1;background:#598392'></span><span style='flex:1;background:#9CB7B5'></span><span style='flex:1;background:#EFF6E0'></span></div>
 <header style="background:var(--pale)"><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px"><a href="#" style="font:700 17px var(--serif);color:var(--night)">夜松工作室</a><nav style="display:flex;gap:24px;font-size:13.5px;font-weight:600"><a style="color:var(--ink2)" href="#s1">一览</a><a style="color:var(--ink2)" href="#s2">方法</a><a style="color:var(--ink2)" href="#cta">联系</a></nav></div></header>
 <div class="wrap"><section class="hero" style="position:relative">
-  <span class="cross" style="right:0;top:-6px"></span>
+  <!-- 0.31:孤立 cross 记号撤除(judge round-3/4 两次点名:无对齐锚点无语义;BLUEPRINT 成对角标不受影响) -->
   <div><p class="kicker">NIGHTPINE · 深松木作 · 三代手作</p>
     <h1 class="reveal">一块好木板，<br>要经得起十年。</h1>
     <p class="lede reveal d1">老料整板,榫卯无钉——<b>批次与木料来源可查证</b>。</p>

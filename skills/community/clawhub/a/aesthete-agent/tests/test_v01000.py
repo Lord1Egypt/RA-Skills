@@ -63,7 +63,7 @@ class TestTypeScale(unittest.TestCase):
             base = os.path.join(td, "type")
             payload = type_kit.emit("夜松", base=16.0, ratio=1.25, out_base=base)
             css = open(base + ".css", encoding="utf-8").read()
-            self.assertIn("--text-base:16px/1.7;", css)
+            self.assertIn("--text-base:calc(16px * var(--font-scale, 1))/1.7;", css)  # 0.32 母变量派生
             self.assertIn("--font-tnum", css)
             html = open(base + ".html", encoding="utf-8").read()
             self.assertIn("tabular-nums", html)

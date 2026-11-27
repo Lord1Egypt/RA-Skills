@@ -47,15 +47,18 @@ Input: { name: string, base_branch?: string }
 Default base: current HEAD
 
 Steps:
-1. Bash: git worktree add .claude/worktrees/<name> -b rune/<name> [base_branch]
+0. Keep worktrees out of git: Bash: git check-ignore -q .rune/worktrees/ || echo ".rune/worktrees/" >> .gitignore
+1. Bash: git worktree add .rune/worktrees/<name> -b rune/<name> [base_branch]
 2. Verify: Bash: git worktree list | grep <name>
-3. Return: { path: ".claude/worktrees/<name>", branch: "rune/<name>" }
+3. Return: { path: ".rune/worktrees/<name>", branch: "rune/<name>" }
 
 Naming convention:
   - Branch: rune/<name> (e.g., rune/stream-a, rune/auth-feature)
-  - Path: .claude/worktrees/<name>
+  - Path: .rune/worktrees/<name>
   - Max 3 active worktrees (enforced)
 ```
+
+**Worktree directory per runtime:** in Claude Code, worktrees live under the `.claude/` folder, next to the ones its own `claude --worktree` sessions create. Compiled skills for every other runtime (Codex, Cursor, Gemini CLI, Grok Build, …) use `.rune/worktrees/`, so non-Claude projects never grow a `.claude/` folder.
 
 ### List Worktrees
 
@@ -73,7 +76,7 @@ Input: { name: string, force?: boolean }
 Steps:
 1. Check if branch is merged: Bash: git branch --merged main | grep rune/<name>
 2. If merged OR force:
-   Bash: git worktree remove .claude/worktrees/<name> --force
+   Bash: git worktree remove .rune/worktrees/<name> --force
    Bash: git branch -d rune/<name>  (or -D if force)
 3. If NOT merged AND NOT force:
    WARN: "Branch rune/<name> has unmerged changes. Use force=true to remove."
@@ -96,7 +99,7 @@ Bash: git worktree list --porcelain
 1. NEVER delete a worktree with uncommitted changes without user confirmation
 2. NEVER force-delete an unmerged branch without user confirmation
 3. MAX 3 active rune/* worktrees — refuse creation if limit reached
-4. ALWAYS use .claude/worktrees/ directory — not project root
+4. ALWAYS use .rune/worktrees/ directory — not project root
 5. ALWAYS prefix branches with rune/ — easy identification and cleanup
 ```
 
@@ -110,13 +113,13 @@ Bash: git worktree list --porcelain
 ### Active Worktrees
 | Name | Branch | Path | Status |
 |------|--------|------|--------|
-| stream-a | rune/stream-a | .claude/worktrees/stream-a | active |
-| stream-b | rune/stream-b | .claude/worktrees/stream-b | merged |
+| stream-a | rune/stream-a | .rune/worktrees/stream-a | active |
+| stream-b | rune/stream-b | .rune/worktrees/stream-b | merged |
 ```
 
 ## Constraints
 
-1. MUST use .claude/worktrees/ directory for all worktrees
+1. MUST use .rune/worktrees/ directory for all worktrees
 2. MUST prefix branches with rune/ namespace
 3. MUST NOT exceed 3 active worktrees
 4. MUST check for uncommitted changes before cleanup
@@ -128,7 +131,7 @@ Bash: git worktree list --porcelain
 |---|---|---|
 | Worktree left behind after failed merge | MEDIUM | Cleanup All Stale operation + pre-team-merge tag for recovery |
 | Branch name collision with existing branch | LOW | Check branch existence before creation, append timestamp if collision |
-| Worktree path on Windows with long path | MEDIUM | Use short names, keep under .claude/worktrees/ to minimize path length |
+| Worktree path on Windows with long path | MEDIUM | Use short names, keep under .rune/worktrees/ to minimize path length |
 | Deleting worktree with uncommitted agent work | HIGH | Safety Rule 1: always check for uncommitted changes first |
 
 ## Done When
@@ -144,7 +147,7 @@ Bash: git worktree list --porcelain
 ~200-500 tokens. Haiku + Bash commands. Fast and cheap.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

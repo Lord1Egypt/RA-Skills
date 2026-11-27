@@ -28,7 +28,7 @@ Strategic planning engine for the Rune ecosystem. Produces a **master plan + pha
 This is enterprise-grade project management: BA produces WHAT → Plan produces HOW (structured into phases) → ANY coder executes each phase with full context.
 
 > **Goal-first — leverage native goal/outcome commands (advisory, 2026).** Current
-> agent models (Opus 4.8, Sonnet 5, Fable 5) perform best when handed
+> agent models (Claude Opus / Sonnet / Fable 5.x, GPT-6.x, Gemini 4) perform best when handed
 > the full goal + constraints up front, then left to execute at high effort. Some
 > platforms now expose this natively: Claude Code `/goal` sets a run's north-star;
 > Managed Agents **Outcomes** (`user.define_outcome` + rubric) grade-and-iterate to a
@@ -164,12 +164,12 @@ Determine inline plan vs master + phase files:
 If ANY "Master + Phase Files" criterion is true → produce master plan + phase files.
 
 ### Step 3 — Decompose into Phases
-<MUST-READ path="references/wave-planning.md" trigger="when writing wave-structured task lists inside any phase"/>
-<MUST-READ path="references/vertical-slice.md" trigger="when decomposing a feature into tasks/issues — ALWAYS prefer vertical (end-to-end) slices over horizontal (single-layer) ones"/>
+<MUST-READ path="rune-plan/references/wave-planning.md" trigger="when writing wave-structured task lists inside any phase"/>
+<MUST-READ path="rune-plan/references/vertical-slice.md" trigger="when decomposing a feature into tasks/issues — ALWAYS prefer vertical (end-to-end) slices over horizontal (single-layer) ones"/>
 
 Group work into phases. Each phase: completable in one session, clear "done when", produces testable output, independent enough to run without other phases loaded.
 
-**Vertical slices over horizontal layers**: each task within a phase MUST be a tracer-bullet slice (schema + API + UI + test, end-to-end), NOT a single-layer chunk. Horizontal slicing ("all models → all APIs → all UI") looks organized but blocks on the slowest layer. See `references/vertical-slice.md` for slice rules, AFK vs HITL classification, and the per-task slice template.
+**Vertical slices over horizontal layers**: each task within a phase MUST be a tracer-bullet slice (schema + API + UI + test, end-to-end), NOT a single-layer chunk. Horizontal slicing ("all models → all APIs → all UI") looks organized but blocks on the slowest layer. See `rune-plan/references/vertical-slice.md` for slice rules, AFK vs HITL classification, and the per-task slice template.
 
 <HARD-GATE>
 Each phase MUST be completable by ANY coder model (including Haiku) with ONLY the phase file loaded.
@@ -183,13 +183,13 @@ Phase decomposition rules:
 - **Ordering law WITHIN each slice**: Data → Logic → Endpoints/Services → UI → Integration. UI is structurally LAST — a UI task whose slice has no upstream data/logic/endpoint task (and doesn't consume Foundational or a prior slice's contract) is an INVALID plan, not a style choice. The button and the endpoint it calls are one slice's tasks, never split across slices
 - **Test alongside**: each phase includes its own test tasks
 - **Max 5-7 tasks per phase**: if more, split the phase
-- **Vertical slices over horizontal layers**: prefer "auth end-to-end" over "all models → all APIs → all UI" (see `references/vertical-slice.md` for tracer-bullet template, AFK/HITL labels, granularity rules)
+- **Vertical slices over horizontal layers**: prefer "auth end-to-end" over "all models → all APIs → all UI" (see `rune-plan/references/vertical-slice.md` for tracer-bullet template, AFK/HITL labels, granularity rules)
 - **Story-grouped backbone from BA**: if `.rune/features/<name>/tasks.md` exists, its `## US-n` sections map to slices — refine them, do NOT flatten back into layer groups
 
-Tasks within each phase MUST be organized into waves (parallel-safe groupings). See `references/wave-planning.md`.
+Tasks within each phase MUST be organized into waves (parallel-safe groupings). See `rune-plan/references/wave-planning.md`.
 
 ### Step 3.7 — Boundary Artifacts (Contracts-First)
-<MUST-READ path="references/boundary-artifacts.md" trigger="when the feature crosses a UI↔data boundary — templates for data-model.md, contracts/, quickstart.md"/>
+<MUST-READ path="rune-plan/references/boundary-artifacts.md" trigger="when the feature crosses a UI↔data boundary — templates for data-model.md, contracts/, quickstart.md"/>
 
 **Detect the boundary**: requirements.md has a `## Key Entities` section AND any user story renders a UI surface (page/screen/form/component) — OR the task description implies user interaction with persisted data (submit, save, login, search, checkout).
 
@@ -208,21 +208,21 @@ Rules:
 - **Skip** when no boundary: pure-UI features (styling, layout), pure-backend (cron, migration), libraries. Announce the skip: "No UI↔data boundary — skipping boundary artifacts"
 
 ### Step 4 — Write Master Plan File
-<MUST-READ path="references/plan-templates.md" trigger="when writing the master plan file"/>
+<MUST-READ path="rune-plan/references/plan-templates.md" trigger="when writing the master plan file"/>
 
-Save to `.rune/plan-<feature>.md`. Use the Master Plan Template in `references/plan-templates.md`. Max 80 lines — no implementation details.
+Save to `.rune/plan-<feature>.md`. Use the Master Plan Template in `rune-plan/references/plan-templates.md`. Max 80 lines — no implementation details.
 
 ### Step 4.5 — Workflow Registry (Complex Features Only)
-<MUST-READ path="references/workflow-registry.md" trigger="when feature has 4+ phases OR 3+ user-facing workflows"/>
+<MUST-READ path="rune-plan/references/workflow-registry.md" trigger="when feature has 4+ phases OR 3+ user-facing workflows"/>
 
 For complex features (4+ phases OR 3+ user-facing workflows): build a 4-view Workflow Registry before writing phase files. Catches orphaned components, unphased workflows, and missing state transitions at plan time.
 
 **Skip** for: trivial tasks, inline plans, single-workflow features.
 
 ### Step 5 — Write Phase Files
-<MUST-READ path="references/plan-templates.md" trigger="when writing any phase file"/>
+<MUST-READ path="rune-plan/references/plan-templates.md" trigger="when writing any phase file"/>
 
-For each phase, save to `.rune/plan-<feature>-phase<N>.md`. Use the Amateur-Proof Template in `references/plan-templates.md`.
+For each phase, save to `.rune/plan-<feature>-phase<N>.md`. Use the Amateur-Proof Template in `rune-plan/references/plan-templates.md`.
 
 <HARD-GATE>
 Every phase file MUST include ALL of these sections (Amateur-Proof Checklist):
@@ -241,13 +241,13 @@ Performance Constraints section is optional (only when NFRs apply).
 </HARD-GATE>
 
 ### Step 5.5 — Completeness Scoring (Alternatives)
-<MUST-READ path="references/completeness-scoring.md" trigger="when presenting alternative approaches"/>
+<MUST-READ path="rune-plan/references/completeness-scoring.md" trigger="when presenting alternative approaches"/>
 
 When presenting alternatives (from brainstorm or Step 3), rate each **Completeness X/10**. Always recommend the higher-completeness option — with AI, the marginal cost of completeness is near-zero.
 
 ### Step 5.7 — Coverage Gate (after phase files, before presenting)
 
-**Task ID scheme**: every task in a phase file carries the ID `P<phase>-T<seq>` — phase number + sequential position within that phase (`P2-T3` = phase 2, task 3). Phase file task labels use this ID (see `references/plan-templates.md`). Coverage Summary, Traceability Matrix, and Change Stacking `depends_on` all reference tasks by this ID.
+**Task ID scheme**: every task in a phase file carries the ID `P<phase>-T<seq>` — phase number + sequential position within that phase (`P2-T3` = phase 2, task 3). Phase file task labels use this ID (see `rune-plan/references/plan-templates.md`). Coverage Summary, Traceability Matrix, and Change Stacking `depends_on` all reference tasks by this ID.
 
 When BA requirements exist, build the **Coverage Summary** — every `FR-n` and `US-n` mapped to the task IDs that implement it:
 
@@ -276,7 +276,7 @@ Skip when no requirements.md exists (ad-hoc tasks).
 Present the **master plan** to user (NOT all phase files). User reviews: phase breakdown, key decisions, risks, completeness scores, **coverage summary**. Wait for explicit approval ("go", "proceed", "yes") before writing phase files.
 
 ### Step 6.5 — Update Feature Map (Always)
-<MUST-READ path="references/feature-map.md" trigger="every plan invocation"/>
+<MUST-READ path="rune-plan/references/feature-map.md" trigger="every plan invocation"/>
 
 After plan approval, update `.rune/features.md`:
 
@@ -309,7 +309,7 @@ Model selection: Opus plans phases (this skill). Sonnet/Haiku executes them (coo
 
 ## Inline Plan (Trivial Tasks)
 
-For trivial tasks (1-2 phases, < 5 files, < 100 LOC) — skip master + phase files. See inline plan template in `references/plan-templates.md`.
+For trivial tasks (1-2 phases, < 5 files, < 100 LOC) — skip master + phase files. See inline plan template in `rune-plan/references/plan-templates.md`.
 
 ## Re-Planning (Dynamic Adaptation)
 
@@ -325,57 +325,28 @@ When cook encounters unexpected conditions during execution:
 
 ## Feature Spec Mode
 
-**Step 1** — Problem Statement: what problem, who has it, current workaround?
-**Step 2** — User Stories: primary + 2-3 secondary + edge cases. Format: `As a [persona], I want to [action] so that [benefit]`
-**Step 3** — Acceptance Criteria: `GIVEN [context] WHEN [action] THEN [result]` — happy path + errors + performance
-**Step 4** — Scope Definition: In scope / Out of scope / Dependencies / Open questions
-**Step 5** — Write Spec File: save to `.rune/features/<feature-name>/spec.md`
-
-After spec approved → transition to Implementation Mode.
+> Full detail moved to [`rune-plan/references/modes.md`](rune-plan/references/modes.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Roadmap Mode
 
-**Step 1** — Inventory: scan for open issues, TODO/FIXME, planned features.
-**Step 2** — Prioritize (ICE Scoring): Impact × Confidence × Ease (each 1-10), sort descending.
-**Step 3** — Group into Milestones: M1 = top 3-5 by ICE, M2 = next 3-5, Backlog = remaining.
-**Step 4** — Write to `.rune/roadmap.md`.
+> Full detail moved to [`rune-plan/references/modes.md`](rune-plan/references/modes.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Output Format
 
-**Master Plan** (`.rune/plan-<feature>.md`): Overview, Phases table, Key Decisions, Decision Compliance, Architecture, Dependencies/Risks. Max 80 lines. See `references/plan-templates.md`.
+**Master Plan** (`.rune/plan-<feature>.md`): Overview, Phases table, Key Decisions, Decision Compliance, Architecture, Dependencies/Risks. Max 80 lines. See `rune-plan/references/plan-templates.md`.
 
-**Phase File** (`.rune/plan-<feature>-phase<N>.md`): 7 mandatory sections (Amateur-Proof Template). Max 200 lines. Self-contained. See `references/plan-templates.md`.
+**Phase File** (`.rune/plan-<feature>-phase<N>.md`): 7 mandatory sections (Amateur-Proof Template). Max 200 lines. Self-contained. See `rune-plan/references/plan-templates.md`.
 
-**Inline Plan** (trivial tasks): Changes, Tests, Risks. See `references/plan-templates.md`.
+**Inline Plan** (trivial tasks): Changes, Tests, Risks. See `rune-plan/references/plan-templates.md`.
 
 ## Outcome Block (Mandatory)
-<MUST-READ path="references/outcome-block.md" trigger="when writing the final section of any plan output"/>
+<MUST-READ path="rune-plan/references/outcome-block.md" trigger="when writing the final section of any plan output"/>
 
 Every plan output — master plan, phase file, or inline plan — MUST end with an **Outcome Block** containing: What Was Planned + Immediate Next Action (single action, imperative) + How to Measure table (at least one shell command).
 
 ## Change Stacking (Overlap Detection)
 
-When producing phase files with wave-based task grouping, every task MUST declare dependency metadata:
-
-```markdown
-### Task: Implement auth middleware
-- **File**: `src/middleware/auth.ts` — new
-- **touches**: [src/middleware/auth.ts, src/types/auth.d.ts]
-- **provides**: [AuthMiddleware, verifyToken()]
-- **requires**: [UserModel from Wave 1]
-- **depends_on**: [task-1a]
-```
-
-**Pre-dispatch validation** (run after all tasks written, before presenting plan):
-
-| Check | Detection | Action |
-|-------|-----------|--------|
-| **File overlap** | Same file in `touches[]` of 2+ tasks in same wave | BLOCK — move to sequential waves or merge tasks |
-| **Missing dependency** | Task A's `requires[]` not in any prior task's `provides[]` | BLOCK — add missing task or fix dependency chain |
-| **Cycle detection** | Task A `depends_on` B, B `depends_on` A | BLOCK — decompose into smaller tasks to break cycle |
-| **Orphaned provides** | Task declares `provides[]` but no future task `requires[]` it | WARN — may indicate dead code or missing consumer task |
-
-**Skip if**: Inline plan (trivial task), single-phase plan, or all tasks are strictly sequential.
+> Full detail moved to [`rune-plan/references/change-stacking.md`](rune-plan/references/change-stacking.md) (progressive disclosure). **Read that file before executing this section.**
 
 ## Constraints
 
@@ -457,8 +428,8 @@ chain_metadata:
 | Phase with zero test tasks | CRITICAL | HARD-GATE rejects it |
 | 10+ phases overwhelming the master plan | MEDIUM | Max 8 phases — split into sub-projects if more |
 | Task without File path or Verify command | HIGH | Every task MUST have File + Test + Verify + Commit fields — no vague "implement the feature" tasks |
-| Horizontal layer planning (all models → all APIs → all UI) | HIGH | Vertical slices parallelize better. Use wave-based grouping AND vertical-slice template (`references/vertical-slice.md`): each task = end-to-end path through schema/API/UI/test, demoable on its own |
-| Slice not demoable on its own ("just the migration", "just the UI shell") | HIGH | Per `references/vertical-slice.md` — every slice produces a verifiable outcome. Layer-only fragments block downstream slices and hide partial completion |
+| Horizontal layer planning (all models → all APIs → all UI) | HIGH | Vertical slices parallelize better. Use wave-based grouping AND vertical-slice template (`rune-plan/references/vertical-slice.md`): each task = end-to-end path through schema/API/UI/test, demoable on its own |
+| Slice not demoable on its own ("just the migration", "just the UI shell") | HIGH | Per `rune-plan/references/vertical-slice.md` — every slice produces a verifiable outcome. Layer-only fragments block downstream slices and hide partial completion |
 | HITL slices marked liberally to enable "review" friction | MEDIUM | HITL is for hard blockers (OAuth setup, design decision, paid third-party access), not soft preferences. Default to AFK; use post-merge review for soft signals |
 | Tasks without `depends_on` in Wave 2+ | MEDIUM | Implicit dependencies break parallel dispatch. Every Wave 2+ task MUST declare `depends_on` |
 | Plan ignores locked Decisions from BA | CRITICAL | Decision Compliance section cross-checks requirements.md — locked decisions are non-negotiable |
@@ -519,7 +490,7 @@ SELF-VALIDATION (run before presenting plan to user):
 ~3000-8000 tokens input, ~2000-5000 tokens output (master + all phase files). Opus for architectural reasoning. Most expensive L2 skill but runs infrequently. Phase files are written once, executed by cheaper models (Sonnet/Haiku).
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

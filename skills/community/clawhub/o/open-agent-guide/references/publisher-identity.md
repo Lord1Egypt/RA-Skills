@@ -207,10 +207,10 @@ reason.
 Read what the repository implements before submitting it. A supporting tool's
 license or local installation instructions do not establish the hosted product's
 `open_source`, `licenses`, or `self_hostable` values. Cite evidence for the
-product itself. If its source is unknown or unpublished, omit `source_code_url`;
-do not substitute a client repo or infer negative booleans. To correct a stored
-SDK link, submit an update clearing `source_code_url` with `""` and record the
-SDK under `developer_kits` without duplicating an existing kit.
+product itself. If its source is unknown, omit `source_code_url`; do not
+substitute a client repo or infer negative booleans. To correct a stored SDK
+link, submit an update clearing `source_code_url` with `""` and record the SDK
+under `developer_kits` without duplicating an existing kit.
 
 ## Match evidence to the product's coverage scope
 
@@ -254,3 +254,22 @@ branded PromptQL at `promptql.io`. Claims about Hasura DDN's features,
 capabilities, and affordances belong to `hasura.io/ddn`, its documentation, or
 its GitHub repository; the `hasura.io` landing page names the products but
 documents neither.
+
+### Implementation and deployment resources
+
+Use `self_hosting_url` for an official public resource that describes deploying
+the product itself in customer-managed infrastructure. A docs guide, a README
+deployment section, or a dedicated deployment overview qualifies. The overview
+can describe sales-assisted installation. Preserve component and edition scope.
+SDK installation for a hosted service and instructions for deploying your own
+application on the vendor platform do not qualify.
+
+Both `source_code_url` and `self_hosting_url` accept whole-field absence
+attestations. For source code, inspect the complete official product homepage,
+documentation index, or relevant publisher repository inventory. For deployment,
+inspect the complete installation documentation, deployment options, or README
+that covers deployment. Resolve relevant linked leads before relying on silence.
+An explicit scoped vendor negative can also support absence. Incomplete pages,
+fetch failures, snippets and guessed 404s leave the field unknown. A known
+qualifying resource contradicts absence. Neither URL absence determines
+`open_source` or `self_hostable`.

@@ -1,8 +1,8 @@
 ---
 name: crew
 description: Split the current iTerm2 pane and start another coding agent (Codex, Antigravity agy or Claude Code, any model and effort) in its own tmux session; members message each other, run a three-round anonymous review that maps disagreements instead of voting, read each CLI's remaining quota and recommend a model per task from quota, a leaderboard snapshot and personal preferences, and save and restore the whole group with its conversations. macOS + iTerm2. Use for /crew ($crew in Codex) or requests like open a codex agent, message design, review this anonymously, which model for frontend, show quota, save or restore the crew. 在 iTerm2 分屏新开 tmux 里的 agent（codex / agy / claude，可指定模型和 effort），组员互发消息，三轮匿名评议，读取三家额度并按任务推荐模型，保存与一键恢复整组。用户运行 /crew，或说新开一个 agent、给 design 发消息、让大家评议一下、做前端用哪个模型、看看额度、保存或恢复 agent 组时使用。
-version: 1.2.0
-argument-hint: "[spawn [name] [agent] [model] [effort] | send <name> <text> | read <name> | advise <task> | quota | rankings | panel <topic> | status | save | restore | doctor]"
+version: 1.4.1
+argument-hint: "[spawn [name] [agent] [model] [effort] | send <name> <text> | read <name> | advise <task> | quota | rankings | panel <topic> | board | task | status | save | restore | doctor]"
 allowed-tools:
   - Bash(python3 ~/.claude/skills/crew/scripts/crew.py *)
   - Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/crew.py *)
@@ -52,6 +52,33 @@ python3 $CREW <子命令> ...
 
 参数：`$ARGUMENTS`（Claude Code 会替换成用户输入；在 Codex、agy 里用本次请求中给出的子命令和参数）。为空时按 `spawn` 处理。
 
+## 和 subagent、直接调用比
+
+同样能用上 Claude、codex、agy 三家时（subagent 由 Claude 子任务在命令行里调 `codex exec` / `agy`），三种做法各有所长：
+
+| 维度 | crew + tmux | subagent | 直接调用（codex exec 等） |
+|---|---|---|---|
+| 能用的模型（Claude / codex / agy） | ✅ ★★★★★ 各自完整的交互会话 | ✅ ★★★ codex、agy 只能一问一答 | ★★★ 只能一问一答 |
+| 长期记忆（连着干几天） | ★★★★★ | ★ 每次从零开始 | ★ |
+| 用户实时看、随时插手 | ★★★★★ | ★ | ★ |
+| 完成、出错会主动通知 | ★★ 靠 `board`、`watch` 补上 | ★★★★★ 系统自带 | ★★★★ 进程退出即结束 |
+| 稳定性（断线、窗口被关、模型被换） | ★★ | ★★★★★ | ★★★★ |
+| 并行时互不干扰（各自一份代码） | ★★ 共用一个工作目录 | ★★★★★ 可以各开一份 | ★★★ |
+| 交接成本（要说清楚背景） | ★★★★★ 成员本来就知道 | ★★ 每次都得写清楚 | ★ |
+| 额度分摊（三家订阅都用上） | ★★★★★ | ★★ 编排都算在 Claude 上 | ★★★★ |
+| 成员之间互相商量 | ★★★★★ 点对点发消息 | ★ 只能各自向 main 汇报 | — |
+| main 的管理负担 | ★★ | ★★★★ | ★★★★ |
+
+| 场景 | 用哪个 |
+|---|---|
+| 多天、分模块、用户要盯着的项目（每个模块一个长期负责人） | **crew** |
+| 一次性、边界清楚的活：审一段代码、查一个问题、读一堆文件给结论 | **subagent** |
+| 大批量、无状态的重复调用：逐题判分、逐张标注 | **直接调用**（由某个 crew 成员或脚本在后台批量跑） |
+
+三者可以叠加：crew 成员负责模块，零散任务交给 subagent，批量判定在成员的后台用 `codex exec` 跑。crew 的短板（没有完成通知、怕断线）用 `board`、`watch --nudge` 和成员做完后 `send --to main` 补上。
+
+用户问「crew 和 subagent 有什么区别、该用哪个」时，按上表回答。
+
 ## 约定
 
 - **组名** = 项目目录名（小写，非字母数字转成 `-`）。每个成员一个 tmux 会话，名为 `<组名>-<成员名>`，例如 `lego-design`。tmux 会话名是全局的，这个前缀用来避免不同项目的 `design` 撞在一起。
@@ -90,6 +117,36 @@ python3 $CREW read --name design --lines 80
 - `send` 会自动加上 `[from <发送者>]` 前缀，支持多行。
 - 发完消息对方需要时间处理；用 `read` 查看结果。还在生成时过一会儿再读，不要连续快速轮询。
 - 给不在 tmux 里的成员发消息会报错（常见于 main 尚未恢复过）。
+
+### 投递方式：不打断用户正在输入的内容
+
+用户可能正在某个窗格的输入框里打字。`send`（以及 panel、`watch --nudge` 发出的消息）按收件方选择投递方式，返回的 `via` 字段说明实际走了哪条：
+
+| 收件方 | 方式 | `via` |
+|---|---|---|
+| Codex | `codex queue` 放进对方当前对话的队列，不碰输入框；空闲时立即处理，忙时这一轮做完再处理 | `codex-queue` |
+| agy | `agy agentapi send-message` 直接送进对话，不碰输入框；agy 窗格不显示收到的原文，crew 在该窗格的 tmux 状态栏提示一行 | `agentapi` |
+| Claude，以及上面两种方式不可用时 | 只在对方输入框为空、且 8 秒内没人在该窗格按键时才打字提交 | `typed` |
+
+- 输入框有内容或有人在打字时返回 `via: "queued"`：消息存进 `<项目>/.crew/outbox/<成员>/`，后台进程每 2 秒检查一次，空出来就按顺序发出，对方窗格的状态栏会提示有消息在等。30 分钟仍发不出就移到 `outbox/<成员>/expired/`。不需要重发。
+- `via: "left_in_box"`：粘贴的瞬间用户刚好开始打字，消息留在输入框里没按回车，由用户决定发不发。
+- agy 的通道要先登记：agy 成员每次运行任何 crew 命令时，脚本自动记下它的会话地址（`~/.cache/crew/agy/`，仅本人可读）。新开时的说明消息会让它先运行一次 `whoami`；恢复后地址会变，`restore` 会提示它重新登记。登记前或地址失效时自动改用打字方式。
+- `doctor` 会检查 `codex queue` 和 `agy agentapi` 在本机能否使用。
+
+### 点对点：组员之间直接联系，也可以跨组
+
+任何成员都可以直接给任何成员发消息，不必经 main 转。收到 `[from X]` 的消息，回复就是 `send --to X`。
+
+```bash
+# 同组：直接写对方名字
+python3 $CREW send --to review "实现在 src/parser.py，请看边界情况：……"
+# 跨组：--dir 指向对方组的项目目录（在自己的项目目录里运行，不要先 cd 过去）
+python3 $CREW send --dir ~/Documents/other-project --to server "这边是 app 组的 design：……"
+```
+
+- 跨组时对方看到的发送者是 `[from <你的组>/<你的名字>]`，后面附一句回复方式（`crew send --dir <你的项目目录> --to <你的名字>`），照着就能回。如果先 `cd` 到对方目录再发，脚本认不出你的组，只能显示 tmux 会话名（如 `app-design`）。
+- 点对点只是传话，不改分工和权限：需要用户决定的事仍然经 main 汇总；改动对方模块的代码、配置或线上服务，仍由对方负责人做；涉及接口、约定或要花钱的事，商量完抄送 main 一句结论。
+- 收到别组的请求，先确认是不是对方组的 main 批准过的任务；拿不准就问发件人所在组的 main（`send --dir <它的目录> --to main`）。
 
 ## panel：匿名多轮评议
 
@@ -197,6 +254,40 @@ python3 $CREW quota                         # 三家剩余额度（10 分钟缓�
 - 写入的文件：项目内 `.crew.json`、`.crew/`、`<组名>-crew.command`；用户目录 `~/.config/crew/`（偏好、排行）和 `~/.cache/crew/`（额度缓存）。
 - Claude Code 里，frontmatter 的 `allowed-tools` 让本 skill 的脚本命令和读取 arena.ai 不必逐次确认；Codex、agy 按各自的权限设置处理。
 
+
+## board / task：任务看板
+
+用户问「大家在忙什么」「还有哪些事在排」「走到哪一步了」「额度还剩多少」时，运行：
+
+```bash
+python3 $CREW board --text          # 每个成员：忙/空闲/离线、现在做什么、排期
+python3 $CREW board --text --dir ~/Documents/other-project   # 看别的组
+```
+
+「忙/空闲」是从窗格读出来的（是否在生成）；「现在 / 排期」来自各成员自己登记的任务，存在 `<项目>/.crew/tasks.json`。每行还带该成员所用 CLI 的最紧剩余额度（低于 20% 标 ⚠），末尾列出三家全部额度和重置时间（本机时区，读法同 `quota`）；不想读额度加 `--no-quota`。
+
+```bash
+python3 $CREW task --now "重写解析器" --next "补单元测试" --next "性能对比"
+python3 $CREW task --done                    # 做完当前这件
+python3 $CREW task --clear-next --next "…"   # 重排排期
+python3 $CREW task --for review --now "…"    # 只有 main 能替别人登记
+```
+
+- 成员接到新任务、做完一件、排期变了，都用 `task` 更新自己的一行；main 派任务时可以先替对方登记。
+- 给用户看时用 `--text` 的输出原样转述；登记时间很久没更新的，先 `read` 对方窗格核实再说。
+
+工作流程链条（全组从现在到交付的关键步骤）由 main 维护，`board` 显示在成员列表之后：
+
+```bash
+python3 $CREW flow --clear --add "需求定稿@design" --add "实现@coder" --add "评审@review"
+python3 $CREW flow --status 2 doing          # todo / doing / done / blocked
+python3 $CREW flow --remove 3
+python3 $CREW flow                           # 只看流程（JSON）
+```
+
+- 每步一个短语，`@负责人` 可省，也可以写「用户」或「a/b」。`board` 把未完成的步骤连成一行箭头链（`▶进行中、▶并行 → 下一步 → …`，⏸ 表示卡住），已完成的收在下面一行。组员只能读，改动由 main 做；关键路径变了（新增修正、某步卡住、要用户决定）就更新，让用户一眼看出卡在哪一步、下一个轮到谁。
+
+- **断线停住的检测**：`python3 $CREW watch` 找出「刚报过连接错误（API Error、ECONNRESET、No response 等）、停在提示符上」的成员；加 `--nudge` 会给有登记任务的成员发一句「从断点继续」。main 可以用 `/loop 20m` 或定时唤醒定期跑 `watch --nudge`，只有发现停住时才需要处理。
 
 ## status
 

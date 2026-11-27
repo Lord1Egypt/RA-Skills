@@ -1,6 +1,11 @@
-"""Engine CLI.
+"""PPT Smith Engine CLI.
 
-Usage:
+Primary routes (v5.4+):
+  python3 -m engine design capabilities            # create / recreate / HTML design surface
+  python3 -m engine design route [--template | --design-target]
+  python3 -m engine template capabilities          # native PPTX original-page editing
+
+Legacy compatibility commands (v4 Bespoke / Atlas / diagnostic IR):
   python3 -m engine compile    --source id:type:path [--ir IR.json]
                                [--style PACK.json] --output-dir DIR
                                [--no-degrade]
@@ -8,41 +13,12 @@ Usage:
   python3 -m engine extract-ir --source id:type:path [--json-out FILE]
   python3 -m engine verify     --ir IR.json --source id:type:path [...]
   python3 -m engine coverage   --ir IR.json --source id:type:path [...]
-  python3 -m engine plan-bespoke --request REQUEST.json --ir IR.json
-                                  --content-assessment ASSESSMENT.json
-                                  [--template-pptx REFERENCE.pptx]
-  python3 -m engine author-bespoke --script AUTHOR.py --manifest MANIFEST.json
-                                    --ir IR.json --output-dir DIR
-                                    [--template-pptx REFERENCE.pptx]
-                                    [--source ID:TYPE:PATH]
-                                    [--render-engine ENGINE]
-  python3 -m engine review-bespoke --authoring-report REPORT.json --review REVIEW.json
-  python3 -m engine review-template --strict-report REPORT.json --review REVIEW.json
-  python3 -m engine strict-template --request REQUEST.json --template-pptx TEMPLATE.pptx
-                                    --plan STRICT-PLAN.json --ir IR.json
-                                    [--component-atlas ATLAS.json]
-                                    --source ID:TYPE:PATH --output-pptx OUTPUT.pptx
-  python3 -m engine component-atlas --template-pptx TEMPLATE.pptx
-                                     --review REVIEW.json [--json-out ATLAS.json]
-  python3 -m engine component-inventory --template-pptx TEMPLATE.pptx
-                                         --component-atlas ATLAS.json
-                                         [--json-out INVENTORY.json]
-  python3 -m engine compose-components --component-atlas ATLAS.json
-                                        --composition COMPOSITION.json
-                                        [--json-out STRICT-PLAN.json]
-  python3 -m engine plan-manuscript-components --component-atlas ATLAS.json
-                                                 --content-bindings BINDINGS.json
-                                                 --storyboard STORYBOARD.json
-                                                 [--json-out COMPOSITION.json]
-  python3 -m engine plan-model-template-components --ir IR.json
-                                                    --component-atlas ATLAS.json
-                                                    --model-plan MODEL-PLAN.json
-                                                    [--json-out COMPOSITION.json]
+  python3 -m engine plan-bespoke / author-bespoke / review-bespoke
+  python3 -m engine strict-template / component-atlas / compose-components / review-template
 
-`compile` is the single entry (D2): parse -> validate/provenance ->
-policy -> layout -> QA -> deck.pptx + render-plan + decision-trace.
-The other subcommands expose individual stages for debugging and repair
-loops. `--source` takes `source_id:type:path` (type markdown|html|text)
+`design` handles create/recreate and intent routing. `template` edits original
+template pages. `compile` runs the legacy IR pipeline from source parsing
+through layout and QA. `--source` takes `source_id:type:path` (type markdown|html|text)
 and may repeat. Exit codes: 0 ok, 1 findings/failure, 2 usage error.
 """
 
@@ -89,8 +65,11 @@ def main(argv: list[str] | None = None) -> int:
     if argv and argv[0] == "design":
         from .design_scene.cli import main as design_main
         return design_main(argv[1:])
-    parser = argparse.ArgumentParser(prog="engine", description=__doc__)
+    parser = argparse.ArgumentParser(prog="engine", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
+    # These two routes delegate argument parsing to their own CLI above.
+    sub.add_parser("design", help="create, recreate or select the native template route")
+    sub.add_parser("template", help="edit and verify original template pages")
 
     for name in ("parse", "extract-ir", "evidence-outline", "verify", "coverage"):
         p = sub.add_parser(name)

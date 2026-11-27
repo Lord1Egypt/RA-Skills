@@ -1,0 +1,341 @@
+{
+  "description": "local-r2：只按已知数据步骤模拟输入绑定与本地回复渲染，不自动求值条件或执行HTTP。字段和节点可映射，场景期望按需求保持。",
+  "cases": [
+    {
+      "name": "asset gate empty URL",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": ""
+      },
+      "required_inputs": {
+        "assetQueryGate": [
+          "targets",
+          "invalidTargets",
+          "assetApiUrl"
+        ]
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "asset gate rejects invalid URL string",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "TODO_CONFIGURE_API"
+      },
+      "required_inputs": {
+        "assetQueryGate": [
+          "targets",
+          "invalidTargets",
+          "assetApiUrl"
+        ]
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "ping gate empty URL",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": ""
+      },
+      "required_inputs": {
+        "pingGate": [
+          "pingIp",
+          "pingApiUrl"
+        ]
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "invalid reply retains original and reason",
+      "mode": "bound",
+      "steps": [
+        "parseInput",
+        "invalidReply"
+      ],
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1.7"
+        }
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ]
+      },
+      "required_references": [
+        [
+          "parseInput",
+          "invalidTargets"
+        ]
+      ],
+      "contains_all": [
+        "192.0.2.1.7",
+        "IP不是四段"
+      ]
+    },
+    {
+      "name": "mixed targets not-ready reply retains invalid item and reason",
+      "mode": "bound",
+      "steps": [
+        "parseInput",
+        "assetQueryGate",
+        "assetNotReadyReply"
+      ],
+      "seeds": {
+        "workflowStartNodeId": {
+          "userChatInput": "192.0.2.1 10.1.2"
+        }
+      },
+      "variables": {
+        "assetApiUrl": ""
+      },
+      "required_inputs": {
+        "parseInput": [
+          "input"
+        ],
+        "assetQueryGate": [
+          "targets",
+          "invalidTargets",
+          "assetApiUrl"
+        ]
+      },
+      "required_references": [
+        [
+          "assetQueryGate",
+          "invalidTargets"
+        ]
+      ],
+      "contains_all": [
+        "10.1.2",
+        "IP不是四段",
+        "未配置"
+      ]
+    },
+    {
+      "name": "assetQueryGate rejects http://",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "http://"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "pingGate rejects http://",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": "http://"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "assetQueryGate rejects https://???",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "https://???"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "pingGate rejects https://???",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": "https://???"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "assetQueryGate rejects https://:443",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "https://:443"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "pingGate rejects https://:443",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": "https://:443"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "assetQueryGate rejects https://example.invalid:99999",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "https://example.invalid:99999"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "pingGate rejects https://example.invalid:99999",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": "https://example.invalid:99999"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "assetQueryGate rejects TODO_CONFIGURE_API",
+      "mode": "bound",
+      "node_id": "assetQueryGate",
+      "seeds": {
+        "parseInput": {
+          "targets": [
+            {
+              "type": "IP",
+              "value": "192.0.2.1"
+            }
+          ],
+          "invalidTargets": []
+        }
+      },
+      "variables": {
+        "assetApiUrl": "TODO_CONFIGURE_API"
+      },
+      "expected": {
+        "ready": false
+      }
+    },
+    {
+      "name": "pingGate rejects TODO_CONFIGURE_API",
+      "mode": "bound",
+      "node_id": "pingGate",
+      "seeds": {
+        "parseInput": {
+          "pingIp": "192.0.2.1"
+        }
+      },
+      "variables": {
+        "pingApiUrl": "TODO_CONFIGURE_API"
+      },
+      "expected": {
+        "ready": false
+      }
+    }
+  ]
+}

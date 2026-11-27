@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "repair_log",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "rounds"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "repair_log"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "rounds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "round",
+          "issue_ids",
+          "stage_redone",
+          "invalidated",
+          "result"
+        ],
+        "properties": {
+          "round": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "issue_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9_\\-]+$"
+            },
+            "minItems": 1
+          },
+          "stage_redone": {
+            "enum": [
+              "source",
+              "story",
+              "assets",
+              "staging",
+              "storyboard",
+              "video_prompts",
+              "production",
+              "edl"
+            ]
+          },
+          "invalidated": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "score_before": {
+            "type": "number"
+          },
+          "score_after": {
+            "type": "number"
+          },
+          "result": {
+            "enum": [
+              "fixed",
+              "partial",
+              "regressed",
+              "wontfix"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

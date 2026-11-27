@@ -1,7 +1,7 @@
 ---
 name: email-validity-check
 description: "Verify email validity and format, cut email bounce‑rates and clean contact lists for exporters, recruiters and B2B sales teams.\n\nTrigger: email address validation, reduce email bounce rate, email‑list scrubbing, CRM data cleansing, cold outreach optimization"
-metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📧","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.3","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📧","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # Email Validity Check
@@ -78,6 +78,10 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 **Any operation that incurs fees must first inform and wait for explicit user confirmation. Do not execute in the same message as the notification.**
 
+### Billing Mode
+
+This skill bills the API balance only. Its endpoints do not support plans, so `planMode` is never sent and is ignored if provided.
+
 ## Workflow
 
 ### Decision Guide
@@ -97,6 +101,7 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 - Email Validity: Check [references/email-api.md](references/email-api.md)
 - Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- Plan Billing and Balance Fallback: [references/plan-billing.md](references/plan-billing.md)
 
 ## Notes
 

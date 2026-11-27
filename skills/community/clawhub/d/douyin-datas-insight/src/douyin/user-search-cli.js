@@ -5,7 +5,7 @@ const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/keyword");
-const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const { parseCliArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
@@ -31,6 +31,12 @@ const SCHEMA = {
       transform: parseDecimalInteger,
       desc: "获取数量, 1-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "keyword",
 };
@@ -41,6 +47,7 @@ function printHelp() {
       'node src/douyin/user-search-cli.js --keyword "AI"',
       'node src/douyin/user-search-cli.js --keyword "美妆达人" --limit 20',
       "node src/douyin/user-search-cli.js -k AI -l 10",
+      `node src/douyin/user-search-cli.js --json-args "{\"keyword\":\"美妆达人\",\"limit\":20}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 按关键词搜用户/达人/账号；搜视频/图文请用 search-cli.js；已有主页链接请用 post-cli.js\n" +
@@ -62,7 +69,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -137,10 +144,15 @@ async function main() {
   }
 
   let results = null;
+  let taskCost;
   try {
     await userSearch.createUserSearchTask(tokenValue, keyword, limit);
     utils.printSuccess("用户搜索任务创建成功, 正在搜索中...");
-    results = await userSearch.getUserSearchTask(tokenValue, keyword, limit);
+    ({ results, cost: taskCost } = await userSearch.getUserSearchTask(
+      tokenValue,
+      keyword,
+      limit,
+    ));
   } catch (error) {
     utils.printError(`用户搜索失败: ${error.message}`);
     emitError(
@@ -167,7 +179,7 @@ async function main() {
   };
   if (!results || !Array.isArray(results) || results.length === 0) {
     utils.printInfo("没有找到匹配的用户");
-    emitEmpty("没有找到匹配的用户", startTime, searchRequest);
+    emitEmpty("没有找到匹配的用户", startTime, searchRequest, taskCost);
     return;
   }
 
@@ -176,10 +188,13 @@ async function main() {
     startTime,
     searchRequest,
     results,
+    undefined,
+    taskCost,
   );
   await finishSuccess(finalOutput, {
     logFilename: `${startTime}_${keyword}_${limit}_user_search.json`,
     stderrMessage: `用户搜索任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
   });
 }
 

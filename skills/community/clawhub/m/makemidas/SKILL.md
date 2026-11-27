@@ -1,6 +1,6 @@
 ---
 name: makemidas
-description: Generate AI images and short videos with the MakeMidas CLI (Nano Banana, GPT Image, Seedream, Flux, Seedance, Kling, Veo, Wan…), from a prompt, reference images or a first and last frame, and save them to disk. Use when the user asks to generate, draw or render an image, illustration, photo, product shot, cover or mockup, to animate a picture, or to make a short video clip, and wants files on their computer; also for "生成图片", "画一张", "做个视频", "图生视频". Spends the user's MakeMidas credits.
+description: Generate AI images and short videos with the MakeMidas CLI (Nano Banana, GPT Image, Seedream, Flux, Seedance, Kling, Veo, Wan…), from a prompt, reference images or a first and last frame, and save them to disk; and render exact-text layouts from MakeMidas HTML templates (Open Graph / link preview images, quote cards, announcement posts, product promos, stat cards, video title cards, lower thirds) as PNG, WebP, MP4 or transparent MOV. Use when the user asks to generate, draw or render an image, illustration, photo, product shot, cover or mockup, to make an OG image, quote card, title card or lower third, to animate a picture, or to make a short video clip, and wants files on their computer; also for "生成图片", "画一张", "做个视频", "图生视频", "做封面图", "字幕条". Spends the user's MakeMidas credits; the first template images each day are free.
 license: MIT
 metadata:
   openclaw:
@@ -88,7 +88,79 @@ With `--json`, `image`, `video` and `get` print the generation
 (`{ id, kind, model, status, credits, watermarked, outputs, files }`), where
 `files` are the saved paths.
 
-## 5. Use the result
+## 5. Exact text layouts: HTML templates
+
+Use a template instead of `makemidas image` when the picture is mostly set
+text that has to read exactly as given: a link preview (Open Graph) image, a
+quote card, an announcement post, a product promo with price and badge, a
+stat card, a video title card or a lower third (a name bar on a transparent
+background, to lay over video). AI models misspell text; templates don't.
+They render in seconds, take the user's default brand (colors, fonts, logo)
+and are never watermarked.
+
+| Template id | For | Sizes | Video |
+|---|---|---|---|
+| `quote-card` | a quote and its author | square, portrait, story | yes |
+| `announcement` | headline, text, button, optional photo | square, portrait, story, landscape | no |
+| `og-image` | link preview image (Open Graph) | og, landscape | no |
+| `product-promo` | product photo, name, price, sale badge | square, portrait, story | no |
+| `title-card` | title screen for videos, chapters, slides | landscape, square, story | yes |
+| `lower-third` | name and role bar, transparent | landscape, story | yes |
+| `stat-card` | one big number, what it means, its source | square, portrait, story, landscape | yes |
+
+Sizes in pixels: square 1080x1080, portrait 1080x1350, story 1080x1920,
+landscape 1920x1080, og 1200x630.
+
+**Price.** Each account renders 10 template images free every UTC day (100
+once it has a plan or has bought a credit pack); after that each image costs
+1 credit. Template videos have no free allowance: 1 credit per started 5
+seconds (2-15 seconds, so 1-3 credits).
+
+The CLI has no template command yet. Use either:
+
+- **MCP**, if the MakeMidas MCP server is connected: `list_templates`
+  (fields, sizes, free renders left today), `render_template_image`,
+  `render_template_video`, then `get_generation` until a video is done; or
+- **the REST API** with `MAKEMIDAS_API_KEY` set (see section 2). Never read
+  the CLI's credentials file to get a token.
+
+```bash
+H="Authorization: Bearer $MAKEMIDAS_API_KEY"
+# Templates, their fields and defaults, and the free renders left today
+curl -s -H "$H" "https://makemidas.com/api/v1/templates?category=web"
+# Render an image: 201 { generation, credits, quota }
+curl -s -H "$H" -H 'Content-Type: application/json' \
+  https://makemidas.com/api/v1/renders \
+  -d '{"templateId":"og-image","size":"og","values":{"title":"How we cut our cloud bill in half","site":"example.com"}}'
+# Render a video: 202 { generation, credits } while it renders
+curl -s -H "$H" -H 'Content-Type: application/json' \
+  https://makemidas.com/api/v1/video-renders \
+  -d '{"templateId":"lower-third","size":"landscape","seconds":6,"format":"mov","values":{"name":"Alex Morgan","role":"Head of Design"}}'
+```
+
+- `category` filters the list: `social`, `web`, `promo` or `video`.
+  `GET /api/v1/templates/<id>` returns one template.
+- `values` maps field ids (from the list) to values; fields left out keep
+  their default and `null` clears one. Text, color (`#rrggbb`) and choice
+  fields take strings; image fields take `{ "assetId": … }` (from
+  `makemidas assets`) or `{ "generationId": …, "index": 0 }` (an image
+  generated earlier, e.g. with `makemidas image`).
+- Images: `size` is one of the template's sizes (its first when left out),
+  or `width` and `height` (200-2048); `scale: 2` doubles the pixels;
+  `format` is `png` (default) or `webp`.
+- Videos: only templates whose `video` is set; `seconds` 2-15 (the
+  template's default when left out); `format` is `mp4` (default) or, for a
+  transparent template (`lower-third`), `mov` (ProRes 4444 that keeps the
+  transparency). A transparent template in an MP4 sits on `matte`
+  (`#rrggbb`, chroma green by default).
+- `brandId` picks a brand; left out, the user's default brand applies;
+  `null` applies none.
+- Download with `makemidas get <generation id> --json` (add `--wait` for a
+  video), or fetch `generation.outputs[].url` (signed, valid one hour).
+  Errors come back as `{ "error": { "code", "message" } }`; 402 means not
+  enough credits, 429 too many at once.
+
+## 6. Use the result
 
 Show the user the saved files (open or embed them if your environment can).
 `makemidas list --json` lists recent generations and ids; `makemidas get <id>`

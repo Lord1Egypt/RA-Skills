@@ -4,7 +4,7 @@
 
 把源文档、设计图或原生 PPTX 模板，转成有来源、可继续修改、具有真实预览的演示文稿。模型负责理解内容与设计，固定工具负责生成、编辑和核验。
 
-**当前版本：`5.3.1` · Apache-2.0。** 安装标识 `article-html-to-ppt`，公开标识 `meowclaw-pptsmith`，兼容别名 `meowclaw-decksmith`。
+**当前版本：`5.4.0` · Apache-2.0。** 安装标识 `article-html-to-ppt`，公开标识 `meowclaw-pptsmith`，兼容别名 `meowclaw-decksmith`。
 
 ## 作品展示
 
@@ -12,13 +12,13 @@
 
 从经营摘要、收入与利润拆解，到问题验证、行动排期与管理层决策，保留统一模板语言和完整汇报结构。下图直接来自用户提供成稿的真实办公渲染，不是宣传重绘图；点击可看完整总览。
 
-[![小米集团2025Q2及上半年经营复盘：36页模板路线成稿真实渲染总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)
+[![小米集团2025Q2及上半年经营复盘：36页模板路线成稿真实渲染总览](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)](https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-2025-q2-h1-template-36page-overview.jpg)
 
 <table>
   <tr>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-02.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-02.jpg" alt="第2页：结论摘要与关键指标" width="100%"></a><br><strong>结论摘要</strong> · 指标与判断分层</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-15.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-15.jpg" alt="第15页：费用率与双期数据比较" width="100%"></a><br><strong>费用对比</strong> · 数据与解释归组</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-30.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.3-xiaomi-template-page-30.jpg" alt="第30页：执行排期与验收关口" width="100%"></a><br><strong>行动排期</strong> · 从判断走向执行</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-02.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-02.jpg" alt="第2页：结论摘要与关键指标" width="100%"></a><br><strong>结论摘要</strong> · 指标与判断分层</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-15.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-15.jpg" alt="第15页：费用率与双期数据比较" width="100%"></a><br><strong>费用对比</strong> · 数据与解释归组</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-30.jpg"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-page-30.jpg" alt="第30页：执行排期与验收关口" width="100%"></a><br><strong>行动排期</strong> · 从判断走向执行</td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@
 - 本稿**没有原生数据图表或图表内嵌工作簿**；可视条形、圆环等由原生图形表达，不能冒称可编辑图表数据。
 - 这是用户提供的模板路线成稿。本轮完成文件核对、真实渲染和代表页目检，**未重新执行其完整生成过程**，不据此标注为本轮 5.3.0 端到端生成认证。
 - 原稿局部换行和标注间距问题保留，未为展示重新排版。未复核全部财务事实，PowerPoint/WPS 编辑保存重开未测。
-- 仅公开总览、三张代表页及[简要证据](assets/samples/v5.3-xiaomi-template-evidence.json)，不公开原始 PPTX、资料与完整日志。
+- 仅公开总览、三张代表页及[简要证据](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.3-xiaomi-template-evidence.json)，不公开原始 PPTX、资料与完整日志。
 
 </details>
 
@@ -38,26 +38,23 @@
 
 <table>
   <tr>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="22页小米经营复盘装饰商务实测" width="100%"></a><br><strong>22 页装饰商务汇报</strong><br>正文构图变化与整册一致性</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="4页原生模板组件复用对照" width="100%"></a><br><strong>4 页原生组件复用</strong><br>与模板风格重建设计作同源对照</td>
-    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/3d66f434001c544ff0ac79b7230586b3d0c1690a/assets/samples/v5.1-no-image-policy-page-01.png" alt="6页无生图中文政策解读中的封面" width="100%"></a><br><strong>6 页无生图政策解读</strong><br>原生对象设计与实际预览</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.2-xiaomi-q2-h1-22page-overview.png" alt="22页小米经营复盘装饰商务实测" width="100%"></a><br><strong>22 页装饰商务汇报</strong><br>正文构图变化与整册一致性</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-template-native-4page-2col-overview.png" alt="4页原生模板组件复用对照" width="100%"></a><br><strong>4 页原生组件复用</strong><br>与模板风格重建设计作同源对照</td>
+    <td width="33%"><a href="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png"><img src="https://raw.githubusercontent.com/SkillMelody/PPT-Smith/bd78c21fdc5a6acefa03f19b15c699c365605d84/assets/samples/v5.1-no-image-policy-page-01.png" alt="6页无生图中文政策解读中的封面" width="100%"></a><br><strong>6 页无生图政策解读</strong><br>原生对象设计与实际预览</td>
   </tr>
 </table>
 
 历史作品保留原版本与原验证范围，详见[历史画廊与实测说明](references/cases/legacy-showcase.md)。作品数量、对象数量和本轮版本号都不直接代表审美质量或通用兼容性。
 
-## 5.3.1：安全维护修订
+## 5.4.0：HTML 设计面，逐页稿的设计质量
 
-此版保留 5.3.0 的原页模板工作流，实际修复平台复查指出的输出与隐私边界，不是仅更换版本号：
-
-- **保留已有文件**：打包使用独占临时目录，构建成功后替换；已有输出须工具所有权标记与显式 `--overwrite`，失败时保留或恢复旧产物。
-- **分享须授权**：贡献导出默认拒绝；明确同意后仅重建受限结构统计，不复制正文、任意证据或私密记录。
-- **高级代码默认拒绝执行**：兼容作者 Python 必须由操作者审阅，并按单次进程授予精确入口 SHA-256；这不是沙箱，也不降低原隔离要求。
-- **依赖与应用保护**：Pillow 13.0.0、限定 image-size 2.0.4；兼容 Windows 渲染器不退出用户 PowerPoint 应用。
-
-**安装边界**：Python >=3.11；仅可选 PptxGenJS 路线需要 Node >=18。真实 Windows/PowerPoint、最低 Node 18 和所有图像格式未实测；不得把 mock 回归称为真机通过。部分 image-size 公告的范围与修复元数据存在冲突，不能据本地测试宣称所有风险清零。详见[安全边界与兼容说明](references/security-boundaries.md)。
-
-平台安全审查仍须针对本版实际文件独立完成；旧 5.3.0 的审核记录保留，不以本地验收替代平台结论。
+- **在浏览器里设计，交付原生对象**：模型把每页写成受限 HTML/CSS，借助真实网格/弹性布局与文字测量完成构图；`engine design html-import` 用固定提取器读取实际几何，编译为可编辑的文字、形状、自由曲线、表格与原生图表。HTML 不进入 PPTX，页面脚本与外部资源一律拒绝。
+- **内容不靠自觉**：导入自动生成内容记录与来源，逐项核对上屏文字和数据是否出自原文；模型撰写的标题、标签须显式声明。原文中未上屏的数字与短语给出报告。
+- **门禁不变**：导入结果仍走 `validate --complete`、字体预检、真实渲染、独立审核与交付；浏览器截图只用于迭代，不作交付证据或重建目标。
+- **后端补齐**：透明度、圆角、中西文分设字体、精确行高、逐格表格样式、图表坐标轴/数据点/面积层；全部为可选字段，旧任务行为不变。
+- **字体预检修正**：按页实际字体判定，修复多字体文稿被全部标记待审的问题。
+- **纯内容路线默认可用**：报告/文档、逐页稿与口述内容都默认走 HTML 设计面，不需要生图模型；用户提供的 logo、产品图等登记后以 `data-asset` 放入页面，预览中显示真实图片，导入为可替换原生图片。
+- **版面问题前置拦截**：导入时检查文字重叠、超出卡片、固定框溢出、出界、中文缺字体、小字和层级过平；撰写的标题与要点中的数字必须能在来源中找到，计算值和导航标记需分别声明。图表预览由工具绘制，越界装饰图形按画布裁切。
 
 ## 5.3.0：把原页模板工作流接入 Skill
 
@@ -104,7 +101,7 @@
 不要求生图。交付实际 PPTX、预览、审核结论和重要编辑限制。
 ```
 
-**还原或修订：**提交已批准的完整设计图并注明需忠实还原；只改少量内容时保留任务目录，指出页/对象和改动。审核复用必须满足各自路线的依赖检查；新原页工具暂不自动继承旧候选审核。
+**还原或修订：**提交已批准的完整设计图并注明需忠实还原；只改少量内容时保留任务目录，指出页/对象和改动。审核复用必须满足各自路线的依赖检查：两条路线都只通过 `review-template --inherit-from` 显式继承完全未变且已通过的单页观察，改动页与整册节奏必须重新审核，绝不自动沿用旧候选结论。
 
 ## 安装与本地自检
 
@@ -145,6 +142,8 @@ python -m engine template capabilities
 
 ## 文档与分发
 
+浏览器插件 0.1.4 修复了侧栏无法收集微信公众号文章的问题。升级时将解压后的文件覆盖到原插件目录，再在扩展管理页点击「重新加载」，即可保留本机资料篮。 [下载 Chrome / Edge 插件 0.1.4（GitHub 仓库）](https://github.com/SkillMelody/PPT-Smith/blob/bd78c21fdc5a6acefa03f19b15c699c365605d84/pptsmith-browser-extension-0.1.4.zip)（轻量注册表运行包按 `.clawhubignore` 排除该压缩包与 `assets/samples/` 展示图）。
+
 - [Skill 执行规范](SKILL.md) · [原页编辑式模板流程](references/native-template-workflow.md)
 - [声明式设计与验收](references/declarative-design.md) · [紧凑输入与局部修订](references/declarative-authoring.md)
 - [已有模板组件流程](references/routes/v4-template-route.md) · [模板风格参考](references/template-visual-design.md)
@@ -154,6 +153,3 @@ python -m engine template capabilities
 GitHub 保存源码与聚焦回归；ClawHub/SkillHub 运行包排除测试、原始输入、完整日志、工作树与私有材料。平台可能有不同文件限制，适配内容与审核状态须分别核验，版本号不等于平台已公开。
 
 由 **MeowClaw Lab / SkillMelody** 维护。核心引擎、通用组件与 QA 采用 **Apache-2.0**；品牌与样例不表示与相关公司存在合作或背书。企业品牌适配、专属母版及代生成等商业交付不包含在公共包内。
-
----
-ClawHub hosted text distribution 5.3.1; frozen source `298f2c54920c9744246dbbace0f0e413945b085f`. Gallery assets are unchanged and use public immutable asset commit `3d66f434001c544ff0ac79b7230586b3d0c1690a`. All runtime code and Skill instructions match the tested local source; this security revision has not been pushed to GitHub by this task.

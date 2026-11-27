@@ -58,7 +58,11 @@ Kiln has hundreds of tools. Search for the one you need; never guess a name.
    If they hand you a file, use it.
 3. **Settle the size.** A model from a generation service or a model site
    arrives at no particular size. Ask how big it should be; never guess.
-4. **Show it.** Put the preview in front of the person before anything else.
+4. **Show it.** Put the preview in front of the person before anything else:
+   call `show_on_stage` on the file. Kiln's 3D view is a link that opens the
+   part in the browser to turn over; it comes with a free Kiln sign-in, and
+   your app's own STL viewer, if it has one, is not it. Signed out, give the
+   still picture and offer the sign-in once.
 5. **Check it.** Run the printability check and say what you found.
 6. **Slice it** for their printer and material, and give the time and
    filament estimate.
@@ -136,6 +140,24 @@ One sentence each, before any of the words above:
 - Roll back: "I brought back the one that worked; the newer one is still
   in the history."
 
+### Public designs
+
+Like a project on a code host, a design in the person's Kiln account is
+private until they choose to make it public. A public design gets its own
+page on kiln3d.com that anyone can open and star; where its file or
+parameters are shared, people can copy it or propose a fix.
+
+Making a design public is approved by the person, like a print.
+`set_design_public` first shows what strangers will see. Then the person gets
+an alert on their phone or computer and says yes themselves, on the design's
+page or with the code Kiln shows on their computer's screen. You cannot say
+yes for them. Making it private again, or showing fewer versions, happens at
+once.
+
+To find a design someone else made public, to print or remix, use
+`search_public_designs`, the same search as kiln3d.com/search. Both are free
+on every plan, with a Kiln sign-in.
+
 ### Accounts and plans
 
 Saving versions, comparing them and rolling back are free on the person's
@@ -169,9 +191,13 @@ printer over USB. Every supported model: https://kiln3d.com/printers
 
 ## No printer?
 
-Designing, checking, slicing and estimating all work without one, and Kiln can
-quote and order a print from an outside print service. An order always needs
-the person's confirmation.
+Designing, checking, slicing and estimating all work without one.
+
+No printer needed: this install of Kiln can get a price from a print service and place and follow an order for the part, once the person is signed in to Kiln (a free account). No other Kiln connector is needed. In order: `kiln_signin`, `fulfillment_materials`, `fulfillment_quote`, then `issue_preview_token` and `issue_shipping_confirmation_token` once the person has seen the part and confirmed where it ships, then `fulfillment_order` and `fulfillment_order_status`. An order is placed only after the person's own confirmation.
+
+## A printer Kiln doesn't fully know
+
+Kiln can get to know a printer: `printer_bench` is a short guided session that teaches Kiln what it does not yet know about how a printer moves, for a printer new to Kiln and for one it knows only in part. What it learns is used for that printer at once. A second lesson, a small test print the person reads a few numbers off, teaches Kiln how steep, how far and how thin that printer prints. Where Kiln cannot yet home or park a printer, a reply may offer to learn that move with the person, one small step at a time. Offer it once per printer, and never before the printer's first print: when a reply carries an offer of it, say that offer as written, and offer it when the person asks why Kiln cannot do something on their printer or wants to teach Kiln their printer. `printer_bench()` with no answer starts or resumes it, or says there is nothing to teach; `printer_bench(lesson="limits")` starts the second lesson on its own, and `printer_bench(lesson="walk", move=...)` starts a walk a reply offered. Relay each ask word for word, show its pictures, and take 'later' as an answer.
 
 ## Plans
 

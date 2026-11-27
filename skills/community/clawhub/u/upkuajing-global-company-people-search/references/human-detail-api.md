@@ -2,6 +2,7 @@
 
 ## python脚本参数
 - `--hids`：人物ID列表（空格分隔，必需，最多20个）
+- `--user_confirmed`：用户已在独立消息中确认ID数量和费用后必须传入
 
 ## 响应数据
 
@@ -45,3 +46,5 @@
   - province_en：省份名称
   - city_en：城市名称
   - street：街道
+
+脚本成功时会在 `delivery.displayRows` 中返回全部人物详情，当前回复必须展示，不得只报告查询成功。

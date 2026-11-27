@@ -1,185 +1,56 @@
 ---
 name: brand-voice
-description: Manage brand tone/style for all writing skills
-author: 무펭이 🐧
+description: Define, document and enforce a consistent brand or creator voice for social media, video and marketing copy. Builds a voice guide (personality, tone dials, vocabulary, do and don't examples) from interviews and real writing samples, measures writing habits with a script, rewrites drafts in that voice, audits existing content for consistency, and adapts tone per platform, audience and situation, including Roman Urdu, Urdu, Hinglish and English. Use this skill whenever the user wants a brand voice, tone of voice, voice guide, "sounds like me" writing, consistent captions or scripts, to rewrite text in their style, to check whether content matches their brand, or says "build my brand voice", "my tone", "style guide", even if they never say "voice".
 ---
 
-# brand-voice
+# Brand voice
 
-Manage writing profiles to maintain consistent tone and style per brand. Selectable via `--voice` option in all content creation skills.
+Turns "how we sound" from a feeling into a short guide plus a few measurable habits, so every post, script and reply sounds like the same person or brand. Replies follow the user's language preference; the voice guide is written in the language(s) the brand publishes in.
 
-## Brand Profiles
+## Principles
 
-### 🐧 무펭이 (Default)
-- **Tone**: Friendly and casual
-- **Style**: Informal, emoji usage 🐧
-- **Format**: Core points only, mix in humor
-- **Examples**:
-  - ❌ "Hello! Today I'll introduce MUFI Photobooth's new features."
-  - ✅ "Yo MUFI Photobooth new feature dropped 🐧 This is insane fr"
+- Base the voice on evidence: the user's real posts, emails, scripts, replies, plus an interview. Do not invent a personality from the industry.
+- The goal is recognisable and useful, not clever. A voice that cannot be followed by someone else on the team is not finished.
+- Never imitate a named real person or copy a competitor's voice. Use competitors for contrast only ("we are less formal than X").
+- Measured numbers describe habits only; humour, warmth and taste need a human read.
+- Keep the guide short (1 to 2 pages) so it gets used.
 
-### 🎯 MUFI Official
-- **Tone**: Professional and polite
-- **Style**: Formal language, formal expressions
-- **Format**: Clean and clear, for B2B/official channels
-- **Examples**:
-  - ✅ "MUFI Photobooth is the optimal solution for university festivals. Easy setup and intuitive UI enable anyone to use it easily."
+## Workflow
 
-### 👤 Hyungnim Personal
-- **Tone**: Casual but insightful
-- **Style**: Mix casual/formal, experience-centered
-- **Format**: Flow of thought, insights worth sharing
-- **Examples**:
-  - ✅ "Running booths at festivals, what I realized is that people ultimately want 'fun'. No matter how good the tech, if UX is complex, they won't use it."
+1. **Intake.** Brand or person, audience, languages (English, Roman Urdu, Urdu script, Hinglish, mix), platforms, goals, what the brand sells or stands for, 3 brands they admire and why, 3 they do not want to sound like, words they love or hate, topics to avoid. Ask only for missing items. If samples exist, ask for at least 10 posts (1,000+ words); say that fewer gives a rough sketch.
+2. **Measure.** Put samples in text files (posts separated by a line with `---`) and run `python scripts/voice_tools.py profile samples.txt --out profile.json`. Read it with the numbers in mind: sentence length, emoji and hashtag habits, questions and exclamations, openers, signature phrases, Roman Urdu share. Note what the numbers cannot show.
+3. **Interpret.** Pick 3 to 5 personality traits, each as "X, but not Y" (for example "direct, but not blunt"), with evidence from the samples. Set tone dials (formal to casual, serious to playful, reserved to enthusiastic, technical to plain) as positions with a one-line example. See `references/voice-guide-template.md`.
+4. **Write the guide.** Use the template: voice summary, traits, dials, language rules (which language when, how Roman Urdu is spelled, code-switching rules), vocabulary (use, avoid, banned), sentence and format habits, platform shifts, emoji and hashtag rules, situation tones (launch, complaint, apology, crisis, sensitive topics), 6 before-and-after examples, and a "sounds like us" checklist. Put it in a doc if the session offers a docs type; otherwise markdown.
+5. **Rules file.** Turn the hard rules into `rules.json` (banned, preferred replacements, must-include terms, limits) so drafts can be checked mechanically.
+6. **Apply.** Rewrite or draft in the voice, keep facts unchanged, and show a short list of what changed and why. Run `python scripts/voice_tools.py check draft.txt --profile profile.json --rules rules.json` before delivering and fix real issues.
+7. **Audit (optional).** Check 10 to 20 recent posts against the guide: score each trait 1 to 5 with a quote, list the drifts and the fixes, and say which posts feel most "on voice".
+8. **Maintain.** Suggest a review every quarter or after a rebrand; add new good examples to the guide; record decisions (for example "we no longer use emoji in LinkedIn posts").
 
-## Profile File Location
+## Commands
 
-**Location**: `workspace/brand/profiles/`
-
-```
-brand/
-  profiles/
-    mupengyi.md         # 무펭이 profile
-    mufi-official.md    # MUFI official profile
-    hyungnim.md         # Hyungnim personal profile
+```bash
+python scripts/voice_tools.py profile FILE [FILE ...] [--out profile.json]
+python scripts/voice_tools.py check DRAFT.txt [--profile profile.json] [--rules rules.json] [--strict] [--json out.json]
+python scripts/voice_tools.py cliches
 ```
 
-### Profile File Structure
+Standard library only. The built-in list flags stock phrases that often make text read as machine-written (for example "game-changer", "unlock your", "delve into"); treat them as prompts to be specific, not as a ban.
 
-```markdown
-# 무펭이 🐧
+## Language notes
 
-## Tone
-Friendly and casual
+- Roman Urdu and Hinglish have no standard spelling. Choose one spelling for each common word in the guide (for example the words for "no", "is" and the polite "you") and keep it.
+- Decide the mix: for example English for product terms and numbers, Roman Urdu for explanation and warmth. Write examples of both.
+- Right-to-left Urdu script needs separate checks of line breaks and punctuation. The profile tool measures Roman-script text best.
+- Do not claim a regional dialect, slang or humour is "right" for an audience without evidence from the user's samples or audience.
 
-## Style
-- Use informal language
-- Actively use emojis 🐧🎉✨
-- Abbreviations OK
+## Rules
 
-## Format
-- Core points only
-- Remove unnecessary modifiers
-- Mix in humor
+- Do not fabricate testimonials, quotes or customer stories to make copy sound human.
+- Do not write the user's voice to deceive people about who wrote something where that matters (for example impersonating a person in a private conversation). Brand copy and ghostwriting for the user's own accounts are fine.
+- Keep claims accurate; voice never overrides facts, legal notices or required disclosures.
+- Sensitive situations (apologies, safety, health, money, grief) get a plain, careful tone even when the brand is playful.
 
-## Forbidden Expressions
-- Formal expressions like "we will provide", "we shall"
-- Verbose greetings
-- Excessive formality
+## References
 
-## Preferred Expressions
-- "This is real", "insane", "jackpot"
-- "Yo", "you", "your"
-- Lots of exclamation marks OK!!!
-
-## Examples
-- ❌ "Hello, today..."
-- ✅ "Yo check this out 🐧"
-```
-
-## Writing Skill Integration
-
-These skills support `--voice` option:
-
-- **copywriting**: Caption/copy writing
-- **cardnews**: Card news text
-- **social-publisher**: SNS posts
-- **mail**: Email writing
-- **content-recycler**: Content recycling
-
-### Usage Examples
-
-```
-"Write Insta caption --voice mufi-official"
-→ Write in MUFI official tone
-
-"Create card news --voice mupengyi"
-→ Create in 무펭이 style
-
-"Write Threads post in Hyungnim tone"
-→ Use Hyungnim personal profile
-```
-
-## Profile Switching Guide
-
-### Platform Recommendations
-- **Instagram MUFI official account** → `mufi-official`
-- **Instagram personal account** → `hyungnim`
-- **Threads** → `mupengyi` (casual)
-- **Discord/DM** → `mupengyi`
-- **Official email** → `mufi-official`
-- **Blog posts** → `hyungnim` (insight-focused)
-
-### Situation Recommendations
-- **Product introduction** → `mufi-official`
-- **Daily sharing** → `mupengyi` or `hyungnim`
-- **Customer service** → `mufi-official`
-- **Community engagement** → `mupengyi`
-
-## Tone Consistency Check
-
-Auto-verify after writing:
-
-- ✅ Used preferred expressions?
-- ❌ Included forbidden expressions?
-- 🎯 Matches target tone?
-
-**pre-hook integration**:
-```
-Before writing skill execution → brand-voice-check
-→ Warn if doesn't match selected profile
-```
-
-## Add/Edit Profiles
-
-Add new brand profile:
-
-```
-"Create new brand profile: MUFI recruiting"
-→ Create brand/profiles/mufi-recruit.md
-
-- Tone: Friendly but professional
-- Style: Formal language
-- Format: Emphasize company culture
-```
-
-## Trigger Keywords
-
-- "brand tone"
-- "brand voice"
-- "speaking style"
-- "writing style"
-- "profile switch"
-- "tone and manner"
-
-## hook-engine Integration
-
-- **pre-hook**: Before writing → confirm profile selection
-- **post-hook**: After writing → check tone consistency
-- **learning-engine**: Learn tone patterns with good engagement
-
-## Event Bus Integration
-
-Record used voice profile when writing:
-
-**Location**: `events/voice-used-YYYY-MM-DD.json`
-
-```json
-{
-  "timestamp": "2026-02-14T14:30:00Z",
-  "skill": "copywriting",
-  "voice": "mupengyi",
-  "platform": "instagram",
-  "result": "Caption writing complete"
-}
-```
-
-## Learned Lessons
-
-- 무펭이 tone +40% engagement on Instagram (performance-tracker data)
-- MUFI official tone higher B2B email response rate
-- Hyungnim tone increased blog dwell time
-
----
-
-> 🐧 Built by **무펭이** — [Mupengism](https://github.com/mupeng) ecosystem skill
+- `references/voice-guide-template.md`: the guide template, tone-dial scale, before-and-after format, situation tones, rewrite checklist.
+- `references/extraction-method.md`: how to gather and read samples, interview questions, interpreting the profile numbers, audit scoring.

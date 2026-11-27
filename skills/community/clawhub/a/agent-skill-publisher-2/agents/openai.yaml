@@ -1,0 +1,4 @@
+interface:
+  display_name: "多平台Skill技能生成器"
+  short_description: "为WorkBuddy、Trae、Codex等平台生成技能，制作专家并适配发布"
+  default_prompt: "使用 $agent-skill-publisher，生成适配 WorkBuddy、Trae、Codex 等平台的技能和 WorkBuddy 专家，并准备发布包。"

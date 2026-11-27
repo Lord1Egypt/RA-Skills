@@ -7,6 +7,10 @@ description: "Use when reviewing a local video visually with systematic timestam
 
 Use the local, offline CLI in scripts/video_frame_review.py for reproducible visual inspection. It samples decoded frames at about every 2 seconds by default, labels each thumbnail with the **actual presentation timestamp (PTS)** and requested time, and writes paginated contact sheets, a JSON manifest, and at least one full-dimension PNG. It does not edit the source video.
 
+## OpenClaw setup
+
+Install with `openclaw skills install @theangrypit/video-frame-review`. The local CLI requires Python 3 with Pillow, FFmpeg and FFprobe in the agent runtime.
+
 ## Choose the route
 
 - If Diffusion Studio is already available in the task environment, read its installed watch.md for the read-only footage workflow. Prefer its probe, filmstrip, and grab for ordinary editorial inspection. Grab chooses settled states from an automatic scan; it is not a guarantee of systematic every-2-second coverage. Its -S -q fullres supplies a separate full-resolution view. Use this CLI when offline/headless inspection, explicit PTS evidence, regular sampling, or dense intervals are needed. Do not invoke Diffusion listen or transcribe as part of this visual workflow.

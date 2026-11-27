@@ -1,7 +1,7 @@
 ---
 name: "smyx-livestock-counting-analysis"
 description: "Automatically detects and counts livestock or poultry individuals from barn or passage camera images/videos, outputting total headcount with confidence for fast inventory. | 自动识别并统计畜禽数量，实现快速存栏盘点。"
-version: "1.0.20"
+version: "1.0.21"
 license: "MIT-0"
 ---
 

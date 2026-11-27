@@ -1,0 +1,8 @@
+{
+  "_说明": "复制为 noise_filters.json 或 local/noise_filters.local.json，加入你本机会话里被误判为任务的模板/系统注入文本。脚本会自动合并到内置通用过滤词。",
+  "_注意": "不要把真实任务关键词放进来，否则会被过滤掉。",
+  "markers": [
+    "示例：你本人特有的测试注入文本",
+    "sample-system-injection-marker"
+  ]
+}

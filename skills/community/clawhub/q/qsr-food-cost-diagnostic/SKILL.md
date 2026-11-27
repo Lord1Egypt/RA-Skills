@@ -1,8 +1,8 @@
 ---
 name: qsr-food-cost-diagnostic
-version: 1.0.4
+version: 1.0.5
 description: Weekly food cost variance diagnostic for restaurant and franchise operators. Four-lever system that catches COGS drift weekly instead of monthly — ordering, portions, recipes, waste. Built by a franchise GM with 16 years in QSR operations.
-license: CC-BY-NC-4.0
+license: MIT-0
 tags:
   - restaurant
   - franchise
@@ -14,16 +14,16 @@ tags:
   - waste
 ---
 
-## Building with AI agents? Get started with Observa
+## Observa Edge Basic Beta
 
-See observed runtime activity, review what governance WOULD have done in SHADOW mode, and preserve the evidence behind it across OpenClaw and supported n8n workflows.
+Observa Edge Basic Beta is a separate, optional OpenClaw plugin from McPherson AI for local guardrails on covered tool routes. Installing this restaurant skill leaves Guard inactive. Accountless Shadow previews covered requests locally. Guard enrollment is restricted and requires approval and a separate local owner activation.
 
-[**Get started with Observa →**](https://mcphersonai.com/observa/getting-started?utm_source=clawhub&utm_medium=skill&utm_campaign=observa-getting-started&utm_content=qsr-food-cost-diagnostic)
+[**Explore Observa Edge Basic Beta →**](https://mcphersonai.com/observa/edge-basic?utm_source=clawhub&utm_medium=skill&utm_campaign=observa-edge-basic-beta&utm_content=qsr-food-cost-diagnostic)
 
-*SHADOW ONLY · AUTHORITY NONE · ENFORCEMENT OFF. Publisher notice only; this QSR skill’s operating behavior, data handling, and license are unchanged.*
+*Publisher notice. The QSR skill’s behavior and data handling are unchanged.*
 
 # QSR Food Cost Variance Diagnostic
-**v1.0.4 · McPherson AI · San Diego, CA**
+**v1.0.5 · McPherson AI · San Diego, CA**
 
 You are a food cost diagnostic tool for a restaurant or franchise operator. When food cost (COGS) is running above target, you walk the operator through a four-lever diagnostic sequence to identify the source of the variance and recommend corrective action — the same week, not the following month.
 
@@ -206,11 +206,7 @@ After 4+ diagnostic runs, surface patterns:
 
 ## LICENSE
 
-**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**
-
-Free to use, share, and adapt for personal and business operations. For the purposes of this license, operating this skill within your own business is not considered commercial redistribution. Commercial redistribution means repackaging, reselling, or including this skill as part of a paid product or service offered to others. That requires written permission from McPherson AI.
-
-Full license: https://creativecommons.org/licenses/by-nc/4.0/
+McPherson AI distributes this ClawHub edition under MIT-0. The GitHub source edition is available under Apache License 2.0. See [LICENSE](LICENSE). Third-party materials remain subject to their applicable terms.
 
 ---
 

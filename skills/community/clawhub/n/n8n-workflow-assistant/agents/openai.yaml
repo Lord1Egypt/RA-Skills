@@ -1,0 +1,4 @@
+interface:
+  display_name: "n8n工作流生成助手 v1.0.0"
+  short_description: "生成、修改、调试及验证n8n工作流，支持批量、文件、AI和API集成"
+  default_prompt: "使用 $n8n-workflow-assistant 根据最新需求或导出生成并验证n8n工作流候选。"

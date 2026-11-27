@@ -3,14 +3,14 @@
  * yotta-resume 跨平台安装器（YottaSkills）
  *
  * 用法:
- *   npx -y @yottameta/yotta-resume@0.2.4 --agent <name>   # 按智能体默认用户级目录安装（推荐）
- *   npx -y @yottameta/yotta-resume@0.2.4 --dir <path>     # 装到指定目录（用户改了目录的智能体）
- *   npx -y @yottameta/yotta-resume@0.2.4 -g               # 安装到全部已知智能体用户级目录
- *   npx -y @yottameta/yotta-resume@0.2.4                  # 安装到检测到的项目级目录
- *   npx -y @yottameta/yotta-resume@0.2.4 --list           # 列出智能体 -> 默认目录
- *   npx -y @yottameta/yotta-resume@0.2.4 --dry-run        # 只显示将写入的目标，不写文件
- *   npx -y @yottameta/yotta-resume@0.2.4 --version        # 显示版本
- *   npx -y @yottameta/yotta-resume@0.2.4 --help           # 显示帮助
+ *   npx -y @yottameta/yotta-resume@0.2.5 --agent <name>   # 按智能体默认用户级目录安装（推荐）
+ *   npx -y @yottameta/yotta-resume@0.2.5 --dir <path>     # 装到指定目录（用户改了目录的智能体）
+ *   npx -y @yottameta/yotta-resume@0.2.5 -g               # 安装到全部已知智能体用户级目录
+ *   npx -y @yottameta/yotta-resume@0.2.5                  # 安装到检测到的项目级目录
+ *   npx -y @yottameta/yotta-resume@0.2.5 --list           # 列出智能体 -> 默认目录
+ *   npx -y @yottameta/yotta-resume@0.2.5 --dry-run        # 只显示将写入的目标，不写文件
+ *   npx -y @yottameta/yotta-resume@0.2.5 --version        # 显示版本
+ *   npx -y @yottameta/yotta-resume@0.2.5 --help           # 显示帮助
  *
  * 退出码: 0 成功 / 1 安装失败 / 2 用法错误 / 4 目标错误
  */
@@ -195,6 +195,44 @@ function isDirectLink(target) {
   return stat.isSymbolicLink();
 }
 
+function assertNoNestedLinks(target) {
+  let stat = null;
+  try {
+    stat = fs.lstatSync(target);
+  } catch (err) {
+    if (err && err.code === 'ENOENT') return;
+    throw new TargetError('目标目录无法检查，拒绝安装: ' + target);
+  }
+  if (stat.isSymbolicLink()) {
+    throw new TargetError('目标目录是符号链接或 junction，拒绝跟随: ' + target);
+  }
+  if (!stat.isDirectory()) return;
+
+  const walk = (dir) => {
+    let entries = null;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch (_) {
+      throw new TargetError('目标目录无法完整检查，拒绝安装: ' + dir);
+    }
+    for (const entry of entries) {
+      const p = path.join(dir, entry.name);
+      let entryStat = null;
+      try {
+        entryStat = fs.lstatSync(p);
+      } catch (_) {
+        throw new TargetError('目标目录包含无法检查的项，拒绝安装: ' + p);
+      }
+      if (entryStat.isSymbolicLink()) {
+        throw new TargetError('目标目录包含符号链接或 junction，拒绝写入: ' + p);
+      }
+      if (entryStat.isDirectory()) walk(p);
+    }
+  };
+
+  walk(target);
+}
+
 function removeLink(target) {
   try {
     fs.unlinkSync(target);
@@ -294,17 +332,20 @@ function installTo(dest, opts) {
   if (!dest || typeof dest !== 'string') throw new UsageError('目标目录不能为空');
   const target = path.resolve(dest, SKILL_NAME);
   assertSafeTarget(target);
+  assertNoNestedLinks(target);
   if (opts.dryRun) {
     console.log('[dry-run] 将安装到 -> ' + target);
     return target;
   }
   try {
+    assertNoNestedLinks(target);
     for (const rel of cleanResidue(target)) console.log('已清理残留: ' + rel);
     fs.mkdirSync(target, { recursive: true });
     assertSafeTarget(target);
     if (isDirectLink(target)) {
       throw new TargetError('目标目录在安装期间变成了链接，拒绝写入: ' + target);
     }
+    assertNoNestedLinks(target);
     copyDir(PKG_ROOT, target, true);
     if (!fs.existsSync(path.join(target, 'SKILL.md'))) {
       throw new InstallError('安装结果缺少 SKILL.md');

@@ -1,7 +1,7 @@
 ---
 name: linkdigest-wechat-article-reader
 description: "微信公众号文章提取：把 mp.weixin.qq.com 文章链接读成全文 Markdown，连文章里每张图片上的文字一起 OCR。用户发来公众号文章链接，要全文、要点、图片里的字（长图、截图、表格、海报）、作者和发布日期、文末「阅读原文」和二维码指向的链接时使用。不需要微信登录或 Cookie。通过 LinkDigest API 读取，需要 LINKDIGEST_API_KEY，按量计费：6 张图以内 1 积分（约 ¥0.14），注册送 10 积分。"
-version: 1.2.2
+version: 1.2.3
 homepage: https://linkdigest.dev/zh/docs?ref=skill-linkdigest-wechat-article-reader
 metadata: {"openclaw":{"requires":{"env":["LINKDIGEST_API_KEY"],"anyBins":["python3","curl"]},"primaryEnv":"LINKDIGEST_API_KEY","envVars":[{"name":"LINKDIGEST_API_KEY","required":true,"description":"LinkDigest API Key（ld_live_ 开头），在 https://linkdigest.dev/signin?ref=skill-linkdigest-wechat-article-reader&next=/app/keys 创建"}],"homepage":"https://linkdigest.dev/zh/docs?ref=skill-linkdigest-wechat-article-reader"}}
 required_environment_variables:
@@ -46,7 +46,7 @@ Key 只放在环境变量或 OpenClaw 配置（`skills.entries.linkdigest-wechat
 ## 怎么调用
 
 ```bash
-python3 scripts/linkdigest.py "https://mp.weixin.qq.com/s/xxxxxxxx"
+python3 scripts/linkdigest.py "https://mp.weixin.qq.com/s/2fBjEf6kDX0245-tMgS5uA"
 ```
 
 | 需要 | 加参数 |
@@ -63,7 +63,7 @@ python3 scripts/linkdigest.py "https://mp.weixin.qq.com/s/xxxxxxxx"
 ```bash
 curl -sS -X POST https://linkdigest.dev/api/v1/digest \
   -H "Authorization: Bearer $LINKDIGEST_API_KEY" -H "Content-Type: application/json" \
-  -d '{"url": "https://mp.weixin.qq.com/s/xxxxxxxx", "format": "markdown"}'
+  -d '{"url": "https://mp.weixin.qq.com/s/2fBjEf6kDX0245-tMgS5uA", "format": "markdown"}'
 # 返回 202 时：curl -sS "https://linkdigest.dev/api/v1/digest/<jobId>?wait=20&format=markdown" -H "Authorization: Bearer $LINKDIGEST_API_KEY"
 ```
 

@@ -1,7 +1,7 @@
 ---
 name: phone-validity-check
 description: "Verify mobile and landline numbers and WhatsApp registration status. Reduce invalid contacts to improve outreach for exporters, recruiters and sales teams.\n\nTrigger: phone number validation, WhatsApp status check, CRM data cleansing, bulk SMS pre‑verification, supplier verification"
-metadata: {"version":"1.0.2","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
+metadata: {"version":"1.0.3","homepage":"https://www.upkuajing.com","clawdbot":{"emoji":"📞","requires":{"bins":["python"],"env":["UPKUAJING_API_KEY"]},"primaryEnv":"UPKUAJING_API_KEY"}}
 ---
 
 # Phone Validity Check
@@ -78,6 +78,10 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 **Any operation that incurs fees must first inform and wait for explicit user confirmation. Do not execute in the same message as the notification.**
 
+### Billing Mode
+
+This skill bills the API balance only. Its endpoints do not support plans, so `planMode` is never sent and is ignored if provided.
+
 ## Workflow
 
 ### Decision Guide
@@ -97,6 +101,7 @@ Or use: `python scripts/auth.py --price_info` (returns complete pricing for all 
 
 - Phone Validity: Check [references/phone-api.md](references/phone-api.md)
 - Error Report: Check [references/skill-error-report-api.md](references/skill-error-report-api.md)
+- Plan Billing and Balance Fallback: [references/plan-billing.md](references/plan-billing.md)
 
 ## Notes
 

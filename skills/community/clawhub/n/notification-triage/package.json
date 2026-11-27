@@ -1,0 +1,7 @@
+{
+  "name": "notification-triage",
+  "version": "1.1.4",
+  "description": "Classify, score, prioritize, and batch notifications (CommonJS scoping for workspace ESM root)",
+  "type": "commonjs",
+  "private": true
+}

@@ -5,7 +5,7 @@ const post = require("../api/post");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/post");
-const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const { parseCliArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
@@ -31,6 +31,12 @@ const SCHEMA = {
       transform: parseDecimalInteger,
       desc: "获取的作品数量, 0-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -41,6 +47,7 @@ function printHelp() {
       "node src/douyin/post-cli.js https://www.douyin.com/user/MS4wLjABxxx",
       'node src/douyin/post-cli.js --url "https://v.douyin.com/xxx" --limit 20',
       "node src/douyin/post-cli.js -u MS4wLjABxxx -l 30",
+      `node src/douyin/post-cli.js --json-args "{\"url\":\"https://www.douyin.com/user/MS4wLjABxxx\",\"limit\":20}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 数量 0-10000；包月 Token 实际最多 30（0 = 只要博主互动数据），超限返回 PLAN_LIMIT\n",
@@ -72,7 +79,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -135,11 +142,16 @@ async function main() {
     return;
   }
   let postTask = null;
+  let taskCost;
   try {
     await post.createPostTask(tokenValue, url, limit);
     utils.printSuccess(`获取作品任务创建成功, 正在获取作品中...`);
 
-    postTask = await post.getPostTask(tokenValue, url, limit);
+    ({ results: postTask, cost: taskCost } = await post.getPostTask(
+      tokenValue,
+      url,
+      limit,
+    ));
   } catch (error) {
     utils.printError(`获取作品失败: ${error.message}`);
     emitError(
@@ -161,7 +173,7 @@ async function main() {
   };
   if (isEmptyResult(postTask)) {
     utils.printInfo("没有找到匹配的博主或作品");
-    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest);
+    emitEmpty("没有找到匹配的博主或作品", startTime, postRequest, taskCost);
     return;
   }
 
@@ -170,6 +182,8 @@ async function main() {
     startTime,
     postRequest,
     postTask,
+    undefined,
+    taskCost,
   );
   const postCount = Array.isArray(postTask.post) ? postTask.post.length : 0;
   const hasUser = Boolean(
@@ -178,6 +192,7 @@ async function main() {
   await finishSuccess(finalOutput, {
     logFilename: `${startTime}_${log.resourceId(url)}_post.json`,
     stderrMessage: `获取作品任务完成, 作品 ${postCount} 条${hasUser ? ", 含博主信息" : ""}`,
+    save: parsed.save === true,
   });
 }
 

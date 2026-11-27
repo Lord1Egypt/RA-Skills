@@ -239,7 +239,7 @@ function organizeFiles(rootDir = null) {
   const files = collectFiles(searchRoot);
   const categories = {
     code: { exts: ['.js', '.ts', '.py', '.html', '.css', '.json', '.yaml', '.yml', '.xml', '.sh', '.bash', '.zsh', '.rb', '.go', '.rs', '.c', '.cpp', '.h', '.java', '.kt', '.swift', '.php', '.sql', '.md', '.txt'], dir: 'code' },
-    data: { exts: ['.csv', '.tsv', '.json', '.jsonl', '.xml', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.conf', '.env', '.sql'], dir: 'data' },
+    data: { exts: ['.csv', '.tsv', '.json', '.jsonl', '.xml', '.yaml', '.yml', '.toml', '.ini', '.cfg', '.conf', '.sql'], dir: 'data' },
     docs: { exts: ['.pdf', '.doc', '.docx', '.rtf', '.odt', '.tex', '.epub'], dir: 'docs' },
     media: { exts: ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.avi', '.mov', '.mkv', '.mp3', '.wav', '.flac', '.ogg', '.m4a'], dir: 'media' },
     archives: { exts: ['.zip', '.tar', '.gz', '.rar', '.7z', '.bz2', '.xz'], dir: 'archives' },

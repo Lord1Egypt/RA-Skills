@@ -13,12 +13,12 @@ Use this skill to standardize how an agent loads memory into its prompt for corr
 - For semantic retrieval assurance, OpenClaw memory search should be configured and visible through `openclaw memory status --deep --json`.
 
 ## Quick Install
-These commands work from anywhere because they set `WORKSPACE`:
+Inspect the existing skill and local changes before installing or refreshing it; do not force an overwrite without reviewing those changes. These commands work from anywhere because they set `WORKSPACE`:
 
 ```bash
 export WORKSPACE=${WORKSPACE:-~/.openclaw/workspace}
 cd "$WORKSPACE"
-clawhub install dr-context-pipeline --version 2.1.1 --dir skills --force
+clawhub install dr-context-pipeline --dir skills
 python3 ./skills/dr-context-pipeline/scripts/install_pipeline.py --target "$WORKSPACE/context_pipeline"
 ls -1 "$WORKSPACE/context_pipeline"
 git -C "$WORKSPACE" diff -U20 AGENTS.md | cat
@@ -82,7 +82,7 @@ Apply `references/RUNTIME_CHECKLIST.md` when the full pipeline is triggered.
 
 Modes:
 - `normal` - compact day-to-day operation
-- `debug` - full Retrieval Bundle and Context Pack artifacts
+- `debug` - detailed sanitized Retrieval Bundle and Context Pack artifacts
 - `audit` - debug artifacts plus Receipt Ledger
 
 Default to `normal` unless the user explicitly asks for debug, audit, tracing, receipts, or a full evidence dump.
@@ -135,8 +135,8 @@ Until approved, the watchdog prints JSON only.
    retrieved snippets.
 8. Call the main reasoning model with always-on policy + Context Pack + user
    message.
-9. For `debug` and `audit`, persist artifacts described in
-   `references/RUNTIME_ARTIFACTS.md`.
+9. For `debug` and `audit`, persist the minimum sanitized artifacts described in
+   `references/RUNTIME_ARTIFACTS.md`; do not expose secrets or unrelated private context.
 10. Emit evidence according to the active runtime mode.
 
 ## What To Read / Use

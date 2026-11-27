@@ -1,0 +1,32 @@
+{
+  "nodes": [
+    {
+      "nodeId": "start-1",
+      "name": "开始",
+      "flowNodeType": "workflowStart",
+      "position": {"x": 0, "y": 0},
+      "inputs": []
+    },
+    {
+      "nodeId": "code-1",
+      "name": "规范化",
+      "flowNodeType": "code",
+      "position": {"x": 300, "y": 0},
+      "inputs": [
+        {"key": "codeType", "value": "js"},
+        {"key": "code", "value": "const value = 1;\nreturn { value };"}
+      ]
+    },
+    {
+      "nodeId": "reply-1",
+      "name": "回复",
+      "flowNodeType": "reply",
+      "position": {"x": 600, "y": 0},
+      "inputs": []
+    }
+  ],
+  "edges": [
+    {"source": "start-1", "target": "code-1", "sourceHandle": "source", "targetHandle": "target"},
+    {"source": "code-1", "target": "reply-1", "sourceHandle": "source", "targetHandle": "target"}
+  ]
+}

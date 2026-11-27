@@ -1,4 +1,4 @@
-# 掘金量化 Skill — 自然语言策略引擎 v2.1.0
+# 掘金量化 Skill — 自然语言策略引擎
 
 > **用中文说话就能跑量化策略。** 告诉我你的交易想法，我帮你生成代码、执行回测、查看结果。
 
@@ -96,6 +96,61 @@
 
 ---
 
+## 🆕 新增能力（v2.2）
+
+### 持久化数据（gm ≥ 3.0.191）
+
+策略状态不再"重启即失忆"。用 `persist_*` 系列把股票池、动态参数、持仓记录**落盘保存**，跨 bar、跨进程重启都能恢复。
+
+```python
+def init(context):
+    persist_init('my_state', is_async=False)   # 回测/查询模式用 False
+
+    # 首次运行创建，之后复用
+    if persist_get('stock_pool') is None:
+        persist_set('stock_pool', 'SHSE.600519,SZSE.000001')
+
+    # 恢复上次运行留下的计数
+    cnt = persist_get('bar_count')
+    context.bar_count = int(cnt) if cnt else 0
+
+def on_bar(context, bars):
+    context.bar_count += 1
+    persist_set('bar_count', str(context.bar_count))
+```
+
+| 函数 | 用途 |
+|------|------|
+| `persist_init(bucket, is_async)` | 初始化并绑定 bucket（一个运行周期只能绑 1 个） |
+| `persist_set` / `persist_get` | 字符串读写 |
+| `persist_set_obj` / `persist_get_obj` | dict / list 等 JSON 对象读写 |
+| `persist_delete` / `persist_clear` | 删单个 key / 清空 bucket |
+| `persist_delete_bucket` / `persist_get_all_buckets` / `persist_get_all_keys` | bucket 与 key 盘点 |
+
+详见 `references/19-persist-data.md`。
+
+### 基础指标新增自由流通股本
+
+`stk_get_daily_basic` / `stk_get_daily_basic_pt` 新增两个字段：
+
+| 字段 | 含义 | 量纲 |
+|------|------|------|
+| `free_shr` | 自由流通股本（剔除限售股和持股 5% 以上大股东） | 股 |
+| `free_turnrate` | 自由流通换手率 = 成交量 ÷ 自由流通股本 × 100% | % |
+
+**算自由流通市值要用 `free_shr × 上一交易日收盘价`：**
+
+```python
+d = stk_get_daily_basic(symbol='SHSE.600519', fields='tclose,free_shr',
+                        start_date='2026-11-18', end_date='2026-11-26', df=True)
+d = d.sort_values('trade_date').reset_index(drop=True)
+d['free_mv'] = d['free_shr'] * d['tclose'].shift(1)   # shift(1) 避免未来函数
+```
+
+> ⚠️ `free_shr` 和 `ttl_shr_unl` 不是一回事。茅台实测：`ttl_shr_unl` 12.5 亿股，`free_shr` 6.25 亿股，差一倍。用错会显著高估市值。
+
+---
+
 ## 文件结构
 
 ```
@@ -103,20 +158,23 @@
 ├── SKILL.md                  # 技能主文件（AI 读取此文件理解如何工作）
 ├── README.md                 # 本文件 — 用户引导
 ├── TEST_REPORT.md            # API 测试报告
-├── references/               # API 详细参考文档（21篇）
+├── references/               # API 详细参考文档
 │   ├── 01-quick-start.md
 │   ├── 04-market-data.md
-│   ├── 16-premium-data-apis.md     # 增值数据 API 速查合集
-│   ├── 18-stock-premium-apis.md    # 股票增值数据（完整版）
-│   ├── 19-fund-premium-apis.md     # 基金增值数据（完整版）
-│   ├── 20-cb-premium-apis.md       # 可转债增值数据（完整版）
-│   └── 21-futures-premium-apis.md  # 期货增值数据（完整版）
+│   ├── 17-financial-data-fields.md
+│   ├── 19-persist-data.md    # 🆕 持久化数据 API 全集
+│   └── ...
 └── scripts/
-    ├── run_strategy.py        # ⭐ 策略一键运行器
-    ├── test_all_apis.py       # API 全量测试脚本
-    ├── test_account_apis.py   # 账户 API 策略环境测试
-    └── check_import.py        # 导入检测
+    ├── run_strategy.py            # ⭐ 策略一键运行器
+    ├── test_all_apis.py           # API 全量测试脚本
+    ├── test_account_apis.py       # 账户 API 策略环境测试
+    ├── test_persist_apis.py       # 🆕 持久化 API 测试
+    ├── test_daily_basic_free.py   # 🆕 自由流通股本字段测试
+    ├── strategy_persist_demo.py   # 🆕 持久化策略示例
+    └── check_import.py            # 导入检测
 ```
+
+> 所有脚本从环境变量 `GM_TOKEN` 读取 token，不再硬编码。用法：`GM_TOKEN=xxx python scripts/test_persist_apis.py`
 
 ---
 
@@ -160,16 +218,3 @@
 - **Token 不要泄露给他人** — 相当于你的账号密码
 - **回测不等于实盘** — 回测结果仅供参考，实盘需考虑滑点、流动性等因素
 - **A 股 T+1** — 当天买入的股票当天不能卖出
-
----
-
-## 🆕 v2.1.0 更新说明
-
-| 变更 | 说明 |
-|------|------|
-| ✨ `fut_get_continuous_contracts` | 新增期货连续合约→真实合约查询函数，支持主力/次主力/前5个月份/加权指数 |
-| ✨ `last_tick` | 新增函数，查询已订阅的最新Tick（多标的），替代 `current()` |
-| ✨ `current_price` | 新增函数，仅查询最新价，更轻量高效 |
-| ⚠️ `current()` 频次限制提醒 | 实时模式 5分钟100次/24小时1000次，推荐切换上述新函数 |
-| 📚 增值数据 API 文档全量上线 | 新增4份参考文档覆盖股票/基金/可转债/期货全部付费增值数据API（共40+个函数） |
-| ✅ 48个API实测全通过 | 涵盖行情、股票增值、基金增值、可转债增值、期货增值、实战数据查询全部场景 |

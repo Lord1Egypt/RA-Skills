@@ -7,7 +7,7 @@ What a step of **The flow** needs beyond what it says there, for an agent that m
 | Mode | `mode` | What stays | What changes | Pick it when |
 |---|---|---|---|---|
 | **Adapt** | `adapt` (also what the API runs when `mode` is omitted) | The emotion formula: hook, rhythm, beats | The story, scenes, script, language | The user wants *their own* video that works like the winner |
-| **Swap** | `swap` | The source's camera, cuts, framing, action, timing, sound and frame shape | What the user names: the person (your character, if you pick one), a product, and whatever `content_anchor` names: the setting, an outfit, a line's wording | The user wants *this* video with their character in it ("the same video, but me", "keep every shot") |
+| **Swap** | `swap` | The source's camera, cuts, framing, action, timing, sound and frame shape | What the user names: the person (your character, if you pick one), a product, and whatever `content_anchor` names: the setting, an outfit | The user wants *this* video with their character in it ("the same video, but me", "keep every shot") |
 
 Swap rules (backend-enforced):
 - **A swap must change at least one thing**: a character (`character_ids`), a product that has images (`product_id`; a product without images changes nothing), a reference image (`reference_ids`; an outfit needs a person in the source), or a non-empty `content_anchor`. None of these → 400 whose `detail` is a plain localized sentence (en: "A swap needs at least one change: …"; the body carries no error code, so relay `detail` rather than matching on it). Checked for every swap source, before anything is analyzed or billed.

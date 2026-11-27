@@ -5,7 +5,7 @@ const log = require("../utils/log");
 const token = require("../utils/token");
 const utils = require("../utils/utils");
 const validator = require("../validate/comment");
-const { parseArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
+const { parseCliArgs, buildHelp, parseDecimalInteger } = require("../utils/args");
 const {
   emitError,
   emitEmpty,
@@ -31,6 +31,12 @@ const SCHEMA = {
       transform: parseDecimalInteger,
       desc: "评论数量, 1-10000",
     },
+    "--save": {
+      key: "save",
+      type: "boolean",
+      default: false,
+      desc: "将完整结果写入本地日志（也可设 GUAIKEI_ENABLE_LOG=1）",
+    },
   },
   positionalKey: "url",
 };
@@ -42,6 +48,7 @@ function printHelp() {
       "node src/douyin/comment-cli.js --url https://www.douyin.com/note/xxx --limit 20",
       "node src/douyin/comment-cli.js --url https://v.douyin.com/xxx --limit 20",
       "node src/douyin/comment-cli.js -u xxx -l 100",
+      `node src/douyin/comment-cli.js --json-args "{\"url\":\"https://www.douyin.com/video/xxx\",\"limit\":20}"`,
     ]) +
       "\n\n注意:\n" +
       "  - 支持视频/图文链接 / iesdouyin 分享链 / v.douyin.com 短链 / aweme_id(纯数字), 自动剥离 query 参数\n" +
@@ -64,7 +71,7 @@ async function main() {
 
   let parsed;
   try {
-    parsed = parseArgs(args, SCHEMA);
+    parsed = parseCliArgs(args, SCHEMA);
   } catch (error) {
     utils.printError(`参数解析错误: ${error.message}`);
     printHelp();
@@ -126,11 +133,16 @@ async function main() {
     return;
   }
   let commentTask = null;
+  let taskCost;
   try {
     await comment.createCommentTask(tokenValue, url, limit);
     utils.printSuccess(`获取评论任务创建成功, 正在获取评论中...`);
 
-    commentTask = await comment.getCommentTask(tokenValue, url, limit);
+    ({ results: commentTask, cost: taskCost } = await comment.getCommentTask(
+      tokenValue,
+      url,
+      limit,
+    ));
   } catch (error) {
     utils.printError(`获取评论失败: ${error.message}`);
     emitError(
@@ -152,7 +164,7 @@ async function main() {
   };
   if (!commentTask || !Array.isArray(commentTask) || commentTask.length === 0) {
     utils.printInfo("没有找到匹配的评论");
-    emitEmpty("没有找到匹配的评论", startTime, commentRequest);
+    emitEmpty("没有找到匹配的评论", startTime, commentRequest, taskCost);
     return;
   }
 
@@ -161,10 +173,13 @@ async function main() {
     startTime,
     commentRequest,
     commentTask,
+    undefined,
+    taskCost,
   );
   await finishSuccess(finalOutput, {
     logFilename: `${startTime}_${log.resourceId(url)}_comment.json`,
     stderrMessage: `获取评论任务完成, 共返回 ${finalOutput.results.length} 条结果`,
+    save: parsed.save === true,
   });
 }
 

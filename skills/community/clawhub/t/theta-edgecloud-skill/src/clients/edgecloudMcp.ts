@@ -40,7 +40,7 @@ function decodeToolResult(name: string, result: Record<string, unknown>): unknow
   const content = Array.isArray(result.content) ? result.content as Array<Record<string, unknown>> : [];
   const texts = content.filter((item) => item.type === 'text' && typeof item.text === 'string').map((item) => item.text as string);
   const joined = texts.join('\n');
-  if (result.isError) throw new Error(`Theta MCP ${name} failed: ${sanitizeHttpErrorMessage(joined).slice(0, 300) || 'unknown error'}`);
+  if (result.isError) throw new Error(('Theta MCP ' + String(name) + ' failed: ' + String(sanitizeHttpErrorMessage(joined).slice(0, 300) || 'unknown error')));
   if (result.structuredContent !== undefined) return result.structuredContent;
   try {
     return JSON.parse(joined);
@@ -60,8 +60,8 @@ async function enforceGpuPriceCap(cfg: ThetaConfig, args: Record<string, unknown
   const lookup = await callThetaMcpTool(cfg, 'get_gpu_resource', { project_id: args.project_id, resource_id: args.resource_id, region: args.region }) as
     { price_per_hour_usd?: unknown; resource?: { price_per_hour_usd?: unknown } };
   const price = lookup?.price_per_hour_usd ?? lookup?.resource?.price_per_hour_usd;
-  if (typeof price !== 'number' || !Number.isFinite(price)) throw new Error(`Could not verify the listed price of ${args.resource_id}; not provisioning`);
-  if (price > cap) throw new Error(`Resource ${args.resource_id} lists USD ${price}/h, above the approved cap of USD ${cap}/h`);
+  if (typeof price !== 'number' || !Number.isFinite(price)) throw new Error(('Could not verify the listed price of ' + String(args.resource_id) + ', not provisioning'));
+  if (price > cap) throw new Error(('Resource ' + String(args.resource_id) + ' lists USD ' + String(price) + '/h, above the approved cap of USD ' + String(cap) + '/h'));
 }
 
 const READ_ONLY_TOOLS = new Set([
@@ -77,8 +77,8 @@ const MUTATING_TOOLS = new Set(['create_gpu_deployment', 'start_gpu_deployment',
 export async function callThetaMcpTool(cfg: ThetaConfig, name: string, rawArgs: Record<string, unknown>): Promise<unknown> {
   const args = snapshotBody(rawArgs ?? {});
   if (!READ_ONLY_TOOLS.has(name)) {
-    if (!MUTATING_TOOLS.has(name)) throw new Error(`Theta MCP tool ${name} is not supported by this skill`);
-    assertApproved(cfg, args.confirm, `Theta MCP ${name}`);
+    if (!MUTATING_TOOLS.has(name)) throw new Error(('Theta MCP tool ' + String(name) + ' is not supported by this skill'));
+    assertApproved(cfg, args.confirm, ('Theta MCP ' + String(name)));
     if (name === 'create_gpu_deployment') await enforceGpuPriceCap(cfg, args);
   }
   requestSeq += 1;
@@ -97,15 +97,21 @@ export async function callThetaMcpTool(cfg: ThetaConfig, name: string, rawArgs: 
       signal: AbortSignal.timeout(cfg.httpTimeoutMs)
     });
   } catch (error) {
-    // Never retried: several tools provision or delete billable capacity.
-    throw fromTransportError('edgecloud-mcp', THETA_MCP_ENDPOINT, error);
+    // Never retried: several tools provision or delete billable capacity. A failed write tool call
+    // may already have been received, so it is reported as non-retriable.
+    throw fromTransportError('edgecloud-mcp', THETA_MCP_ENDPOINT, error, !READ_ONLY_TOOLS.has(name));
   }
-  const text = await res.text();
+  let text: string;
+  try {
+    text = await res.text();
+  } catch (error) {
+    throw fromTransportError('edgecloud-mcp', THETA_MCP_ENDPOINT, error, !READ_ONLY_TOOLS.has(name));
+  }
   if (!res.ok) throw fromHttpError('edgecloud-mcp', THETA_MCP_ENDPOINT, res.status, text);
   const envelope = parseRpcEnvelope(text, res.headers.get('content-type') ?? '');
   if (envelope.error) {
     const err = envelope.error as { code?: number; message?: string };
-    throw new Error(`Theta MCP ${name} JSON-RPC error ${err.code ?? ''}: ${sanitizeHttpErrorMessage(String(err.message ?? 'unknown')).slice(0, 300)}`);
+    throw new Error(('Theta MCP ' + String(name) + ' JSON-RPC error ' + String(err.code ?? '') + ': ' + String(sanitizeHttpErrorMessage(String(err.message ?? 'unknown')).slice(0, 300))));
   }
   return decodeToolResult(name, (envelope.result ?? {}) as Record<string, unknown>);
 }

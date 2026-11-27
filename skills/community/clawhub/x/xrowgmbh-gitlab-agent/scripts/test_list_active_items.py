@@ -58,8 +58,8 @@ class GateTests(unittest.TestCase):
             ({**MEMBERSHIP, "created_by": {"username": "mallory"}}, False),
             ({**MEMBERSHIP, "membership_state": "blocked"}, False),
             ({**MEMBERSHIP, "access_level": 0}, False),
-            ({**MEMBERSHIP, "access_level": True}, False),
-            ({key: value for key, value in MEMBERSHIP.items() if key != "created_by"}, False),
+            ({**MEMBERSHIP, "access_level": True}, None),
+            ({key: value for key, value in MEMBERSHIP.items() if key != "created_by"}, None),
         ]
         for membership, expected in cases:
             with self.subTest(membership=membership), patch.object(active, "api_json", return_value=membership):
@@ -82,6 +82,18 @@ class GateTests(unittest.TestCase):
         ), patch.object(active.subprocess, "run") as write:
             self.assertEqual(active.permitted_items([(denied, "issue")], USER["id"], USER["username"], "xrow"), [])
         self.assertEqual(write.call_args.args[0][-4:], ["-f", "add_labels=workflow::forbidden", "-f", "remove_labels=workflow::review"])
+
+    def test_unavailable_membership_skips_items_without_changing_labels(self):
+        denied = item(labels=["workflow::review", "type::bug"])
+        for failure in (active.subprocess.CalledProcessError(1, ["glab"]),
+                        active.subprocess.TimeoutExpired(["glab"], 25)):
+            with (self.subTest(failure=failure),
+                  patch.object(active, "api_json", side_effect=[failure, {"labels": denied["labels"]}]),
+                  patch.object(active, "record_problem") as problem,
+                  patch.object(active.subprocess, "run") as write):
+                self.assertEqual(active.permitted_items([(denied, "issue")], USER["id"], USER["username"], "xrow"), [])
+                write.assert_not_called()
+                problem.assert_called_once_with("membership-unverified", project_path="xrow-public/ci-tools")
 
     def test_allowed_item_clears_forbidden_and_preserves_other_labels(self):
         allowed = item(labels=["workflow::forbidden", "type::bug"])

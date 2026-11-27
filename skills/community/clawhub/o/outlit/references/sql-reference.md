@@ -9,7 +9,7 @@ Always inspect schema first with `outlit_get_schema` (`topic`: `views`, `view`, 
 Use the public analytics views, not backend table names:
 
 - `activity`: product use, email and Slack, calls and meetings, CRM and billing changes, support tickets, and other customer activity. Count events with `uniqExact(event_id)`, not `count()`.
-- `customers`: customer/account attributes, billing status, lifetime revenue, engagement counts, and current ARR (`arr_amount`, `arr_currency`, `arr_decimals`). `arr_cents`, `mrr_cents`, and `mrr_status` are deprecated; use `arr_amount` with its currency and decimals.
+- `customers`: customer/account attributes, `owner`, billing status, lifetime revenue, engagement counts, current ARR (`arr_amount`, `arr_currency`, `arr_decimals`), and subscription MRR (`subscription_mrr_cents`, `subscription_mrr_status`, `subscription_mrr_currency`): the monthly value of live subscription items in minor units, excluding usage and one-offs; it will not equal ARR ÷ 12. Use ARR for annual revenue. `arr_cents`, `mrr_cents`, and `mrr_status` are deprecated; use `arr_amount` with its currency and decimals.
 - `users`: people at customers, profile traits, journey-stage fields, roles, acquisition, and their own activity.
 - `revenue`: ARR per customer per UTC day since 2026-11-06: `snapshot_date`, `arr_amount`, `arr_currency`, `arr_decimals`, `arr_estimated`, `revenue_lifecycle`, and the customer's `customer_id`, `customer_name`, `customer_domain`, and `customer_status`. No row for a day means it was not computed; today's row is approximate until the day's last sync. There are no MRR columns and no `arr_history` view.
 

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Tech Stack Diagram"
+  short_description: "Draw your project's tech stack as a diagram with Tekyous: logos, grouped by role, saved to the README and editable in the builder."
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.png"

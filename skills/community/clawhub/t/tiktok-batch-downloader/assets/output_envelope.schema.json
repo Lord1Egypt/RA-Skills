@@ -82,6 +82,10 @@
                 }
             }
         },
+        "cost": {
+            "type": "number",
+            "description": "可选。取数成功或 empty 时，后端返回的本次花费估算（estimate）：包月固定为 1，按次为计费条数×单价。处理中、错误、或上游未返回时省略该字段；创建任务阶段不会有 cost"
+        },
         "results": {
             "description": "error 与 empty 时为 null。三个命令成功时都是数组。空字符串和数字 0 的字段可能不在元素里",
             "oneOf": [

@@ -150,6 +150,9 @@ def build(plan: dict, plan_path: Path) -> tuple[dict, list[str]]:
         "checked_at": dt.date.today().isoformat(),
         "plan": str(plan_path),
         "method": TODO + "how the five domains were run — concurrently, or as separate passes",
+        "verification_mode": TODO + "independent_agents (fresh subagents) or separate_processes "
+                             "(one claude -p / codex exec per domain); never the session that "
+                             "wrote the plan",
         "domains": [block(name, "domain") for name in domains],
         # Both audits are required at every tier and cost no network, so they are never omitted.
         "audits": [block(name, "audit") for name in ("consistency", "completeness")],

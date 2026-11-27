@@ -1,6 +1,6 @@
 {
   "name": "get_task_time_estimate",
-  "description": "Get AI-suggested time estimate for a task title",
+  "description": "Ask Sunsama for an AI-suggested duration for a task title. Read-only - it returns a suggestion and changes nothing; to save an estimate on a task use edit_task_time_estimate. The title is sent to Sunsama, so use it only for a task the user is planning in Sunsama.",
   "inputSchema": {
     "type": "object",
     "properties": {

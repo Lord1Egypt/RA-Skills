@@ -1,0 +1,47 @@
+{
+  "description": "local-r3 模拟HTTP上游输出，禁止运行HTTP；状态字段按真实契约映射。通过只代表本地格式化与回执。",
+  "cases": [
+    {
+      "name": "timeout distinct from empty",
+      "mode": "bound",
+      "steps": [
+        "httpResult",
+        "errorReply"
+      ],
+      "seeds": {
+        "assetQueryHttp": {
+          "httpRawResponse": null,
+          "error": "timeout"
+        }
+      },
+      "contains_all": [
+        "请求失败"
+      ],
+      "not_contains": [
+        "未查询到资产"
+      ]
+    },
+    {
+      "name": "403 is not asset missing",
+      "mode": "bound",
+      "steps": [
+        "httpResult",
+        "errorReply"
+      ],
+      "seeds": {
+        "assetQueryHttp": {
+          "httpRawResponse": {
+            "statusCode": 403
+          },
+          "error": "HTTP 403"
+        }
+      },
+      "contains_all": [
+        "请求失败"
+      ],
+      "not_contains": [
+        "未查询到资产"
+      ]
+    }
+  ]
+}

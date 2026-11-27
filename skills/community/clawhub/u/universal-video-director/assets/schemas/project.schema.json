@@ -1,0 +1,165 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "project",
+  "type": "object",
+  "required": [
+    "schema",
+    "stage",
+    "project_id",
+    "video_type",
+    "duration_sec",
+    "aspect_ratio",
+    "language",
+    "backends",
+    "gates"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "project"
+      ]
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstream": {
+      "type": "object",
+      "description": "{上游文件名: sha256前12位}，用于失效检测"
+    },
+    "video_type": {
+      "enum": [
+        "drama",
+        "comic",
+        "promo",
+        "explainer",
+        "montage",
+        "edit"
+      ]
+    },
+    "duration_sec": {
+      "type": "number",
+      "minimum": 3
+    },
+    "aspect_ratio": {
+      "enum": [
+        "9:16",
+        "16:9",
+        "1:1",
+        "4:5"
+      ]
+    },
+    "fps": {
+      "type": "number",
+      "minimum": 12,
+      "maximum": 120
+    },
+    "language": {
+      "type": "string",
+      "minLength": 1
+    },
+    "style_keywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "backends": {
+      "type": "object",
+      "required": [
+        "image",
+        "video",
+        "tts",
+        "compose"
+      ],
+      "properties": {
+        "image": {
+          "type": "string",
+          "minLength": 1
+        },
+        "video": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tts": {
+          "type": "string",
+          "minLength": 1
+        },
+        "music": {
+          "type": "string"
+        },
+        "compose": {
+          "enum": [
+            "ffmpeg",
+            "remotion",
+            "hyperframes"
+          ]
+        },
+        "max_clip_sec": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 60
+        }
+      }
+    },
+    "gates": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "story_approval": {
+          "type": "boolean"
+        },
+        "asset_approval": {
+          "type": "boolean"
+        },
+        "spend_approval": {
+          "type": "boolean"
+        },
+        "max_repair_rounds": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "cut_min_sec": {
+          "type": "number"
+        },
+        "cut_max_sec": {
+          "type": "number"
+        },
+        "segment_max_sec": {
+          "type": "number"
+        },
+        "chars_per_sec": {
+          "type": "number"
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "number"
+        }
+      }
+    },
+    "render_mode": {
+      "enum": [
+        "video",
+        "still",
+        "mixed"
+      ],
+      "description": "video=图生视频；still=首帧图+程序化运镜（Ken Burns）+配音；mixed=按 cut 选择"
+    }
+  }
+}

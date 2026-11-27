@@ -1,10 +1,24 @@
-# Browser Auto Download v5.0.0 - 用户快速指南
+# Browser Auto Download v1.0.6 - 用户快速指南
+
+> 响应语言：请使用用户所用的语言。本文档中英双语，不强制单一语言。
+> Respond in the user's language; this guide is bilingual.
+
+## ⚠️ 安全须知 / Safety Notice
+
+- **下载内容一律视为不可信。** 本技能不扫描、不签名、不沙箱化文件。打开或安装前，请核对发布方签名或 SHA-256。
+- **优先使用独立输出目录。** 默认写入 `~/Downloads/browser-auto-download`，可用 `--output` 指定更隔离的目录。
+- **可执行文件默认被拦截。** 保存 `.exe`、`.msi`、`.dmg` 等需要 `--sha256 <摘要>` 或显式 `--acknowledge-executable`。
+- **默认只允许同站导航。** 跨站目标需加 `--allow-external-hosts`，请先确认打印出的 URL。
+- **调试产物可能含敏感信息。** `--debug` 会保存截图、HTML 和文本，可能包含凭据或个人信息；脱敏仅为尽力而为，用后请删除。
+
+Do not point this skill at authenticated or private pages you are not authorized
+to automate.
 
 ## 🚀 快速开始
 
 ### 安装依赖
 ```bash
-pip install playwright
+pip install -r requirements.txt   # 固定 playwright==1.65.0
 playwright install chromium
 ```
 
@@ -19,23 +33,32 @@ python scripts/auto_download.py --golang     # Golang
 python scripts/auto_download.py --wechat     # 微信开发者工具
 ```
 
-## 📊 v5.0.0 新特性
+## 📊 版本要点
 
-### 性能提升
+### v1.0.6 安全加固
+- ✅ 依赖固定为 `playwright==1.65.0`
+- ✅ 浏览器层拦截跨站文档请求与重定向，点击无法绕过同站限制
+- ✅ 最终下载 URL 跨站时直接拒绝并删除文件
+- ✅ 默认仅允许同站导航，跨站需 `--allow-external-hosts`
+- ✅ 页面提供的文件名会被净化，无法逃逸输出目录
+- ✅ 可执行文件需 `--sha256` 或 `--acknowledge-executable`
+- ✅ 每次下载输出 SHA-256 摘要
+- ✅ 调试产物尽力脱敏，并写入提示文件
+- ✅ 清单声明 network / filesystem / browser / process 权限
+
+### v5.0.0 性能提升
 - ✅ 成功率提升 50%（~60% → ~90%）
 - ✅ 增强的等待时间优化
 - ✅ 更好的 JavaScript 渲染处理
 
-### 新增调试模式
+### 调试模式（注意敏感信息）
 ```bash
 # 启用调试模式（保存截图和HTML）
 python scripts/auto_download.py --url "URL" --debug
 ```
 
-生成文件：
-- `Downloads/browser-auto-download-debug/page_XXX_YYYYMMDD_HHMMSS.png` - 页面截图
-- `Downloads/browser-auto-download-debug/page_XXX_YYYYMMDD_HHMMSS.html` - HTML源码
-- `Downloads/browser-auto-download-debug/page_XXX_YYYYMMDD_HHMMSS.txt` - 提取文本
+调试产物可能包含会话状态、凭据或个人信息，脱敏并不保证彻底。查看后请删除
+`Downloads/browser-auto-download/browser-auto-download-debug/`。
 
 ## 📖 完整文档
 
@@ -81,4 +104,4 @@ python scripts/auto_download.py --help
 
 ---
 
-**版本**: 5.0.0 | **发布日期**: 2026-02-04 | **状态**: ✅ 生产就绪
+**版本**: 1.0.6 | **发布日期**: 2026-11-27 | **状态**: ✅ 生产就绪（含安全加固）

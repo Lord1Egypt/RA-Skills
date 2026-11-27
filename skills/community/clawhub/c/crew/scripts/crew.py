@@ -160,6 +160,308 @@ def wait_ready(session, timeout=60):
     return "timeout"
 
 
+# ---------- delivery: never type over what the user is typing ----------
+# Order of preference for getting a message to a member:
+#   codex  `codex queue --thread <live thread>`: the CLI's own queue, no keystrokes
+#   agy    `agy agentapi send-message`: needs the member's language-server address and
+#          token, which only its own shell commands inherit, so crew.py records them
+#          whenever an agy member runs it (register_agy)
+#   claude and anything the routes above cannot reach is typed, guarded:
+#   typed  only when the input box is empty and nobody has pressed a key in the pane
+#          for IDLE_SECS; otherwise the message waits in <project>/.crew/outbox/ and a
+#          detached `crew.py flush` delivers it once the box is clear.
+
+IDLE_SECS = 8
+WAIT_MAX = 1800
+POLL = 2
+OUTBOX = os.path.join(".crew", "outbox")
+AGY_CREDS = os.path.expanduser("~/.cache/crew/agy")
+SGR = re.compile(r"\x1b\[([0-9;]*)m")
+ESC = re.compile(r"\x1b(\[[0-9;?]*[A-Za-z]|\][^\x07]*\x07|[()][A-Z0-9])")
+RULE = re.compile(r"^\s*─{10,}\s*$")
+PROMPT_MARK = {"claude": "❯", "codex": "›", "agy": ">"}
+
+
+def screen(session):
+    """Raw pane lines (with SGR codes) and the cursor row; None if the pane is gone."""
+    t = "=" + session + ":"
+    try:
+        raw = subprocess.run(["tmux", "capture-pane", "-p", "-e", "-t", t],
+                             capture_output=True, text=True).stdout
+    except OSError:
+        return None, None
+    rc, cur = tmux("display-message", "-p", "-t", t, "#{cursor_y}")
+    if rc != 0 or not cur.isdigit():
+        return None, None
+    return raw.split("\n"), int(cur)
+
+
+def bright(line):
+    """The text of a line minus what is drawn dim or grey: input-box placeholders
+    ("Try …", "Ask Codex to do anything", agy's mode hint) are drawn that way."""
+    out, dim, pos = [], False, 0
+    for m in SGR.finditer(line):
+        if not dim:
+            out.append(line[pos:m.start()])
+        codes = [c for c in m.group(1).split(";") if c] or ["0"]
+        i = 0
+        while i < len(codes):
+            c = codes[i]
+            if c in ("0", "22"):
+                dim = False
+            elif c in ("2", "90"):
+                dim = True
+            elif c == "39" and "2" not in codes:
+                dim = False
+            if c in ("38", "48") and i + 1 < len(codes):
+                i += 2 if codes[i + 1] == "5" else 4
+            i += 1
+        pos = m.end()
+    if not dim:
+        out.append(line[pos:])
+    return ESC.sub("", "".join(out))
+
+
+def input_state(m):
+    """'empty', 'text' or 'unknown' (a dialog, a menu, a layout crew does not know):
+    what is in the member's input box right now."""
+    raw, cy = screen(m["session"])
+    if raw is None:
+        return "unknown"
+    plain = [ESC.sub("", SGR.sub("", l)) for l in raw]
+    mark = PROMPT_MARK.get(m["agent"])
+    if m["agent"] in ("claude", "agy"):
+        # the box is the space between the two lowest horizontal rules
+        rules = [i for i, l in enumerate(plain) if RULE.match(l)]
+        if len(rules) < 2:
+            return "unknown"
+        a, b = rules[-2], rules[-1]
+        if b - a < 2 or not plain[a + 1].lstrip().startswith(mark):
+            return "unknown"
+        box = range(a + 1, b)
+    elif m["agent"] == "codex":
+        # no rule below the composer: it is the last `›` line plus its continuation
+        # lines down to the cursor
+        idx = [i for i, l in enumerate(plain) if l == mark or l.startswith(mark + " ")]
+        if not idx:
+            return "unknown"
+        p, end = idx[-1], idx[-1] + 1
+        while end < len(plain) and end <= cy and plain[end].startswith("  ") and plain[end].strip():
+            end += 1
+        box = range(p, end)
+    else:
+        return "unknown"
+    text = []
+    for j, i in enumerate(box):
+        v = bright(raw[i])
+        text.append((v.lstrip()[len(mark):] if j == 0 else v).strip())
+    return "text" if any(text) else "empty"
+
+
+def last_key(session):
+    """When a person last pressed a key in this pane (tmux client_activity; crew's own
+    send-keys do not count), or 0 when no terminal is attached."""
+    rc, out = tmux("list-clients", "-t", "=" + session, "-F", "#{client_activity}")
+    return max([int(x) for x in out.split() if x.isdigit()] or [0]) if rc == 0 else 0
+
+
+def notify(session, text):
+    """One line in the pane's tmux status bar, outside the agent's input box."""
+    tty = client_tty(session)
+    if tty:
+        tmux("display-message", "-c", tty, "-d", "6000", text[:200])
+
+
+def typed(m, text):
+    """Type text in only when the box is empty and the keyboard has been idle.
+    'typed', 'left_in_box' (the user started typing mid-paste, so Enter is withheld),
+    or None (not now)."""
+    k0 = last_key(m["session"])
+    if time.time() - k0 < IDLE_SECS or input_state(m) != "empty":
+        return None
+    target = "=" + m["session"] + ":"
+    if "\n" in text:
+        tmux("load-buffer", "-b", "crew-msg", "-", stdin=text)
+        tmux("paste-buffer", "-p", "-d", "-b", "crew-msg", "-t", target)
+    else:
+        tmux("send-keys", "-t", target, "-l", text)
+    time.sleep(0.6)
+    if last_key(m["session"]) != k0:
+        notify(m["session"], "crew：一条消息已放进输入框但没有发送（检测到你在打字），确认后按回车")
+        return "left_in_box"
+    tmux("send-keys", "-t", target, "Enter")
+    return "typed"
+
+
+def type_when_clear(m, text, timeout=40):
+    """typed(), retried until the box is clear: for crew's own setup messages to a
+    pane that has just opened. Types anyway at the end so setup never stalls."""
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        via = typed(m, text)
+        if via:
+            return via
+        time.sleep(1)
+    send_text(m["session"], text)
+    return "typed"
+
+
+def agy_creds_path(m):
+    return os.path.join(AGY_CREDS, m["session"] + ".json")
+
+
+def register_agy(args):
+    """Called on every crew.py run: when the caller is an agy member, record the
+    address and token of its language server so others can reach it silently."""
+    addr = os.environ.get("ANTIGRAVITY_LS_ADDRESS")
+    tok = os.environ.get("ANTIGRAVITY_CSRF_TOKEN")
+    conv = os.environ.get("ANTIGRAVITY_CONVERSATION_ID")
+    if not (addr and tok and conv):
+        return
+    try:
+        d = find_dir(getattr(args, "dir", None) or os.getcwd())
+        state = load(d)
+        if not state:
+            return
+        m = member(state, caller(state, state["group"])[0])
+        agent, pid = calling_agent()
+        if not m or m["agent"] != "agy" or agent != "agy":
+            return
+        os.makedirs(AGY_CREDS, mode=0o700, exist_ok=True)
+        p = agy_creds_path(m)
+        fd = os.open(p + ".tmp", os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(fd, "w") as f:
+            json.dump({"address": addr, "token": tok, "conversation": conv, "pid": pid,
+                       "at": int(time.time())}, f)
+        os.replace(p + ".tmp", p)
+        if m.get("session_id") != conv:
+            m["session_id"] = conv
+            store(d, state)
+    except Exception:
+        pass  # registering is best effort; delivery falls back to typing
+
+
+def agy_creds(m):
+    """Recorded language-server credentials of an agy member, if its process still runs."""
+    try:
+        with open(agy_creds_path(m)) as f:
+            c = json.load(f)
+        os.kill(int(c["pid"]), 0)
+        return c
+    except (OSError, ValueError, KeyError, TypeError):
+        return None
+
+
+def agy_bin():
+    return shutil.which("agy") or os.path.expanduser("~/.local/bin/agy")
+
+
+def silent(d, state, m, text):
+    """Deliver without touching the input box; the route used, or None."""
+    if m["agent"] == "codex":
+        sid = live_session_id(m)
+        if not sid:  # without the thread the pane shows, a queued message could go astray
+            return None
+        if sid != m.get("session_id"):
+            m["session_id"] = sid
+            store(d, state)
+        rc, out = run("codex", "queue", "--thread", sid, "--message", text)
+        return "codex-queue" if rc == 0 and out.startswith("Queued message") else None
+    if m["agent"] == "agy":
+        c = agy_creds(m)
+        if not c:
+            return None
+        env = dict(os.environ, ANTIGRAVITY_LS_ADDRESS=c["address"],
+                   ANTIGRAVITY_CSRF_TOKEN=c["token"])
+        try:
+            r = subprocess.run([agy_bin(), "agentapi", "send-message", "--title", "crew",
+                                c["conversation"], text],
+                               capture_output=True, text=True, env=env, timeout=20)
+            ok = r.returncode == 0 and '"sendMessage"' in r.stdout and '"error"' not in r.stdout
+        except (OSError, subprocess.TimeoutExpired):
+            ok = False
+        if not ok:  # agy restarted: stale address or token
+            try:
+                os.unlink(agy_creds_path(m))
+            except OSError:
+                pass
+            return None
+        # agy does not echo the incoming message in its pane; show it in the status bar
+        notify(m["session"], "crew → %s：%s" % (m["name"], text.replace("\n", " ")))
+        return "agentapi"
+    return None
+
+
+def outbox_dir(d, m):
+    return os.path.join(d, OUTBOX, m["name"])
+
+
+def pending(d, m):
+    return sorted(glob.glob(os.path.join(outbox_dir(d, m), "*.json")))
+
+
+def enqueue(d, m, text):
+    q = outbox_dir(d, m)
+    os.makedirs(q, exist_ok=True)
+    p = os.path.join(q, "%d-%04d.json" % (time.time() * 1000, random.randint(0, 9999)))
+    with open(p + ".tmp", "w") as f:
+        json.dump({"text": text, "created": time.time()}, f, ensure_ascii=False)
+    os.replace(p + ".tmp", p)
+    subprocess.Popen([sys.executable, os.path.abspath(__file__), "flush", "--to", m["name"],
+                      "--dir", d], stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+                     stderr=subprocess.DEVNULL, start_new_session=True, cwd=d)
+    return p
+
+
+def deliver(d, state, m, text):
+    """Get text to member m now if that is safe, else queue it. Returns the route:
+    codex-queue / agentapi / typed / left_in_box / queued."""
+    if not pending(d, m):  # never overtake messages already waiting for this member
+        via = silent(d, state, m, text) or typed(m, text)
+        if via:
+            return via
+    enqueue(d, m, text)
+    notify(m["session"], "crew：有消息等你输完再发给 %s（输入框里有内容）" % m["name"])
+    return "queued"
+
+
+def cmd_flush(args):
+    """Detached helper: deliver queued messages for one member, oldest first."""
+    import fcntl
+    d = os.path.abspath(args.dir)
+    state = load(d)
+    m = member(state, args.to) if state else None
+    if not m:
+        return
+    q = outbox_dir(d, m)
+    os.makedirs(q, exist_ok=True)
+    with open(os.path.join(q, ".lock"), "w") as lk:
+        fcntl.flock(lk, fcntl.LOCK_EX)  # one deliverer per member at a time; order kept
+        while True:
+            files = pending(d, m)
+            if not files or not alive(m["session"]):
+                return
+            p = files[0]
+            try:
+                with open(p) as f:
+                    item = json.load(f)
+            except (OSError, ValueError):
+                os.replace(p, p + ".bad")
+                continue
+            if time.time() - item.get("created", 0) > WAIT_MAX:
+                os.makedirs(os.path.join(q, "expired"), exist_ok=True)
+                os.replace(p, os.path.join(q, "expired", os.path.basename(p)))
+                notify(m["session"], "crew：有一条消息等了 %d 分钟仍没发出，已移到 %s"
+                       % (WAIT_MAX // 60, os.path.join(OUTBOX, m["name"], "expired")))
+                continue
+            state = load(d) or state
+            m = member(state, args.to) or m
+            if silent(d, state, m, item["text"]) or typed(m, item["text"]):
+                os.unlink(p)
+                continue
+            time.sleep(POLL)
+
+
 # ---------- who is calling ----------
 
 def caller(state, group):
@@ -724,6 +1026,14 @@ def cmd_doctor(args):
             add(a, True, (run(a, "--version")[1].splitlines() or ["?"])[0])
         else:
             add(a, None, "未安装（可选）")
+    if installed("codex"):
+        ok = run("codex", "queue", "--help")[0] == 0
+        add("codex queue（静默投递）", ok or None,
+            "可用" if ok else "这个版本没有 codex queue，给 Codex 发消息会改用输入框（升级 codex 可解决）")
+    if installed("agy"):
+        ok = run(agy_bin(), "agentapi", "--help")[0] == 0
+        add("agy agentapi（静默投递）", ok or None,
+            "可用" if ok else "这个版本没有 agentapi，给 agy 发消息会改用输入框")
     opts = all_options()
     for a in AGENTS:
         if installed(a):
@@ -755,8 +1065,18 @@ def intro_text(state, m, main_reachable):
               % dq(os.path.abspath(__file__)))
         if not main_reachable:
             t += "main 目前不在 tmux 中，收不到消息，它会主动读取你的窗格。"
-    t += "以 [from 名称] 开头的输入来自组员。现在只需回复：%s 就绪。" % m["name"]
+    t += "以 [from 名称] 开头的输入来自组员。"
+    if m["agent"] == "agy":
+        # registers this agy's language server so messages can skip the input box
+        t += ("现在先运行一次：python3 %s whoami，再只回复：%s 就绪。"
+              % (dq(os.path.abspath(__file__)), m["name"]))
+    else:
+        t += "现在只需回复：%s 就绪。" % m["name"]
     return t
+
+
+REREGISTER = ("[crew] 窗口已恢复。请运行一次 python3 %s whoami 重新登记消息通道，"
+              "然后只回复：已登记，不要做别的。")
 
 
 def cmd_spawn(args):
@@ -845,7 +1165,7 @@ def cmd_spawn(args):
     status = wait_ready(session)
     if status == "ready":
         main_sess = member(state, "main")["session"]
-        send_text(session, intro_text(state, m, alive(main_sess)))
+        type_when_clear(m, intro_text(state, m, alive(main_sess)))
         for _ in range(30):
             time.sleep(1)
             sid = live_session_id(m) or (
@@ -874,7 +1194,20 @@ def need_state(args):
 
 def cmd_send(args):
     d, state = need_state(args)
-    who = caller(state, state["group"])[0]
+    who, sess = caller(state, state["group"])[:2]
+    reply = ""
+    sessions = {x["session"] for x in state["members"]}
+    if who == "guest" or (sess and sess not in sessions):
+        # A member of another group writing across (send --dir <other project>): name it by
+        # its own group so the receiver knows who it is and how to answer.
+        home = find_dir(os.getcwd())
+        hs = load(home) if home != d else None
+        hwho = caller(hs, hs["group"])[0] if hs else "guest"
+        if hs and hwho != "guest":
+            who = "%s/%s" % (hs["group"], hwho)
+            reply = "（回复：crew send --dir %s --to %s）" % (home, hwho)
+        elif sess:
+            who = sess
     m = member(state, args.to)
     if not m:
         die("没有成员 %s。现有：%s" % (args.to, "、".join(x["name"] for x in state["members"])))
@@ -884,12 +1217,259 @@ def cmd_send(args):
         die("%s 不在 tmux 中（会话 %s 不存在），收不到消息。" % (m["name"], m["session"])
             + ("main 要在恢复（restore）之后才进 tmux。" if m["name"] == "main" else ""))
     me, tid = member(state, who), os.environ.get("CODEX_THREAD_ID")
-    if me and me["agent"] == "codex" and calling_agent()[0] == "codex" and tid \
+    agent = calling_agent()[0]
+    if me and me["agent"] == "codex" and agent == "codex" and tid \
             and tid != me.get("session_id"):
         me["session_id"] = tid
         store(d, state)
-    send_text(m["session"], "[from %s] %s" % (who, args.message))
-    done(sent_to=m["name"], sender=who)
+    text = "[from %s]%s %s" % (who, reply, args.message)
+    via = deliver(d, state, m, text)
+    done(sent_to=m["name"], sender=who, via=via,
+         note={"queued": "%s 的输入框里有内容或正在打字，消息已排队，空出来后自动发送"
+                         "（最多等 %d 分钟）。" % (m["name"], WAIT_MAX // 60),
+               "left_in_box": "对方正好在打字：消息已放进输入框但没按回车，由对方确认发送。"}.get(via))
+
+
+TASKS = os.path.join(".crew", "tasks.json")
+BUSY_MARKS = ("esc to interrupt", "esc to cancel", "Working (", "Thinking", "Running…")
+
+
+def load_tasks(d):
+    p = os.path.join(d, TASKS)
+    try:
+        with open(p) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def store_tasks(d, tasks):
+    p = os.path.join(d, TASKS)
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p + ".tmp", "w") as f:
+        json.dump(tasks, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    os.replace(p + ".tmp", p)
+
+
+def cmd_task(args):
+    d, state = need_state(args)
+    who = caller(state, state["group"])[0]
+    name = args.for_ or who
+    if args.for_ and who != "main":
+        die("只有 main 能替别人记任务；记自己的不要加 --for。")
+    if not member(state, name):
+        die("没有成员 %s。现有：%s" % (name, "、".join(x["name"] for x in state["members"])))
+    tasks = load_tasks(d)
+    t = tasks.get(name, {"now": "", "next": []})
+    if args.done:
+        t["now"] = ""
+    if args.now is not None:
+        t["now"] = args.now.strip()
+    if args.clear_next:
+        t["next"] = []
+    t["next"] = t.get("next", []) + [x.strip() for x in args.next if x.strip()]
+    t["updated"] = time.strftime("%Y-%m-%d %H:%M", time.localtime())
+    t["by"] = who
+    tasks[name] = t
+    store_tasks(d, tasks)
+    done(member=name, **{k: t[k] for k in ("now", "next", "updated")})
+
+
+FLOW = os.path.join(".crew", "flow.json")
+FLOW_MARK = {"todo": "·", "doing": "▶", "done": "✓", "blocked": "⏸"}
+
+
+def load_flow(d):
+    try:
+        with open(os.path.join(d, FLOW)) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {"steps": []}
+
+
+def cmd_flow(args):
+    d, state = need_state(args)
+    who = caller(state, state["group"])[0]
+    fl = load_flow(d)
+    steps = fl.setdefault("steps", [])
+    edit = args.clear or args.add or args.status or args.remove
+    if edit and who != "main":
+        die("只有 main 能改工作流程；组员用 task 登记自己的任务。")
+
+    def idx(n):
+        if not 1 <= n <= len(steps):
+            die("没有第 %d 步（共 %d 步）" % (n, len(steps)))
+        return n - 1
+    if args.clear:
+        steps.clear()
+    for a in args.add:
+        text, _, owner = a.partition("@")
+        steps.append({"step": text.strip(), "owner": owner.strip(), "status": "todo"})
+    if args.status:
+        n, st = args.status
+        if st not in FLOW_MARK:
+            die("状态只能是 todo / doing / done / blocked")
+        steps[idx(int(n))]["status"] = st
+    if args.remove:
+        steps.pop(idx(args.remove))
+    if edit:
+        fl["updated"] = time.strftime("%Y-%m-%d %H:%M", time.localtime())
+        p = os.path.join(d, FLOW)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p + ".tmp", "w") as f:
+            json.dump(fl, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        os.replace(p + ".tmp", p)
+    done(**fl)
+
+
+def print_flow(fl):
+    steps = fl.get("steps") or []
+    if not steps:
+        return
+
+    def name(x):
+        return x["step"] + (("（%s）" % x["owner"]) if x.get("owner") else "")
+    done_ = [x for x in steps if x.get("status") == "done"]
+    rest = [x for x in steps if x.get("status") != "done"]
+    print("\n关键路径%s" % (("（更新于 %s）" % fl["updated"]) if fl.get("updated") else ""))
+    if rest:
+        chain, k = [], 0
+        while k < len(rest):
+            # consecutive steps already under way run in parallel: join them with 、
+            if rest[k].get("status") in ("doing", "blocked"):
+                grp = []
+                while k < len(rest) and rest[k].get("status") in ("doing", "blocked"):
+                    grp.append(("⏸" if rest[k]["status"] == "blocked" else "▶") + name(rest[k]))
+                    k += 1
+                chain.append("、".join(grp))
+            else:
+                chain.append(name(rest[k]))
+                k += 1
+        print("  " + " → ".join(chain))
+    else:
+        print("  全部完成")
+    if done_:
+        print("  已完成：" + "；".join(x["step"] for x in done_))
+
+
+def busy_state(m):
+    if not alive(m["session"]):
+        return "离线"
+    rc, out = capture(m["session"], 40)
+    if rc != 0:
+        return "未知"
+    tail = "\n".join(out.splitlines()[-25:])
+    return "忙" if any(k in tail for k in BUSY_MARKS) else "空闲"
+
+
+STALL_MARKS = ("API Error", "Connection dropped", "ECONNRESET", "Resend your message",
+               "Error running remote compact", "No response from API", "stream disconnected",
+               "Connection failed")
+NUDGE = ("刚才连接中断，你停在了提示符上。请从断点继续你登记的任务：%s。已完成的部分保留，"
+         "做完照常更新 crew task 并报告。")
+
+
+def stalled(m):
+    """A member idle at its prompt right after a connection error (not finished, just stopped)."""
+    if not alive(m["session"]):
+        return None
+    rc, out = capture(m["session"], 40)
+    if rc != 0:
+        return None
+    tail = "\n".join(out.splitlines()[-25:])
+    if any(k in tail for k in BUSY_MARKS):
+        return None
+    hit = [k for k in STALL_MARKS if k in tail]
+    return hit[0] if hit else None
+
+
+def cmd_watch(args):
+    d, state = need_state(args)
+    tasks = load_tasks(d)
+    found = []
+    for m in state["members"]:
+        if m["name"] == "main":
+            continue
+        why = stalled(m)
+        if not why:
+            continue
+        now = tasks.get(m["name"], {}).get("now", "")
+        item = {"name": m["name"], "error": why, "task": now, "nudged": False}
+        if args.nudge and now:
+            item["via"] = deliver(d, state, m, "[from crew-watch] " + NUDGE % now)
+            item["nudged"] = True
+        found.append(item)
+    done(group=state["group"], stalled=found)
+
+
+def live_model(m):
+    """Model shown in a Codex pane's footer (e.g. 'GPT-6.2-Astra xhigh'), or None."""
+    if m["agent"] != "codex" or not alive(m["session"]):
+        return None
+    rc, out = capture(m["session"], 8)
+    hits = re.findall(r"(GPT-[\w.\-]+)\s+(low|medium|high|xhigh|max)", out or "")
+    return ("%s %s" % hits[-1]) if hits else None
+
+
+def cmd_board(args):
+    d, state = need_state(args)
+    tasks = load_tasks(d)
+    rows = []
+    for m in state["members"]:
+        t = tasks.get(m["name"], {})
+        live = live_model(m)
+        drift = bool(live and m.get("model") and m["model"].replace("gpt-", "").lower()
+                     not in live.lower().replace("gpt-", ""))
+        rows.append({"name": m["name"], "agent": m["agent"], "model": m.get("model"),
+                     "live_model": live, "model_changed": drift,
+                     "state": busy_state(m), "now": t.get("now", ""), "next": t.get("next", []),
+                     "updated": t.get("updated", "")})
+    q = {}
+    if not args.no_quota:
+        try:
+            q = advise.quota(sorted({r["agent"] for r in rows if installed(r["agent"])}),
+                             installed=installed)
+        except Exception:
+            q = {}
+    for r in rows:
+        b = advise.bottleneck(r["agent"], r["model"], q) if q else None
+        r["quota"] = {"remaining": b["remaining"], "label": b["label"],
+                      "resets": b.get("resets")} if b else None
+    if not args.text:
+        done(group=state["group"], dir=d, members=rows, flow=load_flow(d).get("steps"),
+             quota=q or None)
+        return
+    print("%s（%s）" % (state["group"], d))
+    for r in rows:
+        qs = ""
+        if r["quota"]:
+            qs = " · 额度 %.0f%%%s" % (r["quota"]["remaining"],
+                                       " ⚠" if r["quota"]["remaining"] < 20 else "")
+        print("\n● %s  [%s · %s %s%s]  %s" % (r["name"], r["state"], r["agent"], r["model"] or "",
+                                              qs, ("更新于 " + r["updated"]) if r["updated"] else "未登记任务"))
+        if r["model_changed"]:
+            print("  ⚠ 模型被换了：配置 %s，窗格里是 %s" % (r["model"], r["live_model"]))
+        print("  现在：%s" % (r["now"] or "—"))
+        for i, n in enumerate(r["next"], 1):
+            print("  排期 %d：%s" % (i, n))
+    print_flow(load_flow(d))
+    if q:
+        print("\n剩余额度（本机读取）")
+        for a in sorted(q):
+            for p in q[a].get("pools", []):
+                print("  %3.0f%%  %s%s" % (p["remaining"], p["label"],
+                                          ("（%s 重置）" % local_time(p["resets"])) if p.get("resets") else ""))
+
+
+def local_time(iso):
+    try:
+        import datetime
+        t = datetime.datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone()
+        return t.strftime("%m-%d %H:%M")
+    except Exception:
+        return iso
 
 
 def cmd_read(args):
@@ -1000,6 +1580,12 @@ def cmd_restore(args):
             time.sleep(0.5)
         opened.append({"name": m["name"], "ok": bool(client_tty(m["session"])),
                        "resumed": bool(m.get("session_id"))})
+    for m in state["members"]:
+        # a restarted agy has a new language server: the recorded address is stale
+        if m["agent"] == "agy" and m["name"] != "main" and alive(m["session"]) \
+                and not agy_creds(m):
+            if wait_ready(m["session"]) == "ready":
+                type_when_clear(m, REREGISTER % dq(os.path.abspath(__file__)))
     tty = client_tty(main["session"])
     if tty:
         osa(FOCUS, tty)
@@ -1085,12 +1671,13 @@ def panel_prompt(root, p, pm, rnd):
 
 def panel_send(state, root, p, rnd):
     failed = []
+    d = os.path.dirname(os.path.dirname(os.path.dirname(root)))  # <d>/.crew/panel/<id>
     for pm in p["members"]:
         if pm["name"] == "main":
             continue  # main takes part via --with-main; its task is returned in the report
         m = member(state, pm["name"])
         if m and alive(m["session"]):
-            send_text(m["session"], panel_prompt(root, p, pm, rnd))
+            deliver(d, state, m, panel_prompt(root, p, pm, rnd))
         else:
             failed.append(pm["name"])
     return failed
@@ -1278,8 +1865,14 @@ def main():
     s = sub.add_parser("send", help="message another member")
     s.add_argument("--to", required=True)
     s.add_argument("message")
+    s.add_argument("--typed", action="store_true", help=argparse.SUPPRESS)  # 1.4.0, now a no-op
     s.add_argument("--dir", default=os.getcwd())
     s.set_defaults(fn=cmd_send)
+
+    s = sub.add_parser("flush", help=argparse.SUPPRESS)  # detached deliverer of queued messages
+    s.add_argument("--to", required=True)
+    s.add_argument("--dir", default=os.getcwd())
+    s.set_defaults(fn=cmd_flush)
 
     s = sub.add_parser("read", help="print a member's pane")
     s.add_argument("--name", required=True)
@@ -1290,6 +1883,35 @@ def main():
     s = sub.add_parser("status")
     s.add_argument("--dir", default=os.getcwd())
     s.set_defaults(fn=cmd_status)
+
+    s = sub.add_parser("task", help="record what you (or, for main, another member) are doing now and next")
+    s.add_argument("--for", dest="for_", metavar="NAME", help="main only: set another member's tasks")
+    s.add_argument("--now", help="current task, one line")
+    s.add_argument("--next", action="append", default=[], help="a scheduled task; repeat for several")
+    s.add_argument("--done", action="store_true", help="current task finished: clear 'now'")
+    s.add_argument("--clear-next", action="store_true", help="drop the scheduled list before adding --next")
+    s.add_argument("--dir", default=os.getcwd())
+    s.set_defaults(fn=cmd_task)
+
+    s = sub.add_parser("flow", help="the group's workflow chain shown on board (main edits)")
+    s.add_argument("--add", action="append", default=[], metavar="STEP[@MEMBER]",
+                   help="append a step, optionally with its owner; repeat for several")
+    s.add_argument("--status", nargs=2, metavar=("N", "STATUS"), help="todo / doing / done / blocked")
+    s.add_argument("--remove", type=int, metavar="N")
+    s.add_argument("--clear", action="store_true", help="drop all steps before --add")
+    s.add_argument("--dir", default=os.getcwd())
+    s.set_defaults(fn=cmd_flow)
+
+    s = sub.add_parser("watch", help="find members stopped at their prompt after a connection error")
+    s.add_argument("--nudge", action="store_true", help="send each stalled member a 'continue' message")
+    s.add_argument("--dir", default=os.getcwd())
+    s.set_defaults(fn=cmd_watch)
+
+    s = sub.add_parser("board", help="every member: busy or idle, current and scheduled tasks")
+    s.add_argument("--text", action="store_true", help="a readable table instead of JSON")
+    s.add_argument("--no-quota", action="store_true", help="skip the remaining-quota column")
+    s.add_argument("--dir", default=os.getcwd())
+    s.set_defaults(fn=cmd_board)
 
     s = sub.add_parser("save", help="refresh session ids, write the .command launcher")
     s.add_argument("--main-model")
@@ -1333,6 +1955,8 @@ def main():
         q.add_argument("--dir", default=os.getcwd())
 
     args = p.parse_args()
+    if args.fn is not cmd_flush:
+        register_agy(args)
     args.fn(args)
 
 

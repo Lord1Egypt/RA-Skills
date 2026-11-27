@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "instances": [
+    {
+      "origin": "https://example.invalid",
+      "endpoint_path": "/api/v2/chat/completions",
+      "mode": "share-only",
+      "protocol": "fastgpt-share-sse",
+      "evidence": {
+        "kind": "replace_with_real_instance_evidence",
+        "verified_on": "YYYY-MM-DD",
+        "source_file": "local evidence path",
+        "source_sha256": "replace-with-actual-hash",
+        "note": "Template only; never claim this example was verified"
+      }
+    }
+  ]
+}

@@ -27,7 +27,7 @@ When you clone a repo you see hundreds of files. **That tree is a menu — optio
 
 - Read the README + the **2-5 files that implement the target feature**. Skip the rest.
 - If you cannot name the specific files you need before reading, you do not know what you want yet — go back to Step 0 and narrow scope.
-- `WebFetch` on raw GitHub URLs beats `git clone` whenever you know the exact files. Use clone only when discovery is genuinely needed.
+- the web fetch tool on raw GitHub URLs beats `git clone` whenever you know the exact files. Use clone only when discovery is genuinely needed.
 
 **Reading to understand is not grafting.** The discipline above caps the **graft scope** — the files you actually transplant, port, or improve into your codebase (2-5, hard-cap 10). It does NOT cap how many files you may *read to learn a pattern*. Studying a 24-skill library to extract one convention legitimately reads dozens of files but grafts almost none. Keep the two counts separate: a wide read with a narrow graft is thorough; a wide graft is the failure mode.
 
@@ -129,7 +129,7 @@ Orthogonal to mode and speed. Controls how widely you may read.
 ## Executable Steps
 
 ### Step 0 — Parse Input
-<MUST-READ path="references/mode-decision.md" trigger="when auto-detecting mode"/>
+<MUST-READ path="rune-graft/references/mode-decision.md" trigger="when auto-detecting mode"/>
 
 Extract from user input:
 1. **URL** — GitHub/GitLab/Bitbucket repo or file URL
@@ -148,7 +148,7 @@ cd /tmp/graft-<hash>
 git sparse-checkout set <target-dir>
 ```
 
-For specific files or small repos: use `WebFetch` on raw GitHub URLs instead of cloning.
+For specific files or small repos: use the web fetch tool on raw GitHub URLs instead of cloning.
 
 **Read in this order** (stop when you have enough context — see Core Rule: the tree is a menu):
 1. README.md — purpose, architecture overview
@@ -193,7 +193,7 @@ If stack is identical → suggest copy or improve mode (not port).
 If stack differs significantly → force port mode.
 
 ### Step 4 — Challenge Gate
-<MUST-READ path="references/challenge-framework.md" trigger="always (unless --fast)"/>
+<MUST-READ path="rune-graft/references/challenge-framework.md" trigger="always (unless --fast)"/>
 
 <HARD-GATE>
 Score all 5 dimensions. If 2+ dimensions score ❌ → BLOCK graft.
@@ -387,7 +387,7 @@ If this skill is added to the repo (first time):
 **Scope guardrail**: Do not become a general-purpose code review tool. Graft analyzes external code for adoption purposes only — use `rune-review.md` for reviewing your own code, `rune-research.md` for general technology research.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

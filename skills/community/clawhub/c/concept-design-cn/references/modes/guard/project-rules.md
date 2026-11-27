@@ -6,7 +6,7 @@
 
 ```markdown
 1. 工程按 modules、usecases、adapters（inbound/outbound/readviews）、infrastructure、contracts、bootstrap 六种首层职责组织，目录按需建立。设计保留概念与同步术语，显式维护到模块与用例实现的映射。
-2. 业务模块实现独立概念，独占状态与不变量，禁止业务模块互依、互调、互读。外部只经 api 访问；api/application/domain 隔离协议、框架和持久化类型。
+2. 业务模块只实现本产品的独立业务概念，成熟能力经端口与适配器复用、不新建业务模块；各模块独占状态与不变量，禁止业务模块互依、互调、互读。外部只经 api 访问；api/application/domain 隔离协议、框架和持久化类型。
 3. 用例实现同步规则。inbound 建立或传递根动作完成记录及其 flow，直调公开的 <动作>UseCase；每条规则对应一个具名实现，按 when/where/then 经模块 API 执行，后续规则按各自匹配的完成记录触发。
 4. 依赖指向业务内层。用例不依赖 adapters，端口及结果、失败类型归使用方；三类适配器互不依赖。contracts 只保留共用词汇、交换格式及自身不变量，不依赖本应用其他首层包；infrastructure 不依赖业务模块、usecases、contracts、adapters 或 bootstrap；bootstrap 只装配。
 5. 按 CONCEPT.md/SYNCS.md 实现；行为变更先确认契约。保留规则到实现的映射、持久身份及既有失败与重试语义；按适用范围核对监听器 ID 与在途恢复，区分业务重投和契约允许的技术重试。

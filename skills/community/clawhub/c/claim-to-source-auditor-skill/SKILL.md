@@ -2,7 +2,7 @@
 name: claim-to-source-auditor
 slug: claim-to-source-auditor-skill
 displayName: Claim-to-Source Auditor
-version: "1.0.9"
+version: "1.0.10"
 description: When the user asks to audit, fact-check, verify, or cross-check an
   article, report, draft, or series. Triggered by
   审稿/审计/核验/事实检查/来源追溯/查一下这个数据/核对/审查/跨平台一致性/三平台统一/回归检查/有没有事实错误/这个引用对不对/跟上次比有没有退化.
@@ -179,6 +179,7 @@ Before delivering, verify:
 - The gold-set CSV loads cleanly and has the same number of rows as the current audit.
 - Paper authors, journal names, case numbers, and years are checked against the original source, not against an intermediary archive.
 - The audit report states which claims could not be verified and why.
+- Every high-risk claim is marked 一致 / 近似 / 偏差 / 错误 across all language and platform versions, and each 偏差 or 错误 is carried into the P0/P1 list instead of staying only in the comparison table.
 
 ## Output format
 

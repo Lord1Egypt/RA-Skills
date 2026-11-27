@@ -1,0 +1,1111 @@
+/*
+ * mpress 唯一视觉主题（所有参数呈现在 templates/editorial.md 中）。
+ * 强调色 #007275 用于导言、二级标题编号方块、链接与折叠提示。
+ * 公众号画布固定白底 #ffffff。
+ */
+#wx-article {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+		"Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+	font-size: 16px;
+	line-height: 1.7;
+	color: #111819;
+	letter-spacing: 0.01em;
+	word-break: break-word;
+}
+
+#wx-article p {
+	margin: 0.72em 0;
+}
+
+#wx-article p,
+#wx-article li,
+#wx-article td,
+#wx-article th {
+	color: #111819;
+}
+
+#wx-article h1,
+#wx-article h2,
+#wx-article h3,
+#wx-article h4,
+#wx-article h5,
+#wx-article h6 {
+	margin: 1.6em 0 0.7em;
+	line-height: 1.35;
+	font-weight: 700;
+	color: #111819;
+}
+
+#wx-article h1 {
+	font-size: 24px;
+}
+
+#wx-article h2 {
+	font-size: 20px;
+}
+
+#wx-article h3 {
+	font-size: 17px;
+}
+
+#wx-article h4,
+#wx-article h5,
+#wx-article h6 {
+	font-size: 16px;
+}
+
+#wx-article a {
+	color: #007275;
+	text-decoration: none;
+	border-bottom: 1px solid #c7d1d1;
+}
+
+#wx-article strong {
+	color: #111819;
+	font-weight: 700;
+}
+
+#wx-article code {
+	font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+	font-size: 0.88em;
+	padding: 2px 5px;
+	border-radius: 3px;
+	background: #e8eeee;
+	color: #111819;
+}
+
+#wx-article pre {
+	margin: 16px 0;
+	padding: 12px 14px;
+	overflow: hidden;
+	border-left: 3px solid #5d6667;
+	border-radius: 6px;
+	background: #f5f7f7;
+}
+
+#wx-article pre code {
+	padding: 0;
+	background: none;
+	color: #111819;
+	font-size: 14px;
+	line-height: 1.7;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+#wx-article table {
+	width: 100%;
+	margin: 1em 0;
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+#wx-article th {
+	background: #e8eeee;
+	color: #111819;
+	font-weight: 600;
+	text-align: left;
+}
+
+#wx-article th,
+#wx-article td {
+	padding: 8px 10px;
+	border: 1px solid #c7d1d1;
+	vertical-align: top;
+}
+
+#wx-article hr {
+	margin: 1.3em 0;
+	border: none;
+	border-top: 1px solid #c7d1d1;
+}
+
+#wx-article img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	margin: 0.9em auto;
+}
+
+#wx-article ul,
+#wx-article ol {
+	margin: 0.65em 0;
+	padding-left: 1.4em;
+}
+
+#wx-article li {
+	margin: 0.25em 0;
+}
+
+#wx-article svg {
+	max-width: 100%;
+	height: auto;
+}
+
+/* SVG 折叠块：外层只做高度动画与裁切，脚本 restoreSvgHeight 会去除内联的 height:auto */
+#wx-article .wx-fold-outer {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	background: #f5f7f7;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#wx-article .wx-fold-inner {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+}
+
+/* 右下角小巧的「点击收起 ↑」按钮容器，仅按钮本身接收焦点触发 focusout 收起 */
+#wx-article .wx-fold-hint {
+	margin: 0;
+	padding: 4px 12px 10px;
+	text-align: right;
+	background: #f5f7f7;
+}
+
+#wx-article .wx-fold-btn {
+	display: inline-block;
+	padding: 2px 9px;
+	border: 1px solid #c7d1d1;
+	border-radius: 3px;
+	background: #ffffff;
+	font-size: 11px;
+	line-height: 1.5;
+	letter-spacing: 0.02em;
+	color: #007275;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+#wx-article svg.wx-svg-wide {
+	display: block;
+	width: 100%;
+	max-width: none !important;
+	height: auto;
+}
+
+#wx-article #footnotes p {
+	display: flex;
+	margin: 0;
+	font-size: 13px;
+	color: #5d6667;
+}
+
+/* ==========================================================================
+   编辑部风组件
+   ========================================================================== */
+
+/* 导语/核心结论：墨青实底（紧接 kicker，全文唯一大块墨青） */
+#wx-article .wx-lead {
+	margin: 0 0 22px;
+	padding: 16px 18px;
+	border-radius: 8px;
+	background: #007275;
+	color: #ffffff;
+	box-shadow: 0 4px 16px rgba(0, 114, 117, 0.16);
+}
+#wx-article .wx-lead-label {
+	margin: 0 0 6px;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	line-height: 1.4;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	color: #d6f0f0;
+}
+#wx-article .wx-lead-body {
+	margin: 6px 0 0;
+	font-size: 15px;
+	line-height: 1.7;
+	letter-spacing: 0.015em;
+	color: #ffffff;
+}
+#wx-article .wx-lead-body:first-child {
+	margin-top: 0;
+}
+#wx-article .wx-lead strong {
+	color: #ffffff;
+	font-weight: 700;
+}
+#wx-article .wx-lead code,
+#wx-article .wx-lead .wx-inline-code {
+	background: rgba(255, 255, 255, 0.2);
+	color: #ffffff;
+}
+
+/* 刊头元信息条：上方居中「书名 · CH. X/N」+ 黑线 + 下方居中「AI搜索我的博客：shxuk.cn让AI帮你总结全文」 */
+#wx-article .wx-kicker {
+	margin: 0 0 8px;
+	padding: 0;
+}
+#wx-article .wx-kicker-series {
+	margin: 0;
+	padding: 0 0 8px;
+	border-bottom: 1.5px solid #111819;
+	text-align: center;
+	font-size: 15px;
+	line-height: 1.38;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	color: #111819;
+}
+#wx-article .wx-kicker-top {
+	margin: 7px 0 0;
+	text-align: center;
+	font-size: 12px;
+	line-height: 1.45;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: #007275;
+}
+
+/* 文末永久引导关注组件 */
+#wx-article .wx-follow {
+	margin: 26px 0 0;
+	padding: 14px 16px;
+	border: 1px solid #d2dbdb;
+	border-top: 2.5px solid #111819;
+	border-radius: 8px;
+	background: #fafcfc;
+}
+#wx-article .wx-follow-head {
+	margin: 0 0 8px;
+	padding: 0 0 8px;
+	border-bottom: 1px dashed #dde5e5;
+	line-height: 1.45;
+}
+#wx-article .wx-follow-brand {
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0;
+	color: #111819;
+	vertical-align: middle;
+}
+#wx-article .wx-follow-badge {
+	display: inline-block;
+	margin: 0 0 0 8px;
+	padding: 1px 7px;
+	border: 1px solid #a8d0d1;
+	border-radius: 4px;
+	background: #edf5f5;
+	font-size: 11px;
+	font-weight: 600;
+	color: #007275;
+	vertical-align: middle;
+}
+#wx-article .wx-follow-cta {
+	margin: 0 0 6px;
+	font-size: 13.5px;
+	line-height: 1.6;
+	color: #111819;
+}
+#wx-article .wx-follow-orig {
+	margin: 3px 0 0;
+	font-size: 12px;
+	line-height: 1.55;
+	font-weight: 600;
+	color: #007275;
+}
+#wx-article .wx-follow-orig:first-of-type {
+	margin-top: 0;
+}
+
+/* 组件内行内代码 */
+#wx-article .wx-inline-code {
+	font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+	font-size: 0.88em;
+	padding: 2px 5px;
+	border-radius: 4px;
+	background: #e8eeee;
+	color: #111819;
+}
+
+/* 大数字指标卡（2~3 栏等宽，纯表格微信安全） */
+#wx-article .wx-metrics {
+	margin: 18px 0;
+}
+#wx-article .wx-metrics-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: #5d6667;
+}
+#wx-article .wx-metrics-table {
+	width: 100%;
+	margin: 0;
+	border-collapse: separate;
+	border-spacing: 8px 0;
+	table-layout: fixed;
+}
+#wx-article .wx-metric-cell {
+	padding: 12px 10px;
+	border: 1px solid #d2dbdb;
+	border-top: 3px solid #007275;
+	border-radius: 8px;
+	background: #fafcfc;
+	text-align: left;
+	vertical-align: top;
+}
+#wx-article .wx-metric-num {
+	margin: 0 0 4px;
+	font-family: "SFMono-Regular", Menlo, Consolas, "PingFang SC", sans-serif;
+	font-size: 21px;
+	line-height: 1.2;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	color: #007275;
+}
+#wx-article .wx-metric-label {
+	margin: 0 0 3px;
+	font-size: 13px;
+	line-height: 1.4;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-metric-sub {
+	margin: 0;
+	font-size: 11px;
+	line-height: 1.48;
+	color: #5d6667;
+}
+
+/* 移动优先编辑部档案卡组 */
+#wx-article .wx-dossier {
+	margin: 18px 0;
+}
+#wx-article .wx-dossier-section-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: #5d6667;
+}
+#wx-article .wx-dossier-card {
+	margin: 0 0 10px;
+	padding: 12px 14px;
+	border: 1px solid #d2dbdb;
+	border-left: 3px solid #007275;
+	border-radius: 8px;
+	background: #fafcfc;
+}
+#wx-article .wx-dossier-card:last-child {
+	margin-bottom: 0;
+}
+#wx-article .wx-dossier-head {
+	margin: 0 0 8px;
+	padding: 0 0 6px;
+	border-bottom: 1px solid #e2e9e9;
+	line-height: 1.45;
+}
+#wx-article .wx-dossier-no {
+	display: inline-block;
+	margin: 0 8px 0 0;
+	padding: 1px 6px;
+	border-radius: 4px;
+	background: #007275;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 700;
+	color: #ffffff;
+	vertical-align: middle;
+}
+#wx-article .wx-dossier-name {
+	font-size: 15px;
+	font-weight: 700;
+	color: #111819;
+	vertical-align: middle;
+}
+#wx-article .wx-dossier-badge {
+	display: inline-block;
+	margin: 0 0 0 8px;
+	padding: 1px 7px;
+	border: 1px solid #a8d0d1;
+	border-radius: 4px;
+	background: #edf5f5;
+	font-size: 11px;
+	font-weight: 600;
+	color: #007275;
+	vertical-align: middle;
+}
+#wx-article .wx-dossier-row {
+	margin: 5px 0 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #111819;
+}
+#wx-article .wx-dossier-key {
+	display: inline-block;
+	margin: 0 6px 0 0;
+	padding: 1px 6px;
+	border-radius: 4px;
+	background: #e9efef;
+	font-size: 12px;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-dossier-val {
+	color: #111819;
+}
+
+/* 双轨对照实战卡（ToB vs ToC 等） */
+#wx-article .wx-versus {
+	margin: 18px 0;
+}
+#wx-article .wx-versus-section-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: #5d6667;
+}
+#wx-article .wx-versus-card {
+	margin: 0 0 10px;
+	border: 1px solid #d2dbdb;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #ffffff;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+#wx-article .wx-versus-card:last-child {
+	margin-bottom: 0;
+}
+#wx-article .wx-versus-head {
+	margin: 0;
+	padding: 9px 14px;
+	line-height: 1.45;
+}
+#wx-article .wx-versus-a .wx-versus-head {
+	background: #007275;
+	color: #ffffff;
+}
+#wx-article .wx-versus-b .wx-versus-head {
+	background: #111819;
+	color: #ffffff;
+}
+#wx-article .wx-versus-tag {
+	display: inline-block;
+	margin: 0 8px 0 0;
+	padding: 1px 6px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.2);
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	color: #ffffff;
+	vertical-align: middle;
+}
+#wx-article .wx-versus-title {
+	font-size: 14.5px;
+	font-weight: 700;
+	color: #ffffff;
+	vertical-align: middle;
+}
+#wx-article .wx-versus-body {
+	padding: 12px 14px;
+	background: #fafcfc;
+}
+#wx-article .wx-versus-row {
+	margin: 5px 0 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #111819;
+}
+#wx-article .wx-versus-row:first-child {
+	margin-top: 0;
+}
+#wx-article .wx-versus-k {
+	color: #111819;
+	font-weight: 700;
+}
+
+/* 决策行动清单卡 */
+#wx-article .wx-checklist {
+	margin: 18px 0;
+	padding: 14px 16px 12px;
+	border: 1px solid #d2dbdb;
+	border-top: 3px solid #111819;
+	border-radius: 8px;
+	background: #fafcfc;
+}
+#wx-article .wx-checklist-head {
+	margin: 0 0 10px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	color: #007275;
+}
+#wx-article .wx-check-item {
+	margin: 0 0 10px;
+	padding: 0 0 10px;
+	border-bottom: 1px dashed #dde5e5;
+}
+#wx-article .wx-check-item:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
+}
+#wx-article .wx-check-table {
+	width: auto;
+	margin: 0;
+	border-collapse: collapse;
+}
+#wx-article .wx-check-no-td {
+	width: 32px;
+	padding: 1px 10px 0 0;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-check-no {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border-radius: 4px;
+	background: #007275;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 700;
+	color: #ffffff;
+}
+#wx-article .wx-check-body-td {
+	padding: 0 0 0 6px;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-check-title {
+	margin: 0 0 3px;
+	font-size: 14.5px;
+	line-height: 1.45;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-check-desc {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #2d3839;
+}
+
+/* 流程步骤 / 阶梯组件 (steps) */
+#wx-article .wx-steps {
+	margin: 18px 0;
+}
+#wx-article .wx-steps-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: #5d6667;
+}
+#wx-article .wx-step-item {
+	margin: 0 0 10px;
+}
+#wx-article .wx-step-item:last-child {
+	margin-bottom: 0;
+}
+#wx-article .wx-step-table {
+	width: auto;
+	margin: 0;
+	border-collapse: collapse;
+}
+#wx-article .wx-step-no-td {
+	width: 32px;
+	padding: 8px 10px 0 0;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-step-no {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border-radius: 5px;
+	background: #007275;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 700;
+	color: #ffffff;
+}
+#wx-article .wx-step-no-warn {
+	background: #a91611;
+}
+#wx-article .wx-step-body-td {
+	padding: 0 0 0 4px;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-step-content {
+	padding: 10px 14px;
+	border: 1px solid #d2dbdb;
+	border-radius: 8px;
+	background: #fafcfc;
+}
+#wx-article .wx-step-content-warn {
+	border-color: #dfaeac;
+	background: #fdf6f6;
+}
+#wx-article .wx-step-head {
+	margin: 0 0 4px;
+	line-height: 1.45;
+}
+#wx-article .wx-step-title {
+	font-size: 14.5px;
+	font-weight: 700;
+	color: #111819;
+	vertical-align: middle;
+}
+#wx-article .wx-step-badge {
+	display: inline-block;
+	margin: 0 0 0 8px;
+	padding: 1px 7px;
+	border-radius: 4px;
+	background: #e6f2f2;
+	font-size: 11px;
+	font-weight: 600;
+	color: #007275;
+	vertical-align: middle;
+}
+#wx-article .wx-step-badge-warn {
+	background: #fae8e7;
+	color: #a91611;
+}
+#wx-article .wx-step-row {
+	margin: 4px 0 0;
+	font-size: 13.5px;
+	line-height: 1.58;
+	color: #2d3839;
+}
+#wx-article .wx-step-key {
+	display: inline-block;
+	margin: 0 6px 0 0;
+	padding: 1px 6px;
+	border-radius: 3px;
+	background: #e9efef;
+	font-size: 11.5px;
+	font-weight: 700;
+	color: #111819;
+}
+
+/* 金句判词 / 核心结论卡 (verdict) */
+#wx-article .wx-verdict {
+	margin: 18px 0;
+	padding: 14px 18px;
+	border-left: 4px solid #007275;
+	border-radius: 0 8px 8px 0;
+	background: #f0f7f7;
+}
+#wx-article .wx-verdict-label {
+	margin: 0 0 5px;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	line-height: 1.4;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	color: #007275;
+}
+#wx-article .wx-verdict-main {
+	margin: 0;
+	font-size: 16px;
+	line-height: 1.55;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-verdict-sub {
+	margin: 6px 0 0;
+	font-size: 13.5px;
+	line-height: 1.55;
+	color: #5d6667;
+}
+
+/* 核心拷问 / 问答卡组 (qa) */
+#wx-article .wx-qa {
+	margin: 18px 0;
+}
+#wx-article .wx-qa-title {
+	margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 1.45;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	color: #5d6667;
+}
+#wx-article .wx-qa-card {
+	margin: 0 0 10px;
+	padding: 12px 14px;
+	border: 1px solid #d2dbdb;
+	border-radius: 8px;
+	background: #fafcfc;
+}
+#wx-article .wx-qa-card:last-child {
+	margin-bottom: 0;
+}
+#wx-article .wx-qa-table {
+	width: auto;
+	margin: 0;
+	border-collapse: collapse;
+}
+#wx-article .wx-qa-badge-td {
+	width: 34px;
+	padding: 2px 10px 0 0;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-qa-text-td {
+	padding: 0 0 0 4px;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-qa-badge-q {
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	padding: 0;
+	border-radius: 4px;
+	background: #007275;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 700;
+	color: #ffffff;
+}
+#wx-article .wx-qa-badge-a {
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	padding: 0;
+	border-radius: 4px;
+	background: #e5ecec;
+	font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+	font-size: 11px;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-qa-qtext {
+	margin: 0;
+	font-size: 14.5px;
+	line-height: 1.55;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-qa-a {
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px dashed #dde5e5;
+}
+#wx-article .wx-qa-p {
+	margin: 4px 0 0;
+	font-size: 13.5px;
+	line-height: 1.58;
+	color: #2d3839;
+}
+#wx-article .wx-qa-p:first-child {
+	margin-top: 0;
+}
+
+/* 一级标题（后续篇章）：24px 粗体 + 1px 墨色底线 */
+#wx-article .wx-chapter {
+	margin: 30px 0 14px;
+	padding: 0 0 10px;
+	border-bottom: 1px solid #111819;
+	font-size: 22px;
+	line-height: 1.3;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	color: #111819;
+}
+
+/* 二级标题（唯一样式）：24x24px 墨青方块编号 + 19px 粗体标题（表格双栏对齐，长标题多行不掉行） */
+#wx-article .wx-h2 {
+	margin: 28px 0 12px;
+}
+#wx-article .wx-h2-table {
+	width: auto;
+	margin: 0;
+	border-collapse: collapse;
+}
+#wx-article .wx-h2-no-td {
+	width: 34px;
+	padding: 2px 10px 0 0;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-h2-text-td {
+	padding: 0;
+	border: none;
+	vertical-align: top;
+}
+#wx-article .wx-h2-no {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	background: #007275;
+	color: #f2f7f6;
+	font-size: 11px;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+#wx-article .wx-h2-text {
+	display: block;
+	margin: 0;
+	font-size: 19px;
+	line-height: 1.4;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	color: #111819;
+}
+
+/* 三级小节标题：3px 墨色左竖条 + 17px 粗体 */
+#wx-article .wx-h3 {
+	margin: 20px 0 8px;
+	padding: 0 0 0 10px;
+	border-left: 3px solid #111819;
+	font-size: 17px;
+	line-height: 1.4;
+	font-weight: 700;
+	color: #111819;
+}
+
+/* 提示块：四种语义，浅底 + 左 3px 竖线 + 6px 圆角 */
+#wx-article .wx-box {
+	margin: 16px 0;
+	padding: 12px 14px;
+	border-left: 3px solid #5d6667;
+	border-radius: 6px;
+	background: #f5f7f7;
+}
+#wx-article .wx-box-label {
+	margin: 0 0 4px;
+	font-size: 10px;
+	line-height: 1.5;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	color: #5d6667;
+}
+#wx-article .wx-box-title {
+	margin: 0 0 4px;
+	font-size: 15px;
+	line-height: 1.6;
+	font-weight: 700;
+	color: #111819;
+}
+#wx-article .wx-box-body {
+	margin: 4px 0 0;
+	font-size: 14px;
+	line-height: 1.68;
+	color: #111819;
+}
+#wx-article .wx-box-body:first-of-type {
+	margin-top: 0;
+}
+#wx-article .wx-box-tip {
+	border-left-color: #007275;
+}
+#wx-article .wx-box-tip .wx-box-label {
+	color: #007275;
+}
+#wx-article .wx-box-note {
+	border-left-color: #5d6667;
+}
+#wx-article .wx-box-warning {
+	border-left-color: #a91611;
+	background: #f7f5f5;
+}
+#wx-article .wx-box-warning .wx-box-label {
+	color: #a91611;
+}
+#wx-article .wx-box-important {
+	border-left-color: #111819;
+}
+#wx-article .wx-box-important .wx-box-label {
+	color: #111819;
+}
+
+/* GitHub 仓库引导卡片（浅底 #f5f7f7 + 左 3px #007275 竖线） */
+#wx-article .wx-github-card {
+	margin: 16px 0;
+	padding: 12px 14px;
+	border-left: 3px solid #007275;
+	border-radius: 6px;
+	background: #f5f7f7;
+}
+#wx-article .wx-github-card-label {
+	margin: 0 0 4px;
+	font-size: 10px;
+	line-height: 1.5;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	color: #007275;
+}
+#wx-article .wx-github-card-repo {
+	margin: 0 0 3px;
+	font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+	font-size: 15px;
+	line-height: 1.6;
+	font-weight: 700;
+	color: #111819;
+	word-break: break-all;
+}
+#wx-article .wx-github-card-url {
+	margin: 0;
+	font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #5d6667;
+	word-break: break-all;
+}
+
+/* 长引 + 出处（紧凑留白，手机端不空荡） */
+#wx-article .wx-quote {
+	margin: 14px 0;
+	padding: 2px 0 2px 14px;
+	border-left: 2px solid #111819;
+}
+#wx-article .wx-quote-text {
+	margin: 0;
+	font-family: "Songti SC", "STSong", "SimSun", "Noto Serif CJK SC", serif;
+	font-size: 16px;
+	line-height: 1.68;
+	color: #111819;
+}
+#wx-article .wx-quote-source {
+	margin: 6px 0 0;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #5d6667;
+	text-align: right;
+}
+
+/* 代码块：浅底 #f5f7f7 + 左 3px #5d6667 竖线 */
+#wx-article .wx-pre {
+	margin: 16px 0;
+	padding: 12px 14px;
+	border-left: 3px solid #5d6667;
+	border-radius: 6px;
+	overflow: hidden;
+	background: #f5f7f7;
+}
+#wx-article .wx-pre-lang {
+	margin: 0 0 4px;
+	padding: 0;
+	font-size: 10px;
+	line-height: 1.5;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	color: #5d6667;
+}
+#wx-article .wx-pre-body {
+	padding: 0;
+}
+#wx-article .wx-pre-line {
+	margin: 0;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #111819;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+/* 通栏图 + 图注 */
+#wx-article .wx-figure {
+	margin: 18px 0 0;
+}
+#wx-article .wx-figure img {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	margin: 0;
+}
+#wx-article .wx-caption {
+	margin: 6px 0 18px;
+	font-size: 12px;
+	line-height: 1.55;
+	letter-spacing: 0.02em;
+	color: #5d6667;
+}
+
+/* 文末收束 */
+#wx-article .wx-end {
+	margin: 26px 0 0;
+}
+#wx-article .wx-end-text {
+	margin: 0;
+	font-size: 15px;
+	line-height: 1.7;
+	color: #111819;
+}
+
+/* 签名 */
+#wx-article .wx-sign {
+	margin: 20px 0 0;
+	padding: 12px 0 0;
+	border-top: 1px solid #c7d1d1;
+}
+#wx-article .wx-sign p {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.65;
+	color: #5d6667;
+}
+
+/* 模板色板直出条（带真实底色展示色彩规范） */
+#wx-article p.wx-swatch {
+	margin: 8px 0;
+	padding: 10px 14px;
+	border-radius: 6px;
+	font-size: 14px;
+	line-height: 1.5;
+	font-weight: 600;
+}
+#wx-article p.wx-swatch-canvas {
+	background: #ffffff;
+	color: #111819;
+	border: 1px solid #c7d1d1;
+}
+#wx-article p.wx-swatch-paper {
+	background: #f5f7f7;
+	color: #111819;
+	border: 1px solid #c7d1d1;
+}
+#wx-article p.wx-swatch-surface {
+	background: #e8eeee;
+	color: #111819;
+}
+#wx-article p.wx-swatch-rule {
+	background: #c7d1d1;
+	color: #111819;
+}
+#wx-article p.wx-swatch-muted {
+	background: #5d6667;
+	color: #f2f7f6;
+}
+#wx-article p.wx-swatch-ink {
+	background: #111819;
+	color: #f2f7f6;
+}
+#wx-article p.wx-swatch-accent {
+	background: #007275;
+	color: #f2f7f6;
+}
+#wx-article p.wx-swatch-danger {
+	background: #a91611;
+	color: #f2f7f6;
+}

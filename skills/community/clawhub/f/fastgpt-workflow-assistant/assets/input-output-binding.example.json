@@ -1,0 +1,115 @@
+{
+  "description": "字段片段示例，不是可导入工作流；按目标基线补齐节点其余字段。system_addInputParam控件不能替代下面的真实输入条目。",
+  "parseInput_actual_inputs": [
+    {
+      "key": "input",
+      "valueType": "string",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "workflowStartNodeId",
+        "userChatInput"
+      ]
+    }
+  ],
+  "assetQueryGate_actual_inputs": [
+    {
+      "key": "targets",
+      "valueType": "arrayObject",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "parseInput",
+        "targets"
+      ]
+    },
+    {
+      "key": "invalidTargets",
+      "valueType": "arrayObject",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "parseInput",
+        "invalidTargets"
+      ]
+    },
+    {
+      "key": "assetApiUrl",
+      "valueType": "string",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "VARIABLE_NODE_ID",
+        "assetApiUrl"
+      ]
+    }
+  ],
+  "pingGate_actual_inputs": [
+    {
+      "key": "pingIp",
+      "valueType": "string",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "parseInput",
+        "pingIp"
+      ]
+    },
+    {
+      "key": "pingApiUrl",
+      "valueType": "string",
+      "required": true,
+      "renderTypeList": [
+        "reference"
+      ],
+      "value": [
+        "VARIABLE_NODE_ID",
+        "pingApiUrl"
+      ]
+    }
+  ],
+  "http_raw_output_example": {
+    "id": "httpRawResponse",
+    "key": "httpRawResponse",
+    "type": "static",
+    "valueType": "any",
+    "required": true
+  },
+  "invalidReply_text_example": {
+    "key": "text",
+    "valueType": "any",
+    "renderTypeList": [
+      "textarea",
+      "reference"
+    ],
+    "value": "无法处理的地址及原因：{{$parseInput.invalidTargets$}}"
+  },
+  "notReadyReply_text_example": {
+    "key": "text",
+    "valueType": "any",
+    "renderTypeList": [
+      "textarea",
+      "reference"
+    ],
+    "value": "{{$assetQueryGate.message$}}\n无法处理的地址及原因：{{$assetQueryGate.invalidTargets$}}"
+  },
+  "http_reply_text_example": {
+    "key": "text",
+    "valueType": "any",
+    "renderTypeList": [
+      "textarea",
+      "reference"
+    ],
+    "value": "{{$assetQueryHttp.httpRawResponse$}}"
+  }
+}

@@ -33,12 +33,16 @@ description: |
   v4.0.5 安全加固：新增 §18.13 工具权限边界与安全声明（行情只读 / 本地文件只写自身产物 /
   无凭证访问 / 无自动远端发布）；安装脚本移除 `rsync --delete` 改为备份后逐文件覆盖；
   示例 JSON 与样本报告明确标注为 2026-11-13 快照，禁止沿用为当期真值。
+  v4.0.6 案例归档：新增 docs/lhb-v4.2-case-20261126.md，登记 2026-11-26 交易日
+  v4.0 第三只读旁路端到端实跑（25 页 A4 / 官方自检 25/25 / 真值层 10/10 /
+  口径差异登记 / 缺口台账）；仅新增案例文档与版本元数据，冻结口径、判定内核、
+  四层漏斗、情绪五阶段仓位与自检项一字不改。
   **不构成投资建议**。
 homepage: https://github.com/yjkj999999/a-share-dragon-tiger-strategy
 metadata:
   openclaw:
     emoji: 📊
-    version: "4.0.5"
+    version: "4.0.6"
     requires:
       binaries:
         - python3
@@ -874,7 +878,7 @@ gceo: enabled, overlay_only, extension_version="v3.1", source_version="4.0.0",
 | 性质 | **编排文档**，不是判定内核、也不是只读旁路本身；不产生选股因子、不进 scoring/funnel/predictions。第三层只读旁路是 §18.10 的 `gceo_quant` |
 | 代码改动 | v3.1.1 **零**；v3.1.2 改 `gen_bii_2col.py` 展示层（§18.7）；v3.2 新增 `strategy/limitup_source.py` + 渲染器选股源分支（§18.8）；v3.2.1 增三函数并改 P4/P13（§18.9）；**v4.0 新增 `strategy/gceo_quant.py` + `strategy/build_gceo_quant_inputs.py` + P19/P20（§18.10）**。`funnel.py` / `calibers.py` / `v3_ext.py` / `gcceo_ext.py` / `pipeline.py` / `filters.py` **一字不改** |
 | 内核版本 | 数据层 `_framework_version` 随最外层开关：全开 `v4.0` / 18 页 `v3.1` / `v3.0`；`calibers` 冻结常量不变 |
-| 运维版本 | frontmatter `metadata.openclaw.version: "4.0.5"` |
+| 运维版本 | frontmatter `metadata.openclaw.version: "4.0.6"` |
 | 页数 | 默认 **20 页**；`gceo_quant.enabled=false` → 18 页；`gceo.enabled=false` → 16 页；`v3.enabled=false` → 14 页（`_resolve_total()` 单一真相源） |
 | 自检 | v3 `14/14` + GCCEO `23/23`（传 v3 结果；不传 22/22，见 §18.5）+ 涨停源 `11/11` + **v4.0 量化 `25/25`** |
 | 共享通道 | 三条流水线统一走 `westock-mcp` 实取；产物目录互不覆盖 |

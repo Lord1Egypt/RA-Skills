@@ -169,6 +169,7 @@ Safe to proceed with: `rune-surgeon.md` targeting [module]
 2. MUST NOT proceed to surgery if characterization tests fail — the safety net is broken
 3. MUST cover critical paths identified by autopsy — not just easy-to-test functions
 4. MUST verify tests are meaningful — tests that always pass regardless of code are useless
+5. MUST write characterization tests under `tests/char/` (or a path listed in `.rune/test-integrity.json`). The test-integrity hook freezes that tree — `fix` / `surgeon` cannot edit it. Re-baseline only with human approval (`Test-Change-Approved: <reason>` trailer or `RUNE_TEST_CHANGE_APPROVED`). Prefer a `tests/holdout/` suite the implementer does not own. See [test-integrity-gate](rune-test/references/test-integrity-gate.md).
 
 ## Sharp Edges
 
@@ -209,7 +210,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail:** safeguard builds safety nets only — it does not refactor code. All surgery is delegated to `surgeon` after the safeguard HARD-GATE passes.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

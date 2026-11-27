@@ -3,7 +3,7 @@ name: private-github-repo-upload
 description: "Safely initialize, sanitize, commit, create, and push a local project with private runtime data to a separate private GitHub repository. Use when the user asks to back up or upload a local data-bearing project to a private GitHub repo while keeping public Skills separate. Never uploads credentials, environments, caches, or public Skill source."
 description_zh: "安全上传私有项目到 GitHub"
 description_en: "Secure private GitHub upload"
-version: "1.1.1"
+version: "1.1.2"
 disable: false
 agent_created: true
 read_when:
@@ -87,6 +87,7 @@ If a divergent commit was already pushed, **do not force-reset or force-push to 
   1. **Raw-byte blob SHA**: compute `sha1("blob " + byteLength + "\0" + rawFileBytes)` in Node/Python on the local file, and compare it to the `sha` of that path's entry in the remote `git/trees/<sha>?recursive=1`. If they match, the file is byte-identical on the remote.
   2. **Contents API decode**: `GET /repos/{owner}/{repo}/contents/<path>?ref=<remote-sha>`, base64-decode `content`, and compare to the local file bytes (or grep for a known unique substring). This is the most reliable end-to-end check.
   - Do NOT conclude a gitignored file is "missing/lost" from a `git hash-object` mismatch alone. Confirm with method 1 or 2 before re-pushing.
+  - The remote repository's visibility is confirmed private after push, and the exclusion list is re-read against the pushed file list so no ignored path was silently included.
 
 ## Hard Rules
 

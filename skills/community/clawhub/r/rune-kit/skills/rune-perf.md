@@ -46,11 +46,11 @@ Performance regression gate. Analyzes code changes for patterns that cause measu
 
 ## References
 
-- `references/cost-reference.md` — Cost priority hierarchy, quick wins checklist, instance right-sizing, data transfer traps, serverless optimization, observability cost control, managed vs self-hosted matrix, unit economics tracking. Load when cost analysis or FinOps context detected.
-- `references/scalability-reference.md` — Bottleneck identification flow, performance thresholds, API patterns (cursor pagination, rate limiting, circuit breaker, graceful shutdown), caching strategies, queue-based load leveling, concurrency patterns, K8s HPA, CDN headers, load testing. Load when scaling or infrastructure optimization context detected.
-- `../deploy/references/observability.md` — Instrumentation discipline (RED/USE metrics, percentiles-not-averages, cardinality bounds, structured logs, correlation IDs). Load when establishing the *measurement basis* for an optimization — you cannot optimize what you do not measure.
+- `rune-perf/references/cost-reference.md` — Cost priority hierarchy, quick wins checklist, instance right-sizing, data transfer traps, serverless optimization, observability cost control, managed vs self-hosted matrix, unit economics tracking. Load when cost analysis or FinOps context detected.
+- `rune-perf/references/scalability-reference.md` — Bottleneck identification flow, performance thresholds, API patterns (cursor pagination, rate limiting, circuit breaker, graceful shutdown), caching strategies, queue-based load leveling, concurrency patterns, K8s HPA, CDN headers, load testing. Load when scaling or infrastructure optimization context detected.
+- `rune-deploy/references/observability.md` — Instrumentation discipline (RED/USE metrics, percentiles-not-averages, cardinality bounds, structured logs, correlation IDs). Load when establishing the *measurement basis* for an optimization — you cannot optimize what you do not measure.
 
-**Measure before optimizing.** A perf finding without a metric behind it is a guess. Before recommending a fix, confirm the hotpath actually emits the signal that proves it is slow: RED latency as a **histogram** (read p95/p99 — averages hide the slow tail), bounded label cardinality, and a correlation ID to tie a slow trace to its logs. If the instrumentation does not exist yet, that absence is itself a finding (`UNMEASURED_HOTPATH`). See `../deploy/references/observability.md` for the instrumentation contract.
+**Measure before optimizing.** A perf finding without a metric behind it is a guess. Before recommending a fix, confirm the hotpath actually emits the signal that proves it is slow: RED latency as a **histogram** (read p95/p99 — averages hide the slow tail), bounded label cardinality, and a correlation ID to tie a slow trace to its logs. If the instrumentation does not exist yet, that absence is itself a finding (`UNMEASURED_HOTPATH`). See `rune-deploy/references/observability.md` for the instrumentation contract.
 
 ## Executable Steps
 
@@ -295,7 +295,7 @@ For projects that call AI APIs (detected via imports of `anthropic`, `openai`, `
 |---------|---------|--------|
 | AI call inside a loop without batching | `TOKEN_LOOP — [file:line] — AI call in loop over [collection] — batch or parallelize` | Cost scales linearly with collection size |
 | No token usage tracking | `NO_TOKEN_TRACKING — [file:line] — AI response usage not captured — add cost logging` | Invisible spend, no budget control |
-| Expensive model for simple tasks | `MODEL_MISMATCH — [file:line] — using [opus/gpt-4] for [classification/extraction] — use [haiku/gpt-4.1-mini]` | 10-30x cost difference for same result |
+| Expensive model for simple tasks | `MODEL_MISMATCH — [file:line] — using [a flagship model, e.g. opus / gpt-6.2-astra] for [classification/extraction] — use [a small model, e.g. haiku / gpt-6-luna]` | 10-30x cost difference for same result |
 | Missing max_tokens on open-ended prompts | `UNBOUNDED_TOKENS — [file:line] — no max_tokens on [call] — add limit to prevent runaway cost` | Single call can consume entire budget |
 | Duplicate AI calls for same input | `DUPLICATE_AI_CALL — [file:line] — same prompt sent to [provider] without caching — add response cache` | Wasted tokens on redundant calls |
 
@@ -456,7 +456,7 @@ Known failure modes for this skill. Check these before declaring done.
 **Scope guardrail:** perf investigates and reports only — it does not fix code. All fixes are delegated to `fix` (L2) after the report is reviewed.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

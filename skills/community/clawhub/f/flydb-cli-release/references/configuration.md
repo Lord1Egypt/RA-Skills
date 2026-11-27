@@ -1,13 +1,13 @@
 # 配置项参考
 
-> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/configuration.md`；源码版本 0.3.6，提交 `56bc3baef4a4`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
+> 随 `flydb-cli-release` 打包，来源：Flydb `docs/reference/configuration.md`；源码版本 0.3.9，提交 `c8cc5ff89a1f`。来源是本地工作区快照，发布状态未核验；文件哈希与适配记录见[upstream-sync.json](upstream-sync.json)。使用目标发行包文档与 `--help` 核对版本差异。
 
 本文面向已经决定接入 Flydb 的应用开发者和运维人员。CLI 使用 `flydb.conf`，Java API 使用 `FlydbConfiguration.Builder`，Spring Boot 使用 `flydb.*` 属性。三种入口最终汇入同一个 `flydb-core` 配置模型。
 
 ## 配置优先级
 
 ```text
-CLI 参数 > FLYDB_* 环境变量 > flydb.conf > 内置默认值
+CLI 参数 > FLYDB_* 环境变量 > 当前配置文件 > 导入的共享配置 > 内置默认值
 ```
 
 配置文件按以下顺序查找：`--config` 指定文件、当前目录 `flydb.conf`、CLI 安装目录 `conf/flydb.conf`。未知键会报 `FLYDB-4001`，不会静默忽略。
@@ -18,6 +18,7 @@ CLI 参数 > FLYDB_* 环境变量 > flydb.conf > 内置默认值
 
 | 配置键 | 环境变量 | CLI 选项 | 默认值 | 说明 |
 |---|---|---|---|---|
+| `flydb.config-import` | — | — | 无 | 0.3.9+ 支持导入一份 UTF-8 Properties 文件。相对路径从声明导入的文件所在目录计算，可逐层导入，循环或文件缺失时报配置错误 |
 | `flydb.url` | `FLYDB_URL` | `-u, --url` | 无 | JDBC URL，CLI 必填 |
 | `flydb.user` | `FLYDB_USER` | `--user` | 无 | 数据库用户 |
 | `flydb.password` | `FLYDB_PASSWORD` | `-p, --password` | 无 | 支持直接配置明文密码；仅本地临时测试建议使用，生产推荐环境变量或密码文件 |

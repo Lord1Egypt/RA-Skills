@@ -68,8 +68,8 @@ Any other relevant information
 git clone https://github.com/your-repo/browser-auto-download.git
 cd browser-auto-download
 
-# Install dependencies
-pip install playwright
+# Install dependencies (pinned)
+pip install -r requirements.txt
 playwright install chromium
 
 # Add to OpenClaw skills

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 1800px; height: 766px;
+    overflow: hidden;
+    background: #004D4F;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  }
+  .cover {
+    position: relative;
+    width: 1800px; height: 766px;
+    box-sizing: border-box;
+    padding: 72px 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    background-color: #004D4F;
+    background-image: 
+      radial-gradient(circle at 100% 0%, rgba(79, 168, 171, 0.28) 0%, transparent 55%),
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+  }
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding-bottom: 24px;
+  }
+  .logo {
+    font-size: 36px; font-weight: 700; letter-spacing: 0.04em;
+    font-family: "Archivo", sans-serif; display: flex; align-items: center; gap: 10px;
+  }
+  .logo-sq { width: 16px; height: 16px; background: #4FA8AB; border-radius: 3px; }
+  .tag {
+    font-size: 22px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: #A5D6D7; background: rgba(0,0,0,0.25); padding: 8px 20px; border-radius: 6px;
+  }
+  .middle {
+    margin: auto 0;
+    max-width: 1360px;
+  }
+  .heading {
+    font-size: 76px; font-weight: 700; line-height: 1.25; margin: 0;
+    letter-spacing: -0.02em; color: #FFFFFF;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    word-break: break-word;
+  }
+  .bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-top: 2px solid rgba(255,255,255,0.18);
+    padding-top: 24px;
+    font-size: 24px; color: rgba(255,255,255,0.65);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="top">
+      <div class="logo">{{BRAND}}<span class="logo-sq"></span></div>
+      <div class="tag">{{TAG}}</div>
+    </div>
+    <div class="middle">
+      <h1 class="heading" id="title">{{TITLE}}</h1>
+    </div>
+    <div class="bottom">
+      <span>{{ISSUE}}</span>
+      <span>{{SITE_DOMAIN}}</span>
+    </div>
+  </div>
+  <script>
+    const t = document.getElementById("title");
+    if (t.innerText.length > 32) t.style.fontSize = "64px";
+    if (t.innerText.length > 45) t.style.fontSize = "54px";
+  </script>
+</body>
+</html>

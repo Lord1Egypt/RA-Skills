@@ -2,7 +2,7 @@
 slug: tcms-adapter
 displayName: Tcms Adapter
 name: tcms-adapter
-version: "1.1.9"
+version: "1.1.10"
 not_for:
   - Writing the core draft from scratch (adapts an existing reviewed draft)
   - Unreviewed or unapproved drafts as input (review must happen upstream)
@@ -155,6 +155,7 @@ Execution summary:
 4. **Carry through customer redaction.** Redacted in the core draft stays redacted in all versions.
 5. **Don't cross-reference other drafts.** Use only information from the current core draft.
 6. **English quality.** Prefer short and accurate over verbose and stiff. Mark uncertain parts [needs confirmation].
+7. **Uncertain content stays marked.** Any segment without an authoritative source keeps its [needs confirmation] marker into the final channel output; the marker is never removed to make a variant look finished.
 
 ## Failure handling
 

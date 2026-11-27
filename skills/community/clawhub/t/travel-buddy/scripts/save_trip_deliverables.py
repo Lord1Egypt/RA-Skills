@@ -502,6 +502,11 @@ def main() -> int:
         write_json_atomic(plan_path, plan)
     print(f"Plan JSON: {plan_path}")
     print(f"Final HTML: {html_path}")
+    # The page embeds its styles, photos and calendar, so once it is on the phone it opens with no
+    # connection -- which is when the taxi card and the day's plan are needed. Only the map buttons
+    # need the network. Tell the traveller how to get it there; nothing here uploads it.
+    print("Phone: the page is one self-contained file and opens offline; AirDrop it, or save it to "
+          "Files / iCloud Drive / Google Drive and mark it available offline")
     if calendar_path is not None:
         print(f"Calendar: {calendar_path} ({calendar_events} event(s))")
     if report_path is not None:

@@ -23,7 +23,7 @@ Web research utility. Receives a research question, executes targeted searches, 
 
 ## Calls (outbound)
 
-None — pure L3 utility using `WebSearch` and `WebFetch` tools directly.
+None — pure L3 utility using the web search tool and the web fetch tool directly.
 
 ## Called By (inbound)
 
@@ -60,7 +60,7 @@ Every research conclusion MUST be backed by at minimum 3 complementary sources f
 Single-source conclusions are flagged as `low` confidence regardless of source authority.
 </HARD-GATE>
 
-Call `WebSearch` for each query. Collect result titles, URLs, and snippets. Identify the top 3-5 most relevant URLs prioritizing **source diversity**:
+Call the web search tool for each query. Collect result titles, URLs, and snippets. Identify the top 3-5 most relevant URLs prioritizing **source diversity**:
 
 | Source Type | Examples | Why |
 |-------------|----------|-----|
@@ -101,7 +101,7 @@ Additional queries showed <10% new information. Proceeding with synthesis.
 
 ### Step 3 — Deep Dive
 
-Call `WebFetch` on the top 3-5 URLs identified in Step 2. Hard limit: **max 5 WebFetch calls** per research invocation. For each fetched page:
+Call the web fetch tool on the top 3-5 URLs identified in Step 2. Hard limit: **max 5 WebFetch calls** per research invocation. For each fetched page:
 - Extract key facts, API signatures, code examples
 - Note the source URL and publication date if visible
 - Tag the source type (official/community/blog/repo) for Step 4 triangulation
@@ -181,7 +181,7 @@ Known failure modes for this skill. Check these before declaring done.
 ~300-800 tokens input, ~200-500 tokens output. Haiku. Fast and cheap.
 
 ---
-> **Rune Skill Mesh** — 66 skills, 248 connections + 45 signals, 14 extension packs
+> **Rune Skill Mesh** — 67 skills, 248 connections + 46 signals, 14 extension packs
 > [Landing Page](https://rune-kit.github.io/rune) · [Source](https://github.com/rune-kit/rune) (MIT)
-> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit/rune-pro](https://github.com/rune-kit/rune-pro)
-> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit/rune-business](https://github.com/rune-kit/rune-business)
+> **Rune Pro** ($49 lifetime) — 9 domain packs + context intelligence → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)
+> **Rune Business** ($149 lifetime) — finance, legal, HR, enterprise-search packs → [rune-kit.github.io/rune#pricing](https://rune-kit.github.io/rune#pricing)

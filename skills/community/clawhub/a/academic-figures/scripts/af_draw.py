@@ -2961,7 +2961,8 @@ def gen_diagram(data, ax, theme, cjk_fp, **kwargs):
         ax, ax.figure, blocks, data.get("arrows", []),
         groups=data.get("groups", []), annotations=data.get("annotations", []),
         theme=theme, cjk_fp=cjk_fp, gate=kwargs.get("gate", "basic"),
-        orthogonal=bool(kwargs.get("orthogonal")))
+        orthogonal=bool(kwargs.get("orthogonal")),
+        hops=bool(kwargs.get("flow_hops")))
     if kwargs.get("gate") == "strict" and violations:
         print("GATE STRICT FAIL（三层 bbox 闸违规清单）:", file=sys.stderr)
         for v in violations:
@@ -3038,7 +3039,7 @@ def gen_flow(data, ax, theme, cjk_fp, **kwargs):
         groups=data.get("groups", []), annotations=data.get("annotations", []),
         theme=theme, cjk_fp=cjk_fp, gate=kwargs.get("gate", "basic"),
         orthogonal=bool(kwargs.get("orthogonal")),
-        legend_flag=data.get("legend"))
+        legend_flag=data.get("legend"), hops=bool(kwargs.get("flow_hops")))
     if kwargs.get("gate") == "strict" and violations:
         print("GATE STRICT FAIL（三层 bbox 闸违规清单）:", file=sys.stderr)
         for v in violations:
